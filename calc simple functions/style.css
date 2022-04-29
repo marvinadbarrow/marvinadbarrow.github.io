@@ -1,0 +1,22 @@
+*{
+text-decoration: none;
+}
+#top-btns{display: flex; flex-direction: column; width: 100px; height: 40px; margin: auto;padding-top: 20px;}
+button{font-size: 20px; font-weight: bold;color: black; margin-top: 20px;}
+/*#divide-btn{width: 200px;}*/
+
+
+#bttm-btn{text-align: center; width: 500px;; height: 40px; margin: auto;padding-top: 100px;margin-top: 50px;}
+#numbers-el{text-align: center; font-size: 30px;}
+span{text-decoration: underline;}
+#sum-el{text-align: center; font-weight: bold; margin-top: 50px; }
+#log-btn{text-align: center; width: 500px;; height: 40px; margin: auto;padding-top: 10px;}
+#log-btn2{text-align: center; width: 500px;; height: 40px; margin: auto;padding-top: 10px;}
+#pow-btn1{text-align: center; width: 500px;; height: 40px; margin: auto;padding-top: 10px;}
+#pow-btn2{text-align: center; width: 500px;; height: 40px; margin: auto;padding-top: 10px;}
+sub{font-size: 13px;}
+sup{font-size: 20px;}
+#reset-btn{text-align: center; width: 500px;; height: 40px; margin: auto;padding-top: 10px;}
+#reset-el{ background-color: red;color: white; border-style: solid; border-radius: 3px;}
+#gen-btn{text-align: center; width: 500px;; height: 40px; margin: auto;padding-top: 100px}
+

@@ -1,0 +1,61 @@
+#calculator{display:grid; 
+grid-template-columns:50px 50px 50px 50px 50px;
+grid-gap:10px;
+grid-template-rows:50px 50px 50px 50px;
+width:350px;
+padding: 5px;
+grid-template-areas:
+
+"seven eight nine percent clear"
+"four five six times divide"
+"one two three plus minus"
+"zero ON dot plus equals";
+}
+
+#calculator-container{ padding:20px;margin:auto;margin-top:200px;
+display:flex; flex-direction:column; border-style:solid; border-width:3px; border-color:black; width:305px; border-radius:5px; margin-bottom:100px; box-shadow: 2px 2px 3px grey;
+}
+
+.number{background-color:black; color:white; border-radius:5px;}
+.operation{background-color:grey; color:white; border-radius:5px;}
+.clear-btn{background-color:yellow; border-radius:5px;}
+.on-btn{background-color:pink; border-radius:5px;}
+.equals-btn{background-color:grey; color:white; border-radius:5px;}
+
+#zero{ grid-area:zero;}
+#one{ grid-area:one;}
+#two{ grid-area:two;}
+#three{ grid-area:three;}
+#four{ grid-area:four;}
+#five{ grid-area:five;}
+#six{ grid-area:six;}
+#seven{ grid-area:seven;}
+#eight{ grid-area:eight;}
+#nine{ grid-area:nine;}
+#subtraction{grid-area:minus;}
+#addition{grid-area:plus;}
+#division{grid-area:divide;}
+#multiplication{grid-area:times;}
+#percentage{grid-area:percent;}
+#power{grid-area:ON;}
+#dot{grid-area:dot;}
+#CLEAR{grid-area:clear;}
+#equals{grid-area:equals;}
+
+/* button styling */
+button{border-style:  hidden; box-shadow: 2px 2px 3px black; font-size: 20px;}
+
+/* below will make the buttons look as though they are pushed down when clicked on by the mouse pointer */
+button:active{width:49px; height: 49px; box-shadow: 1px 1px 2px black;}
+#addition:active{width: 49px; height:130px;}
+
+
+
+
+#display-screen{
+text-align:right;
+font-size:65px;
+width:295px; height:75px; 
+}
+
+#display-el{ height:50px; font-size: 35px; background-color: hsl(217deg, 37%, 89%); margin-bottom:10px; text-align:right;}

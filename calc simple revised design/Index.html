@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+<title>  Simple Calculator </title>
+<link rel="stylesheet" type="text/css" href="style.css">
+             
+              </head>  
+        <body>
+<div class="calcbox">
+<input id="display-el" type="text" maxlength="10"></input>
+     
+<button id="gen-el" class="gen-button" onclick="genNum()">Nums</button>  
+<button id="add" class="buttons" onclick="addition()">a + b</button>
+<button id="subtract" class="buttons" onclick="subtraction()">a - b</button>
+<button id="AdivideB" class="buttons" onclick="division()">a / b</button>
+<button id="BdivideA" class="buttons" onclick="division2()">b / a</button>     
+<button id="times" class="buttons" onclick="multiplication()">a x b</button>
+<button id="log1" class="buttons" onclick="baseLog()">Log<sub>a</sub> b</button>
+<button id="log2"class="buttons" onclick="baseLog2()">Log<sub>b</sub> a</button>
+<button id="a-pow-b"class="buttons" onclick="pow1()">a<sup>b</sup></button>
+<button id="b-pow-a"class="buttons" onclick="pow2()">b<sup>a</sup></button>
+<button id="percent" class="buttons" onclick="percent()">%</button>
+<button id="reset-el"class="reset-button" onclick="resetSum()">Reset</button>      
+</div>                  
+
+        </body>
+        <script src="index.js"></script>
+      <footer>
+                             
+      </footer>             
+    </html>

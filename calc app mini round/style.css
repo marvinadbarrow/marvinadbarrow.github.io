@@ -1,0 +1,47 @@
+h1{text-align:center;}
+body{background-image: url(background.png)}
+
+#display{border-style: solid; border-color: white; border-radius: 5px; }
+
+.buttons-num{background-color:grey;color:white;
+font-size:20px; border-color: white; border-style: solid; border-radius: 50%;}
+.buttons-num:hover{background-color: rgba(46, 134, 192, 0.7);font-weight: bold;font-size: 30px }
+
+.buttons-op{background-color:rgb(225, 230, 228);
+color:black; font-size:20px; border-color: white; border-style: solid; border-radius:  50%; font-weight:bold;}
+.buttons-op:hover{background-color: rgba(46, 134, 192, 0.7); font-weight: bold;font-size: 30px}
+
+.buttons-functional{border-style:solid; border-color:white;border-radius:50%; border-width:2px; font-size:20px;background-color: #2e86c0;}
+.buttons-functional:hover{background-color:yellow; font-size: 30px;font-weight:bold;}
+
+
+.calcbox{ background-color: rgb(84, 222, 181);width: 300px; height: 300px; border-style:solid; border-color:black; border-width: 2px; border-radius: 5px;display:grid; grid-template-columns: repeat(3, 3fr); grid-template-rows: repeat(5, 4fr);grid-gap:3px; 
+grid-template-areas:
+" display display display"
+"nought ON AC"
+"one plus minus"
+"two times divide"
+"point percentage equals";}
+
+
+#display{grid-area: display;}
+#on{grid-area:ON;}
+#zero{grid-area:nought;}
+#one{grid-area:one;}
+#two{grid-area:two;}
+#add{grid-area:plus;}
+#subtract{grid-area:minus;}
+#times{grid-area:times;}
+#divide{grid-area:divide;}
+#dot{grid-area:point;}
+#equals{grid-area:equals;}
+#clear{grid-area:AC;}
+#percent{grid-area:percentage;}
+
+
+#display{width:300px; height:70px; border-style:solid; color:black; border-width:1px; font-size:50px; text-align:right;background-color:hsl(286deg, 10%, 87%);}
+
+#calc-container{width: 400px; margin:auto; margin-top:100px; }
+
+
+#input-el{text-align: center; margin-top: 50px; font-weight: bold; font-size: 30px;}
