@@ -1,0 +1,78 @@
+
+
+
+*{
+margin:0;
+list-style: none;
+text-decoration: none;
+
+
+}
+
+:root {
+ --color: orange;
+ 
+}
+
+body{
+   
+    text-decoration: none;
+}
+.privacy-policy{ color: orange;}
+.navbar-list{color: grey; float:left; padding-left: 23px; padding-right:20px; padding-top: 25px; }
+.navbar{padding-top: 80px; width: 70%;}
+
+
+.request-demo{float: right; padding-right: 45%; font-size: 22px; color: #fff;padding-top:4px;}
+.logo-container{float: left; padding-top: 80px; padding-left: 25px;}
+.inner-header{background-color:#3676B7; height: 40px;}
+.home-button{ color: orange; }
+.go-home{clear: both; padding-top: 30px; padding-left: 12px; color: grey}
+
+.workers-one{ float: left; margin-top: 30px; width: 50%;}
+.who{ background-color: #E0E0E0; color:grey; padding: 30px 60px 70px 60px; text-align: center; width: 41%; float: right; height: 210px; position: relative; }
+h2{padding: 20px; font-size: 30px;color: var(--color); font-weight: 500;}
+.who-are-we{font-size: 20px; }
+.who-are-we:before{ content: open-quote;}
+.who-are-we:after{ content: close-quote;}
+
+.learn-more{ background-color: #F58220;  padding: 17px; color: #fff; border-style: none;  margin-bottom: 0px; margin-top: 10px; font-size: 15px; box-shadow: 2px 2px 5px 0px rgba(0,0,0,.35);}
+ /* box-shadow uses the values {x, y, shadow blur, spread (where to start the spread - e.g 20px starts at 20px from shadow origin), and color} */
+.footer-container{ background-color:#ccc; clear: both; padding-top: 100px;  padding-bottom: 40px; padding-left: 120px; position: relative; top:60px;}
+
+.footer{ 
+background-color: #ccc; color: white;
+display: flex; justify-content: center;flex-wrap: wrap; margin: auto;
+color: var(--color);
+}
+.footer-heading{display: flex;
+flex-direction: column;
+margin-right: 4rem; }
+h3{padding-bottom:20px;}
+
+label[for="email-sign-up"]{margin-bottom: 20px;}
+a[href="#"]{color: white; font-size: 18px;}
+.logo-container-b{float: left; margin-left: -80px;}
+.logo-share{margin-top: -160px; margin-bottom: 100px;}
+ .footer-heading a:hover{color: orange;}
+ /* using just a: hover will affect 'all' of the anchor tags across the page, but by applying the class first, only the anchors within that class will be affected by the hover */
+ 
+#emailb-sign-up{ width: 170px;
+height: 40px;
+text-align: center;
+border: none;
+outline: none; border-radius: 4px; box-shadow: 2px 2px 5px 0px rgba(0,0,0,.35); }
+#subscribe-button{ height: 43px; background-color: #F58220;
+color: #fff;
+border: none;
+border-radius: 4px;
+margin: 2px;
+box-shadow: 2px 2px 5px 0px rgba(0,0,0,.35);
+}
+ button:hover {background-color: blue;
+ transform:scale(1.2) ; }
+ #subscribe-button:hover { animation-name: colour-change; animation-duration:2s; animation-fill-mode: forwards;}
+ @keyframes colour-change { 0%{background-color:red;} 50%{ background-color:yellow;} 100%{background-color:blue;}
+ }
+ 
+  .email-signup h3{margin-right: 4px;}
