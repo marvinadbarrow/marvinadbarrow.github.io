@@ -1,0 +1,99 @@
+*{
+text-decoration: none;
+font-family: 'geroama', sans-serif;
+}
+ul{list-style: none;}
+/*#title{text-align: center;}*/
+main{position: relative;}
+#header{height: 50px;padding-top: 20px;margin-top: -15px; background-color: white; position: fixed;margin-top: -100px;}
+#header-img{width: 30%;float: left; }
+.nav-link{float: right;margin-right: 50px; margin-top: -10px; font-size: 18px; color: black;}
+#form{display: flex; flex-direction: column;align-items: center; margin-top: 100px;}
+#email{margin-bottom: 12px; width: 280px; height: 25px;}
+
+.how-it-works-container{  width: 75%; margin: auto; display: grid; grid-template-columns:200px 1fr; grid-template-rows:  120px  120px  120px;  grid-template-areas:
+" icon1 para1"
+" icon2 para2"
+" icon3 para3";}
+
+.hook-img{grid-area:icon1;align-self:center; justify-self:center;}
+.hook-para{grid-area:para1; line-height:20px;align-self:center;}
+.truck-img{grid-area:icon2; align-self:center; justify-self:center;}
+.truck-para{grid-area:para2; line-height:20px;align-self:center;}
+.battery-img{grid-area:icon3;align-self: center; justify-self:center;}
+.battery-para{grid-area:para3; line-height:20px; align-self:center;}
+
+/*
+.hook-heading{grid-area:header1;}
+.truck-heading{grid-area:header2;}
+.battery-heading{grid-area:header3;}
+*/
+span{font-weight: 900; font-size: 20px;}
+
+
+#iframe-container{display: flex; justify-content: center;}
+
+.grid{display: grid; grid--template-columns: 300px 1fr;}
+
+#pricing{display: flex; flex-direction: row; justify-content: center;}
+
+.pricing-tenor{border-style: solid; border-color: black; border-width: 1px; width: 270px;margin: 10px;text-align: center;padding-bottom: 10px; min-width: 250px;}
+
+.pricing-bass{border-style: solid; border-color: black; border-width: 1px; width:  270px;margin: 10px; text-align: center;padding-bottom: 10px; min-width: 250px;}
+
+.pricing-valve{border-style: solid; border-color: black; border-width: 1px; margin: 10px; text-align: center; padding-bottom: 10px; width: 270px;min-width: 250px;}
+
+.background-top-color{height: 50px; width: 100%; background-color: hsl(4deg, 2%, 88%); font-size: 20px;  display: flex; flex-direction: row; align-items: center; justify-content: center; }
+h4{font-size: 25px; margin: 15px;}
+p{font-size: 16px; line-height: 10px;}
+
+
+#select{height: 40px; width: 100px; border-style: none; border-radius: 2px;
+background-color: #F1C40F; font-size:15px; text-transform: uppercase; margin-top: 20px;}
+#submit{background-color:#F1C40F;border-style: none;height: 30px; width: 150px; font-size: 18px; margin-bottom: 80px;}
+#submit:hover{background-color: #FFA500;}
+#select:hover{background-color: #FFA500;}
+
+
+#link-container{  display: flex; justify-content: flex-end; flex-direction: row;}
+.footer-link{list-style: none; color: black; font-size: 14px; margin-right:10px; margin-left: 2px;}
+/*#link-container{display: flex; flex-direction: row; justify-content: flex-end;}*/
+
+#footer-para{ color: grey; font-size: 14px;display: flex; justify-content: flex-end;  }
+
+#footer{
+background-color:  hsl(4deg, 2%, 88%);
+padding:5px;
+width: 80%;
+margin: auto;
+height: 60px;
+/*display: grid;
+grid-template-columns:70% 30%;
+grid-template-rows:30px 30px;
+ grid-template-areas:
+" empty links"
+" empty copyright";*/
+}
+
+@media (max-width: 800px) {#pricing{ flex-direction: column; align-items: center;}
+.pricing-tenor{min-width: 250px;}
+.pricing-bass{min-width: 250px;}
+.pricing-valve{min-width: 250px;}
+.how-it-works-container{display: list-item;}
+.hook-img{width: 0px; height: 0px;}
+.truck-img{width: 0px; height: 0px;}
+.battery-img{width: 0px; height: 0px;}
+h1{text-align: center; margin-top: 100px;}
+#nav-bar{display: flex; flex-direction:column;align-items: center;} #header{ display: flex; flex-direction: column; align-items: center; height: 140px;}
+ul{line-height:30px;}
+#header-img{min-width: 300px;}
+#footer-para{justify-content: center;}
+#footer{height: 80px;}
+#link-container{justify-content: center;}
+.footer-link{ margin-right: 35px; }
+
+/*#footer{display: flex; flex-direction: column; align-items: center; height: 100px;}*/
+
+@media(max-width:500px){#video{ width: 370px; height: 230px;}}
+
+
