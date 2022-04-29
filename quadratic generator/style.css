@@ -1,0 +1,27 @@
+#blackjack-container{ padding-top:7px; margin: auto; color: white; margin-top: 20px; background-image: url(cardgame-background.jpg); width: 590px; 
+ height: 380px; background-size: 160%; text-align: center;  font-family: sans-serif; font-weight: bold; margin-bottom: 500px;
+ 
+ border-style: solid; border-color: black; border-width: 2px; box-shadow: 2px 2px 3px black;}
+ 
+ #message-el{font-style: italic;}
+ 
+ #game-name{ color: orange;}
+ 
+button{font-weight: bold; color: green; background-color: orange; border: none;height: 50px; width: 150px; border-radius: 3px; font-size:17px; text-transform: capitalize; margin: 3px 10px }
+
+#button-div{margin-top: 20px;}
+
+
+p {display:inline; margin: 5px 20px;}
+#coeff-container{ margin-top: 20px;  }
+.no-gap{margin: 0px;}
+.variable{margin: 0px;}
+ #solve-button{margin: 15px;}
+ 
+ .shelf1{color: black; font-family: sans-serif; font-weight: bold; background-color:orange; height: 20px; width: 200px; margin-bottom: 5px; margin: auto; border-radius: 3px;}
+ 
+  .shelf2{color: black; font-family: sans-serif; font-weight: bold; background-color:yellow; height: 20px; width: 200px; margin-bottom: 5px; margin: auto; border-radius: 3px; margin-top: 5px;}
+  
+  #buy-it{color: white; font-weight: bold;}
+   #saved-ok{color: white; font-weight: bold;}
+   

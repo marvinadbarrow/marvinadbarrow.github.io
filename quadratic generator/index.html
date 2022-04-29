@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+             <link rel="stylesheet" type="text/css" href="style.css">
+            <title> Quadratic App</title>
+        </head>
+     
+           
+                    <body>
+
+ <div id="blackjack-container">
+   
+  <h1 id="game-name">Quadratic Equation Generator</h1>
+
+
+<div id="quadratic-container">
+    <p class="no-gap" id="squared-el"  onclick="squareX()"></p>
+  <p class="variable">x<sup>2</sup> </p>
+<p id="polarity-1-el">+</p>
+
+  <p class="no-gap" id="x-el" onclick="exCoeff()"></p>
+  <p class="variable">x</p>
+<p id="polarity-2-el">+</p>
+
+  <p id="constant-el" onclick="constant()">C</p>
+</div>
+
+
+<div id="button-div">
+  <button  onclick="squareX()">X<sup>2</sup> Coefficient</button>
+  <button onclick="xCoefficient()">X Coefficient</button>
+  <button onclick="constantNum()">Constant</button>
+</div>
+
+   <div id="coeff-container">
+     <p id="coeffa-el">a =</p>
+      <p id="coeffb-el">b =</p>
+       <p id="coeffc-el">c =</p>
+   </div>
+   
+   <div>
+    <button id="solve-button" onclick="solveX()">Solve  'x'</button>
+   </div>
+   
+   <div>
+    
+     <div class="shelf1" id="apple-shelf-el"></div>
+   <div class="shelf2" id="orange-shelf-el"></div>
+   
+   </div>
+   
+   
+ </div>
+ 
+  
+ 
+ <script src="quadratic.js"></script>
+        </body>                       
+                        
+
+    </html>
