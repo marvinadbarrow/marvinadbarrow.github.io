@@ -5,12 +5,17 @@ text-decoration: none;
 
 #save-btn{background-color: green; height: 50px; width:180px; font-size: 20px; padding: 10px 0px 10px 0px;margin-left: 20px;  color: white; margin-top:5px;}
 
-/*body {background-image: url(tube-station.jpg);}*/
+body {
+ background-image: url("busy station.jpg");z-index:-1;
+}
+
+
 h2{color: white; /*margin-left: 90px; */font-size: 70px; text-align: center;}
 h1{color: white; text-align: center; }
 
 #empty{width: 220px; border-radius: 5px; opacity:0.9; padding-bottom: 0px; }
-#counter-box{ box-shadow: 2px 2px 7px black; padding: 5px 5px 20px 5px; width: 220px; border-radius: 5px; margin: auto; margin-top: 50px;background-color: white; background-image: url(tube-station.jpg); background-size: 280%;}
+
+#counter-box{ box-shadow: 2px 2px 7px black; padding: 5px 5px 20px 5px; width: 220px; border-radius: 5px; margin: auto; margin-top: 50px;background-color: rgb(179, 193, 196); /*background-image: url(tube-station.jpg);*/ background-size: 280%;}
 
 /* NOTE ON BUTTONS: you could have had a button container within the counter-box, and then for the two buttons, you would, display:flex; flex-direction: column; align-items:center; and then add a little padding to each button. But you didn't realize you were making 2 buttons initially so go back and see if you can re-work the html once  you've finished the project.
  */

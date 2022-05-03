@@ -56,9 +56,7 @@ grid-template-areas:
 #gen-el{grid-area: gen-el;}
 #reset-el{grid-area: reset-el;}
 
-A JavaScript app.  A simple calculator which generates two numbers, and then performs different functions on the numbers, some simple operations, others scientific operation, to return the calculated result.  It's a work in progress.
 
-Simple JavaScript Calculator
 
 
 
