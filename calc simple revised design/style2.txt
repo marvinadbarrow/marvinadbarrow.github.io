@@ -1,0 +1,60 @@
+*{
+text-decoration: none;
+}
+#calc-display{padding: 5px; margin:auto; margin-top:100px;margin-bottom:5px;background-color: rgb(84, 222, 181);width: 400px; height: 100px; border-style:solid; border-color:black; border-width: 2px; border-radius: 7px;display:grid; grid-template-columns: repeat(2, 2fr); grid-gap:5px;
+grid-template-areas:
+" display-1 display"
+}
+
+
+#display-el{border-style:solid; border-color:black; border-radius:3px; text-align:right;font-size:50px;padding-right:10px;}
+#displayab-el{font-size:10px;text-align:left;background-color:rgb(208, 230, 245);padding:5px;border-color:black;}
+
+
+
+.buttons{font-size: 25px; font-weight: bold;color: black;border-style:solid; border-color:white; border-radius:50%; background-color:grey;color:white;}
+.buttons:hover{background-color: rgb(66, 135, 245); font-size:30px;}
+
+
+
+.gen-button{font-size: 16px; font-weight: bold; background-color: rgb(33, 117, 217); color:white; border-style: solid; border-radius: 50%;}
+.gen-button:hover{background-color: rgb(66, 135, 245); font-size:20px;}
+
+
+.reset-button{ font-size: 20px; font-weight: bold; background-color: red;color: white; border-style: solid; border-radius: 50%;}
+.reset-button:hover{background-color: rgb(66, 135, 245); font-size:25px;}
+
+
+
+span{text-decoration: underline;}
+#sum-el{text-align: center; font-weight: bold; margin-top: 50px; }
+sup{font-size:12px;}
+sub{font-size:12px;}
+
+
+
+.calcbox{ padding: 5px; margin:auto; margin-top:5px;background-color: rgb(84, 222, 181);width: 400px; height: 400px; border-style:solid; border-color:black; border-width: 2px; border-radius: 7px;display:grid; grid-template-columns: repeat(3, 3fr); grid-template-rows: repeat(4, 4fr);grid-gap:5px;
+grid-template-areas:
+"add subtract times"
+"percent AdivideB BdivideA"
+"a-pow-b b-pow-a log1"
+"log2 gen-el reset-el";}
+
+
+
+
+#add{grid-area: add;}
+#subtract{grid-area: subtract;}
+#times{grid-area: times;}
+#percent{grid-area: percent;}
+#AdivideB{grid-area: AdivideB;}
+#BdivideA{grid-area: BdivideA;}
+#a-pow-b{grid-area: a-pow-b;}
+#b-pow-a{grid-area: b-pow-a;}
+#log1{grid-area: log1;}
+#log2{grid-area: log2;}
+#gen-el{grid-area: gen-el;}
+#reset-el{grid-area: reset-el;}
+
+
+

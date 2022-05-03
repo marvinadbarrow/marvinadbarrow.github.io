@@ -63,7 +63,7 @@ function baseLog2(){
 }
 
 
-function resetSum(){   document.getElementById("display-el").value = 0; }
+function resetSum(){   document.getElementById("display-el").value = 0; document.getElementById("displayab-el").value = 0;}
 
 
 function pow1(){
