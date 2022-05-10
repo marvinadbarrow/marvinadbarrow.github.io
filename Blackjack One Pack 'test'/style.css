@@ -14,13 +14,13 @@ button{font-weight: bold; color: green; background-color: orange; border: none;w
 
 #card1{opacity:100;}
 #card2{opacity:100;}
-#card3{opacity:100;}
-#card4{opacity:100;}
-#card5{opacity:100;}
-#card6{opacity:100;}
+#card3{opacity:0;}
+#card4{opacity:0;}
+#card5{opacity:0;}
+#card6{opacity:0;}
 #card7{opacity:100;}
 #card8{opacity:100;}
-#card9{opacity:100;}
+#card9{opacity:0;}
 
 
 #display-el{width:200px; height:40px; border-width:1px; border-color:black; border-radius:5px; text-align:center; font-size:22px; text-style:bold; margin-bottom:20px;}
