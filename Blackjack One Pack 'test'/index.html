@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+             <link rel="stylesheet" type="text/css" href="style.css">
+            <title> BLACKJACK App</title>
+        </head>
+     
+           
+                    <body>
+
+ <div id="blackjack-container">
+   <button onclick="testFx()" id="reset-btn"> reset game </button>
+  <div id="game-name"></div>
+<!-- <label for="display-yours-el">Game Outcome</label><br>
+<input id="display-yours-el" type="text"></input><br>
+-->
+<label for="your-sum-el"> Your Sum</label><br>
+<input id="your-sum-el" type="text"></input><br>
+
+<button onclick="dealGame()" id="start-btn">Begin Game</button>
+<button onclick="randomCardYou()"> Your Deal </button>
+<button onclick="myTest()"> stand</button><br>
+
+ 
+  
+   
+<div id="played-cards">
+<img src="back.png" id="card1" height="143px" width="100px";>
+<img src="back.png" id="card2" height="143px" width="100px";>
+<img src="back.png" onclick="nextCardYou3()" id="card3" height="143px" width="100px";>
+
+<img src="back.png" onclick="nextCardYou4()" id="card4" height="143px" width="100px";>
+
+<img src="back.png" onclick="nextCardYou5()" id="card5" height="143px" width="100px";>
+
+<img src="back.png" onclick="nextCardYou6()" id="card6" height="143px" width="100px";>
+
+</div>
+
+ <!-- <label for="display-el" id="card-pull">Dealer Cards </label><br> 
+<input id="display-el" type="text"></input><br>
+-->
+<label for="dealer-sum-el" id="dealer-sum-input"> Dealer Sum</label><br>
+<input id="dealer-sum-el" type="text"></input><br>
+
+
+
+<div id="played-cards">
+<img src="back.png"  id="card7" height="143px" width="100px";>
+
+<img src="back.png"  id="card8" height="143px" width="100px";>
+
+<img src="back.png"  id="card9" height="143px" width="100px";>
+
+</div>
+
+<p id="instructions-el">Hit 'BEGIN'  to START GAME</p>
+
+ <script src="blackjack-b.js"></script>
+        </body>                       
+                        
+
+    </html>
+
