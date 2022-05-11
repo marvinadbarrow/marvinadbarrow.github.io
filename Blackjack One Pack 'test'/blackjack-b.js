@@ -22,18 +22,18 @@ let instruction11 = "KABOOM! The FIVE card Trick; 'you SUPERSTAR' -- you WIN"
 
 
 // in game sounds
-let audio = new Audio("card-flip.mp3"); // card flip 
-var audio2 = new Audio("boop-start.mp3"); // stand 
-var audio3 = new Audio("twentyone-wait.mp3"); // player gets 21 - awaits dealer reveal 
-var audio4 = new Audio("you-lose.mp3"); // lose 
-var audio5 = new Audio("dealer-over-nineteen.mp3"); // dealer gets 20 or 21
-var audio5b = new Audio("first-try-5b.mp3") // after first attempt on dealer hold
-let audio6 = new Audio("keep-trying-6.mp3"); // after second attmpt on dealer hold
-let audio7 = new Audio("you-got-lucky-7.mp3"); // after third attempt on dealer hold
-var audio8 = new Audio("normal-draw-clapping.mp3") // both get same number
+let audio = new Audio("cardflip.mp3"); // card flip 
+var audio2 = new Audio("boopstart.mp3"); // stand 
+var audio3 = new Audio("twentyonewait.mp3"); // player gets 21 - awaits dealer reveal 
+var audio4 = new Audio("youlose.mp3"); // lose 
+var audio5 = new Audio("dealerovernineteen.mp3"); // dealer gets 20 or 21
+var audio5b = new Audio("firsttry5b.mp3") // after first attempt on dealer hold
+let audio6 = new Audio("keeptrying6.mp3"); // after second attmpt on dealer hold
+let audio7 = new Audio("you-gotlucky7.mp3"); // after third attempt on dealer hold
+var audio8 = new Audio("normaldrawclapping.mp3") // both get same number
 var audio9 = new Audio("tadaa.mp3"); // win 
-var audio10 = new Audio("perfect-draw.mp3")// both DRAW on 21
-var audio11 = new Audio("five-card-trick.mp3") // five card trick
+var audio10 = new Audio("perfectdraw.mp3")// both DRAW on 21
+var audio11 = new Audio("fivecardtrick.mp3") // five card trick
 
 
 let cardSuits = [ 
