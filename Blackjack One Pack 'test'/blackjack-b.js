@@ -19,7 +19,7 @@ let instruction8 = "GOOD; you got a DRAW!"
 let instruction9 = "HOORAY! - you're a WINNER!"
 let instruction10 = "WHOA!, the perfect '21' DRAW!"
 let instruction11 = "KABOOM! The FIVE card Trick; 'you SUPERSTAR' -- you WIN"
-
+let instruction12 = " 'STALEMATE - GAMEOVER' "
 
 // in game sounds
 let audio = new Audio("cardflip.mp3"); // card flip 
@@ -121,7 +121,8 @@ sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 
 if (sum === 21){instructionEl.textContent = instruction3;audio3.play();} 
 else if (sumb > 19){instructionEl.textContent = instruction5b; audio5b.play();} 
-else if (sumb === 21 && sum === 21){instructionEl.textContent = instruction10; audio10.play();} 
+else if (sumb === 21 && sum > 19){instructionEl.textContent = instruction9; audio9.play();}
+ else if (sumb === 20 && sum > 19){instructionEl.textContent = instruction12; audio2.play();}
 else {instructionEl.textContent = instruction2}
 
 }
