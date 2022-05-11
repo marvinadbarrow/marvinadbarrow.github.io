@@ -1,0 +1,23 @@
+#quadratic-container{ padding-top:40px; margin: auto; color: white; margin-top: 20px; background-image: url(blackboard.jpg); width: 620px; 
+ height: 500px; background-size: 160%; text-align: center;  font-family: sans-serif; font-weight: bold; margin-bottom: 500px; border-style: solid; border-color: black; border-width: 2px; box-shadow: 2px 2px 3px black;}
+ 
+ #message-el{font-style: italic;}
+ 
+ #game-name{ color: orange;}
+ 
+button{font-weight: bold; color: green; background-color: orange; border: none;height: 80px; width: 250px; border-width: 3px; border-radius: 3px; border-style:solid; border-color:white; font-size:17px; text-transform: capitalize; margin: 3px 10px }
+
+#gen-btn{margin-top: 20px;}
+
+
+p {display:inline; margin: 5px 20px;}
+#coeff-container{ margin-top: 20px;  }
+
+
+ #solve-button{margin: 15px;}
+ 
+ #solution-el{height: 50px; width: 150px; border-radius: 3px; font-size:17px; text-transform: capitalize; margin: 20px 10px }
+
+ span{text-transform:lowercase;}  
+
+#reset-btn{background-color:rgb(250, 38, 15) ; color:white; height: 60px; width:80px;margin-top:10px; margin: auto; margin-top:10px;border-radius:7px;border-style:solid;border-color:white; border-width:2px; display:block;}

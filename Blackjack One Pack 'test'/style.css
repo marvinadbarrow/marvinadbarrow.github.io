@@ -1,7 +1,7 @@
-#blackjack-container{ padding-top:7px; margin: auto; color: white; margin-top: 20px; background-image: url(game-back.jpg); width: 625px; 
- height: 990px;  text-align: center;  font-family: sans-serif; font-weight: bold; margin-bottom: 500px;
+#blackjack-container{ padding-top:7px; margin: auto; color: white; margin-top: 20px; background-image: url(cropped-table.jpg); width: 640px; 
+ height: 1014px;  text-align: center;  font-family: sans-serif; font-weight: bold; margin-bottom: 500px;
  
- border-style: solid; border-color: black; border-width: 2px; box-shadow: 2px 2px 3px black;}
+ border-style: solid; border-color: black; border-width: 2px; box-shadow: 0.3px 0.3px 10px rgb(99, 98, 95);border-radius:7px;}
  
 h1{margin-top:70px;} 
  #game-name{ color: orange; margin-top:150px;}

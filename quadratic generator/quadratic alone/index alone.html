@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+             <link rel="stylesheet" type="text/css" href="style alone.css">
+            <title> Quadratic App</title>
+        </head>
+     
+           
+                    <body>
+
+ 
+   
+  <h1 id="game-name">Quadratic Equation Generator</h1>
+
+<div id="quadratic-container">
+	<p  id="x-squared-el">x^2</p>
+
+	<p id="polarity1-el"></p>
+
+	<p  id="x-el">x</p>
+
+	<p id="polarity2-el"></p>
+
+  	<p id="constant-el">C</p>
+
+
+<div id="gen-btn">
+  	  <button  onclick="genCoefSomeSol()">Generate a, b & c<br> <span>(solutions exist)</span> </button>
+
+  	  <button  onclick="genCoefAllSol()">Generate a, b & c<br> <span>(solutions may not exist)</span></button>
+  	</div>
+
+
+   <div id="coeff-container">
+     	<p id="coeffa-el">a =</p>
+      	<p id="coeffb-el">b =</p>
+       	<p id="coeffc-el">c =</p>
+  </div>
+   
+
+   <div>
+    <button id="solve-button" onclick="generateCoefficients()">Solve  'x'</button>
+   </div>
+
+<input id="solution-el" type="text"></input>
+   
+
+ <button onclick="resetBtn()" id="reset-btn"> reset</button>
+
+   
+ </div>
+ 
+  
+ 
+ <script src="quadratic alone.js"></script>
+        </body>                       
+                        
+
+    </html>
