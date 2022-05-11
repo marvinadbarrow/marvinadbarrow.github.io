@@ -3,25 +3,37 @@
 let dealerArray =[]
 let playerArray =[]
 
-let message1 = "Draw!"
-let message2 = "You Lose! "
-let message3 = "You win! "
-let message4 = "Hit Stand"
-let message5 = "Five Card Trick!"
-let finalMessage = " "
 
+
+// in game screen prompts and outcome readout
 let instructionEl = document.getElementById('instructions-el')
 let instruction1 = "Your turn: Deal your hand!"
 let instruction2 = "If Dealer is HOLDING, you must pick a card, otherwise STAND if you wish (dealer will reveal)"
 let instruction3 = "Got 21? Dealer can't beat that but could match you: Hit STAND"
 let instruction4 = "Sorry! You lose this time!"
 let instruction5 = "Dealer MUST hold; Can you pick a WINNING card? GO!" 
-let instruction6 = "Keep trying"
+let instruction5b = " 'Still alive' "
+let instruction6 = " 'Keep trying' "
 let instruction7 = "You got LUCKY, try or STAND? If dealer HOLDS you must play though!"
 let instruction8 = "GOOD; you got a DRAW!"
 let instruction9 = "HOORAY! - you're a WINNER!"
-let instruction10 = "WHOA!, the perfect DRAW!"
+let instruction10 = "WHOA!, the perfect '21' DRAW!"
 let instruction11 = "KABOOM! The FIVE card Trick; 'you SUPERSTAR' -- you WIN"
+
+
+// in game sounds
+let audio = new Audio("card-flip.mp3"); // card flip 
+var audio2 = new Audio("boop-start.mp3"); // stand 
+var audio3 = new Audio("twentyone-wait.mp3"); // player gets 21 - awaits dealer reveal 
+var audio4 = new Audio("you-lose.mp3"); // lose 
+var audio5 = new Audio("dealer-over-nineteen.mp3"); // dealer gets 20 or 21
+var audio5b = new Audio("first-try-5b.mp3") // after first attempt on dealer hold
+let audio6 = new Audio("keep-trying-6.mp3"); // after second attmpt on dealer hold
+let audio7 = new Audio("you-got-lucky-7.mp3"); // after third attempt on dealer hold
+var audio8 = new Audio("normal-draw-clapping.mp3") // both get same number
+var audio9 = new Audio("tadaa.mp3"); // win 
+var audio10 = new Audio("perfect-draw.mp3")// both DRAW on 21
+var audio11 = new Audio("five-card-trick.mp3") // five card trick
 
 
 let cardSuits = [ 
@@ -49,13 +61,14 @@ let sum1 = Math.ceil(cardOne/4)
 let cardTwo = Math.ceil(Math.random() * cardSuits.length);
 let sum2 = Math.ceil(cardTwo/4) 
 
+ 
 if (sum1 === sum2) {dealGame()}
 		else {
 
 	if (sum1>10){sum1 = 10} else if (sum1<2){sum1 = 11}
 	if (sum2>10){sum2 = 10} else if (sum2<2){sum2 = 11}
 	console.log (sum1 + sum2)
-
+	audio.play()
 	let chooseImage1 = cardSuits[cardOne -1]
 	let chooseImage2 = cardSuits[cardTwo -1]
 	card7.src = chooseImage1
@@ -66,11 +79,10 @@ if (sum1 === sum2) {dealGame()}
 	sumb = dealerArray.reduce((partialSum, a) => partialSum + a, 0);
 
 	document.getElementById("dealer-sum-el").value = sumb
-	//document.getElementById("display-el").value += dealerArray
-	document.getElementById("card9").style.opacity = "100"
+		document.getElementById("card9").style.opacity = "100"
 	instructionEl.textContent = instruction1
 
-if (sumb > 19){instructionEl.textContent = instruction5}
+if (sumb > 19){instructionEl.textContent = instruction5; audio5.play();}
 
                     }
 
@@ -89,6 +101,7 @@ document.getElementById("card3").style.opacity = "0"
 if (sum1>10){sum1 = 10} else if (sum1<2){sum1 = 11}
 if (sum2>10){sum2 = 10} else if (sum2<2){sum2 = 11}
 
+audio.play(); 
 if (sum1 === sum2) {randomCardYou()}
 else {
 let chooseImage1 = cardSuits[cardOne -1]
@@ -103,11 +116,13 @@ playerArray.push(sum2)
 console.log(playerArray)
 
 sum =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
-//document.getElementById("display-yours-el").value = playerArray;
 document.getElementById("your-sum-el").value = sum
 sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 
-if (sum === 21){console.log(message4); instructionEl.textContent = instruction3} else if (sum > 21){instructionEl.textContent = instruction2} else {instructionEl.textContent = instruction2} 
+if (sum === 21){instructionEl.textContent = instruction3;audio3.play();} 
+else if (sumb > 19){instructionEl.textContent = instruction5b; audio5b.play();} 
+else if (sumb === 21 && sum === 21){instructionEl.textContent = instruction10; audio10.play();} 
+else {instructionEl.textContent = instruction2}
 
 }
   }
@@ -126,6 +141,7 @@ let cardPlus = Math.ceil(Math.random() * cardSuits.length);
 let sumPlus = Math.ceil(cardPlus/4) 
 if (sumPlus>10){sumPlus = 10} else if (sumPlus<2){sumPlus = 11}
 
+audio.play(); 
 playerArray.push(sumPlus)
 console.log(playerArray)
 
@@ -136,7 +152,14 @@ sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 document.getElementById("your-sum-el").value = sumbAll
 //document.getElementById("display-yours-el").value = playerArray;
 document.getElementById("card4").style.opacity = "100"
-if (sumbAll === 21){console.log(message4); instructionEl.textContent = instruction3} else if (sumbAll > 21){ instructionEl.textContent = instruction4} else {instructionEl.textContent = instruction2}
+
+if (sumbAll === 21 && sumb < sumbAll){instructionEl.textContent = instruction3;audio3.play();} // hit stand instruction
+else if (sumbAll === 21 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
+else if (sumbAll === 20 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
+else if(sumbAll>21){ instructionEl.textContent = instruction4; audio4.play();}
+else if (sumb > 19 && sumbAll < 21){instructionEl.textContent = instruction6; audio6.play();}
+else if(sumb > 19 && sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play();} 
+else {instructionEl.textContent = instruction2} 
 		}
 			}
 
@@ -150,6 +173,8 @@ function nextCardYou4(){
 let cardPlus = Math.ceil(Math.random() * cardSuits.length);
 let sumPlus = Math.ceil(cardPlus/4) 
 if (sumPlus>10){sumPlus = 10} else if (sumPlus<2){sumPlus = 11}
+
+audio.play(); 
 let chooseImagePlus = cardSuits[cardPlus -1]
 card4.src = chooseImagePlus
 
@@ -166,7 +191,14 @@ document.getElementById("your-sum-el").value = sumbAll
 document.getElementById("card5").style.opacity = "100"
 
 
-if (sumbAll === 21){console.log(message4); instructionEl.textContent = instruction3} else if (sumbAll > 21){ instructionEl.textContent = instruction4} else {instructionEl.textContent = instruction7}
+if (sumbAll === 21 && sumb < sumbAll){instructionEl.textContent = instruction3;audio3.play();} // hit stand instruction
+else if (sumbAll === 21 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
+else if (sumbAll === 20 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
+else if(sumbAll>21){ instructionEl.textContent = instruction4; audio4.play();}
+else if (sumb > 19 && sumbAll < 21){instructionEl.textContent = instruction7; audio7.play();}
+else if(sumb > 19 && sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play();} 
+else {instructionEl.textContent = instruction2} 
+
 }}
 
 
@@ -182,6 +214,8 @@ function nextCardYou5(){
 let cardPlus = Math.ceil(Math.random() * cardSuits.length);
 let sumPlus = Math.ceil(cardPlus/4) 
 if (sumPlus>10){sumPlus = 10} else if (sumPlus<2){sumPlus = 11}
+
+audio.play(); 
 let chooseImagePlus = cardSuits[cardPlus -1]
 card5.src = chooseImagePlus
 
@@ -197,7 +231,11 @@ document.getElementById("your-sum-el").value = sumbAll
 document.getElementById("card6").style.opacity = "100"
 
 
-if (sumbAll === 21){console.log(message4); instructionEl.textContent = instruction3} else if (sumbAll > 21){ instructionEl.textContent = instruction4} else {instructionEl.textContent = instruction2}
+if (sumbAll === 21 && sumb < sumbAll){instructionEl.textContent = instruction3;audio3.play();} // hit stand instruction
+else if (sumbAll === 21 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
+else if (sumbAll === 20 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
+else if(sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play()} 
+else {instructionEl.textContent = instruction2}
 }}
 
 
@@ -209,6 +247,8 @@ function nextCardYou6(){
 let cardPlus = Math.ceil(Math.random() * cardSuits.length);
 let sumPlus = Math.ceil(cardPlus/4) 
 if (sumPlus>10){sumPlus = 10} else if (sumPlus<2){sumPlus = 11}
+
+audio.play(); 
 let chooseImagePlus = cardSuits[cardPlus -1]
 card6.src = chooseImagePlus
 
@@ -224,15 +264,28 @@ document.getElementById("your-sum-el").value = sum
 //document.getElementById("display-yours-el").value = playerArray;
 
 
-if (sumbAll === 21){console.log(message4); instructionEl.textContent = instruction3} else if (sumbAll > 21){ instructionEl.textContent = instruction4} else {instructionEl.textContent = instruction2}
+if (sumbAll === 21 && sumb < sumbAll){instructionEl.textContent = instruction3;audio3.play();} // hit stand instruction
+else if (sumbAll === 21 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
+else if (sumbAll === 20 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
+else if(sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play()} 
+else {instructionEl.textContent = instruction2}
 }}
 
+/* if (sumb === 20 && sumbAll === 20 || sumb === 21 && sumbAll === 21){draw} else if (sumb === 20 and sumb<sumbAll){ you win} else if (sumb === 21 and sumb > sumbAll) */
 
-function myTest(){console.log("hello")
-if (playerArray.length > 1 && dealerArray.length >1 && sumb < 20 && sumbAll <22 && sum < 22){
+
+
+
+
+
+
+function dealStand(){console.log("hello");
+if (playerArray.length > 1 && dealerArray.length >1 && sumb < 20 && sumbAll < 22){
 let cardPlus = Math.ceil(Math.random() * cardSuits.length);
 		let sumPlus = Math.ceil(cardPlus/4) 
+
 if (sumPlus>10){sumPlus = 10} else if (sumPlus<2){sumPlus = 11}
+
 		dealerArray.push(sumPlus)
 		console.log(dealerArray)		
 sumb = dealerArray.reduce((partialSum, a) => partialSum + a, 0);
@@ -241,28 +294,35 @@ sumb = dealerArray.reduce((partialSum, a) => partialSum + a, 0);
 sumbAll = playerArray.reduce((partialSum, a) => partialSum + a, 0);
 		console.log(sum)
 
+audio.play(); 
 let chooseImagePlus = cardSuits[cardPlus -1]
 		card9.src = chooseImagePlus
-
+if (sumPlus > 19){sumplus = 0; card.src = back.jpg}
 document.getElementById("dealer-sum-el").value = sumb
-		//document.getElementById("display-yours-el").value = finalMessage
+		
 
 // rules for outcomes
-if (sumbAll === sumb){console.log(message1); instructionEl.textContent = instruction8} 
 
-else if (sumb < 21 && sumbAll < sumb || sumbAll > 21){console.log(message2);  instructionEl.textContent = instruction4} 
+if (sumb > 21){instructionEl.textContent = instruction9; audio9.play();}
 
-else if (sumbAll < 21 && sumb < sumbAll || sumb >21) {console.log(message3);  instructionEl.textContent = instruction9} 
+else if (sumb <= 21 && sumbAll < sumb){console.log("lose"); instructionEl.textContent = instruction4; audio4.play();}
 
-else if (sumb = 21 && sumbAll < 21){console.log(message2); cardPlus = 0; card9.src = "back.png";  instructionEl.textContent = instruction4} 
+else if (sumb === sumbAll &&  sumb < 21 && sumbAll < 21){console.log("normaldraw"); instructionEl.textContent = instruction8; audio8.play();} 
+
+else if (sumb < sumbAll){instructionEl.textContent = instruction9; audio9.play();}
+
+// below not working - esps where sumbAll <= 21 and sumb < sumbAll
+
+if (sumb === 21 && sumbAll === 21){ console.log("SUPER draw"); instructionEl.textContent = instruction10; audio10.play();}
+
+if (playerArray.length > 4  && sumbAll === 21){console.log("win"); instructionEl.textContent = instruction11; audio11.play(); } 
 
 
-else if (playerArray.length >4  && sumbAll <22){console.log (message5); instructionEl.textContent = instruction11} 
-
-if (sumb === 21 && sumbAll === 21){ instructionEl.textContent = instruction10}
 }
 }
+
 
 function testFx(){
+ 
 location.reload();
 }
