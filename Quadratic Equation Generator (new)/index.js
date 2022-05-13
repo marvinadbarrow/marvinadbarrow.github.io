@@ -1,5 +1,7 @@
   
-
+let audio1 = new Audio("mouseclickcut.mp3")
+let audio2 = new Audio("mouseclickcut.mp3")
+let audio3 = new Audio("boop-start.mp3")
 
 let allArray = []
 let someArray = []
@@ -20,9 +22,15 @@ let constantEl = document.getElementById("constant-el")
 
 function genCoefAllSol(){
 
+document.getElementById("solution-el").style.color = "rgb(220, 243, 247)";
+
+audio1.play();
+
+
 var aN = Math.floor(Math.random()*5 +1);
 var bN = Math.floor(Math.random()*10 +1);
 var cN = Math.floor(Math.random()*5 +1);
+
 
 // polarities 
 let polarityGenZero = Math.floor(Math.random()*99 +1);
@@ -70,8 +78,8 @@ console.log(xSol)}
 
 function genCoefSomeSol() {
 
-
-
+document.getElementById("solution-el").style.color = "rgb(220, 243, 247)";
+audio2.play(); 
 
 // coefficients generated (for a, b and c); 
 let aN = Math.floor(Math.random()*4 +1);
@@ -97,7 +105,7 @@ if (discSomeEl < 0) {genCoefSomeSol()}
 else {
 
 let oneSolution = -bN/2*aN
- 
+
 
 xSquareEl.textContent = aN + "x^2";
 if (bN < 0){xEl.textContent =  bN + "x";} else{xEl.textContent = "+" +  bN + "x"}
@@ -139,7 +147,16 @@ console.log(xSolFixed)}
 
 let warningEl = document.getElementById("reset-alert");
 
+
+// this activates the timer before the delayed function activates; so the text element displays its message when the revealSol button is clicked and a timer stsarts running; after the timer elapses the myMessage function will be activated and whatever command is inside that function will run; i.e. 'reload the browser'.  
+
+
+
+
+
+
  function revealSol(){
+audio3.play();
 document.getElementById("solution-el").style.color = "black";
 warningEl.textContent = "WARNING! Page Will Refresh in a short time: Hit reset button to refresh earlier";
 function myMessage() {
