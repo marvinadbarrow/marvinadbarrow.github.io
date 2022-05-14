@@ -6,7 +6,7 @@
 h1{margin-top:70px;} 
  #game-name{ color: orange; margin-top:150px;}
  
-button{font-weight: bold; color: green; background-color: orange; border: none;width: 150px; border-radius: 3px; font-size:17px; text-transform: uppercase; margin-top:30px; height:35px;}
+button{font-weight: bold; color: white; background-color: orange; border: none;width: 150px; border-radius: 3px; font-size:17px; text-transform: uppercase; margin-top:30px; height:35px;box-shadow: 2px 2px 7px black; }
  
 #played-cards{margin-top:30px; margin-bottom:15px;}
  
@@ -36,5 +36,190 @@ button{font-weight: bold; color: green; background-color: orange; border: none;w
 
 p{font-size: 35px; font-style:bold; text-align:center;color: rgb(245, 234, 34); opacity:90%;}
 
-#reset-btn{background-color:rgb(250, 38, 15) ; color:white; height: 60px; width:80px;margin-top:10px;position:absolute; margin-left:-300px;margin-top:50px;border-radius:7px;border-style:solid;border-color:white; border-width:2px;}
+#reset-btn{background-color:rgb(250, 38, 15) ; color:white; height: 60px; width:140px;position:absolute; margin-top:50px;border-radius:7px;border-style:solid;border-color:white; border-width:2px;box-shadow: 2px 2px 7px black;}
 
+#reset-btn:hover{background-color:rgb(245, 115, 108);
+box-shadow: 1px 1px 3px black;
+}
+
+
+// MODAL BOX code
+#button-container{width:200px; margin:auto;}
+
+#rules-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:30px;margin-top:30px; box-shadow: 2px 2px 7px black;  position:fixed; }
+
+#rules-btn:hover, #rules-btn:focus{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer;}
+
+#modal-container{width:90%; margin:auto;}
+
+#close-btn{font-weight:bold; font-size:60px; margin:10px;
+color:rgba(245, 41, 22, 0.7); float:right;
+ }
+
+#close-btn:hover, #close-btn:focus{color:black; text-decoration:none; cursor:pointer; }
+
+#simple-modal{
+display:none;
+box-shadow: 2px 2px 7px black;
+width:100; height:750px;
+background-color:rgba(247, 223, 186, 0.8);
+margin-top:30px;
+border-radius:7px;
+position:fixed;
+z-index:1;
+overflow:auto;
+
+}
+
+#content{width:500px; background-color:rgb(99, 186, 194);
+box-shadow: 1px 1px 5px black;
+border-radius:7px;
+margin:20px;
+height:700px;
+animation-name: modalfade;
+animation-duration:2.5s;
+background-image: url(cardgame-background.jpg);
+}
+
+#modal-para{margin:10px;font-size:20px; font-weight:bold;color:white;}
+
+#modal-header{height: 80px; background-color:rgb(227, 215, 48); font-size:40px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px;}
+
+
+@keyframes modalfade{
+from{opacity:0}
+to{opacity:1}
+}
+
+
+#small-cards{margin-left:160px;}
+#next, #previous{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:15px;margin-top:30px; box-shadow: 2px 2px 7px black;  }
+
+
+
+
+
+
+
+/// second MODAL BOX - TWO
+
+
+// MODAL BOX code
+#button-containerTwo{width:200px; margin:auto;}
+
+#rules-btnTwo{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:30px;margin-top:30px; box-shadow: 2px 2px 7px black;  position:fixed; }
+
+
+
+#modal-containerTwo{width:90%; margin:auto;}
+
+#close-btnTwo{font-weight:bold; font-size:60px; margin:10px;
+color:rgba(245, 41, 22, 0.7); float:right;
+ }
+
+#close-btnTwo:hover, #close-btn:focus{color:black; text-decoration:none; cursor:pointer; }
+
+#simple-modalTwo{
+display:none;
+box-shadow: 2px 2px 7px black;
+width:100; height:750px;
+background-color:rgba(247, 223, 186, 0.8);
+margin-top:30px;
+border-radius:7px;
+position:fixed;
+z-index:1;
+overflow:auto;
+
+}
+
+#contentTwo{width:500px; background-color:rgb(99, 186, 194);
+box-shadow: 1px 1px 5px black;
+border-radius:7px;
+margin:20px;
+height:700px;
+animation-name: modalfade;
+animation-duration:2.5s;
+background-image: url(cardgame-background.jpg);
+}
+
+#modal-paraTwo{margin:10px;font-size:20px; font-weight:bold;color:white;}
+
+#modal-headerTwo{height: 80px; background-color:rgb(227, 215, 48); font-size:40px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px;}
+
+
+@keyframes modalfade{
+from{opacity:0}
+to{opacity:1}
+}
+
+
+#small-cardsTwo{margin-left:160px;}
+#nextTwo{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:15px;margin-top:30px; box-shadow: 2px 2px 7px black; margin-left:10px; }
+
+#scenarios{color:yellow;}
+#dealer-hold{color:rgb(135, 222, 232);}
+
+
+
+
+
+
+
+
+
+///  MODAL BOX - Three
+
+
+// MODAL BOX code
+#button-containerThree{width:200px; margin:auto;}
+
+
+#modal-containerThree{width:90%; margin:auto;}
+
+#close-btnThree{font-weight:bold; font-size:60px; margin:10px;
+color:rgba(245, 41, 22, 0.7); float:right;
+ }
+
+#close-btnThree:hover, #close-btn:focus{color:black; text-decoration:none; cursor:pointer; }
+
+#simple-modalThree{
+display:none;
+box-shadow: 2px 2px 7px black;
+width:100; height:750px;
+background-color:rgba(247, 223, 186, 0.8);
+margin-top:30px;
+border-radius:7px;
+position:fixed;
+z-index:1;
+overflow:auto;
+
+}
+
+#contentThree{width:500px; background-color:rgb(99, 186, 194);
+box-shadow: 1px 1px 5px black;
+border-radius:7px;
+margin:20px;
+height:700px;
+animation-name: modalfade;
+animation-duration:2.5s;
+background-image: url(cardgame-background.jpg);
+}
+
+#modal-paraThree{margin:10px;font-size:20px; font-weight:bold;color:white;}
+
+#modal-headerThree{height: 80px; background-color:rgb(227, 215, 48); font-size:40px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px;}
+
+
+@keyframes modalfade{
+from{opacity:0}
+to{opacity:1}
+}
+
+a{z-index:2;}
+
+#small-cardsThree{margin-left:160px;}
+#previousTwo, #close-modal{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:15px;margin-top:30px; box-shadow: 2px 2px 7px black; margin-left:10px; }
+
+#scenarios{color:yellow;}
+#dealer-hold{color:rgb(135, 222, 232);}
+#linkedin{color:yellow}

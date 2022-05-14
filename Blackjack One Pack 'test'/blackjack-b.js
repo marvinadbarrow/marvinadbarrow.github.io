@@ -327,3 +327,59 @@ function testFx(){
  
 location.reload();
 }
+
+
+// code for MODAL BOX 
+
+let modal = document.getElementById('simple-modal')
+var audio15 = new Audio("rules-sound.mp3");
+function openModal(){
+closeModalTwo()
+audio15.play();
+modal.style.display = 'block';
+console.log('hi')
+
+}
+
+
+function closeModal(){
+modal.style.display = 'none';
+console.log('hi')}
+
+
+
+// code for MODAL BOX NUMBER 2
+
+let modalTwo = document.getElementById('simple-modalTwo')
+function openModalTwo(){
+closeModalThree()
+closeModal()
+audio15.play();
+modalTwo.style.display = 'block';
+
+
+}
+
+
+function closeModalTwo(){
+modalTwo.style.display = 'none';
+console.log('hi')}
+
+
+
+
+
+// code for MODAL BOX NUMBER 3
+let modalThree = document.getElementById('simple-modalThree')
+
+
+function openModalThree(){
+modalThree.style.display = 'block';
+closeModalTwo()
+audio15.play();
+}
+
+
+function closeModalThree(){
+modalThree.style.display = 'none';
+console.log('hi')}

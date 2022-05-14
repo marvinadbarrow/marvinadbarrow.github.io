@@ -136,15 +136,127 @@ if(discSomeEl === 0){document.getElementById("avail-solutions-el").value = "One 
 
 else{document.getElementById("avail-solutions-el").value = "Two solutions"; document.getElementById("solution-el").value = "x = " + xSolFixed + ", " + -xSolFixed;}
 
-console.log(xSolFixed)}
-}
+} // END OF FUNCTION
 
 
 // changing the opacity of the text so it is invisible until I'm ready to reveal it. which I can do by assigning a variable tithe the get id function... YES. 
 
+
+
+
+ // case for single solutions generator
+
+
+function genCoefOneSol(){
+
+document.getElementById("solution-el").style.color = "rgb(220, 243, 247)";
+audio4.play(); 
+
+// coefficients generated (for a, b and c); 
+let aN = Math.floor(Math.random()*4 +1);
+let bN = Math.floor(Math.random()*10 +1);
+let cN = Math.floor(Math.random()*5 +1);
+
+
+// polarities for the quadratic equasion sum, (example x^2 '+' x '-' 2; polarities are (+,-))
+let polarityGenZero = Math.floor(Math.random()*99 +1);
+let polarityGenOne = Math.floor(Math.random()*99 +1);
+let polarityGenTwo = Math.floor(Math.random()*99 +1);
+
+
+if (polarityGenZero <50){ aN = -aN;} else{ aN = aN; }
+if (polarityGenOne <50){ bN = -bN;} else{bN = bN;}
+if (polarityGenTwo <50){ cN = -cN;} else{ cN = cN;}
+
+discOneEl = bN*bN - 4*aN*cN
+
+
+if ( discOneEl < 0 || discOneEl > 0 ){ genCoefOneSol() } else{
+
+
+let oneSolution = -bN/2*aN
+
+
+xSquareEl.textContent = aN + "x^2";
+if (bN < 0){xEl.textContent =  bN + "x";} else{xEl.textContent = "+" +  bN + "x"}
+if (cN < 0){constantEl.textContent = cN ;} else{constantEl.textContent = "+" + cN;}
+
+// gets coefficient to paragraph element showing a=, b= and c= (for manual calculation entering those details into formula
+aEl.textContent = "a = " + aN 
+bEl.textContent = "b = " + bN 
+cEl.textContent = "c = " + cN 
+
+let oneSolFixed = oneSolution.toFixed(3)
+
+document.getElementById("avail-solutions-el").value = "One solution"; document.getElementById("solution-el").value = "x = " + oneSolution;
+
+} 
+
+} // END OF FUNCTION
+
+
+
  function revealSol(){
 document.getElementById("solution-el").style.color = "black";
 
-}
+}// END OF FUNCTION
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,10 +13,6 @@ let xEl = document.getElementById("x-el")
 let constantEl = document.getElementById("constant-el") 
 
 
-//let solutionOpac = document.getElementById("solution-el")
-//solutionOpac.style.color = '#000'
-
-
 
 function genCoefAllSol(){
 

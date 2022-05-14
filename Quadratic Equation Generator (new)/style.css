@@ -42,9 +42,4 @@ input#avail-solutions-el, textarea {
   font-size:30px; font-weight:bold;
 }
 
-#reset-alert{color:rgb(231, 235, 33);
-font-weight:bold; font-size:27px;
-text-align:center;
-}
-
-#warning-container{margin-top: 50px; width:400px;margin-auto;}
+.single-btn{font-weight: bold; color: white; background-color:rgb(12, 86, 204); border: none;height: 60px; width: 250px; border-width: 3px; border-radius: 3px; border-style:solid; border-color:white; font-size:18px; text-transform: capitalize; margin: 10px 10px ; margin-left: -280px;margin-top:60px;}

@@ -7,6 +7,64 @@
      
            
                     <body>
+<!-- code for MODAL BOX -->
+<div id="button-container">
+      <button id="rules-btn" onclick="openModal()">rules</button>
+      </div>
+
+<div id="modal-container">
+	<div id="simple-modal" >
+     		<div id="content">
+<div id="modal-header">How To Play
+		<span id="close-btn" onclick="closeModal()">&times</span>
+</div>
+		<p id="modal-para"> 1. Hit 'Begin Game' button at upper left just above the higher set of cards. <br><br> 2.The dealer has dealt, so now it's your turn; hit the 'Your Deal' button to the right of the 'begin game' button.<br><br> 3. Evaluate your cards to decide whether revealing another card will cause you to bust (getting a card value of more than 21).<br><br>4. if you're feeling lucky, pick another card (or more than one) by clicking on the first available card to the right of the cards you already pulled. You can keep on pulling cards until you feel it's too risky to pull anymore without busting.</p>
+<button id="next"  onclick="openModalTwo()">NEXT</button>
+		<img src="small cards.png" id="small-cards">
+		</div>
+	</div>
+
+
+
+<!-- code for MODAL BOX NUMBER 2 -->
+
+
+<div id="modal-containerTwo">
+	<div id="simple-modalTwo" >
+     		<div id="contentTwo">
+<div id="modal-headerTwo">How To Play
+		<span id="close-btnTwo" onclick="closeModalTwo()">&times</span>
+</div>
+		<p id="modal-paraTwo">5. Once you decide you want no more cards, hit the 'STAND' button. The dealer will then drop their last card the winner is whoever has the largest card value (as long as they haven't bust).<br><br><span id="scenarios">SCENARIOS TO WATCH OUT FOR</span><br><br> a)<span id="dealer-hold">THE DEALER HOLDS:</span> - this happens when the dealer draws two cards whose combined value is greater than 19. Since the smallest card is 2, if the dealer has more than 19 (i.e. 20 or 21) any card picked will cause them to bust - so, dealer won't more cards.<br><br>So you are forced to pick cards until you either bust, score 21, or run out of cards; if you're still in the game after picking 6 cards (very unlikely); the winner of the game is whoever has the highest card values equal to 21 or below. </p>
+<button id="previous"  onclick="openModal()">PREVIOUS</button>
+<button id="nextTwo" onclick="openModalThree()">NEXT</button>
+
+		<img src="small cards.png" id="small-cardsTwo">
+		</div>
+	</div>
+
+
+
+<!-- code for MODAL BOX NUMBER 3 -->
+
+
+<div id="modal-containerThree">
+	<div id="simple-modalThree" >
+     		<div id="contentThree">
+<div id="modal-headerThree">How To Play
+		<span id="close-btnThree" onclick="closeModalThree()">&times</span>
+</div>
+		<p id="modal-paraThree">b) If you decide to 'stand', and the dealer's last card gets them the same score as you, then you have tied with the dealer and a 'you've DRAWN' message will appear.<br><br>c) If the dealer holds on 21 points, and you then score 21, the game stops, and you get a SUPER draw. Same thing happens if you score 21, hit 'STAND' and the dealer drops a card and scores 21<br><br>d) If the dealer holds on 20, and you pull a card and score 21, YOU WIN. But if the dealer scores 21 and you score 20, you lose, because, cruelly, I've not allowed you to stand once the dealer holds: SORRY! :)<br> Any feedback welcome at my LinkedIn page - <span id="linkedin">https://www.linkedin.com/in/marvin-a-barrow/</span> - : Thanks for playing  </p>
+<button id="previousTwo"  onclick="openModalTwo()">PREVIOUS</button>
+<button id="close-modal"  onclick="closeModalThree()">CLOSE</button>
+		<img src="small cards.png" id="small-cardsThree">
+		</div>
+
+
+	</div>
+
+
+
 
  <div id="blackjack-container">
    <button onclick="testFx()" id="reset-btn"> reset game </button>
@@ -55,6 +113,8 @@
 </div>
 
 <p id="instructions-el">Hit 'BEGIN'  to START GAME</p>
+
+
 
  <script src="blackjack-b.js"></script>
         </body>                       
