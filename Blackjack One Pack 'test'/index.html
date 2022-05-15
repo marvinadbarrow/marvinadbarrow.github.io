@@ -18,7 +18,8 @@
 <div id="modal-header">How To Play
 		<span id="close-btn" onclick="closeModal()">&times</span>
 </div>
-		<p id="modal-para"> 1. Hit 'Begin Game' button at upper left just above the higher set of cards. <br><br> 2.The dealer has dealt, so now it's your turn; hit the 'Your Deal' button to the right of the 'begin game' button.<br><br> 3. Evaluate your cards to decide whether revealing another card will cause you to bust (getting a card value of more than 21).<br><br>4. if you're feeling lucky, pick another card (or more than one) by clicking on the first available card to the right of the cards you already pulled. You can keep on pulling cards until you feel it's too risky to pull anymore without busting.</p>
+<p id="note"> <span id="note-color">NOTE*</span> in this game, ACES score 11 points.</p><br>
+		<p id="modal-para"> <span id="scenarios">1.</span> Hit 'Begin Game' button at upper left just above the higher set of cards. <br><br> <span id="scenarios">2.</span>The dealer will draw TWO cards, so now it's your turn; hit the 'Your Deal' button to the right of the 'begin game' button.<br><br> <span id="scenarios">3.</span> Evaluate your cards to decide whether revealing another card will cause you to bust (getting a card value of more than 21).<br><br><span id="scenarios">4.</span> If you're feeling lucky, pick another card (or more than one) by clicking on the first available card to the right of the cards you already pulled. You can keep on pulling cards until you feel it's too risky to pull anymore without busting.</p>
 <button id="next"  onclick="openModalTwo()">NEXT</button>
 		<img src="small cards.png" id="small-cards">
 		</div>
@@ -35,7 +36,7 @@
 <div id="modal-headerTwo">How To Play
 		<span id="close-btnTwo" onclick="closeModalTwo()">&times</span>
 </div>
-		<p id="modal-paraTwo">5. Once you decide you want no more cards, hit the 'STAND' button. The dealer will then drop their last card the winner is whoever has the largest card value (as long as they haven't bust).<br><br><span id="scenarios">SCENARIOS TO WATCH OUT FOR</span><br><br> a)<span id="dealer-hold">THE DEALER HOLDS:</span> - this happens when the dealer draws two cards whose combined value is greater than 19. Since the smallest card is 2, if the dealer has more than 19 (i.e. 20 or 21) any card picked will cause them to bust - so, dealer won't drop more cards.<br><br>So you are forced to pick cards until you either bust, score 21, or run out of cards; if you're still in the game after picking 5 cards, you win automatically win a 'five card trick'.</p>
+		<p id="modal-paraTwo"><span id="scenarios">5.</span> Once you decide you want no more cards, hit the 'STAND' button. The dealer will then drop their last card, and the winner is whoever has the largest score (obviously not greater than 21). But there are other scenarios explained on the next page.<br><br><span id="scenarios">SCENARIOS TO WATCH OUT FOR</span><br><br> <span id="scenarios">a)</span><span id="dealer-hold">THE DEALER HOLDS:</span> - this happens when the dealer draws two cards whose combined value is greater than 19. Since the smallest card is 2, if the dealer has more than 19 (i.e. 20 or 21) any card picked will cause them to bust - so, dealer won't drop more cards.<br><br>So you are forced to pick cards until you get outcome <span id="scenarios">'c'</span> or <span id="scenarios">'d'</span> on the following page.</p>
 <button id="previous"  onclick="openModal()">PREVIOUS</button>
 <button id="nextTwo" onclick="openModalThree()">NEXT</button>
 
@@ -54,7 +55,7 @@
 <div id="modal-headerThree">How To Play
 		<span id="close-btnThree" onclick="closeModalThree()">&times</span>
 </div>
-		<p id="modal-paraThree">b) If you decide to 'stand', and the dealer's last card gets them the same score as you, then you have tied with the dealer and a 'you've DRAWN' message will appear.<br><br>c) If the dealer holds on 21 points, and you then score 21, the game stops, and you get a SUPER draw. Same thing happens if you score 21, hit 'STAND' and the dealer drops a card and scores 21<br><br>d) If the dealer holds on 20, and you pull a card and score 21, YOU WIN. But if the dealer scores 21 and you score 20, you lose, because, cruelly, I've not allowed you to stand once the dealer holds: SORRY! :)<br> Any feedback welcome at my LinkedIn page - <span id="linkedin">https://www.linkedin.com/in/marvin-a-barrow/</span> - : Thanks for playing  </p>
+		<p id="modal-paraThree"><span id="scenarios">b)</span> If you decide to 'stand', and the dealer's last card matches their score with yours, you've tied and a 'you've DRAWN' message will appear.<br><br><span id="scenarios">c)</span> If the dealer holds on 21 points, and you then score 21, you've got a SUPER draw. Same thing happens if you score 21, hit 'STAND' and the dealer drops a card and scores 21<br><br><span id="scenarios">d)</span> If the dealer holds on 20, and you get 20, it's a draw. If the dealer holds on 20 and you pull a card and score 21, YOU WIN. But if the dealer holds on 21 and you score 20, YOU LOSE.<br> Any feedback welcome at my LinkedIn page - <span id="linkedin">https://www.linkedin.com/in/marvin-a-barrow/</span> - : Thanks for playing  </p>
 <button id="previousTwo"  onclick="openModalTwo()">PREVIOUS</button>
 <button id="close-modal"  onclick="closeModalThree()">CLOSE</button>
 		<img src="small cards.png" id="small-cardsThree">
@@ -91,8 +92,6 @@
 
 <img src="backgnd.jpg" onclick="nextCardYou5()" id="card5" height="143px" width="100px";>
 
-<img src="backgnd.jpg" onclick="nextCardYou6()" id="card6" height="143px" width="100px";>
-
 </div>
 
  <!-- <label for="display-el" id="card-pull">Dealer Cards </label><br> 
@@ -112,11 +111,11 @@
 
 </div>
 
-<p id="instructions-el">Hit 'BEGIN'  to START GAME</p>
+<p id="instructions-el">START: Hit <span id="dealer-hold">'BEGIN GAME'</span></p>
 
 
 
- <script src="blackjack-b.js"></script>
+ <script src="blackjack-b changes.js"></script>
         </body>                       
                         
 

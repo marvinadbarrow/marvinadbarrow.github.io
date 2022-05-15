@@ -19,7 +19,7 @@ let instruction8 = "GOOD; you got a DRAW!"
 let instruction9 = "HOORAY! - you're a WINNER!"
 let instruction10 = "WHOA!, the perfect '21' DRAW!"
 let instruction11 = "KABOOM! The FIVE card Trick; 'you SUPERSTAR' -- you WIN"
-let instruction12 = " 'STALEMATE - GAMEOVER' "
+
 
 // in game sounds
 let audio = new Audio("cardflip.mp3"); // card flip 
@@ -119,12 +119,13 @@ sum =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 document.getElementById("your-sum-el").value = sum
 sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 
-if (sum === 21){instructionEl.textContent = instruction3;audio3.play();} 
-else (if sum === 21
+ if (sumb <= 19 && sum === 21 ){instructionEl.textContent = instruction3;audio3.play();} // dealer could match, 'STAND'is still available
 else if (sumb > 19 && sum <= 19){instructionEl.textContent = instruction5b; audio5b.play();} 
-else if (sumb === 21 && sum > 19 ){instructionEl.textContent = instruction9; audio9.play();}
- else if (sumb === 20 && sum > 19){instructionEl.textContent = instruction12; audio2.play();}
-else {instructionEl.textContent = instruction2}
+else if (sumb === 20 && sum === 21){instructionEl.textContent = instruction9;audio9.play();} //  you win, disable STAND
+else if (sumb === 20 && sum === 20 ){instructionEl.textContent = instruction8; audio8.play();}// draw, disable STAND
+else if (sumb === 21 && sum === 20 || sum > 21){instructionEl.textContent = instruction4; audio4.play();}// you lose, disable STAND
+else if (sumb === 21 && sum === 21 ){instructionEl.textContent = instruction10; audio10.play();}// super DRAW, disable STAND
+else{instructionEl.textContent = instruction2; audio2.play();}
 
 }
   }
@@ -152,16 +153,31 @@ card3.src = chooseImagePlus
 sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 
 document.getElementById("your-sum-el").value = sumbAll
-//document.getElementById("display-yours-el").value = playerArray;
 document.getElementById("card4").style.opacity = "100"
 
-if (sumbAll === 21 && sumb < sumbAll){instructionEl.textContent = instruction3;audio3.play();} // hit stand instruction
-else if (sumbAll === 21 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
-else if (sumbAll === 20 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
-else if(sumbAll>21){ instructionEl.textContent = instruction4; audio4.play();}
-else if (sumb > 19 && sumbAll < 21){instructionEl.textContent = instruction6; audio6.play();}
-else if(sumb > 19 && sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play();} 
-else {instructionEl.textContent = instruction2} 
+/* KEEP THIS JUST IN CASE YOU NEED TO REVERT TO THE ORIGINAL CODE
+if (sumbAll === 21 && sumb < sumbAll){instructionEl.textContent = instruction3;audio3.play();} // hit stand instruction #
+else if (sumbAll === 21 && sumb === sumbAll){instructionEl.textContent = instruction10;audio10.play();} // stand disabled #
+else if (sumbAll === 20 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled #
+else if(sumbAll>21){ instructionEl.textContent = instruction4; audio4.play();} #
+else if (sumb > 19 && sumbAll < 21){instructionEl.textContent = instruction6; audio6.play();} #
+else if(sumb > 19 && sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play();} #
+else {instructionEl.textContent = instruction2} #
+*/
+
+
+// changes
+
+ if (sumb <= 19 && sumbAll === 21 ){instructionEl.textContent = instruction3;audio3.play();} // dealer could match, 'STAND'is still available
+else if (sumb > 19 && sumbAll <= 19){instructionEl.textContent = instruction6; audio6.play();} 
+else if (sumb === 20 && sumbAll === 21){instructionEl.textContent = instruction9;audio9.play();} //  you win, disable STAND
+else if (sumb === 20 && sumbAll === 20 ){instructionEl.textContent = instruction8; audio8.play();}// draw, disable STAND
+else if (sumb === 21 && sumbAll === 20 ){instructionEl.textContent = instruction4; audio4.play();}// you lose, disable STAND
+else if (sumb === 21 && sumbAll === 21 ){instructionEl.textContent = instruction10; audio10.play();}// super DRAW, disable STAND
+else if (sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play();}
+else{instructionEl.textContent = instruction2; audio2.play();}
+
+
 		}
 			}
 
@@ -192,14 +208,15 @@ document.getElementById("your-sum-el").value = sumbAll
 //document.getElementById("display-yours-el").value = playerArray;
 document.getElementById("card5").style.opacity = "100"
 
+ if (sumb <= 19 && sumbAll === 21 ){instructionEl.textContent = instruction3;audio3.play();} // dealer could match, 'STAND'is still available
+else if (sumb > 19 && sumbAll <= 19){instructionEl.textContent = instruction6; audio6.play();} 
+else if (sumb === 20 && sumbAll === 21){instructionEl.textContent = instruction9;audio9.play();} //  you win, disable STAND
+else if (sumb === 20 && sumbAll === 20 ){instructionEl.textContent = instruction8; audio8.play();}// draw, disable STAND
+else if (sumb === 21 && sumbAll === 20 ){instructionEl.textContent = instruction4; audio4.play();}// you lose, disable STAND
+else if (sumb === 21 && sumbAll === 21 ){instructionEl.textContent = instruction10; audio10.play();}// super DRAW, disable STAND
+else if (sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play();}
+else{instructionEl.textContent = instruction2; audio2.play();}
 
-if (sumbAll === 21 && sumb < sumbAll){instructionEl.textContent = instruction3;audio3.play();} // hit stand instruction
-else if (sumbAll === 21 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
-else if (sumbAll === 20 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
-else if(sumbAll>21){ instructionEl.textContent = instruction4; audio4.play();}
-else if (sumb > 19 && sumbAll < 21){instructionEl.textContent = instruction7; audio7.play();}
-else if(sumb > 19 && sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play();} 
-else {instructionEl.textContent = instruction2} 
 
 }}
 
@@ -222,106 +239,50 @@ let chooseImagePlus = cardSuits[cardPlus -1]
 card5.src = chooseImagePlus
 
 playerArray.push(sumPlus)
-//console.log(playerArray)
-
 sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
-//const sum = playerArray.reduce((partialSum, a) => partialSum + a, 0);
-//console.log(sum)
-
 document.getElementById("your-sum-el").value = sumbAll
-//document.getElementById("display-yours-el").value = playerArray;
 document.getElementById("card6").style.opacity = "100"
 
-
-if (sumbAll === 21 && sumb < sumbAll){instructionEl.textContent = instruction3;audio3.play();} // hit stand instruction
-else if (sumbAll === 21 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
-else if (sumbAll === 20 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
-else if(sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play()} 
-else {instructionEl.textContent = instruction2}
+if (sumbAll > 21}{ instructionEl.textContent = instruction4; audio4.play();}
+else{instructionEl.textContent = instruction11; audio11.play();}
 }}
-
-
-
-
-
-function nextCardYou6(){
-  if (dealerArray.length > 1 && playerArray.length > 4 && playerArray.length < 6 && sumbAll < 21) {
-let cardPlus = Math.ceil(Math.random() * cardSuits.length);
-let sumPlus = Math.ceil(cardPlus/4) 
-if (sumPlus>10){sumPlus = 10} else if (sumPlus<2){sumPlus = 11}
-
-audio.play(); 
-let chooseImagePlus = cardSuits[cardPlus -1]
-card6.src = chooseImagePlus
-
-playerArray.push(sumPlus)
-//console.log(playerArray)
-
-sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
-
-//const sum = playerArray.reduce((partialSum, a) => partialSum + a, 0);
-//console.log(sum)
-
-document.getElementById("your-sum-el").value = sum
-//document.getElementById("display-yours-el").value = playerArray;
-
-
-if (sumbAll === 21 && sumb < sumbAll){instructionEl.textContent = instruction3;audio3.play();} // hit stand instruction
-else if (sumbAll === 21 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
-else if (sumbAll === 20 && sumb === sumbAll){instructionEl.textContent = instruction8;audio8.play();} // stand disabled
-else if(sumbAll > 21){ instructionEl.textContent = instruction4; audio4.play()} 
-else {instructionEl.textContent = instruction2}
-}}
-
-/* if (sumb === 20 && sumbAll === 20 || sumb === 21 && sumbAll === 21){draw} else if (sumb === 20 and sumb<sumbAll){ you win} else if (sumb === 21 and sumb > sumbAll) */
-
-
 
 
 
 
 
 function dealStand(){console.log("hello");
-if (playerArray.length > 1 && dealerArray.length >1 && sumb < 20 && sumbAll < 22){
+if (playerArray.length > 1 || playerArray.length < 5 && dealerArray.length >1 && sumb < 20 && sumbAll < 22){
 let cardPlus = Math.ceil(Math.random() * cardSuits.length);
 		let sumPlus = Math.ceil(cardPlus/4) 
 
 if (sumPlus>10){sumPlus = 10} else if (sumPlus<2){sumPlus = 11}
 
 		dealerArray.push(sumPlus)
-		console.log(dealerArray)		
+				
 sumb = dealerArray.reduce((partialSum, a) => partialSum + a, 0);
-		console.log(sumb)
+		
 
 sumbAll = playerArray.reduce((partialSum, a) => partialSum + a, 0);
-		console.log(sum)
+		
 
 audio.play(); 
 let chooseImagePlus = cardSuits[cardPlus -1]
-		card9.src = chooseImagePlus
-if (sumPlus > 19){sumplus = 0; card.src = back.jpg}
+card9.src = chooseImagePlus
 document.getElementById("dealer-sum-el").value = sumb
 		
 
 // rules for outcomes
+// note* if you're hitting STAND, that means that it is not disabled,  it means dealer must be less than 20, because dealer being 20, 21 or either dealer or you being bust disables the stand card; so the only possible scenario is where neither of you are bust and dealer is under 20 and you could be on 20, 21, or less. this is the situation just before the final assessment is given; these are gven 'after' the calculation which is below. 
 
-if (sumb > 21){instructionEl.textContent = instruction9; audio9.play();}
 
-else if (sumb <= 21 && sumbAll < sumb){console.log("lose"); instructionEl.textContent = instruction4; audio4.play();}
-
-else if (sumb === sumbAll &&  sumb < 21 && sumbAll < 21){console.log("normaldraw"); instructionEl.textContent = instruction8; audio8.play();} 
-
+if (sumb > 21){instructionEl.textContent = instruction9; audio9.play();} // keep
+else if (sumb > sumbAll){instructionEl.textContent = instruction4; audio4.play();}
 else if (sumb < sumbAll){instructionEl.textContent = instruction9; audio9.play();}
+else if (sumb < 21 && sumb === sumbAll ){instructionEl.textContent = instruction8; audio8.play();}// draw, disable STAND
+else if (sumb === 21 && sumb === sumbAll ){instructionEl.textContent = instruction10; audio10.play();}// super DRAW, disable STAND
 
-// below not working - esps where sumbAll <= 21 and sumb < sumbAll
-
-if (sumb === 21 && sumbAll === 21){ console.log("SUPER draw"); instructionEl.textContent = instruction10; audio10.play();}
-
-if (playerArray.length > 4  && sumbAll === 21){console.log("win"); instructionEl.textContent = instruction11; audio11.play(); } 
-
-
-}
-}
+}}
 
 
 function testFx(){
