@@ -1,9 +1,19 @@
-
+document.getElementById("your-sum-el").value = 0;
+document.getElementById("dealer-sum-el").value = 0;
 
 let dealerArray =[]
 let playerArray =[]
-
-
+let muteEl = document.getElementById('mute-btn') 
+let muteOffEl = document.getElementById('mute-btn2')
+document.getElementById('mute-btn2').style.margin = "-100px";
+let cardStyleOne = document.getElementById('card1')
+let cardStyleTwo = document.getElementById('card2')
+let cardStyleSeven = document.getElementById('card7')
+let cardStyleEight = document.getElementById('card8')
+let cardStyleThree = document.getElementById('card3')
+let cardStyleFour = document.getElementById('card4')
+let cardStyleFive = document.getElementById('card5')
+let cardStyleNine = document.getElementById('card9')
 
 // in game screen prompts and outcome readout
 let instructionEl = document.getElementById('instructions-el')
@@ -34,6 +44,46 @@ var audio8 = new Audio("normaldrawclapping.mp3") // both get same number
 var audio9 = new Audio("tadaa.mp3"); // win 
 var audio10 = new Audio("perfectdraw.mp3")// both DRAW on 21
 var audio11 = new Audio("fivecardtrick.mp3") // five card trick
+var audio15 = new Audio("rules-sound.mp3");
+
+function audioOff(){
+
+audio = new Audio("silence.mp3"); 
+audio2 = new Audio("silence.mp3");
+audio3 = new Audio("silence.mp3");
+audio4 = new Audio("silence.mp3");
+audio5 = new Audio("silence.mp3"); 
+audio5b = new Audio("silence.mp3"); 
+audio6 = new Audio("silence.mp3"); 
+audio7 = new Audio("silence.mp3"); 
+audio8 = new Audio("silence.mp3"); 
+audio9 = new Audio("silence.mp3");  
+audio10 = new Audio("silence.mp3");
+audio11 = new Audio("silence.mp3");
+audio15 = new Audio("silence.mp3");
+document.getElementById('mute-btn').style.margin = "-100px";
+document.getElementById('mute-btn2').style.margin = "0px";
+}
+
+function audioOn(){
+
+audio = new Audio("cardflip.mp3");  
+audio2 = new Audio("boopstart.mp3");
+audio3 = new Audio("twentyonewait.mp3"); 
+audio4 = new Audio("youlose.mp3"); 
+audio5 = new Audio("dealerovernineteen.mp3"); 
+audio5b = new Audio("firsttry5b.mp3");
+audio6 = new Audio("keeptrying6.mp3"); 
+audio7 = new Audio("yougotlucky7.mp3"); 
+audio8 = new Audio("normaldrawclapping.mp3") 
+audio9 = new Audio("tadaa.mp3"); 
+audio10 = new Audio("perfectdraw.mp3");
+audio11 = new Audio("fivecardtrick.mp3");
+audio15 = new Audio("rules-sound.mp3");
+document.getElementById('mute-btn2').style.margin = "-100px";
+document.getElementById('mute-btn').style.margin = "0px";
+}
+
 
 
 let cardSuits = [ 
@@ -109,6 +159,7 @@ let chooseImage2 = cardSuits[cardTwo -1]
 
 card1.src = chooseImage1
 card2.src = chooseImage2
+document.getElementById('card3').src = "backgnd.jpg";
 document.getElementById("card3").style.opacity = "100"
 
 playerArray.push(sum1)
@@ -263,16 +314,13 @@ else if (sumb === 21 && sumb === sumbAll ){instructionEl.textContent = instructi
 }}
 
 
-function testFx(){
- 
-location.reload();
-}
+
 
 
 // code for MODAL BOX 
 
 let modal = document.getElementById('simple-modal')
-var audio15 = new Audio("rules-sound.mp3");
+
 function openModal(){
 closeModalTwo()
 audio15.play();
@@ -296,7 +344,10 @@ closeModalThree()
 closeModal()
 audio15.play();
 modalTwo.style.display = 'block';
-
+card1.src = "backgnd.jpg"
+card2.src = "backgnd.jpg"
+card7.src = "backgnd.jpg"
+card8.src = "backgnd.jpg"
 
 }
 
@@ -323,3 +374,20 @@ audio15.play();
 function closeModalThree(){
 modalThree.style.display = 'none';
 console.log('hi')}
+
+function resetGame(){
+dealerArray.length = 0
+playerArray.length = 0
+
+document.getElementById('instructions-el').innerHTML = "START: Hit <span id='dealer-hold'>'BEGIN GAME'</span>"
+document.getElementById('card1').src = "backgnd.jpg";
+document.getElementById('card2').src = "backgnd.jpg";
+document.getElementById('card7').src = "backgnd.jpg";
+document.getElementById('card8').src = "backgnd.jpg";
+document.getElementById('card3').style.opacity = "0";
+document.getElementById('card4').style.opacity = "0";
+document.getElementById('card5').style.opacity = "0";
+document.getElementById('card9').style.opacity = "0";
+document.getElementById("your-sum-el").value = 0;
+document.getElementById("dealer-sum-el").value = 0;
+}

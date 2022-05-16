@@ -17,7 +17,6 @@ button{font-weight: bold; color: white; background-color: orange; border: none;w
 #card3{opacity:0;}
 #card4{opacity:0;}
 #card5{opacity:0;}
-#card6{opacity:0;}
 #card7{opacity:100;}
 #card8{opacity:100;}
 #card9{opacity:0;}
@@ -46,7 +45,7 @@ box-shadow: 1px 1px 3px black;
 // MODAL BOX code
 #button-container{width:200px; margin:auto;}
 
-#rules-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:30px;margin-top:30px; box-shadow: 2px 2px 7px black;  position:fixed; }
+#rules-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:30px;margin-top:80px; box-shadow: 2px 2px 7px black;  position:fixed; }
 
 #rules-btn:hover, #rules-btn:focus{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer;}
 
@@ -106,9 +105,9 @@ to{opacity:1}
 
 // MODAL BOX code
 #button-containerTwo{width:200px; margin:auto;}
-
-#rules-btnTwo{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:30px;margin-top:30px; box-shadow: 2px 2px 7px black;  position:fixed; }
-
+/*
+#rules-btnTwo{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:30px;margin-top:100px; box-shadow: 2px 2px 7px black;  position:fixed; }
+*/
 
 
 #modal-containerTwo{width:90%; margin:auto;}
@@ -225,3 +224,13 @@ a{z-index:2;}
 #linkedin{color:yellow}
 #note{font-style:italic;font-size:23px;}
 #note-color{font-weight:bold; color:rgb(104, 247, 37);}
+
+
+
+#mute-btn{width:50px; height:50px; border-style:solid; border-radius:7px; border-width:3px; color:black; text-transform: capitalize;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px black;  position:fixed; margin-top:0px; background-image: url('audio.jpg'); background-size:50px 50px;z-index: 0;}
+
+#mute-btn:hover{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer; box-shadow: 1px 1px 3px black;}
+
+#mute-btn2{width:50px; height:50px; border-style:solid; border-radius:7px; border-width:3px; color:black; text-transform: capitalize;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px black;  position:fixed; margin-top:0px; background-image: url('audio off.jpg'); background-size:50px 50px; z-index: 1;}
+
+#mute-btn2:hover{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer; box-shadow: 1px 1px 3px black;}

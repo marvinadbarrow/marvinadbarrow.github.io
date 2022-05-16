@@ -9,6 +9,13 @@
                     <body>
 <!-- code for MODAL BOX -->
 <div id="button-container">
+      <button id="mute-btn" onclick="audioOff()"></button>
+      </div>
+<div id="button-container">
+      <button id="mute-btn2" onclick="audioOn()"></button>
+      </div>
+
+<div id="button-container">
       <button id="rules-btn" onclick="openModal()">rules</button>
       </div>
 
@@ -68,11 +75,9 @@
 
 
  <div id="blackjack-container">
-   <button onclick="testFx()" id="reset-btn"> reset game </button>
+   <button onclick="resetGame()" id="reset-btn"> reset game </button>
   <div id="game-name"></div>
-<!-- <label for="display-yours-el">Game Outcome</label><br>
-<input id="display-yours-el" type="text"></input><br>
--->
+
 <label for="your-sum-el"> Your Sum</label><br>
 <input id="your-sum-el" type="text"></input><br>
 
