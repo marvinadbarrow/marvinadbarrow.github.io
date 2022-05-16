@@ -129,6 +129,7 @@ if (sum1 === sum2) {dealGame()}
 	sumb = dealerArray.reduce((partialSum, a) => partialSum + a, 0);
 
 	document.getElementById("dealer-sum-el").value = sumb
+document.getElementById('card9').src = "backgnd.jpg";
 		document.getElementById("card9").style.opacity = "100"
 	instructionEl.textContent = instruction1
 
@@ -201,6 +202,7 @@ card3.src = chooseImagePlus
 sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 
 document.getElementById("your-sum-el").value = sumbAll
+document.getElementById('card4').src = "backgnd.jpg";
 document.getElementById("card4").style.opacity = "100"
 
 
@@ -237,6 +239,7 @@ sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 
 
 document.getElementById("your-sum-el").value = sumbAll
+document.getElementById('card5').src = "backgnd.jpg";
 document.getElementById("card5").style.opacity = "100"
 
  if (sumb <= 19 && sumbAll === 21 ){instructionEl.textContent = instruction3;audio3.play();} // dealer could match, 'STAND'is still available
