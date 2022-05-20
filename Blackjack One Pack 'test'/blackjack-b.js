@@ -2,7 +2,8 @@
 
 let dealerArray =[]
 let playerArray =[]
-
+let playerScoreEl = document.getElementById('score-span1')
+let dealerScoreEl = document.getElementById('score-span2')
 
 
 // in game screen prompts and outcome readout
@@ -77,8 +78,8 @@ if (sum1 === sum2) {dealGame()}
 	dealerArray.push(sum2)
 	console.log(dealerArray)
 	sumb = dealerArray.reduce((partialSum, a) => partialSum + a, 0);
-
-	document.getElementById("dealer-sum-el").value = sumb
+	dealerScoreEl.textContent = sumb
+	document.getElementById("score-span2").value = sumb
 		document.getElementById("card9").style.opacity = "100"
 	instructionEl.textContent = instruction1
 
@@ -117,6 +118,7 @@ console.log(playerArray)
 
 sum =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 document.getElementById("your-sum-el").value = sum
+playerScoreEl.textContent = sum
 sumbAll =  playerArray.reduce((partialSum, a) => partialSum + a, 0);
 
 if (sum === 21){instructionEl.textContent = instruction3;audio3.play();} 

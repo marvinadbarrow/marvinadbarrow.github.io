@@ -1,39 +1,42 @@
 #blackjack-container{ padding-top:7px; margin: auto; color: white; margin-top: 20px; background-image: url(cropped-table.jpg); width: 640px; 
- height: 1014px;  text-align: center;  font-family: sans-serif; font-weight: bold; margin-bottom: 500px;
- 
- border-style: solid; border-color: black; border-width: 2px; box-shadow: 0.3px 0.3px 10px rgb(99, 98, 95);border-radius:7px;}
+ height: 1014px;  text-align: center;  font-family: sans-serif; font-weight: bold; margin-bottom: 500px; border-style: solid; border-color: black; border-width: 2px; box-shadow: 0.3px 0.3px 10px rgb(99, 98, 95);border-radius:7px;}
  
 h1{margin-top:70px;} 
  #game-name{ color: orange; margin-top:150px;}
  
-button{font-weight: bold; color: white; background-color: orange; border: none;width: 150px; border-radius: 3px; font-size:17px; text-transform: uppercase; margin-top:30px; height:35px;box-shadow: 2px 2px 7px black; }
+button{font-weight: bold; color: white; background-color: orange; border: none;width: 150px; border-radius: 3px; font-size:17px; text-transform: uppercase; margin-top:-10px; height:35px;box-shadow: 2px 2px 7px black; }
 button:hover, button:focus{box-shadow: 0.8px 0.8px 2px black; border-style: solid; border-color:white; border-width:2px; cursor:pointer;}
  
-#played-cards{margin-top:30px; margin-bottom:15px;}
+#played-cards{margin-top:25px; margin-bottom:15px;}
  
-
+label{ text-transform: uppercase;box-shadow: 1px 1px 5px black; background-color:rgb(57, 162, 227); padding:5px;border-radius:3px;}
 
 #card1, #card2, #card7, #card8{opacity:100;}
 #card3, #card4, #card5, #card9{opacity:0;}
 
-.larger:hover, .larger:focus{ cursor:pointer;}
+.scores{margin:auto; width:600px;margin-top:-35px;}
 
 
-
+/*
 #display-el{width:200px; height:40px; border-width:1px; border-color:black; border-radius:5px; text-align:center; font-size:22px; text-style:bold; margin-bottom:20px;}
 
 #display-yours-el{width:250px; height:40px; border-width:1px; border-color:black; border-radius:5px; text-align:center; font-size:22px; text-style:bold; margin-bottom:20px;}
+FOR ORIGINAL DIGITAL CARD DISPLAY
+*/
 
-#your-sum-el{width:50px; height:40px; border-width:1px; border-color:black; border-radius:5px; text-align:center; font-size:22px; text-style:bold;}
 
-#dealer-sum-el{width:50px; height:40px; border-width:1px; border-color:black; border-radius:5px; text-align:center; font-size:22px; text-style:bold; margin-bottom:20px;}
+
+#your-sum-el{width:500px; height:40px; border-width:1px; border-color:black; border-radius:5px; text-align:center; font-size:55px; text-style:bold;}
+
+#dealer-sum-el{width:500px; height:40px; border-width:1px; border-color:black; border-radius:5px; text-align:center; font-size:55px; text-style:bold; margin-bottom:20px;}
 #random-card{margin-bottom:20px;}
 
+.score-para{font-size:40px;margin-left:-120px; text-shadow: 2px 2px 7px black;}
 
-
+#score-span2, #score-span1{color:white; text-shadow: 2px 2px 7px black;}
 p{font-size: 35px; font-style:bold; text-align:center;color: rgb(245, 234, 34); opacity:90%;}
 
-#reset-btn{background-color:rgb(250, 38, 15) ; color:white; height: 60px; width:140px;position:absolute; margin-top:50px;border-radius:7px;border-style:solid;border-color:white; border-width:2px;box-shadow: 2px 2px 7px black;}
+#reset-btn{background-color:rgb(250, 38, 15) ; color:white; height: 60px; width:160px;position:absolute; margin-top:30px;border-radius:7px;border-style:solid;border-color:white; border-width:2px;box-shadow: 2px 2px 7px black; font-size:20px; font-weight:bold;}
 
 #reset-btn:hover{background-color:rgb(245, 115, 108);
 box-shadow: 1px 1px 3px black;
@@ -155,12 +158,12 @@ to{opacity:1}
 
 #scenarios{color:yellow;}
 #dealer-hold{color:rgb(135, 222, 232);}
-
-
-
-
-
-
+#instructions-el{margin-top:-15px;text-shadow: 3px 3px 4px black; color:rgb(247, 243, 5); margin-top:15px;}
+#your-wins-el{display:inline;margin-right: 50px;margin-left: 40px;color:white;}
+#dealer-wins-el{display:inline; margin-left:50px;color:white;}
+.wins-span1{font-size:50px;text-shadow: 2px 2px 7px black;}
+#wins{display:flex;}
+.wins-talley{font-size:50px;margin-left:20px;color:rgb(245, 145, 5); text-shadow: 2px 2px 7px white;}}
 
 
 

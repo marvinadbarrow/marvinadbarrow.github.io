@@ -25,7 +25,7 @@
 <div id="modal-header">How To Play
 		<span id="close-btn" onclick="closeModal()">&times</span>
 </div>
-<p id="note"> <span id="note-color">NOTE*</span> in this game, ACES score 11 points.</p><br>
+<p id="note"> <span id="note-color">NOTE*</span> in this game, ACES score 11 points. Get 20 wins to beat the house</p><br>
 		<p id="modal-para"> <span id="scenarios">1.</span> Hit 'Begin Game' button at upper left just above the higher set of cards. <br><br> <span id="scenarios">2.</span>The dealer will draw TWO cards, so now it's your turn; hit the 'Your Deal' button to the right of the 'begin game' button.<br><br> <span id="scenarios">3.</span> Evaluate your cards to decide whether revealing another card will cause you to bust (getting a card value of more than 21).<br><br><span id="scenarios">4.</span> If you're feeling lucky, pick another card (or more than one) by clicking on the first available card to the right of the cards you already pulled. You can keep on pulling cards until you feel it's too risky to pull anymore without busting.</p>
 <button id="next"  onclick="openModalTwo()">NEXT</button>
 		<img src="small cards.png" id="small-cards">
@@ -72,14 +72,18 @@
 	</div>
 
 
-
+<!--  -->
 
  <div id="blackjack-container">
-   <button onclick="resetGame()" id="reset-btn"> reset game </button>
+   <button onclick="resetGame()" id="reset-btn"> clear table </button>
   <div id="game-name"></div>
 
-<label for="your-sum-el"> Your Score</label><br>
-<input id="your-sum-el" type="text"></input><br>
+ <!-- <label for="your-sum-el"> Your Score</label>
+   <input id="your-sum-el" type="text"></input><br>  -->
+<div class="scores">   
+<p id="your-sum-el"><span class="score-para">Your Score: </span><span id="score-span1">0</span></p> <!--  PLAYER SCORE PARAGRAPH -->            
+</div>
+
 
 <button onclick="dealGame()" id="start-btn">Begin Game</button>
 <button onclick="randomCardYou()"> Your Deal </button>
@@ -99,13 +103,12 @@
 
 </div>
 
- <!-- <label for="display-el" id="card-pull">Dealer Cards </label><br> 
-<input id="display-el" type="text"></input><br>
--->
-<label for="dealer-sum-el" id="dealer-sum-input"> Dealer Score</label><br>
-<input id="dealer-sum-el" type="text"></input><br>
 
-
+  <!--  <label for="dealer-sum-el" id="dealer-sum-input"> Dealer Score</label>
+  <input id="dealer-sum-el" type="text"></input><br>  -->
+<div class="scores">
+<P id="dealer-sum-el"><span class="score-para">Dealer Score: </span><span id="score-span2">0</span></P>   <!--  DEALER SCORE PARAGRAPH -->  
+</div>
 
 <div id="played-cards">
 <img src="backgnd.jpg"  id="card7" height="143px" width="100px";>
@@ -119,6 +122,19 @@
 <p id="instructions-el">START: Hit <span id="dealer-hold">'BEGIN GAME'</span></p>
 
 
+<div id="wins">
+<p id="wins-el"><span class="wins-talley">wins|</p>
+<p id="your-wins-el"><span class="wins-para">You: </span><span class="wins-span1" id="num-of-wins-player"></span></p>
+<p id="dealer-wins-el"><span class="wins-para">Dealer: </span><span class="wins-span1" id="num-of-wins-dealer"></span></p>
+</div>
+
+
+  <!-- 
+let yourWinsEl = document.getElementById('num-of-wins-player')
+let dealerWinsEl = document.getElementById('num-of-wins-dealer')  
+yourWinsEl.textContent += 1;
+dealerWinsEl.textContent += 1;
+--> 
 
  <script src="blackjack-b changes.js"></script>
         </body>                       
