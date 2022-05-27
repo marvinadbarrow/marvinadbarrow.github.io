@@ -105,5 +105,6 @@ your only option is to click one of the two revealed cards which will make the c
 
 
 
-
+NEW PROBLEM - the Ace of Spades is showing up as the Two of Clubs. So in the pack it looks like there are two Aces of Spades and not Two of Clubs --
+FOUND IT... there were two of the same png elements in the cardSelect array - Ace of Spades == 4.png, and that was entered twice, but 5.png which was the Two of Clubs was missing - PROBLEM SOLVED. (NOTE* check blackjack also)
 
