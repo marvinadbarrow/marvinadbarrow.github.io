@@ -1,0 +1,24 @@
+body{background-image: url('background.jpg');}
+
+#counter-container{width:100px; height:50px;  margin-top: -50px }
+#display{color:yellow; font-size: 55px; font-weight:bold; text-shadow: 2px 2px 6px black;}
+
+#shuffle-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:25px;margin-top:100px; box-shadow: 2px 2px 7px rgb(250, 248, 248);}
+
+#shuffle-btn:hover, #shuffle-btn:focus{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer; }
+
+.cards-all{width: 70px; height: 102px;}
+
+
+.reset-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(235, 238, 36); color:rgb(17, 2, 2); text-transform: uppercase;font-weight:bold; font-size:25px;margin-top:100px; box-shadow: 2px 2px 7px rgb(250, 249, 249); margin-left: 200px;}
+
+.reset-btn:hover, .reset-btn:focus{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer; color :white; }
+
+
+#button-container{ width: 500px; height: 200px; margin-top: -70px; display:flex; flex-direction: row;}
+
+.reset-btn2{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(228, 157, 25); color:rgb(228, 30, 30); text-transform: uppercase;font-weight:bold; font-size:25px;margin-top:100px; box-shadow: 2px 2px 7px rgb(248, 245, 245); margin-left: 200px;}
+
+.reset-btn2:hover, .reset-btn2:focus{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer; color :white; }
+
+.reset-btn3{width:150px; height: 40px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(228, 25, 184); color:rgb(255, 255, 255); text-transform: uppercase;font-weight:bold; font-size:15px;margin-top:-10px; box-shadow: 2px 2px 7px rgb(248, 245, 245); margin-left: 10px;}

@@ -1,0 +1,109 @@
+Current Iteration 
+
+function revealOne(){
+    if(tableArray.length > 51 ){
+let numElOne = tableArrayIndex[0];
+ 
+
+if(flipArray.includes(numElOne)){ flipArray.pop(numElOne); document.getElementById("card1").src="card back red.jpg"; console.log(flipArray)} 
+ else{revealCard()}
+
+function revealCard(){
+if (flipArray.length < 2){flipArray.push(numElOne); card1.src = cardSelect[numElOne - 1]; pairFound(); }
+//console.log(flipArray);
+ 
+ playSound()
+ }}}
+   
+
+Alternative Iteration
+
+function revealOne(){
+    if(tableArray.length > 51 ){
+let numElOne = tableArrayIndex[0];
+
+if (flipArray.length < 3){
+
+if(flipArray.includes(numElOne)){ flipArray.pop(numElOne); document.getElementById("card1").src="card back red.jpg"; console.log(flipArray)} 
+else{flipArray.push(numElOne); card1.src = cardSelect[numElOne - 1]; if (flipArray.length > 1){pairFound();} }
+
+
+
+
+
+
+
+}}
+
+
+Second alterantive iteration
+
+function revealOne(){
+  let numElOne = tableArrayIndex[0];  
+if(tableArray.length > 51 && flipArray.length < 3){
+
+if(flipArray.includes(numElOne)){ flipArray.pop(numElOne); document.getElementById("card1").src="card back red.jpg"; console.log(flipArray); playSound();} 
+else{flipArray.push(numElOne); card1.src = cardSelect[numElOne - 1];playSound(); if (flipArray.length > 1){pairFound();} }
+}
+
+
+
+alternative iteration for card2---
+
+function revealTwo(){
+  let numElTwo = tableArrayIndex[1];  
+if(tableArray.length > 51 && flipArray.length < 3){
+
+if(flipArray.includes(numElTwo)){ flipArray.pop(numElTwo); document.getElementById("card2").src="card back red.jpg"; console.log(flipArray); playSound();} 
+else{flipArray.push(numElTwo); card2.src = cardSelect[numElTwo  - 1];playSound(); if (flipArray.length > 1){pairFound();} }
+}}
+
+THE WRONG CARD PROBLEM---
+
+
+  // so arr.pop actually removes the last element in the array. So, if I place a first card into an array, it is the first position index, and then the next card will occupy the last spot in the array. If I click the first card again hoping the back will change and the first card will be popped out, this will instead 'pop' the second card value out of the array, giving the impression that I clicked the second card and left the first card in the array; of course the first card will show its back, but that card will still be in the array. So of course, when I try to remove the second card, nothing appears to happen because it's not in the array, and that's why the card doesn't revet to upside down because that can only happen if the array has the card in it. What really happens is that the card is then added to the array and the card image resets and that looks like the card didn't move,because it's just the same image.   The reason why when this card is exposed we can't open an alternative to the first card, is because the first card is still in the array so, although there appear to be just one card, there are in fact two; the second one with its face appearing and the first one with its back appearing.  Wow.. a lot is going on there.  So maybe we can do the following trick:   if (flipArray[0] === numElOne){flipArray.shift()}else{flipArray.pop()}  --- what this will do is if the card is in the first position it will shift it, i.e. remove the first card in the array, otherwise, it will remove the second card from the array. Which method is used, depends on the position of the card: if it is in position 1, it will be 'shifted' and if it is in position 2, it will be popped.  Hope we can get this to work. -- this has solved the problem - 
+
+
+iteration three (needs reworking because we can deal 3 cards)
+
+
+function revealOne(){
+    let numElOne = tableArrayIndex[0];  
+    playSound();
+
+  if(tableArray.length > 51 && flipArray.length < 2 ){
+      if (flipArray.includes(numElOne)){ 
+document.getElementById("card1").src="card back red.jpg";  
+   if (numElOne === flipArray[0]){ flipArray.shift();  }
+   else{flipArray.pop()}  console.log(flipArray);}
+else{flipArray.push(numElOne); card1.src = cardSelect[numElOne - 1]; if (flipArray.length > 1){pairFound();} }
+  
+}}
+
+
+
+
+if (flipArray.length < 3 && flipArray.includes(numElOne)){ playSound(); document.getElementById("card1").src="card back red.jpg";
+ if (numElOne === flipArray[0]){ flipArray.shift(); console.log(flipArray);}
+else{flipArray.push(numElOne); card1.src = cardSelect[numElOne - 1];
+console.log(flipArray);}}
+if (flipArray.length > 1){pairFound();}
+
+
+ANOTHER ERROR: 
+Found another error in the above codes.  When using 'if (flipArray.length < 3)' as a condition that allows a card to be activated (either revealed or turned back over), I missed the fact that once this condition is met, i.e. if the revealed cards were not greater than 2,  the instructions inside this condition allowed for the generation of another card.  I.e. if the clicked card were not already revealed, then the click would reveal it. 
+
+This would cause a card to be revealed; but I forgot that there is the possibility that 'two' cards were already revealed elsewhere. And that would mean that the condition allowing the cards to be activated (   'if (flipArray.length < 3)'   ) would no longer be met in the game because we have 3 cards revealed; so the game would halt.  
+
+What I had to do was revert to the older iteration which stated that if the revealed cards were 'less than 2', only THEN could another card be revealed. So the script would first check if a card is revealed and 'unreveal' it if it was; or, if it wasn't revealed, it would reveal it; ONLY IF there were less than two other cards already revealed. 
+
+So the two options were 'unreveal the card if revealed' or 'reveal the card if unrevealed on the condition that less than two cards were revealed elsewhere'.  This solved the problem. 
+
+At game start; no cards are revealed so for any card you click the 'if revealed cards include this card' will return false, but the 'revealed cards is less than 2' will return true (because no cards are revealed yet); so the card will be revealed.  When you click the next card the same will apply, it is unrevealed, and there are less than two other cards revealed, so IT will reveal.  If you then try to pick a third card, the first condition is true, i.e, it is unrevealed, but the second condition is false, there are not less than 2 cards revealed because you have already revealed 2. So nothing will happen, this card has not met that condition and so will not be revealed. No other cards can be activeated. 
+
+your only option is to click one of the two revealed cards which will make the condition 'is this card revealed' true; and so the card will be flipped upside down, and the array containing the revealed cards will be reduced to one.  So when you click an alternative card after that, the card will be unrevealed, but the condition 'are the revealed cards less than 2' will be true, so 'THAT' card can now be revealed and so on.  -THIS IS FIXED!
+
+
+
+
+
