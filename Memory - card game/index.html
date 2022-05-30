@@ -1,11 +1,17 @@
 <!DOCTYPE html>
     <html>
         <head>
-		<title id="title">Website Testing</title>
+		<title id="title">Memory Game</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
              	<link rel="stylesheet" type="text/css" href="style.css">
              </head> 
 <body>
 
+
+
+<p id="dialogue-el" class="dialogue-para">Test Paragraph</p>
 
 
 <div id="row1">
@@ -83,9 +89,16 @@
 
 
 <div id="button-container">
+    <!--
 <button id="shuffle-btn" onclick="pickCard()">place cards</button>
-<button onclick="resetGame()" class="reset-btn"> clear cards </button>
 <button onclick="refreshAll()" class="reset-btn2"> refresh page </button>
+
+-->
+<button onclick="resetGame()" class="reset-btn"> clear cards </button>
+<button id="shuffle-btn" onclick="placeCards()">place cards</button>
+<button onclick="refreshAll()" class="reset-btn2"> Game reset </button>
+<p id="start-el" class="info-para" onclick="pickCard()"> Play!</p>
+<p id="countdown" class="timer-para"><span id="minute-el"></span>:00</p><br>
 </div>
 <div id="card-pairs-array" onclick="pairsFound()"></div>
 <button onclick="consoleLog()" class="reset-btn3"> log console </button>
