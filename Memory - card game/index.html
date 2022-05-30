@@ -11,7 +11,7 @@
 
 
 
-<p id="dialogue-el" class="dialogue-para">Test Paragraph</p>
+
 
 
 <div id="row1">
@@ -92,16 +92,21 @@
     <!--
 <button id="shuffle-btn" onclick="pickCard()">place cards</button>
 <button onclick="refreshAll()" class="reset-btn2"> refresh page </button>
-
+<button onclick="consoleLog()" class="reset-btn3"> log console </button>
 -->
-<button onclick="resetGame()" class="reset-btn"> clear cards </button>
-<button id="shuffle-btn" onclick="placeCards()">place cards</button>
-<button onclick="refreshAll()" class="reset-btn2"> Game reset </button>
-<p id="start-el" class="info-para" onclick="pickCard()"> Play!</p>
-<p id="countdown" class="timer-para"><span id="minute-el"></span>:00</p><br>
+<button onclick="resetGame()" class="clear-btn"> clear </button>
+<button class="deal-btn" onclick="placeCards()">deal</button>
+<button onclick="refreshAll()" class="reset-btn">  reset </button>
+
+<p id="countdown" class="timer-para"><span id="minute-el"></span>:00</p>
+<button id="start-el" class="play-btn" onclick="pickCard()"> Play!</button>
+<p id="dialogue-el" class="dialogue-para"><span id="score">score</span> </p>
+<label for="total-scores" class="scores-label">Total Score:
+<p id="total-scores" class="scores-para" > </p>
+</label>
 </div>
 <div id="card-pairs-array" onclick="pairsFound()"></div>
-<button onclick="consoleLog()" class="reset-btn3"> log console </button>
+
 
 
 <script src="script shuffler 2.js"> </script>
