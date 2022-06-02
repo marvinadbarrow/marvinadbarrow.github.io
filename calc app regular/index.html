@@ -12,32 +12,38 @@
 
 <div id="calculator-container">
 
+	<div class="display-grid" id="display-container">
+		<div class="d3" id="display3" ></div>
+		<div class="d6" id="display6">0</div>
+		</div>
 
- <input id="display-el" maxlength="10"></input> 
+
+ <!-- <input id="display-el" maxlength="10"></input> -->
 
 	<div id="calculator-body">
 
 		<div id="calculator">
 
-<button id="zero" class="number" onclick="zero()">0</button>
-<button id="one" class="number" onclick="one()">1</button>
-<button id="two" class="number" onclick="two()">2</button>
-<button id="three" class="number" onclick="three()">3</button>
-<button id="four" class="number" onclick="four()">4</button>
-<button id="five" class="number" onclick="five()">5</button>
-<button id="six" class="number"onclick="six()">6</button>
-<button id="seven" class="number" onclick="seven()">7</button>
-<button id="eight" class="number" onclick="eight()">8</button>
-<button id="nine" class="number" onclick="nine()">9</button>
-<button id="dot" class="number" onclick="dot()">.</button>
-<button id="power" class="on-btn" onclick="power()">ON</button>
-<button id="subtraction" class="operation" onclick="subtraction()">-</button>
-<button id="addition" class="operation" onclick="addition()">+</button>
-<button id="multiplication" class="operation" onclick="multiplication()">x</button>
-<button id="division" class="operation" onclick="division()">/</button>
-<button id="percentage" class="operation" onclick="percentage()">%</button>
-<button id="clear" class="clear-btn" onclick="allClear()">AC</button>
-<button id="equals" class="equals-btn" onclick="equals()">=</button>
+<button id="zero" class="number" onclick="input0()">0</button>
+<button id="one" class="number" onclick="input1()">1</button>
+<button id="two" class="number" onclick="input2()">2</button>
+<button id="three" class="number" onclick="input3()">3</button>
+<button id="four" class="number" onclick="input4()">4</button>
+<button id="five" class="number" onclick="input5()">5</button>
+<button id="six" class="number"onclick="input6()">6</button>
+<button id="seven" class="number" onclick="input7()">7</button>
+<button id="eight" class="number" onclick="input8()">8</button>
+<button id="nine" class="number" onclick="input9()">9</button>
+<button id="dot" class="number" onclick="inputDecimal()">.</button>
+<button id="square" class="operation-spc" onclick="squareNumCalc()">x<sup>2</sup></button>
+<button  class="operation-spc" id="inv" onclick="inverseNumCalc()"><sup>1</sup>/<sub>x</sub></button>
+<button id="subtraction" class="operation" onclick="subNumCalc()">-</button>
+<button id="addition" class="operation" onclick="addNumCalc()">+</button>
+<button id="multiplication" class="operation" onclick="timesNumCalc()">x</button>
+<button id="division" class="operation" onclick="divNumCalc()">/</button>
+<button id="sqt" class="operation-spc" onclick="sqrtNumCalc()">&#8730;x</button>
+<button id="clear" class="clear-btn" onclick="clearAll()">AC</button>
+<button id="equals" class="equals-btn" onclick="equalsCalc()">=</button>
 
 
 
@@ -50,6 +56,6 @@
 
 
 
-<script src="index.js"></script>
+<script src="script.js"></script>
 </body>
 <html>
