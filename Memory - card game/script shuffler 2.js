@@ -95,33 +95,49 @@ let tableArray = []; // cards dealt to table
 //let displayEl = document.getElementById('display');// picked card display
 let pairsArray = [] // this array collects all found pairs
 // function for card generation
-// for manipulating points paragraph
+
+
+
+
+
+
+// SCORES VARIABLES
 let infoEl = document.getElementById("dialogue-el")
-var message = "points"
-// this is the redo of the timer; let's see if it works
-let timerElement = document.getElementById("minute-el");
-timerElement.textContent = "5"
-var paraNum;
-paraNum = parseInt(timerElement.textContent)
-let timer = 60;
-var setTime;
-let countEl = document.getElementById("countdown"); 
-// variables for scores
 var sumbAll; // sum of scores in the array
 let totalScoreArray = []
 let scoreEl = document.getElementById("score")
 let totalScoreEl = document.getElementById("total-scores")
 let scores = 0; // scores for pairs found
-function CountDownTimer(){
- paraNum = 4;
-    setTime = setInterval(function() {
-        timer--;
-        countEl.textContent = paraNum + ":" + timer;
-if (pairsArray.length > 51){clearInterval(setTime)}
-if (timer < 1 && paraNum > 0){ timer += 60; paraNum--;}
-else if(timer === 0 && paraNum === 0){clearInterval(setTime); scoreEl.textContent = "Game Over"; scoreEl.style.opacity = 1; scoreEl.style.fontSize = 80;}
 
-    }, 1000);}
+
+
+
+// TIMER FUNCTION VARIABLES
+let timerElement = document.getElementById("minute-el");
+timerElement.textContent = "5"
+var paraNum;
+paraNum = parseInt(timerElement.textContent)
+var setTime;
+let timer = 60;
+let countEl = document.getElementById("countdown");
+// TIMER FUNCTION
+function CountDownTimer(){
+  
+    paraNum = 4;
+       setTime = setInterval(function() {
+           timer--;
+           countEl.textContent = paraNum + ":" + timer;
+   if (pairsArray.length > 51){clearInterval(setTime)}
+   else if (timer < 1 && paraNum > 0){ timer += 60; paraNum--;}
+   else if(timer < 1 && paraNum < 1){clearInterval(setTime); scoreEl.textContent = "Game Over"; scoreEl.style.opacity = 1; scoreEl.style.fontSize = 80;}
+   
+       }, 1000);}
+
+
+
+
+
+
 // ABOVE IS THE TIMER FUNCTION... LET'S HOPE IT WORKS
 
 
@@ -132,7 +148,7 @@ function consoleLog(){
  }
 
 function pickCard(){
-    
+    totalScoreArray.length = 0;
     document.getElementById('start-el').style.zIndex = -1;
     document.getElementById('start-el').style.opacity = 0;
 if(tableArray.length < 52){ audio8.play();
@@ -172,13 +188,14 @@ if (tableArray.length < 52){ pickCard();
 
 // clearing the tableArray so we can use the shuffle again
 function resetGame(){
-if (pairsArray.length > 0){
-    placedCardsArray.pop()
+   
+   if (flipArray.length > 0){
+        placedCardsArray.pop()
+    
     clearInterval(setTime);
-    timer = 59
     document.getElementById('start-el').style.zIndex = 0;
     document.getElementById('start-el').style.opacity = 100;
- timerElement.textContent = "5:00"
+ 
 
 
   let clearPairEl = document.getElementById("card-pairs-array")
@@ -281,7 +298,7 @@ if (flipArray.length > 1){
 
   totalScoreEl.textContent = sumbAll ;
 console.log(pairsArray);
-if (pairsArray.length > 51){scoreEl.textContent = "winner"; scoreEl.style.opacity = 1; scoreEl.style.fontSize = "25px"; CountDownTimer();}
+if (pairsArray.length > 51){scoreEl.textContent = "winner"; scoreEl.style.opacity = 1; scoreEl.style.fontSize = "25px"; paraNum = "0"; timer = 0; resetGame();}
 
 }}}
 

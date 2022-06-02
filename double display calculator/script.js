@@ -16,7 +16,7 @@ if (calcOpArrayb.length > 0){
     if (sumAddArray.length < 1 && sumSubArray.length < 1 && sumDivArray.length < 1 && sumTimesArray.length < 1)
     {document.getElementById('display6').textContent = "ERROR";}else{digitArray2.push(numberEl); document.getElementById('display3').textContent +=  + numberEl;}}
     else{digitArray.push(numberEl); document.getElementById('display3').textContent += numberEl;}
-
+// note - as long as calcOpArray length = 0, this will keep on adding digits to the display, AND, pushing entries to the first digit array (which we join and parse later), until the calcOpArray has an element in it; then the numbers start being pushed to the second digArray
 
 }
 
@@ -112,9 +112,9 @@ var sumTimesArray = []
 function addNumCalc(){
     if (calcArray.length > 0){document.getElementById('display3').textContent = digitArray[0]; sumAddArray.push(digitArray[0]); document.getElementById('display3').textContent +=  " + "; console.log(digitArray);} else{
     var n1 = digitArray[0];
-    sumAddArray.push(n1)
-    calcOpArrayb.push(n1)
-     document.getElementById('display3').textContent +=  " + ";}
+    sumAddArray.push(n1)// tells equals which op to process
+    calcOpArrayb.push(n1)// tells numEl to push to digArray 2
+     document.getElementById('display3').textContent +=  " + ";} // puts operation between parsed numbers of digArray 1 and 2 in calc display
     }
     
     
