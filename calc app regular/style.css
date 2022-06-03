@@ -17,7 +17,7 @@ grid-template-areas:
 
 #calculator-container{ background-color: white; padding:20px;margin:auto;margin-top:200px;
 display:flex; flex-direction:column; border-style:solid; border-width:3px; border-color:black; width:305px; height: 400px; border-radius:10px; margin-bottom:100px; box-shadow: 2px 2px 7px rgb(248, 245, 245);
-background-image: url('metal holes 2.jpg'); background-size: cover;}
+background-image: url('wood.jpg'); background-size: cover;}
 
 
 
@@ -43,7 +43,7 @@ background-image: url('metal holes 2.jpg'); background-size: cover;}
 #inv{grid-area:inverse;}
 
 /* button styling */
-button{border-style:  hidden; box-shadow: 2px 2px 6px rgb(161, 155, 155); font-size: 20px;}
+button{border-style:  hidden; box-shadow: 2px 2px 6px rgb(8, 8, 8); font-size: 20px;}
 
 /* below will make the buttons look as though they are pushed down when clicked on by the mouse pointer */
 button:active{width:49px; height: 49px; box-shadow: 1px 1px 2px black;}
