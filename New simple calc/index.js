@@ -81,7 +81,7 @@ let bPowerA  = Math.pow(num2, num1)
 }
 
 function percent(){
-let percentDiv = num1 % num2
+let percentDiv = num2 % num1
 document.getElementById("display-el").value = percentDiv;
 
 }

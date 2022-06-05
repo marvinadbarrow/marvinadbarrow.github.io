@@ -9,13 +9,14 @@ let dayEl = document.getElementById('day')
 let hourEl = document.getElementById('hour')
 let minEl = document.getElementById('min')
 let secEl = document.getElementById('sec')
-
+var dayNameIndex;
 const leapYears = 12 // leap years since 1970
 const hourSpring = 1// hour  for clocks forward
 const hourFall = -1// hour for clocks back
     
 let acDateArr = [] // actual date array with year, month, day, min, sec
-
+let dayNameArr = ["sunday","monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+let dayNameEl = document.getElementById("dayname") // for day name display
 function log(){
     acDateArr = []
     let secondNow = Math.floor(Date.now() / 1000)// seconds since 1,1,1970
@@ -64,6 +65,10 @@ function log(){
     
     acDateArr.push(ctyear, month, dayNum, ctHour,ctMinute,ctSecond)
     //console.log(acDateArr[4])
+    console.log(cd)
+    dayNameIndex = (cd + 5) % 7
+    console.log(dayNameIndex)
+    console.log(dayNameArr[dayNameIndex])
 }
     
 
@@ -73,6 +78,7 @@ clock = setInterval(function() {
 time++; log();
 yearEl.textContent = acDateArr[0]
 monthEl.textContent = acDateArr[1]
+dayNameEl.textContent = dayNameArr[dayNameIndex]
 dayEl.textContent = acDateArr[2]
 hourEl.textContent = acDateArr[3]
 // below two give double digits if min/sec < 10
