@@ -41,9 +41,19 @@
    <div id="btn-container">
           <button id="start" class="function" onclick="start()">START</button>
         <button id="reset" class="function" onclick="stop()">reset</button>
+        <button id="timeset-el" class="function" onclick="timeset()">Set Time</button>
       </div>
 
+<div class="timeset-elb" id="timerset">
 
+<div id="time-set-container">
+  <p class="set-el" id="set-six">0</p>
+  <p class="set-el" id="set-five">0</p>
+  <p class="set-el" id="set-four">0</p>
+  <p class="set-el" id="set-three">0</p>
+  <p class="set-el" id="set-two">0</p>
+  <p class="set-el" id="set-one">0</p>
+</div>
      
         <div id="button-grid">
         <button id="zero" class="number" onclick="input0()">0</button>
@@ -56,11 +66,11 @@
         <button id="seven" class="number" onclick="input7()">7</button>
         <button id="eight" class="number" onclick="input8()">8</button>
         <button id="nine" class="number" onclick="input9()">9</button>
-        <button id="del" class="del" onclick="inputdel()">DEL</button>
+        <button id="del" class="del" onclick="inputDel()">DEL</button>
        <button id="set" class="set" onclick="inputSet()">SET</button>
        <button id="cncel" class="cncel" onclick="inputCncel()">Esc</button>
       </div>
-     
+    </div>
 
         </body>
              <footer id="main-footer">

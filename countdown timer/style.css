@@ -18,7 +18,7 @@ body{background-image: url('clock.jpg'); height: 1000px;}
 
 
 /*  START AND RESET BUTTONS */
-#btn-container{display:flex; width: 260px; height: 90px; margin: auto;margin-top: 20px;  margin-top:100px;}
+#btn-container{display:flex; width: 290px; height: 90px; margin: auto;margin-top: 20px;  margin-top:100px;}
 
 #reset,#start{background-color: rgb(132, 210, 247);width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
 #reset:active, #start:active{width:118px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248); background-color: chartreuse;}
@@ -31,6 +31,9 @@ body{background-image: url('clock.jpg'); height: 1000px;}
 #console-log:active{width:148px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248);}
 
 #console{width: 150px;  margin: auto; margin-top: 100px;}
+
+
+
 
 #button-grid{display: grid;
     grid-gap: 5px;
@@ -49,6 +52,7 @@ border-radius: 10px;
 background-color: darkslategrey;
 margin-bottom: -50px;
 padding: 5px;
+box-shadow: 1px 1px 3px black;
 }
 
 #zero{grid-area: zero;}
@@ -72,3 +76,33 @@ box-shadow: 1px 1px 3px white;}
 font-weight: bold;color: white; background-color: rgb(57, 162, 227);
 box-shadow: 1px 1px 3px white; }
 .set:hover{background-color: rgba(19, 43, 89,0.9); color: white;}
+
+#time-set-container{width: 350px;height: 80px; margin:auto;background-color: darkslategrey;display: flex; justify-content: space-around; border-radius: 7px;}
+
+.set-el{width: 50px;height: 50px;background-color: white;border-radius: 3px;font-size: 35px; ;font-family: 'Anton', sans-serif;text-align: center;margin-top: 15px;}
+
+#set-one::after{
+content: "s";
+font-size: 17px;
+margin-right: -10px;
+margin-left: 5px;
+}
+
+#set-three::after{
+content: "m";
+font-size: 17px;
+margin-right: -10px;
+margin-left: 5px;
+}
+
+#set-five::after{
+content: "h";
+font-size: 17px;
+margin-right: -10px;
+margin-left: 5px;
+}
+
+.timeset-elb{display: none;}
+
+#timeset-el{background-color: rgb(132, 210, 247);width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
+#reset:active, #start:active{width:118px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248); background-color: chartreuse;}

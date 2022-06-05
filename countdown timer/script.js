@@ -9,7 +9,7 @@ let oneSecond = 1000 // conversion of milliseconds
 inputSeconds = oneSecond
 inputMins = 60*inputSeconds
 inputHours = 60*inputMins
-
+let timesetEl = document.getElementById("timeset")
 
     
 let audio1 = new Audio("alarm.mp3")
@@ -74,9 +74,145 @@ function clearTimer(){
     // start button to original colour
 }
 
+let setElOne = document.getElementById("set-one")
+let setElTwo = document.getElementById("set-two")
+let setElThree = document.getElementById("set-three")
+let setElFour = document.getElementById("set-four")
+let setElFive = document.getElementById("set-five")
+let setElSix = document.getElementById("set-six")
 
 
+var timeArr = []; // for entries into time set fields
+
+function input1(){
+    numbEl = 1; 
+    timeArr.unshift(numbEl);
+    log();}
+
+    
+    
+    function input2(){
+    numbEl = 2;
+    timeArr.unshift(numbEl);
+    log()}
+
+    
+    
+    function input3(){
+    numbEl = 3;
+    timeArr.unshift(numbEl);
+    log()}
+
+    
+    
+    function input4(){
+    numbEl = 4;
+    timeArr.unshift(numbEl);
+    log()}
+
+    
+    
+    function input5(){
+    numbEl = 5;
+    timeArr.unshift(numbEl);
+    log()}
+
+    
+    
+    function input6(){
+    numbEl = 6;
+    timeArr.unshift(numbEl);
+    log()}
+
+    
+    
+    function input7(){
+    numbEl = 7;
+    timeArr.unshift(numbEl);
+    log()}
+
+    
+    
+    function input8(){
+    numbEl = 8;
+    timeArr.unshift(numbEl);
+    log()}
+
+    
+    
+    function input9(){
+    numbEl = 9;
+    timeArr.unshift(numbEl);
+    log()}
+
+    
+    
+    function input0(){
+    numbEl = 0;
+    timeArr.unshift(numbEl);
+    log()}
+
+
+
+
+function log(){
+    if(timeArr.length < 7){
+        if(timeArr.length<1){setElOne.textContent = "0"}
+    else{setElOne.textContent = timeArr[0]}
+    if(timeArr.length<2){setElTwo.textContent = "0"}
+    else{setElTwo.textContent = timeArr[1]}
+    if(timeArr.length<3){setElThree.textContent = "0"}
+    else{setElThree.textContent = timeArr[2]}
+    if(timeArr.length<4){setElFour.textContent = "0"}
+    else{setElFour.textContent = timeArr[3]}
+    if(timeArr.length<5){setElFive.textContent = "0"}
+    else{setElFive.textContent = timeArr[4]}
+    if(timeArr.length<6){setElSix.textContent = "0"}
+    else{setElSix.textContent = timeArr[5]}}
+    else{timeArr.shift()}
+
+           
+console.log(timeArr)
+
+}    
+
+function inputDel(){
+    timeArr.shift();
+    console.log(timeArr)
+    log()
+}
+
+
+function inputSet(){ 
+console.log(timeArr)
+document.getElementById("timerset").style.display = "none";
+}
+
+function inputCncel(){
+timeArr = []
+console.log(timeArr);
+setElOne.textContent = "0";
+setElTwo.textContent = "0";
+setElThree.textContent = "0";
+setElFour.textContent = "0";
+setElFive.textContent = "0";
+setElSix.textContent = "0";
+}
+
+function timeset(){
+
+
+    document.getElementById("timerset").style.display = "block";
+}
 /*
+
+let setElOne = document.getElementById("set-one")
+let setElTwo = document.getElementById("set-two")
+let setElThree = document.getElementById("set-three")
+let setElFour = document.getElementById("set-four")
+let setElFive = document.getElementById("set-five")
+let setElSix = document.getElementById("set-six")
+
 
 EXAMPLES OF CODES TO USE FOR TIMING
 
