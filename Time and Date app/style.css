@@ -2,16 +2,14 @@
 h1{color: rgb(245, 223, 23);font-weight: bold; font-size: 60px; letter-spacing:5px;text-shadow: 2px 2px 2px rgb(15, 14, 14);}
 
 
-footer{color: white; margin: auto; margin-top: 50px; width: 500px; height: 200px; text-align: center; font-size: 20px;}
+footer{color: rgb(241, 219, 13); margin: auto; margin-top: 50px; width: 500px; height: 200px; text-align: center; font-size: 23px; margin-top: 100px;}
 
 body{background-image: url('metal.jpg');}
 
 .headpara{text-align: center;}
 
-#console-log{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black;}
-#console-log:active{width:148px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248);}
 
-#console{width: 150px;  margin: auto; margin-top: 100px;}
+
 
 .time-el{ width: 140px; height: 140px; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 10px;font-size: 100px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; box-shadow: 3px 3px 7px rgb(10, 10, 10);}
 
