@@ -63,6 +63,7 @@ function log(){
     if (cd >334 ){ dayNum = cd - 334}
     
     acDateArr.push(ctyear, month, dayNum, ctHour,ctMinute,ctSecond)
+    //console.log(acDateArr[4])
 }
     
 
@@ -74,8 +75,17 @@ yearEl.textContent = acDateArr[0]
 monthEl.textContent = acDateArr[1]
 dayEl.textContent = acDateArr[2]
 hourEl.textContent = acDateArr[3]
-minEl.textContent = acDateArr[4]
-secEl.textContent = acDateArr[5]
+// below two give double digits if min/sec < 10
+
+if (acDateArr[3] < 10){hourEl.textContent =  "0" + acDateArr[3]}
+else{hourEl.textContent = acDateArr[3]}
+
+
+if (acDateArr[4] < 10){minEl.textContent =  "0" + acDateArr[4]}
+else{minEl.textContent = acDateArr[4]}
+
+if (acDateArr[5] < 10){secEl.textContent = "0" + acDateArr[5]}
+else{secEl.textContent = acDateArr[5]}
 
 }, 1000)
 
