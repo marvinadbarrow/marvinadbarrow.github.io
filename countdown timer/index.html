@@ -1,0 +1,71 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+           <link rel="stylesheet" type="text/css"
+                 href="style.css">
+
+            <title> Timer</title>
+        </head>
+
+        <h1> 
+        <strong><p class="headpara">Countown Timer </p></strong></h1>
+        <body>
+ 
+           
+            <div id="label-container">
+                <div id="label-el">
+                      <p class="label">Hour</p>
+                      <p class="label">Minute</p>
+                      <p class="label">Seconds</p>
+                 </div>
+              </div>
+              
+              
+              <div id="clock-container">
+                <div id="clock-el">
+                      <p class="time-el" id="hour">00</p>
+                      <p class="time-el" id="min">00</p>
+                      <p class="time-el" id="sec">00</p>
+                 </div>
+              </div>
+              
+              <br>
+              <br>
+
+
+ </div>
+   <div id="btn-container">
+          <button id="start" class="function" onclick="start()">START</button>
+        <button id="reset" class="function" onclick="stop()">reset</button>
+      </div>
+
+
+     
+        <div id="button-grid">
+        <button id="zero" class="number" onclick="input0()">0</button>
+        <button id="one" class="number" onclick="input1()">1</button>
+        <button id="two" class="number" onclick="input2()">2</button>
+        <button id="three" class="number" onclick="input3()">3</button>
+        <button id="four" class="number" onclick="input4()">4</button>
+        <button id="five" class="number" onclick="input5()">5</button>
+        <button id="six" class="number"onclick="input6()">6</button>
+        <button id="seven" class="number" onclick="input7()">7</button>
+        <button id="eight" class="number" onclick="input8()">8</button>
+        <button id="nine" class="number" onclick="input9()">9</button>
+        <button id="del" class="del" onclick="inputdel()">DEL</button>
+       <button id="set" class="set" onclick="inputSet()">SET</button>
+       <button id="cncel" class="cncel" onclick="inputCncel()">Esc</button>
+      </div>
+     
+
+        </body>
+             <footer id="main-footer">
+                Marvin-a-Barrow &copy 2022 JavaScript Experiments
+                <script src="script.js"></script>
+             </footer>
+                   
+    </html>
