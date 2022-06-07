@@ -1,6 +1,7 @@
 var secondsInput;
 var secondsInputArray = []
 var startArray = []
+var outsideTime = []
 // conversions for values pulled from hour, min, and second paragraphs for setting the time
 
 var inputSeconds;// for setting seconds on timer
@@ -18,7 +19,9 @@ let hourEl = document.getElementById('hour')
 let minEl = document.getElementById('min')
 let secEl = document.getElementById('sec')
 let startName = document.getElementById('start')
-let pauseName = document.getElementById('reset')
+let pauseName = document.getElementById('pause')
+let playEl = document.getElementById("play-btn")
+let pauseEl = document.getElementById("pause-btn")
 const leapYears = 12 // leap years since 1970
 const hourSpring = 1// hour  for clocks forward
 const hourFall = -1// hour for clocks back
@@ -28,12 +31,12 @@ var secString; // collects seconds as string from array
 var minString; // collects minutes as string from array
 var hourString; // collects hours as string from array
 
-let setElOne = document.getElementById("set-one")
-let setElTwo = document.getElementById("set-two")
-let setElThree = document.getElementById("set-three")
-let setElFour = document.getElementById("set-four")
-let setElFive = document.getElementById("set-five")
-let setElSix = document.getElementById("set-six")
+let setElOne = document.getElementById("set-one") //settime input 
+let setElTwo = document.getElementById("set-two") //settime input 
+let setElThree = document.getElementById("set-three")//settime input 
+let setElFour = document.getElementById("set-four")//settime input 
+let setElFive = document.getElementById("set-five")//settime input 
+let setElSix = document.getElementById("set-six")//settime input 
 
 var secStringSec; // variable for parsed seconds string given in seconds
 var minStringSec // variable for parsed minutes string given in seconds
@@ -50,6 +53,9 @@ var hours;
 
 function inputSet(){ 
    
+    secondsInputArray = []
+    timeArr = []   
+    outsideTime = []
     // below are used to create a string from unit and tens paragraphs of second, minute and hour positions in timeArr
 secString = setElTwo.textContent + setElOne.textContent
 minString = setElFour.textContent + setElThree.textContent
@@ -67,28 +73,41 @@ secondsInput = secStringSec + minStringSec + hourStringSec;
 console.log(secondsInput)
 secondsInputArray.push(secondsInput)
 console.log(secondsInputArray[0] + 1)
+outsideTime.push(secondsInput)
 // we can now use this as our time variable and it 'should' display correctly but we'll test it first by manually putting in that time 
 // it came out as 130 mins and 15 seconds. so try 130*60 + 15. that is correct. So we need to adjust the minutes values to reflect hours.  Probably hours = hours - mathfloor(minute/60)*60 --
 document.getElementById("timerset").style.display = "none";
+
+// below code takes the individual entries in the settime paragraphs and sets them as the text content in the hour, minute and second displays. so the the displays will get a combination of tens and units for each measure; tens and units of minutes, hours, and seconds. The zeros appear because I have set the text content as zero for the fields if the corresponding position in 'timeArr' has no entry. 
+secEl.textContent = setElTwo.textContent + setElOne.textContent 
+minEl.textContent  = setElFour.textContent + setElThree.textContent 
+hourEl.textContent  = setElSix.textContent + setElFive.textContent 
 }
+
+
+
+
+
 
 function inputCncel(){
 
 document.getElementById("timerset").style.display = "none";
 }
 
-function timeset(){
+function timeset(){ if (startArray.length < 1){
     document.getElementById("timerset").style.display = "block"; 
     pauseName.style.backgroundColor = " rgb(132, 210, 247)";
-}
+
+}}
 
 
-function deleteTimer(){
+function deleteTimer(){ if (startArray.length < 1){
+    pauseName.style.backgroundColor = " rgb(132, 210, 247)";
     secondsInputArray = []
     timeArr = []
     console.log(timeArr);
     console.log(secondsInputArray);
-
+    outsideTime = []
 setElOne.textContent = "0";
 setElTwo.textContent = "0";
 setElThree.textContent = "0";
@@ -99,10 +118,13 @@ setElSix.textContent = "0";
  hourEl.textContent = "00"// resets hour display to zero
 minEl.textContent ="00"// resets minute display to zero
  secEl.textContent = "00" // resets seonds display to zero
-
+}
     
 }
 
+
+
+ 
 
 
 
@@ -111,15 +133,18 @@ minEl.textContent ="00"// resets minute display to zero
 function start(){ if(startArray.length < 1 && secondsInputArray.length > 0){
     pauseName.style.backgroundColor = " rgb(132, 210, 247)";
 startName.style.backgroundColor = "red"; // start button becomes red
+
 startArray.push("started")
 
 
 clock = setInterval(function() {
     clockElements = [] // cleared to prevent duplication
 
-  secondsInputArray[0]--; // decrement by one second each time
+    secondsInputArray[0]--; // decrement by one second each time
 minutes = Math.floor((secondsInputArray[0])/ 60) // converts seconds to minutes
 hours = Math.floor(minutes / 60)  // converts minutes to hours
+
+// reformats mins and secs, if secs > 60 or mins > 60
   secReformat = secondsInputArray[0] - Math.floor(secondsInputArray[0]/60)*60
   minReformat = minutes - Math.floor(minutes/60)*60
   hourReformat = hours - Math.floor(hours/60)*60
@@ -128,7 +153,7 @@ if(secondsInputArray[0] === 0){ audio1.play();clearInterval(clock);
     secEl.textContent = "00";
     clearTimer()}
 
-    // digits below 9 become double digits
+    // digits below 9 become double digits for all time measures, we simply add a zero to the LHS of the display, next to the single number already displayed. 
     if (secReformat < 10){secEl.textContent = "0" + secReformat;}
 else{secEl.textContent = secReformat;}
     if (minReformat < 10){minEl.textContent = "0" + minReformat;}
@@ -143,6 +168,24 @@ else{hourEl.textContent = hourReformat;}
 // END OF TIME FUNCTION 
 
 
+function reset(){
+startArray = []
+    clearInterval(clock);
+    console.log(outsideTime)
+    trueSeconds = outsideTime[0]
+    secondsInputArray.unshift(trueSeconds)
+    console.log(secondsInputArray[0])
+ 
+
+    // test
+    secEl.textContent = setElTwo.textContent + setElOne.textContent 
+    minEl.textContent  = setElFour.textContent + setElThree.textContent 
+    hourEl.textContent  = setElSix.textContent + setElFive.textContent
+    pauseName.style.backgroundColor = " rgb(132, 210, 247)";
+    startName.style.backgroundColor = " rgb(132, 210, 247)";
+}
+
+
 
 function inputDel(){
     timeArr.shift();
@@ -155,20 +198,22 @@ function inputDel(){
 
 
 
-function stop(){
-     // resets counter
+function pause(){
+     // pauses counter
+     if (startArray.length > 0){
      startArray = []
     clearInterval(clock); // stops clock
      clearTimer() // see function below
      pauseName.style.backgroundColor = "red";
-    }
+     
+    }}
 
 // clears reset all fields
 function clearTimer(){
     //hourEl.textContent = "00"// resets hour display to zero
     //minEl.textContent ="00"// resets minute display to zero
       //  secEl.textContent = "00" // resets seonds display to zero
-    startName.textContent = "START" // start btn to original state
+    
     startName.style.backgroundColor = " rgb(132, 210, 247)";
     // start button to original colour
 }

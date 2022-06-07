@@ -42,10 +42,12 @@
 
  </div>
    <div id="btn-container">
-          <button id="start" class="function" onclick="start()">START</button>
-        <button id="reset" class="function" onclick="stop()">pause</button>
-        <button style="font-size:36px" type="button" class="function" onclick="deleteTimer()" ><i class="fa fa-trash-o"></i></button>
-        <button id="timeset-el" class="function" onclick="timeset()">Set Time</button>
+          <button id="start" class="function" onclick="start()"><i class="fa fa-play" id="play-btn" style="font-size:48px;color:rgb(255, 254, 254)"></i></button>
+        <button id="pause" class="function" onclick="pause()"><i class="fa fa-pause-circle-o" id="pause-btn" style="font-size:48px;color:rgb(255, 253, 253)"></i></button>
+        <button id="reset" class="function" onclick="reset()"><i class="fa fa-refresh" style="font-size:32px"></i></button>
+
+        <button  type="button" class="function" onclick="deleteTimer()" ><i class="fa fa-trash-o" style="font-size:32px"></i></button>
+        <button id="timeset-el" class="function" onclick="timeset()">Set  <i class="fa fa-clock-o" style="font-size:32px"></i></button>
       </div>
 
 <div class="timeset-elb" id="timerset">
