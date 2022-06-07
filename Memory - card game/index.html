@@ -89,21 +89,21 @@
 
 
 <div id="button-container">
-    <!--
-<button id="shuffle-btn" onclick="pickCard()">place cards</button>
-<button onclick="refreshAll()" class="reset-btn2"> refresh page </button>
-<button onclick="consoleLog()" class="reset-btn3"> log console </button>
--->
+ 
 <button onclick="resetGame()" class="clear-btn"> clear </button>
-<button class="deal-btn" onclick="placeCards()">deal</button>
+<button class="deal-btn" onclick="pickCard()">Play</button>
 <button onclick="refreshAll()" class="reset-btn">  reset </button>
+</div>
+<div id="countdown" class="timer-para">
+    <p id="minute-el" class="time-el"></p>
+    <p id="second-el" class="time-el"></p>
+</div>
 
-<p id="countdown" class="timer-para"><span id="minute-el"></span>:00</p>
-<button id="start-el" class="play-btn" onclick="pickCard()"> Play!</button>
-<p id="dialogue-el" class="dialogue-para"><span id="score">score</span> </p>
-<label for="total-scores" class="scores-label">Total Score:
-<p id="total-scores" class="scores-para" > </p>
-</label>
+
+
+
+<p id="total-scores" class="scores-para" ><span id="current-score"> Score:</span></p>
+<p id="dialogue-el" class="dialogue-para"><span id="score"></span> </p>
 </div>
 <div id="card-pairs-array" onclick="pairsFound()"></div>
 

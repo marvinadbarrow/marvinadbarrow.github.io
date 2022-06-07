@@ -3,36 +3,33 @@ body{background-image: url('background.jpg');}
 #counter-container{width:100px; height:50px;  margin-top: -50px }
 #display{color:yellow; font-size: 55px; font-weight:bold; text-shadow: 2px 2px 6px black;}
 
-.deal-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black;}
+.deal-btn{ color: rgba(236, 222, 14, 0.8);width: 150px; height: 70px; font-size: 30px; font-weight: bold;text-align: center;font-family: 'Anton',sans-serif; letter-spacing:5px;  text-shadow: 2px 2px 3px rgb(240, 247, 238);  border-style: solid; border-width: 1px; border-color: white;border-radius: 7px; background-color: rgba(0, 0 , 0, 0.5); box-shadow: 4px 4px 8px rgb(98, 222, 238) ; opacity: 1; display: inline;}
 
-.deal-btn:hover, .deal-btn:focus{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer; }
 
 .cards-all{width: 70px; height: 102px; opacity:0; transition:all 0.5 ease; transition-duration: 0.1s;}
 .cards-all.deal{opacity: 1;}
 
-
-.clear-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(235, 238, 36); color:rgb(17, 2, 2); text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 249, 249);}
-
-.clear-btn:hover, .clear-btn:focus{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer; color :white; }
+#button-container{display: flex; justify-content: space-around; width: 500px; height:80px; margin: auto;}
 
 
-#button-container{ width: 700px; height: 200px;}
 
-.reset-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(228, 157, 25); color:rgb(247, 243, 243); text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(248, 245, 245); text-shadow: 2px 2px 2px black;display: inline;}
-
-.reset-btn:hover, .reset-btn:focus{ background-color:rgb(240, 55, 38); box-shadow: 1px 1px 2px black; cursor:pointer; color :white; }
+.play-btn{ color: rgba(236, 222, 14, 0.8);width: 150px; height: 70px; font-size: 45px; font-weight: bold;text-align: center;font-family: 'Anton',sans-serif; letter-spacing:5px;  text-shadow: 2px 2px 3px rgb(240, 247, 238);  border-style: solid; border-width: 1px; border-color: white;border-radius: 7px; background-color: rgba(0, 0 , 0, 0.5); box-shadow: 4px 4px 8px rgb(245, 248, 248) ; opacity: 1; display: inline;}
 
 
-.play-btn{ color: rgba(236, 222, 14, 0.8);width: 150px; height: 70px; font-size: 45px; font-weight: bold;text-align: center;font-family: 'Anton',sans-serif; letter-spacing:5px;  text-shadow: 2px 2px 3px rgb(240, 247, 238);  border-style: solid; border-width: 1px; border-color: white;border-radius: 7px; background-color: black; box-shadow: 4px 4px 8px rgb(98, 222, 238) ; opacity: 0; display: inline;}
+.reset-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(228, 157, 25); color:rgb(247, 243, 243); text-transform: uppercase;font-weight:bold; font-size:30px; box-shadow: 2px 2px 7px rgb(248, 245, 245); text-shadow: 2px 2px 2px black;display: inline;}
 
-.play-btn:hover, .play-btn :focus{ background-color: black; box-shadow: 8px 8px 16px rgb(98, 222, 238) ;cursor: pointer;background-color:rgba(0,0,0,0.8);}
-
-
-.timer-para{  background-color:rgba(216, 64, 64, 0.5);color: white;width: 150px; height: 70px; border-style: solid; border-width: 1px; border-color: white;border-radius: 7px; font-size: 35px; font-weight: bold;text-align: center;font-family: 'Anton', sans-serif; letter-spacing:5px; box-shadow: 2px 2px 7px rgb(248, 245, 245);  padding: 0px 10px;display: inline;}
+.clear-btn{width:150px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black; background-color:rgb(235, 238, 36); color:rgb(17, 2, 2); text-transform: uppercase;font-weight:bold; font-size:30px; box-shadow: 2px 2px 7px rgb(250, 249, 249);}
 
 
-#dialogue-el{  color: rgba(236, 222, 14, 0.8); font-size: 35px; font-weight: bold;text-align: center;font-family: 'Anton', sans-serif;margin-left: 20px; letter-spacing:5px; margin-top: 10px; text-shadow: 2px 2px 3px rgb(252, 150, 33); opacity:0; z-index: 0; text-transform: capitalize;display: inline;}
+#dialogue-el{  color: rgba(236, 222, 14, 0.8); font-size: 50px; font-weight: bold;text-align: left;font-family: 'Anton', sans-serif;margin-left: 450px; letter-spacing:5px; margin-top: 10px; text-shadow: 2px 2px 3px rgb(252, 150, 33); opacity:1; z-index: 0; text-transform: capitalize;}
 
-.scores-para{ color: rgba(236, 222, 14, 0.8);width: 150px; height: 40px; font-size: 40px; font-weight: bold;text-align: center;font-family: 'Anton', sans-serif;margin-left: 10px; letter-spacing:5px; margin-top: 0px; text-shadow: 2px 2px 1px rgb(240, 247, 238);   margin-top: 10px; display: inline;}
+.scores-para{ color: rgba(250, 249, 243, 0.8);width: 300px; height: 40px; font-size: 40px; font-weight: bold;text-align: left;font-family: 'Anton', sans-serif;margin-left: 400px; letter-spacing:5px;  margin-top: 10px;}
 
-.scores-label{font-size: 30px; color: white; font-weight: bold; display: inline;}
+
+
+.timer-para{display: flex;  width: 300px; height: 145px; justify-content: space-around;margin: auto; margin-top: -50px;}
+
+.time-el{ width: 140px; height: 140px; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 10px;font-size: 100px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: left; text-align: center;}
+
+#row1, #row2, #row3, #row4{margin: auto; width: 70%;}
+
