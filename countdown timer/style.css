@@ -23,7 +23,8 @@ body{background-image: url('clock.jpg'); height: 1000px;}
 #reset,#start{background-color: rgb(132, 210, 247);width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
 #reset:active, #start:active{width:118px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248); background-color: chartreuse;}
 
-.function{width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
+.btn-primary, .function{background-color: rgb(132, 210, 247); width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
+
 
 
 /*  CONSOLE LOG BUTTON */
@@ -106,3 +107,4 @@ margin-left: 5px;
 
 #timeset-el{background-color: rgb(132, 210, 247);width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
 #reset:active, #start:active{width:118px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248); background-color: chartreuse;}
+

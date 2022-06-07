@@ -8,6 +8,7 @@
            <link rel="stylesheet" type="text/css"
                  href="style.css">
 
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <title> Timer</title>
         </head>
 
@@ -37,10 +38,13 @@
               <br>
 
 
+              
+
  </div>
    <div id="btn-container">
           <button id="start" class="function" onclick="start()">START</button>
-        <button id="reset" class="function" onclick="stop()">reset</button>
+        <button id="reset" class="function" onclick="stop()">pause</button>
+        <button style="font-size:36px" type="button" class="function" onclick="deleteTimer()" ><i class="fa fa-trash-o"></i></button>
         <button id="timeset-el" class="function" onclick="timeset()">Set Time</button>
       </div>
 
