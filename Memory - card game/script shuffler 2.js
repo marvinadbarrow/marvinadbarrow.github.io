@@ -111,9 +111,13 @@ function CountDownTimer(){
              
       if (secondInSeconds < 10){secondEl.textContent = "0" + secondInSeconds}  
 
-   if (pairsArray.length > 51){clearInterval(setTime)}
-  
-    if(timer === 0){clearInterval(setTime); scoreEl.textContent = "Game Over"; scoreEl.style.opacity === 1;}
+   
+
+ 
+
+    if(pairsArray.length < 52 && timer === 0){clearInterval(setTime); scoreEl.textContent = "Game Over"; scoreEl.style.opacity === 1;
+    minuteEl.textContent = "05";
+    secondEl.textContent = "00";}
    
        }, 1000);}
 
@@ -314,12 +318,39 @@ if (flipArray.length > 1){
    totalScoreArray.push(scores)
    console.log(totalScoreArray)
    scoreEl.textContent = scores + "!";
-  
+ 
   sumbAll =  totalScoreArray.reduce((partialSum, a) => partialSum + a, 0);
 
   totalScoreEl.textContent = "Score: " + " " + sumbAll ;
 console.log(pairsArray);
-if (pairsArray.length > 51){scoreEl.textContent = "winner"; scoreEl.style.opacity = 1; scoreEl.style.fontSize = "25px"; paraNum = "0"; timer = 0; resetGame();}
+if (pairsArray.length > 51){scoreEl.textContent = "COMPLETE"; scoreEl.style.opacity = 1; scoreEl.style.fontSize = "50px"; clearInterval(setTime); timer === 0; //resetGame();
+
+if (pairsArray.length> 51 && minuteInSeconds > 3){clearInterval(setTime); scores = 300;totalScoreArray.push(scores);
+    minuteEl.textContent = "05";
+    secondEl.textContent = "00";}
+  else if (pairsArray.length> 51 && minuteInSeconds > 2){clearInterval(setTime); scores = 250;totalScoreArray.push(scores);
+    minuteEl.textContent = "05";
+    secondEl.textContent = "00";}
+  else if (pairsArray.length> 51 && minuteInSeconds > 1){clearInterval(setTime); scores = 150;totalScoreArray.push(scores);
+    minuteEl.textContent = "05";
+    secondEl.textContent = "00";}
+
+    
+
+/*
+  if (pairsArray.length> 51 && minuteInSeconds > 3){clearInterval(setTime); scores = 300;totalScoreArray.push(scores);
+    minuteEl.textContent = "05";
+    secondEl.textContent = "00";}
+  else if (pairsArray.length> 51 && minuteInSeconds > 2){clearInterval(setTime); scores = 250;totalScoreArray.push(scores);
+    minuteEl.textContent = "05";
+    secondEl.textContent = "00";}
+  else if (pairsArray.length> 51 && minuteInSeconds > 1){clearInterval(setTime); scores = 150;totalScoreArray.push(scores);
+    minuteEl.textContent = "05";
+    secondEl.textContent = "00";}
+
+*/
+
+}
 
 }}}
 

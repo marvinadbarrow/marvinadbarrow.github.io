@@ -50,7 +50,7 @@ function doHigherOperation(){
     calcArray.unshift((1 / LHS).toFixed(3))
     calcEl.textContent = 1 + "/" + LHS}
     
-    
+        
     if (opArr[0] === " sqt "){
     calcArray.unshift(Math.sqrt(LHS).toFixed(3))
     calcEl.innerHTML = '&#8730;' +2; }
@@ -59,7 +59,6 @@ function doHigherOperation(){
     ansEl.textContent =  calcArray[0];   
     inArr.push(calcArray[0])
    
-    
   }}
 
 
@@ -145,7 +144,8 @@ inptNum()}
 
 
 
-     
+
+
 
 // basic operations
 function addNumCalc(){
@@ -161,12 +161,13 @@ doOperation()
 function divNumCalc(){
 opArr.unshift(" / ")
 doOperation()
+console.log(opArr)
 }
     
 function timesNumCalc(){
 opArr.unshift(" * ")
 doOperation()
-
+console.log(opArr)
 }
 
 function percentNumCalc(){
@@ -177,18 +178,19 @@ function percentNumCalc(){
 
 
 
+
 // higher operation
 function squareNumCalc(){
   opArr.unshift(" x^2 ")
   doHigherOperation()
   
   }
-  /*
  function inverseNumCalc(){
   opArr.unshift(" 1/x ")
   doHigherOperation()
  }
-*/
+
+
 
  function sqrtNumCalc(){
      opArr.unshift(" sqt ")
@@ -223,9 +225,10 @@ if (opArr[0] === " + "){
   calcArray.unshift(LHS * RHS)
   }
 
+
   if (opArr[0] === " % "){
-    calcArray.unshift((RHS % LHS).toFixed(3))
-  
+    calcArray.unshift(LHS % RHS)
+    }
   
   calcEl.textContent = LHS + opArr[0] + RHS;
   ansEl.textContent =  calcArray[0];
