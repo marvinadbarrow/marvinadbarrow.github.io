@@ -225,7 +225,7 @@ if (opArr[0] === " + "){
 
   if (opArr[0] === " % "){
     calcArray.unshift((RHS % LHS).toFixed(3))
-  
+  }
   
   calcEl.textContent = LHS + opArr[0] + RHS;
   ansEl.textContent =  calcArray[0];
