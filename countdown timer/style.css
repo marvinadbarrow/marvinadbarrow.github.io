@@ -4,7 +4,7 @@
 h1{color: white; font-size: 45px;}
 footer{color: white; margin: auto; margin-top: 110px; width: 600px; height: 30px; text-align: center; font-weight:bold; font-size:20px;}
 body{background-image: url('clock.jpg'); height: 1000px;}
-.headpara{text-align: center;}
+.headpara{text-align: center; margin-bottom: -40px; font-size: 70px;color: yellow;}
 
 /*  LABLES FOR HOUR, MIN, SECONDS */
 .label{ width: 530px; color: white; font-size: 35px; text-align: center; font-weight: bold;}
@@ -38,17 +38,16 @@ body{background-image: url('clock.jpg'); height: 1000px;}
 
 #button-grid{display: grid;
     grid-gap: 5px;
-    width: 180px; height: 300px;
+    width: 465px; height:278px ;
 margin: auto;
 margin-top: 20px;
-grid-template-rows: repeat(5, 55px);
-grid-template-columns: repeat(3, 55px);
+grid-template-rows: repeat(3, 85px);
+grid-template-columns: repeat(5, 85px);
 grid-template-areas: 
-"one two three"
-"four five six"
-"seven eight nine"
-"zero del cncel"
-"set blank blank";
+"one two three blank set"
+"four five six blank del"
+"seven eight nine zero cncel"
+;
 border-radius: 10px;
 background-color: darkslategrey;
 margin-bottom: -50px;
@@ -57,6 +56,30 @@ box-shadow: 1px 1px 3px black;
 }
 
 #zero{grid-area: zero;}
+#one{grid-area: one;}
+#two{grid-area: two;}
+#three{grid-area: three;}
+#four{grid-area: four;}
+#five{grid-area: five;}
+#six{grid-area: six;}
+#seven{grid-area: seven;}
+#eight{grid-area: eight;}
+#nine{grid-area: nine;}
+#del{grid-area: del;}
+#set{grid-area: set;}
+#cncel{grid-area: cncel;}
+
+
+
+
+
+
+
+
+
+
+
+
 .number{border-radius: 50px; font-size: 20px;
 font-weight: bold;color: white; background-color: 
 rgba(19, 43, 89,0.7);
