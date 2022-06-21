@@ -1,3 +1,8 @@
+
+
+
+
+
 var secondsInput;
 var secondsInputArray = []
 var startArray = []
@@ -41,7 +46,7 @@ let setElSix = document.getElementById("set-six")//settime input
 var secStringSec; // variable for parsed seconds string given in seconds
 var minStringSec // variable for parsed minutes string given in seconds
 var hourStringSec // variable for parsed hours string given in seconds
-
+var savedTimes = []
 var clock;
 
 
@@ -72,7 +77,6 @@ hourStringSec = parseInt(hourString)*60*60
 secondsInput = secStringSec + minStringSec + hourStringSec;
 console.log(secondsInput)
 secondsInputArray.push(secondsInput)
-console.log(secondsInputArray[0] + 1)
 outsideTime.push(secondsInput)
 // we can now use this as our time variable and it 'should' display correctly but we'll test it first by manually putting in that time 
 // it came out as 130 mins and 15 seconds. so try 130*60 + 15. that is correct. So we need to adjust the minutes values to reflect hours.  Probably hours = hours - mathfloor(minute/60)*60 --
@@ -82,11 +86,68 @@ document.getElementById("timerset").style.display = "none";
 secEl.textContent = setElTwo.textContent + setElOne.textContent 
 minEl.textContent  = setElFour.textContent + setElThree.textContent 
 hourEl.textContent  = setElSix.textContent + setElFive.textContent 
+
+
 }
 
 
+function saveTime(){
+    savedTimes.unshift(secStringSec + minStringSec + hourStringSec)
+
+    console.log(savedTimes)
+    localStorage.setItem('1st time', savedTimes[0])
+    localStorage.setItem('2nd time', savedTimes[1])
+    localStorage.setItem('3rd time', savedTimes[2])
+    localStorage.setItem('4th time', savedTimes[3])
+    localStorage.setItem('5th time', savedTimes[4])
+
+// it saves 'one' value to the browser but you want to save several
+
+}
 
 
+// shows which times are saved, in the console
+const savedElONe = localStorage.getItem('1st time');
+console.log(savedElONe)
+
+const savedElTwo = localStorage.getItem('2nd time');
+console.log(savedElTwo)
+
+const savedElThree = localStorage.getItem('3rd time');
+console.log(savedElThree)
+
+const savedElFour = localStorage.getItem('4th time');
+console.log(savedElFour)
+
+const savedElFive = localStorage.getItem('5th time');
+console.log(savedElFive)
+
+
+
+savedTimes.push(savedElONe, savedElTwo, savedElThree, savedElFour, savedElFive)
+
+
+// these five functions push the saved times to the secondsinput array so we can dictate which of them is used for the timer
+function timerOne(){
+secondsInputArray.unshift(savedTimes[0])
+}
+
+function timerTwo(){
+secondsInputArray.unshift(savedTimes[1])
+}
+    
+function timerThree(){
+secondsInputArray.unshift(savedTimes[2])
+}
+        
+function timerFour(){
+secondsInputArray.unshift(savedTimes[3])
+}
+        
+function timerifve(){
+secondsInputArray.unshift(savedTimes[4])
+}
+        
 
 
 function inputCncel(){
