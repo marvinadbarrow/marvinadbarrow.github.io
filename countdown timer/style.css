@@ -33,8 +33,8 @@ body{background-image: url('clock.jpg'); height: 1000px;}
 
 #console{width: 150px;  margin: auto; margin-top: 100px;}
 
-
-
+/*  SAVED TIMES DISPLAY ELEMENTS */
+#timesave-el{display: flex; width: 180px; height: 300px; justify-content: space-around; background-color: rgba(19, 43, 89,0.9); align-content: space-around; position: absolute; border-radius: 6px; padding: 5px; box-shadow: 3px 3px 7px rgb(10, 10, 10);}
 
 #button-grid{display: grid;
     grid-gap: 5px;
@@ -105,6 +105,11 @@ box-shadow: 1px 1px 3px white; }
 
 .set-el{width: 50px;height: 50px;background-color: white;border-radius: 3px;font-size: 35px; ;font-family: 'Anton', sans-serif;text-align: center;margin-top: 15px;}
 
+.save-el{width: 30px;height: 30px;background-color: white;border-radius: 2px;font-size: 20px; ;font-family: 'Anton', sans-serif;text-align: center;margin-top: 15px;}
+
+.time-save-container1,.time-save-container2,.time-save-container3,.time-save-container4,.time-save-container5,.time-save-container6{ display: flex; justify-content: space-around;}
+
+
 #set-one::after{
 content: "s";
 font-size: 17px;
@@ -125,6 +130,12 @@ font-size: 17px;
 margin-right: -10px;
 margin-left: 5px;
 }
+
+
+    
+
+
+
 
 .timeset-elb{display: none;}
 
