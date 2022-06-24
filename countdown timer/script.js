@@ -101,23 +101,22 @@ hourEl.textContent  = setElSix.textContent + setElFive.textContent
 var saveSeconds; // sum of hours, seconds and minutes given in seconds
 
 // variables containing location saved data; each saveSeconds item
-var save1  = localStorage.getItem('save1');
-var save2  = localStorage.getItem('save2');
-var save3  = localStorage.getItem('save3');
-var save4  = localStorage.getItem('save4');
-var save5  = localStorage.getItem('save5');
-var save6  = localStorage.getItem('save6');
-var save7  = localStorage.getItem('save7');
-var save8  = localStorage.getItem('save8');
-var save9  = localStorage.getItem('save9');
-var save10  = localStorage.getItem('save10');
+var save1  = parseInt(localStorage.getItem('save1'));
+var save2  = parseInt(localStorage.getItem('save2')) ;
+var save3  = parseInt(localStorage.getItem('save3')) ;
+var save4  = parseInt(localStorage.getItem('save4')) ;
+var save5  = parseInt(localStorage.getItem('save5')) ;
+var save6  = parseInt(localStorage.getItem('save6')) ;
+var save7  = parseInt(localStorage.getItem('save7')) ;
+var save8  = parseInt(localStorage.getItem('save8')) ;
+var save9  = parseInt(localStorage.getItem('save9')) ;
+var save10  = parseInt(localStorage.getItem('save10')) ;
 
 function saveTime(){
     saveSeconds = secStringSec + minStringSec + hourStringSec
    savedTimes.push(saveSeconds)
     console.log(saveSeconds)
-//if (savedTimes.length>2){savedTimes.shift()}
-    //console.log(savedTimes)
+
 // we can give conditions to each local storage item. So for the first, we can set the first local storage if savedTimes.length > 0 and then we can set the second local storage if savedTimes.length > 1 etc... this is like the order thing we learned recently (maybe we could even use the switching method)
 if (savedTimes.length>0 && !save1){localStorage.setItem('save1', saveSeconds)}
 
@@ -128,7 +127,8 @@ if (savedTimes.length>0 && !save1){localStorage.setItem('save1', saveSeconds)}
  else if (savedTimes.length>0 && !save4){!localStorage.setItem('save4', saveSeconds)}
 
  else if (savedTimes.length>0 && !save5){!localStorage.setItem('save5', saveSeconds)}
-    
+ else{console.log("no more time slots available")}
+ savedTimes = []
 }
 
 
@@ -169,8 +169,17 @@ saveMinEl.textContent = savesArrArr[0][1]
 saveSecEl.textContent = savesArrArr[0][2]
 }
 
+// making  navigation arrows clickable
+let arrowLeft = document.getElementById('left-arrow')
+arrowLeft.addEventListener('click', function(){
+console.log('Left')
+})
 
 
+let arrowRight = document.getElementById('right-arrow')
+arrowRight.addEventListener('click', function(){
+    console.log('Right')
+    })
 
 // these five functions push the saved times to the secondsinput array so we can dictate which of them is used for the timer
 function timerOne(){
