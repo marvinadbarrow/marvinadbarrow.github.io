@@ -18,7 +18,7 @@ body{background-image: url('clock.jpg'); height: 1000px;}
 
 
 /*  START AND RESET BUTTONS */
-#btn-container{display:flex; width: 650px; height: 90px; margin: auto;margin-top: 20px;  margin-top:100px;}
+#btn-container{display:flex; width: 700px; height: 180px; margin: auto;margin-top: 20px;  margin-top:100px;}
 
 #pause,#start{background-color: rgb(132, 210, 247);width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
 #pause:active, #start:active{width:118px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248); background-color: chartreuse;}
@@ -34,7 +34,39 @@ body{background-image: url('clock.jpg'); height: 1000px;}
 #console{width: 150px;  margin: auto; margin-top: 100px;}
 
 /*  SAVED TIMES DISPLAY ELEMENTS */
-#timesave-el{display: flex; width: 180px; height: 300px; justify-content: space-around; background-color: rgba(19, 43, 89,0.9); align-content: space-around; position: absolute; border-radius: 6px; padding: 5px; box-shadow: 3px 3px 7px rgb(10, 10, 10);}
+#timesave-el{ width: 295px; height: 95px; background-color: rgba(168, 50, 117,0.9); position: absolute; border-radius: 6px; padding: 5px; box-shadow: 3px 3px 7px rgb(10, 10, 10); margin-left: 230px; margin-top: 350px;}
+
+
+#time-save-container1{width: 290px; display: flex; justify-content: space-around;}
+
+.save-el{width: 90px;height: 90px;background-color: white;border-radius: 5px;font-size: 60px; ;font-family: 'Anton', sans-serif;text-align: center;margin-top: 1px;}
+
+#save-sec::after{
+    content: "s";
+    font-size: 22px;
+    margin-right: -10px;
+    margin-left: 2px;
+    }
+    
+    #save-min::after{
+    content: "m";
+    font-size: 22px;
+    margin-right: -10px;
+    margin-left: 2px;
+    }
+    
+    #save-hour::after{
+    content: "h";
+    font-size: 22px;
+    margin-right: -10px;
+    margin-left: 2px;
+    }
+
+
+
+
+
+
 
 #button-grid{display: grid;
     grid-gap: 5px;
@@ -105,7 +137,7 @@ box-shadow: 1px 1px 3px white; }
 
 .set-el{width: 50px;height: 50px;background-color: white;border-radius: 3px;font-size: 35px; ;font-family: 'Anton', sans-serif;text-align: center;margin-top: 15px;}
 
-.save-el{width: 30px;height: 30px;background-color: white;border-radius: 2px;font-size: 20px; ;font-family: 'Anton', sans-serif;text-align: center;margin-top: 15px;}
+
 
 .time-save-container1,.time-save-container2,.time-save-container3,.time-save-container4,.time-save-container5,.time-save-container6{ display: flex; justify-content: space-around;}
 

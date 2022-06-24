@@ -47,6 +47,14 @@ var secStringSec; // variable for parsed seconds string given in seconds
 var minStringSec // variable for parsed minutes string given in seconds
 var hourStringSec // variable for parsed hours string given in seconds
 var savedTimes = []
+var savesArrArr = [] // this stores saved hr/min/sec times, taken from our localStorage each time the page is refreshed. We'll only hold five for the moment. 
+
+// to display saved hour/min/sec saved time element
+let saveHourEl = document.getElementById("save-hour")
+let saveMinEl = document.getElementById("save-min")
+let saveSecEl = document.getElementById("save-sec")
+
+
 var clock;
 
 
@@ -90,41 +98,78 @@ hourEl.textContent  = setElSix.textContent + setElFive.textContent
 
 }
 
+var saveSeconds; // sum of hours, seconds and minutes given in seconds
+
+// variables containing location saved data; each saveSeconds item
+var save1  = localStorage.getItem('save1');
+var save2  = localStorage.getItem('save2');
+var save3  = localStorage.getItem('save3');
+var save4  = localStorage.getItem('save4');
+var save5  = localStorage.getItem('save5');
+var save6  = localStorage.getItem('save6');
+var save7  = localStorage.getItem('save7');
+var save8  = localStorage.getItem('save8');
+var save9  = localStorage.getItem('save9');
+var save10  = localStorage.getItem('save10');
 
 function saveTime(){
-    savedTimes.unshift(secStringSec + minStringSec + hourStringSec)
+    saveSeconds = secStringSec + minStringSec + hourStringSec
+   savedTimes.push(saveSeconds)
+    console.log(saveSeconds)
+//if (savedTimes.length>2){savedTimes.shift()}
+    //console.log(savedTimes)
+// we can give conditions to each local storage item. So for the first, we can set the first local storage if savedTimes.length > 0 and then we can set the second local storage if savedTimes.length > 1 etc... this is like the order thing we learned recently (maybe we could even use the switching method)
+if (savedTimes.length>0 && !save1){localStorage.setItem('save1', saveSeconds)}
 
-    console.log(savedTimes)
-    localStorage.setItem('1st time', savedTimes[0])
-    localStorage.setItem('2nd time', savedTimes[1])
-    localStorage.setItem('3rd time', savedTimes[2])
-    localStorage.setItem('4th time', savedTimes[3])
-    localStorage.setItem('5th time', savedTimes[4])
+ else if (savedTimes.length>0 && !save2){!localStorage.setItem('save2', saveSeconds)}
 
-// it saves 'one' value to the browser but you want to save several
+ else if (savedTimes.length>0 && !save3){!localStorage.setItem('save3', saveSeconds)}
 
+ else if (savedTimes.length>0 && !save4){!localStorage.setItem('save4', saveSeconds)}
+
+ else if (savedTimes.length>0 && !save5){!localStorage.setItem('save5', saveSeconds)}
+    
 }
 
 
-// shows which times are saved, in the console
-const savedElONe = localStorage.getItem('1st time');
-console.log(savedElONe)
-
-const savedElTwo = localStorage.getItem('2nd time');
-console.log(savedElTwo)
-
-const savedElThree = localStorage.getItem('3rd time');
-console.log(savedElThree)
-
-const savedElFour = localStorage.getItem('4th time');
-console.log(savedElFour)
-
-const savedElFive = localStorage.getItem('5th time');
-console.log(savedElFive)
+// shows which times are saved, in the console. You now need to actually be able to push those times to the save-el fields
 
 
 
-savedTimes.push(savedElONe, savedElTwo, savedElThree, savedElFour, savedElFive)
+console.log(save1) //these appear in black on console so are strings
+console.log(save2)
+console.log(save3)
+console.log(save4)
+console.log(save5)
+
+
+
+// might not need this let time1 = parseInt(savedTimes[0])
+
+if (savedTimes.length > 0){
+// this code loops teh savedTimes array and returns hours, mins and seconds for each 'i'
+for (i=0; i<savedTimes.length; i++){
+    let hours = Math.floor(parseInt(savedTimes[i])/3600)
+    let subtractHours = parseInt(savedTimes[i])  - hours*3600
+    let remainingMinutes =  Math.floor(subtractHours/60)
+    let remainingSeconds = subtractHours - remainingMinutes*60
+    console.log(hours, remainingMinutes, remainingSeconds)
+    // now we can push these to an array
+    savesArrArr.push([hours,remainingMinutes,remainingSeconds])
+    if (savesArrArr.length>4){
+    console.log(savesArrArr)}
+    if(savesArrArr.length>5){savesArrArr.length === 5}
+    }}
+
+// we now need to find a way to recall them, i'd like to loop through them each time we press a button. 
+function showSaves(){
+    console.log(savesArrArr)
+saveHourEl.textContent = savesArrArr[0][0]
+saveMinEl.textContent = savesArrArr[0][1]
+saveSecEl.textContent = savesArrArr[0][2]
+}
+
+
 
 
 // these five functions push the saved times to the secondsinput array so we can dictate which of them is used for the timer
@@ -148,6 +193,23 @@ function timerifve(){
 secondsInputArray.unshift(savedTimes[4])
 }
         
+// below we are going to try to use query selector to separate all of the save time containers (five of them), so that we can allocate each saved time in the secondsInputArray to oone container and distribute seconds, minutes and hours appropriately, only to that specific container. Didn't work because you have multiple identical id's for different elements. Perhaps we can just have one time element and flip through the saved times with one button? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function inputCncel(){
