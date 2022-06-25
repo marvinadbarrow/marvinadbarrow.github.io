@@ -335,7 +335,7 @@ else{hourEl.textContent = hourReformat;}
 
 
 function reset(){
-
+if (!(secondsInputArray.length<1)){
     clearInterval(clock);
     console.log(outsideTime)
     trueSeconds = outsideTime[0]
@@ -365,7 +365,7 @@ function reset(){
       if (hourReformat < 10){hourEl.textContent = "0" + hourReformat;}
       else{hourEl.textContent = hourReformat;}
         }
-    }
+    }}
     
 
 
