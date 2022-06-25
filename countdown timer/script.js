@@ -53,19 +53,18 @@ var savesArrArr = [] // this stores saved hr/min/sec times, taken from our local
 let saveHourEl = document.getElementById("save-hour")
 let saveMinEl = document.getElementById("save-min")
 let saveSecEl = document.getElementById("save-sec")
-
-
+let timeSaveEl = document.getElementById("timesave-el-outer")
+var saveTimeArr = [] // stores localStorage values in zero'th position
 var clock;
 
 
-var minutes; 
-var hours; 
+
 
 
 
 
 function inputSet(){ 
-   
+    saveTimeArr = []
     secondsInputArray = []
     timeArr = []   
     outsideTime = []
@@ -106,11 +105,7 @@ var save2  = parseInt(localStorage.getItem('save2')) ;
 var save3  = parseInt(localStorage.getItem('save3')) ;
 var save4  = parseInt(localStorage.getItem('save4')) ;
 var save5  = parseInt(localStorage.getItem('save5')) ;
-var save6  = parseInt(localStorage.getItem('save6')) ;
-var save7  = parseInt(localStorage.getItem('save7')) ;
-var save8  = parseInt(localStorage.getItem('save8')) ;
-var save9  = parseInt(localStorage.getItem('save9')) ;
-var save10  = parseInt(localStorage.getItem('save10')) ;
+
 
 function saveTime(){
     saveSeconds = secStringSec + minStringSec + hourStringSec
@@ -128,20 +123,30 @@ if (savedTimes.length>0 && !save1){localStorage.setItem('save1', saveSeconds)}
 
  else if (savedTimes.length>0 && !save5){!localStorage.setItem('save5', saveSeconds)}
  else{console.log("no more time slots available")}
- savedTimes = []
-}
+ savedTimes = []}
 
 
 // shows which times are saved, in the console. You now need to actually be able to push those times to the save-el fields
 
+var hours; 
+var timeMinusHours;
+var minutes; 
+var seconds;
 
 
-console.log(save1) //these appear in black on console so are strings
-console.log(save2)
-console.log(save3)
-console.log(save4)
-console.log(save5)
-
+function processTime(x){
+saveTimeArr = []
+hours = Math.floor(x/3600)
+timeMinusHours = x - hours*3600
+minutes = Math.floor(timeMinusHours/60)
+seconds = timeMinusHours - minutes*60
+console.log(hours, minutes, seconds)
+saveHourEl.textContent = hours
+saveMinEl.textContent = minutes
+saveSecEl.textContent = seconds
+saveTimeArr.push(x)
+console.log(saveTimeArr)
+}
 
 
 // might not need this let time1 = parseInt(savedTimes[0])
@@ -163,45 +168,73 @@ for (i=0; i<savedTimes.length; i++){
 
 // we now need to find a way to recall them, i'd like to loop through them each time we press a button. 
 function showSaves(){
+
+
     console.log(savesArrArr)
-saveHourEl.textContent = savesArrArr[0][0]
-saveMinEl.textContent = savesArrArr[0][1]
-saveSecEl.textContent = savesArrArr[0][2]
+    timeSaveEl.style.opacity = 1;
+    document.getElementById("timerset").style.display = "none";
+
+
+    console.log(save1) //these appear in black on console so are strings
+console.log(save2)
+console.log(save3)
+console.log(save4)
+console.log(save5)
+if (save1){processTime(save1)}
+//if (save2){processTime(save2)}
+//if (save3){processTime(save3)}
+//if (save4){processTime(save4)}
+//if (save5){processTime(save5)}
+
 }
 
-// making  navigation arrows clickable
+// making  navigation arrows clickable--
+// so this code explained. Everytime the showSaves() is run, at the end of that function the variable value x (which is one of the saved times) is pushed to the saveTimeArr, after it's values are placed in the text content of the display. When we press the left or right arrow, the associated function checks that another saved time exists, and which of these are in the zeroth position of the saveTimeArr; whichever saved time is in the array, the function will push the previous saved time value (left function) or next saved time value (right function) as the x value for the process time function. Then that value will be processed and the resulting hours, minutes and seconds value will be pushed to the display for saved times.  Each time an the processTime function is run, the array which contains the saved time will be wiped clean, and then at the end of the processTime function, the new processed time will be pushed to the array, ready for the left and right functions to decide which saved time to process once they understand which saved time (save1/2/3/4 or 5) is now in the zeroth position of the array.  Now all we need to do, is to have a select button so that we can actually push that time (which will be in the array) to the actual timer function. And also we need to know how to delete saved times. 
+
+// maybe we can achieve the pushing of the saved time to the clock by using a button to push the saved times to secondsInputArray[0], which should be easy because the current saved time on display should be in the zeroth position of the saveTimeArr, so all we have to do, is secondsInputArray.unshift(saveTimeArr[0]) and our currently displayed saved time will be moved to secondsInputArray[0], which the clock pulls from and hey presto. We'll use function useSavedTime()
+
 let arrowLeft = document.getElementById('left-arrow')
 arrowLeft.addEventListener('click', function(){
 console.log('Left')
+if (save5 && saveTimeArr[0] === save1){processTime(save5)}
+else if (save4 && saveTimeArr[0] === save5){processTime(save4)}
+else if (save3 && saveTimeArr[0] === save4){processTime(save3)}
+else if (save2 && saveTimeArr[0] === save3){processTime(save2)}
+else {processTime(save1)}
 })
 
 
 let arrowRight = document.getElementById('right-arrow')
 arrowRight.addEventListener('click', function(){
     console.log('Right')
+    if (save2 && saveTimeArr[0] === save1){processTime(save2)}
+    else if (save3 && saveTimeArr[0] === save2){processTime(save3)}
+    else if (save4 && saveTimeArr[0] === save3){processTime(save4)}
+    else if (save5 && saveTimeArr[0] === save4){processTime(save5)}
+    else {processTime(save1)}
     })
 
-// these five functions push the saved times to the secondsinput array so we can dictate which of them is used for the timer
-function timerOne(){
-secondsInputArray.unshift(savedTimes[0])
-}
 
-function timerTwo(){
-secondsInputArray.unshift(savedTimes[1])
-}
-    
-function timerThree(){
-secondsInputArray.unshift(savedTimes[2])
-}
-        
-function timerFour(){
-secondsInputArray.unshift(savedTimes[3])
-}
-        
-function timerifve(){
-secondsInputArray.unshift(savedTimes[4])
-}
-        
+    function useSavedTime(){
+
+        secondsInputArray.unshift(saveTimeArr[0])
+        timeSaveEl.style.opacity = 0;
+        console.log(saveTimeArr[0])
+        outsideTime.unshift(saveTimeArr[0])
+
+        secReformat = secondsInputArray[0] - Math.floor(secondsInputArray[0]/60)*60
+        minReformat = minutes - Math.floor(minutes/60)*60
+        hourReformat = hours - Math.floor(hours/60)*60
+        // when timer reaches zero
+          // digits below 9 become double digits for all time measures, we simply add a zero to the LHS of the display, next to the single number already displayed. 
+          if (secReformat < 10){secEl.textContent = "0" + secReformat;}
+      else{secEl.textContent = secReformat;}
+          if (minReformat < 10){minEl.textContent = "0" + minReformat;}
+      else{minEl.textContent = minReformat;}
+      if (hourReformat < 10){hourEl.textContent = "0" + hourReformat;}
+      else{hourEl.textContent = hourReformat;}
+
+    }
 // below we are going to try to use query selector to separate all of the save time containers (five of them), so that we can allocate each saved time in the secondsInputArray to oone container and distribute seconds, minutes and hours appropriately, only to that specific container. Didn't work because you have multiple identical id's for different elements. Perhaps we can just have one time element and flip through the saved times with one button? 
 
 
@@ -227,6 +260,7 @@ document.getElementById("timerset").style.display = "none";
 }
 
 function timeset(){ if (startArray.length < 1){
+    timeSaveEl.style.opacity = 0;
     document.getElementById("timerset").style.display = "block"; 
     pauseName.style.backgroundColor = " rgb(132, 210, 247)";
 
@@ -301,21 +335,42 @@ else{hourEl.textContent = hourReformat;}
 
 
 function reset(){
-startArray = []
+
     clearInterval(clock);
     console.log(outsideTime)
     trueSeconds = outsideTime[0]
     secondsInputArray.unshift(trueSeconds)
     console.log(secondsInputArray[0])
- 
+ console.log(saveTimeArr)
+ pauseName.style.backgroundColor = " rgb(132, 210, 247)";
+ startName.style.backgroundColor = " rgb(132, 210, 247)";
 
-    // test
-    secEl.textContent = setElTwo.textContent + setElOne.textContent 
-    minEl.textContent  = setElFour.textContent + setElThree.textContent 
-    hourEl.textContent  = setElSix.textContent + setElFive.textContent
-    pauseName.style.backgroundColor = " rgb(132, 210, 247)";
-    startName.style.backgroundColor = " rgb(132, 210, 247)";
-}
+    // test 
+    if (saveTimeArr.length<1){
+        secEl.textContent = setElTwo.textContent + setElOne.textContent 
+        minEl.textContent  = setElFour.textContent + setElThree.textContent 
+        hourEl.textContent  = setElSix.textContent + setElFive.textContent
+      }
+        else{   // code to copy info from saved time
+        console.log("hi")
+        secReformat = secondsInputArray[0] - Math.floor(secondsInputArray[0]/60)*60
+        minReformat = minutes - Math.floor(minutes/60)*60
+        hourReformat = hours - Math.floor(hours/60)*60
+        // when timer reaches zero
+          // digits below 9 become double digits for all time measures, we simply add a zero to the LHS of the display, next to the single number already displayed. 
+          if (secReformat < 10){secEl.textContent = "0" + secReformat;}
+      else{secEl.textContent = secReformat;}
+          if (minReformat < 10){minEl.textContent = "0" + minReformat;}
+      else{minEl.textContent = minReformat;}
+      if (hourReformat < 10){hourEl.textContent = "0" + hourReformat;}
+      else{hourEl.textContent = hourReformat;}
+        }
+    }
+    
+
+
+   
+  
 
 
 

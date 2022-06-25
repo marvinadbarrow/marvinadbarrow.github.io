@@ -34,38 +34,49 @@ body{background-image: url('clock.jpg'); height: 1000px;}
 #console{width: 150px;  margin: auto; margin-top: 100px;}
 
 /*  DIV FOR SAVED TIMES CONTAINER */
-#timesave-el-outer{  display: flex; justify-content: space-around; width: 305px; height: 95px; background-color: rgba(168, 50, 117,0.6); position: absolute; border-radius: 6px; padding: 5px; box-shadow: 3px 3px 7px rgb(10, 10, 10); margin-left: 230px; margin-top: 350px;}
+#timesave-el-outer{ opacity: 0; display: flex; justify-content: space-around; width: 305px; height: 95px; background-color: rgba(168, 50, 117,0.6); position: absolute; border-radius: 6px; padding: 5px; box-shadow: 3px 3px 7px rgb(10, 10, 10); margin-left: 230px; margin-top: 350px;}
 
 /*  SAVED TIMES DIGITS CONTAINER */
-#time-save-container1{ width: 290px; display: flex; justify-content: space-around;}
+#time-save-container1{ width: 295px; display: flex; justify-content: space-around;}
 
 /*  CLASS FOR SAVE DIGIT ELEMENTS */
-.save-el{ width: 95px;height: 95px;background-color: white;border-radius: 5px;font-size: 60px; ;font-family: 'Anton', sans-serif;text-align: center;margin-top: 1px; margin-left: 5px; margin-right: 5px;}
+.save-el{ width: 105px;height: 95px;background-color: white;border-radius: 5px;font-size: 60px; ;font-family: 'Anton', sans-serif;text-align: center;margin-top: 1px; margin-left: 5px; margin-right: 5px;}
 
 /*  TIME MEASURE INDICATOR FOR EACH DIGIT ELEMENT secs/mins/hours */
 #save-sec::after{
     content: "s";
     font-size: 22px;
-    margin-right: -10px;
-    margin-left: 2px;
+    margin-right: -3px;
+    margin-left: 5px;
     }
     
     #save-min::after{
     content: "m";
     font-size: 22px;
-    margin-right: -10px;
-    margin-left: 2px;
+    margin-right: -3px;
+    margin-left: 5px;
     }
     
     #save-hour::after{
     content: "h";
     font-size: 22px;
-    margin-right: -10px;
-    margin-left: 2px;
+    margin-right: -3px;
+    margin-left: 5px;
     }
 
 
-
+#save-select{
+    width: auto;
+    height: 80px;
+margin-top: 10px;
+margin-right: -90px;
+margin-left: 20px;
+font-size: 20px;
+font-weight: bold;
+border-radius: 50%;
+color: red;
+background-color: yellow;
+}
 #left-arrow{
     
     font-size: 90px;
