@@ -152,7 +152,7 @@ console.log(saveTimeArr)
 // might not need this let time1 = parseInt(savedTimes[0])
 
 if (savedTimes.length > 0){
-// this code loops teh savedTimes array and returns hours, mins and seconds for each 'i'
+// this code loops the savedTimes array and returns hours, mins and seconds for each 'i'
 for (i=0; i<savedTimes.length; i++){
     let hours = Math.floor(parseInt(savedTimes[i])/3600)
     let subtractHours = parseInt(savedTimes[i])  - hours*3600

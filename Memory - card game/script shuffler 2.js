@@ -333,20 +333,6 @@ if (pairsArray.length> 51 && minuteInSeconds > 3){clearInterval(setTime); scores
     minuteEl.textContent = "05";
     secondEl.textContent = "00";}
 
-    
-
-/*
-  if (pairsArray.length> 51 && minuteInSeconds > 3){clearInterval(setTime); scores = 300;totalScoreArray.push(scores);
-    minuteEl.textContent = "05";
-    secondEl.textContent = "00";}
-  else if (pairsArray.length> 51 && minuteInSeconds > 2){clearInterval(setTime); scores = 250;totalScoreArray.push(scores);
-    minuteEl.textContent = "05";
-    secondEl.textContent = "00";}
-  else if (pairsArray.length> 51 && minuteInSeconds > 1){clearInterval(setTime); scores = 150;totalScoreArray.push(scores);
-    minuteEl.textContent = "05";
-    secondEl.textContent = "00";}
-
-*/
 
 }
 
@@ -357,10 +343,12 @@ if (pairsArray.length> 51 && minuteInSeconds > 3){clearInterval(setTime); scores
 
  // BELOW ARE THE FUNCTIONS FOR EACH OF THE 52 CARDS
 
+/*
+
 function revealOne(){
     if(tableArray.length > 51 ){
 let numElOne = tableArrayIndex[0];
-console.log(flipArray)
+
  // COPY THE BELOW to other functions and adjust as needed
 if(flipArray.includes(numElOne) && numElOne === flipArray[0]){ flipArray.shift(); document.getElementById("card1").src="card back red.jpg"; playSound();} 
  else if(flipArray.includes(numElOne) && numElOne === flipArray[1]){ flipArray.pop();  document.getElementById("card1").src="card back red.jpg"; playSound();}
@@ -373,424 +361,223 @@ if (flipArray.length < 2 && !pairsArray.includes(numElOne) ){flipArray.push(numE
  pairFound(); 
  }}}
    
+*/
 
+// wow... well it actually works.. 
+/*
+function flipCard(valX,valY){
+    if(tableArray.length > 51 ){
+     if (flipArray.includes(valX)){
+    if(valX === flipArray[0]){ flipArray.shift();} 
+     else if(valX === flipArray[1]){ flipArray.pop();}
+     valY.src ="card back red.jpg"; playSound();}
+     else{if (flipArray.length < 2 && !pairsArray.includes(valX) ){flipArray.push(valX); valY.src = cardSelect[valX - 1]; playSound();}
+     if (flipArray.length === 2){pairFound()}; 
+     }}}
+    */
+var x;
+var y;
+
+
+// let's rewrite this function - it actually works but I don't know it's any simpler. 
+
+
+const flipCard = (valX,valY) => {
+
+    if (!pairsArray.includes(valX)){
+switch(valX){
+        case flipArray[0]: flipArray.shift();
+    valY.src ="card back red.jpg"; playSound();
+break;
+    case flipArray[1]: flipArray.pop();
+    valY.src ="card back red.jpg"; playSound();
+break;
+
+default: // if valX isn't in flipArray - and fliparray isn't full
+switch(flipArray.length){
+case 0:
+case 1:
+    flipArray.push(valX); valY.src = cardSelect[valX - 1]; playSound(); if (flipArray.length === 2){pairFound()}      
+   
+}}}}
+
+
+
+function revealOne(){
+x = tableArrayIndex[0];
+y = document.getElementById("card1")
+flipCard(x,y);}
 
 
 function revealTwo(){
-    if(tableArray.length > 51){ 
-let numElTwo = tableArrayIndex[1]
-
-if(flipArray.includes(numElTwo) && numElTwo === flipArray[0]){ flipArray.shift(); document.getElementById("card2").src="card back red.jpg";playSound();} 
- else if(flipArray.includes(numElTwo) && numElTwo === flipArray[1]){ flipArray.pop();  document.getElementById("card2").src="card back red.jpg";playSound();}
- else{revealCard()}
- 
-
- function revealCard(){
-    if (flipArray.length < 2 && !pairsArray.includes(numElTwo) ){flipArray.push(numElTwo); card2.src = cardSelect[numElTwo - 1]; playSound();}
-    //console.log(flipArray);
-     pairFound(); 
-     }}}
+x = tableArrayIndex[1]
+y = document.getElementById("card2")
+flipCard(x,y);}
 
 
-
-
-function revealThree(){
-    if(tableArray.length > 51){ 
-    let numElThree = tableArrayIndex[2]
-    
-    if(flipArray.includes(numElThree) && numElThree === flipArray[0]){ flipArray.shift(); document.getElementById("card3").src="card back red.jpg"; playSound();} 
-    else if(flipArray.includes(numElThree) && numElThree === flipArray[1]){ flipArray.pop();  document.getElementById("card3").src="card back red.jpg"; playSound();}
-    else{revealCard()}
-   
-   function revealCard(){
-   if (flipArray.length < 2 && !pairsArray.includes(numElThree)){flipArray.push(numElThree); card3.src = cardSelect[numElThree - 1]; playSound();}
-   //console.log(flipArray)
-   pairFound()
-    }}}
-
-
+function revealThree(){  
+x = tableArrayIndex[2]
+y = document.getElementById("card3")
+flipCard(x,y);}
 
 
 function revealFour(){
-    if(tableArray.length > 51){ 
-let numElFour = tableArrayIndex[3]
-
-if(flipArray.includes(numElFour) && numElFour === flipArray[0]){ flipArray.shift(); document.getElementById("card4").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFour) && numElFour === flipArray[1]){ flipArray.pop();  document.getElementById("card4").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFour)){flipArray.push(numElFour); card4.src = cardSelect[numElFour - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
-
-
+x = tableArrayIndex[3]
+y = document.getElementById("card4")
+flipCard(x,y);}
 
 
  function revealFive(){
-    if(tableArray.length > 51){ 
-let numElFive = tableArrayIndex[4]
-
-    if(flipArray.includes(numElFive) && numElFive === flipArray[0]){ flipArray.shift(); document.getElementById("card5").src="card back red.jpg"; playSound();} 
-    else if(flipArray.includes(numElFive) && numElFive === flipArray[1]){ flipArray.pop();  document.getElementById("card5").src="card back red.jpg"; playSound();}
-    else{revealCard()}
-   
-   function revealCard(){
-   if (flipArray.length < 2 && !pairsArray.includes(numElFive)){flipArray.push(numElFive); card5.src = cardSelect[numElFive - 1]; playSound();}
-   //console.log(flipArray)
-   pairFound()
-    }}}
-
-
+x = tableArrayIndex[4]
+y = document.getElementById("card5")
+flipCard(x,y);}
 
 
  function revealSix(){
-    if(tableArray.length > 51){ 
-let numElSix = tableArrayIndex[5]
-
-if(flipArray.includes(numElSix) && numElSix === flipArray[0]){ flipArray.shift(); document.getElementById("card6").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElSix) && numElSix === flipArray[1]){ flipArray.pop();  document.getElementById("card6").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElSix)){flipArray.push(numElSix); card6.src = cardSelect[numElSix - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
-
+x = tableArrayIndex[5]
+y = document.getElementById("card6")
+flipCard(x,y);}
 
 
  function revealSeven(){
-    if(tableArray.length > 51){
-let numElSeven = tableArrayIndex[6]
-
-if(flipArray.includes(numElSeven) && numElSeven === flipArray[0]){ flipArray.shift(); document.getElementById("card7").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElSeven) && numElSeven === flipArray[1]){ flipArray.pop();  document.getElementById("card7").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElSeven)){flipArray.push(numElSeven); card7.src = cardSelect[numElSeven - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
-
-
+x = tableArrayIndex[6]
+y = document.getElementById("card7")
+flipCard(x,y);}
 
 
  function revealEight(){
-    if(tableArray.length > 51){ 
-let numElEight = tableArrayIndex[7]
-
-if(flipArray.includes(numElEight) && numElEight === flipArray[0]){ flipArray.shift(); document.getElementById("card8").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElEight) && numElEight === flipArray[1]){ flipArray.pop();  document.getElementById("card8").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElEight)){flipArray.push(numElEight); card8.src = cardSelect[numElEight - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[7]
+y = document.getElementById("card8")
+flipCard(x,y);}
 
 
  function revealNine(){
-    if(tableArray.length > 51){ 
-let numElNine = tableArrayIndex[8]
-
-if(flipArray.includes(numElNine) && numElNine === flipArray[0]){ flipArray.shift(); document.getElementById("card9").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElNine) && numElNine === flipArray[1]){ flipArray.pop();  document.getElementById("card9").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElNine)){flipArray.push(numElNine); card9.src = cardSelect[numElNine - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
-
+x = tableArrayIndex[8]
+y = document.getElementById("card9")
+flipCard(x,y);}
 
 
  function revealTen(){
-    if(tableArray.length > 51){ 
-let numElTen = tableArrayIndex[9]
-
-if(flipArray.includes(numElTen) && numElTen === flipArray[0]){ flipArray.shift(); document.getElementById("card10").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTen) && numElTen === flipArray[1]){ flipArray.pop();  document.getElementById("card10").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTen)){flipArray.push(numElTen); card10.src = cardSelect[numElTen - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+ x = tableArrayIndex[9]
+ y = document.getElementById("card10")
+ flipCard(x,y);}
 
 
-
- function revealEleven(){
-    if(tableArray.length > 51){ 
-let numElEleven = tableArrayIndex[10]
-
-if(flipArray.includes(numElEleven) && numElEleven === flipArray[0]){ flipArray.shift(); document.getElementById("card11").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElEleven) && numElEleven === flipArray[1]){ flipArray.pop();  document.getElementById("card11").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElEleven)){flipArray.push(numElEleven); card11.src = cardSelect[numElEleven - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+function revealEleven(){
+x= tableArrayIndex[10]
+y = document.getElementById("card11")
+flipCard(x,y);}
 
 
 
  function revealTwelve(){
-    if(tableArray.length > 51){
-let numElTwelve = tableArrayIndex[11]
-
-if(flipArray.includes(numElTwelve) && numElTwelve === flipArray[0]){ flipArray.shift(); document.getElementById("card12").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTwelve) && numElTwelve === flipArray[1]){ flipArray.pop();  document.getElementById("card12").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTwelve)){flipArray.push(numElTwelve); card12.src = cardSelect[numElTwelve - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
-
+x= tableArrayIndex[11]
+y = document.getElementById("card12")
+flipCard(x,y);}
 
 
  function revealThirteen(){
-    if(tableArray.length > 51){ 
-let numElThirteen = tableArrayIndex[12]
-
-if(flipArray.includes(numElThirteen) && numElThirteen === flipArray[0]){ flipArray.shift(); document.getElementById("card13").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirteen) && numElThirteen === flipArray[1]){ flipArray.pop();  document.getElementById("card13").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirteen)){flipArray.push(numElThirteen); card13.src = cardSelect[numElThirteen - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x= tableArrayIndex[12]
+y = document.getElementById("card13")
+flipCard(x,y);}
 
 
 // next row of cards - row 2
 
 function revealFourteen(){
-    if(tableArray.length > 51){ 
-let numElFourteen = tableArrayIndex[13];
-
-if(flipArray.includes(numElFourteen) && numElFourteen === flipArray[0]){ flipArray.shift(); document.getElementById("card14").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFourteen) && numElFourteen === flipArray[1]){ flipArray.pop();  document.getElementById("card14").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFourteen)){flipArray.push(numElFourteen); card14.src = cardSelect[numElFourteen - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[13];
+y = document.getElementById("card14")
+flipCard(x,y);}
 
    
 
 
 
 function revealFifteen(){
-    if(tableArray.length > 51){ 
-let numElFifteen = tableArrayIndex[14]
-
-if(flipArray.includes(numElFifteen) && numElFifteen === flipArray[0]){ flipArray.shift(); document.getElementById("card15").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFifteen) && numElFifteen === flipArray[1]){ flipArray.pop();  document.getElementById("card15").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFifteen)){flipArray.push(numElFifteen); card15.src = cardSelect[numElFifteen - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[14]
+y = document.getElementById("card15")
+flipCard(x,y);}
 
 
 
 
 
 function revealSixteen(){
-    if(tableArray.length > 51){ 
-    let numElSixteen = tableArrayIndex[15]
+x = tableArrayIndex[15]
+y = document.getElementById("card16")
+flipCard(x,y);}
     
-    if(flipArray.includes(numElSixteen) && numElSixteen === flipArray[0]){ flipArray.shift(); document.getElementById("card16").src="card back red.jpg"; playSound();} 
-    else if(flipArray.includes(numElSixteen) && numElSixteen === flipArray[1]){ flipArray.pop();  document.getElementById("card16").src="card back red.jpg"; playSound();}
-    else{revealCard()}
-    
-    function revealCard(){
-    if (flipArray.length < 2 && !pairsArray.includes(numElSixteen)){flipArray.push(numElSixteen); card16.src = cardSelect[numElSixteen - 1]; playSound();}
-    //console.log(flipArray)
-    pairFound()
-    }}}
-    
-
-
 
 
 function revealSevenTeen(){
-    if(tableArray.length > 51){ 
-let numElSeventeen = tableArrayIndex[16]
-
-if(flipArray.includes(numElSeventeen) && numElSeventeen === flipArray[0]){ flipArray.shift(); document.getElementById("card17").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElSeventeen) && numElSeventeen === flipArray[1]){ flipArray.pop();  document.getElementById("card17").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElSeventeen)){flipArray.push(numElSeventeen); card17.src = cardSelect[numElSeventeen - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
-
-
+x = tableArrayIndex[16]
+y = document.getElementById("card17")
+flipCard(x,y);}
 
 
 
  function revealEighteen(){
-    if(tableArray.length > 51){ 
-let numElEighteen = tableArrayIndex[17]
-
-if(flipArray.includes(numElEighteen) && numElEighteen === flipArray[0]){ flipArray.shift(); document.getElementById("card18").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElEighteen) && numElEighteen === flipArray[1]){ flipArray.pop();  document.getElementById("card18").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElEighteen)){flipArray.push(numElEighteen); card18.src = cardSelect[numElEighteen - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
-
-
+x = tableArrayIndex[17]
+y = document.getElementById("card18")
+flipCard(x,y);}
 
 
 
  function revealNineteen(){
-    if(tableArray.length > 51){
-let numElNineteen = tableArrayIndex[18]
-
-if(flipArray.includes(numElNineteen) && numElNineteen === flipArray[0]){ flipArray.shift(); document.getElementById("card19").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElNineteen) && numElNineteen === flipArray[1]){ flipArray.pop();  document.getElementById("card19").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElNineteen)){flipArray.push(numElNineteen); card19.src = cardSelect[numElNineteen - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[18]
+y = document.getElementById("card19")
+flipCard(x,y);}
 
 
 
 
  function revealTwenty(){
-    if(tableArray.length > 51){
-let numElTwenty = tableArrayIndex[19]
-
-if(flipArray.includes(numElTwenty) && numElTwenty === flipArray[0]){ flipArray.shift(); document.getElementById("card20").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTwenty) && numElTwenty === flipArray[1]){ flipArray.pop();  document.getElementById("card20").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTwenty)){flipArray.push(numElTwenty); card20.src = cardSelect[numElTwenty - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[19]
+y = document.getElementById("card20")
+flipCard(x,y);}
 
 
 
  function revealTwentyOne(){
-    if(tableArray.length > 51){ 
-let numElTwentyOne = tableArrayIndex[20]
-
-if(flipArray.includes(numElTwentyOne) && numElTwentyOne === flipArray[0]){ flipArray.shift(); document.getElementById("card21").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTwentyOne) && numElTwentyOne === flipArray[1]){ flipArray.pop();  document.getElementById("card21").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTwentyOne)){flipArray.push(numElTwentyOne); card21.src = cardSelect[numElTwentyOne - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[20]
+y = document.getElementById("card21")
+flipCard(x,y);}
 
 
 
 
  function revealTwentyTwo(){
-    if(tableArray.length > 51){ 
-let numElTwentyTwo = tableArrayIndex[21]
-
-if(flipArray.includes(numElTwentyTwo) && numElTwentyTwo === flipArray[0]){ flipArray.shift(); document.getElementById("card22").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTwentyTwo) && numElTwentyTwo === flipArray[1]){ flipArray.pop();  document.getElementById("card22").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTwentyTwo)){flipArray.push(numElTwentyTwo); card22.src = cardSelect[numElTwentyTwo - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[21]
+y = document.getElementById("card22")
+flipCard(x,y);}
 
 
 
  function revealTwentyThree(){
-    if(tableArray.length > 51){ 
-let numElTwentyThree = tableArrayIndex[22]
-
-if(flipArray.includes(numElTwentyThree) && numElTwentyThree === flipArray[0]){ flipArray.shift(); document.getElementById("card23").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTwentyThree) && numElTwentyThree === flipArray[1]){ flipArray.pop();  document.getElementById("card23").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTwentyThree)){flipArray.push(numElTwentyThree); card23.src = cardSelect[numElTwentyThree - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[22]
+y = document.getElementById("card23")
+flipCard(x,y);}
 
 
 
  function revealTwentyFour(){
-    if(tableArray.length > 51){ 
-let numElTwentyFour = tableArrayIndex[23]
-
-if(flipArray.includes(numElTwentyFour) && numElTwentyFour === flipArray[0]){ flipArray.shift(); document.getElementById("card24").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTwentyFour) && numElTwentyFour === flipArray[1]){ flipArray.pop();  document.getElementById("card24").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTwentyFour)){flipArray.push(numElTwentyFour); card24.src = cardSelect[numElTwentyFour - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[23]
+y = document.getElementById("card24")
+flipCard(x,y);}
 
 
 
  function revealTwentyFive(){
-    if(tableArray.length > 51){ 
-let numElTTwentyFive = tableArrayIndex[24]
-
-if(flipArray.includes(numElTTwentyFive) && numElTTwentyFive === flipArray[0]){ flipArray.shift(); document.getElementById("card25").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTTwentyFive) && numElTTwentyFive === flipArray[1]){ flipArray.pop();  document.getElementById("card25").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTTwentyFive)){flipArray.push(numElTTwentyFive); card25.src = cardSelect[numElTTwentyFive - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[24]
+y = document.getElementById("card25")
+flipCard(x,y);}
 
 
 
  function revealTwentySix(){
-    if(tableArray.length > 51){ 
-let numElTwentySix = tableArrayIndex[25]
-
-if(flipArray.includes(numElTwentySix) && numElTwentySix === flipArray[0]){ flipArray.shift(); document.getElementById("card26").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTwentySix) && numElTwentySix === flipArray[1]){ flipArray.pop();  document.getElementById("card26").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTwentySix)){flipArray.push(numElTwentySix); card26.src = cardSelect[numElTwentySix - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[25]
+y = document.getElementById("card26")
+flipCard(x,y);}
 
 
 // next row of cards - row 3
@@ -798,223 +585,104 @@ pairFound()
 
 
 function revealTwentySeven(){
-    if(tableArray.length > 51){ 
-let numElTwentySeven = tableArrayIndex[26];
-
-if(flipArray.includes(numElTwentySeven) && numElTwentySeven === flipArray[0]){ flipArray.shift(); document.getElementById("card27").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTwentySeven) && numElTwentySeven === flipArray[1]){ flipArray.pop();  document.getElementById("card27").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTwentySeven)){flipArray.push(numElTwentySeven); card27.src = cardSelect[numElTwentySeven - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[26];
+y = document.getElementById("card27")
+flipCard(x,y);}
    
 
 
 
 function revealTwentyEight(){
-    if(tableArray.length > 51){ 
-let numElTwentyEight = tableArrayIndex[27]
-
-if(flipArray.includes(numElTwentyEight) && numElTwentyEight === flipArray[0]){ flipArray.shift(); document.getElementById("card28").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElTwentyEight) && numElTwentyEight === flipArray[1]){ flipArray.pop();  document.getElementById("card28").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElTwentyEight)){flipArray.push(numElTwentyEight); card28.src = cardSelect[numElTwentyEight - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[27]
+    y = document.getElementById("card28")
+    flipCard(x,y);}
 
 
 
 
 function revealTwentyNine(){
-    if(tableArray.length > 51){ 
-    let numElTwentyNine = tableArrayIndex[28]
-    
-    if(flipArray.includes(numElTwentyNine) && numElTwentyNine === flipArray[0]){ flipArray.shift(); document.getElementById("card29").src="card back red.jpg"; playSound();} 
-    else if(flipArray.includes(numElTwentyNine) && numElTwentyNine === flipArray[1]){ flipArray.pop();  document.getElementById("card29").src="card back red.jpg"; playSound();}
-    else{revealCard()}
-    
-    function revealCard(){
-    if (flipArray.length < 2 && !pairsArray.includes(numElTwentyNine)){flipArray.push(numElTwentyNine); card29.src = cardSelect[numElTwentyNine - 1]; playSound();}
-    //console.log(flipArray)
-    pairFound()
-    }}}
+    x = tableArrayIndex[28]
+  y = document.getElementById("card29") 
+  flipCard(x,y);}
 
 
 
 
 function revealThirty(){
-    if(tableArray.length > 51){ 
-let numElThirty = tableArrayIndex[29]
-
-if(flipArray.includes(numElThirty) && numElThirty === flipArray[0]){ flipArray.shift(); document.getElementById("card30").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirty) && numElThirty === flipArray[1]){ flipArray.pop();  document.getElementById("card30").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirty)){flipArray.push(numElThirty); card30.src = cardSelect[numElThirty - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[29]
+y =  document.getElementById("card30")
+flipCard(x,y);}
 
 
 
 
  function revealThirtyOne(){
-    if(tableArray.length > 51){ 
-let numElThirtyOne = tableArrayIndex[30]
-
-if(flipArray.includes(numElThirtyOne) && numElThirtyOne === flipArray[0]){ flipArray.shift(); document.getElementById("card31").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirtyOne) && numElThirtyOne === flipArray[1]){ flipArray.pop();  document.getElementById("card31").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirtyOne)){flipArray.push(numElThirtyOne); card31.src = cardSelect[numElThirtyOne - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
-
+x = tableArrayIndex[30]
+y =  document.getElementById("card31")
+flipCard(x,y);}
 
 
 
 
  function revealThirtyTwo(){
-    if(tableArray.length > 51){ 
-let numElThirtyTwo = tableArrayIndex[31]
-
-if(flipArray.includes(numElThirtyTwo) && numElThirtyTwo === flipArray[0]){ flipArray.shift(); document.getElementById("card32").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirtyTwo) && numElThirtyTwo === flipArray[1]){ flipArray.pop();  document.getElementById("card32").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirtyTwo)){flipArray.push(numElThirtyTwo); card32.src = cardSelect[numElThirtyTwo - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
-
+   x = tableArrayIndex[31]
+y = document.getElementById("card32")
+flipCard(x,y);}
 
 
 
  function revealThirtyThree(){
-    if(tableArray.length > 51){ 
-let numElThirtyThree = tableArrayIndex[32]
-
-if(flipArray.includes(numElThirtyThree) && numElThirtyThree === flipArray[0]){ flipArray.shift(); document.getElementById("card33").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirtyThree) && numElThirtyThree === flipArray[1]){ flipArray.pop();  document.getElementById("card33").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirtyThree)){flipArray.push(numElThirtyThree); card33.src = cardSelect[numElThirtyThree - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[32]
+y =  document.getElementById("card33")
+flipCard(x,y);}
 
 
 
 
  function revealThirtyFour(){
-    if(tableArray.length > 51){ 
-let numElThirtyFour = tableArrayIndex[33]
-
-if(flipArray.includes(numElThirtyFour) && numElThirtyFour === flipArray[0]){ flipArray.shift(); document.getElementById("card34").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirtyFour) && numElThirtyFour === flipArray[1]){ flipArray.pop();  document.getElementById("card34").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirtyFour)){flipArray.push(numElThirtyFour); card34.src = cardSelect[numElThirtyFour - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[33]
+y = document.getElementById("card34")
+flipCard(x,y);}
 
 
 
 
  function revealThirtyFive(){
-    if(tableArray.length > 51){ 
-let numElThirtyFive = tableArrayIndex[34]
-
-if(flipArray.includes(numElThirtyFive) && numElThirtyFive === flipArray[0]){ flipArray.shift(); document.getElementById("card35").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirtyFive) && numElThirtyFive === flipArray[1]){ flipArray.pop();  document.getElementById("card35").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirtyFive)){flipArray.push(numElThirtyFive); card35.src = cardSelect[numElThirtyFive - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+x = tableArrayIndex[34]
+y = document.getElementById("card35")
+flipCard(x,y);}
 
 
 
 
  function revealThirtySix(){
-    if(tableArray.length > 51){ 
-let numElThirtySix = tableArrayIndex[35]
-
-if(flipArray.includes(numElThirtySix) && numElThirtySix === flipArray[0]){ flipArray.shift(); document.getElementById("card36").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirtySix) && numElThirtySix === flipArray[1]){ flipArray.pop();  document.getElementById("card36").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirtySix)){flipArray.push(numElThirtySix); card36.src = cardSelect[numElThirtySix - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[35]
+    y = document.getElementById("card36")
+    flipCard(x,y);}
 
 
 
 
  function revealThirtySeven(){
-    if(tableArray.length > 51){ 
-let numElThirtySeven = tableArrayIndex[36]
-
-if(flipArray.includes(numElThirtySeven) && numElThirtySeven === flipArray[0]){ flipArray.shift(); document.getElementById("card37").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirtySeven) && numElThirtySeven === flipArray[1]){ flipArray.pop();  document.getElementById("card37").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirtySeven)){flipArray.push(numElThirtySeven); card37.src = cardSelect[numElThirtySeven - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[36]
+    y = document.getElementById("card37")
+    flipCard(x,y);}
 
 
 
 
  function revealThirtyEight(){
-    if(tableArray.length > 51){ 
-let numElThirtyEight = tableArrayIndex[37]
-
-if(flipArray.includes(numElThirtyEight) && numElThirtyEight === flipArray[0]){ flipArray.shift(); document.getElementById("card38").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirtyEight) && numElThirtyEight === flipArray[1]){ flipArray.pop();  document.getElementById("card38").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirtyEight)){flipArray.push(numElThirtyEight); card38.src = cardSelect[numElThirtyEight - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[37]
+    y = document.getElementById("card38")
+    flipCard(x,y);}
 
 
 
 
  function revealThirtyNine(){
-    if(tableArray.length > 51){ 
-let numElThirtyNine = tableArrayIndex[38]
-
-if(flipArray.includes(numElThirtyNine) && numElThirtyNine === flipArray[0]){ flipArray.shift(); document.getElementById("card39").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElThirtyNine) && numElThirtyNine === flipArray[1]){ flipArray.pop();  document.getElementById("card39").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElThirtyNine)){flipArray.push(numElThirtyNine); card39.src = cardSelect[numElThirtyNine - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[38]
+    y = document.getElementById("card39")
+    flipCard(x,y);}
 
 
 // next row of cards - row 4
@@ -1023,213 +691,96 @@ pairFound()
 
 
 function revealForty(){
-    if(tableArray.length > 51){ 
-let numElForty = tableArrayIndex[39];
-
-if(flipArray.includes(numElForty) && numElForty === flipArray[0]){ flipArray.shift(); document.getElementById("card40").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElForty) && numElForty === flipArray[1]){ flipArray.pop();  document.getElementById("card40").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElForty)){flipArray.push(numElForty); card40.src = cardSelect[numElForty - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[39]
+    y = document.getElementById("card40")
+    flipCard(x,y);}
 
    
 
 
 
 function revealFortyOne(){
-    if(tableArray.length > 51){ 
-let numElFortyOne = tableArrayIndex[40]
-
-if(flipArray.includes(numElFortyOne) && numElFortyOne === flipArray[0]){ flipArray.shift(); document.getElementById("card41").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFortyOne) && numElFortyOne === flipArray[1]){ flipArray.pop();  document.getElementById("card41").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFortyOne)){flipArray.push(numElFortyOne); card41.src = cardSelect[numElFortyOne - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[40]
+    y = document.getElementById("card41")
+    flipCard(x,y);}
 
 
 
 
 function revealFortyTwo(){
-    if(tableArray.length > 51){ 
-    let numElFortyTwo = tableArrayIndex[41]
-    
-    if(flipArray.includes(numElFortyTwo) && numElFortyTwo === flipArray[0]){ flipArray.shift(); document.getElementById("card42").src="card back red.jpg"; playSound();} 
-    else if(flipArray.includes(numElFortyTwo) && numElFortyTwo === flipArray[1]){ flipArray.pop();  document.getElementById("card42").src="card back red.jpg"; playSound();}
-    else{revealCard()}
-    
-    function revealCard(){
-    if (flipArray.length < 2 && !pairsArray.includes(numElFortyTwo)){flipArray.push(numElFortyTwo); card42.src = cardSelect[numElFortyTwo - 1]; playSound();}
-    //console.log(flipArray)
-    pairFound()
-    }}}
+    x = tableArrayIndex[41]
+    y = document.getElementById("card42")
+    flipCard(x,y);}
 
 
 
 
 function revealFortyThree(){
-    if(tableArray.length > 51){ 
-let numElFortyThree = tableArrayIndex[42]
-
-if(flipArray.includes(numElFortyThree) && numElFortyThree === flipArray[0]){ flipArray.shift(); document.getElementById("card43").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFortyThree) && numElFortyThree === flipArray[1]){ flipArray.pop();  document.getElementById("card43").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFortyThree)){flipArray.push(numElFortyThree); card43.src = cardSelect[numElFortyThree - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[42]
+    y = document.getElementById("card43")
+    flipCard(x,y);}
 
 
 
 
  function revealFortyFour(){
-    if(tableArray.length > 51){ 
-let numElFortyFour = tableArrayIndex[43]
-
-if(flipArray.includes(numElFortyFour) && numElFortyFour === flipArray[0]){ flipArray.shift(); document.getElementById("card44").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFortyFour) && numElFortyFour === flipArray[1]){ flipArray.pop();  document.getElementById("card44").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFortyFour)){flipArray.push(numElFortyFour); card44.src = cardSelect[numElFortyFour - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[43]
+    y = document.getElementById("card44")
+    flipCard(x,y);}
 
 
 
 
  function revealFortyFive(){
-    if(tableArray.length > 51){ 
-let numElFortyFive = tableArrayIndex[44]
-
-if(flipArray.includes(numElFortyFive) && numElFortyFive === flipArray[0]){ flipArray.shift(); document.getElementById("card45").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFortyFive) && numElFortyFive === flipArray[1]){ flipArray.pop();  document.getElementById("card45").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFortyFive)){flipArray.push(numElFortyFive); card45.src = cardSelect[numElFortyFive - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[44]
+    y = document.getElementById("card45")
+    flipCard(x,y);}
 
 
 
  function revealFortySix(){
-    if(tableArray.length > 51){ 
-let numElFortySix = tableArrayIndex[45]
-
-if(flipArray.includes(numElFortySix) && numElFortySix === flipArray[0]){ flipArray.shift(); document.getElementById("card46").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFortySix) && numElFortySix === flipArray[1]){ flipArray.pop();  document.getElementById("card46").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFortySix)){flipArray.push(numElFortySix); card46.src = cardSelect[numElFortySix - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[45]
+    y = document.getElementById("card46")
+    flipCard(x,y);}
 
 
 
  function revealFortySeven(){
-    if(tableArray.length > 51){
-let numElFortySeven = tableArrayIndex[46]
-
-if(flipArray.includes(numElFortySeven) && numElFortySeven === flipArray[0]){ flipArray.shift(); document.getElementById("card47").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFortySeven) && numElFortySeven === flipArray[1]){ flipArray.pop();  document.getElementById("card47").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFortySeven)){flipArray.push(numElFortySeven); card47.src = cardSelect[numElFortySeven - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[46]
+    y = document.getElementById("card47")
+    flipCard(x,y);}
 
 
 
  function revealFortyEight(){
-    if(tableArray.length > 51){ 
-let numElFortyEight = tableArrayIndex[47]
-
-if(flipArray.includes(numElFortyEight) && numElFortyEight === flipArray[0]){ flipArray.shift(); document.getElementById("card48").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFortyEight) && numElFortyEight === flipArray[1]){ flipArray.pop();  document.getElementById("card48").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFortyEight)){flipArray.push(numElFortyEight); card48.src = cardSelect[numElFortyEight - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[47]
+    y = document.getElementById("card48")
+    flipCard(x,y);}
 
 
 
  function revealFortyNine(){
-    if(tableArray.length > 51){ 
-let numElFortyNine = tableArrayIndex[48]
-
-if(flipArray.includes(numElFortyNine) && numElFortyNine === flipArray[0]){ flipArray.shift(); document.getElementById("card49").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFortyNine) && numElFortyNine === flipArray[1]){ flipArray.pop();  document.getElementById("card49").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFortyNine)){flipArray.push(numElFortyNine); card49.src = cardSelect[numElFortyNine - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[48]
+    y = document.getElementById("card49")
+    flipCard(x,y);}
 
 
 
  function revealFifty(){
-    if(tableArray.length > 51){ 
-let numElFifty = tableArrayIndex[49]
-
-if(flipArray.includes(numElFifty) && numElFifty === flipArray[0]){ flipArray.shift(); document.getElementById("card50").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFifty) && numElFifty === flipArray[1]){ flipArray.pop();  document.getElementById("card50").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFifty)){flipArray.push(numElFifty); card50.src = cardSelect[numElFifty - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[49]
+    y = document.getElementById("card50")
+    flipCard(x,y);}
 
 
 
  function revealFiftyOne(){
-    if(tableArray.length > 51){ 
-let numElFiftyOne = tableArrayIndex[50]
-
-if(flipArray.includes(numElFiftyOne) && numElFiftyOne === flipArray[0]){ flipArray.shift(); document.getElementById("card51").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFiftyOne) && numElFiftyOne === flipArray[1]){ flipArray.pop();  document.getElementById("card51").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFiftyOne)){flipArray.push(numElFiftyOne); card51.src = cardSelect[numElFiftyOne - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[50]
+    y = document.getElementById("card51")
+    flipCard(x,y);}
 
 
 
  function revealFiftyTwo(){
-    if(tableArray.length > 51){ 
-let numElFiftyTwo = tableArrayIndex[51]
-
-if(flipArray.includes(numElFiftyTwo) && numElFiftyTwo === flipArray[0]){ flipArray.shift(); document.getElementById("card52").src="card back red.jpg"; playSound();} 
-else if(flipArray.includes(numElFiftyTwo) && numElFiftyTwo === flipArray[1]){ flipArray.pop();  document.getElementById("card52").src="card back red.jpg"; playSound();}
-else{revealCard()}
-
-function revealCard(){
-if (flipArray.length < 2 && !pairsArray.includes(numElFiftyTwo)){flipArray.push(numElFiftyTwo); card52.src = cardSelect[numElFiftyTwo - 1]; playSound();}
-//console.log(flipArray)
-pairFound()
-}}}
+    x = tableArrayIndex[51]
+    y = document.getElementById("card52")
+    flipCard(x,y);}

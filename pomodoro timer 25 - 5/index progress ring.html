@@ -1,0 +1,121 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+           <link rel="stylesheet" type="text/css"
+                 href="style progress ring.css">
+
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <title> Progress Ring</title>
+        </head>
+
+        <h1> 
+        <strong><p id="headpara">Pomodoro Timer 25/5 </p></strong></h1>
+        <body>
+
+
+
+
+
+
+          <div id="clocks-div">
+
+
+
+
+<div id="svg-el">
+<!-- work time clock to cover circe-->
+  <div id="work-el">
+    <label for="time-el" id="lab-study"> STUDY</label>
+    <p class="time-el" id="work-min">00</p>
+    <p class="time-el" id="seperator">:</p>
+  <p class="time-el" id="work-sec">00</p>
+  </div>
+
+            <svg
+  class="progress-ring"
+  height="420"
+  width="420"
+  
+>
+  <circle
+  id="circle-1"
+    class="progress-ring__circle"
+    stroke="rgb(29, 245, 62)"
+    stroke-width="8"
+    fill="transparent"
+    r="196"
+    cx="210"
+    cy="210"
+  />
+
+
+  <!-- note that the radius of the circle is dictated by stroke width, using teh formual, radius = (sgv width / 2) - (strokeWidth * 2) we subtract stroke width from each side of the circle, so if the stroke width was 4 we'd be taking 8 from the circle radius, so in this case instead of (120/2) -(2*1) = 58, we'd have a radius of (120/2) - (4*2)=52  
+
+-->
+</svg>
+
+</div>
+
+<div id="svg2-el">
+<!-- work time clock to cover circe-->
+<div id="play-el">
+  <label for="time-el" id="lab-rest"> REST!</label>
+  <p class="time-el" id="rest-min">00</p>
+  <p class="time-el" id="rest-seperator">:</p>
+  <p class="time-el" id="rest-sec">00</p>
+</div>
+
+<svg
+   class="progress-ring2"
+   width="420"
+   height="420">
+
+   
+  <circle
+  id="circle-2"
+    class="progress-ring__circle2"
+    stroke="rgb(247, 156, 45)"
+    stroke-width="8"
+    fill="transparent"
+    r="196"
+    cx="210"
+    cy="210"
+
+    
+  />
+  
+ 
+</svg>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div id="button-container">
+<button id="start-btn" onclick="workTimer()">Start</button>
+
+
+
+
+
+</div>
+        </body>
+             <footer id="main-footer">
+                marvin-a-barrow &copy 2022 Pomodoro Javascript
+                <script src="script progress ring.js"></script>
+             </footer>
+                   
+    </html>

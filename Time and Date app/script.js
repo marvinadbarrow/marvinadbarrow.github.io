@@ -10,7 +10,7 @@ let hourEl = document.getElementById('hour')
 let minEl = document.getElementById('min')
 let secEl = document.getElementById('sec')
 var dayNameIndex;
-const leapYears = 12 // leap years since 1970
+const leapYears = 12 // leap years since 1970 (num of days to subtract)
 const hourSpring = 1// hour  for clocks forward
 const hourFall = -1// hour for clocks back
     
@@ -33,7 +33,7 @@ function log(){
     let ctSecond = secondNow - minuteNow*60// calc for current second
     
     var month;
-    // determin current month from current day
+    // determin current month from current day range
     if (  cd < 32 && cd > 0){ month ="jan"}
     if ( cd < 60 && cd >31 ){ month ="feb"}
     if (cd < 91 && cd >59 ){ month ="mar"}
