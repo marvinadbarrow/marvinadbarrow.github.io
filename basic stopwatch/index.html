@@ -1,0 +1,54 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+           <link rel="stylesheet" type="text/css"
+                 href="style.css">
+
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <title> Timer</title>
+        </head>
+
+    <!--    <h1> 
+        <strong><p class="headpara">Stopwatch (2hr) </p></strong></h1>    
+-->
+
+
+        <body>
+ <div id="timesave-el-outer">
+               
+              <div id="clock-container">
+                <div id="clock-el">
+                      <p class="time-el" id="hour">00</p>
+                      <p class="rest-seperator">:</p>
+                      <p class="time-el" id="min">00</p>
+                      <p class="rest-seperator">:</p>
+                      <p class="time-el" id="sec">00</p>
+                       <p class="time-el-split" id="split-sec">00</p>
+                 </div>
+              </div>
+              
+              <br>
+              <br>
+
+ </div>
+
+
+   <div id="btn-container">
+          <button id="start" class="function" onclick="start()"><i class="fa fa-play" id="play-btn" style="font-size:48px;color:rgb(255, 254, 254)"></i></button>
+        <button id="pause" class="function" onclick="pause()"><i class="fa fa-pause-circle-o" id="pause-btn" style="font-size:48px;color:rgb(255, 253, 253)"></i></button>
+        <button id="reset" class="function" onclick="reset()"><i class="fa fa-refresh" style="font-size:32px"></i></button>
+              </div>
+
+
+
+        </body>
+             <footer id="main-footer">
+                Marvin-a-Barrow &copy 2022 JavaScript Stopwatch!
+                <script src="script.js"></script>
+             </footer>
+                   
+    </html>

@@ -1,0 +1,32 @@
+
+
+/* NON FUNCTIONAL AND NON CLOCK ELEMENTS */
+h1{color: white; font-size: 40px;}
+footer{color: white; margin: auto; margin-top: -60px; width: 600px; height: 30px; text-align: center; font-weight:bold; font-size:20px;}
+body{background-image: url('roman\ clock\ 2.jpg'); height: 700px;}
+.headpara{text-align: center; margin-bottom: -100px; font-size: 80px;color: rgb(132, 210, 247);text-shadow: 1px 2px 3px rgb(240, 236, 47); opacity: 0;}
+
+
+
+/*  ELEMENTS CONTAINING TIME CHANGES */
+#clock-el{display: flex; justify-content: space-around; }
+#clock-container{width: 1180px; height: 330px; margin: auto; background-color: rgba(228, 19, 19, 0); margin-top: 110px; border-radius: 5px; margin-bottom: 10px; }
+
+.time-el{ width: 270px; height: 310px; background-color: rgba(19, 43, 89,0); color: white; border-radius: 10px;font-size: 250px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; margin-top: 5px; text-shadow: 1px 2px 6px rgb(185, 41, 41);}
+
+.time-el-split{ width: 130px; height: 150px; background-color: rgba(19, 43, 89,0); color: white; border-radius: 10px;font-size: 120px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; margin-top: 145px; text-shadow: 1px 2px 6px rgb(185, 41, 41);}
+
+.rest-seperator{ width: 65px; height: 310px; background-color: rgba(19, 43, 89,0); color: white; border-radius: 10px;font-size: 250px; font-family: 'Anton', sans-serif; text-align: center;margin-top: 5px; text-shadow: 1px 2px 6px rgb(185, 41, 41);}
+
+/*  START AND RESET BUTTONS */
+#btn-container{display:flex; width: 400px; height: 180px; margin: auto; margin-top:-15px;}
+
+#pause,#start{background-color: rgb(132, 210, 247);width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
+#pause:active, #start:active{width:118px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248); background-color: chartreuse;}
+
+.btn-primary, .function{background-color: rgb(132, 210, 247); width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:15px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
+
+
+
+#pause:active, #start:active{width:118px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248); background-color: chartreuse;}
+
