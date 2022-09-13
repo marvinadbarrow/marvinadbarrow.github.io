@@ -1,0 +1,46 @@
+
+
+/* NON FUNCTIONAL AND NON CLOCK ELEMENTS */
+h1{color: white; font-size: 40px;}
+footer{color: black; margin: auto; width: 600px; height: 30px; text-align: center; font-weight:bold; font-size:20px;  margin-top: 50px;}
+
+body{background-image: url("lap restart.jpg"); height: 700px; background-size: cover;}
+
+
+/*  ELEMENTS CONTAINING TIME CHANGES */
+#clock-el{display: flex; justify-content: space-around; background-color: white; border-radius: 10px; }
+#clock-container{width: 1180px; height: 330px; margin: auto; background-color: rgba(228, 19, 19, 0); margin-top: -30px; border-radius: 5px; margin-bottom: 10px; }
+
+.time-el{ width: 270px; height: 310px; background-color: rgba(19, 43, 89,0); color: black; border-radius: 10px;font-size: 250px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; margin-top: 5px; text-shadow: 1px 2px 6px rgb(68, 51, 224);}
+
+.time-el-split{ width: 130px; height: 150px; background-color: rgba(19, 43, 89,0); color: black; border-radius: 10px;font-size: 120px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; margin-top: 145px; text-shadow: 1px 2px 6px rgb(68, 51, 224);}
+
+.rest-seperator{ width: 65px; height: 310px; background-color: rgba(19, 43, 89,0); color: black; border-radius: 10px;font-size: 250px; font-family: 'Anton', sans-serif; text-align: center;margin-top: 5px; text-shadow: 1px 2px 6px rgb(68, 51, 224);}
+
+/*  START AND RESET BUTTONS */
+#btn-container{display:flex; width: 530px; height: 180px; margin: auto; margin-top:-15px;}
+
+#pause,#start,#reset,#lap{background-color: rgb(170, 176, 179);width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
+#pause:active, #start:active, #reset:active, #lap:active{width:118px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248); background-color: rgb(238, 17, 17);}
+
+
+@keyframes pause {
+    0% {opacity: 0;}
+    100% {opacity:1;}
+    
+}
+
+span{text-shadow: 2px 2px 3px rgb(48, 68, 252); font-size: 25px;color: rgb(48, 68, 252); font-weight: bold; color: rgb(5, 5, 5); }
+#label-holder{ margin: auto; width: 500px; margin-top: -120px; height: 50px; margin-bottom: -20px;}
+#numb{ margin-left: 30px;}
+#split{margin-left: 50px;}
+#current{margin-left: 90px;}
+
+
+/* below are the stylings for the lap restart clock */
+
+#small-clock-container{width: 390px; height: 110px; margin: auto; background-color: rgba(228, 19, 19, 0); margin-top: 37px; border-radius: 5px; margin-bottom: 3px;}
+#small-clock-el{display: flex; flex-direction: row; justify-content: space-around;width: 390px; height: 100px; margin-top: -50px; background-color: white; border-radius: 5px; padding-bottom: 20px; }
+.small-time-el{color: rgb(230, 147, 23); width: 90px; height: 103px; background-color: rgba(19, 43, 89,0);border-radius: 3px;font-size: 83px; font-family: 'Anton', sans-serif; letter-spacing:2px; text-align: center; margin-top: 2px; text-shadow: 1px 2px 3px rgb(68, 51, 224);}
+.small-rest-seperator{width: 22px; height: 103px; background-color: rgba(19, 43, 89,0); color: rgb(230, 147, 23); border-radius: 3px;font-size: 83px; font-family: 'Anton', sans-serif; text-align: center;margin-top: 5px; text-shadow: 1px 2px 3px rgb(68, 51, 224);}
+.small-time-el-split{width: 43px; height: 50px; background-color: rgba(19, 43, 89,0); color: rgb(230, 147, 23); border-radius: 3px;font-size: 40px; font-family: 'Anton', sans-serif; letter-spacing:2px; text-align: center; margin-top: 48px; text-shadow: 1px 2px 3px rgb(68, 51, 224);}
