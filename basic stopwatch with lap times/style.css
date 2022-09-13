@@ -4,7 +4,7 @@
 h1{color: white; font-size: 40px;}
 footer{color: white; margin: auto; width: 600px; height: 30px; text-align: center; font-weight:bold; font-size:20px;  margin-top: 50px;}
 
-body{background-image: url('roman\ clock\ 2.jpg'); height: 700px;}
+body{background-image: url('roman\ clock\.jpg'); height: 700px;}
 
 
 .headpara{text-align: center; margin-top: 300px; font-size: 80px;color: rgb(132, 210, 247);text-shadow: 1px 2px 3px rgb(240, 236, 47); opacity: 0;}
@@ -24,8 +24,8 @@ body{background-image: url('roman\ clock\ 2.jpg'); height: 700px;}
 /*  START AND RESET BUTTONS */
 #btn-container{display:flex; width: 530px; height: 180px; margin: auto; margin-top:-15px;}
 
-#pause,#start,#reset,#lap{background-color: rgb(132, 210, 247);width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
-#pause:active, #start:active, #reset:active, #lap:active{width:118px; height:68px;box-shadow: 2px 2px 2px rgb(250, 248, 248); background-color: chartreuse;}
+#pause,#start,#reset,#lap{background-color: rgb(77, 122, 165);width:120px; height:70px; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; box-shadow: 2px 2px 7px rgb(250, 248, 248); text-shadow: 2px 2px 2px black; margin-right: 10px;}
+#pause:active, #start:active, #reset:active, #lap:active{width:118px; height:68px;box-shadow: 1px 1px 1px rgb(250, 248, 248); background-color: rgb(166, 167, 173);}
 
 
 @keyframes pause {
@@ -34,7 +34,7 @@ body{background-image: url('roman\ clock\ 2.jpg'); height: 700px;}
     
 }
 
-span{text-shadow: 2px 2px 3px white; font-size: 25px;color: white; font-weight: bold; color: yellow; }
+span{text-shadow: 2px 2px 3px rgb(49, 47, 47); font-size: 25px;color: white; font-weight: bold; color:  rgb(169, 173, 166); }
 #label-holder{ margin: auto; width: 500px; margin-top: -100px; height: 50px; margin-bottom: -20px;}
 #numb{ margin-left: 30px;}
 #split{margin-left: 50px;}
