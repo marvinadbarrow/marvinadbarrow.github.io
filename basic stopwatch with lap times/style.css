@@ -2,11 +2,14 @@
 
 /* NON FUNCTIONAL AND NON CLOCK ELEMENTS */
 h1{color: white; font-size: 40px;}
-footer{color: white; margin: auto; margin-top: -60px; width: 600px; height: 30px; text-align: center; font-weight:bold; font-size:20px;}
+footer{color: white; margin: auto; width: 600px; height: 30px; text-align: center; font-weight:bold; font-size:20px;  margin-top: 50px;}
+
 body{background-image: url('roman\ clock\ 2.jpg'); height: 700px;}
-.headpara{text-align: center; margin-bottom: -100px; font-size: 80px;color: rgb(132, 210, 247);text-shadow: 1px 2px 3px rgb(240, 236, 47); opacity: 0;}
 
 
+.headpara{text-align: center; margin-top: 300px; font-size: 80px;color: rgb(132, 210, 247);text-shadow: 1px 2px 3px rgb(240, 236, 47); opacity: 0;}
+
+#timesave-el-outer{margin-top: -100px;}
 
 /*  ELEMENTS CONTAINING TIME CHANGES */
 #clock-el{display: flex; justify-content: space-around; }
@@ -31,5 +34,8 @@ body{background-image: url('roman\ clock\ 2.jpg'); height: 700px;}
     
 }
 
-
-
+span{text-shadow: 2px 2px 3px white; font-size: 25px;color: white; font-weight: bold; color: yellow; }
+#label-holder{ margin: auto; width: 500px; margin-top: -100px; height: 50px; margin-bottom: -20px;}
+#numb{ margin-left: 30px;}
+#split{margin-left: 50px;}
+#current{margin-left: 90px;}
