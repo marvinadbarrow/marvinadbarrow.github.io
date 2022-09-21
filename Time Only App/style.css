@@ -34,7 +34,7 @@ body{height: 100%; width: 100%;}
 #clock-el{display: flex; flex-direction: row; justify-content: space-around; align-items: center;}
 #clock-container{width: 90%; height: 70vh; margin: auto; margin-top: -290px;}
 #sec{display: none;}
-.time-el{ width: 45%; height: 80vh; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 10px;font-size: 25vw; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; box-shadow: 3px 3px 7px rgb(49, 149, 216); margin-top: 15vw;}
+.time-el{ width: 45%; height: 80vh; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 3vw;font-size: 25vw; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; box-shadow: 3px 3px 7px rgb(49, 149, 216); margin-top: 15vw;}
 
 
 @media (orientation: portrait) {
@@ -42,7 +42,8 @@ body{height: 100%; width: 100%;}
 
     .time-el{ font-size: 50vw;
         width: 75vw; height: 40vh;
-        margin-bottom: -70%;    
+        margin-bottom: -70%;  
+        border-radius:7vw;
     }
 
   
