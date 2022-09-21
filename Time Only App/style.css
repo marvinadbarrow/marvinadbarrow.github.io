@@ -37,3 +37,20 @@ body{height: 620px;}
 #clock-container{width: 400px; height: 150px; margin: auto; margin-top: -290px;}
 #sec{display: none;}
 .time-el{ width: 300px; height: 300px; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 10px;font-size: 200px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; box-shadow: 3px 3px 7px rgb(49, 149, 216); margin-bottom: -170px;}
+
+
+@media (orientation: portrait) {
+    body, html{height: 100%; width: 100%;}
+
+    .time-el{ font-size: 350px;
+        width: 80vw; height: auto;
+        margin-bottom: -70%;    
+    }
+
+    #clock-container{ margin-top: -60%;}
+
+    .date-time-container{width: 100%; height: 100%;}
+
+    footer{ margin-top: -20px !important; width: 500px; height: 30px !important;}
+
+}
