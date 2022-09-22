@@ -96,6 +96,59 @@ else{secEl.textContent = acDateArr[5]}
 }, 1000)
 
 
+// activate menu from  hamburger icon
+// menu element which is on opacity zero before the below function is activated
+var menuEl = document.getElementById("div-menu")
+
+// this is the hamburger element
+// to activate options menu for different themes
+var hamburgerEl = document.getElementById("hamburger-div")
+
+var hamburgerElPseudo = document.querySelector(".hamburger-class")
+hamburgerEl.addEventListener('click', (e) =>{
+
+menuEl.style.cssText = " opacity: 1; z-index: 2;"
+hamburgerEl.style.cssText = " position: relative; left: -30vw; opacity: 0.3;"
+
+console.log("test")
+})
+
+// now create variables for our menu list elements to dictate what each one does -
+
+var cleanMinimalEl = document.getElementById("clean-minimal")
+var darkModeEl = document.getElementById("dark-mode")
+var lightModeEl = document.getElementById("light-mode")
+
+//  we'll just make them activate an alert first to make sure they work. (sorted) - Then we just need to hide the menu after click and return the hamburger icon to its original location
+cleanMinimalEl.addEventListener('click', (e) =>{
+
+    menuEl.style.cssText = " opacity: 0; z-index: -1;"
+    hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
+    
+    //console.log("test")
+    })
+
+    darkModeEl.addEventListener('click', (e) =>{
+
+        menuEl.style.cssText = " opacity: 0; z-index: -1;"
+        hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
+        
+        //console.log("test")
+        })
+
+
+        lightModeEl.addEventListener('click', (e) =>{
+
+            menuEl.style.cssText = " opacity: 0; z-index: -1;"
+            hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
+            
+            //console.log("test")
+            })
+        
+    
+
+
+
 
 
 

@@ -41,10 +41,13 @@ body{height: 100%; width: 100%;}
     body, html{height: 100%; width: 100%;}
 
     .time-el{ font-size: 50vw;
-        width: 75vw; height: 40vh;
-        margin-bottom: -70%;  
-        border-radius:7vw;
+        width: 70vw; height: 43vh;
+        margin-bottom: -80%;  
+        border-radius: 7vw; 
+         
     }
+
+
 
   
 
@@ -55,3 +58,54 @@ body{height: 100%; width: 100%;}
     #clock-el{display: flex; flex-direction: column; height: 90vh;  }
 
 }
+
+
+
+/*  styling for hamburger menu*/
+.burger-layers{
+    list-style-image: url(".//list\ dash\ white.png");
+    width:  15px; height: 18px; /*  height value changes distance also, smaller the height, smaller the distance, and vice versa: width changes nothing so you'll have to do that from paint.net*/
+    position: relative; left: 38px; top: 18px;
+    }
+    #hamburger{ width: 10px; height: 50px; margin-top: 0px; border-radius: 50%;}
+        #hamburger-holder{width: 80vw; height: 50px; display: flex; justify-content: right; position: absolute; margin-top: 100px;}
+        ul:hover{cursor: pointer;}
+
+
+    /*  this surrounds the unordered list */
+
+#hamburger-div{width: 90px; height: 90px; background-color: none;   border-radius: 50%; margin-right: 10px; background-color:none;}
+
+#hamburger-div:active{background-color: rgba(185, 169, 169, 0.44);}
+    
+    
+
+@media (orientation: landscape){
+    #hamburger-div{ position: relative; bottom: 10vh; left: 9vw;}
+
+
+}
+    /*  here's the HTML markup for the hamburger menu
+    
+  
+    
+    
+    
+    */
+    
+    /* styling for theme menu */
+.menu-div{z-index: 2; width: 80vw;height: 40px;position: absolute; display: flex; justify-content: end; opacity: 0; z-index: -1;}
+.menu-container{box-shadow: 2px 2px 3px rgba(191, 184, 184, 80%); padding: 10px; opacity: 1; margin-top: 100px; background-color: rgba(125, 131, 131, 0.677); width: 230px; border-radius: 10px; margin-bottom:-180px ; z-index: 2; position: absolute;}
+.menu-container:hover{ opacity: 0.9;}
+
+
+.menu-options{font-size: 30px;; text-shadow: 1px 1px 2px white; text-shadow: 1px 1px 2px black ;}
+.menu-options:hover{background-color: grey;}
+
+
+a{text-decoration:none; list-style: none; color: rgba(101, 240, 88, 0.877); }
+a:hover{color: rgb(249, 251, 252); font-size: 30px;}
+ul{list-style-type: none;}
+li{width: 400px; height: 40px;white-space: pre; }  /* white-space: pre; ensures that the whitespace around characters is included on theh page - so I can have the div baackground color cover a wider area than the visible characters */
+.menu-heading{font-size: 30px; color: white; text-shadow: 1px 1px 2px rgb(5, 4, 4);}
+

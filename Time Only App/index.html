@@ -27,6 +27,42 @@
   </div>
 
 
+<!--  this is the hamburger icon which reveals the hidden 'theme' menu-->
+
+<div id="hamburger-holder">
+      <div id="hamburger-div" class="hamburger-class">
+<ul id="hamburger"> 
+<li class="burger-layers"></li>
+<li class="burger-layers"></li>
+<li class="burger-layers"></li>
+</ul>
+</div>
+</div>
+
+
+
+  <!--  below we are creating a floating div which will be activated when we click  our hamburger menu icon; we'll use position ??fixed, and use a negative margin-top so that it appears just below the menu icon - we can do as YouTube does and have it automatically just right of the screen, and on :active we might be able to animate it along, or maybe just start the easy way and have it appear.. you need to toggle as well-->
+
+
+  <ul class="menu-div" id="div-menu">          
+      <div class="menu-container">
+      <li class="menu-heading">Themes</li>
+      <li><a href="#" id="clean-minimal" class="menu-options">Clean and Miminal</a></li>
+      <li><a href="#" id="dark-mode" class="menu-options">Dark Mode             </a></li>
+      <li><a href="#" id="light-mode" class="menu-options">Light Mode            </a></li>
+      </div>
+  </ul>
+
+
+
+
+
+
+
+
+
+  <!-- end of list for menu-->
+
 <div id="date-container">
   <div id="date-el">
         <p class="time-el" id="day">00</p>
