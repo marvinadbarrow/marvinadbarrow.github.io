@@ -1,7 +1,15 @@
+// these are the elelments we need to alter for the theme changes
 
 
 
 
+var burgerOneEl = document.getElementById("one")
+var burgerTwoEl = document.getElementById("two")
+var burgerThreeEl = document.getElementById("three")
+
+var timeDate = document.getElementById("time-date-container")
+var timeEl = document.querySelectorAll('.time-el')
+var burgerEl = document.querySelectorAll('.burger-layers')
     
 let yearEl = document.getElementById('year')
 let monthEl = document.getElementById('month')
@@ -65,10 +73,8 @@ function log(){
     
     acDateArr.push(ctyear, month, dayNum, ctHour,ctMinute,ctSecond)
     //console.log(acDateArr[4])
-    console.log(cd)
-    dayNameIndex = (cd + 5) % 7
-    console.log(dayNameIndex)
-    console.log(dayNameArr[dayNameIndex])
+        dayNameIndex = (cd + 5) % 7
+  
 }
     
 
@@ -123,8 +129,15 @@ var lightModeEl = document.getElementById("light-mode")
 cleanMinimalEl.addEventListener('click', (e) =>{
 
     menuEl.style.cssText = " opacity: 0; z-index: -1;"
-    hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
-    
+    hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1";
+    hourEl.style.cssText = " background-color: black; box-shadow: 1px 1px 5px grey;"
+   
+    minEl.style.cssText = " background-color: black; box-shadow: 1px 1px 5px grey;"
+      timeDate.style.backgroundImage = "url('clean minimal.png')"
+burgerOneEl.style.cssText = "list-style-image: url('list dash black.png');"
+burgerTwoEl.style.cssText = "list-style-image: url('list dash black.png');"
+burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png');"
+
     //console.log("test")
     })
 
