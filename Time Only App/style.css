@@ -63,7 +63,7 @@ body{height: 100%; width: 100%;}
 
 /*  styling for hamburger menu*/
 .burger-layers{
-    list-style-image: url(".//list\ dash\ white.png");
+    list-style-image: url("list dash white.png");
     width:  15px; height: 18px; /*  height value changes distance also, smaller the height, smaller the distance, and vice versa: width changes nothing so you'll have to do that from paint.net*/
     position: relative; left: 38px; top: 18px;
     }
