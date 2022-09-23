@@ -8,7 +8,6 @@ body{height: 100%; width: 100%;}
 
 .headpara{text-align: center; margin-bottom: -50px; margin-top: -20px;}
 
-.date-time-container{background-image: url('clock dark cropped.jpg');  width: 90%; height: 92vh; margin: auto; border-radius: 15px;text-shadow: 1px 1px 4px rgb(15, 14, 14); box-shadow: 3px 3px 7px rgb(10, 10, 10);}
 
 
 
@@ -30,20 +29,33 @@ body{height: 100%; width: 100%;}
 .dayname-el{font-size: 70px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; text-transform: capitalize;}
 
 
-/*  elements for clock onlyl - no seconds  */
-#clock-el{display: flex; flex-direction: row; justify-content: space-around; align-items: center;}
-#clock-container{width: 90%; height: 70vh; margin: auto; margin-top: -290px;}
+
+/*  below are all of the containers nested in descending order  */
+
+
+.date-time-container{background-image: url('clock dark cropped.jpg');  width: 90%; aspect-ratio: 16/9; margin: auto; border-radius: 15px;text-shadow: 1px 1px 4px rgb(15, 14, 14); box-shadow: 3px 3px 7px rgb(10, 10, 10);}
+#clock-container{display: flex; align-items: center; width: 90%; height: 70vh; margin: auto;  margin-top: 5vh; background-color: none; margin-top: 10vh; }
+
+
+#clock-el{display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 90%; height: 90%; margin: auto; background-color: none; }
+
+
+
+.time-el{ /* width: 45%; height: 80vh;   */ width: 45%; aspect-ratio: 1 / 1; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 3vw;font-size: 25vw; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; box-shadow: 3px 3px 7px rgb(49, 149, 216);  margin-top: 10%;}
+
+/* we don't need the seconds element so.....   */
 #sec{display: none;}
-.time-el{ width: 45%; aspect-ratio: 1 / 1; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 3vw;font-size: 25vw; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; box-shadow: 3px 3px 7px rgb(49, 149, 216); margin-top: 15vw;}
 
 
 @media (orientation: portrait) {
     body, html{height: 100%; width: 100%;}
 
     .time-el{ font-size: 50vw;
-        width: 70vw; height: 43vh;
-        margin-bottom: -80%;  
+        width: 70vw; height: 43vh; /* height: 43vh; */
+        margin-top: -60%;
+        margin-bottom: -40%;  
         border-radius: 7vw; 
+       
          
     }
 
@@ -68,7 +80,7 @@ body{height: 100%; width: 100%;}
     position: relative; left: 38px; top: 18px;
     }
     #hamburger{ width: 10px; height: 50px; margin-top: 0px; border-radius: 50%;}
-        #hamburger-holder{width: 80vw; height: 50px; display: flex; justify-content: right; position: absolute; margin-top: 100px;}
+        #hamburger-holder{width: 80vw; height: 50px; display: flex; justify-content: right; margin-right: 10%; position: absolute; margin-top: 100px;}
         ul:hover{cursor: pointer;}
 
 

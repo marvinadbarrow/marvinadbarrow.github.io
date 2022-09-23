@@ -131,7 +131,7 @@ var defaultModeEl = document.getElementById("default")
 cleanMinimalEl.addEventListener('click', (e) =>{
 // positioning of icon and menu
     menuEl.style.cssText = " opacity: 0; z-index: -1;"
-    hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1";
+    hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1";
     // styling for time element
     hourEl.style.cssText = " background-color: black; box-shadow: 1px 1px 5px grey;"
    
@@ -147,7 +147,7 @@ burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png'); hei
     darkModeEl.addEventListener('click', (e) =>{
 // positioning of icon and menu
         menuEl.style.cssText = " opacity: 0; z-index: -1;"
-        hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
+        hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1"
         
 // NOTE - TRY TO USE OBJECTS FOR ALL OF THESE  FUNCTIONS. 
 
@@ -168,7 +168,7 @@ burgerThreeEl.style.cssText = "list-style-image: url('list dash blue.png'); heig
         lightModeEl.addEventListener('click', (e) =>{
 // positioning of icon and menu
             menuEl.style.cssText = " opacity: 0; z-index: -1;"
-            hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
+            hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1"
             
 
                 // styling for time element
@@ -189,7 +189,7 @@ burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png'); hei
 defaultModeEl.addEventListener('click', (e) =>{
     // positioning of icon and menu
                 menuEl.style.cssText = " opacity: 0; z-index: -1;"
-                hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
+                hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1"
                 
     
                     // styling for time element
