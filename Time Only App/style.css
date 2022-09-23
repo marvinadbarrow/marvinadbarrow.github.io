@@ -8,7 +8,7 @@ body{height: 100%; width: 100%;}
 
 .headpara{text-align: center; margin-bottom: -50px; margin-top: -20px;}
 
-.date-time-container{background-image: url('clock dark cropped.jpg'); width: 90%; height: 92vh; margin: auto; border-radius: 15px;text-shadow: 1px 1px 4px rgb(15, 14, 14); box-shadow: 3px 3px 7px rgb(10, 10, 10);}
+.date-time-container{background-image: url('clock dark cropped.jpg');  width: 90%; height: 92vh; margin: auto; border-radius: 15px;text-shadow: 1px 1px 4px rgb(15, 14, 14); box-shadow: 3px 3px 7px rgb(10, 10, 10);}
 
 
 

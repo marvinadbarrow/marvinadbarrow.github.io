@@ -1,7 +1,7 @@
 // these are the elelments we need to alter for the theme changes
 
 
-
+let paragraph = document.getElementsByName('p')
 
 var burgerOneEl = document.getElementById("one")
 var burgerTwoEl = document.getElementById("two")
@@ -124,41 +124,86 @@ console.log("test")
 var cleanMinimalEl = document.getElementById("clean-minimal")
 var darkModeEl = document.getElementById("dark-mode")
 var lightModeEl = document.getElementById("light-mode")
-
+var defaultModeEl = document.getElementById("default")
 //  we'll just make them activate an alert first to make sure they work. (sorted) - Then we just need to hide the menu after click and return the hamburger icon to its original location
-cleanMinimalEl.addEventListener('click', (e) =>{
 
+// CLEAN AND MINIMAL MODES
+cleanMinimalEl.addEventListener('click', (e) =>{
+// positioning of icon and menu
     menuEl.style.cssText = " opacity: 0; z-index: -1;"
     hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1";
+    // styling for time element
     hourEl.style.cssText = " background-color: black; box-shadow: 1px 1px 5px grey;"
    
     minEl.style.cssText = " background-color: black; box-shadow: 1px 1px 5px grey;"
       timeDate.style.backgroundImage = "url('clean minimal.png')"
-burgerOneEl.style.cssText = "list-style-image: url('list dash black.png');"
-burgerTwoEl.style.cssText = "list-style-image: url('list dash black.png');"
-burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png');"
+burgerOneEl.style.cssText = "list-style-image: url('list dash black.png'); height:12px"
+burgerTwoEl.style.cssText = "list-style-image: url('list dash black.png'); height:12px"
+burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png'); height:12px"
 
     //console.log("test")
     })
-
+// DARK MODE
     darkModeEl.addEventListener('click', (e) =>{
-
+// positioning of icon and menu
         menuEl.style.cssText = " opacity: 0; z-index: -1;"
         hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
         
+// NOTE - TRY TO USE OBJECTS FOR ALL OF THESE  FUNCTIONS. 
+
+            // styling for time element
+    hourEl.style.cssText = " box-shadow: 1px 1px 5px grey; background-image: url('full-moon-forest.jpg'); color:rgb(0, 204, 255) ;"
+   
+    minEl.style.cssText = "box-shadow: 1px 1px 5px grey; background-image: url('full-moon-forest.jpg'); color:rgb(0, 204, 255) ;"
+
+
+      timeDate.style.backgroundImage = "url('moon crescent.png')"
+burgerOneEl.style.cssText = "list-style-image: url('list dash blue.png'); height:12px"
+burgerTwoEl.style.cssText = "list-style-image: url('list dash blue.png'); height:12px"
+burgerThreeEl.style.cssText = "list-style-image: url('list dash blue.png'); height:12px"
         //console.log("test")
         })
 
-
+// LIGHT MODE
         lightModeEl.addEventListener('click', (e) =>{
-
+// positioning of icon and menu
             menuEl.style.cssText = " opacity: 0; z-index: -1;"
             hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
             
+
+                // styling for time element
+    hourEl.style.cssText = " background-color: rgb(179, 179, 179);  box-shadow: 1px 2px 7px black; color:rgb(51, 51, 51); text-shadow: 1px 1px 5px white;"
+   
+    minEl.style.cssText = " background-color: rgb(179, 179, 179);  box-shadow: 1px 2px 7px black; color:rgb(51, 51, 51); text-shadow: 1px 1px 5px white;"
+      timeDate.style.backgroundImage = "url('clock wallpaper.jpg')"
+      
+burgerOneEl.style.cssText = "list-style-image: url('list dash black.png'); height:12px;"
+burgerTwoEl.style.cssText = "list-style-image: url('list dash black.png'); height:12px;"
+burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png'); height:12px;"
             //console.log("test")
             })
         
     
+
+// DEFAULT MODE
+defaultModeEl.addEventListener('click', (e) =>{
+    // positioning of icon and menu
+                menuEl.style.cssText = " opacity: 0; z-index: -1;"
+                hamburgerEl.style.cssText = " position: relative; left: 0vw; opacity: 1"
+                
+    
+                    // styling for time element
+        hourEl.style.cssText = " background-color:  rgba(19, 43, 89,0.9);  box-shadow: 3px 3px 7px rgb(49, 149, 216); color:white; text-shadow: none;"
+       
+        minEl.style.cssText = " background-color:  rgba(19, 43, 89,0.9);  box-shadow: 3px 3px 7px rgb(49, 149, 216); color:white; text-shadow: none;"
+          timeDate.style.backgroundImage = "url('clock dark cropped.jpg')"
+          
+    burgerOneEl.style.cssText = "list-style-image: url('list dash white.png'); height:18px;"
+    burgerTwoEl.style.cssText = "list-style-image: url('list dash white.png'); height:18px;"
+    burgerThreeEl.style.cssText = "list-style-image: url('list dash white.png'); height:12px;"
+                //console.log("test")
+                })
+            
 
 
 
