@@ -127,11 +127,11 @@ var lightModeEl = document.getElementById("light-mode")
 var defaultModeEl = document.getElementById("default")
 //  we'll just make them activate an alert first to make sure they work. (sorted) - Then we just need to hide the menu after click and return the hamburger icon to its original location
 
-// CLEAN AND MINIMAL MODES
+// CLEAN AND MINIMAL MODE
 cleanMinimalEl.addEventListener('click', (e) =>{
 // positioning of icon and menu
     menuEl.style.cssText = " opacity: 0; z-index: -1;"
-    hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1";
+    hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1;"
     // styling for time element
     hourEl.style.cssText = " background-color: black; box-shadow: 1px 1px 5px grey;"
    
@@ -147,7 +147,7 @@ burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png'); hei
     darkModeEl.addEventListener('click', (e) =>{
 // positioning of icon and menu
         menuEl.style.cssText = " opacity: 0; z-index: -1;"
-        hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1"
+        hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1;"
         
 // NOTE - TRY TO USE OBJECTS FOR ALL OF THESE  FUNCTIONS. 
 
@@ -168,7 +168,7 @@ burgerThreeEl.style.cssText = "list-style-image: url('list dash blue.png'); heig
         lightModeEl.addEventListener('click', (e) =>{
 // positioning of icon and menu
             menuEl.style.cssText = " opacity: 0; z-index: -1;"
-            hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1"
+            hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1;"
             
 
                 // styling for time element
@@ -189,7 +189,7 @@ burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png'); hei
 defaultModeEl.addEventListener('click', (e) =>{
     // positioning of icon and menu
                 menuEl.style.cssText = " opacity: 0; z-index: -1;"
-                hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1"
+                hamburgerEl.style.cssText = " position: relative; left: 10%; opacity: 1;"
                 
     
                     // styling for time element
