@@ -76,11 +76,11 @@ body{height: 100%; width: 100%;}
 /*  styling for hamburger menu*/
 .burger-layers{
     list-style-image: url("list dash white.png");
-    width:  15px; height: 18px; /*  height value changes distance also, smaller the height, smaller the distance, and vice versa: width changes nothing so you'll have to do that from paint.net*/
+    width:  15px; height: 14px; /*  height value changes distance also, smaller the height, smaller the distance, and vice versa: width changes nothing so you'll have to do that from paint.net*/
     position: relative; left: 38px; top: 18px;
     }
     #hamburger{ width: 10px; height: 50px; margin-top: 0px; border-radius: 50%;}
-        #hamburger-holder{width: 80vw; height: 50px; display: flex; justify-content: right; margin-right: 10%; position: absolute; margin-top: 100px;}
+        #hamburger-holder{width: 80vw; height: 50px; display: flex; justify-content: right; margin-right: 10%; position: absolute; margin-top: 130px;}
         ul:hover{cursor: pointer;}
 
 
