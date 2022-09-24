@@ -198,9 +198,9 @@ defaultModeEl.addEventListener('click', (e) =>{
         minEl.style.cssText = " background-color:  rgba(19, 43, 89,0.9);  box-shadow: 3px 3px 7px rgb(49, 149, 216); color:white; text-shadow: none;"
           timeDate.style.backgroundImage = "url('clock dark cropped.jpg')"
           
-    burgerOneEl.style.cssText = "list-style-image: url('list dash white.png'); height:18px;"
-    burgerTwoEl.style.cssText = "list-style-image: url('list dash white.png'); height:18px;"
-    burgerThreeEl.style.cssText = "list-style-image: url('list dash white.png'); height:12px;"
+    burgerOneEl.style.cssText = "list-style-image: url('list dash white.png'); height:14px;"
+    burgerTwoEl.style.cssText = "list-style-image: url('list dash white.png'); height:14px;"
+    burgerThreeEl.style.cssText = "list-style-image: url('list dash white.png'); height:14px;"
                 //console.log("test")
                 })
             
