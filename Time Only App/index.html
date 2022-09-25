@@ -9,103 +9,65 @@
                  href="style.css">
 
             <title> Time App</title>
+
         </head>
 
        
         <body>
-<div class="date-time-container" id="time-date-container">
-          <!--  <h1> 
-                  <strong><p class="headpara">Time  </p></strong></h1>
- -->
-
-  <div id="label-container">
-    <div id="label-el">
-          <p class="label">Day</p>
-          <p class="label">Month</p>
-          <p class="label">Year</p>
-     </div>
-  </div>
+<div class="time-container" id="time-container-id">
+  
 
 
 <!--  this is the hamburger icon which reveals the hidden 'theme' menu-->
-
 <div id="hamburger-holder">
-      <div id="hamburger-div" class="hamburger-class">
+
+        <div id="hamburger-div" class="hamburger-class">
 <ul id="hamburger"> 
-<li class="burger-layers" id="one"></li>
-<li class="burger-layers" id="two"></li>
-<li class="burger-layers" id="three"></li>
+    <li class="burger-layers" id="one"></li>
+    <li class="burger-layers" id="two"></li>
+    <li class="burger-layers" id="three"></li>
 </ul>
+        </div>
 </div>
-</div>
+
+
+  <!-- modal which contains the theme options menu-->
 
 
 
-  <!--  below we are creating a floating div which will be activated when we click  our hamburger menu icon; we'll use position ??fixed, and use a negative margin-top so that it appears just below the menu icon - we can do as YouTube does and have it automatically just right of the screen, and on :active we might be able to animate it along, or maybe just start the easy way and have it appear.. you need to toggle as well-->
+    <div id="simple-modal" >
+    <div id="modal-header">THEMES
+        <span id="close-btn" onclick="closeModal()">&times</span>
+    </div>
 
-
-  <ul class="menu-div" id="div-menu">          
-      <div class="menu-container">
-      <li class="menu-heading">Themes</li>
+  <div class="content">
+    <ul class="menu-div" id="div-menu">          
       <li><a href="#" id="default" class="menu-options">Default                </a></li>
-      <li><a href="#" id="clean-minimal" class="menu-options">Clean and Miminal</a></li>
-      <li><a href="#" id="dark-mode" class="menu-options">Dark Mode             </a></li>
-      <li><a href="#" id="light-mode" class="menu-options">Light Mode            </a></li>
-      </div>
-  </ul>
-
-
-
-
-
-
-
-
-
-  <!-- end of list for menu-->
-
-<div id="date-container">
-  <div id="date-el">
-        <p class="time-el" id="day">00</p>
-        <p class="time-el" id="month">Jun</p>
-        <p class="time-el" id="year">00</p>
-         </div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div id="label-container">
-  <div id="label-el">
-        <p class="label">Hour</p>
-        <p class="label">Minute</p>
-        <p class="label">Seconds</p>
-   </div>
+      <li><a href="#" id="clean-minimal" class="menu-options">Clean & Miminal</a></li>
+      <li><a href="#" id="dark-mode" class="menu-options">Dark Mode          </a></li>
+      <li><a href="#" id="light-mode" class="menu-options">Light Mode         </a></li>
+    </ul>
+  </div>
 </div>
 
+
+
+  <!-- clock container-->
 
 <div id="clock-container">
-  <div id="clock-el">
+    <!-- we only need hours and seconds for this basic clock-->
+    <div id="clock-el">
         <p class="time-el" id="hour">00</p>
         <p class="time-el" id="min">00</p>
-        <p class="time-el" id="sec">00</p>
-   </div>
-</div>
-<br>
-<br>
-<div id="dayname-container">
-      <p class="dayname-el" id="dayname">day</p>
- </div>
- <br>
-<br>
-
+    </div>
 </div>
 
+
+
+</div>
         </body>
+
+
              <footer id="main-footer">
                 Marvin-a-Barrow &copy 2022 JavaScript Experiments
                 <script src="script.js"></script>
