@@ -45,7 +45,7 @@ function log(){
     let ctSecond = secondNow - minuteNow*60// calc for current second
  
     acDateArr.push(ctHour,ctMinute)
-    console.log(ctHour,ctMinute)
+    
     
 }
 
@@ -77,7 +77,6 @@ var burgerTwoEl = document.getElementById("two")
 var burgerThreeEl = document.getElementById("three")
 
 var timeDate = document.getElementById("time-container-id")
-var timeEl = document.querySelectorAll('.time-el')
 var burgerEl = document.querySelectorAll('.burger-layers')
 // variables created from menu items. We'll use event listeners to activate the modes when menu links are pressed
 var cleanMinimalEl = document.getElementById("clean-minimal")
@@ -102,12 +101,12 @@ cleanMinimalEl.addEventListener('click', (e) =>{
         // DARK MODE
     darkModeEl.addEventListener('click', (e) =>{
                            // styling for time element
-            hourEl.style.cssText = " box-shadow: 1px 1px 5px grey; background-image: url('full-moon-forest.jpg'); color:rgb(0, 204, 255) ;"
-            minEl.style.cssText = "box-shadow: 1px 1px 5px grey; background-image: url('full-moon-forest.jpg'); color:rgb(0, 204, 255) ;"           
+            hourEl.style.cssText = " box-shadow: 1px 1px 5px grey; background-image: url('full-moon-forest.jpg'); color:rgb(0, 204, 255) ; "
+            minEl.style.cssText = "box-shadow: 1px 1px 5px grey; background-image: url('full-moon-forest.jpg'); color:rgb(0, 204, 255) ; "           
               timeDate.style.backgroundImage = "url('moon crescent.png')"
-        burgerOneEl.style.cssText = "list-style-image: url('list dash blue.png'); height:12px"
-        burgerTwoEl.style.cssText = "list-style-image: url('list dash blue.png'); height:12px"
-        burgerThreeEl.style.cssText = "list-style-image: url('list dash blue.png'); height:12px"
+        burgerOneEl.style.cssText = "list-style-image: url('list dash blue.png'); height:14px"
+        burgerTwoEl.style.cssText = "list-style-image: url('list dash blue.png'); height:14px"
+        burgerThreeEl.style.cssText = "list-style-image: url('list dash blue.png'); height:14px"
         modal.style.display = "none"       
              })
 
@@ -115,13 +114,14 @@ cleanMinimalEl.addEventListener('click', (e) =>{
              // LIGHT MODE
         lightModeEl.addEventListener('click', (e) =>{
                             // styling for time element
-                hourEl.style.cssText = " background-color: rgb(179, 179, 179);  box-shadow: 1px 2px 7px black; color:rgb(51, 51, 51); text-shadow: 1px 1px 5px white;"
-                minEl.style.cssText = " background-color: rgb(179, 179, 179);  box-shadow: 1px 2px 7px black; color:rgb(51, 51, 51); text-shadow: 1px 1px 5px white;"
+                hourEl.style.cssText = " background-color: rgb(179, 179, 179);  box-shadow: 1px 2px 7px black; color:rgb(51, 51, 51); text-shadow: 1px 1px 5px white; opacity: 0.95;"
+                minEl.style.cssText = " background-color: rgb(179, 179, 179);  box-shadow: 1px 2px 7px black; color:rgb(51, 51, 51); text-shadow: 1px 1px 5px white; opacity: 0.95;"
                   timeDate.style.backgroundImage = "url('clock wallpaper.jpg')"
-                    burgerOneEl.style.cssText = "list-style-image: url('list dash black.png'); height:12px;"
-            burgerTwoEl.style.cssText = "list-style-image: url('list dash black.png'); height:12px;"
-            burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png'); height:12px;"
+                    burgerOneEl.style.cssText = "list-style-image: url('list dash black.png'); height:14px;"
+            burgerTwoEl.style.cssText = "list-style-image: url('list dash black.png'); height:14px;"
+            burgerThreeEl.style.cssText = "list-style-image: url('list dash black.png'); height:14px;"
             modal.style.display = "none" 
+           
                         })
 
 // DEFAULT MODE

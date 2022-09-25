@@ -24,7 +24,7 @@ body{height: 100%; width: 100%;}
         #hamburger-div:active{background-color: rgba(185, 169, 169, 0.44);}
 
 /* unordered list*/
-        #hamburger{ width: 10px; height: 50px; margin-top: 0px; border-radius: 50%;}
+        #hamburger{ width: 10px; height: 50px; margin-top: 0px;  border-radius: 50%;}
 
         /* list items; each represents one of the three layers of the hamburger*/
 .burger-layers{
@@ -76,7 +76,7 @@ body{height: 100%; width: 100%;}
 
 
     /* THEME OPTIONS menu */
-    .content{z-index: 2; width: 85%;height: 75%;position: absolute; display: flex; justify-content: start; opacity: 1; z-index: -1; background-color: rgba(19, 43, 89,0.9); margin-top: 6%; margin-left: 6%; border-radius: 5%;}
+    .content{z-index: 2; width: 85%;height: 60%;position: absolute; display: flex; justify-content: start; opacity: 1; z-index: -1; background-color: rgba(19, 43, 89,0.9); margin-top: 6%; margin-left: 6%; border-radius: 5%;}
 
      
     .menu-options{font-size: 7vw;; text-shadow: 1px 1px 2px white; text-shadow: 1px 1px 2px black ;}
@@ -130,6 +130,8 @@ body{height: 100%; width: 100%;}
          }
          #hamburger-holder{margin-top: -10px;}
          .time-container{margin-top: -15%;}
+         #simple-modal{width:95%; height: 95%;}
+         .content{height: 40%;}
 }
 
 
