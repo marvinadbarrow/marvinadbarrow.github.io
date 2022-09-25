@@ -63,7 +63,7 @@ body{height: 100%; width: 100%;}
 
     #modal-paraTwo{margin:10px;font-size:20px; font-weight:bold;color:white;}
     
-    #modal-headerTwo{height: 80px; background-color:rgb(227, 215, 48); font-size:60px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color:white; font-family: 'Anton', sans-serif; letter-spacing:5px;}
+    #modal-headerTwo{height: 80px; background-color:rgb(227, 215, 48); font-size:60px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color:white;letter-spacing:5px;}
     
     
     @keyframes modalfade{
