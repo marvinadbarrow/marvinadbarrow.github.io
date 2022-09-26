@@ -19,6 +19,7 @@ minEl.textContent = acDateArr[1]
 // below two give double digits if min/sec < 10
  // this changes the mindnight hour which reads as '24' to '00'
 if (acDateArr[0] < 10){hourEl.textContent =  "0" + acDateArr[0]}
+else if (acDateArr[0] > 23){hourEl.textContent =  "00" }
 else{hourEl.textContent = acDateArr[0]}
 
 
