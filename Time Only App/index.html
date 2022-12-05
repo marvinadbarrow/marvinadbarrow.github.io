@@ -9,66 +9,65 @@
                  href="style.css">
 
             <title> Time App</title>
+
         </head>
 
        
         <body>
-<div class="date-time-container">
-          <!--  <h1> 
-                  <strong><p class="headpara">Time  </p></strong></h1>
- -->
+<div class="time-container" id="time-container-id">
+  
 
-  <div id="label-container">
-    <div id="label-el">
-          <p class="label">Day</p>
-          <p class="label">Month</p>
-          <p class="label">Year</p>
-     </div>
+
+<!--  this is the hamburger icon which reveals the hidden 'theme' menu-->
+<div id="hamburger-holder">
+
+        <div id="hamburger-div" class="hamburger-class">
+<ul id="hamburger"> 
+    <li class="burger-layers" id="one"></li>
+    <li class="burger-layers" id="two"></li>
+    <li class="burger-layers" id="three"></li>
+</ul>
+        </div>
+</div>
+
+
+  <!-- modal which contains the theme options menu-->
+
+
+
+    <div id="simple-modal" >
+    <div id="modal-header">THEMES
+        <span id="close-btn" onclick="closeModal()">&times</span>
+    </div>
+
+  <div class="content">
+    <ul class="menu-div" id="div-menu">          
+      <li><a href="#" id="default" class="menu-options">Classic                </a></li>
+      <li><a href="#" id="clean-minimal" class="menu-options">Clean & Miminal</a></li>
+      <li><a href="#" id="dark-mode" class="menu-options">Dark Mode          </a></li>
+      <li><a href="#" id="light-mode" class="menu-options">Light Mode         </a></li>
+    </ul>
   </div>
-
-
-<div id="date-container">
-  <div id="date-el">
-        <p class="time-el" id="day">00</p>
-        <p class="time-el" id="month">Jun</p>
-        <p class="time-el" id="year">00</p>
-         </div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div id="label-container">
-  <div id="label-el">
-        <p class="label">Hour</p>
-        <p class="label">Minute</p>
-        <p class="label">Seconds</p>
-   </div>
 </div>
 
+
+
+  <!-- clock container-->
 
 <div id="clock-container">
-  <div id="clock-el">
+    <!-- we only need hours and seconds for this basic clock-->
+    <div id="clock-el">
         <p class="time-el" id="hour">00</p>
         <p class="time-el" id="min">00</p>
-        <p class="time-el" id="sec">00</p>
-   </div>
-</div>
-<br>
-<br>
-<div id="dayname-container">
-      <p class="dayname-el" id="dayname">day</p>
- </div>
- <br>
-<br>
-
+    </div>
 </div>
 
+
+
+</div>
         </body>
+
+
              <footer id="main-footer">
                 Marvin-a-Barrow &copy 2022 JavaScript Experiments
                 <script src="script.js"></script>

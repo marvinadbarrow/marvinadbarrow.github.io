@@ -1,39 +1,153 @@
 
-h1{color: rgb(250, 249, 249);font-weight: bold; font-size: 60px; letter-spacing:5px;text-shadow: 2px 2px 5px rgb(15, 14, 14);}
+ .date-time-container{width: 100%; height: 100%;margin-top: -7vh; padding-bottom: 10vh;}
 
+footer{color: rgb(0, 0, 0); margin: auto; margin-top: 50px; width: 500px; height: 30px; text-align: center; font-size: 23px; margin-top: 0px; font-weight: bold; }
 
-footer{color: rgb(0, 0, 0); margin: auto; margin-top: 50px; width: 500px; height: 200px; text-align: center; font-size: 23px; margin-top: 50px; font-weight: bold;}
-
-body{height: 720px; width: 500px;}
-
-.headpara{text-align: center; margin-bottom: -50px; margin-top: -20px;}
-
-.date-time-container{background-image: url('clock dark cropped.jpg'); width: 410px; height: 710px; margin: auto; border-radius: 15px;text-shadow: 1px 1px 4px rgb(15, 14, 14); box-shadow: 3px 3px 7px rgb(10, 10, 10);}
+body{height: 100%; width: 100%;}
 
 
 
+/*  below are all of the elements as they lay on the page in the markup */
+
+/*  main container which holds the main elements, icon container, menu container and clock container, and their respective children */
+
+.time-container{background-image: url('clock dark cropped.jpg');  width: 90%; aspect-ratio: 16/9; margin: auto; border-radius: 15px;text-shadow: 1px 1px 4px rgb(15, 14, 14); box-shadow: 3px 3px 7px rgb(10, 10, 10);}
+
+
+/* main container which holds the div containing the 'ul' list of theme options */
+    
+    #hamburger-holder{width: 80vw; height: 50px; display: flex; justify-content: right; margin-right: 10%; position: absolute; margin-top: 80px;}
+    ul:hover{cursor: pointer;}
+
+    /* div containing 'ul' theme options */
+        #hamburger-div{width: 90px; height: 90px; background-color: none;   border-radius: 50%; margin-right: 10px; background-color:none;}
+        #hamburger-div:active{background-color: rgba(185, 169, 169, 0.44);}
+
+/* unordered list*/
+        #hamburger{ width: 10px; height: 50px; margin-top: 0px;  border-radius: 50%;}
+
+        /* list items; each represents one of the three layers of the hamburger*/
+.burger-layers{
+    list-style-image: url("list dash white.png");
+    width:  15px; height: 14px; /*  height value changes distance also, smaller the height, smaller the distance, and vice versa: width changes nothing so you'll have to do that from paint.net*/
+    position: relative; left: 38px; top: 18px;
+    }
 
 
 
 
-#date-el{display: flex; justify-content: space-around;}
-#date-container{width: 530px; height: 150px; margin: auto; display: none;}
+    /*  modal controller */
+   
 
-#month{ width: 170px; height: 140px; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 10px;font-size: 100px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center;}
-
-.label{ width: 530px; color: rgb(248, 232, 10); font-size: 35px; text-align: center; font-weight: bold;}
-
-#label-el{display: flex; justify-content: space-around;}
-
-#label-container{width: 530px; height: 10px; margin: auto; margin-bottom: -35px; margin-top: -20px; display: none;}
-
-#dayname-container{ width: 500px; height: 100px; margin: auto; border-radius: 7px; background-color:rgba(76, 160, 172, 0.75); color: white; margin-top: 100px; margin-bottom: -90px; display: none;}
-
-.dayname-el{font-size: 70px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; text-transform: capitalize;}
+    #close-btn{font-weight:bold; font-size:100px; margin:10px;
+    color:rgba(245, 41, 22, 0.7); float:right;
+     }
+    
+    #close-btn:hover{color:rgb(229, 252, 22); cursor: pointer;}
+   
 
 
-/*  elements for clock onlyl - no seconds  */
-#clock-el{display: flex; flex-direction: column; justify-content: space-around; align-items: center;}
-#clock-container{width: 400px; height: 150px; margin: auto; margin-top: -290px;}
-#sec{display: none;}
-.time-el{ width: 300px; height: 300px; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 10px;font-size: 200px; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; box-shadow: 3px 3px 7px rgb(49, 149, 216); margin-bottom: -170px;}
+    #simple-modal{
+        z-index: 2;
+    width:95%; height: 95%; position: absolute;
+    display:none;
+    box-shadow: 2px 2px 7px black;
+    width:100; height:750px;
+    background-color:rgba(79, 169, 243, 0.775);
+    z-index:1;
+    overflow:auto;
+    align-items: center;
+    border-radius: 7%;
+    }
+    
+
+    #modal-paraTwo{margin:10px;font-size:20px; font-weight:bold;color:white;}
+    
+    #modal-header{height: 80px;font-size:60px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px;color:white;color:white;  letter-spacing:5px;}
+    
+    
+    @keyframes modalfade{
+    from{opacity:0}
+    to{opacity:1}
+    }
+
+
+
+
+
+    /* THEME OPTIONS menu */
+    .content{z-index: 2; width: 85%;height: 60%;position: absolute; display: flex; justify-content: start; opacity: 1; z-index: -1; background-color: none; margin-top: 6%; margin-left: 6%; border-radius: 5%;}
+
+     
+    .menu-options{font-size: 7vw;; text-shadow: 1px 1px 2px white; text-shadow: 1px 1px 2px black ;}
+    .menu-options:hover{background-color: rgba(19, 43, 89,0.9);}
+    
+    
+    a{text-decoration:none; list-style: none; color: rgb(255, 244, 95); font-weight: bold;  }
+    a:hover{color: rgb(249, 251, 252);}
+    ul{list-style-type: none; }
+    li{width: 400px; height: 20%;;white-space: pre; }  /* white-space: pre; ensures that the whitespace around characters is rendered on the page - so I can have the div baackground color cover a wider area than the visible characters */
+    .menu-heading{font-size: 30px; color: white; text-shadow: 1px 1px 2px rgb(5, 4, 4);}
+    
+
+
+
+
+
+
+/* main clock container  */
+#clock-container{display: flex; align-items: center; width: 90%; height: 80%; margin: auto;  margin-top: 5vh; background-color: none; margin-top: 10vh; }
+
+
+/*  constiner for hour and second elements  */
+#clock-el{display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 90%; height: 90%; margin: auto; background-color: none; }
+
+
+
+/* paragraphs that contain rendered times  */
+.time-el{ width: 45%; aspect-ratio: 1 / 1; background-color: rgba(19, 43, 89,0.9); color: white; border-radius: 3vw;font-size: 25vw; font-family: 'Anton', sans-serif; letter-spacing:5px; text-align: center; box-shadow: 3px 3px 7px rgb(49, 149, 216);  margin-top: 55%;}
+
+
+
+
+
+
+/* MEDIA QUERIES FOR PORTRAIT AND LANDSCAPE */
+
+
+/* when viewport turns portrait*/
+@media (orientation: portrait) {
+    #clock-container{width: 100%; height: 100%;}
+    body, html{height: 100%; width: 100%;}
+    .time-container{width: 100%; height: 100%;}
+#clock-el{display: flex; flex-direction: column; height: 98%; width: 98%;}
+    .time-el{ font-size: 50vw;
+        width: 70%; height: 45%; /* height: 43vh; */
+        margin-top: -40%;
+        margin-bottom: -40%;  
+        border-radius: 7vw; 
+       
+         }
+         #hamburger-holder{margin-top: -10px;}
+         .time-container{margin-top: -15%;}
+         #simple-modal{width:95%; height: 95%;}
+         .content{height: 40%;}
+}
+
+
+/* when viewport turns landscape*/
+@media (orientation: landscape){
+    #hamburger-div{ position: relative; bottom: 10vh; left: 9vw;}
+}
+    
+
+
+
+
+
+
+      
+    
+
+    
+
