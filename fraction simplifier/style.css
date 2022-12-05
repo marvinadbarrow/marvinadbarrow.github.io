@@ -1,0 +1,428 @@
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+
+
+
+#button-container{
+width: 20vw;
+height: 12vw;
+margin: auto;
+padding-top: 2vw;
+background-color: rgba(255, 0, 0, 0);
+margin-top: 1vh;
+}
+
+
+#button-4{display: none;}
+
+
+button{
+    font-size: 20px;
+    border-radius: 5px;
+    height: 5vw;
+    width: 16vw;
+    display: block;
+    box-shadow: 2px 2px 3px black;
+margin: auto;
+margin-top: 2vw;
+}
+
+.shadow{
+    box-shadow: 2px 2px 3px black;
+}
+button:hover{cursor: pointer;}
+button:focus{box-shadow: 1px 1px 2px grey ;}
+
+#decimal-btn{
+    background-color:rgb(84, 249, 120);
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+
+
+#simplify-btn{
+    background-color: rgb(232, 239, 105);
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+
+#convert-btn{
+    background-color: rgb(146, 241, 241);
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+
+
+
+
+#decimal-container{
+   border-radius: 5px;
+    height: 9vw;
+    width: 32vw;
+    box-shadow: 2px 2px 3px black;
+    background-color: rgb(84, 249, 120);
+margin: auto;
+margin-top: -4vw;
+padding: 1vw;
+margin-bottom: 10vw;
+
+}
+
+
+
+#fraction-container{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    font-size: 20px;
+    border-radius: 5px;
+    height: 28vw;
+    width: 36vw;
+    box-shadow: 2px 2px 3px black;
+    background-color: rgba(146, 241, 241, 0.424);
+margin: auto;
+margin-top: 0vw;
+padding: 1vw;
+
+}
+
+#keypad-and-simplified{
+height: 60vw;
+width: 80vw;
+display: flex;
+flex-direction: column;
+margin: auto;
+
+}
+
+
+#simplified-container{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    font-size: 20px;
+    border-radius: 5px;
+    height: 18vw;
+    width: 36vw;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0);
+    background-color: rgba(232, 239, 105, 0);
+margin: auto;
+margin-top: 6vw;
+padding: 1vw;
+
+}
+
+.input{
+    height: 7vw;
+    width: 30vw;
+    background-color: white;
+    align-self: center;
+    border-radius: 3px;
+    border: 2px solid black;
+    font-size: 60px;
+    text-align: center;
+    color: rgba(128, 128, 128, 0.505);
+}
+
+.output{
+    height: 6vw;
+    width: 30vw;
+    background-color: rgb(245, 218, 218);
+    align-self: center;
+    border-radius: 3px;
+    border: 2px solid black;
+    font-size: 60px;
+    text-align: center;
+    color: rgba(128, 128, 128, 0.505);
+}
+
+
+
+#dividor{
+    height: 1.5vw;
+    width: 18vw;
+    box-shadow: 2px 2px 3px black;
+    background-color: rgb(9, 9, 9);
+align-self: center;
+}
+
+
+#numerator-div{
+width: fit-content;
+border-style: none;
+font-size: 70px;
+color: black;
+}
+
+#denominator-div{
+    width: fit-content;
+    border-style: none;
+    font-size: 70px;
+    color: black;
+    }
+
+#keypad-and-input{
+    width: 70vw;
+    height:30vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 2px solid black;
+    margin-top: -10vw;
+    margin: auto;
+    border-radius: 10px;
+    padding: 1vw;
+}    
+
+
+#keypad{
+
+width: 21vw;
+height:28vw;
+background-color: rgb(190, 189, 190);
+display: grid;
+box-shadow: 1px 1px 2px black;
+border-radius: 6px;
+grid-template-areas: 
+"seven eight nine"
+"four five six"
+"one two three"
+"del dec zero"
+;
+grid-template-rows: repeat(4,6vw);
+grid-template-columns: repeat(3, 6vw);
+grid-gap: 1vw;
+padding: 1vw;
+}
+
+
+#one{grid-area: one;}
+#two{grid-area: two;}
+#three{grid-area: three;}
+#four{grid-area: four;}
+#five{grid-area: five;}
+#six{grid-area: six;}
+#seven{grid-area: seven;}
+#eight{grid-area: eight;}
+#nine{grid-area: nine;}
+#zero{grid-area: zero;}
+#del{grid-area: del;}
+#decimal{grid-area: dec;}
+
+
+
+.number{width: 6vw;
+height: 6vw;
+margin-top: 0vw;
+}
+
+#del{
+color: black;
+font-weight: bold;
+background-color: yellow;
+}
+
+#decimal{
+
+    background-color: rgb(255, 107, 132);
+    color: white;
+    font-weight: bold;
+}
+
+/* container for message paragraph */
+#message-el{
+width: 80vw;
+height: 3vw;
+margin: auto;
+margin-top: 5vw;
+}
+
+/* paragraph */
+#message-para{
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    }
+
+
+
+
+
+
+.unshadow{
+    box-shadow: 2px 2px 3px black;
+}
+
+
+
+     /* foooter styling  */
+     footer{color: white; background-color: rgb(43, 41, 41); padding: 2rem 2rem; position: absolute; bottom: 0; width: 92vw; height: 20vh; }
+
+
+     /* footer content container*/
+     #content-container{
+         display: flex; margin-bottom: 4rem;
+           width: 90%;   font-weight:bold; font-size:20px; 
+     }
+     
+     /* footer link contaners */
+     .footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+     
+     
+     /* link styles */
+     footer a{color: white; text-decoration: none; line-height: 2rem;}
+     footer a:hover{color: orange; }
+     
+     /* styles for social media icons*/
+     .fa-youtube{color: red; ;}
+     .fa-linkedin{color: #0073B1;}
+     .fa-facebook{color:#0C87EF ;}
+     
+     .footer-social{font-size: 20px; margin-left: 2rem;}
+     
+     /* footer bottom */
+     .footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+     .footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+     
+     h3{text-decoration: underline;}
+     
+     #my-page{ color: white;}
+     #my-page-link{ font-size: 27px;}
+     
+     /* styling for dev icon*/
+     #dev-icon{color: rgb(84, 243, 243);}
+     
+
+
+
+
+
+
+
+
+
+     @media(orientation: landscape){
+
+        #keypad{
+    
+            width: 13vw;
+            height: 18vw;
+            grid-template-rows: repeat(4,3vw);
+            grid-template-columns: repeat(3, 3vw);
+            grid-gap: 1.5vw;
+           
+            }
+
+            .number{width: 4vw;
+                height: 4vw;
+                margin-top: 0vw;
+                }
+
+                #convert-btn{
+                    font-size: 22px;
+                    border-radius: 5px;
+                    height: 3vw;
+                    width: 14vw;
+                   
+                }
+        
+                #keypad-and-input{
+                    width: 40vw;
+                    height:20vw;
+                    margin-top: 3vw;
+                    padding: 1vw;
+                }    
+                #fraction-container{
+                    font-size: 20px;
+                    height: 16vw;
+                    width: 21vw;
+                    padding: 0.5vw;
+                
+                }
+            
+                .input{
+                    height: 4vw;
+                    width: 19vw;
+                 border-radius: 5px;
+                    font-size: 45px;
+                    color: rgba(128, 128, 128, 0.505);
+                
+                }    
+                
+                .output{
+                    height: 4vw;
+                    width: 15vw;
+                 border-radius: 5px;
+                    font-size: 38px;
+                    color: rgba(128, 128, 128, 0.505);
+                
+                } 
+
+
+                
+                #button-container{
+                    width: 20vw;
+                    height: 4vw;
+                    padding-top: 0vw;
+                    background-color: rgba(229, 212, 20, 0);
+                    margin-bottom: 3vh;
+                        }   
+                        
+                        #keypad-and-simplified{
+                       
+                            height: 30vw;
+                            width: 80vw;
+                            background-color: rgba(197, 67, 67, 0);
+                            flex-direction: row;
+                           
+                            
+                            }
+
+                            #simplified-container{
+                                height: 16vw;
+                                width: 20vw;
+                                margin: auto;
+                            padding: 1vw;
+                           }
+                
+                            #numerator-div{
+                                width: fit-content;
+                                height: fit-content;
+                                border-style: none;
+                                font-size: 80px;
+                                }
+                                
+                                #denominator-div{
+                                    width: fit-content;
+                                    height: fit-content;
+                                    border-style: none;
+                                    font-size: 80px;
+                                        }
+      
+                                        #dividor{
+                                            height: 1.5vw;
+                                            width: 18vw;
+                                       
+                                        }
+        footer{padding: 0rem 0rem; width: 98vw; height: 27vh; }               
+                
+        #content-container{
+           margin-bottom: 1rem;
+             
+        }
+        
+
+        .footer-bottom{height: 1.75rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem; }
+        .footer-bottom span{margin-right: auto; font-size: 18px;}
+
+        #content-container{
+            display: flex; margin-bottom: 1rem;
+              width: 90%;   font-weight:bold; font-size:20px; 
+        }
+    }

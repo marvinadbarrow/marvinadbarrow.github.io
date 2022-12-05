@@ -1,0 +1,13 @@
+
+fraction simplifier - MAINLY DONE - JUST TO SORT OUT LARGE PRIMES -  primes is solved. 
+
+POSSIBLE FIX FOR MAXIMUM CALL STACK... 
+Change the index value from '1' to zero on line 396
+
+
+and then remove the numerator and denominator numbers from the zeroth positions of their respective factors arrays( lines 568 to 570),
+
+
+ then, instead of using the zeroth position as the value to examine, just use the numerator/denominator/contents value; (line 397 and 399) where we've defined mainNum as numeratorFactorsArray[0], and mainDen as denominatorFactorsArray[0] - so these have to be changed to mainNum  = numeratorContents and mainDen = denominatorContents. 
+
+probably best to make a backup copy of the original in case something goes wrong because this involves several changes. 
