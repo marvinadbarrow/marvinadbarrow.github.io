@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+             <link rel="stylesheet" type="text/css" href="style.css">
+
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <title> Image gallery</title>
+        </head>
+        
+        <header>
+         
+        </header>
+        <body id="body">
+
+<button id="slide-show">Slide Show</button>
+
+
+<div id="modal-container">
+  <img id="simple-modal">                
+             <span id="close-btn">&times</span>
+             <!-- icon to full screen the page instead of using F11--> 
+<i class="fa fa-expand" aria-hidden="true" id="full-screen"></i>     
+    </div>
+
+
+<div id="application">
+
+<!-- container for the image div, which remains empty until a thumnail is selected 
+
+below is the source for the first image div
+./Thumbs for image gallery/1-6/avatar.jpg
+
+-->
+
+        <!-- contains first five divs which, themselves, contain the thumgs which can be selected for display in the image viewer-->  
+        <div id="container-arrow-holder">     
+
+          <img id="left-arrow" src="./arrow left small.png" alt="left arrow" class="arrow">
+
+<div id="thumb-div-container">
+ 
+<div class="thumbnail-div">
+<img class="thumbnail" id="one">
+</div>
+
+  <div class="thumbnail-div">
+<img class="thumbnail" id="two">
+</div>
+
+  <div class="thumbnail-div">
+<img class="thumbnail" id="three">
+</div>
+
+  <div class="thumbnail-div">
+<img class="thumbnail" id="four">
+</div>
+
+  <div class="thumbnail-div">
+<img class="thumbnail" id="five">
+  </div>
+
+
+  <div class="thumbnail-div">
+    <img class="thumbnail" id="six">
+      </div>
+      
+    </div>
+<!-- contains next five divs which, themselves, contain the thumgs which can be selected for display in the image viewer--> 
+
+<img id="right-arrow" src="./arrow right small.png" alt=" right arrow" class="arrow">
+
+</div>
+
+
+          <div id="image-container">
+            <img id="image-div">
+          
+            
+            
+            </div>
+
+           </div>
+
+
+
+
+
+<script src="script.js"></script>
+        </body>
+      <footer>
+       <div class="footer-container">
+                                    
+                                                  
+      </footer>             
+    </html>
