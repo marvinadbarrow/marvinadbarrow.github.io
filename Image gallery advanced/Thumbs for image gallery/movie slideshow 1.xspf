@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
+	<title>Playlist</title>
+	<trackList>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/2b29ede21a66be2e085825c0e0d228a0.jpg</location>
+			<duration>10000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>0</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/TAU_Vertical-Main_RGB.jpg.crdownload</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>1</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/08dff36ac31de058bf8e47cedddb60e5.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>2</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/11a467b5c024b222dbbbc7b952dae162.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>3</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/17181.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>4</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/2015.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>5</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/280f1b340b2aa713e207b890bff0e6f5.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>6</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/29eab188e6f646ad029276be51130e97.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>7</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/2b29ede21a66be2e085825c0e0d228a0.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>8</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/6a88c6506d4a323189d0150f2c0739a5.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>9</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/71Y5pMAw8rL._AC_SL1200_.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>10</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/71nDKtSrZqL._SL1500_.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>11</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/81GQc+Ck1WL.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>12</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/81OSKMhyLrL._SL1500_.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>13</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/9e3ca509af670837b89a0c3de9e80c2e.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>14</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/AVATAR_RERLS_1SHT_DIGITAL_sRGB_V7.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>15</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/Death-Wish-new-Poster.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>16</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/IMG_8984.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>17</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/Live-or-Let-Die-2021.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>18</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/MV5BODk5NGFiZTMtMTVhOC00MjhjLTg0NmQtODU1NTA2Y2M1NDcxXkEyXkFqcGdeQXVyNzk5ODY5Njk@._V1_.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>19</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/MV5BOWU5ZjY4YjMtZGIwNi00MjkzLWJhNTktMDdlZmI5ZTBjYTY2XkEyXkFqcGdeQXVyMTY1NDQ5ODA@._V1_.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>20</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/Project-Power-Movie-Poster-Jamie-Foxx.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>21</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/Scream-2022-Poster.-Credit-Spyglass.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>22</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/Scream-2022-Third-Poster-Sidney-Knife.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>23</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/Smile.2022-Official.Domestic.One_.Sheet_.Poster-01.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>24</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/TAU_Vertical-Main_RGB.jpg.crdownload</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>25</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/The+Harder+They+Fall+official+poster.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>26</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/The-Edge-poster_JohnCordero.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>27</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/The-Way-Back-Movie-Poster-Ben-Affleck.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>28</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/Tomb-Raider-new-poster.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>29</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/Unbound-Evil-movie-film-paranormal-horror-Croatian-2022-trailer-poster.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>30</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/Watcher.png</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>31</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/a24-men-scaled.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>32</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/a415e2aed32304b53b20e78f3d9c34ce.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>33</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/aMwWAPcrcDiOkPlPUmqL9gvmXN.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>34</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/ae858c7a623ae552c640e973200924c4.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>35</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/animal-movie-poster.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>36</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/d1gjdcL.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>37</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/dark_knight_2008_joker_style_teaser_original_film_art_5000x.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>38</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/df1dmze-62860e69-9120-4964-a7c2-9bbd69f35f34.png</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>39</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/dlk-key-1sht-27x40-026-f1-1635183161137.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>40</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/e6c8ce9e9f867b507ef0e5d43b0589f4.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>41</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/extinction.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>42</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/firestarter_1984_b2_original_film_art_5000x.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>43</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/hard-kill-poster-bruce-willis.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>44</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/il_1140xN.3383227584_g5ur.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>45</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/inception-10th-anniversary-event-147199.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>46</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/max1573783676-frontback-cover.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>47</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/nights-end-key-art-2x3-1646265852044.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>48</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/p10742206_p_v8_aa.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>49</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/prometheus-movie-poster.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>50</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/rVW2v9oU5tWglq9sU7fQRPA6Q7i.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>51</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/raw-900x0-c-default.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>52</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/red-notice-61a4f28c22311.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>53</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/set_harrypotterposter_harry_110609_warnerbros.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>54</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/the-grey-movie-poster-01.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>55</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/thedaytheearthstoodstill_29378__97610.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>56</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/total-recall-movie-trailer-poster.w1456.jpg</location>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>57</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/tumblr_9c8fa59efffd3094375e7d07fb608157_36b75636_1280.png</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>58</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/tumblr_cec7df7914d6b9567791b242bbda547f_be8cfdfc_1280.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>59</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/watcher-1sht-mech-1651087975680.jpg</location>
+			<duration>30000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>60</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>file:///C:/Users/Marvin/Desktop/movie%20posters/for%20slideshow/willow_1988_intl_original_film_art_70fe5b2d-78fd-411a-bfb3-ca50372a9c15_1200x.jpg</location>
+			<duration>120000</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>61</vlc:id>
+				<vlc:option>file-caching=1000</vlc:option>
+			</extension>
+		</track>
+	</trackList>
+	<extension application="http://www.videolan.org/vlc/playlist/0">
+		<vlc:item tid="0"/>
+		<vlc:item tid="1"/>
+		<vlc:item tid="2"/>
+		<vlc:item tid="3"/>
+		<vlc:item tid="4"/>
+		<vlc:item tid="5"/>
+		<vlc:item tid="6"/>
+		<vlc:item tid="7"/>
+		<vlc:item tid="8"/>
+		<vlc:item tid="9"/>
+		<vlc:item tid="10"/>
+		<vlc:item tid="11"/>
+		<vlc:item tid="12"/>
+		<vlc:item tid="13"/>
+		<vlc:item tid="14"/>
+		<vlc:item tid="15"/>
+		<vlc:item tid="16"/>
+		<vlc:item tid="17"/>
+		<vlc:item tid="18"/>
+		<vlc:item tid="19"/>
+		<vlc:item tid="20"/>
+		<vlc:item tid="21"/>
+		<vlc:item tid="22"/>
+		<vlc:item tid="23"/>
+		<vlc:item tid="24"/>
+		<vlc:item tid="25"/>
+		<vlc:item tid="26"/>
+		<vlc:item tid="27"/>
+		<vlc:item tid="28"/>
+		<vlc:item tid="29"/>
+		<vlc:item tid="30"/>
+		<vlc:item tid="31"/>
+		<vlc:item tid="32"/>
+		<vlc:item tid="33"/>
+		<vlc:item tid="34"/>
+		<vlc:item tid="35"/>
+		<vlc:item tid="36"/>
+		<vlc:item tid="37"/>
+		<vlc:item tid="38"/>
+		<vlc:item tid="39"/>
+		<vlc:item tid="40"/>
+		<vlc:item tid="41"/>
+		<vlc:item tid="42"/>
+		<vlc:item tid="43"/>
+		<vlc:item tid="44"/>
+		<vlc:item tid="45"/>
+		<vlc:item tid="46"/>
+		<vlc:item tid="47"/>
+		<vlc:item tid="48"/>
+		<vlc:item tid="49"/>
+		<vlc:item tid="50"/>
+		<vlc:item tid="51"/>
+		<vlc:item tid="52"/>
+		<vlc:item tid="53"/>
+		<vlc:item tid="54"/>
+		<vlc:item tid="55"/>
+		<vlc:item tid="56"/>
+		<vlc:item tid="57"/>
+		<vlc:item tid="58"/>
+		<vlc:item tid="59"/>
+		<vlc:item tid="60"/>
+		<vlc:item tid="61"/>
+	</extension>
+</playlist>

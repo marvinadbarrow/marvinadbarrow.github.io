@@ -1,0 +1,219 @@
+*{
+margin:0;
+list-style-type: none;
+
+}
+
+
+#body-slideshow{
+
+    background-color: black;
+}
+
+
+
+
+
+/*  selected picture display*/
+#application{display: flex; flex-direction: column;width: 98vw; height:fit-content;border-style: solid; border-color: black; border-width: 2px; border-radius: 2px; margin-top: 5vh;
+background-color: rgb(89, 89, 89);
+padding-bottom: 2vh !important;
+}
+
+#image-container{ width: 70%; height: fit-content; margin: auto; margin: auto; border-style: none; border-color: black; border-width: 2px; border-radius: 2px; margin-bottom: 5px; }
+
+#image-div{margin: auto; width: 90%; margin-top: 0.5%; margin-left: 5%; border-style: solid; border-color: black; border-width: 2px; border-radius: 5px;  box-shadow: 2px 3px 7px white;}
+
+/* setting this class so that we can add it to new images because the default 'id' used above will be removed and then set to the name of the image source*/
+.image-div{margin: auto; width: 90%; margin-top: 0.5%; margin-left: 5%; border-style: solid; border-color: black; border-width: 2px; border-radius: 5px;  box-shadow: 2px 3px 7px white;}
+
+#iframe-img{margin: auto; width: 90%; height: 80vh; margin-top: 0.5%; margin-left: 5%; border-style: solid; border-color: black; border-width: 2px; border-radius: 5px;  box-shadow: 2px 3px 7px white;}
+
+/*  image element*/
+
+/* let's try something different with the thumb div container; try using a grid instead*/
+
+#container-arrow-holder{ 
+    height: fit-content;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto auto auto  auto  auto  auto auto auto;
+grid-gap: 12px; background-color: rgb(88, 110, 238);
+padding: 1vw;
+}
+
+img{
+width: 90px;
+}
+
+/* highlight thumbs on hover*/
+.thumbnail-img:hover{
+    outline: 2px white solid;
+    outline-offset: 2px;
+}
+
+
+.outline{
+outline: 3px solid white;
+outline-offset: 1.5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (orientation: portrait) {
+    #application{width: 90%; margin: auto; height:95vh ;border-style: solid;}  
+    #image-container{ height: 82vh; width: 85vw;}
+    #thumb-div-container{ width: 52%;}
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /* styling for hamburger menu*/
+    /* div containing 'ul' theme options */
+    #hamburger-div{width: 90px; height: 90px; background-color: none;   border-radius: 50%; margin-right: 10px; background-color:none;
+        position: absolute; top: 15vh ;
+        }
+
+        #hamburger-div:hover{cursor: pointer;}
+        
+        #hamburger-div:active{background-color: rgba(185, 169, 169, 0.44);}
+
+/* unordered list*/
+        #hamburger{ width: 10px; height: 50px; margin-top: 0px;  border-radius: 50%;}
+
+        /* list items; each represents one of the three layers of the hamburger*/
+.burger-layers{
+    list-style-image: url("list dash white.png");
+    width:  15px; height: 14px; /*  height value changes distance also, smaller the height, smaller the distance, and vice versa: width changes nothing so you'll have to do that from paint.net*/
+    position: relative; left: 38px; top: 18px;
+    }
+
+
+
+
+/* MENU MODAL*/
+
+#close-menu{position: absolute; right: 5vw; top: 3vh; font-size: 100px; font-weight: bold; color: yellow; text-shadow: 1px 2px 4px black; opacity: 0;z-index: 1;}
+#close-btn:hover{cursor: pointer; font-size: 110px; z-index: 3;}
+
+#modal-menu{
+
+    background-color: red;
+}
+
+#modal-content{
+    position: absolute;
+background-color: rgb(102, 120, 208);
+width: 22vw;
+height: 18vh;
+top: 21vh;
+padding: 0.5vw;
+border-radius: 1vw;
+box-shadow: 2px 3px 7px rgb(9, 9, 9) ;
+display: none;
+}
+
+
+#modal-header{position: absolute;
+    background-color: none;
+    height: 2vh;
+    width:22vw ;
+    font-size: 23px;
+   color: yellow;
+   margin-bottom: 1vh;
+    }
+    #modal-header:hover{
+        background-color: black;
+cursor: pointer;
+    }
+
+ul{
+    position: absolute;
+margin-top: 2vh;
+
+}
+.options{font-size: 25px; color: white;}
+.options:hover{
+background-color: orange;
+cursor: pointer;
+}
+
+
+#speed-options{
+color: rgb(245, 73, 130);
+font-size: 25px;
+text-shadow: 1px 2px 3px rgb(7, 7, 7);
+}
+
+
+
+
+
+
+    /*  below are stylings for the modal which contains the file uplaoder*/
+    #modal-container{display: none; 
+        margin: auto;
+        margin-top: 5vw;
+    position: fixed;
+    top: 0;
+    margin-left: 2.5vw;
+    width: 95vw;
+    height: 95vh;
+    border: 3px solid #0d0e0d;  /* css shorthand property*/
+    border-radius: 10px;
+    background-color:  black;
+    box-shadow: 2px 3px 10px grey;
+    }
+
+
+
+
+#simple-modal{ width: 90%; height: fit-content; position: absolute; left: 5%; right: 5%; top: 5%; box-shadow: 2px 3px 7px white;border-radius: 7px;}
+
+#file-chooser{ margin-right:10vw; margin-top: 5vh;}
+#file-display{ width: 30vw; height: 15vw; overflow-y: scroll; background-color: white; margin-left: 5vw; margin-top: 10vw; font-size: 25px;}
+
+#slide-show{ box-shadow: 2px 3px 7px rgba(2, 3, 3, 0.733); position: fixed; left: 0.5vw; top: 40vh; width: 9vw; aspect-ratio: 1/1;  background-color: rgb(19, 23, 247); color: white; font-weight: bold; border-style: solid; border-width: 2px; border-color: black;border-radius: 7px; font-size: 20px;}
+
+#close-btn{position: absolute; right: 5vw; top: 3vh; font-size: 100px; font-weight: bold; color: yellow; text-shadow: 1px 2px 4px black; opacity: 0;z-index: 1;}
+#close-btn:hover{cursor: pointer; font-size: 110px;}
+
+#choose-label{ background-color: rgb(179, 179, 248); position: absolute; top: 5px; left: 10px; font-size: 20px; padding: 5px; border-radius: 5px; border: 2px solid #0d0e0d;margin-bottom: 20px;}
+#body{background-color: rgb(41, 39, 39)}
+
+/* animation for changing pictures */
+#full-screen{position: absolute; font-size: 50px; margin-left: 47vw; color: white; margin-top: 30px; opacity: 0; bottom: 1vh;}
+#full-screen:hover{cursor: pointer;  font-size: 55px;}
+
+
