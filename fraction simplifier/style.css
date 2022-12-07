@@ -1,6 +1,7 @@
 body{
     width: 100vw;
     height: 100vh;
+    background-image: url('math.jpg');
 }
 
 
@@ -98,7 +99,10 @@ width: 80vw;
 display: flex;
 flex-direction: column;
 margin: auto;
-
+border: 1px solid black;
+border-radius: 7px;
+box-shadow: 2px 2px 4px black;
+background-color: rgb(144, 195, 239);
 }
 
 
@@ -158,6 +162,8 @@ width: fit-content;
 border-style: none;
 font-size: 70px;
 color: black;
+background-color: rgb(144, 195, 239);
+text-shadow: 1px 1px 2px black;
 }
 
 #denominator-div{
@@ -165,6 +171,9 @@ color: black;
     border-style: none;
     font-size: 70px;
     color: black;
+    background-color: rgb(144, 195, 239);
+    text-shadow: 1px 1px 2px black;
+
     }
 
 #keypad-and-input{
@@ -178,6 +187,8 @@ color: black;
     margin: auto;
     border-radius: 10px;
     padding: 1vw;
+    background-color: rgb(236, 175, 100);
+
 }    
 
 
@@ -378,7 +389,6 @@ margin-top: 5vw;
                        
                             height: 30vw;
                             width: 80vw;
-                            background-color: rgba(197, 67, 67, 0);
                             flex-direction: row;
                            
                             
