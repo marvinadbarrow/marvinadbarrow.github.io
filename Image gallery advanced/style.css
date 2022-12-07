@@ -1,0 +1,110 @@
+*{
+margin:0;
+list-style-type: none;
+
+}
+
+
+#body-page-1, #body-page-2, #body-page-3, #body-page-4 {
+
+    
+    background-color: rgb(33, 33, 33);
+}
+#application-body{
+
+width: 85vw;
+height: fit-content;
+border: 1px solid grey;
+margin: auto;
+padding: 1vh;
+background-color: rgb(203, 231, 235);
+border-radius: 1vw;
+box-shadow: 2px 3px 7px white;
+margin-top: 5vh;
+}
+
+#app-navbar{
+
+    height: 6vh;
+    width: 99%;
+    background-color: rgb(185, 179, 179);
+    margin: auto;
+    
+}
+
+P{
+color: greenyellow;
+font-weight: bold;
+font-size: 40px;
+z-index: 1;
+width: fit-content;
+margin: auto;
+text-shadow: 2px 2px 4px black;
+
+}
+
+#page-navigator{
+
+width: 70%;
+height: fit-content;
+margin: auto;
+border: 0.5px solid blue;
+margin-top: 3vh;
+}
+
+ol{
+width: 90%;
+    display: flex;
+flex-direction: row;
+}
+
+li{font-size: 25px;
+margin-left: 1.5vw;
+}
+
+#thumbnail-gallery{
+width: 84%;
+height: 80%;
+border: 0.2px grey none;
+margin: auto;
+margin-top: 3vh;
+display: grid;
+grid-template-rows:  auto auto auto auto ;
+grid-template-columns: auto auto auto auto ;
+grid-gap: 10px;
+
+}
+
+img{
+    width: 90%;
+    }
+
+    img:hover{
+
+        outline: 3px solid red;
+        outline-offset: 2px;
+        cursor: pointer;
+    }
+
+    
+
+
+
+
+span{
+font-weight: bold;
+color: rgb(8, 8, 8);
+
+}
+
+#imnage-div-test{
+
+    height: 50vh;
+    width: 80vw;
+    margin: auto;
+}
+
+a{
+
+    color: rgb(234, 101, 13);
+}
