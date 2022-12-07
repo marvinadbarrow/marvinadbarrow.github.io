@@ -109,6 +109,12 @@ var modalOpenEl = document.getElementById('slide-show')
 var containerEl = document.getElementById('modal-container')
 var closeModalEl  = document.getElementById('close-btn')
 
+// variables for selectable paragraphs containing slide durations
+var slowDuration = document.getElementById('slow');
+var regDuration = document.getElementById('regular');
+var medDuration = document.getElementById('medium');
+var fastDuration = document.getElementById('fast');
+
 // SPEED ADJUST FOR SLIDES
 
 // array for slide speed/time values - unshift and timer will take from array[0]
@@ -122,23 +128,47 @@ let requestData = e.target.innerHTML
 switch(requestData){
 case 'slow (1 min)': 
 slideSpeedArr.unshift(60000)// send time value
+// set selected time to green and unselected to white
+slowDuration.style.cssText = 'color:rgb(128, 240, 53); text-shadow: 1px 1px 2px white;'
+regDuration.style.cssText = 'color:white; text-shadow:none;'
+medDuration.style.cssText = 'color:white; text-shadow:none;'
+fastDuration.style.cssText = 'color:white; text-shadow:none;'
 imageContainer.click()// simulate click of main image to close menu
 break;
+
 case 'medium (30 secs)':
 slideSpeedArr.unshift(30000) // send time value
+// set selected time to green and unselected to white
+slowDuration.style.cssText = 'color:white; text-shadow:none;'
+regDuration.style.cssText = 'color:white; text-shadow:none;'
+medDuration.style.cssText = 'color:rgb(128, 240, 53); text-shadow: 1px 1px 2px white;'
+fastDuration.style.cssText = 'color:white; text-shadow:none;'
 imageContainer.click()// simulate click of main image to close menu
 break;
+
 case 'regular (15 secs)': 
 slideSpeedArr.unshift(15000)// send time value
+// set selected time to green and unselected to white
+slowDuration.style.cssText = 'color:white; text-shadow:none;'
+regDuration.style.cssText = 'color:rgb(128, 240, 53); text-shadow: 1px 1px 2px white;'
+medDuration.style.cssText = 'color:white; text-shadow:none;'
+fastDuration.style.cssText = 'color:white; text-shadow:none;'
 imageContainer.click()// simulate click of main image to close menu
 break;
+
 case 'fast (5 secs)':
 slideSpeedArr.unshift(5000)// send time value
+// set selected time to green and unselected to white
+slowDuration.style.cssText = 'color:white; text-shadow:none;'
+regDuration.style.cssText = 'color:white; text-shadow:none;'
+medDuration.style.cssText = 'color:white; text-shadow:none;'
+fastDuration.style.cssText = 'color:rgb(128, 240, 53); text-shadow: 1px 1px 2px white;'
 imageContainer.click()// simulate click of main image to close menu
 break;
+
 case 'Go To Gallery':
 setTimeout(() => {
-    window.open("file:///C:/Users/Marvin/Desktop/Js%20Doc%20Web/projects%20in%20the%20making/Whole%20App%20Website/main%20page/image%20apps/slideshow%20gallery/image%20gallery%20thumbnail%20page/Index.html") // opens main gallery page
+    window.open("index.html") // opens main gallery page
     
 }, 200);
 
@@ -575,7 +605,7 @@ window.localStorage.setItem("image_store", `${storageObj}`)
 
 
 setTimeout(() => {
-    window.open("./index - image-page.html") // opens a the page in the first parameter (second parameter is optional where you can specify the target, e.g '_blank') 
+    window.open("./gallery.html") // opens a the page in the first parameter (second parameter is optional where you can specify the target, e.g '_blank') 
 }, 200);
 
 }}
