@@ -2,6 +2,23 @@ body{width: 100vw;
     height: 100vh;
 }
 
+/* container for moves counter*/
+#counter-container{
+position: absolute;
+left: 15vw;
+top: 10vw;
+height: fit-content;
+width: fit-content;
+}
+
+#counter{
+
+    font-size: 30px;
+    font-weight: bold;
+    columns: black;
+    text-align: center;
+}
+
 #puzzle-body{display:grid; 
 grid-template-columns: repeat(4, 50px);
 grid-gap:3px;
@@ -72,18 +89,57 @@ opacity: 0;
 
 #message-container{
         height: 7%;
-        width: 70%;
+        width: 90%;
         margin: auto;
         margin-top: -2vw;
 
     }
     
-    #message-el{font-size: 50px; 
+    #message-el{font-size: 45px; 
         font-weight: bold; 
         color: black;
-      
-     text-align: center;
+        text-align: center;
     }
+
+    #highscore-container{
+        height: fit-content;
+        width: 70%;
+        margin: auto;
+        margin-top: -2vw;
+        display: none;
+    }
+
+    #high-score{
+        font-size: 35px; 
+        font-weight: bold; 
+        color: red;
+        text-align: center;
+    }
+
+    #scoreclear-container{
+        height: fit-content;
+        width: 14vw;
+        margin: auto;
+        margin-top: 2vw;
+        display: none;
+        background-color: blue;
+        padding: 5px;
+        border-radius: 5px;
+            }
+
+        #score-clear-btn{
+            background-color: rgb(200, 198, 198);
+            height: 6vw;
+            width: 14vw;
+            margin: auto;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+            background-color: red;
+            box-shadow: 1px 1px 3px black;
+
+        }
 
     #button-container{
         margin-top: 2vw;
@@ -122,3 +178,5 @@ opacity: 0;
     justify-content: space-around;
     background-color: rgba(0, 0, 255, 0);
     }
+
+ 

@@ -1,3 +1,5 @@
+console.log(window.localStorage)
+//window.localStorage.setItem('high_score', '')
 // empty square elements
 let oneDiv = document.getElementById('one')
 let twoDiv = document.getElementById('two')
@@ -21,13 +23,29 @@ let messageEl = document.getElementById('message-el')
 let puzzleEl = document.getElementById('puzzle-body')
 // progress bar element
 let progressEl = document.getElementById('progress-bar')
+// paragraph for displaying number of moves made
+let counterEl = document.getElementById('counter')
+
+// element containing highscore paragraphs - normally hidden
+let highScoreEl = document.getElementById('highscore-container')
+// highscore message paragraph
+let highscoreMsg = document.getElementById('high-score')
+// container for score reset
+let scoreBtnContainer = document.getElementById('scoreclear-container')
+// score reset button
+let scoreClearBtn = document.getElementById('score-clear-btn')
+
+scoreClearBtn.addEventListener('click', function(){
+window.localStorage.setItem('high_score', '')
+})
+
 let emptyDiv = []
 var orderArray = []
 var permutedArray = []
 var permutedArraySpread = []
 var mixArray = []
 var mixStatusArr = []
-
+var tallyArray = [0] // contains the number of moves made in game
 
 // button elements 
 let btn1 = document.getElementById('one-1')
@@ -92,9 +110,32 @@ mixBtn.addEventListener('click', function(){
 
 })
 
+// winner message
+const winnerMessage = () =>{
+    highScoreEl.style.display = 'block';
+    let prevHighScore;
+       messageEl.textContent = `Well done! you did it in ${tallyArray[0]} moves!`;
+       if(window.localStorage.high_score.length < 1){
+        window.localStorage.setItem('high_score', `${tallyArray[0]}`)
+       highscoreMsg.textContent = `No other move scores recorded yet; you have the fewest moves`
+       }else{ // if previous scores exist
+        scoreBtnContainer.style.display = 'block';
+prevHighScore = window.localStorage.getItem("high_score")
+if(tallyArray[0] > prevHighScore){
+    highscoreMsg.textContent = `Fewest winning moves: ${prevHighScore}, better luck next try`
+}else if(tallyArray[0] === prevHighScore) {
+    highscoreMsg.textContent = `You matched the previous winning fewest moves of ${prevHighScore}`
+}else{
+    highscoreMsg.textContent = `Excellent! you've bettered the previous winning fewest moves of ${prevHighScore}: new Fewest winning moves is: ${tallyArray[0]}`
+    // then change the local storage value to the new high score
+    window.localStorage.setItem('high_score',`${tallyArray[0]}` )
+
+} }
+  }
 
 
-
+  
+// progress indicator pars turn blue when associated piece is in the correct place. 
 const indicator = (button) => {
 
 let index = button.innerHTML -1;
@@ -103,11 +144,11 @@ let index = button.innerHTML -1;
 let indexChild = puzzleEl.children[index].firstChild
 
 if(indexChild == button){
-    console.log('button is in correct place')
+    //console.log('button is in correct place')
+    // change associated bar to blue
     progressEl.children[index].style.cssText = 'background-color:blue;'
 }else{
-    console.log('button in wrong place');
-     console.log(progressEl.children[index])
+    // change color of associated bar
      progressEl.children[index].style.backgroundColor = 'yellow'
         }
     // GREAT - APPLICATION IS FINISHED. 
@@ -122,9 +163,8 @@ if(indicatorColor == 'background-color: blue;'){
 
 colorAttrBlue +=1;
 }}
-console.log(colorAttrBlue)
-// now, depending on number of blue indications shown, render an appropriate message on screen. 
 
+// now, depending on number of blue indications shown, render an appropriate message on screen. 
 switch(colorAttrBlue){
 case 0:
 case 1:
@@ -150,13 +190,15 @@ break;
 case 13:
 case 14: messageEl.textContent = `the final few!`
 break;
-case 15: messageEl.textContent = `Well done! you did it..!`
+case 15: winnerMessage();
+break;
+
 }
 }
 
 
 
-
+// ALTERS PLAYER WHEN all numbers are in correct place because all numbers are consecutive - highligths end of game
 const gameState = (array) =>{
    
    // check for when the array ( created in the below function gameStateCheck) item values are all consecutive i.e. 1, 2, 3, 4.... Which means that the squares are in the solved permutation. 
@@ -243,8 +285,9 @@ var neighboursObj = {
     
 
 
-// AMAZING, THIS ACTUALLY WORKS. WOW. 
+// MOVE CLICKED SQUARE TO ADJACENT EMPTY SPACE IF ONE EXISTS
 const moveSquare = (square) =>{
+   
  let divId = square.parentNode.id // id of div is also a key in the object
  let objIndex = neighboursObj[`${divId}`] // get key value (which is an array), where key belongs to object on lines 86
 let neighbours = square.parentNode.parentNode.children // all div children of app body
@@ -259,9 +302,12 @@ if(classType == 'square-containers'){messageEl.textContent = 'choose a square to
         // use the variable to display neighbours of the clicked button
        if(neighbourDivs.children.length < 1){ // if any of the neigbhour divs are empty, append the clicked button to the div.  
             neighbourDivs.appendChild(square) // 'BOOM' it works
+            tallyArray[0] += 1;
     }
       }
       
+      console.log(tallyArray[0])
+counterEl.textContent = `Moves: ${tallyArray[0]}`
     rearrangeNumbers()
 }
 
