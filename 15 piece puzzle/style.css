@@ -1,6 +1,6 @@
 body{width: 100vw;
     height: 100vh;
-    background-color: rgba(159, 159, 246, 0.627);
+   background-image: url(./blocks\ transparent\ experimental\ b.png);
 }
 
 /* container for moves counter*/
@@ -16,7 +16,7 @@ width: fit-content;
 
     font-size: 30px;
     font-weight: bold;
-    columns: black;
+color: white;
     text-align: center;
 }
 
@@ -98,7 +98,7 @@ opacity: 0;
     
     #message-el{font-size: 45px; 
         font-weight: bold; 
-        color: black;
+        color: white;
         text-align: center;
     }
 
@@ -113,7 +113,7 @@ opacity: 0;
     #high-score{
         font-size: 35px; 
         font-weight: bold; 
-        color: red;
+        color: rgb(251, 255, 0);
         text-align: center;
     }
 
