@@ -48,7 +48,18 @@ let btn15 = document.getElementById('fifteen-15')
 
 // mix button
 let mixBtn = document.getElementById('mix-btn')
+// css selector for indicators
+let indicatorBars = document.querySelectorAll('.bars')
+// default background colour styling for indicators. A function will be created to count the number of blue indicators (which show that pieces are inserted correctly), and put out different messages depending on how many of the blue indicators are showing; i.e. how many pieces are in the correct position. 
+ const colorIndicators = () =>{
+indicatorBars.forEach((element)  =>{
+element.style.cssText = "background-color:yellow;"
+})
+ }
 
+ colorIndicators()
+
+// array holding all button elements
 var buttonArray = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15]
 
 
@@ -82,26 +93,6 @@ mixBtn.addEventListener('click', function(){
 })
 
 
-// object containing all of the neighbours of each div.  The neighbours will be evalueated and if empty, the clicked button will move either x, -x, y or -y, to move into the empty div element. 
-var neighboursObj = {
-one:[2,5],
-two:[1,3,6],
-three:[2,4,7],
-four:[3,8],
-five:[1,9,6],
-six:[2,5,7,10],
-seven:[3,6,8,11],
-eight:[4,7,12],
-nine:[5,13,10],
-ten:[6,9,11,14],
-eleven:[7,10,12,15],
-twelve:[8,11,16],
-thirteen:[9,14],
-fourteen:[13,10,15],
-fifteen:[14,11,16],
-sixteen:[12,15],
-}
-
 
 
 const indicator = (button) => {
@@ -121,6 +112,46 @@ if(indexChild == button){
         }
     // GREAT - APPLICATION IS FINISHED. 
 
+    // trying to get style attribute of the divs so we can see which color it is. If this can be done then the number of colours can be use to alter the message text as the number of correctly placed pieces 
+
+let colorAttrBlue = 0;
+let indicatorColor;
+for(i=0; i < progressEl.childElementCount; i++){
+    indicatorColor = progressEl.children[i].getAttribute('style')
+if(indicatorColor == 'background-color: blue;'){
+
+colorAttrBlue +=1;
+}}
+console.log(colorAttrBlue)
+// now, depending on number of blue indications shown, render an appropriate message on screen. 
+
+switch(colorAttrBlue){
+case 0:
+case 1:
+case 2:
+case 3:
+messageEl.textContent = 'get the first few squares'
+break;
+case 4:
+case 5:
+case 6:
+case 7:
+messageEl.textContent = 'great! You made progress'
+break;
+case 8:
+case 9:
+case 10:
+messageEl.textContent = 'Good; more than halfway there'
+break;
+case 11:
+case 12:
+messageEl.textContent = 'not far now'
+break;
+case 13:
+case 14: messageEl.textContent = `the final few!`
+break;
+case 15: messageEl.textContent = `Well done! you did it..!`
+}
 }
 
 
@@ -128,7 +159,7 @@ if(indexChild == button){
 
 const gameState = (array) =>{
    
-    // function to test if previous value current value is greater than previous value in an arraya
+   // check for when the array ( created in the below function gameStateCheck) item values are all consecutive i.e. 1, 2, 3, 4.... Which means that the squares are in the solved permutation. 
     const gameStateCheck = (currentValue, previousValue) => currentValue > previousValue;
 
     let isGameOver = array.every(gameStateCheck)
@@ -137,8 +168,7 @@ case true:
 messageEl.textContent = 'puzzle complete'
 break;
 default:
-    messageEl.textContent = 'not there yet'
-
+    
     }
 
    
@@ -148,7 +178,7 @@ default:
 
 
 
-// create permutation array so consecutive numbers can be color matched. 
+//CREATE an ARRAY that shows the permutation of the squares, which number order they are in.  
 const getPermutation = (array) =>{
   permutedArray = [] // clear permuted array to display new permutation
 array.forEach(element => {
@@ -191,10 +221,32 @@ getPermutation(orderArray)
 
 
 
+// OBJECT containing all of the neighbours of each div.  The neighbours will be evalueated and if empty, the clicked button will move either x, -x, y or -y, to move into the empty div element. 
+var neighboursObj = {
+    one:[2,5],
+    two:[1,3,6],
+    three:[2,4,7],
+    four:[3,8],
+    five:[1,9,6],
+    six:[2,5,7,10],
+    seven:[3,6,8,11],
+    eight:[4,7,12],
+    nine:[5,13,10],
+    ten:[6,9,11,14],
+    eleven:[7,10,12,15],
+    twelve:[8,11,16],
+    thirteen:[9,14],
+    fourteen:[13,10,15],
+    fifteen:[14,11,16],
+    sixteen:[12,15],
+    }
+    
+
+
 // AMAZING, THIS ACTUALLY WORKS. WOW. 
 const moveSquare = (square) =>{
  let divId = square.parentNode.id // id of div is also a key in the object
- let objIndex = neighboursObj[`${divId}`] // get key value (which is an array)
+ let objIndex = neighboursObj[`${divId}`] // get key value (which is an array), where key belongs to object on lines 86
 let neighbours = square.parentNode.parentNode.children // all div children of app body
 let classType = square.getAttribute('class')
 if(classType == 'square-containers'){messageEl.textContent = 'choose a square to move'}else{
