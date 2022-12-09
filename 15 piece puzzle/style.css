@@ -12,6 +12,7 @@ background-color: aqua;
 padding: 2vw;
 border-radius: 6px;
 border: 1px solid black;
+
 grid-template-areas:
 
 
@@ -101,12 +102,23 @@ opacity: 0;
         display: block;
         color: black;
         font-weight: bold;
-        font-size: 25px;
+        font-size: 22px;
         
     }
 
     #chip-container{width: fit-content;
     height: 5vw;
     margin: auto;
+    background-color: rgba(0, 0, 255, 0);
+    }
+
+    .bars{ width: 2vw; height: 3vw;  background-color: yellow;border: 1px solid black; margin-top: 30px;}
+
+
+    #progress-bar{width: 34vw;
+        height: 4vw;
+        margin: auto;
+           display: flex;
+    justify-content: space-around;
     background-color: rgba(0, 0, 255, 0);
     }

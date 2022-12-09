@@ -19,6 +19,8 @@ let oneBtn = document.getElementById('oneBtn')//
 let messageEl = document.getElementById('message-el')
 // getting puzzle body element
 let puzzleEl = document.getElementById('puzzle-body')
+// progress bar element
+let progressEl = document.getElementById('progress-bar')
 let emptyDiv = []
 var orderArray = []
 var permutedArray = []
@@ -72,8 +74,8 @@ if(!mixArray.includes(numbers)){mixArray.push(numbers);mixButtons()}else{mixButt
 
 mixBtn.addEventListener('click', function(){
     if(mixStatusArr.length < 1){
-        mixStatusArr.push('already mixed')
-        mixButtons ()
+        mixStatusArr.push('MIX BUTTONS')
+        mixButtons()
     }else{messageEl.textContent = "refresh page for new game"}
 
 
@@ -102,6 +104,28 @@ sixteen:[12,15],
 
 
 
+const indicator = (button) => {
+
+let index = button.innerHTML -1;
+
+// we're seeing if the clicked button's innerHTML number matches the button number inside the puzzle div with the same index number.  If there is a match it means that the button is in the correct div. 
+let indexChild = puzzleEl.children[index].firstChild
+
+if(indexChild == button){
+    console.log('button is in correct place')
+    progressEl.children[index].style.cssText = 'background-color:blue;'
+}else{
+    console.log('button in wrong place');
+     console.log(progressEl.children[index])
+     progressEl.children[index].style.backgroundColor = 'yellow'
+        }
+    // GREAT - APPLICATION IS FINISHED. 
+
+}
+
+
+
+
 const gameState = (array) =>{
    
     // function to test if previous value current value is greater than previous value in an arraya
@@ -117,7 +141,7 @@ default:
 
     }
 
-        
+   
     }// end of for loop
 
 
@@ -197,6 +221,10 @@ if(classType == 'square-containers'){messageEl.textContent = 'choose a square to
 // add event listener to puzzle body
 puzzleEl.addEventListener('click', function(e){
 moveSquare(e.target)
+// send 
+setTimeout(() => {
+    indicator(e.target)
+}, 200);
 })
 
 
