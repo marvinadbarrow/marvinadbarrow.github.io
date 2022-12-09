@@ -1,5 +1,6 @@
 body{width: 100vw;
     height: 100vh;
+    background-color: rgba(159, 159, 246, 0.627);
 }
 
 /* container for moves counter*/
@@ -25,7 +26,7 @@ grid-gap:3px;
 grid-template-rows: repeat(4, 50px);
 width:fit-content;
 padding: 5px;
-background-color: aqua;
+background-color: rgb(127, 218, 218);
 padding: 2vw;
 border-radius: 6px;
 border: 1px solid black;
@@ -63,7 +64,7 @@ grid-template-areas:
 #fifteen{ grid-area:fifteen;}
 #sixteen{ grid-area:sixteen;}
 
-#puzzle-container{width: fit-content; height: fit-content;padding: 2vw; background-color: rgba(98, 98, 218, 0.679);margin: auto;margin-top: 1vw; border-radius: 10px; box-shadow: 2px 2px 4px black;}
+#puzzle-container{width: fit-content; height: fit-content;padding: 2vw; background-color: rgba(18, 18, 128, 0.767);margin: auto;margin-top: 1vw; border-radius: 10px; box-shadow: 2px 2px 4px black;}
 /* button styling */
 button{background-color:black; color:white; border-radius:5px; border-style:hidden; box-shadow: 1px 1px 2px rgb(8, 8, 8); font-size: 30px; height: 45px; width: 45px; }
 button:hover{cursor: pointer;}
