@@ -1,5 +1,5 @@
 console.log(window.localStorage)
-window.localStorage.setItem('high_score', '')
+//window.localStorage.setItem('high_score', '')
 // empty square elements
 let oneDiv = document.getElementById('one')
 let twoDiv = document.getElementById('two')
