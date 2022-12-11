@@ -68,17 +68,26 @@ volumeSlideEl.style.opacity = "0"
 })
 // you can change this using Jquery for mouseover the clock and toggle it so that when you go over the clock the button appears and then when you hover over it again the button disappears; but still keep the function for when you click click off of tick and the button disappears. 
 
+/*
 $('#wall-mount').on('mouseover', function(){
 $('#volume-control-container').toggle()
 })
+*/
+
 
 applicationEl.addEventListener('mouseover', (e) =>{
   if(volumeCntContainer.style.opacity = "0"){
     volumeCntContainer.style.opacity = "1";
-    }})
+    }
+    })
 
 
-
+    applicationEl.addEventListener('click', (e) =>{
+      if(volumeCntContainer.style.opacity = "1"){
+        volumeCntContainer.style.opacity = "0";
+        tickStartEl.style.zIndex = "1";
+        }
+        })
 
 
 
