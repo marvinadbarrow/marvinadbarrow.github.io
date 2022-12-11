@@ -7,7 +7,7 @@ var acDateArr;
 var leapYears = 12
 const hourSpring = 1
 const hourFall = -1// hour for clocks back
-
+let dstArr = [0]
 var clock;
 let time = 0;
 clock = setInterval(function() {
@@ -41,7 +41,14 @@ function log(){
    let ctyear = yearNow - 30 // year
    let ctDay = dayNow - yearNow*365 - leapYears // calc for current day 
     let cd = ctDay // abbrev for current day
-    let ctHour = hourNow - dayNow*24 + hourSpring // calc for current hour
+    let ctHour
+    if((cd < 91 && (cd + 5) % 7 < 1
+    ) && cd > 83){
+         dstArr.unshift(hourSpring)}
+         if((cd < 305 && (cd + 5) % 7 < 1) && cd > 297){
+            dstArr.unshift(hourFall)
+         }
+        ctHour = hourNow - dayNow*24 + dstArr[0]
     let ctMinute = minuteNow - hourNow*60// calc for current minute
     let ctSecond = secondNow - minuteNow*60// calc for current second
  
