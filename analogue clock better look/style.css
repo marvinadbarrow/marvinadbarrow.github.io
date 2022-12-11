@@ -1,0 +1,104 @@
+
+body{width: 100vw; height: 100vh;}
+
+
+
+h1{margin-top: 50px;margin-bottom: 50px; font-size: 45px; font-family: 'Anton', sans-serif; text-shadow: 1px 1px 3px rgb(69, 87, 250); width: fit-content; height: 100px; margin: auto;}
+
+
+
+
+
+ 
+  #wall-mount{ position:relative; margin: auto; width: 70vw; aspect-ratio: 1/1; border-style: none; border-width: 0.75vw; border-color: none; border-radius: 6vw; }
+
+
+/* INDIVITUAL HANDS */
+
+#hour-hand{position: absolute; left: 0; right: 0; top: 22%; margin: auto; height:56%; display: block; margin: auto;  z-index: 3; rotate: 0deg;}
+
+
+#min-hand{position: absolute;  left: 0; right: 0; top: 18%; margin: auto; height: 64%; display: block; margin: auto; z-index: 2; }
+
+
+#sec-hand{position: absolute; left: 0; right: 0; margin: auto; height: 70%; top: 15%; display: block; margin: auto;  z-index: 1; }
+
+#face-image{position: absolute;  left: 0.5; right: 0; top: 3%; margin: auto; height: 97%; display: block; margin: auto; z-index: 0;  }
+
+
+#volume-control-container{margin: auto; width: 11.5vw; height: 7vh; opacity: 0;  margin-bottom: 5vh;}
+
+
+#button-container{ position: relative; margin: auto; width: 11vw; height: 5vh; opacity: 1; margin-top: 100px; background-color: yellow;}
+
+/* general styling of buttons*/
+.tick-btn{position: absolute; left: 0; right: 0;height: fit-content; width: fit-content; height: 100%; margin-bottom: 60px; color: white; text-shadow: 1px 1px 2px black; border-radius: 5px; box-shadow: 1px 2px 4px rgb(8, 8, 8); font-weight: bold; font-size: 20px;}
+
+/* button specific stylings*/
+#tick-sound{background-color: rgba(29, 240, 10, 0.993); z-index: 1; }
+
+#tick-off{ background-color: red;  }
+/*  clock element details starting - outermost to innermost*/
+/* WALL PLATE*/
+
+
+#slider-container{margin: auto; width: fit-content; height: 60px;  margin-top: 40px; }
+
+
+#volume-slider{opacity: 0;
+  -webkit-appearance: none; /* removes default stylings*/
+  margin-left: -3px;
+background: black; /* sets color for slider groove*/
+height: 15px; /* width of groove*/
+border-radius: 5px; /* give the groove ends a curve */
+opacity: 0;}
+
+
+  .slider::-webkit-slider-thumb {
+      appearance: none;
+    width: 48px; /* Set a specific slider handle width */
+    height: 48px; /* Slider handle height */
+    background: url('./volume\ knob.png'); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    
+  }
+
+  
+
+  /* foooter styling  */
+footer{color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem;}
+
+
+/* footer content container*/
+#content-container{
+    display: flex; margin-bottom: 4rem;
+      width: 90%;   font-weight:bold; font-size:20px; 
+}
+
+/* footer link contaners */
+.footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+
+
+/* link styles */
+footer a{color: white; text-decoration: none; line-height: 2rem;}
+footer a:hover{color: orange; }
+
+/* styles for social media icons*/
+.fa-youtube{color: red; ;}
+.fa-linkedin{color: #0073B1;}
+.fa-facebook{color:#0C87EF ;}
+
+.footer-social{font-size: 20px; margin-left: 2rem;}
+
+/* footer bottom */
+.footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+.footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+
+h3{text-decoration: underline;}
+
+#my-page{ color: white;}
+#my-page-link{ font-size: 27px;}
+
+/* styling for dev icon*/
+#dev-icon{color: rgb(84, 243, 243);}
+
