@@ -2,7 +2,7 @@
 
 
 
-    
+
 let yearEl = document.getElementById('year')
 let monthEl = document.getElementById('month')
 let dayEl = document.getElementById('day')
@@ -13,7 +13,7 @@ var dayNameIndex;
 const leapYears = 12 // leap years since 1970 (num of days to subtract)
 const hourSpring = 1// hour  for clocks forward
 const hourFall = -1// hour for clocks back
-    
+let dstArr = [0]
 let acDateArr = [] // actual date array with year, month, day, min, sec
 let dayNameArr = ["sunday","monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
 let dayNameEl = document.getElementById("dayname") // for day name display
@@ -28,7 +28,15 @@ function log(){
     let ctyear = yearNow - 30 // year
     let ctDay = dayNow - yearNow*365 - leapYears // calc for current day 
     let cd = ctDay // abbrev for current day
-    let ctHour = hourNow - dayNow*24 + hourSpring // calc for current hour
+// for spring daylight saving hours
+let ctHour
+if((cd < 91 && (cd + 5) % 7 < 1
+) && cd > 83){
+     dstArr.unshift(hourSpring)}
+     if((cd < 305 && (cd + 5) % 7 < 1) && cd > 297){
+        dstArr.unshift(hourFall)
+     }
+    ctHour = hourNow - dayNow*24 + dstArr[0]
     let ctMinute = minuteNow - hourNow*60// calc for current minute
     let ctSecond = secondNow - minuteNow*60// calc for current second
     
@@ -66,7 +74,7 @@ function log(){
     acDateArr.push(ctyear, month, dayNum, ctHour,ctMinute,ctSecond)
     //console.log(acDateArr[4])
     console.log(cd)
-    dayNameIndex = (cd + 5) % 7
+    dayNameIndex = (cd + 5) % 7 // note, we're adding 5 here because the last day of the year 2021 was day 5 of the week; friday. So, the first day of the year, day 1, would correspond to saturday, the 6th day of the week.  which is 1 + 5, and the second day of the year would correspond to Sunday, the 7th day of the week, which is 2 + 5; so to extract the day number, which cycles, we would need to use the calculation  of (current day + 5) % 7 to get our current day number, which all are stored in the day name array, sunday is zero, which represents the seventh element in modular arithmetic. 
     console.log(dayNameIndex)
     console.log(dayNameArr[dayNameIndex])
 }
