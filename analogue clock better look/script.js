@@ -82,7 +82,7 @@ applicationEl.addEventListener('mouseover', (e) =>{
     })
 
 
-    applicationEl.addEventListener('click', (e) =>{
+    document.addEventListener('click', (e) =>{
       if(volumeCntContainer.style.opacity = "1"){
         volumeCntContainer.style.opacity = "0";
         tickStartEl.style.zIndex = "1";

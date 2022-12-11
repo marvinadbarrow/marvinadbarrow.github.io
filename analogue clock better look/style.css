@@ -102,3 +102,9 @@ h3{text-decoration: underline;}
 /* styling for dev icon*/
 #dev-icon{color: rgb(84, 243, 243);}
 
+@media (orientation: landscape){
+  #wall-mount{width: 30vw; aspect-ratio: 1/1; margin-bottom: -10vh;}
+footer{margin-bottom: -20vw; height: 20vh;}
+.footer-bottom{display: flex; height: 5vh;padding: 0.5rem;}
+#button-container{ position: relative; margin: auto; width: 11vw; height: 10vh; opacity: 1; margin-top: 60px; background-color: yellow;}
+}
