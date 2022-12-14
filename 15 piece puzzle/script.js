@@ -115,7 +115,7 @@ const winnerMessage = () =>{
     highScoreEl.style.display = 'block';
     let prevHighScore;
        messageEl.textContent = `Well done! you did it in ${tallyArray[0]} moves!`;
-       if(window.localStorage.high_score.length < 1){
+       if(!window.localStorage.high_score){
         window.localStorage.setItem('high_score', `${tallyArray[0]}`)
        highscoreMsg.textContent = `No other move scores recorded yet; you have the fewest moves`
        }else{ // if previous scores exist
