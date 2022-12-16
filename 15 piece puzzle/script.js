@@ -35,9 +35,7 @@ let scoreBtnContainer = document.getElementById('scoreclear-container')
 // score reset button
 let scoreClearBtn = document.getElementById('score-clear-btn')
 
-scoreClearBtn.addEventListener('click', function(){
-window.localStorage.setItem('high_score', '')
-})
+
 
 let emptyDiv = []
 var orderArray = []
@@ -328,7 +326,12 @@ setTimeout(() => {
 
 
 
-
+// xlear stored score
+scoreClearBtn.addEventListener('click', function(){
+    window.localStorage.setItem('high_score', '')
+    messageEl.textContent = ''
+    highScoreEl.textContent = 'Fewest moves scores removed; fewest moves score will be set by number of moves in the next game'
+    })
 
 
 
