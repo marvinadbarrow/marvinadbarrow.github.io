@@ -44,7 +44,8 @@ var permutedArraySpread = []
 var mixArray = []
 var mixStatusArr = []
 var tallyArray = [0] // contains the number of moves made in game
-
+var inverseArray =[]// to hold all inverse pairs
+var inversePair = [] // to temporarily collect inverse pair
 // button elements 
 let btn1 = document.getElementById('one-1')
 let btn2 = document.getElementById('two-2')
@@ -67,6 +68,11 @@ let mixBtn = document.getElementById('mix-btn')
 // css selector for indicators
 let indicatorBars = document.querySelectorAll('.bars')
 // default background colour styling for indicators. A function will be created to count the number of blue indicators (which show that pieces are inserted correctly), and put out different messages depending on how many of the blue indicators are showing; i.e. how many pieces are in the correct position. 
+
+
+
+
+
  const colorIndicators = () =>{
 indicatorBars.forEach((element)  =>{
 element.style.cssText = "background-color:yellow;"
@@ -80,33 +86,89 @@ var buttonArray = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, 
 
 
 
-
-const loadButtons = () =>{
-    for(i=0; i < mixArray.length; i++){
-               puzzleEl.children[mixArray[i]].appendChild(buttonArray[i])
+// append free button to slots in main square
+const loadButtons = (array) =>{
+    console.log(array)
+    for(i=0; i < array.length; i++){
+               puzzleEl.children[array[i]].appendChild(buttonArray[i])
             
 }
-
+rearrangeNumbers()
 }
 
+
+
+
+// for re-running scramble if the order 
+const evenPermutations = () =>{
+    inversePair = []
+    permutedArray = []
+    permutedArraySpread = []
+    inverseArray = []
+    mixArray = []
+    orderArray = []
+    mixStatusArr = []
+    mixButtons()
+}
+
+// if the number of inverses is odd, then the puzzle is solvable
+const checkParity = (testVal, array, i) =>{
+  
+    for(j=i+1; j < array.length; j++){
+    if(array[j] < testVal){
+            inversePair = [testVal, array[j]]
+        inverseArray.push(inversePair)
+        inversePair = []
+        }
+    
+    }
+    
+    if(i > 13){
+        console.log(inverseArray.length)
+        if(inverseArray.length % 2 === 0){
+         console.log('even permutation')
+         console.log(inverseArray);
+         evenPermutations()
+        }else{loadButtons(array); console.log('odd permutation')}
+    }}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // the inverses will be used to check the parity of the permutation later
+    const preCheckParity = (array) =>{
+    console.log(array)
+    for(i=0; i < array.length; i++){
+    checkParity(array[i], array, i)
+    
+    }}
+    
+
+
+// I think that from here, instead of loading buttons, the permutation should be checked for evenness or oddness and then 'from there' it can be decided when to load buttons. 
 const mixButtons = () =>{
-    if(mixArray.length > 14){loadButtons(mixArray)}
     let numbers = Math.ceil(Math.random()*15)
-    if(mixArray.length < 15){
+    if(mixArray.length > 14){preCheckParity(mixArray)
+        console.log(mixArray)}else{
 if(!mixArray.includes(numbers)){mixArray.push(numbers);mixButtons()}else{mixButtons()}
-}
 
 }
 
+    
 
-mixBtn.addEventListener('click', function(){
-    if(mixStatusArr.length < 1){
-        mixStatusArr.push('MIX BUTTONS')
-        mixButtons()
-    }else{messageEl.textContent = "refresh page for new game"}
+}
 
 
-})
 
 // winner message
 const winnerMessage = () =>{
@@ -196,7 +258,14 @@ break;
 
 
 
-// ALTERS PLAYER WHEN all numbers are in correct place because all numbers are consecutive - highligths end of game
+
+
+
+
+
+
+
+//  when all chip numbers are consecutive - i.e. 1, 2, 3,......., 15, that marks the end of the game since the pices are ordered
 const gameState = (array) =>{
    
    // check for when the array ( created in the below function gameStateCheck) item values are all consecutive i.e. 1, 2, 3, 4.... Which means that the squares are in the solved permutation. 
@@ -220,6 +289,7 @@ default:
 
 //CREATE an ARRAY that shows the permutation of the squares, which number order they are in.  
 const getPermutation = (array) =>{
+   // console.log(array)
   permutedArray = [] // clear permuted array to display new permutation
 array.forEach(element => {
 
@@ -228,16 +298,18 @@ array.forEach(element => {
        let numberExtract = element.id
        let reg = /\d+/g;
        let result = numberExtract.match(reg)
-       permutedArray.push(result)
+       permutedArray.push(parseInt(result))
     }
 });
 // spread permuted valuies into one array
 permutedArraySpread = [].concat(...permutedArray)
 gameState(permutedArraySpread)
+console.log(permutedArraySpread)
+
     }
 
 
-
+// 15 of the divs will have a child (numbered piece).  Each time a piece is moved the way the pieces are arranged is changed; either to a different permutation or, at minimum, the divs containing children will change. Each position of orderArray represents the numerical div positions in the main square and the value at each position is the element numbered piece appended to that div (otherwise 'null' if no piece is in the div)
 const rearrangeNumbers = () =>{
 orderArray[0] =   oneDiv.firstChild 
 orderArray[1] =   twoDiv.firstChild 
@@ -256,6 +328,7 @@ orderArray[13] =   fourteenDiv.firstChild
 orderArray[14] =   fifteenDiv.firstChild 
 orderArray[15] =   sixteenDiv.firstChild 
 getPermutation(orderArray)
+//console.log(orderArray)
 }
 
 
@@ -285,7 +358,7 @@ var neighboursObj = {
 
 // MOVE CLICKED SQUARE TO ADJACENT EMPTY SPACE IF ONE EXISTS
 const moveSquare = (square) =>{
-   
+    inverseArray = []
  let divId = square.parentNode.id // id of div is also a key in the object
  let objIndex = neighboursObj[`${divId}`] // get key value (which is an array), where key belongs to object on lines 86
 let neighbours = square.parentNode.parentNode.children // all div children of app body
@@ -326,14 +399,26 @@ setTimeout(() => {
 
 
 
+
+mixBtn.addEventListener('click', function(){
+    if(mixStatusArr.length < 1){
+        mixStatusArr.push('MIX BUTTONS')
+        inverseArray = []
+       mixButtons()
+
+      
+    }else{messageEl.textContent = "refresh page for new game"}
+
+
+})
+
+
+
 // xlear stored score
 scoreClearBtn.addEventListener('click', function(){
     window.localStorage.setItem('high_score', '')
-    messageEl.textContent = ''
-    highScoreEl.textContent = 'Fewest moves scores removed; fewest moves score will be set by number of moves in the next game'
+    messageEl.textContent = 'Fewest moves scores removed'
+    highScoreEl.textContent = ''
     })
 
-
-
-
-
+mixBtn.click()
