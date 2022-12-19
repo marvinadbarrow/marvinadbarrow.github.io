@@ -63,8 +63,7 @@ let btn13 = document.getElementById('thirteen-13')
 let btn14 = document.getElementById('fourteen-14')
 let btn15 = document.getElementById('fifteen-15')
 
-// mix button
-let mixBtn = document.getElementById('mix-btn')
+
 // css selector for indicators
 let indicatorBars = document.querySelectorAll('.bars')
 // default background colour styling for indicators. A function will be created to count the number of blue indicators (which show that pieces are inserted correctly), and put out different messages depending on how many of the blue indicators are showing; i.e. how many pieces are in the correct position. 
@@ -400,17 +399,7 @@ setTimeout(() => {
 
 
 
-mixBtn.addEventListener('click', function(){
-    if(mixStatusArr.length < 1){
-        mixStatusArr.push('MIX BUTTONS')
-        inverseArray = []
-       mixButtons()
 
-      
-    }else{messageEl.textContent = "refresh page for new game"}
-
-
-})
 
 
 
@@ -421,4 +410,19 @@ scoreClearBtn.addEventListener('click', function(){
     highScoreEl.textContent = ''
     })
 
-mixBtn.click()
+
+
+
+const beginScramble = () =>{
+    if(mixStatusArr.length < 1){
+        mixStatusArr.push('MIX BUTTONS')
+        inverseArray = []
+       mixButtons()
+
+      
+    }else{messageEl.textContent = "refresh page for new game"}
+
+}
+
+
+beginScramble()
