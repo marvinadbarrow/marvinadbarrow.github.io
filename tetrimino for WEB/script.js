@@ -2,7 +2,7 @@
 let startEl = document.getElementById('start')
 let pauseEl = document.getElementById('pause')
 let refreshEl = document.getElementById('refresh')
-
+let navButtons = document.getElementById('button-container')
 // TETRIMINO MANIPULATION BUTTONS
 let moveLeftEl = document.getElementById('move-right')
 let moveRightEl = document.getElementById('move-left')
@@ -315,9 +315,9 @@ shapeBody.children[d].appendChild(blockD)
 console.log(tetrisBlockArr)
 
 
-document.addEventListener('click', function(e){
+navButtons.addEventListener('click', function(e){
 
-
+console.log(e.target)
 
     // to check class of each block
 let aAttribute = blockA.getAttribute('class')
@@ -392,9 +392,9 @@ shapeBody.children[d].appendChild(blockD)
 
 
 
-
-    // if an arrow key is pressed change the value of a, b, c and d. And use those new values to dictate which grid child(square) is appended to 
+// switch target to see if button or associated font awesome icon is pressed
     switch(e.target.id){
+         // if detected element is right button
         case 'move-right': console.log('right arrow pressed');
 // if a, b, c or d is increased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, increase the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values. 
 if(leftBoundaryArr.includes(a+1)  || leftBoundaryArr.includes(b+1)  || leftBoundaryArr.includes(c+1)  || leftBoundaryArr.includes(d+1)  || pauseIntervalArr.length > 0){
@@ -410,6 +410,27 @@ console.log('cannot move right: BOUNDARY')
 
 }
  break;
+
+// if detected element is the font awesome icon nested in the right button
+ case 'fa-arrow-right': console.log('right arrow pressed');
+ // if a, b, c or d is increased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, increase the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values. 
+ if(leftBoundaryArr.includes(a+1)  || leftBoundaryArr.includes(b+1)  || leftBoundaryArr.includes(c+1)  || leftBoundaryArr.includes(d+1)  || pauseIntervalArr.length > 0){
+ console.log('cannot move right: BOUNDARY')
+ }else{
+ 
+     // values contained in filledSquareArr cannot be used to append blocks to empty squares
+     if(filledSquareArr.includes(a+1) || filledSquareArr.includes(b+1) || filledSquareArr.includes(c+1) || filledSquareArr.includes(d+1) || pauseIntervalArr.length > 0){console.log('collision detected: CANNOT MOVE PIECE')}else{
+         a += 1;  b += 1;  c += 1;  d += 1;
+         MoveRightLeft(a, b, c, d, e.key)
+ 
+     }
+ 
+ }
+  break;
+
+
+
+ // if detected element is left button
  case 'move-left': console.log('Left arrow pressed')
 // if a, b, c or d is decreased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, decrease the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values.
 
@@ -426,13 +447,30 @@ if(rightBoundaryArr.includes(a-1)  || rightBoundaryArr.includes(b-1)  || rightBo
         }
 
 }
-
-
-
-
-
         break;
-        // UP ARROW rotates tetriminos
+
+
+// if detected element is the font awesome icon nested in the left button
+case 'fa-arrow-left': console.log('Left arrow pressed')
+// if a, b, c or d is decreased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, decrease the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values.
+
+if(rightBoundaryArr.includes(a-1)  || rightBoundaryArr.includes(b-1)  || rightBoundaryArr.includes(c-1)  || rightBoundaryArr.includes(d-1) || pauseIntervalArr.length > 0){
+    console.log('cannot move left: BOUNDARY')
+    }else{
+
+            // values contained in filledSquareArr cannot be used to append blocks to  squares; because the squares associated with those numbers are already filled. 
+        if(filledSquareArr.includes(a-1) || filledSquareArr.includes(b-1) || filledSquareArr.includes(c-1) || filledSquareArr.includes(d-1) || pauseIntervalArr.length > 0){console.log('collision detected: CANNOT MOVE PIECE')}else{
+          
+    a -= 1;  b -= 1;  c -= 1;  d -= 1;
+    MoveRightLeft(a, b, c, d, e.key)
+            
+        }
+
+}
+        break;
+
+
+        // if rotate button (between right and left buttons) is pressed
         // if pause button is pressed we will not allow rotation as it seems to cause a conflict if allowed - and is redundant anyway because it would be a means of cheating or is generally not required, especially if the pause it to allow row clearance and floating tetrimino drop
         case 'rotator': console.log('Up arrow pressed')
         if(letter == 'S'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, sRotateArr, letter)}
@@ -451,9 +489,32 @@ if(rightBoundaryArr.includes(a-1)  || rightBoundaryArr.includes(b-1)  || rightBo
         break;
         case 'ArrowDown': console.log('Down arrow pressed')
         break;
+
+    // if detected element is the font awesome icon nested in the rotate button
+            // if pause button is pressed we will not allow rotation as it seems to cause a conflict if allowed - and is redundant anyway because it would be a means of cheating or is generally not required, especially if the pause it to allow row clearance and floating tetrimino drop
+
+        case 'fa-arrow-rotate': console.log('Up arrow pressed')
+        if(letter == 'S'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, sRotateArr, letter)}
+         }else if(letter == 'Z'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, zRotateArr, letter)} 
+        }else if(letter == 'I'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, iRotateArr, letter)}
+        
+        }else if(letter == 'J'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, jRotateArr, letter)}
+        
+        }else if(letter == 'L'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, lRotateArr, letter)}
+        
+        }else if(letter == 'T'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, tRotateArr, letter)}
+        
+        }else if(letter == 'O'){ if(pauseIntervalArr.length < 1){ rotateTetrimino(a, oRotateArr, letter)} // no need since rotations are symetrical about center
+               }
+
+        break;
+
+
     }
 
 
+
+    
 
 
 }

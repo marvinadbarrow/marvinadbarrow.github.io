@@ -80,7 +80,7 @@ background-color: none;
   }
 
 
-.tetrimino-btn{ border-radius: 50%; width: 8vw; height: 8vw;}
+.tetrimino-btn{ border-radius: 50%; width: 8vw; height: 8vw; background-color: rgb(0, 145, 234); color: white; z-index: 1;}
 .game-operators{width: 15vw; height: 6vw; font-weight: bold; font-size: 30px; border-radius: 1vw;}
 
 
