@@ -77,12 +77,14 @@ background-color: none;
     margin: auto;
     display: solid;
     background-color: none;
+    margin-top: 70px;
   }
 
 
-.tetrimino-btn{ border-radius: 50%; width: 8vw; height: 8vw; background-color: rgb(0, 145, 234); color: white; z-index: 1;}
+.tetrimino-btn{ border-radius: 50%; width: 16vw; height: 16vw; background-color: rgb(0, 145, 234); color: white; z-index: 1;}
 .game-operators{width: 15vw; height: 6vw; font-weight: bold; font-size: 30px; border-radius: 1vw;}
-
+#start{background-color: red; color: white;}
+#pause{background-color: rgb(74, 249, 65); color: white;}
 
   #create-shapes,#pause-game{
 height: 50px;
