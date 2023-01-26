@@ -1,0 +1,188 @@
+*{
+margin:0;
+list-style: none;
+text-decoration: none;
+}
+
+body{text-decoration: none;width: 100vw; height: 100vh;
+background-image: url('tetris.jpg');
+}
+
+#h1-container{
+Margin-bottom:50px;
+margin-top: 50px;
+
+}
+
+/* dimensions for game blocks*/
+.block-dimensions{
+width: 39px;
+height: 39px;
+background-color: none;
+}
+
+/* ANIMATION for  4 completed rows flash*/
+@keyframes flash {
+    0% {color:white;opacity: 1;}
+  50% {color:white;opacity:0.5;}
+  100% {color:white;opacity:0;}
+}
+
+/* ANIMATION for  less than 4 completed rows flash*/
+@keyframes flashb{
+  0% {color:rgb(238, 151, 151);opacity: 0.3;}
+50% {color:rgb(238, 151, 151);opacity:0.15;}
+100% {color:rgb(238, 151, 151);opacity:0;}
+}
+
+#game-body{
+  width: 750px;
+  height: 930px;
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(172, 255, 47, 0);
+}
+
+#shape-grid{display:grid; 
+  margin: auto;
+  grid-template-columns: repeat(10, 40px);
+  grid-gap:3px;
+  grid-template-rows: repeat(20, 40px);
+  width:fit-content;
+  background-color: rgb(253, 254, 254);
+  padding: 2vw;
+  border-radius: 6px;
+  border: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  }
+/* each div can take a part of a tetrimino block*/
+  .square-containers{background-color:rgb(5, 5, 5);padding: 1px;}
+
+#records-container{
+  height: 900px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+#line-piece-container, #score-level-container{
+    width: 280px;
+  height: 400px;
+  margin: auto;
+  background-color: rgba(255, 0, 0, 0);
+  display: flex;
+  flex-direction: column;
+}
+/*dimensions for next tetrimino display*/
+.next-block-dimensions{
+  width: 29px;
+  height: 29px;
+  background-color: none;
+
+}
+
+/* display for upcoming tetrimino*/
+  #next-piece-container{display:grid; 
+    margin: auto;
+    grid-template-columns: repeat(6, 30px);
+    grid-gap:2px;
+    grid-template-rows: repeat(4, 30px);
+    width:fit-content;
+    background-color: rgb(253, 254, 254);
+    padding: 1vw;
+    border-radius: 6px;
+    border: 1px solid black;
+      }
+    
+  /* each div can take a part of a tetrimino block*/
+  .next-piece{background-color:rgb(5, 5, 5);padding: 1px;}
+
+/* container for line number display*/
+  #line-para-container, #score-para-container, #level-para-container{
+    margin: auto;
+    width:210px;
+    height: 125px;
+    background-color: rgb(253, 254, 254);
+    padding: 1vw;
+    border-radius: 6px;
+    border: 1px solid black;
+      }
+/* display for line number*/
+      #line-para, #score-para, #level-para{
+        margin: auto;
+        width:184px;
+        height: 100px;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        padding: 1vw;
+        border-radius: 1px;
+        border: 1px solid black;
+        font-weight: bold;
+        font-size: 48px;
+        text-align: center;
+        line-height: 42px;
+          }
+
+
+
+
+  .blocks{background-color: blue;width: 29px; height: 29px;}
+
+  
+  
+  #button-container,#button-container-2{
+    width: 20vw;
+    height: 5vh;
+    color: black;
+    margin: auto;
+    display: none;
+  }
+
+  #create-shapes,#pause-game{
+height: 50px;
+width: 250px;
+    font-size: 25px;
+  }
+
+  #pause-game{color: white; background-color: rgba(255, 0, 0, 0); box-shadow: 1px 1px 2px  white;}
+
+/* foooter styling  */
+footer{color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem;}
+
+
+/* footer content container*/
+#content-container{
+    display: flex; margin-bottom: 4rem;
+      width: 90%;   font-weight:bold; font-size:20px; 
+}
+
+/* footer link contaners */
+.footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+
+
+/* link styles */
+footer a{color: white; text-decoration: none; line-height: 2rem;}
+footer a:hover{color: orange; }
+
+/* styles for social media icons*/
+.fa-youtube{color: red; ;}
+.fa-linkedin{color: #0073B1;}
+.fa-facebook{color:#0C87EF ;}
+
+.footer-social{font-size: 20px; margin-left: 2rem;}
+
+/* footer bottom */
+.footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+.footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+
+h3{text-decoration: underline;}
+
+#my-page{ color: white;}
+#my-page-link{ font-size: 27px;}
+
+/* styling for dev icon*/
+#dev-icon{color: rgb(84, 243, 243);}
+
