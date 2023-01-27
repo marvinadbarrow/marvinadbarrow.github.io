@@ -1,3 +1,16 @@
+// local storage
+if(window.localStorage){
+    console.log(window.localStorage)
+}else{console.log('no scores stored yet')}
+
+
+// audio clips for game events
+let startAudio = new Audio('Game Start.mp3')
+let GameOverAudio = new Audio('Game Over.mp3')
+let LineCompleteAudio = new Audio('Tetris Normal Lines.mp3')
+let TetrisBoomAudio = new Audio('Tetris Boom Tetris.mp3')
+
+
 let shapeCreatorEl = document.getElementById('create-shapes')
 let shapeBody = document.getElementById('shape-grid')
 let nextPieceEl = document.getElementById('next-piece-container')
@@ -10,14 +23,37 @@ let pointsCountArr = [0]
 let lineRecordArr = [0]
 let count; // variable for count taken from lineRecordArr
 let pauseBtn = document.getElementById('pause-game')
-arr = [0, 0, 0, 0] // to hold changing a, b, c, d values
+let arr = [0, 0, 0, 0] // to hold changing a, b, c, d values
 let shapeClock; // variable for TIMER
 let rightBoundaryArr;// for right boundary
 let leftBoundaryArr;// for left boundary
 let picker; // used to pick which rotation to render 90, 180, 270, or original
 let rowCompleteArray = [0,0] // use positions index 0 and 1 to record incomplete and complete row amounts
 
-// set div numbers for boundaries left and right
+
+// MODAL ELEMENTS
+let modalEl = document.getElementById('simple-modal')
+let modalCloseBtn = document.getElementById('close-btn')
+let endScoreEl = document.getElementById('end-score') // end game score display
+let endLevelEl = document.getElementById('end-level') // end game level display
+let endLinesEl = document.getElementById('end-lines') // end game lines display
+let newGameEl = document.getElementById('new-game')
+let highscoreMsg = document.getElementById('high-scores')
+
+newGameEl.addEventListener('click', function(){
+location.reload()
+
+})
+// close modal
+modalCloseBtn.addEventListener('click', function(){
+    modalEl.style.zIndex = '-1'
+    modalEl.style.display = 'none'
+})
+
+
+
+
+// set div numbers for boundaries left and right 
 const range = (start, stop, step) =>
   Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
 
@@ -64,7 +100,7 @@ let oRotateArr = [[1, 10, 11], [1, 10, 11], [1, 10, 11], [1, 10, 11], 0] //rotat
 let iRotateArr = [[1, 2, 3], [10, 20, 30], [1, 2, 3], [10, 20, 30], 0]
 
 
-let tetriminoSpeedArr = [500, 450, 400, 350, 300, 275, 250, 225, 200, 180, 160, 140, 120, 100, 75 ]
+let tetriminoSpeedArr = [500, 450, 400, 350, 300, 275, 250, 225, 200, 180, 160]
 //array for next tetrimino display
 let jNextArr = [-1, 1, 7]
 let lNextArr = [-1, 1, 5]
@@ -103,36 +139,126 @@ let permutationsArray = []// holds all 60 permutations of 7 tetriminos
 
 // contains points for 1, 2, 3 and 4 lines - just need to multiply these by 'level + 1' since all points are simply multiples of the first level points
 let pointsArr = [40, 100, 300, 1200] 
+const obstacleObj = {floor:0, tetrimino:0} // object for obstacle strikes of floor or tetrimino
+let obstacleCountArr = [obstacleObj]; // array to hold obstacle strikes data
+
+console.log(obstacleCountArr[0]['floor'])
+console.log(obstacleCountArr[0]['tetrimino'])
+
+
+
+// show modal with all stats including high scores and comparison
+const showModal = () =>{
+// OPEN modal with end of game stats
+modalEl.style.cssText = 'z-index:1;';
+modalEl.style.cssText = 'display:block;';
+
+}
+
+
+// store high scores in localStorage
+const setHighScores = () =>{
+    let score = pointsCountArr[0] // use current score if no high score recorded
+
+
+    if(!window.localStorage.high_score_tetris){ // if no score stored in localstorage
+        window.localStorage.setItem('high_score_tetris', `${score}`) //set as current
+       highscoreMsg.textContent = `you have the current high score: ${score} `
+       }else{ // if previous score exists assign variable to it
+      prevHighScore = window.localStorage.getItem("high_score_tetris")
+if(score < prevHighScore){ // if player score less than previous high score
+highscoreMsg.textContent = `Your score is less than high score: ${prevHighScore}`
+}else if(score === prevHighScore) { // if player score equals high score
+    highscoreMsg.textContent = `You matched high score: ${prevHighScore}`
+}else{ // if player beats high score
+    highscoreMsg.textContent = `Congratulations! You beat the previous high score, ${prevHighScore}: new high score: ${score} `
+    // then change the local storage value to the new high score
+    window.localStorage.setItem('high_score_tetris',`${score}` )
+
+} }
+
+showModal()
+
+}
 
 
 
 
+// game statistics for modal display
+const statsForModal = () =>{
+ // play end of game sounds
+GameOverAudio.play()
+let score = pointsCountArr[0]
+let level = Math.floor(lineRecordArr[0]/10)
+let lines = lineRecordArr[0]
 
 
+// render score
+if(score >= 40){ // display score as normal 2+ digits
+endScoreEl.textContent = `SCORE: ${score}`
+}else{endScoreEl.textContent = `SCORE: ${00}`} // 40 is minimum any other score is '00'
 
+
+// render level
+if(level > 10){ // game ends because you've TRANSCENDED the game levels :)
+    endLevelEl.textContent = `GOD LEVEL`
+}else if(level < 10){ //levels 0-9, add preceding zero for double digits
+    endLevelEl.textContent = `LEVEL: 0${level}`
+    }else{ // game level must be 10 levels are double (only GOD gets here)
+        endLevelEl.textContent = `LEVEL: ${level}`
+    console.log('game almost complete COME ON!')
+    }
+
+// render lines
+if(lines < 10){ endLinesEl.textContent = `LINES: 00${lines}`
+}else if(lines < 100){endLinesEl.textContent = `LINES: 0${lines}`
+}else{endLinesEl.textContent = `LINES: ${lines}`}
+
+setHighScores()
+
+}
 
 
 
 // TETRIMINO AND FLOOR OBSTACLES COMBINED
 const obstacle = (a, b, c, d, blockA, blockB, blockC, blockD, obstacleType) =>{
     clearInterval(shapeClock) // stop clock and append tetrimino and remove 'descending' class
+
+    // REGISTER POSITIONS
     const registerPositions = (a, b, c, d, obstacleType) =>{
         arr[0] = a; arr[1] = b; arr[2] = c; arr[3] = d;
         filledSquareArr.push(arr[0], arr[1], arr[2], arr[3])
         console.log(`resting squares: ${arr}`)
         console.log(filledSquareArr)
+if(arr.includes(14)){ // the tetrimino ist resting in its initial position
+console.log('no need to run row check, collision at top of grid: GAME OVER')
 
+// append the collided final tetrimino using actual a, b, c and d values and it appends correctly aligned with the below tetrimino
+shapeBody.children[a].appendChild(blockA)
+shapeBody.children[b].appendChild(blockB)
+shapeBody.children[c].appendChild(blockC)
+shapeBody.children[d].appendChild(blockD)
+statsForModal()
+
+}else{
+    // the tetrimino isn't resting in its initial position
         switch(obstacleType){
             case 'floor': 
+            obstacleCountArr[0]['floor'] += 1;
             console.log('checking for filled rows....FLOOR object')
 checkRowStatus(filledSquareArr, allRowsArr, obstacleType)
                 break;
             case 'tetrimino': 
+            obstacleCountArr[0]['tetrimino'] += 1;
+            console.log(`number of TETRIMINO strikes: ${obstacleCountArr[0]['tetrimino']}`)
             console.log('checking for filled rows....TETRIMINO object')
 checkRowStatus(filledSquareArr, allRowsArr, obstacleType) // check row status
             break;
-        }
+        }}
     }
+    // END OF REGISTER POSITIONS
+
+
 
 const removeClass = (a, b, c, d, blockA, blockB, blockC, blockD, obstacleType) =>{
     blockA.classList.remove('descending') // remove descending 'class'
@@ -150,7 +276,7 @@ registerPositions(a, b, c, d, obstacleType)
 
         case 'tetrimino': console.log('TETRIMINO OBSTACLE')
 console.log(a, b, c, d, tetrisBlockArr[4])
-
+// this seems to be the best place for the END GAME SCENARIO
     a-=10; b-=10; c-=10; d-=10;
     shapeBody.children[a].appendChild(blockA)
     shapeBody.children[b].appendChild(blockB)
@@ -204,12 +330,22 @@ scoreEl.textContent = `SCORE: ${pointsCountArr[0]}`
 // to render level
 const renderLevel = (lineNumber) =>{
     levelCount = Math.floor(lineNumber/10)
-    if(levelCount < 10){
-        levelEl.textContent = `LEVEL: 0${levelCount}`
-    }else{levelEl.textContent = `LEVELL:${levelCount}`}
-    levelCountArr[0] = levelCount
-    console.log(levelCountArr)
-    console.log(tetriminoSpeedArr[levelCountArr[0]])
+    if(levelCount > 10){ // game complete
+        clearInterval(shapeClock); // stop game
+    console.log('EXCELLENT GAME: all 10 levels completed')
+    statsForModal()
+    }else if(levelCount < 10){ // log game levels appropriately
+            levelEl.textContent = `LEVEL: 0${levelCount}`
+        }else{ // game level must be 10
+            levelEl.textContent = `LEVEL:${levelCount}`
+        console.log('game almost complete COME ON!')
+        }
+        levelCountArr[0] = levelCount
+        console.log(levelCountArr)
+        console.log(tetriminoSpeedArr[levelCountArr[0]])
+
+    
+
    
 }
 
@@ -218,13 +354,15 @@ const renderLevel = (lineNumber) =>{
 const clearRow = (rowList) =>{
     // rowList is an array containing the nth full rows
 
-    // TRY ANIMATION FROM HERE - we flash everything
+    // paly ANIMATION and appropriate SOUND CLIP for number of rows cleared
     for(j=0; j < shapeBody.children.length; j++){
         if(rowSelectArr.length > 3){// animate whole grid WITH STROBE EFFECT
         shapeBody.children[j].style.animation = "flash 0.1s 3";
+        TetrisBoomAudio.play();
     }else{ // animate whole grid with just singular flash of 0.2secs
         console.log(`row selector: ${rowSelectArr.length}`)
         shapeBody.children[j].style.animation = "flashb 0.2s 1";
+        LineCompleteAudio.play();
     }}
 
 
@@ -691,8 +829,8 @@ const displayShape = (shapeNumber) =>{
 
 // now switch the results and give each of the four numbers a color which will then be sent as a parameter to the below functions.
 
-let a1 = 24
-let a2 = 4
+let a1 = 14
+
 
     switch(shapeNumber){
 case 1:shapeCreator(a1, jRotateArr[0], actualColor, 'J')
@@ -713,7 +851,7 @@ break;
     case 6:shapeCreator(a1, oRotateArr[0], actualColor, 'O')
     break;
 
-    case 7:shapeCreator(a2, iRotateArr[0], actualColor, 'I')
+    case 7:shapeCreator(a1, iRotateArr[0], actualColor, 'I')
     break;
     }}
 
@@ -774,10 +912,10 @@ const formatNextTetrimino = (master, slaves, color, letter) =>{
 
 
 
-    // display tetrimino to follow current
+    // display next tetrimino in mini display. 
 const nextTetrimino = (newIndex) =>{
     console.log(newIndex)
-let a = 8; // pivot block for all tetriminos.. all other blocks are relative to this
+let a = 8; // master block position; all other block positions are relative to 'a'
 let actualColor;
 // colorArray contains 6 colors which are cycled through
 // increase integer value in last position of array by 1
@@ -872,8 +1010,10 @@ document.addEventListener('keypress', (e) =>{
          break;
  
      case 'Enter': 
+         // run GAME STATS MODAL - gamve over screen
      if(startCommandArr.length < 1){
          buildShape();
+         startAudio.play()
          startCommandArr.unshift('start')
      }else{console.log('game already started')}
      break; 

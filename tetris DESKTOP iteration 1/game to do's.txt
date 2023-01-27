@@ -8,9 +8,16 @@ FLASH ANIMATION FOR COMPLETE ROW (solved)
 POINTS SYSTEM AND DISPLAY (solved)
 LEVELS SYSTEM AND DISPLAY (solved)
 INCREASE SPEED OF DROPS AS LEVELS INCREASE (solved)
-GAME END SCENARIO
-GAME END DISPLAY
-HIGHEST POINTS PARAGRAPH
+GAME END SCENARIO (solved)
+GAME OVER DISPLAY - (solved) 
+GAME END STATISTICS PARAGRAPH (solved)
+SCORE STORAGE (perhaps with high score list later on)
+GAME LEVEL LIMIT OF 10 (drop speed is 0.16 seconds which is about 6 tetriminos per second... impossible!)
+BUTTON CONTAINER PROBLEM - button not appearing: solved but check where the conflict is (possibly with other button containers that were originally coded for pause and start buttons)
+NEW GAME BUTTON (solved)
+
+
+------------------------------------------------------------------------- METHOD REJECTED FOR BETTER SOLUTION
 
 CORRECTING LINE COUNT
 Use the number of elements in the array that stores row number, to dictate how many lines are added.  
@@ -142,9 +149,9 @@ It might be possible to take the interval for the tetrimino drop from an array. 
 so when the level increases, since the levels run from 0-15, just use the level number to select which index of tetriminoSpeedArr to select the next level time from.  The level is stored in levelCountArr[0]. 
 
 
------------------------------------------------------------------------------ NOT SOLVED
+----------------------------------------------------------------------------- 
 
-GAME END SCENARIO: 
+GAME END SCENARIO: -  SOLVED
 This shouldn't be too hard.  If there's a tetrimino obstacle where the clash happens above a certain height (somewhere around the first four rows) then it means that two tetriminos have clashed near the top of the grid you'll have to decide when this happens and it will probably depend on the shape of the tetrimino. For example, the 'I' piece will clash before the 'O' piece.. but you can use the arrays containing rotations to determine this. Maybe you can darken the screen, or have a modal open up with all the information about lines, score and level under the GAME OVER words... just a thought. 
 
 this might be easier than I first thought.. around line 666 we have the values for the stationary blocks around which the other 3 tetrimino blocks revolve for rotations. It's probably fine to use those numbers(and anything above) as clash points; that is, for the 'I' tetrimino, '4' + 30, because that is the lowest point of that particular piece and for all other tetriminos '24 + furthest value greater than 24 that belongs to the the tetrimino'
@@ -161,3 +168,80 @@ I think we are using 'd' as the letter as it is normally the last
 so in the obstacle() function we can do a switch statement for all letters
 
 SO NOT AS EASY AS PREVIOUSLY THOUGHT... THIS WILL BE THE LAST THING TO WORK ON
+
+
+MORE NOTES* - recorded every tetrimino strike but creating an array with an object in it; the keys are 'floor' and 'tetrimino' with key values of 0 for each.  Each time a floor/tetrimino obstacle is encountered the appropriate key value is incremented by one.  I used this to find out if multiple tetrimino strikes were being recorded, which they were.  But then noticed that just after the logging of TETRIMINO OBSTACLE, the array with resting squares is logged, which shows the position at which the blocked tetrimino rests.  From this you can see if the tetrimino obstacle is blocked as soon as it lands because the positions of the tetrimino blocks are the same as their 'first' positions on appearing in the grid; which means that when they immediately hit an obstacle when they appear and do not move any further.  Maybe the values in the 'resting squares' array (arr[]) can be used to determine whether to stop the game or not;  here's the white board below: 
+
+EVEN MORE NOTES* - looking at this again, it might actually be easier to check if resting squares contains the fixed tetrimino block in its starting position (for most tetriminos that's a = 24, and for the'I' tetrimino it's  a = 4). So if the resting squares contains the default drop 'a' value, that must mean that the tetrimino appeared but has not moved because and is resting in its initial position - the hitting of the obstacle caused it to stay in its initial position, which means, roughly speaking, that it collided with another tetrimino as soon as it appeared.  And that means that any other tetrimino that is dropped will also collide with THIS tetrimino, which will not move and you'll have a pile up, in other words, game over...
+
+so, if resting squares (arr) contains 'a' game over. This should work because, checking all other collisions, you can see that resting squares (arr) does not include the initial 'a' value (it could mean that there has been a rotation and a different block (b, c or d) is in the resting position, but, a rotation won't happen if there is an immediate collision on tetrimino appearance, AND, if the resting position of a block other than 'a' hasthe same value as the initial 'a' value, you wouldn't be able to drop any more tetriminos anyway, because they would collide immediately with the tetrimino which which includes the initial 'a' in its resting squares - NOPE, scrap that... it cannot be any other blocks but 'a' since 'a' is the fixed block so if resting squares contains the initial 'a' number, the block must be 'a'). 
+
+SOLUTION/POTENTIAL FIX
+we could eliminate the need to differentiate between the 'I' tetrimino and other tetriminos by simply making it's fixed block 'a' begin at a = 24, like all other tetriminos.  I've already started it in the horizontal orientation so, why not change it's start position as well. It's only two rows down and won't impact the game that much. Then the method in the above paragraph will be easier to implement.  
+
+Changed all tetrimino start points to a = 14 and then changed the 'I' tetrimino start point to 'that' also. Now the clash occurs right at the top or, at worst, 1 row way, which is good enough. 
+
+----------------------------------------------------------------------------- 
+
+GAME LEVEL LIMIT OF 10 (drop speed is 0.16 seconds which is about 6 tetriminos per second... impossible!) -SOLVED
+used game level value > 10 to stop game.. can be found in the function renderLevel()
+
+
+
+----------------------------------------------------------------------------- 
+
+GAME END DISPLAY: - SOLVED (almost)
+
+NOTE* can't implement this until GAME END SCENARIO is solved and implemented.. 
+this can probably be handled by the same modal as below - just in a separate paragraph..
+perhaps the whole modal can fit mostly across the page and be ALMOST transparent... 
+
+having difficulty with the modal display.  In 'elements' on the console, it registers as display solid, but no modal shows on screen. 
+
+DOH! Silly mistake yet again;  was using the css code 'display: solid', which does nothing... checked the code in JavaScript for the Blackjack game and the actual code is 'display:block' not the first time I've made this mistake, but hopefully the last. 
+
+			SOLVED
+
+----------------------------------------------------------------------------- NOT SOLVED
+
+HIGHEST POINTS PARAGRAPH
+
+NOTE* can't implement this until GAME END SCENARIO is solved and implemented.. 
+this can be handled with a modal... which you can get mostly from the blackjack game... 
+checked display will work by console.logging LEVEL, SCORE and LINES. logs work. 
+
+
+
+----------------------------------------------------------------------------- NOT SOLVED
+
+FLASH ANIMATION DEBUG FOR SOME INSANCES WHERE IT'S NOT WORKING: 
+
+
+----------------------------------------------------------------------------- 
+
+ADD IN-GAME SOUNDS: SOLVED
+check YouTube for samples and check actual tounaments.. 
+
+downloaded sounds from YT and created mp3 clips using Audacity
+files dropped in main folder
+
+script - let clipType = new Audio('clip name.mp3')
+for each clip type. 
+
+then cliptype.play() in the appropriate function 
+
+----------------------------------------------------------------------------- 
+
+GAME END STATISTICS PARAGRAPH: SOLVED
+ initiated score, level and lines variables with values from pointsCountArr, lineRecordArr (using math floor) and lineRecordArr as is. Used appropriate formatting to render numbers as they appear in the side display with two or three digits. 
+
+----------------------------------------------------------------------------- 
+
+NEW GAME BUTTON: SOLVED
+
+used newGameBtn.addEventListener('click', function(){
+location.reload()
+}
+
+this reloads the page
+

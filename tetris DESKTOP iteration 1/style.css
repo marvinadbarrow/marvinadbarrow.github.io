@@ -14,6 +14,87 @@ margin-top: 50px;
 
 }
 
+/* MODAL STYLINGS */
+/* MODAL for end of game stats instructions etc */
+#modal-container{width:90%; margin:auto;}
+
+
+
+#close-btn{font-weight:bold; font-size:60px; margin:10px;
+  color:rgba(245, 41, 22, 0.7); float:right;
+   }
+  
+  #close-btn:hover, #close-btn:focus{color:black; text-decoration:none; cursor:pointer; }
+  
+  #simple-modal{
+  display:none;
+  box-shadow: 2px 2px 7px black;
+  width:850px; height:800px;
+  background-color:rgba(75, 75, 75, 0.57);
+  margin-top:30px;
+  border-radius:7px;
+  position:fixed;
+  z-index:11;
+  overflow:auto;
+  margin: auto;
+  
+  }
+
+
+
+  #content{background-color:rgba(199, 205, 206, 0.391);
+    box-shadow: 1px 1px 5px black;
+    border-radius:7px;
+     margin:10px;
+    height:750px;
+    width: 800px;
+    }
+    
+    
+    #modal-para{width: 700px; margin:10px;font-size:40px; font-weight:bold;color:white;margin: auto; text-align: center;}
+    
+    #close-btn{height: 80px;  font-size:50px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color: rgb(224, 36, 36);
+    text-shadow: none;color: yellow;}
+
+    #modal-header{height: 80px; background-color:rgba(6, 6, 5, 0.628); font-size:50px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color: rgb(224, 36, 36);text-shadow: 2px 2px white ;}
+
+    #high-scores{color: yellow;width: 600px;}
+    
+    .results{ font-size:35px; font-weight:bold;color:white;}
+    
+    @keyframes modalfade{
+    from{opacity:0}
+    to{opacity:1}
+    }
+    
+    #button-container-b{z-index: 2; margin: auto; height: 50px; width: 200px; margin-top: 40px;}
+
+    #tetriminoes{width: 630px; margin-top: 50px;}
+    #new-game{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:35px; box-shadow: 2px 2px 7px black;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* dimensions for game blocks*/
 .block-dimensions{
 width: 39px;

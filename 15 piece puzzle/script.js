@@ -403,7 +403,7 @@ setTimeout(() => {
 
 
 
-// xlear stored score
+// clear stored score
 scoreClearBtn.addEventListener('click', function(){
     window.localStorage.setItem('high_score', '')
     messageEl.textContent = 'Fewest moves scores removed'
