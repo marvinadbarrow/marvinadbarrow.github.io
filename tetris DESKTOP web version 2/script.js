@@ -9,8 +9,25 @@ let startAudio = new Audio('Game Start.mp3')
 let GameOverAudio = new Audio('Game Over.mp3')
 let LineCompleteAudio = new Audio('Tetris Normal Lines.mp3')
 let TetrisBoomAudio = new Audio('Tetris Boom Tetris.mp3')
+let killAudio = new Audio('explosion.mp3')
 
 
+// BUTTON ELEMENTS FOR NAVIGATION
+//GAME OPERATION BUTTONS
+let startEl = document.getElementById('start')
+let pauseEl = document.getElementById('pause')
+let refreshEl = document.getElementById('refresh')
+let navButtons = document.getElementById('nav-button-container')
+// TETRIMINO MANIPULATION BUTTONS
+let moveLeftEl = document.getElementById('move-right')
+let moveRightEl = document.getElementById('move-left')
+let rotateEl = document.getElementById('rotate')
+
+// element containing game state buttons
+let gameStateBtns = document.getElementById('function-button-container')
+
+
+// ALREADY EXISTING ELEMENTS
 let shapeCreatorEl = document.getElementById('create-shapes')
 let shapeBody = document.getElementById('shape-grid')
 let nextPieceEl = document.getElementById('next-piece-container')
@@ -121,6 +138,9 @@ let rotationTrackerArr = [] // keeps track of current tetrimino rotation
 let rowRecordArr = []// holds records of rows that the landed tetrimino spans
 let rowDeleterArr = [] // collects rows that are full for deletion
 let startCommandArr = [] //if array contains a value; 'start' cannot be operated - so start can only operate ONCE - until game is reset
+let gameOverArray = []// will receive the string 'game over' once the game is over so the refresh page button can be executed if the modal is already closed and the 'new game' button is unavailable - we might even need a 'view stats again' button for the last game. 
+
+let killArray = []
 let mergedArray = [] // contains merged version of all completed rows
 let pauseIntervalArr = []
 let tetrisBlockArr = []
@@ -238,6 +258,7 @@ shapeBody.children[a].appendChild(blockA)
 shapeBody.children[b].appendChild(blockB)
 shapeBody.children[c].appendChild(blockC)
 shapeBody.children[d].appendChild(blockD)
+gameOverArray.push('game over')
 statsForModal()
 
 }else{
@@ -333,6 +354,7 @@ const renderLevel = (lineNumber) =>{
     if(levelCount > 10){ // game complete
         clearInterval(shapeClock); // stop game
     console.log('EXCELLENT GAME: all 10 levels completed')
+    gameOverArray.push('game over')
     statsForModal()
     }else if(levelCount < 10){ // log game levels appropriately
             levelEl.textContent = `LEVEL: 0${levelCount}`
@@ -343,10 +365,6 @@ const renderLevel = (lineNumber) =>{
         levelCountArr[0] = levelCount
         console.log(levelCountArr)
         console.log(tetriminoSpeedArr[levelCountArr[0]])
-
-    
-
-   
 }
 
 
@@ -358,10 +376,12 @@ const clearRow = (rowList) =>{
     for(j=0; j < shapeBody.children.length; j++){
         if(rowSelectArr.length > 3){// animate whole grid WITH STROBE EFFECT
         shapeBody.children[j].style.animation = "flash 0.1s 3";
+        // play audio for a tetris hit
         TetrisBoomAudio.play();
     }else{ // animate whole grid with just singular flash of 0.2secs
         console.log(`row selector: ${rowSelectArr.length}`)
         shapeBody.children[j].style.animation = "flashb 0.2s 1";
+        // play audio for a normal row hit
         LineCompleteAudio.play();
     }}
 
@@ -466,9 +486,6 @@ rowChildren = allRowsArr[element]// get actual row contents using row list numbe
 }
 
 
-
-
-
 // FIX THIS - the order of events
 const checkRowStatus = (array, rowArray, obstacleType) =>{
 
@@ -477,8 +494,6 @@ const checkRowStatus = (array, rowArray, obstacleType) =>{
         if(shapeBody.children[j].style.animation = "animation"){
         shapeBody.children[j].style.animation = "";}
     }
-
-
 
 const checkRow = (array, rowArray)=>{
     let incompleteRows; // lists total number of incomplete rows
@@ -581,145 +596,165 @@ shapeBody.children[b].appendChild(blockB)
 shapeBody.children[c].appendChild(blockC)
 shapeBody.children[d].appendChild(blockD)
 
+// navigation function for both keypresses and button clicks
+const navigationListener = (identifyer) =>{
 
-console.log(tetrisBlockArr)
-document.addEventListener('keydown', (e) =>{
-    console.log(e.key)
     // to check class of each block
-let aAttribute = blockA.getAttribute('class')
-let bAttribute = blockB.getAttribute('class')
-let cAttribute = blockC.getAttribute('class')
-let dAttribute = blockD.getAttribute('class')
-
-// if block has 'descending' class then allow move-right, move-left, and rotate
-if(aAttribute.includes('descending') && bAttribute.includes('descending') && cAttribute.includes('descending') && dAttribute.includes('descending')){
+    let aAttribute = blockA.getAttribute('class')
+    let bAttribute = blockB.getAttribute('class')
+    let cAttribute = blockC.getAttribute('class')
+    let dAttribute = blockD.getAttribute('class')
     
-
-const MoveRightLeft = (a, b, c, d, direction) =>{
-
-
-
-const movePiece = (a, b, c, d) =>{
-    shapeBody.children[a].appendChild(blockA)
-shapeBody.children[b].appendChild(blockB)
-shapeBody.children[c].appendChild(blockC)
-shapeBody.children[d].appendChild(blockD)
-}
-
-// if piece is stopped,change a, b, c and d to original values and append children as normal
-movePiece(a,b,c,d)
-
-}
-
-
-const renderRotate = (a, b, c, d, letter, rotator) =>{
-    console.log(b, c, d, letter, rotator)
+    // if block has 'descending' class then allow move-right, move-left, and rotate
+    if(aAttribute.includes('descending') && bAttribute.includes('descending') && cAttribute.includes('descending') && dAttribute.includes('descending')){
+        
+    
+    const MoveRightLeft = (a, b, c, d, direction) =>{
+    
+    
+    
+    const movePiece = (a, b, c, d) =>{
+        shapeBody.children[a].appendChild(blockA)
+    shapeBody.children[b].appendChild(blockB)
+    shapeBody.children[c].appendChild(blockC)
+    shapeBody.children[d].appendChild(blockD)
+    }
+    
+    // if piece is stopped,change a, b, c and d to original values and append children as normal
+    movePiece(a,b,c,d)
+    
+    }
+    
+    
+    const renderRotate = (a, b, c, d, letter, rotator) =>{
+        console.log(b, c, d, letter, rotator)
+        shapeBody.children[a].appendChild(blockA)
+        shapeBody.children[b].appendChild(blockB)
+        shapeBody.children[c].appendChild(blockC)
+        shapeBody.children[d].appendChild(blockD)
+            }
+    
+        
+    const preRenderRotate = (a, array, rotator) =>{
+        b = a + array[rotator][0]
+        c = a + array[rotator][1]
+        d = a + array[rotator][2]  
+        renderRotate(a, b, c, d, letter, rotator)}
+    
+     // b, c and d values are stored in 'rotation' arrays for each tetrimino type. Each array has 4 subarrays; each subarray representing  one of the 4 multiples of 90 degrees in a 360 degree revolution (0, 90, 180, 270). In a rotation 'a' is kept stationary while b, c and d take the values of the currently selected subarray, values which are relative to the current value of 'a'. Rotations are prevented if rotation will result in the tetrimino traversing left or right borders, or if a rotation will result in a collision with another tetrimino. 
+    const rotateTetrimino = (a, array, letter) =>{
+      console.log(a)
+      array[4] += 1; // increase last array value so picker will choose next rotation
+    rotator = array[4]% 4;// gives the index of array holding destination div numbers
+    
+    if(filledSquareArr.includes(a + array[rotator][0]) || filledSquareArr.includes(a + array[rotator][1]) || filledSquareArr.includes(a + array[rotator][2])){
+        console.log('COLLISION')
+    }else{
+        // switch tetrimino type to define boundary collisions
+        switch(letter){
+               case 'I': if( a % 10 > 6){console.log('COLLISION')}else{
+                preRenderRotate(a, array, rotator)}
+            break;
+           default: if(a % 10 == 9 || a % 10 == 0){console.log('COLLISION')}else{
+                    preRenderRotate(a, array, rotator)}
+               } // end of switch
+            
     shapeBody.children[a].appendChild(blockA)
     shapeBody.children[b].appendChild(blockB)
     shapeBody.children[c].appendChild(blockC)
     shapeBody.children[d].appendChild(blockD)
-
-
-}
-
-
-
-
-
-const preRenderRotate = (a, array, rotator) =>{
-    b = a + array[rotator][0]
-    c = a + array[rotator][1]
-    d = a + array[rotator][2]  
-    renderRotate(a, b, c, d, letter, rotator)}
-
- // b, c and d values are stored in 'rotation' arrays for each tetrimino type. Each array has 4 subarrays; each subarray representing  one of the 4 multiples of 90 degrees in a 360 degree revolution (0, 90, 180, 270). In a rotation 'a' is kept stationary while b, c and d take the values of the currently selected subarray, values which are relative to the current value of 'a'. Rotations are prevented if rotation will result in the tetrimino traversing left or right borders, or if a rotation will result in a collision with another tetrimino. 
-const rotateTetrimino = (a, array, letter) =>{
-  console.log(a)
-  array[4] += 1; // increase last array value so picker will choose next rotation
-rotator = array[4]% 4;// gives the index of array holding destination div numbers
-
-if(filledSquareArr.includes(a + array[rotator][0]) || filledSquareArr.includes(a + array[rotator][1]) || filledSquareArr.includes(a + array[rotator][2])){
-    console.log('COLLISION')
-}else{
-    // switch tetrimino type to define boundary collisions
-    switch(letter){
-           case 'I': if( a % 10 > 6){console.log('COLLISION')}else{
-            preRenderRotate(a, array, rotator)}
-        break;
-       default: if(a % 10 == 9 || a % 10 == 0){console.log('COLLISION')}else{
-                preRenderRotate(a, array, rotator)}
-           } // end of switch
-        
-shapeBody.children[a].appendChild(blockA)
-shapeBody.children[b].appendChild(blockB)
-shapeBody.children[c].appendChild(blockC)
-shapeBody.children[d].appendChild(blockD)
-}}
-
-
-    // if an arrow key is pressed change the value of a, b, c and d. And use those new values to dictate which grid child(square) is appended to 
-    switch(e.key){
-        case 'ArrowRight': console.log('right arrow pressed');
-// if a, b, c or d is increased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, increase the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values. 
-if(leftBoundaryArr.includes(a+1)  || leftBoundaryArr.includes(b+1)  || leftBoundaryArr.includes(c+1)  || leftBoundaryArr.includes(d+1)  || pauseIntervalArr.length > 0){
-console.log('cannot move right: BOUNDARY')
-}else{
-
-    // values contained in filledSquareArr cannot be used to append blocks to empty squares
-    if(filledSquareArr.includes(a+1) || filledSquareArr.includes(b+1) || filledSquareArr.includes(c+1) || filledSquareArr.includes(d+1) || pauseIntervalArr.length > 0){console.log('collision detected: CANNOT MOVE PIECE')}else{
-        a += 1;  b += 1;  c += 1;  d += 1;
-        MoveRightLeft(a, b, c, d, e.key)
-
-    }
-
-}
- break;
- case 'ArrowLeft': console.log('Left arrow pressed')
-// if a, b, c or d is decreased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, decrease the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values.
-
-if(rightBoundaryArr.includes(a-1)  || rightBoundaryArr.includes(b-1)  || rightBoundaryArr.includes(c-1)  || rightBoundaryArr.includes(d-1) || pauseIntervalArr.length > 0){
-    console.log('cannot move left: BOUNDARY')
+    }}
+    
+    
+    
+    // switch target to see if button or associated font awesome icon is pressed
+        switch(identifyer){
+             // if detected element is right button
+             case 'ArrowRight':
+            case 'move-right':
+            case 'fa-arrow-right':
+                 console.log('right arrow pressed');
+    // if a, b, c or d is increased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, increase the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values. 
+    if(leftBoundaryArr.includes(a+1)  || leftBoundaryArr.includes(b+1)  || leftBoundaryArr.includes(c+1)  || leftBoundaryArr.includes(d+1)  || pauseIntervalArr.length > 0){
+    console.log('cannot move right: BOUNDARY')
     }else{
-
-            // values contained in filledSquareArr cannot be used to append blocks to  squares; because the squares associated with those numbers are already filled. 
-        if(filledSquareArr.includes(a-1) || filledSquareArr.includes(b-1) || filledSquareArr.includes(c-1) || filledSquareArr.includes(d-1) || pauseIntervalArr.length > 0){console.log('collision detected: CANNOT MOVE PIECE')}else{
-          
-    a -= 1;  b -= 1;  c -= 1;  d -= 1;
-    MoveRightLeft(a, b, c, d, e.key)
+    
+        // values contained in filledSquareArr cannot be used to append blocks to empty squares
+        if(filledSquareArr.includes(a+1) || filledSquareArr.includes(b+1) || filledSquareArr.includes(c+1) || filledSquareArr.includes(d+1) || pauseIntervalArr.length > 0){console.log('collision detected: CANNOT MOVE PIECE')}else{
+            a += 1;  b += 1;  c += 1;  d += 1;
+            MoveRightLeft(a, b, c, d, identifyer)
+    
+        }
+    
+    }
+     break;
+    
+     // if detected element is left button
+     case 'ArrowLeft':
+     case 'move-left':
+     case 'fa-arrow-left':   
+     console.log('Left arrow pressed')
+    // if a, b, c or d is decreased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, decrease the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values.
+    
+    if(rightBoundaryArr.includes(a-1)  || rightBoundaryArr.includes(b-1)  || rightBoundaryArr.includes(c-1)  || rightBoundaryArr.includes(d-1) || pauseIntervalArr.length > 0){
+        console.log('cannot move left: BOUNDARY')
+        }else{
+    
+                // values contained in filledSquareArr cannot be used to append blocks to  squares; because the squares associated with those numbers are already filled. 
+            if(filledSquareArr.includes(a-1) || filledSquareArr.includes(b-1) || filledSquareArr.includes(c-1) || filledSquareArr.includes(d-1) || pauseIntervalArr.length > 0){console.log('collision detected: CANNOT MOVE PIECE')}else{
+              
+        a -= 1;  b -= 1;  c -= 1;  d -= 1;
+        MoveRightLeft(a, b, c, d,identifyer)
+                
+            }
+    
+    }
+            break;
+    
+            // if rotate button (between right and left buttons) is pressed
+            // if pause button is pressed we will not allow rotation as it seems to cause a conflict if allowed - and is redundant anyway because it would be a means of cheating or is generally not required, especially if the pause it to allow row clearance and floating tetrimino drop
+            case 'ArrowUp':
+            case 'rotator':
+            case 'fa-arrow-rotate':    
+            console.log('Up arrow pressed')
+            if(letter == 'S'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, sRotateArr, letter)}
+             }else if(letter == 'Z'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, zRotateArr, letter)} 
+            }else if(letter == 'I'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, iRotateArr, letter)}
             
+            }else if(letter == 'J'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, jRotateArr, letter)}
+            
+            }else if(letter == 'L'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, lRotateArr, letter)}
+            
+            }else if(letter == 'T'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, tRotateArr, letter)}
+            
+            }else if(letter == 'O'){ if(pauseIntervalArr.length < 1){ rotateTetrimino(a, oRotateArr, letter)} // no need since rotations are symetrical about center
+                   }
+    
+            break;
+            case 'ArrowDown': console.log('Down arrow pressed')
+            break;
+    
         }
 
-}
-        break;
-        // UP ARROW rotates tetriminos
-        // if pause button is pressed we will not allow rotation as it seems to cause a conflict if allowed - and is redundant anyway because it would be a means of cheating or is generally not required, especially if the pause it to allow row clearance and floating tetrimino drop
-        case 'ArrowUp': console.log('Up arrow pressed')
-        if(letter == 'S'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, sRotateArr, letter)}
-         }else if(letter == 'Z'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, zRotateArr, letter)} 
-        }else if(letter == 'I'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, iRotateArr, letter)}
-        
-        }else if(letter == 'J'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, jRotateArr, letter)}
-        
-        }else if(letter == 'L'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, lRotateArr, letter)}
-        
-        }else if(letter == 'T'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, tRotateArr, letter)}
-        
-        }else if(letter == 'O'){ if(pauseIntervalArr.length < 1){ rotateTetrimino(a, oRotateArr, letter)} // no need since rotations are symetrical about center
-               }
-
-        break;
-        case 'ArrowDown': console.log('Down arrow pressed')
-        break;
     }
 
 
-
-
 }
-    // end of switch and descending requirements this seems to be working. 
+
+// event listener for keyboard tetrimino navigation
+document.addEventListener('keydown', (e) =>{
+    console.log(e.key)
+    let identifyer = e.key;
+    console.log(identifyer)
+navigationListener(identifyer)
 })
 
-
+// event listener for button tetrimino navigation
+navButtons.addEventListener('click', function(e){
+    console.log(e.target)
+    let identifyer = e.target.id
+navigationListener(identifyer)
+})
 
 shapeClock =  setInterval(() => {
     
@@ -857,11 +892,6 @@ break;
 
 
 
-
-
-
-
-
     const displayNextTetrimino = (a, b, c, d, color, letter) =>{
 console.log(`displaying next tetrimino: ${letter}`)
 
@@ -945,9 +975,7 @@ actualColor = colorArr[(colorArr[6]+2) % 6]
             case 7:formatNextTetrimino(a, iNextArr, actualColor, 'I')
             break;
             }
-
 }
-
 
 
 
@@ -994,30 +1022,81 @@ console.log(permutationsArray)
     } // array has 7 numbers so start drawShape process with index '0' for first number, and the completed array
 }
 
-// START RANDOM TETRIMINO CREATION  console.log(permutationsArray)
+
+const gameState = (identifyer) =>{
+console.log(identifyer)
+switch(identifyer){
+    case ' ':
+    case 'pause':   
+    if(startCommandArr.length > 0 && killArray.length < 1){ 
+    if(pauseIntervalArr.length < 1){pauseIntervalArr.push('pause')
+    clearInterval(shapeClock)
+   }else{ pauseIntervalArr.pop()
+       tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
+              }}else{console.log('start or refresh game to use pause button')}
+    break;
+
+    case 'Enter': 
+    case 'start':
+       if(startCommandArr.length < 1){
+        buildShape();
+        startAudio.play()
+        startCommandArr.unshift('start')
+    }else{console.log('game already started')}
+    break; 
+    case 'refresh':
+    case 'r':
+        if(gameOverArray.length > 0 || killArray.length > 0){
+            location.reload()
+        }else{console.log(' game must end in order to refresh')}
+break;
+case 'kill':
+case'k':    
+
+if(startCommandArr.length > 0 && gameOverArray.length < 1 && pauseIntervalArr.length < 1){
+    pauseIntervalArr = []; // clear pause
+
+    for(i=0; i < shapeBody.children.length; i++){
+        clearInterval(shapeClock) // stop clock 
+        killArray.push('game killed') // push to array so refresh can be executed
+        shapeBody.children[i].style.animation = "flash 0.1s 20"; // apply animation
+        killAudio.play() // play explosion audio
+
+        // clear any tetriminoes in the grid
+        if(shapeBody.children[i].firstChild){
+            console.log(shapeBody.children[i].firstChild)
+            shapeBody.children[i].removeChild(shapeBody.children[i].firstChild)
+        }
+
+        // clear any tetriminoes in the next piece grid
+        for(j=0; j <nextPieceEl.children.length; j++){
+            nextPieceEl.children[j].style.animation = "flash 0.1s 20"; // apply animation
+        if(nextPieceEl.children[j].firstChild){
+            console.log(nextPieceEl.children[j].firstChild)
+            nextPieceEl.children[j].removeChild(nextPieceEl.children[j].firstChild)
+        }}
+        
+    }
+
+}else{console.log('game cannot be killed unless pause is inactive, game has started and is unfinished')}
+   
+break;
 
 
+}
+
+
+}
 
 document.addEventListener('keypress', (e) =>{
-    switch(e.key){ 
-     case ' ':if(pauseIntervalArr.length < 1){pauseIntervalArr.push('pause')
-     clearInterval(shapeClock)
-    }else{ pauseIntervalArr.pop()
-        tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
-            // this works - all the details popped back into tetriminoDrop(a, b, c, d, letter, blockA, blockB, blockC, blockD) allows the tetrimino to continue dropping.  Maybe we can use this to 'pause' the tetrimino drop while the complete rows are deleted and the floating tetrimino blocks are dropped.  Then we can 'unpause' the drop, making sure new blocks are already created. 
+let identifyer = e.key;
+console.log(identifyer)
+gameState(identifyer);
+})
 
-    }
-         break;
- 
-     case 'Enter': 
-         // run GAME STATS MODAL - gamve over screen
-     if(startCommandArr.length < 1){
-         buildShape();
-         startAudio.play()
-         startCommandArr.unshift('start')
-     }else{console.log('game already started')}
-     break; 
-    }
- })
- 
 
+
+gameStateBtns.addEventListener('click', (e) =>{
+let identifyer = e.target.id;
+gameState(identifyer);
+})
