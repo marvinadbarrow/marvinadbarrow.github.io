@@ -1,0 +1,530 @@
+CURRENT PROBLEMS TO SOLVE: 
+
+CORRECTING LINE COUNT (solved)
+DISPLAY NEXT TETRIMINO COLOR (solved)
+DISPLAY NEXT TETRIMINO TYPE (solved)
+DECIDE PERMUTATION LENGTH AND HOW/WHEN TO RENEW PERMUTATION (solved)
+FLASH ANIMATION FOR COMPLETE ROW (solved)
+POINTS SYSTEM AND DISPLAY (solved)
+LEVELS SYSTEM AND DISPLAY (solved)
+INCREASE SPEED OF DROPS AS LEVELS INCREASE (solved)
+GAME END SCENARIO (solved)
+GAME OVER DISPLAY - (solved) 
+GAME END STATISTICS PARAGRAPH (solved)
+SCORE STORAGE (perhaps with high score list later on)
+GAME LEVEL LIMIT OF 10 (drop speed is 0.16 seconds which is about 6 tetriminos per second... impossible!)
+BUTTON CONTAINER PROBLEM - button not appearing: solved but check where the conflict is (possibly with other button containers that were originally coded for pause and start buttons)
+NEW GAME BUTTON (solved)
+ADD NAVIGATION BUTTONS FOR MOBILE DIVICES (done)
+ADD BUTTON FUNCIONALITY ALONGSIDE KEYBOARD FUNCTIONALITY (SOLVED)
+ADD FUNCTIONALITY TO GAME STATE BUTTONS(start, pause, reset)
+CREATE A SAVE STATE BUTTON AND FUNCTIONS (this is crazy)
+
+
+------------------------------------------------------------------------- METHOD REJECTED FOR BETTER SOLUTION
+
+CORRECTING LINE COUNT
+Use the number of elements in the array that stores row number, to dictate how many lines are added.  
+
+Eg; rowSelectorArr = [18, 19]
+
+let lineCount = rowSelectorArr.length
+// lineCount === 2
+
+clearRow  = () =>{
+lineRecorderArr[0] += lineCount 2
+}
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+CORRECTING LINE COUNT - ALTERNATIVE - SOLVED
+SCRAP PREVIOUS:it's better to increment lineRecorderArr[0], when a row is completed; that's inside checkRow(), when rowChecker === true, which then executes rowCompleteArr[1] +=1; at the same time do: lineRecorderArr[0] += 1.  
+
+That will happen for EVERY full row detected and, THEN;
+
+clearRow  = () =>{
+count = lineRecordArr[0] 
+    lineRecordEl.textContent = `LINE:${count}`
+}
+
+NOTE* 
+1. 'count' is already initiated outside of the function
+2. text content to be given appropriate number of preceding zeros, based on count size. 
+
+---------------------------------------------------------------------------
+
+DISPLAY NEXT TETRIMINO COLOR:  - SOLVED
+there are five colour items in colorArr, colorArr[6] contains a randomly generated number which is used to specify which color the current tetrimino is rendered in, using colorArr[6] % 6.  
+Every time a tetrimino is created the next color is chosen by using the method: colorArr[6] += 1; and then: colorArr[6] % 6;
+this means the next color out of the five is displayed and if the previous color was the last color in the set, then the new color will be the first color of the set... So the colours are cycled through. 
+
+solution: used colorArr[6] + 2 for the next tetrimino (since the current tetrimino gets its color from colorArr[6] += 1. 
+---------------------------------------------------------------------------
+
+
+DISPLAY NEXT TETRIMINO TYPE: (SOLVED - after extending the random number generator to render 60 permutations of randomly generated numbers; solved in the next section)
+
+For the 'next tetrimino display' function we use the method permutationArray[n+1] % 420 which gives the next position in the array which contains the value associated with the next tetrimino to be dropped. 
+
+
+
+---------------------------------------------------------------------------
+
+DECIDE PERMUTATION LENGTH AND HOW/WHEN TO RENEW PERMUTATION: - SOLVED
+Extended the method for generating 7 random numbers (FROM 1-7 INCLUSIVE)for tetriminos. 
+Each time the 7 the shapeArr array is filled with the 7 randomly generated numbers, that array is pushed to a permutation array using spread operator; so that array (permutation) array contains 7 numbers the first time around;  shapeArr is then clearled of the 7 numbers is cleared out, and another 7 randomly generated numbers are pushed pushed to it, and then, again, the array is pushed to the permutation array using the spread operator; so the permutation array now contains 14 numbers with in the range of 1-7 inclusive (so there are duplicates); this equates to two sets of jumbled tetrimino numbers. This process continues until there are 420 entries in the permutation array; which amounts to 60 sets of permutations of the numbers from 1 - 7. Then this array of 420 numbers is looped through and as each position holds a value somewhere between 1 and 7 inclusive; that position's number is used to determine which tetrimino to drop.  We cycle through those numbers using permutationArray[n] % 420, which assures the cycle occurs.  
+
+
+
+
+---------------------------------------------------------------------------
+
+
+FLASH ANIMATION FOR COMPLETE ROW:  - SOLVED
+solution found: 
+method 1 - shapeBody.children[j].style.animation = "flash 0.1s 3";
+applied to all children using  a For Loop, when four rows are completed simultaneously
+
+method 2  - shapeBody.children[j].style.animation = "flashb 0.2s 1";
+when 1-3 rows are completed on tetrimino or floor obstacle
+
+NOTE* some issues with SINGLE ROW drop where only one full row is detected... animation sometimes not working. FIND SOLUTION
+
+
+
+--------------------------------------------------------------------------- 
+
+POINTS SYSTEM AND DISPLAY: - SOLVED
+
+points system values for each level are given on the webpage below -
+https://listfist.com/list-of-tetris-levels-by-points-nes
+
+it might be useful to have a separate function for rendering scores.
+inside that function the method might be to switch(level) and then for each level (i'll start with 10 or 15), have an if/else statement for points assignable to a 1, 2, 3 or 4 row completion. 
+or even better, each time a row is completed, send as arguments to the score funtion, the number of lines completed, and the last logged level; if we then have an array containing subarrays which correspond to each level, each of which contain four items whose values corresponding to the points assigned to a 1, 2, 3 or 4 row completion for that particular level, we can use rowSelectArr.length (the array which holds the number of rows to be cleared), to select one of the four values inside the level subarrays... and add that value to the current score.  SCRAP THIS
+
+MUCH EASIER SOLUTION - 
+Just created an array pointsArray = [40, 100, 300, 1200]
+these are the values for level '0'
+1 line = 40
+2 lines = 100
+3 lines = 300
+4 lines = 1200
+
+
+the points for all other levels are just multiples of these four - so for however many lines are cleared, 1, 2, 3 or 4 take the appropriate entry of pointsArray and multiply it by 'level + 1', since the levels begin at zero..
+so, for example, a 3-line clearance on level 5 will give 300*(5+1) = 300*6 = 1800 points; 
+in other words, let multiplier = level + 1
+let pointsCount;
+then pointsCount = pointsArray[lines - 1]*multiplier
+then pointsCount is textContent of score element
+
+
+
+
+--------------------------------------------------------------------------- 
+
+LEVELS SYSTEM AND DISPLAY: SOLVED 
+
+
+NOTE* - (this needs to be solved before points system and tetrimino drop speed because both depend on level changes for for their values)
+
+levels system is quite simple - level goes up every time your line value reaches a multiple of 10. 
+i.e.
+0-9 lines = level 00;
+10-19 lines = level 01;
+Since we're getting our lines from lineRecordArray[0] we can use the current value to determine the level
+and simply use the method: level = Math.floor(lineRecordArray[0]/10) because all values within a range of 10 consecutive numbers refer to one level. Then use text content of the element to render the level value
+remember, since the default rendering is in double digits, for level values less than 10, we'll need to render the text content as '0${level}' - (string literals)
+
+
+For now the easiest way is to render the level each time the line number increases - so use that function 
+SOLUTION WORKS FINE -- 
+
+
+
+
+--------------------------------------------------------------------------- 
+
+INCREASE SPEED OF DROPS AS LEVELS INCREASE: - SOLVED 
+
+NOTE* - (need to test that it works after 10 lines; it should work because I logged tetriminoSpeedArr[levelCountArr[0]] and it gave the default time of '500' ) 
+
+It might be possible to take the interval for the tetrimino drop from an array. if we call it tetriminoSpeedArr[500, 450, 400, 350......., 'smallest number'] where 500 is the longest time value, we can increase the speed over 10 or 15 increments, depending on which level we are at. 
+so when the level increases, since the levels run from 0-15, just use the level number to select which index of tetriminoSpeedArr to select the next level time from.  The level is stored in levelCountArr[0]. 
+
+
+----------------------------------------------------------------------------- 
+
+GAME END SCENARIO: -  SOLVED
+This shouldn't be too hard.  If there's a tetrimino obstacle where the clash happens above a certain height (somewhere around the first four rows) then it means that two tetriminos have clashed near the top of the grid you'll have to decide when this happens and it will probably depend on the shape of the tetrimino. For example, the 'I' piece will clash before the 'O' piece.. but you can use the arrays containing rotations to determine this. Maybe you can darken the screen, or have a modal open up with all the information about lines, score and level under the GAME OVER words... just a thought. 
+
+this might be easier than I first thought.. around line 666 we have the values for the stationary blocks around which the other 3 tetrimino blocks revolve for rotations. It's probably fine to use those numbers(and anything above) as clash points; that is, for the 'I' tetrimino, '4' + 30, because that is the lowest point of that particular piece and for all other tetriminos '24 + furthest value greater than 24 that belongs to the the tetrimino'
+for 'J' - 24 + 10 							(34)
+for 'L' and 'O' - 24 + 11 						(35)
+for 'S' - 24, since (24) is the largest value of the 'S' piece		(24)
+for 'Z' and 'T' - 24 + 1 						(25)
+for 'I' - 24 + 30 							(54)
+
+so the number list is 24, 25, 34, 35, 54
+
+I think we are using 'd' as the letter as it is normally the last
+
+so in the obstacle() function we can do a switch statement for all letters
+
+SO NOT AS EASY AS PREVIOUSLY THOUGHT... THIS WILL BE THE LAST THING TO WORK ON
+
+
+MORE NOTES* - recorded every tetrimino strike but creating an array with an object in it; the keys are 'floor' and 'tetrimino' with key values of 0 for each.  Each time a floor/tetrimino obstacle is encountered the appropriate key value is incremented by one.  I used this to find out if multiple tetrimino strikes were being recorded, which they were.  But then noticed that just after the logging of TETRIMINO OBSTACLE, the array with resting squares is logged, which shows the position at which the blocked tetrimino rests.  From this you can see if the tetrimino obstacle is blocked as soon as it lands because the positions of the tetrimino blocks are the same as their 'first' positions on appearing in the grid; which means that when they immediately hit an obstacle when they appear and do not move any further.  Maybe the values in the 'resting squares' array (arr[]) can be used to determine whether to stop the game or not;  here's the white board below: 
+
+EVEN MORE NOTES* - looking at this again, it might actually be easier to check if resting squares contains the fixed tetrimino block in its starting position (for most tetriminos that's a = 24, and for the'I' tetrimino it's  a = 4). So if the resting squares contains the default drop 'a' value, that must mean that the tetrimino appeared but has not moved because and is resting in its initial position - the hitting of the obstacle caused it to stay in its initial position, which means, roughly speaking, that it collided with another tetrimino as soon as it appeared.  And that means that any other tetrimino that is dropped will also collide with THIS tetrimino, which will not move and you'll have a pile up, in other words, game over...
+
+so, if resting squares (arr) contains 'a' game over. This should work because, checking all other collisions, you can see that resting squares (arr) does not include the initial 'a' value (it could mean that there has been a rotation and a different block (b, c or d) is in the resting position, but, a rotation won't happen if there is an immediate collision on tetrimino appearance, AND, if the resting position of a block other than 'a' hasthe same value as the initial 'a' value, you wouldn't be able to drop any more tetriminos anyway, because they would collide immediately with the tetrimino which which includes the initial 'a' in its resting squares - NOPE, scrap that... it cannot be any other blocks but 'a' since 'a' is the fixed block so if resting squares contains the initial 'a' number, the block must be 'a'). 
+
+SOLUTION/POTENTIAL FIX
+we could eliminate the need to differentiate between the 'I' tetrimino and other tetriminos by simply making it's fixed block 'a' begin at a = 24, like all other tetriminos.  I've already started it in the horizontal orientation so, why not change it's start position as well. It's only two rows down and won't impact the game that much. Then the method in the above paragraph will be easier to implement.  
+
+Changed all tetrimino start points to a = 14 and then changed the 'I' tetrimino start point to 'that' also. Now the clash occurs right at the top or, at worst, 1 row way, which is good enough. 
+
+----------------------------------------------------------------------------- 
+
+GAME LEVEL LIMIT OF 10 (drop speed is 0.16 seconds which is about 6 tetriminos per second... impossible!) -SOLVED
+used game level value > 10 to stop game.. can be found in the function renderLevel()
+
+
+
+----------------------------------------------------------------------------- 
+
+GAME END DISPLAY: - SOLVED (almost)
+
+NOTE* can't implement this until GAME END SCENARIO is solved and implemented.. 
+this can probably be handled by the same modal as below - just in a separate paragraph..
+perhaps the whole modal can fit mostly across the page and be ALMOST transparent... 
+
+having difficulty with the modal display.  In 'elements' on the console, it registers as display solid, but no modal shows on screen. 
+
+DOH! Silly mistake yet again;  was using the css code 'display: solid', which does nothing... checked the code in JavaScript for the Blackjack game and the actual code is 'display:block' not the first time I've made this mistake, but hopefully the last. 
+
+			SOLVED
+
+----------------------------------------------------------------------------- 
+
+HIGHEST POINTS PARAGRAPH - SOLVED
+
+NOTE* can't implement this until GAME END SCENARIO is solved and implemented.. 
+this can be handled with a modal... which you can get mostly from the blackjack game... 
+checked display will work by console.logging LEVEL, SCORE and LINES. logs work. 
+
+
+
+----------------------------------------------------------------------------- NOT SOLVED
+
+FLASH ANIMATION DEBUG FOR SOME INSANCES WHERE IT'S NOT WORKING: 
+
+
+----------------------------------------------------------------------------- 
+
+ADD IN-GAME SOUNDS: SOLVED
+check YouTube for samples and check actual tounaments.. 
+
+downloaded sounds from YT and created mp3 clips using Audacity
+files dropped in main folder
+
+script - let clipType = new Audio('clip name.mp3')
+for each clip type. 
+
+then cliptype.play() in the appropriate function 
+
+----------------------------------------------------------------------------- 
+
+GAME END STATISTICS PARAGRAPH: SOLVED
+ initiated score, level and lines variables with values from pointsCountArr, lineRecordArr (using math floor) and lineRecordArr as is. Used appropriate formatting to render numbers as they appear in the side display with two or three digits. 
+
+----------------------------------------------------------------------------- 
+
+NEW GAME BUTTON: SOLVED
+
+used newGameBtn.addEventListener('click', function(){
+location.reload()
+}
+
+this reloads the page. 
+
+
+----------------------------------------------------------------------------- 
+ADD BUTTONS FOR MOBILE DIVICES (done) SOLVED
+took and modified code from web version... 
+added some more containers to organize layout better. 
+
+
+
+----------------------------------------------------------------------------- SOLVED
+ADD BUTTON FUNCIONALITY ALONGSIDE KEYBOARD FUNCTIONALITY
+
+Maybe we might be able to simply have one function each for 'move left, move right and rotate' (which we might already have)
+and then simply have the addEvent listener and switch(e.key) for each navigation type, one on top of the other...
+
+
+KEYBOARD OPERATED NAVIGATIONS ---------------------------------------------------------
+
+------------LEFT/RIGHT MOVEMENT--------
+inside the switch(e.key) function there are conditions for right and left navigations; if conditions for avoiding collisions with tetriminoes and left/right boders are met, then the a, b, c and d values are updated to represent the navigation required, and the navigation function is executed with updated a, b, c, d as arguments to the function, for the four tetrimino blocks to be appended to their new left or right positions.  
+
+------------ROTATIONS --------
+There is a significant difference for rotations; the type of tetrimino needs to be determined 'first', because its shape will determine how the non-master blocks are moved around the master, as each tetrimino shape, which is itself unique, requires unique rotation data. 
+
+STEP 1
+A switch(e.key) is used to determine which keyboard key has been pressed. If the 'up arrow' keypress is recognized, a set of if/else statements compare the letter in the function's argument to the letter within their own condition, to see if there is a match. When a match is found that condition executes the rotateTetrimino function,  taking the letter (assigned to a specific tetrimino shape), the rotation array associated with that particular tetrimino letter and the current master block value for that tetrimino, as arguments to the function.
+
+
+STEP 2
+firstly, the cycle number is incrimented by 1 ( this number is the index of the subarray holding the rotation data currently applied to the tetrimino) ; the incremented cycle number will be used to examine the next subarray which represents a 90 degree rotation from the current tetrimino position. 
+
+STEP 3
+Then an IF condition is used to check whether any of 'a, b or c' the values in the examined 'new' subarray will cause a collision with any surrounding tetrimino blocks. If a collision is anticipated, the tetrimino blocks are appended with the unaltered values for 'a, b, c and d'. If on the other hand no collision is predicted then the following step is executed:
+
+STEP 4
+This step checks for boundary collisions. All pieced except the 'I' tetrimino behave the same way when rotating near a border. If the master block is at the border, a rotation will cause the tetrimino to traverse the border; otherwise a rotation a rotation will not traverse the border.  If the 'I' tetrimino is in its vertical orientation and within 4 spaces from the right border (each block is obviously the same distance from the border) a rotation will cause it to traverse the right border (it can never traverse the left border because it only ever rotates between 0 and 90 degrees); so the tetrimino in its vertical orientation needs to be greater than or equal to 4 spaces away from the right border in order to avoid a border collision when rotated.  In it's horizontal orientation, because of right/left boundary conditions, its master block can only ever be 4 spaces (or greater) away from the right border, and therefore, it will always be able to rotate from a horizontal rotation to vertical when it meets those conditions.  ONCE the tetrimino type is determined by the switch(letter) then conditions for avoiding collisions with borders are established. If those conditions are not met, the tetrimino blocks are appended with the unaltered values for 'a, b, c and d'. But if those conditions are met; the following step is executed: 
+
+STEP 5
+The pre-render function is then executed with the master block, the tetrimino-specific array and cycle incremented number as arguments to the function, which then assigns to b, c and d the new values from the rotation subarray that sits in the index position equal to the incremented cycle number. Then this executes the function renderRotate which appends the blocks, using the new 'b, c and d' values, resulting in the overall rotation, 90 degrees from the previous rotation of the tetrimino
+
+
+
+BUTTON OPERATED NAVIGATIONS ----------------------------------------------------------------------------- 
+
+PRECURSOR
+for some reason I've decided to check if the tetrimino blocks have the descending 'class'.  If they do, then within the if statements I've put the moveRightLeft functions and rotate functions. I think this was done because initially if a tetrimino had stopped descending because of a collision with floor or tetrimino, when I tried to move the following tetrimino left or right, all of the stationary tetriminoes at the bottom of the grid moved left and right also.  But I just removed that condition requiring the class to be 'descending'; this bug is no longer there so just the descending tetrimino moves.  Not sure why it's working now.  Project management is a must for all future projects; and do a post project management for already finished projects. Actually I think I'll keep it because the pressing of keys seems to cause this issue.  I pressed a key by accident, and then when I used the button to move the piece to the right, the already landed tetriminoes moved right with it (but not left, so I might have to investigate that later on)   -- actually, the KEYBOARD NAVIGATION event listener has this method as well so we're all good... 
+
+EVENT LISTENERS - 
+I've added an event listener to the navigation buttons container so that clicks on 'right, left or rotate' buttons are detected as the 'target'. 
+
+------------LEFT/RIGHT MOVEMENT--------
+A switch(e.target.id) is used to determine which button (or font awesome icon) has been clicked. When the switch(e.target.id) detects an id of either 'move-left' / 'move-right' which are button id's, or 'fa-arrow-left' / 'fa-arrow-left', which are font awesome id's for font awesome elements nested in the buttons, depending on which element press has been detected, conditions for avoiding left or right border collisions are defined; if the conditions are met, then the a, b, c and d values are updated to represent the navigation required, and the navigation function is executed with updated 'a, b, c and d, as arguments to the function, for the four tetrimino blocks to be appended to their new left or right positions using those values; otherwise the values the values for 'a, b, c and d' are left unaltered so that the blocks will continue fall accounting for those unchanged values. 
+
+------------ROTATIONS --------
+
+There is a significant difference for rotations; the type of tetrimino needs to be determined 'first', because its shape will determine how the non-master blocks are moved around the master, as each tetrimino shape, which is itself unique, requires unique rotation data
+
+STEP 1
+When the switch(e.target.id) detects an id of either 'rotator', which is the button id, or 'fa-arrow-rotate', which is the id for the font awesome element, nested in the button, a set of if/else statements compare the letter in the function's argument to the letter within their own condition, to see if there is a match. When a match is found that condition executes the rotateTetrimino function,  taking the letter (assigned to a specific tetrimino shape), the rotation array associated with that particular tetrimino letter and the current master block value for that tetrimino, as arguments to the function.
+
+STEP 2
+the cycle number is incrimented by 1 ( this number is the index of the tetrimino main array's subarray, holding the rotation data currently applied to the tetrimino) ; the incremented cycle number will be used to examine the next subarray which represents a 90 degree rotation on the current tetrimino position.
+
+STEP 3
+Then an IF condition is used to check whether any of 'a, b or c' the values in the examined 'new' subarray will cause a collision with any surrounding tetrimino blocks. If a collision is anticipated, the tetrimino blocks are appended with the unaltered values for 'a, b, c and d'. If on the other hand no collision is predicted then the following step is executed:
+
+STEP 4
+This step checks for boundary collisions. All pieced except the 'I' tetrimino behave the same way when rotating near a border. If the master block is at the border, a rotation will cause the tetrimino to traverse the border; otherwise a rotation a rotation will not traverse the border.  If the 'I' tetrimino is in its vertical orientation and within 4 spaces from the right border (each block is obviously the same distance from the border) a rotation will cause it to traverse the right border (it can never traverse the left border because it only ever rotates between 0 and 90 degrees); so the tetrimino in its vertical orientation needs to be greater than or equal to 4 spaces away from the right border in order to avoid a border collision when rotated.  In it's horizontal orientation, because of right/left boundary conditions, its master block can only ever be 4 spaces (or greater) away from the right border, and therefore, it will always be able to rotate from a horizontal rotation to vertical when it meets those conditions.  ONCE the tetrimino type is determined by the switch(letter) then conditions for avoiding collisions with borders are established. If those conditions are not met, the tetrimino blocks are appended with the unaltered values for 'a, b, c and d'. But if those conditions are met; the following step is executed: 
+
+STEP 5
+The pre-render function is then executed with the master block, the tetrimino-specific array and cycle incremented number as arguments to the function, which then assigns to b, c and d the new values from the rotation subarray that sits in the index position equal to the incremented cycle number. Then this executes the function renderRotate which appends the blocks, using the new 'b, c and d' values, resulting in the overall rotation, 90 degrees from the previous rotation of the tetrimino
+
+
+
+
+-------- PRE REFACTOR NOTES
+
+with the exception of STEP 1, all steps for button navigation are the same for keyboard navigation, so we should be able to merge the two sets of steps into one function. The event listeners for keydown and click can be separate from that function and act independently of each other.  
+
+So we may be able to have a scenario where if a button is clicked we do this, and if a key is pressed we the same thing. 
+
+firstly, I've copied the button code to the script for the DESKTOP web version 2, to see if they will run together without conflicts. - refreshed the page and no conflicts yet. 
+
+After sorting out id name mistakes for button elements, both buttons and keyboard functions are working for navigation so now it's time to merge the parts that execute functions outside of the event listeners. 
+
+
+--- SOLUTION ATTEMPTS
+
+In the event listener for keyboard navigation I created a new variable called 'identifyer' and initiated that variable with 'e.key' - so let identifyer = e.key
+Then I replaced the e.key of the switch statement with identifyer and it works fine
+
+did the same thing for the event listener for button clicks, creating the new variable called 'identifyer' and initiating it with 'e.target' - so let identifyer = e.target, and then switch(identifyer.id) so perhaps we should make the variable let identifyer = e.target.id - so just the word identifyer is needed. (that does the trick)
+this gets the same working result.  
+
+
+
+Now we should be able to create a function with the steps for keyboard navigation and button navigation merged, which will take 'identifyer' as an argument; and get the event listeners for keyboard and buttons each to call that function with the 'identifyer' parameter. If the cases in the switch statements for the keyboard navigation are the same as the cases in the switch statements for the buttons navigation we are home free and the merged function should operate as the previous two functions.  I don't think they are the same, but that is fine because we can just 'add' the cases of the switch for buttons navigations to the appropriate cases of the switch for the keyboard navigation; an example is below
+
+Button Navigation - 
+switch(identifyer){
+case 'move-right':
+case 'fa-arrow-right':
+  do this code;
+break;
+-------
+
+
+keyboard Navigation - 
+switch(identifyer){
+case 'ArrowRight':
+do this code;
+break;
+-------
+
+There should be no reason why the following method should fail
+
+Merged button and keyboard navigation in one function
+
+switch(identifyer){
+switch(identifyer){
+case 'move-right':
+case 'fa-arrow-right':
+case 'ArrowRight':
+  do this code;
+break;
+-------
+
+
+this should work because whether the right button, the right font awesome arrow, or the arrowRight key is pressed, you will get one of the three cases and the code will be executed. 
+
+-----
+now we just need to work out how to word the function; here's an attempt
+
+
+
+KEYBOARD --
+document.addEventListener('keydown', (e) =>{
+    let identifyer = e.key;
+    console.log(identifyer)
+navigationFunction(identifyer)
+}
+
+
+BUTTONS --
+navButtons.addEventListener('click', function(e){
+    console.log(e.target)
+    let identifyer = e.target.id;
+navigationFunction(identifyer)
+}
+
+
+then merge everything else into the navigation function like this:
+
+const navigationFunction = (identifyer) =>{
+
+execute all this code including;
+switch(identifyer)
+}
+
+NOTE* 
+BUTTON LISTENER STARTS AT AROUND 780 AND ENDS AT AROUND 940
+KEYBOARD LISTENER STARTS AT AROUND 970 AND ENDS AT AROUND 1110
+
+
+--------------------------SOLVED ---- SOLVED------SOLVED--------------------------------------
+
+
+
+
+
+-------------------------------------------------------------------------------- 
+
+OTHER BUTTONS. ------------------------------------------------------------------- SOLVED
+you'll also need to set up the other buttons for start, pause, and refresh. 
+
+The same principle can be used as in the solution above, start and pause are currently executed by keypress, but we also want the buttons created for that purpose to be an option also. 
+The keypresses are part of an event listener, and the e.key is switched for detection of the space bar (which is used for game pause), and the enter key (used to start the game).  
+
+Solution attempt: create a function for gameState manipulation
+
+
+
+
+const gameState = (identifyer) =>{
+
+case ' ': (e.key - space bar)
+case 'pause': (button id)
+run whatever code;
+break;
+case 'enter': (e.key - enter key)
+case 'start': (event.target.id)
+ run whatever code;
+break;
+case 'refresh': (to restart game only if game over is active - maybe we can add a 'kill game' button later, for bad starts)
+
+}
+
+then have the event listener for keypresses
+
+document.addEventListener('keypress', (e) =>{
+let identifyer = e.key;
+gameState(identifyer);
+})
+
+
+
+get element containing game state buttons
+let gameStateBtns = document.getelementById('function-button-container')
+
+now set event listeneron element (using the event target id as the identifyer)
+gameStateBtns.addEventListener('click', (e) =>{
+let identifyer = e.target.id;
+gameState(identifyer);
+})
+REMEMBER to add the identifyers from the button events to the gameState function 
+
+
+
+VIEW STATS AGAIN BUTTON ---------------------------------------------NOT SOLVED
+this can be used to bring up the modal again in case it was closed by accident or if, it was closed intentionally but you wanted to view the stats again.... maybe it could even be available in the next game so you can make a comparison if, say, the game is on pause (just a thought) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
