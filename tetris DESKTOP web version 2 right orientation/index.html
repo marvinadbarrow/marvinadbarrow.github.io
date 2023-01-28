@@ -21,6 +21,27 @@
 
   <body>
 
+     <!-- MODAL FOR PAUSE - normally hidden until pause button or space bar executed -->
+<div id="modal-pause">
+<div id="content-pause">
+  <div><span id="close-pause">&times</span>  <p id="pause-para">GAME PAUSED
+    <span id="pause-stats"></span>
+  </p>
+  </div>
+
+  <div id="button-container-resume">
+  <button id="resume">RESUME</button>
+  </div>
+
+  <div id="pause-image-container">
+<img id="pause-image" src="./pause image.png" alt="image of a finished game">
+</div>
+
+</div>
+
+</div>
+
+
 
     <div id="modal-container">
       <div id="simple-modal" >
@@ -43,7 +64,7 @@
 
     </div>
 
-
+    <div id="application-body">
 
 <div id="game-body">
 
@@ -306,7 +327,7 @@
 
 
     <!-- div containing all recordings; score, line, level and next tetrimino-->
-    <div id="records-container">
+    <div id="records-function-container">
       <!-- div containing line number and next piece display -->
     <div id="line-piece-container">
    
@@ -354,13 +375,18 @@
         <p id="score-para">SCORE: 00</p>
       </div>
        </div>
- 
+ <div id="empty-container"></div>
 
        <div id="function-button-container">
+        <div id="start-pause-container">
         <button class="game-operators" id="start">Start</button>
         <button class="game-operators" id="pause">Pause</button>
+      </div>
+
+        <div id="refresh-kill-container">
         <button class="game-operators" id="refresh">Refresh</button>
         <button class="game-operators" id="kill">Kill Game</button>
+      </div>
          </div>
 
 
@@ -369,7 +395,7 @@
 </div>
 
 
-
+</div>
   
  
  <script src="script.js"></script>

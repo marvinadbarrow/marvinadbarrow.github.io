@@ -15,17 +15,43 @@ margin-top: 50px;
 }
 
 /* MODAL STYLINGS */
+
+
+
+  /*MODAL for paused game*/
+#modal-pause{position: absolute; width: 94%; height: 70%; z-index: 2;
+  background-color: rgba(128, 128, 128, 0.79); margin-top: 100px;border-radius: 10px; box-shadow: 3px 4px 8px white; margin-left: 3%; display: none;}
+#pause-para{width: 700px; margin:10px;font-size:60px; font-weight:bold;color:white;margin: auto; text-align: center;text-shadow: 2px 2px 5px rgb(67, 243, 234)}
+/* close modal icon */
+#close-pause{font-weight:bold; font-size:80px; margin:10px;
+  color:yellow; float:right;
+  text-shadow: 2px 2px 5px rgb(255, 248, 248);
+   }
+   /* button and container*/
+   #button-container-resume{z-index: 2; margin: auto; height: 50px; width: 300px; margin-top: 40px;}
+   #resume{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:50px; box-shadow: 2px 2px 7px black;}
+/* container for image*/
+   #pause-image-container{width: 440px; margin: auto; margin-top: 100px;}
+   #pause-image{width: 400px;}
+
+
+
+
+
+
+
+
+
+
+
+
 /* MODAL for end of game stats instructions etc */
 #modal-container{width:90%; margin:auto;}
-
-
-
 #close-btn{font-weight:bold; font-size:60px; margin:10px;
   color:rgba(245, 41, 22, 0.7); float:right;
    }
   
   #close-btn:hover, #close-btn:focus{color:black; text-decoration:none; cursor:pointer; }
-  
   #simple-modal{
   display:none;
   box-shadow: 2px 2px 7px black;
@@ -40,8 +66,6 @@ margin-top: 50px;
   
   }
 
-
-
   #content{background-color:rgba(199, 205, 206, 0.391);
     box-shadow: 1px 1px 5px black;
     border-radius:7px;
@@ -49,8 +73,7 @@ margin-top: 50px;
     height:750px;
     width: 800px;
     }
-    
-    
+        
     #modal-para{width: 700px; margin:10px;font-size:40px; font-weight:bold;color:white;margin: auto; text-align: center;}
     
     #close-btn{height: 80px;  font-size:50px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color: rgb(224, 36, 36);
@@ -66,13 +89,13 @@ margin-top: 50px;
     from{opacity:0}
     to{opacity:1}
     }
-    
+   
     #button-container-b{z-index: 2; margin: auto; height: 50px; width: 200px; margin-top: 40px;}
 
     #tetriminoes{width: 630px; margin-top: 50px;}
     #new-game{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:35px; box-shadow: 2px 2px 7px black;}
 
-
+/* END OF MODAL FOR GAME OVER*/
 
 
 /* dimensions for game blocks*/
@@ -81,6 +104,14 @@ width: 39px;
 height: 39px;
 background-color: none;
 }
+
+/* ANIMATION for  pause button when activated */
+@keyframes pause{
+    0% {color: red; background-color:yellow; opacity: 1;}
+    50% {color: red; background-color:yellow;opacity:0.5;}
+    100% {color: red; background-color:yellow;opacity:3;}
+}
+
 
 /* ANIMATION for  4 completed rows flash*/
 @keyframes flash {
@@ -96,17 +127,18 @@ background-color: none;
 100% {color:rgb(238, 151, 151);opacity:0;}
 }
 
-
+#application-body{width: 98%; height: 80%; border: 3px solid white; border-radius: 10px; background-color: rgba(60, 56, 56, 0.626);}
 
 
 #game-body{
-  width: 80%;
+  width: 86%;
   height: 930px;
   margin: auto;
   margin-top: 50px;
   display: flex;
   flex-direction: row;
-  background-color: rgba(172, 255, 47, 0);
+  justify-content: space-between;
+   background-color: rgba(220, 20, 60, 0);
 }
 
 #shape-grid{display:grid; 
@@ -125,12 +157,12 @@ background-color: none;
 /* each div can take a part of a tetrimino block*/
   .square-containers{background-color:rgb(5, 5, 5);padding: 1px;}
 
-#records-container{
+#records-function-container{
   height: 1000px;
-  width: 300px;
+  width: 360px;
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 255, 255, 0);
+  background-color: rgba(41, 241, 241, 0);
 }
 
 #line-piece-container, #score-level-container{
@@ -199,13 +231,16 @@ background-color: none;
   
   
   #function-button-container{
-    width: 180px;
-    height: 300px;
-    background-color: rgba(255, 187, 0, 0);
+    width: 360px;
+    height: 140px;
+    background-color: rgba(9, 9, 8, 0.444);
     margin: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding: 10px;
   }
 
  #nav-button-container{
@@ -227,6 +262,11 @@ justify-content: space-around;
 }
 
   .tetrimino-btn{ border-radius: 50%; width:140px; height:140px; background-color: rgb(0, 145, 234); color: white; z-index: 1;}
+
+  /* containers for function button operators*/
+  #empty-container{width: 300px; height:50px;} /* to keep function buttons separate from game stat displays*/
+
+  #start-pause-container, #refresh-kill-container{width: 160px; height: 140px;background-color: rgba(0, 0, 255, 0); display: flex; flex-direction: column; justify-content: space-around;}
   .game-operators{width: 150px; height: 60px; font-weight: bold; font-size: 30px; border-radius: 1vw;;border: 2px solid white;}
   #start{background-color: red; color: white;}
   #pause{background-color: rgb(74, 249, 65); color: rgb(15, 14, 14);}

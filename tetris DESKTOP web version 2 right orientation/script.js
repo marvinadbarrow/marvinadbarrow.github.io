@@ -10,7 +10,7 @@ let GameOverAudio = new Audio('Game Over.mp3')
 let LineCompleteAudio = new Audio('Tetris Normal Lines.mp3')
 let TetrisBoomAudio = new Audio('Tetris Boom Tetris.mp3')
 let killAudio = new Audio('Explosion.mp3')
-
+let rotationBlip = new Audio('rotate blip.mp3')
 
 // BUTTON ELEMENTS FOR NAVIGATION
 //GAME OPERATION BUTTONS
@@ -56,6 +56,9 @@ let endLevelEl = document.getElementById('end-level') // end game level display
 let endLinesEl = document.getElementById('end-lines') // end game lines display
 let newGameEl = document.getElementById('new-game')
 let highscoreMsg = document.getElementById('high-scores')
+
+// PAUSE MODAL elements
+let pauseModalEl = document.getElementById('modal-pause')
 
 newGameEl.addEventListener('click', function(){
 location.reload()
@@ -627,6 +630,7 @@ const navigationListener = (identifyer) =>{
     
     
     const renderRotate = (a, b, c, d, letter, rotator) =>{
+        rotationBlip.play()
         console.log(b, c, d, letter, rotator)
         shapeBody.children[a].appendChild(blockA)
         shapeBody.children[b].appendChild(blockB)
@@ -1023,16 +1027,34 @@ console.log(permutationsArray)
 }
 
 
+
+// function for dealing with activation of gamestate buttons, start pause refresh and kill game. Also added is pauseModal close and resume game after pause
 const gameState = (identifyer) =>{
 console.log(identifyer)
 switch(identifyer){
+    case 'close-pause':
+pauseModalEl.style.cssText = 'display:none; z-index: -2;'
+    break;
+    case 'resume':
+        pauseModalEl.style.cssText = 'display:none; z-index: -2;'
+        pauseIntervalArr.pop()
+        pauseEl.textContent = 'Pause'
+        pauseEl.style.animation = ''
+          tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
+                  
+    break;
     case ' ':
     case 'pause':   
-    if(startCommandArr.length > 0 && killArray.length < 1){ 
+    if(startCommandArr.length > 0 && killArray.length < 1){// game started no kill yet
     if(pauseIntervalArr.length < 1){pauseIntervalArr.push('pause')
-    clearInterval(shapeClock)
+    pauseModalEl.style.cssText = 'display:block; z-index: 2;'
+    pauseEl.textContent = 'Resume' // change pause button to 'resume'
+    pauseEl.style.cssText = 'animation: pause 0.4s 10000;' // flash animate button
+    clearInterval(shapeClock) // stop tetrimino drop
    }else{ pauseIntervalArr.pop()
-       tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
+    pauseEl.textContent = 'Pause'
+    pauseEl.style.animation = ''
+      tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
               }}else{console.log('start or refresh game to use pause button')}
     break;
 
@@ -1080,13 +1102,17 @@ if(startCommandArr.length > 0 && gameOverArray.length < 1 && pauseIntervalArr.le
 
 }else{console.log('game cannot be killed unless pause is inactive, game has started and is unfinished')}
    
-break;
+break;}}
 
 
-}
+// event listener for modal elements
+pauseModalEl.addEventListener('click', function(e){
+let identifyer = e.target.id;
+console.log(identifyer)
+gameState(identifyer)
 
+})
 
-}
 
 document.addEventListener('keypress', (e) =>{
 let identifyer = e.key;
