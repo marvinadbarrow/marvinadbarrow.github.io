@@ -359,7 +359,7 @@ margin-top: 50px;
 
 
 /* tetrimino manipulation buttons*/
-  .tetrimino-btn{ border-radius: 50%; width:28%; aspect-ratio: 1/1; background-color: rgb(0, 145, 234); color: white; z-index: 1;}
+  .tetrimino-btn{ border-radius: 50%; width:28%; aspect-ratio: 1/1; background-color: rgba(144, 135, 135, 0.724); color: white; z-index: 1;}
 
   /* icons for tetrimino manipulation buttons */
   #right-arrow-img{
