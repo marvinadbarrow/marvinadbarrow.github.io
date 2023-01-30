@@ -1,0 +1,542 @@
+*{
+margin:0;
+list-style: none;
+text-decoration: none;
+}
+
+body{text-decoration: none;width: 100vw; height: 100vh;
+background-image: url('tetris.jpg');
+}
+
+#h1-container{
+Margin-bottom:50px;
+margin-top: 50px;
+
+}
+
+/* MODAL STYLINGS */
+
+
+
+  /*MODAL for paused game*/
+#modal-pause{position: absolute; width: 94%; height: 70%; z-index: 2;
+  background-color: rgba(128, 128, 128, 0.79); margin-top: 100px;border-radius: 10px; box-shadow: 3px 4px 8px white; margin-left: 3%; display: none;}
+#pause-para{width: 700px; margin:10px;font-size:60px; font-weight:bold;color:white;margin: auto; text-align: center;text-shadow: 2px 2px 5px rgb(67, 243, 234)}
+/* close modal icon */
+#close-pause{font-weight:bold; font-size:80px; margin:10px;
+  color:yellow; float:right;
+  text-shadow: 2px 2px 5px rgb(255, 248, 248);
+   }
+   /* button and container*/
+   #button-container-resume{z-index: 2; margin: auto; height: 50px; width: 300px; margin-top: 40px;}
+   #resume{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:50px; box-shadow: 2px 2px 7px black;}
+/* container for image*/
+   #pause-image-container{width: 440px; margin: auto; margin-top: 100px;}
+   #pause-image{width: 400px;}
+
+
+
+/* MODAL for end of game stats instructions etc */
+#modal-container{width:90%; margin:auto;}
+#close-btn{font-weight:bold; font-size:60px; margin:10px;
+  color:rgba(245, 41, 22, 0.7); float:right;
+   }
+  
+  #close-btn:hover, #close-btn:focus{color:black; text-decoration:none; cursor:pointer; }
+  #simple-modal{
+  display:none;
+  box-shadow: 2px 2px 7px black;
+  width:850px; height:800px;
+  background-color:rgba(75, 75, 75, 0.57);
+  margin-top:30px;
+  border-radius:7px;
+  position:fixed;
+  z-index:11;
+  overflow:auto;
+  margin: auto;
+  
+  }
+
+  #content{background-color:rgba(199, 205, 206, 0.391);
+    box-shadow: 1px 1px 5px black;
+    border-radius:7px;
+     margin:10px;
+    height:750px;
+    width: 800px;
+    }
+        
+    #modal-para{width: 700px; margin:10px;font-size:40px; font-weight:bold;color:white;margin: auto; text-align: center;}
+    
+    #close-btn{height: 80px;  font-size:50px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color: rgb(224, 36, 36);
+    text-shadow: none;color: yellow;}
+
+    #modal-header{height: 80px; background-color:rgba(6, 6, 5, 0.628); font-size:50px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color: rgb(224, 36, 36);text-shadow: 2px 2px white ;}
+
+    #high-scores{color: yellow;width: 600px;}
+    
+    .results{ font-size:35px; font-weight:bold;color:white;}
+
+
+    #tetriminoes{width: 50%; margin-top: 50px;}
+    #new-game{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:35px; box-shadow: 2px 2px 7px black;}
+/* end of GAME OVER modal*/
+
+  /* -------------------------------  END OF MODAL STYLINGS */
+
+
+
+/* APPLICATION STYLINGS */
+
+
+/* application body takes two containers, screen and joypad */
+#application-body{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 6fr;
+  grid-gap: 1%;
+   width: 90%; aspect-ratio: 9/15; border: 6px solid rgb(9, 9, 9); border-radius: 10px; background-color: rgba(56, 56, 56, 0.454); margin: auto; margin-top: 2%;}
+
+
+  /* SCREEN */
+#screen{background-color: rgba(222, 69, 128, 0);
+  position: relative;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 6;
+  height: 83%;
+  display: grid;
+  grid-template-columns: repeat(5, 5fr);
+  grid-template-rows: repeat(5, 5fr);
+}
+
+
+/* JOYPAD*/
+#joypad{background-color: rgba(48, 49, 49, 0.58); 
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+
+
+/* score container grid placement*/
+#score-para-container{
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+/*score para container*/
+#score-para-container{
+  position: relative;
+  width:100%;
+  height: 70%;
+  aspect-ratio: 233/120;
+  background-color: rgb(253, 254, 254);
+  padding-top: 3%;
+  border-radius: 6px;
+  border: 1px solid black;
+     }
+/*score para */
+     #score-para{
+      position: relative;
+      margin: auto;
+      width:90%;
+      height: 80%;
+      background-color: rgb(0, 0, 0);
+      color: white;
+      padding: 1%;
+      border-radius: 1px;
+      border: 1px solid black;
+      font-weight: bold;
+      font-size: 60px;
+      text-align: center;
+      line-height: 60px;
+      border-radius: 3%;
+        }
+
+
+/* next pice container grid placement*/
+#next-piece-div{
+  grid-column-start: 4;
+  grid-column-end: 6;
+
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+
+/* display for upcoming tetrimino*/
+#next-piece-div{
+  position: relative;
+  display:grid; 
+   grid-template-columns: repeat(6, 6fr);
+  grid-gap:2px;
+  grid-template-rows: repeat(4, 4fr);
+  width: 90%;
+  aspect-ratio: 3/2;
+  background-color: rgb(253, 254, 254);
+  padding: 1vw;
+  border-radius: 6px;
+  border: 1px solid black;
+    }
+  
+/* each div can take a part of a tetrimino block*/
+.next-piece-blocks{position: relative; background-color:rgb(5, 5, 5);padding: 1px;}
+
+
+/* level container grid placement*/
+#level-para-container{
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+
+/* level para container*/
+#level-para-container{
+  position: relative;
+  width:100%;
+  height: 100%;
+  aspect-ratio: 233/120;
+  background-color: rgb(253, 254, 254);
+  padding-top: 3%;
+  border-radius: 6px;
+  border: 1px solid black;
+     }
+
+
+/* level para*/
+#level-para{
+  position: relative;
+   margin: auto;
+  width:90%;
+  height: 90%;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  padding: 1%;
+  border-radius: 1px;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 60px;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 3%;
+    }
+
+
+/* line container grid placement*/
+#line-para-container{
+  grid-column-start: 5;
+  grid-column-end: 6;
+
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+
+/* line para container*/
+#line-para-container{
+  position: relative;
+  width:100%;
+  height: 100%;
+  background-color: rgb(253, 254, 254);
+  padding-top: 3%;
+  border-radius: 6px;
+  border: 1px solid black;
+     }
+
+
+/* line para*/
+#line-para{
+  position: relative;
+  margin: auto;
+  width:90%;
+  height: 90%;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  padding: 1%;
+  border-radius: 1px;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 60px;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 3%;
+    }
+
+
+
+
+/* game grid container*/
+#grid-container{
+  grid-column-start: 2;
+  grid-column-end: 5;
+
+  grid-row-start: 2;
+  grid-row-end: 6;
+}
+
+#grid-container{
+  position: relative;
+  width: 90%;
+  aspect-ratio: 1/1.8;
+  margin: auto;
+  padding: 3px;
+  background-color: rgb(242, 246, 246);
+  border-radius: 10px;
+  }
+  
+  #game-grid{
+    position: relative;
+    display:grid; 
+    margin: auto;
+    grid-template-columns: repeat(10, 10fr);
+    grid-gap:3px;
+    grid-template-rows: repeat(20, 20fr);
+    width:90%;
+    aspect-ratio: 1/2;
+    background-color: rgb(253, 254, 254);
+    padding: 0px;
+    border-radius: 6px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    }
+
+/* divs for grid to hold tetriminoes*/
+.block-containers{background-color:rgb(5, 5, 5);padding: 1px;}
+
+
+
+/* kill button  grid placement*/
+#kill{
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+/* pause button  grid placement*/
+#pause{
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+
+/* start button grid placement*/
+#start{
+  grid-column-start: 5;
+  grid-column-end: 6;
+
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+/* refresh button grid placement*/
+#refresh{
+  grid-column-start: 5;
+  grid-column-end: 6;
+
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+.blocks{background-color: blue;width: 29px; height: 29px;}
+
+
+
+
+/* tetrimino manipulation buttons*/
+  .tetrimino-btn{ border-radius: 50%; width:28%; aspect-ratio: 1/1; background-color: rgb(0, 145, 234); color: white; z-index: 1;}
+
+  /* icons for tetrimino manipulation buttons */
+  #right-arrow-img{
+    position: relative;
+    width: 60%;}
+
+    #left-arrow-img{
+      position: relative;
+      width: 60%;}
+
+      #rotate-tetrimino-img{
+        position: relative;
+        width: 80%;}
+
+  .game-operators{ font-weight: bold; font-size: 40px; border-radius: 1vw;;border: 2px solid white;}
+
+  #start{
+    position: relative;
+    background-color: red; color: white; height: 100%; width: 100%;}
+  #pause{
+    position: relative;
+    background-color: rgb(74, 249, 65); color: rgb(15, 14, 14); height: 100%; width: 100%;}
+  #refresh{
+    position: relative;
+    background-color: rgb(43, 148, 240); color: rgb(254, 251, 251); height: 100%; width: 100%;}
+  #kill{color: rgb(249, 243, 243); height: 100%; width: 100%; font-size: 60px; text-shadow: 4px 4px 7px red; }
+
+  /* icons for game state button*/
+  #start-img{
+    position: relative;
+    width: 70%;
+  }
+
+
+  #pause-img{
+    position: relative;
+    width: 60%;
+  }
+
+  #recycle-img{
+    position: relative;
+    width: 70%;
+  }
+
+  #skull-crossbones-img{
+    position: relative;
+    width: 100%;
+  }
+
+ 
+  /* ----------------------------- end of APPLICATION STYLINGS */
+
+
+
+
+
+
+  /* FOOTER STYLINGS */
+
+
+/* FOOTER styling  */
+footer{color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem;}
+
+
+/* footer content container*/
+#content-container{
+    display: flex; margin-bottom: 4rem;
+      width: 90%;   font-weight:bold; font-size:20px; 
+}
+
+/* footer link contaners */
+.footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+
+
+/* link styles */
+footer a{color: white; text-decoration: none; line-height: 2rem;}
+footer a:hover{color: orange; }
+
+/* styles for social media icons*/
+.fa-youtube{color: red; ;}
+.fa-linkedin{color: #0073B1;}
+.fa-facebook{color:#0C87EF ;}
+
+.footer-social{font-size: 20px; margin-left: 2rem;}
+
+/* footer bottom */
+.footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+.footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+
+h3{text-decoration: underline;}
+
+#my-page{ color: white;}
+#my-page-link{ font-size: 27px;}
+
+/* styling for dev icon*/
+#dev-icon{color: rgb(84, 243, 243);}
+
+
+/* ---------------------------------end of FOOTER STYLINGS */
+
+
+
+
+
+
+
+/* CLASSES AND ANIMATIONS ACCESSED BY JS*/
+
+
+    /* to fade modal in on pause*/
+@keyframes modalfade{
+  from{opacity:0}
+  to{opacity:1}
+  }
+ 
+
+/* ANIMATION for  pause button when activated */
+@keyframes pause{
+  0% {color: red; background-color:yellow; opacity: 1;}
+  50% {color: red; background-color:yellow;opacity:0.5;}
+  100% {color: red; background-color:yellow;opacity:3;}
+}
+
+
+/* ANIMATION for  4 completed rows flash*/
+@keyframes flash {
+  0% {color:white;opacity: 1;}
+50% {color:white;opacity:0.5;}
+100% {color:white;opacity:0;}
+}
+
+/* ANIMATION for less than 4 completed rows flash*/
+@keyframes flashb{
+0% {color:rgb(238, 151, 151);opacity: 0.3;}
+50% {color:rgb(238, 151, 151);opacity:0.15;}
+100% {color:rgb(238, 151, 151);opacity:0;}
+}
+
+
+/*dimensions for next tetrimino display EXECUTED IN JS*/
+.next-block-dimensions{
+  position: relative;
+  width: 95%;
+  aspect-ratio: 1/1;
+  background-color: none;
+
+}
+
+/* dimensions for game blocks*/
+.block-dimensions{
+  position: relative;
+  width: 95%;
+  aspect-ratio: 1/1;
+  background-color: none;
+  }
+
+  /* changes for different screen sizes and orientations*/
+  @media (orientation: landscape) {
+    #application-body{
+      width: 80%; height: 90%;
+    }
+    #game-body{width: 45%;}
+
+    #line-para, #score-para, #level-para{
+      position: relative;
+    
+      width:90%;
+      aspect-ratio: 184/85;
+      font-size: 30px;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 3%;
+        }
+  .game-operators{ font-size: 17px; }
+  /* display for upcoming tetrimino*/
+  #next-piece-div{
+    width: 60%;
+ 
+      }
+  }
