@@ -1061,8 +1061,7 @@ pauseModalEl.style.cssText = 'display:none; z-index: -2;'
     case 'resume':
         pauseModalEl.style.cssText = 'display:none; z-index: -2;'
         pauseIntervalArr.pop()
-        pauseEl.textContent = 'Pause'
-        pauseEl.style.animation = ''
+          pauseEl.style.animation = ''
           tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
                   
     break;
@@ -1072,12 +1071,10 @@ pauseModalEl.style.cssText = 'display:none; z-index: -2;'
     if(startCommandArr.length > 0 && killArray.length < 1){// game started no kill yet
     if(pauseIntervalArr.length < 1){pauseIntervalArr.push('pause')
     pauseModalEl.style.cssText = 'display:block; z-index: 2;'
-    pauseEl.textContent = 'Resume' // change pause button to 'resume'
     pauseEl.style.cssText = 'animation: pause 0.4s 10000;' // flash animate button
     clearInterval(shapeClock) // stop tetrimino drop
    }else{ pauseIntervalArr.pop()
-    pauseEl.textContent = 'Pause'
-    pauseEl.style.animation = ''
+       pauseEl.style.animation = ''
       tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
               }}else{console.log('start or refresh game to use pause button')}
     break;
