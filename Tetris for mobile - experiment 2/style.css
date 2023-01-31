@@ -382,14 +382,14 @@ margin-top: 50px;
 
   #start{
     position: relative;
-    background-color: red; color: white; height: 100%; width: 100%;}
+    background-color: red; height: 100%; width: 100%;}
   #pause{
     position: relative;
-    background-color: rgb(74, 249, 65); color: rgb(15, 14, 14); height: 90%; width: 100%;}
+    background-color: rgb(74, 249, 65); height: 90%; width: 100%;}
   #refresh{
     position: relative;
-    background-color: rgb(43, 148, 240); color: rgb(254, 251, 251); height: 90%; width: 100%;}
-  #kill{color: rgb(249, 243, 243); height: 90%; width: 100%; font-size: 60px; text-shadow: 4px 4px 7px red; }
+    background-color: rgb(43, 148, 240); height: 90%; width: 100%;}
+  #kill{color: rgb(9, 9, 9); height: 90%; width: 100%; background-color: black; }
 
   /* icons for game state button*/
   #start-img{
