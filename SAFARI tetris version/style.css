@@ -1,0 +1,44 @@
+*{
+margin:0;
+list-style: none;
+text-decoration: none;
+}
+
+body{text-decoration: none;width: 100vw; height: 100vh;
+  border: 2px solid black;border-radius: 2%;
+  padding: 1%;
+}
+
+
+  /* -------------------------------  END OF MODAL STYLINGS */
+
+
+
+/* APPLICATION STYLINGS */
+
+
+
+
+#game-grid-2{  width: 70%;
+
+ height: 80%;
+  margin:auto;
+  border: 2px solid black;
+  border-radius: 2%;
+  background-color: rgb(245, 243, 239);}
+
+
+/* each div can take a part of a tetrimino block*/
+.block-elements{
+  background-color:rgb(9, 8, 8);
+  width: 9%;
+ height: 4.5%;
+   margin: 0.5%;
+    float: left;
+  z-index: 2;
+  
+  }
+
+
+
+
