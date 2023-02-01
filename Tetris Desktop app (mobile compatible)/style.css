@@ -293,23 +293,23 @@ aspect-ratio: 28/30;
 
   #start-img{
     position: relative;
-    width: 55%;
+    width: 90%;
   }
 
 
   #pause-img{
     position: relative;
-    width: 55%;
+    width: 90%;
   }
 
   #recycle-img{
     position: relative;
-    width: 55%;
+    width: 90%;
   }
 
   #skull-crossbones-img{
     position: relative;
-    width: 80%;
+    width: 90%;
   }
 
 
@@ -415,7 +415,7 @@ h3{text-decoration: underline;}
   /* changes for different screen sizes and orientations*/
   @media (orientation: landscape) {
     #application-body{
-      width: 80%; height: 90%;
+      width: 80%; height: 100%;
     }
     #game-body{width: 45%;}
 
@@ -423,7 +423,7 @@ h3{text-decoration: underline;}
       position: relative;
     
       width:90%;
-      aspect-ratio: 184/85;
+      aspect-ratio: 170/85;
       font-size: 30px;
       text-align: center;
       line-height: 30px;
@@ -435,4 +435,6 @@ h3{text-decoration: underline;}
     width: 60%;
  
       }
+
+   
   }
