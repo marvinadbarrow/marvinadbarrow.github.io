@@ -41,6 +41,10 @@ let rotateImg = document.getElementById('rotate-tetrimino-img')
 let leftImg = document.getElementById('left-arrow-img')
 let rightImg = document.getElementById('right-arrow-img')
 
+let screenNavBtns = document.getElementById('screen-nav-btns')
+
+
+
 
 // array for gamestate buttons
 let gamestateArr = [startBtn, pauseBtn, refreshBtn, killBtn]
@@ -147,7 +151,7 @@ let oNextArr = [1, 6, 7]
 let iNextArr = [-1, 1, 2]
 
 let filledSquareArr = [] // filled squares numbers pushed to this array to prevent collisions
-let colorArr = ['orange', 'pink', 'red', 'blue', '#39FF14', 'purple', 0]
+let colorArr = ['orange', 'pink', 'red', 'blue', '#39FF14', 'yellow', 0]
 let allShapesArr = []
 let indexNumArray = []
 let shapeContainerArr = []// array to hold created shapes - each shape is contained in a subarray which will be pushed here
@@ -700,6 +704,8 @@ const navigationListener = (identifyer) =>{
              case 'ArrowRight':
             case 'move-right':
             case 'right-arrow-img':
+            case 'move-right-screen':
+            case 'right-img':
                  console.log('right arrow pressed');
     // if a, b, c or d is increased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, increase the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values. 
     if(leftBoundaryArr.includes(a+1)  || leftBoundaryArr.includes(b+1)  || leftBoundaryArr.includes(c+1)  || leftBoundaryArr.includes(d+1)  || pauseIntervalArr.length > 0){
@@ -719,7 +725,9 @@ const navigationListener = (identifyer) =>{
      // if detected element is left button
      case 'ArrowLeft':
      case 'move-left':
-     case 'left-arrow-img':   
+     case 'left-arrow-img':
+    case 'move-left-screen':
+    case 'left-img':   
      console.log('Left arrow pressed')
     // if a, b, c or d is decreased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, decrease the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values.
     
@@ -742,7 +750,9 @@ const navigationListener = (identifyer) =>{
             // if pause button is pressed we will not allow rotation as it seems to cause a conflict if allowed - and is redundant anyway because it would be a means of cheating or is generally not required, especially if the pause it to allow row clearance and floating tetrimino drop
             case 'ArrowUp':
             case 'rotator':
-            case 'rotate-tetrimino-img':    
+            case 'rotate-tetrimino-img':
+            case 'rotator-screen':
+            case 'rotate-img':        
             console.log('Up arrow pressed')
             if(letter == 'S'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, sRotateArr, letter)}
              }else if(letter == 'Z'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, zRotateArr, letter)} 
@@ -782,6 +792,13 @@ navButtons.addEventListener('click', function(e){
     let identifyer = e.target.id
 navigationListener(identifyer)
 })
+screenNavBtns.addEventListener('click', function(e){
+    console.log(e.target)
+    let identifyer = e.target.id
+    console.log(identifyer)
+navigationListener(identifyer)
+})
+
 
 shapeClock =  setInterval(() => {
     
