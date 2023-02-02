@@ -1051,6 +1051,7 @@ pauseModalEl.style.cssText = 'display:none; z-index: -2;'
       pauseEl.style.cssText = 'animation: pause 0.4s 10000;' // flash animate button
     clearInterval(shapeClock) // stop tetrimino drop
    }else{ pauseIntervalArr.pop()
+    pauseModalEl.style.cssText = 'display:none; z-index: -2;'
     pauseEl.style.animation = ''
       tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
               }}else{console.log('start or refresh game to use pause button')}
