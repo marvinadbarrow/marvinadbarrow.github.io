@@ -1,0 +1,624 @@
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>SNAKE</title>
+     <!-- Importing jQuery and jQuery UI files -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+   
+   
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+   <link rel="stylesheet" type="text/css" href="style.css">
+   
+     </head>
+
+
+
+
+
+
+  <body>
+
+
+    <!-- MODAL FOR GAME DIFFICULTY-->
+    <div id="level-modal">
+      <div id="level-content">
+        <div id="level-div-container">
+      <div class="level-div"><button id="easy-btn" class="level-btn">EASY:</button><p class="level-para">about:<ul><li class="level-list">snake grows</li><li class="level-list">scores 150</li><li class="level-list">20pt penalty each turn</li></ul></p></div>
+      <div class="level-div"><button id="regular-btn" class="level-btn">REGULAR</button><p class="level-para">about:<ul><li class="level-list">snake grows</li><li class="level-list">faster snake</li><li class="level-list">scores 180</li><li class="level-list">15pt penalty each turn</li></ul></p></div>
+      <div class="level-div"><button id="hard-btn" class="level-btn">HARD</button><p class="level-para">about:<ul><li class="level-list">2 apples to get</li><li class="level-list">fastest snake</li><li class="level-list">scores 110 for each apple</li><li class="level-list">10pt penalty each turn</li></ul></p></div>
+      <div class="level-div"><button id="very-hard-btn" class="level-btn">VERY HARD</button><p class="level-para">about:<ul><li class="level-list">fastest snake</li><li class="level-list">poisonous apples</li><li class="level-list">obstacles to avoid</li><li class="level-list">scores 250 each apple</li><li class="level-list">10pt penalty each turn</li></ul></div>
+    </div>
+
+    <div id="level-msg-div">
+      <p id="level-msg-para"> choose difficulty</p>
+    </div>
+      </div>
+      
+      </div>
+
+
+
+     <!-- MODAL FOR PAUSE - normally hidden until pause button or space bar executed -->
+     <div id="modal-pause">
+      <div id="content-pause">
+        <div><span id="close-pause">&times</span>  <p id="pause-para">GAME PAUSED
+          <span id="pause-stats"></span>
+        </p>
+        </div>
+      
+        <div id="button-container-resume">
+        <button id="resume">RESUME</button>
+        </div>
+      
+        <div id="pause-image-container">
+      <img id="pause-image" src="./pause image.png" alt="image of a finished game">
+      </div>
+      
+      </div>
+      
+      </div>
+      
+      
+      
+          <div id="modal-container">
+            <div id="simple-modal" >
+                   <div id="content">
+          <div id="modal-header">GAME OVER
+              <span id="close-btn">&times</span>
+          </div><br>
+          
+              <p id="modal-para"> <span id="end-score" class="results">SCORE:</span> <br>
+                <span id="high-scores" class="results"></span>
+              </p>
+         
+              <img src="./snake and apple.png" id="snake">
+      
+              <div id="button-container-b">
+                <button id="new-game">NEW GAME</button>
+              </div>
+              </div> 
+            </div>
+      
+          </div>
+
+
+
+ <!-- APPLICATION BODY START -->
+    <div id="application-body">
+
+
+<!-- game grid container -->
+<div id="grid-container">
+  <div id="game-grid">
+    <div id="one" class="block-containers boundary" ></div>
+    <div id="two" class="block-containers" ></div>
+    <div id="three" class="block-containers" ></div>
+    <div id="four" class="block-containers" ></div>
+    <div id="five" class="block-containers" ></div>
+    <div id="six" class="block-containers"></div>
+    <div id="seven" class="block-containers" ></div>
+    <div id="eight" class="block-containers" ></div>
+    <div id="nine" class="block-containers" ></div>
+    <div id="ten" class="block-containers boundary"></div>
+  
+  
+    <div id="eleven" class="block-containers boundary" ></div>
+    <div id="twelve" class="block-containers" ></div>
+    <div id="thirteen" class="block-containers" ></div>
+    <div id="fourteen" class="block-containers"></div>
+    <div id="fifteen" class="block-containers"></div>
+    <div id="sixteen" class="block-containers"></div>
+    <div id="seventeen" class="block-containers" ></div>
+    <div id="eighteen" class="block-containers" ></div>
+    <div id="nineteen" class="block-containers" ></div>
+    <div id="twenty" class="block-containers boundary" ></div>
+  
+  
+    <div id="twentyone" class="block-containers boundary" ></div>
+    <div id="twentytwo" class="block-containers"></div>
+    <div id="twentythree" class="block-containers" ></div>
+    <div id="twentyfour" class="block-containers" ></div>
+    <div id="twentyfive" class="block-containers" ></div>
+    <div id="twentysix" class="block-containers"></div>
+    <div id="twentyseven" class="block-containers" ></div>
+    <div id="twentyeight" class="block-containers" ></div>
+    <div id="twentynine" class="block-containers" ></div>
+    <div id="thirty" class="block-containers boundary"></div>
+  
+  
+    <div id="thirtyone" class="block-containers boundary"></div>
+    <div id="thirtytwo" class="block-containers"></div>
+    <div id="thirtythree" class="block-containers" ></div>
+    <div id="thirtyfour" class="block-containers"></div>
+    <div id="thirtyfive" class="block-containers"></div>
+    <div id="thirtysix" class="block-containers"></div>
+    <div id="thirtyseven" class="block-containers" ></div>
+    <div id="thirtyeight" class="block-containers" ></div>
+    <div id="thirtynine" class="block-containers" ></div>
+    <div id="forty" class="block-containers boundary"></div>
+  
+  
+    <div id="fortyone" class="block-containers boundary"></div>
+    <div id="fortytwo" class="block-containers"></div>
+    <div id="fortythree" class="block-containers" ></div>
+    <div id="fortyfour" class="block-containers"></div>
+    <div id="fortyfive" class="block-containers"></div>
+    <div id="fortysix" class="block-containers"></div>
+    <div id="fortyseven" class="block-containers" ></div>
+    <div id="fortyeight" class="block-containers" ></div>
+    <div id="fortynine" class="block-containers" ></div>
+    <div id="fifty" class="block-containers boundary"></div>
+  
+  
+    <div id="fiftyone" class="block-containers boundary" ></div>
+    <div id="fiftytwo" class="block-containers"></div>
+    <div id="fiftythree" class="block-containers" ></div>
+    <div id="fiftyfour" class="block-containers" ></div>
+    <div id="fiftyfive" class="block-containers" ></div>
+    <div id="fiftysix" class="block-containers"></div>
+    <div id="fiftyseven" class="block-containers" ></div>
+    <div id="fiftyeight" class="block-containers" ></div>
+    <div id="fiftynine" class="block-containers" ></div>
+    <div id="sixty" class="block-containers boundary"></div>
+  
+  
+    <div id="sixtyone" class="block-containers boundary"></div>
+    <div id="sixtytwo" class="block-containers"></div>
+    <div id="sixtythree" class="block-containers" ></div>
+    <div id="sixtyfour" class="block-containers"></div>
+    <div id="sixtyfive" class="block-containers"></div>
+    <div id="sixtysix" class="block-containers"></div>
+    <div id="sixtyseven" class="block-containers" ></div>
+    <div id="sixtyeight" class="block-containers" ></div>
+    <div id="sixtynine" class="block-containers" ></div>
+    <div id="seventy" class="block-containers boundary"></div>
+  
+  
+    <div id="seventyone" class="block-containers boundary"></div>
+    <div id="seventytwo" class="block-containers"></div>
+    <div id="seventythree" class="block-containers" ></div>
+    <div id="seventyfour" class="block-containers"></div>
+    <div id="seventyfive" class="block-containers"></div>
+    <div id="seventysix" class="block-containers"></div>
+    <div id="seventyseven" class="block-containers" ></div>
+    <div id="seventyeight" class="block-containers" ></div>
+    <div id="seventynine" class="block-containers" ></div>
+    <div id="eighty" class="block-containers boundary"></div>
+  
+  
+    <div id="eightyone" class="block-containers boundary"></div>
+    <div id="eightytwo" class="block-containers"></div>
+    <div id="eightythree" class="block-containers" ></div>
+    <div id="eightyfour" class="block-containers"></div>
+    <div id="eightyfive" class="block-containers"></div>
+    <div id="eightysix" class="block-containers"></div>
+    <div id="eightyseven" class="block-containers" ></div>
+    <div id="eightyeight" class="block-containers" ></div>
+    <div id="eightynine" class="block-containers" ></div>
+    <div id="ninety" class="block-containers boundary"></div>
+  
+  
+  
+    <div id="ninetyone" class="block-containers boundary"></div>
+    <div id="ninetytwo" class="block-containers"></div>
+    <div id="ninetythree" class="block-containers" ></div>
+    <div id="ninetyfour" class="block-containers"></div>
+    <div id="ninetyfive" class="block-containers"></div>
+    <div id="ninetysix" class="block-containers"></div>
+    <div id="ninetyseven" class="block-containers" ></div>
+    <div id="ninetyeight" class="block-containers" ></div>
+    <div id="ninetynine" class="block-containers" ></div>
+    <div id="onehundred" class="block-containers boundary"></div>
+  
+    <!-- second hundred-->
+    <div id="onehundredandone" class="block-containers boundary" ></div>
+    <div id="onehundredandtwo" class="block-containers" ></div>
+    <div id="onehundredandthree" class="block-containers" ></div>
+    <div id="onehundredandfour" class="block-containers" ></div>
+    <div id="onehundredandfive" class="block-containers" ></div>
+    <div id="onehundredandsix" class="block-containers"></div>
+    <div id="onehundredandseven" class="block-containers" ></div>
+    <div id="onehundredandeight" class="block-containers" ></div>
+    <div id="onehundredandnine" class="block-containers" ></div>
+    <div id="onehundredandten" class="block-containers boundary"></div>
+  
+  
+    <div id="onehundredandeleven" class="block-containers boundary" ></div>
+    <div id="onehundredandtwelve" class="block-containers" ></div>
+    <div id="onehundredandthirteen" class="block-containers" ></div>
+    <div id="onehundredandfourteen" class="block-containers"></div>
+    <div id="onehundredandfifteen" class="block-containers"></div>
+    <div id="onehundredandsixteen" class="block-containers"></div>
+    <div id="onehundredandseventeen" class="block-containers" ></div>
+    <div id="onehundredandeighteen" class="block-containers" ></div>
+    <div id="onehundredandnineteen" class="block-containers" ></div>
+    <div id="onehundredandtwenty" class="block-containers boundary" ></div>
+  
+  
+    <div id="onehundredandtwentyone" class="block-containers boundary" ></div>
+    <div id="onehundredandtwentytwo" class="block-containers"></div>
+    <div id="onehundredandtwentythree" class="block-containers" ></div>
+    <div id="onehundredandtwentyfour" class="block-containers" ></div>
+    <div id="onehundredandtwentyfive" class="block-containers" ></div>
+    <div id="onehundredandtwentysix" class="block-containers"></div>
+    <div id="onehundredandtwentyseven" class="block-containers" ></div>
+    <div id="onehundredandtwentyeight" class="block-containers" ></div>
+    <div id="onehundredandtwentynine" class="block-containers" ></div>
+    <div id="onehundredandthirty" class="block-containers boundary"></div>
+  
+  
+    <div id="onehundredandthirtyone" class="block-containers boundary"></div>
+    <div id="onehundredandthirtytwo" class="block-containers"></div>
+    <div id="onehundredandthirtythree" class="block-containers" ></div>
+    <div id="onehundredandthirtyfour" class="block-containers"></div>
+    <div id="onehundredandthirtyfive" class="block-containers"></div>
+    <div id="onehundredandthirtysix" class="block-containers"></div>
+    <div id="onehundredandthirtyseven" class="block-containers" ></div>
+    <div id="onehundredandthirtyeight" class="block-containers" ></div>
+    <div id="onehundredandthirtynine" class="block-containers" ></div>
+    <div id="onehundredandforty" class="block-containers boundary"></div>
+  
+  
+    <div id="onehundredandfortyone" class="block-containers boundary"></div>
+    <div id="onehundredandfortytwo" class="block-containers"></div>
+    <div id="onehundredandfortythree" class="block-containers" ></div>
+    <div id="onehundredandfortyfour" class="block-containers"></div>
+    <div id="onehundredandfortyfive" class="block-containers"></div>
+    <div id="onehundredandfortysix" class="block-containers"></div>
+    <div id="onehundredandfortyseven" class="block-containers" ></div>
+    <div id="onehundredandfortyeight" class="block-containers" ></div>
+    <div id="onehundredandfortynine" class="block-containers" ></div>
+    <div id="onehundredandfifty" class="block-containers boundary"></div>
+  
+  
+    <div id="onehundredandfiftyone" class="block-containers boundary" ></div>
+    <div id="onehundredandfiftytwo" class="block-containers"></div>
+    <div id="onehundredandfiftythree" class="block-containers" ></div>
+    <div id="onehundredandfiftyfour" class="block-containers" ></div>
+    <div id="onehundredandfiftyfive" class="block-containers" ></div>
+    <div id="onehundredandfiftysix" class="block-containers"></div>
+    <div id="onehundredandfiftyseven" class="block-containers" ></div>
+    <div id="onehundredandfiftyeight" class="block-containers" ></div>
+    <div id="onehundredandfiftynine" class="block-containers" ></div>
+    <div id="onehundredandsixty" class="block-containers boundary"></div>
+  
+  
+    <div id="onehundredandsixtyone" class="block-containers boundary"></div>
+    <div id="onehundredandsixtytwo" class="block-containers"></div>
+    <div id="onehundredandsixtythree" class="block-containers" ></div>
+    <div id="onehundredandsixtyfour" class="block-containers"></div>
+    <div id="onehundredandsixtyfive" class="block-containers"></div>
+    <div id="onehundredandsixtysix" class="block-containers"></div>
+    <div id="onehundredandsixtyseven" class="block-containers" ></div>
+    <div id="onehundredandsixtyeight" class="block-containers" ></div>
+    <div id="onehundredandsixtynine" class="block-containers" ></div>
+    <div id="onehundredandseventy" class="block-containers boundary"></div>
+  
+  
+    <div id="onehundredandseventyone" class="block-containers boundary"></div>
+    <div id="onehundredandseventytwo" class="block-containers"></div>
+    <div id="onehundredandseventythree" class="block-containers" ></div>
+    <div id="onehundredandseventyfour" class="block-containers"></div>
+    <div id="onehundredandseventyfive" class="block-containers"></div>
+    <div id="onehundredandseventysix" class="block-containers"></div>
+    <div id="onehundredandseventyseven" class="block-containers" ></div>
+    <div id="onehundredandseventyeight" class="block-containers" ></div>
+    <div id="onehundredandseventynine" class="block-containers" ></div>
+    <div id="onehundredandeighty" class="block-containers boundary"></div>
+  
+  
+    <div id="onehundredandeightyone" class="block-containers boundary"></div>
+    <div id="onehundredandeightytwo" class="block-containers"></div>
+    <div id="onehundredandeightythree" class="block-containers" ></div>
+    <div id="onehundredandeightyfour" class="block-containers"></div>
+    <div id="onehundredandeightyfive" class="block-containers"></div>
+    <div id="onehundredandeightysix" class="block-containers"></div>
+    <div id="onehundredandeightyseven" class="block-containers" ></div>
+    <div id="onehundredandeightyeight" class="block-containers" ></div>
+    <div id="onehundredandeightynine" class="block-containers" ></div>
+    <div id="onehundredandninety" class="block-containers boundary"></div>
+  
+  
+  
+    <div id="onehundredandninetyone" class="block-containers boundary"></div>
+    <div id="onehundredandninetytwo" class="block-containers"></div>
+    <div id="onehundredandninetythree" class="block-containers" ></div>
+    <div id="onehundredandninetyfour" class="block-containers"></div>
+    <div id="onehundredandninetyfive" class="block-containers"></div>
+    <div id="onehundredandninetysix" class="block-containers"></div>
+    <div id="onehundredandninetyseven" class="block-containers" ></div>
+    <div id="onehundredandninetyeight" class="block-containers" ></div>
+    <div id="onehundredandninetynine" class="block-containers" ></div>
+    <div id="twohundred" class="block-containers boundary"></div>
+
+<!-- Third hundred-->
+
+    <div id="twohundredandone" class="block-containers boundary" ></div>
+    <div id="twohundredandtwo" class="block-containers" ></div>
+    <div id="twohundredandthree" class="block-containers" ></div>
+    <div id="twohundredandfour" class="block-containers" ></div>
+    <div id="twohundredandfive" class="block-containers" ></div>
+    <div id="twohundredandsix" class="block-containers"></div>
+    <div id="twohundredandseven" class="block-containers" ></div>
+    <div id="twohundredandeight" class="block-containers" ></div>
+    <div id="twohundredandnine" class="block-containers" ></div>
+    <div id="twohundredandten" class="block-containers boundary"></div>
+  
+  
+    <div id="twohundredandeleven" class="block-containers boundary" ></div>
+    <div id="twohundredandtwelve" class="block-containers" ></div>
+    <div id="twohundredandthirteen" class="block-containers" ></div>
+    <div id="twohundredandfourteen" class="block-containers"></div>
+    <div id="twohundredandfifteen" class="block-containers"></div>
+    <div id="twohundredandsixteen" class="block-containers"></div>
+    <div id="twohundredandseventeen" class="block-containers" ></div>
+    <div id="twohundredandeighteen" class="block-containers" ></div>
+    <div id="twohundredandnineteen" class="block-containers" ></div>
+    <div id="twohundredandtwenty" class="block-containers boundary" ></div>
+  
+  
+    <div id="twohundredandtwentyone" class="block-containers boundary" ></div>
+    <div id="twohundredandtwentytwo" class="block-containers"></div>
+    <div id="twohundredandtwentythree" class="block-containers" ></div>
+    <div id="twohundredandtwentyfour" class="block-containers" ></div>
+    <div id="twohundredandtwentyfive" class="block-containers" ></div>
+    <div id="twohundredandtwentysix" class="block-containers"></div>
+    <div id="twohundredandtwentyseven" class="block-containers" ></div>
+    <div id="twohundredandtwentyeight" class="block-containers" ></div>
+    <div id="twohundredandtwentynine" class="block-containers" ></div>
+    <div id="twohundredandthirty" class="block-containers boundary"></div>
+  
+  
+    <div id="twohundredandthirtyone" class="block-containers boundary"></div>
+    <div id="twohundredandthirtytwo" class="block-containers"></div>
+    <div id="twohundredandthirtythree" class="block-containers" ></div>
+    <div id="twohundredandthirtyfour" class="block-containers"></div>
+    <div id="twohundredandthirtyfive" class="block-containers"></div>
+    <div id="twohundredandthirtysix" class="block-containers"></div>
+    <div id="twohundredandthirtyseven" class="block-containers" ></div>
+    <div id="twohundredandthirtyeight" class="block-containers" ></div>
+    <div id="twohundredandthirtynine" class="block-containers" ></div>
+    <div id="twohundredandforty" class="block-containers boundary"></div>
+  
+  
+    <div id="twohundredandfortyone" class="block-containers boundary"></div>
+    <div id="twohundredandfortytwo" class="block-containers"></div>
+    <div id="twohundredandfortythree" class="block-containers" ></div>
+    <div id="twohundredandfortyfour" class="block-containers"></div>
+    <div id="twohundredandfortyfive" class="block-containers"></div>
+    <div id="twohundredandfortysix" class="block-containers"></div>
+    <div id="twohundredandfortyseven" class="block-containers" ></div>
+    <div id="twohundredandfortyeight" class="block-containers" ></div>
+    <div id="twohundredandfortynine" class="block-containers" ></div>
+    <div id="twohundredandfifty" class="block-containers boundary"></div>
+  
+  
+    <div id="twohundredandfiftyone" class="block-containers boundary" ></div>
+    <div id="twohundredandfiftytwo" class="block-containers"></div>
+    <div id="twohundredandfiftythree" class="block-containers" ></div>
+    <div id="twohundredandfiftyfour" class="block-containers" ></div>
+    <div id="twohundredandfiftyfive" class="block-containers" ></div>
+    <div id="twohundredandfiftysix" class="block-containers"></div>
+    <div id="twohundredandfiftyseven" class="block-containers" ></div>
+    <div id="twohundredandfiftyeight" class="block-containers" ></div>
+    <div id="twohundredandfiftynine" class="block-containers" ></div>
+    <div id="twohundredandsixty" class="block-containers boundary"></div>
+  
+  
+    <div id="twohundredandsixtyone" class="block-containers boundary"></div>
+    <div id="twohundredandsixtytwo" class="block-containers"></div>
+    <div id="twohundredandsixtythree" class="block-containers" ></div>
+    <div id="twohundredandsixtyfour" class="block-containers"></div>
+    <div id="twohundredandsixtyfive" class="block-containers"></div>
+    <div id="twohundredandsixtysix" class="block-containers"></div>
+    <div id="twohundredandsixtyseven" class="block-containers" ></div>
+    <div id="twohundredandsixtyeight" class="block-containers" ></div>
+    <div id="twohundredandsixtynine" class="block-containers" ></div>
+    <div id="twohundredandseventy" class="block-containers boundary"></div>
+  
+  
+    <div id="twohundredandseventyone" class="block-containers boundary"></div>
+    <div id="twohundredandseventytwo" class="block-containers"></div>
+    <div id="twohundredandseventythree" class="block-containers" ></div>
+    <div id="twohundredandseventyfour" class="block-containers"></div>
+    <div id="twohundredandseventyfive" class="block-containers"></div>
+    <div id="twohundredandseventysix" class="block-containers"></div>
+    <div id="twohundredandseventyseven" class="block-containers" ></div>
+    <div id="twohundredandseventyeight" class="block-containers" ></div>
+    <div id="twohundredandseventynine" class="block-containers" ></div>
+    <div id="twohundredandeighty" class="block-containers boundary"></div>
+  
+  
+    <div id="twohundredandeightyone" class="block-containers boundary"></div>
+    <div id="twohundredandeightytwo" class="block-containers"></div>
+    <div id="twohundredandeightythree" class="block-containers" ></div>
+    <div id="twohundredandeightyfour" class="block-containers"></div>
+    <div id="twohundredandeightyfive" class="block-containers"></div>
+    <div id="twohundredandeightysix" class="block-containers"></div>
+    <div id="twohundredandeightyseven" class="block-containers" ></div>
+    <div id="twohundredandeightyeight" class="block-containers" ></div>
+    <div id="twohundredandeightynine" class="block-containers" ></div>
+    <div id="twohundredandninety" class="block-containers boundary"></div>
+  
+  
+  
+    <div id="twohundredandninetyone" class="block-containers boundary"></div>
+    <div id="twohundredandninetytwo" class="block-containers"></div>
+    <div id="twohundredandninetythree" class="block-containers" ></div>
+    <div id="twohundredandninetyfour" class="block-containers"></div>
+    <div id="twohundredandninetyfive" class="block-containers"></div>
+    <div id="twohundredandninetysix" class="block-containers"></div>
+    <div id="twohundredandninetyseven" class="block-containers" ></div>
+    <div id="twohundredandninetyeight" class="block-containers" ></div>
+    <div id="twohundredandninetynine" class="block-containers" ></div>
+    <div id="threehundred" class="block-containers boundary"></div>
+
+    <!-- fourth hundred-->
+    <div id="threehundredandone" class="block-containers boundary" ></div>
+    <div id="threehundredandtwo" class="block-containers" ></div>
+    <div id="threehundredandthree" class="block-containers" ></div>
+    <div id="threehundredandfour" class="block-containers" ></div>
+    <div id="threehundredandfive" class="block-containers" ></div>
+    <div id="threehundredandsix" class="block-containers"></div>
+    <div id="threehundredandseven" class="block-containers" ></div>
+    <div id="threehundredandeight" class="block-containers" ></div>
+    <div id="threehundredandnine" class="block-containers" ></div>
+    <div id="threehundredandten" class="block-containers boundary"></div>
+  
+  
+    <div id="threehundredandeleven" class="block-containers boundary" ></div>
+    <div id="threehundredandtwelve" class="block-containers" ></div>
+    <div id="threehundredandthirteen" class="block-containers" ></div>
+    <div id="threehundredandfourteen" class="block-containers"></div>
+    <div id="threehundredandfifteen" class="block-containers"></div>
+    <div id="threehundredandsixteen" class="block-containers"></div>
+    <div id="threehundredandseventeen" class="block-containers" ></div>
+    <div id="threehundredandeighteen" class="block-containers" ></div>
+    <div id="threehundredandnineteen" class="block-containers" ></div>
+    <div id="threehundredandtwenty" class="block-containers boundary" ></div>
+  
+  
+    <div id="threehundredandtwentyone" class="block-containers boundary" ></div>
+    <div id="threehundredandtwentytwo" class="block-containers"></div>
+    <div id="threehundredandtwentythree" class="block-containers" ></div>
+    <div id="threehundredandtwentyfour" class="block-containers" ></div>
+    <div id="threehundredandtwentyfive" class="block-containers" ></div>
+    <div id="threehundredandtwentysix" class="block-containers"></div>
+    <div id="threehundredandtwentyseven" class="block-containers" ></div>
+    <div id="threehundredandtwentyeight" class="block-containers" ></div>
+    <div id="threehundredandtwentynine" class="block-containers" ></div>
+    <div id="threehundredandthirty" class="block-containers boundary"></div>
+  
+  
+    <div id="threehundredandthirtyone" class="block-containers boundary"></div>
+    <div id="threehundredandthirtytwo" class="block-containers"></div>
+    <div id="threehundredandthirtythree" class="block-containers" ></div>
+    <div id="threehundredandthirtyfour" class="block-containers"></div>
+    <div id="threehundredandthirtyfive" class="block-containers"></div>
+    <div id="threehundredandthirtysix" class="block-containers"></div>
+    <div id="threehundredandthirtyseven" class="block-containers" ></div>
+    <div id="threehundredandthirtyeight" class="block-containers" ></div>
+    <div id="threehundredandthirtynine" class="block-containers" ></div>
+    <div id="threehundredandforty" class="block-containers boundary"></div>
+  
+  
+    <div id="threehundredandfortyone" class="block-containers boundary"></div>
+    <div id="threehundredandfortytwo" class="block-containers"></div>
+    <div id="threehundredandfortythree" class="block-containers" ></div>
+    <div id="threehundredandfortyfour" class="block-containers"></div>
+    <div id="threehundredandfortyfive" class="block-containers"></div>
+    <div id="threehundredandfortysix" class="block-containers"></div>
+    <div id="threehundredandfortyseven" class="block-containers" ></div>
+    <div id="threehundredandfortyeight" class="block-containers" ></div>
+    <div id="threehundredandfortynine" class="block-containers" ></div>
+    <div id="threehundredandfifty" class="block-containers boundary"></div>
+  
+  
+    <div id="threehundredandfiftyone" class="block-containers boundary" ></div>
+    <div id="threehundredandfiftytwo" class="block-containers"></div>
+    <div id="threehundredandfiftythree" class="block-containers" ></div>
+    <div id="threehundredandfiftyfour" class="block-containers" ></div>
+    <div id="threehundredandfiftyfive" class="block-containers" ></div>
+    <div id="threehundredandfiftysix" class="block-containers"></div>
+    <div id="threehundredandfiftyseven" class="block-containers" ></div>
+    <div id="threehundredandfiftyeight" class="block-containers" ></div>
+    <div id="threehundredandfiftynine" class="block-containers" ></div>
+    <div id="threehundredandsixty" class="block-containers boundary"></div>
+  
+  
+    <div id="threehundredandsixtyone" class="block-containers boundary"></div>
+    <div id="threehundredandsixtytwo" class="block-containers"></div>
+    <div id="threehundredandsixtythree" class="block-containers" ></div>
+    <div id="threehundredandsixtyfour" class="block-containers"></div>
+    <div id="threehundredandsixtyfive" class="block-containers"></div>
+    <div id="threehundredandsixtysix" class="block-containers"></div>
+    <div id="threehundredandsixtyseven" class="block-containers" ></div>
+    <div id="threehundredandsixtyeight" class="block-containers" ></div>
+    <div id="threehundredandsixtynine" class="block-containers" ></div>
+    <div id="threehundredandseventy" class="block-containers boundary"></div>
+  
+  
+    <div id="threehundredandseventyone" class="block-containers boundary"></div>
+    <div id="threehundredandseventytwo" class="block-containers"></div>
+    <div id="threehundredandseventythree" class="block-containers" ></div>
+    <div id="threehundredandseventyfour" class="block-containers"></div>
+    <div id="threehundredandseventyfive" class="block-containers"></div>
+    <div id="threehundredandseventysix" class="block-containers"></div>
+    <div id="threehundredandseventyseven" class="block-containers" ></div>
+    <div id="threehundredandseventyeight" class="block-containers" ></div>
+    <div id="threehundredandseventynine" class="block-containers" ></div>
+    <div id="threehundredandeighty" class="block-containers boundary"></div>
+  
+  
+    <div id="threehundredandeightyone" class="block-containers boundary"></div>
+    <div id="threehundredandeightytwo" class="block-containers"></div>
+    <div id="threehundredandeightythree" class="block-containers" ></div>
+    <div id="threehundredandeightyfour" class="block-containers"></div>
+    <div id="threehundredandeightyfive" class="block-containers"></div>
+    <div id="threehundredandeightysix" class="block-containers"></div>
+    <div id="threehundredandeightyseven" class="block-containers" ></div>
+    <div id="threehundredandeightyeight" class="block-containers" ></div>
+    <div id="threehundredandeightynine" class="block-containers" ></div>
+    <div id="threehundredandninety" class="block-containers boundary"></div>
+  
+  
+  
+    <div id="threehundredandninetyone" class="block-containers boundary"></div>
+    <div id="threehundredandninetytwo" class="block-containers"></div>
+    <div id="threehundredandninetythree" class="block-containers" ></div>
+    <div id="threehundredandninetyfour" class="block-containers"></div>
+    <div id="threehundredandninetyfive" class="block-containers"></div>
+    <div id="threehundredandninetysix" class="block-containers"></div>
+    <div id="threehundredandninetyseven" class="block-containers" ></div>
+    <div id="threehundredandninetyeight" class="block-containers" ></div>
+    <div id="threehundredandninetynine" class="block-containers" ></div>
+    <div id="fourhhundred" class="block-containers boundary"></div>
+
+  </div>  <!--end of game grid-->
+
+  </div> <!-- END OF GAME GRID CONTAINER-->
+
+
+
+
+
+
+  <!--FUNCTIONS CONTAINER START-->
+  <div id="functions-container" class="line-number-container">
+    
+ <!-- score paragraph -->
+<div id="score-para-container">
+  <div id="score-para">score:<br> 00</div>
+</div>
+
+<!-- game state buttons  -->
+ <div id="game-state-btns">
+  <button class="game-operators" id="start"><img class="button-img" id="start-img" src="./start-img.png" alt=""></button>
+  <button class="game-operators" id="refresh"><img class="button-img" id="refresh-img" src="./recycled arrow.png" alt=""></button>
+  <button class="game-operators" id="pause"><img class="button-img" id="pause-img" src="./pause-img.png" alt=""></button>
+</div>
+
+<!-- joypad  -->
+ <div id="joypad">
+  <button class="tetrimino-btn" id="move-up"><img id="up-arrow-img" src="./up arrow.png" alt=""></button>
+  <button class="tetrimino-btn" id="move-left"><img id="left-arrow-img" src="./left arrow.png" alt=""></button>
+  <button class="tetrimino-btn" id="move-right"><img id="right-arrow-img" src="./right arrow.png" alt=""></button> 
+  <button class="tetrimino-btn" id="move-down"><img id="down-arrow-img" src="./down arrow.png" alt=""></button> 
+</div>
+
+        </div>  <!--FUNCTIONS CONTAINER END-->
+
+ 
+    </div>  <!--APPLICATION BODY END-->
+    
+    
+    
+    
+ 
+ <script src="script.js"></script>
+ </body>
+</html>
+

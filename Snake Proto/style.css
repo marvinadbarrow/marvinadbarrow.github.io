@@ -1,0 +1,348 @@
+*{
+margin:0;
+list-style: square;
+text-decoration: none;
+}
+
+body{text-decoration: none;width: 100vw; height: 100vh;
+background-image: url('tetris.jpg');
+}
+
+#h1-container{
+Margin-bottom:50px;
+margin-top: 50px;
+
+}
+
+/* MODAL STYLINGS */
+
+
+
+  /*MODAL for paused game*/
+#modal-pause{position: absolute; width: 94%; height: 70%; z-index: 2;
+  background-color: rgba(128, 128, 128, 0.79); margin-top: 100px;border-radius: 10px; box-shadow: 3px 4px 8px white; margin-left: 3%; display: none;}
+#pause-para{width: 700px; margin:10px;font-size:60px; font-weight:bold;color:white;margin: auto; text-align: center;text-shadow: 2px 2px 5px rgb(67, 243, 234)}
+/* close modal icon */
+#close-pause{font-weight:bold; font-size:80px; margin:10px;
+  color:yellow; float:right;
+  text-shadow: 2px 2px 5px rgb(255, 248, 248);
+   }
+   /* button and container*/
+   #button-container-resume{z-index: 2; margin: auto; height: 50px; width: 300px; margin-top: 40px;}
+   #resume{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:50px; box-shadow: 2px 2px 7px black;}
+/* container for image*/
+   #pause-image-container{width: 440px; margin: auto; margin-top: 100px;}
+   #pause-image{width: 400px;}
+
+
+
+/* MODAL for end of game stats instructions etc */
+#modal-container{position: absolute; width:100%; height: 90%; margin:auto;}
+#close-btn{font-weight:bold; font-size:60px; margin:10px;
+  color:rgba(245, 41, 22, 0.7); float:right;
+   }
+  
+  #close-btn:hover, #close-btn:focus{color:black; text-decoration:none; cursor:pointer; }
+  #simple-modal{
+    position: relative;
+   display:none;
+  box-shadow: 2px 2px 7px black;
+  width:100%; height:95%;
+  background-color:rgba(75, 75, 75, 0.57);
+  margin-top:30px;
+  border-radius:7px;
+   z-index:1;
+   margin: auto;
+  
+  }
+
+  #content{background-color:rgba(199, 205, 206, 0.391);
+    position: relative;
+    margin: auto;
+    box-shadow: 1px 1px 5px black;
+    border-radius:7px;
+     height:90%;
+    width: 90%;
+    }
+        
+    #modal-para{width: 70%; margin:10px;font-size:40px; font-weight:bold;color:white;margin: auto; text-align: left;}
+    
+    #close-btn{ font-size:50px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color: rgb(224, 36, 36);
+    text-shadow: none;color: yellow;  margin: auto;}
+
+    #modal-header{height: 8%; background-color:rgba(6, 6, 5, 0.628); font-size:50px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color: rgb(224, 36, 36);text-shadow: 2px 2px white ;}
+
+    #high-scores{color: yellow;width: 600px; font-size: 40px;}
+    
+    .results{position: relative; font-size:35px; font-weight:bold;color:white; display: inline; text-align:center;}
+
+#button-container-b{
+width: 40%;
+height: 10%;
+margin-left: 30%;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+background-color: rgba(255, 0, 0, 0);
+
+}
+    #snake{position: relative; width: 70%; margin-left: 15%; margin-top: 50px;}
+    #new-game{position: relative; width: fit-content; z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:35px; box-shadow: 2px 2px 7px black;}
+/* end of GAME OVER modal*/
+
+
+
+/* level MODAL*/
+
+#level-modal{position: absolute; z-index: 3; width: 100%; height: 100%;}
+#level-content{position: relative; width: 96%; height: 90%; background-color: rgba(205, 169, 239, 0.827); border: 3px solid white; border-radius: 10px; display: flex; flex-direction: column;}
+#level-div-container{position: relative; width: 98%;height: 40%; margin: auto; display: flex; flex-direction: row; justify-content: space-around;background-color: rgba(158, 227, 54, 0);}
+.level-div{position: relative; width: 20%; height: 90%; background-color: rgba(247, 220, 41, 0.904); border-radius: 10px; border: 3px solid white; display: flex; flex-direction: column;  align-items: center;justify-content: space-around; }
+.level-btn{font-size: 23px; border-radius: 5px; border: 3px solid white; background-color: rgb(136, 188, 240); padding: 5px;}
+.level-para{font-size: 20px; color: white; font-weight: bold;}
+.level-list{font-size: 17px; font-style: italic;}
+#level-msg-div{position: relative; width: fit-content; margin: auto; background-color: rgba(227, 178, 54, 0); border: 3px solid white; border-radius: 10px; align-items: center; padding: 10px;}
+#level-msg-para{font-size: 100px; display: inline;width: fit-content;font-weight: bold; text-transform: capitalize; color: yellow; text-shadow: 2px 4px 6px rgb(2, 2, 2);}
+
+/* end of LEVEL modal*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* -------------------------------  END OF MODAL STYLINGS */
+
+
+
+/* APPLICATION STYLINGS */
+
+
+
+/* application body takes two containers, screen and joypad */
+#application-body{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+   width: 70%; height: 80%; border: 6px solid rgb(9, 9, 9); border-radius: 10px; background-color: rgba(56, 56, 56, 0.454); margin: auto; margin-top: 2%;}
+
+
+/* line para container*/
+#functions-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2%;
+     width:30%;
+  height: 94%;
+  background-color: rgba(44, 44, 216, 0.32);
+    border-radius: 6px;
+  border: 1px solid black;
+     }
+
+     /* score para container*/
+#score-para-container{
+
+
+  width: 90%;
+height: 25%;
+}
+/* line para*/
+#score-para{
+  position: relative;
+  margin: auto;
+  width:90%;
+  height: 90%;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  padding: 1%;
+  border-radius: 1px;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 3%;
+  border: white solid 2px;
+    }
+
+
+
+
+
+
+   /* --------------------- GAME GRID AND ELEMENTS (ALL INSIDE A CONTAINER)------------------------------*/ 
+#grid-container{
+  position: relative;
+     width: 40vw;
+  height: 40vw;
+padding: 0.5vw;
+  background-color: rgba(140, 244, 244, 0);
+  border-radius: 10px;
+  }
+  
+  #game-grid{
+    position: relative;
+    display:grid; 
+    margin: auto;
+      grid-template-columns: repeat(20, 20fr);
+    grid-gap:2px;
+    grid-template-rows: repeat(20, 20fr);
+    width:90%;
+    height: 90%;
+    background-color: rgb(253, 254, 254);
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid black;
+    }
+
+/* divs for grid to hold tetriminoes*/
+.block-containers{position: relative; background-color:rgb(5, 5, 5);padding: 1px;}
+.blocks{background-color: blue;width: 29px; height: 29px;}
+
+
+
+
+
+
+
+
+
+/* --------------------- TETRIMINO MANIPULATION------------------------------*/
+/* JOYPAD*/
+#joypad{
+  padding: 2%;
+  border-radius: 10%;
+  border: 2px solid rgb(255, 255, 255);
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(3, 3fr);
+  grid-template-columns: repeat(3, 3fr);
+  grid-template-areas: 
+    "none up none"
+  "left none right"
+  "none down none"
+  ;
+  
+  background-color: rgba(232, 34, 34, 0.223);
+  width: 70%;
+  aspect-ratio: 1/1;
+}
+
+.tetrimino-btn{border-radius: 50%;}
+#move-up{background-color: rgba(31, 31, 34, 0.535);grid-area: 1/2;}
+#move-left{background-color: rgba(31, 31, 34, 0.535);grid-area: 2/1;}
+#move-right{background-color: rgba(31, 31, 34, 0.535);grid-area: 2/3;}
+#move-down{background-color: rgba(31, 31, 34, 0.535); grid-area: 3/2;}
+
+  /* TETRIMINO ICONS */
+  #right-arrow-img{
+    position: relative;
+    width: 80%;
+  }
+
+ #left-arrow-img{
+  position: relative;
+  width: 80%;
+    }
+
+#up-arrow-img{
+  position: relative;
+  width: 80%;
+}
+
+  #down-arrow-img{
+    position: relative;
+    width: 80%;
+}
+  
+
+
+        /*GAME STATE BUTTONS --------------------------------------------------- */
+  #game-state-btns{
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+  background-color: rgba(109, 87, 87, 0.42);
+  width: 90%; height: 20%;}
+
+  .game-operators{position: relative; width: 30%; height: 80%; border: 2px solid black; background-color: rgba(23, 23, 23, 0.304);}
+
+  
+
+  #start-img{width: 80%;}
+  #pause-img{width: 80%;}
+  #refresh-img{width: 80%;}
+
+ 
+  /* ----------------------------- end of APPLICATION STYLINGS */
+
+
+
+
+
+
+
+/* CLASSES AND ANIMATIONS ACCESSED BY JS*/
+
+
+    /* to fade modal in on pause*/
+@keyframes modalfade{
+  from{opacity:0}
+  to{opacity:1}
+  }
+ 
+
+/* ANIMATION for  pause button when activated */
+@keyframes pause{
+  0% {color: red; background-color:yellow; opacity: 1;}
+  50% {color: red; background-color:yellow;opacity:0.5;}
+  100% {color: red; background-color:yellow;opacity:3;}
+}
+
+
+/* ANIMATION for  4 completed rows flash*/
+@keyframes flash {
+  0% {color:white;opacity: 1;}
+50% {color:white;opacity:0.5;}
+100% {color:white;opacity:0;}
+}
+
+
+
+
+/* dimensions for snake blocks*/
+.block-dimensions{
+  position: relative;
+  width: 95%;
+  aspect-ratio: 1/1;
+  background-color: yellow;
+  }
+
+.head-dimensions{
+  position: relative;
+  width: 95%;
+  aspect-ratio: 1/1;
+  background-color: rgb(23, 206, 16);
+  }
+
+/* styling for apples */
+  .apple-style{
+    position: relative;
+    border-radius: 50%;
+    width: 90%;
+    aspect-ratio: 1/1;
+    background-color: rgb(255, 0, 0);}

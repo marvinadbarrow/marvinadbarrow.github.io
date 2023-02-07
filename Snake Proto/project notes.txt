@@ -1,0 +1,400 @@
+First thing to not about the snake is that there are two scenarios; 
+1) snake's body is completely straight. 
+2) snake recently made a turn so that its body has at least 'one' right angle in it so that different parts of its body are traveling in different directions (N, S, E or W) 
+
+-------------------------HANDLING THE STRAIGTH LINE SNAKE-------------------------------
+If the snakes body parts are all traveling in the same direction then arrays can be created for each direction.
+
+N) each segment from the head (a) downward sits in gridChild[a + 20*m], where 'm' is the number of positions away from 'a'. 
+So that if a = 50, then for the segment that's in the first position down from the head (a), m = 1, its number will be a + 20*1 = a + 20 = 50+ 20 = 70; so that segment sits in gridChild[70] which is exactly 20 below the head (a).  for the segment that's in the second position down from the head (a), m = 2, so its number will be a + 20*2 = a + 40 = 90; that segment sits in gridChild[90]... and so on. The snake's coordinates will be 50 (the head), 70, 90, 110...... etc depending the number of segments that make up the snake's body.  
+
+I'm thinking that every time we add a segment to the snake we can pop it into an array, so, for instance, when the fourth segment is added then, maybe we can make the ID as snakeArray.length + 1, the array will have 3 in it so this particular new segement's id will be '4' so that the element with the id  of '4' can be pushed to the next position in the array which will be the 'fourth'. OR, maybe we don't have the head (a) in the array and just start with the body segments,first ,second, third etc, after the head. 
+
+Then make an array for each direction. 
+upArray = [20]
+downArray = [-20]
+rightArray = [-1]
+leftArray = [1]
+
+we could then multiply the ID's of each segment in the array, by the direction array number...
+so, if traveling up, then the value of the head (a) will be a-= 20, then b = a + (upArray[0]*1), c = a + (upArray[0]*2), d = a + (upArray[0]*3). 
+This means that for a 3 segment snakes traveling upward the gridChild numbers will be  'a, a +20, a +40,... 
+
+taveling downward
+a += 20, b = a + (downArray[0]*1), c = a + (downArray[0]*2), d = a + (downArray[0]*3)... etc
+
+traveling right
+a += 1, b = a + (rightArray[0]*1), c = a + (rightArray[0]*2), d = a + (rightArray[0]*3)... etc
+
+traveling left
+
+a -= 1, b = a + (leftArray[0]*1), c = a + (leftArray[0]*2), d = a + (leftArray[0]*3)... etc
+
+we probably don't even need to use an array for the up, right, left and down values just use variables because those variables do not change so no manipulation is needed.  But the arrays will be needed for the increasing segment numbers. 
+
+
+-----------------------------HANDLING CHANGES IN DIRECTION----------------------------------------------
+
+
+We'll need a few pieces of information here; 
+
+a - the name of the direction button clicked, i.e. UP, DOWN, LEFT or RIGHT (or keyboard arrow direction)
+b - the position of the snake head (a) when the direction button is clicked (this is the 'turning point'
+c -the orientation of travel of (a) at the time the direction was changed
+d - the array which holds information about the intended 'new' direction of the head ( upArray, downArray.... etc)
+e - a method for dealing with what to do with a segment when it reaches the turning point (described in part 'b')
+f - the array associated with the direction name of the clicked button(i.e. click UP is associated with upArray)
+
+
+FORMULATING A PLAN.  
+
+'a' is descending ---   'a += 20' - which is taken from the variable 'down = 20'
+(note, that hitting the DOWN or UP arrows should have no effect on the snake if the direction of travel = down or up
+
+
+EXAMPLE: 
+when a direction button is clicked the location of 'a' is gridChild[124]
+a = 124
+Say, RIGHT is clicked; then immediately we change from  'a += 20'  to 'a += 1' which will make it move sideways right. 
+(NOTE* this will only happen ONCE, at time of the function execution - we need it to continue infinitely)
+
+(So the intended direction of the snake is right, which is what we want to be the eventual direction of travel of all segments of the snake.)
+
+We could create an array, changeDirectionArr = [] with subarrays, each representing a new direction and the point at which the new direction started, i.e. the place where the head was when the direction changed. ; for the above example the zero'th position of the array would be changeDirectionArr[0]  =  ['right', 124] which means, turn right at 124, 
+- this is how the array should look changeDirectionArr = [['right', 124] , [direction 2, position 2]]
+
+Then for all segments following the head; 
+if (segment position === changeDirectionArr[0][1]){// change its increment pattern
+segment += changeDirectionArr[0][0] (which will have the value that corresponds to 'right') }
+(NOTE* - again this will only occur once, then the default segment movement will resume and the piece will continue falling)
+
+
+// ALL segments will turn right after reaching gridChild[124] - NOT TRUE
+
+-------------------------------- HANDLING MULTIPLE CHANGES IN DIRECTION ------------------------------
+
+
+Let's say the direction change above has recently occurred, so that the array for changed direction looks like this; 
+
+changeDirectionArr = [['right', 124]
+
+but then, when a hit's 129 you decide to push the UP button...
+
+now the function will execute changeDirectionArr.push(['up', 129])
+
+and the updated array will be changeDirectionArr = [['right', 124], ['up', 129] ]
+
+for all segments following the head;
+
+if (segment === changeDirectionArr[1][1]){// change its increment pattern
+segment += changeDirectionArr[1][0] (which will have the value that corresponds to 'UP') }
+
+
+// ALL segments will turn right after reaching gridChild[129]
+
+POSSIBLE SOLUTION for knowing where a segment is...-------------------------------------------
+
+It might be a nice idea to add a 'direction' class to a segment to indicate its direction of travel
+
+
+===================================PROBLEM FOUND...
+
+THE ABOVE SOLUTION WILL NOT WORK AND HAS SEVERAL PROBLEMS... It might be useful to still have each segment labeled with a class that indicates its intended direction of movement. 
+
+
+The default movement in the game, since it was taken from the Tetris code, is where the blocks are descending. This means that even if you change the snake head to a += 1, this will only happen once because, after the function has stopped, the main movement continues, so the head with shift one place to the right if the right arrow is clicked, and then the head will just descend, one block away from its normal position and the rest of the body. 
+
+When the code block was executed to see if the first segment after the head had reached the 'turning point', well, that was never going to happen because the code only executes once, when the segement is one place above the turning point. When the first segement hits the turning point, the function is no longer executing so nothing happens; nothing is registering the position of that segment; so that's another problem to deal with. 
+
+
+
+---------------------------------- POTENTIAL SOLUTION FOUND------------------------
+
+
+Since each piece is directly connected the the piece created before it; let's call that piece the immediate ancestor, and each piece must pass through the turning point.  It looks like all pieces must go where its immediate ancestor goes, which seems to indicate that, as assumed, all pieces must travel through the turning point.  
+
+There's just one thing to notice is that, if a piece is descending it is because its immediate ancester was just descending, which is the crux of this system.  Each piece is following the direction that its immediate ancestor was 'previously' following, i.e. the its direction before the current time change
+
+For instance, when the head gets to the turning point, it will change direction, say from descending to moving right.  It had to 'descend' to the turning point; which is what its immediate child will have to do to get to the turning point. So, although the immediate ancestor's next move is 'right', the immediate child will have to do the move that the immediate ancestor was previously doing, i.e. 'descend'. So the immediate child takes the direction that the immediate ancestor had in the previous time slot.  This method should cause all of the segments to follow their immediate ancestor... now it's just a matter of coding a method and trying it out. 
+
+
+    let block# = document.createElement('div') 
+  block#.classList.add('block-dimensions')
+ block#.classList.add('descending')
+BlockDirectionArray.push([#, 'descending'])
+
+
+
+---- now we could push everything that has the class of descending into an array and then choose to +=20 every block that's in there from the setInterval(variable){} part of the code to be executed, but that means that we have to keep a record of its location and then when it hits the turning point, remove.classList its direction class and add the new class, but that does seem uneccessary because maybe you can just decide to push the descending elements directly to the direction specific array, and just deal with whatever is in there, so if you check, you can see which elements are supposed to be descending... maybe that'll work.  So then we can avoid adding classes to the blocks.  On creating a new block, you would have to check where the most what the most recent block is doing (or what it did on its last move) and push the new block to that spescific array... MAYBE... 
+
+---OR --- we could do as below and examine each block for its given direction name and apply the direction rule to the letter which we use to appened the block (because block 'a' itself has to be appeneded to a specific numbered child, which is the number of the letter assigned it). 
+
+
+So, let's say that you have four blocks, which are all placed in the right array
+
+rightArray = [block1, block2, block3, block4]
+
+rightArray.forEach((element) =>{
+
+?? how are you going to append the block?????
+})
+
+
+each block has to then be assigned a letter, say block1: a, block2; b etc... 
+we need to tell the function which gridChild to appened block1, block 2 to etc... 
+And so we need a number that represents the intended destination of the block. 
+
+TRY STARTING WITH ONE BLOCK...
+
+
+
+
+
+/* lets functions examining each block know the direction status of the block */
+let classContents = block#.getAttribute(className)
+
+if(classContents.includes('descending'){
+BlockDirectionArray.push([#, 'descending'])
+}
+
+else if(classContents.includes('ascending'){
+BlockDirectionArray.push([#, 'ascending'])
+}
+
+else if(classContents.includes('right'){
+BlockDirectionArray.push([#, 'right'])
+}
+
+else (classContents.includes('left'){
+BlockDirectionArray.push([#, 'left'])
+}
+
+
+------ CHANGING DIRECTION ----
+
+
+
+Say that the block1 is at 124 and is 'descending' when the 'right' button is clicked, then BlockDirectionArray[0] which holds the subarray [1, 'descending'] will have to be changed to [1, 'right']  -----
+actually, since the head of the snake is the source of movement, then maybe that can be given the name block0... then this means that the number of the block will correspond to its associated position in blockDirectionArr. 
+
+
+---------------- MOVING SEGMENTS--------------------
+
+switch(blockDirectionArr[0][1]){
+case 'right': block-letter += right
+break;
+case 'left': block-letter += left
+break;
+case 'up': block-letter += up
+break;
+case 'down': block-letter += down
+break;
+
+
+BlockDirectionArray.push([#, directionClass])
+
+
+-------------------- POSSIBLE CODE FOR SETINTERVAL
+
+function (){
+
+
+}
+
+
+
+
+---------------------- STARTING OVER WITH JUST ONE BLOCK ---------------------
+
+
+So turns out that since each block follows all positions visited by its immediate ancestor, we can list all positions visited by the head and then make body segment 1 follow every single place already visited by the head, then make segment 2 do that also, then segment 3 and so on.  The places visited in by the head are held in an array which unshifts each new position, and then each consecutive segment can take the unshifting values as their source position... This works
+
+Now need to figure out how to add new segments to the snake. 
+
+AT the moment I'm using the '+' key to execute a function, growSnake() to add segments;
+the below methods get executed:
+{ 
+create a new dive and give name blockNew
+add class for sizing and color of segment/block
+push block to blockArray
+}
+ 
+Then we need to specify exactly where this new block is to be appended. When the first new block is created, it is intended for it to be the fourth segment of the snake, so it will be taking its append values from the breadCrumb array, in the Nth position, where the third segment IS taking its append values from the (N-1)th position in the array. You might actually need to push all blocks to an array, and then specify that blockArray[blockNew] takes its values from breadCrumbArr[indexOf(blockArray[blockNew])] -- or something like that.  Remember that the function only runs once, so blockNew needs to be accessible to setInterval()
+
+SOLUTIONS
+Created an array and named it blockArray;
+pushesd blocks A, B and C to it
+Then in setInterval specified that blockArray[2] should be appended to gridChild[breadCrumbArr[2]]
+this replacement works for the original blockB and blockC
+then pushed newly created block to blockArray (index position 3)
+next, in setInterval, specified that if blockArray[3] exists then it should be appended to gridchild[breadCrumbArr[3]], which worked.  On hitting the '+' key, the new segment was added, AND, it followed the other segments. 
+
+For now I'll limit the snake size to 19 segments (actually, if we had 20, it would be very hard to turn corners with the full length snake, and greater than 20 wouldn't even fit into the grid.)
+
+and for segments 5, 6, ......20, I'll use if conditions to see whether they exist and to dictate if an attempt to append a new segment can be made.  Eventually I suppose we'll be able to use a forLoop to append all segments in blockArray to appropriate positions in breadCrumbArr. 
+
+DECIDED TO USE FORLOOP IMMEDIATELY AND IT WORKS... then in the growSnake() function I'll put an if condition to prevent there being > 16 new blocks being created ( 3 original blocks plus 16 new blocks = 19)
+
+
+---- LIMITING THE NUMBER OF AVAILABLE BREADCRUMBS TO THE LENGTH OF THE SNAKE'S BODY (OR JUST A BIT LONGER)-----
+
+in order to keep the breadCrumb array from being too large, which is also helpful since we'll be checking it for positions to avoid when dropping a new apple, we can use splice which will erase array items and shorten the array to the length of remaining value entries. 
+
+the method for splice goes as below:
+arr = [1, 2, 3, 4, 5, 6]
+arr.splice(4, 2)
+console.log(arr)
+
+
+so, for our case:
+breadCrumbArr = [all positions that have been visited by snake-head]
+after a while this will be a huge number as the game time gets longer and longer
+so we need: 
+breadCrumbArr.splice[from where we want to cut, how many entries we want to cut]
+the entries would be,  snake.length, and breadCrumbArr.length - 1
+
+....... A SIMPLER WAY.... JUST USE: 
+
+breadCrumbArr = blockArray.length. which means that the number of entries in the breadcrumb array will always only ever match the number of blocks there are, (I might add an extra entry to be safe), if there are 10 blocks, an 11th or 12th entry etc will be useless since that will be moving further and further and further away from the tail of the snake, the last added block/segment. 
+
+----------------------------CREATING THE APPLE------------------------------
+
+
+
+    let newApple = document.createElement('div'), creates a new div element
+    newApple.classList.add('apple-style'), gives the apple a simple style (there's a class selector prewritten in CSS)
+    console.log(newApple)
+// randomly generate a number between 0 and 399 inclusive (but excluding values contained in breadCrumbArr which are part of the snakes body or head), 
+
+let applePosition = Math.ceil(Math.random()*399)
+if(breadCrumbArr.includes(applePosition)){  // if the number is in the bread crumb array, run again for another random number
+    createApple()
+}else{  // otherwise use the number to append the apple to the grid (at a position that is not the snake)
+   
+   shapeBody.children[applePosition].appendChild(newApple)
+}
+
+
+now just need to create collision method for the apple which will add a point and generate a newly positioned apple
+
+---------------COLLIDING WITH THE APPLE ---------------------------------------------------
+
+
+since all body segments following the head must travel through all positions travelled through by the head, it follows that if a the head will be the first part of the snake to collide with the body, and exactly what we want. I guess it's best to just push the apple data, the random number to an array (appleArry), just using the zero'th position, 
+and use that value to detect whether the the gridChild which the snake head is to be appended to has the apple in it.  If it does have the apple then the apple is eaten (removed) and a new apple is dropped. 
+
+CURRENTLY HAVING DIFFICULTY REMOVING CHILDREN FROM GRID AT THE END OF THE GAME...
+TRYING TO USE AN ARRAY OF ALL 400 NUMBERS... LOOPING THROUGH EACH POSITION NUMBER AND CHECKING WHETHER THE GRID CHILD CORRESPONDING TO THAT NUMBER HAS A FIRST CHILD AND IF SO, DELETE IT.... NOT WORKING AT THE MOMENT. 
+
+
+
+ALSO, SCORE IS NOT SHOWING IN THE MODAL AT THE END OF THE GAME SO CHECK THAT ALSO - sorted, just needed to put the ${score} variable in the 'endScoreEl' text content. 
+
+TODAY - 6 Feb, you need to work on the boundary conditions. SOLVED. 
+
+
+
+-----------------------NEXT AREAS TO WORK ON ------------------------
+
+BOUNDARY COLLISION modal info
+
+
+
+SNAKE COLLISION modal info. 
+
+for the above two, probably have two variables with words for the result paragraph - 
+
+ let boundaryCrash = 'SNAKE crashed a boundary GAME OVER'
+let snakeCrash = 'SNAKE crashed into its own body GAME OVER'
+let gameComplete = '(already arranged wording)'
+then the function should be renderPoints (points, (one of the above parameters, appropriate to how the game ended) 
+... as a penalty we can 'halve' the player's final points for a boundary or snake crash. 
+
+
+DIFFICULTY LEVEL MODAL AND FUNCTIONS get them working. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
