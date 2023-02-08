@@ -22,6 +22,16 @@ let gameDifficultyArr = [] // difficulty can be:
 // INSANE - like VERY HARD stage, but there are also obstacles to avoid. 
 // the game difficulty is decided based on what is in the gameDifficultyArr when an apple is eaten - a switch statement is used on gameDifficultyArr[0] which will have the difficulty unshifted to it at game start. 
 
+
+let hardObstacleEl = document.querySelectorAll('.block-dimensions-hard-obstacle')
+let regularObstacleEl = document.querySelectorAll('.block-dimensions-regular-obstacle')
+let regularObstacleArr = [91, 111, 131, 151, 185, 186, 187, 188, 213, 214, 215, 216, 230, 250, 270, 290 ]
+let hardObstacleArr = [64, 65, 66, 75, 76, 77, 84, 97, 104, 106, 115, 117, 284, 286, 295, 297, 304, 317, 324, 325, 326, 335, 336, 337 ]
+
+
+
+
+
 let breadCrumbArr = []  // ARRAY REGISTERING ALL POSITIONS SNAKE HEAD HAS PASSED THROUGH
 
 let blockArray = [] // ARRAY HOLDING ALL SEGMENTS OF THE SNAKE --- 
@@ -102,6 +112,21 @@ let levelModalEl = document.getElementById('level-modal')
 
 
 
+
+// check we have all of the obstacles
+
+regularObstacleArr.forEach(element =>{
+    console.log(shapeBody.children[element-1])
+})
+
+hardObstacleArr.forEach(element =>{
+    console.log(shapeBody.children[element-1])
+})
+
+
+
+
+
 let snakeSpeedArr = [250, 240, 230, 220, 210, 200, 190, 180, 170, 160, 150, 140, 130, 120, 110, 100, 90, 80, 70, 60, 50 ]
 //array for next tetrimino display
 let speedIndexArr = [0]; // used to choose index of snakeSpeedArr which dictates the speed at which the snake travels at
@@ -125,18 +150,30 @@ levelSelectEl.addEventListener('click', function(e){
     console.log(difficulty)
     switch(difficulty){
 case 'easy-btn': gameDifficultyArr.unshift(difficulty)
-time = snakeSpeedArr[10]
+time = snakeSpeedArr[10];
+
 
 break;
 case 'regular-btn': gameDifficultyArr.unshift(difficulty)
 time = snakeSpeedArr[12]
+regularObstacleEl.forEach(element =>{
+    element.style.display = 'block'
+})
 break;
+
+
 case 'hard-btn': gameDifficultyArr.unshift(difficulty)
-time = snakeSpeedArr[15]
+time = snakeSpeedArr[10]
+
+hardObstacleEl.forEach(element =>{
+    element.style.display = 'block'
+})
+
+regularObstacleEl.forEach(element =>{
+    element.style.display = 'block'
+})
 break;
-case 'very-hard-btn': gameDifficultyArr.unshift(difficulty)
-time = snakeSpeedArr[15]
-break;
+
     }
     console.log(gameDifficultyArr)
 levelModalEl.style.cssText = 'z-index: -3; display:none'
@@ -283,7 +320,7 @@ let goDown = 'go-down'
 
 
 
-// drop baby snake
+//DROP SNAKE
 const babySnakeDrop = (a, b, c, blockA, blockB, blockC) =>{
 console.log(a, b, c)
     shapeBody.children[a].appendChild(blockA)
@@ -302,7 +339,7 @@ const directionClass = (class1, class2, class3, class4) =>{
 
     
     if(pointsCountArr[0] > 25){
-// penalties for each turn, amount dependent on how hard the game is
+// PENALTIES for each turn, amount dependent on how hard the game is
         switch(levelSelectEl[0]){
             case 'easy-btn':gameDifficultyArr[0] -= 20;
                 break;
@@ -310,8 +347,7 @@ const directionClass = (class1, class2, class3, class4) =>{
                     break;
                     case 'hard-btn':gameDifficultyArr[0] -= 10;
                         break;
-                        case 'very-hard-btn':gameDifficultyArr[0] -= 10;
-                            break;
+                     
         }
         
     }
@@ -353,6 +389,8 @@ navigationListener(identifyer, arr[0])// remember arr[0] contains the current va
 
 
 
+
+
 // for adding segments to snake
 const growSnake = () =>{
     // limit the number of segments in the entire snake to 19, otherwise alert. 
@@ -360,18 +398,11 @@ let difficulty;
 let points;
 
 const pointsAndSpeed = (points) =>{
-
+console.log(points)
     chompAudio.play()
 pointsCountArr[0] += points;
 scoreEl.textContent = pointsCountArr[0];
-switch(points){ // these points are for HARDER, VERY HARD, AND INSANE leve speeds. 
-    case 90:
-    case 180:
-    case 250:
-    break;
-    default:
-        speedIndexArr[0] = 0 // default speed
-}
+
 
 createApple()
 
@@ -392,11 +423,7 @@ createApple()
             break;
             case 'hard-btn':points = 110; pointsAndSpeed(points)
             break;
-            case 'very-hard-btn':points = 250; pointsAndSpeed(points)
-            break;
-
-
-        }        
+                }        
     }else{
         pointsCountArr[0] += 1000; // will add a 1000pt bonus for reaching the end of the game without crashing. 
         let endStatus = 'win'
@@ -419,6 +446,8 @@ createApple()
   
   // boundary conditions - if moving 
   if((currentContents.includes(goDown) && !bottomBoundaryArr.includes(a)) || (currentContents.includes(goUp) && !topBoundaryArr.includes(a)) || (currentContents.includes(goLeft) && !leftBoundaryArr.includes(a)) || (currentContents.includes(goRight) && !rightBoundaryArr.includes(a))){ 
+
+
 
 
 // if 'a' happens to be the number of the grid position of the apple then we need to create a new apple and increase points. 

@@ -311,7 +311,63 @@ then the function should be renderPoints (points, (one of the above parameters, 
 ... as a penalty we can 'halve' the player's final points for a boundary or snake crash. 
 
 
-DIFFICULTY LEVEL MODAL AND FUNCTIONS get them working. 
+DIFFICULTY LEVEL MODAL AND FUNCTIONS get them working.  NOT YET...
+
+----------------------------ALTERNATIVE LEVEL PARAMETERS ---------------------------------------------------
+
+So, instead of adding apples, which seems quite difficult at the moment (might try to add them at some future point)
+ Decided for the regular level to add for obstacles, a kind of misaligned cross shape with orange blocks around the middle of the grid. But with the speeded up snake --
+
+and for the hard level, I've slowed the snake down to the 'easy' speed, but added another four obstacles so that the grid is actually pretty hard to navigate. 
+
+WHITE BOARD POSSIBLE SOLUTIONS..
+
+in CSS, have all obstacles display:none; and then use JS to display them 'block' once the difficulty level has been established. 
+That should be easy enough. .
+
+
+Then we have to register the actual blocks as obstacles that cause collisions if hit. 
+at the moment, the obstacles for all levels are either the boundaries and the snake body, but now we'll have to add two other criteria, the first four obstacles and then the second four obstacles along with the first four obstacles... 
+
+That probably needs to be done in the setInterval area of the babySnakeDrop() function. 
+
+---- IMPORTANT NOTE ON USING QUERY SELECTOR ALL----
+trying to style all elements grouped into querySelectorAll by using the assigned variable doesn't work;
+for example let groupVariable = document.querySelectorAll('.variable')
+then trying groupVariable.style.display = 'block' returns an error to do with 'undefined' 
+
+instead you have to use forEach like this: 
+groupVariable.forEach(element =>{
+    element.style.display = 'block'
+}) 
+and the styling will be applied to ALL elements with the CSS selector of .variable
+
+-------------------- OBSTACLE REQUIREMENTS --------------------
+the obstacle has to be avoided by both the snake and ANY DROPPING APPLES... TOO
+
+FOR SNAKE
+Check if the number where the obstacle is nested is contained in the bread crumb array..
+you can get the obstacle location number by looking in the HTML markup to see exactly where it is nested (minus one) and maybe have an array containing those numbers and run a forEach on that array to see if any of its elements are included in the breadcrumb array; and if so, a collision with one of the obstacles has occurred. 
+
+for apple you just have to make sure that the apple doesn't land on one of the obstacle array numbers in addition to the breadcrumb numbers. 
+
+THE CODE FOR OBSTACLES SHOULD START IN THE setInterval SECTION OF THE TIMER around line 428
+
+BELOW ARE THE 'REAL' NUMBERS FOR POSITIONS OF THE OBSTACLE BLOCKS (WHICH WILL BE CONVERTED TO THE GRID NUMBERS STARTING WITH ZERO INSTEAD OF ONE)
+shapeBody.children numbers for REGULAR OBSTACLES ARR [91, 111, 131, 151, 185, 186, 187, 188, 213, 214, 215, 216, 230, 250, 270, 290 ]
+shapeBody.children numbers for HARD OBSTACLES ARR [64, 65, 66, 75, 76, 77, 84, 97, 104, 106, 115, 117, 284, 286, 295, 297, 304, 317, 324, 325, 326, 335, 336, 337 ]
+
+This bit of below code is just to check that the blocks are correctly registered in the arrays
+
+regularObstacleArr.forEach(element =>{
+    console.log(shapeBody.children[element-1])
+})
+
+hardObstacleArr.forEach(element =>{
+    console.log(shapeBody.children[element-1])
+})
+
+shis is working fine so tomorrow just re-code the apple drop criteria first and then in the evening, code the snake crash criteria. 
 
 
 

@@ -332,6 +332,25 @@ padding: 0.5vw;
   background-color: yellow;
   }
 
+  /* dimensions for obstacle blocks*/
+.block-dimensions-hard-obstacle{
+  display: none;
+  position: relative;
+  width: 95%;
+  aspect-ratio: 1/1;
+  background-color: rgb(255, 0, 0);
+  }
+
+
+    /* dimensions for obstacle blocks*/
+.block-dimensions-regular-obstacle{
+  display: none;
+  position: relative;
+  width: 95%;
+  aspect-ratio: 1/1;
+  background-color: rgb(245, 151, 29);
+  }
+
 .head-dimensions{
   position: relative;
   width: 95%;
@@ -346,3 +365,11 @@ padding: 0.5vw;
     width: 90%;
     aspect-ratio: 1/1;
     background-color: rgb(255, 0, 0);}
+
+    
+    .apple-style-green{
+      position: relative;
+      border-radius: 50%;
+      width: 90%;
+      aspect-ratio: 1/1;
+      background-color: rgb(41, 222, 44);}
