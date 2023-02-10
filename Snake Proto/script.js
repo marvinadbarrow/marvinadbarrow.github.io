@@ -25,8 +25,8 @@ let gameDifficultyArr = [] // difficulty can be:
 
 let hardObstacleEl = document.querySelectorAll('.block-dimensions-hard-obstacle')
 let regularObstacleEl = document.querySelectorAll('.block-dimensions-regular-obstacle')
-let regularObstacleArr = [91, 111, 131, 151, 185, 186, 187, 188, 213, 214, 215, 216, 230, 250, 270, 290 ]
-let hardObstacleArr = [64, 65, 66, 75, 76, 77, 84, 97, 104, 106, 115, 117, 284, 286, 295, 297, 304, 317, 324, 325, 326, 335, 336, 337 ]
+let regularObstacleArr = [90, 110, 130, 150, 184, 185, 186, 187, 212, 213, 214, 215, 229, 249, 269, 289 ]
+let hardObstacleArr = [63, 64, 65, 74, 75, 76, 85, 96, 103, 105, 114, 116, 283, 285, 294, 296, 303, 316, 323, 324, 325, 334, 335, 336 ]
 
 
 
@@ -83,6 +83,7 @@ let pointsCountArr = [0]
 // CRASH VARIABLES AND END OF GAME RESULTS
 let boundaryCrash = 'SNAKE hit a boundary - GAME OVER'
 let snakeCrash = 'SNAKE crashed into itself - GAME OVER'
+let obstacleCrash = 'SNAKE hit an OBSTACLE - GAME OVER'
 let gameWindMsg;// message for winning player comparing winner score and high score
 let gameLoseHighScoreMsg; // if game is lost but high score is attained, appropriate message given to player
 
@@ -281,7 +282,13 @@ break;
 
 case 'boundary crash':
 displayCrashResults(boundaryCrash, score)
+break;
+
+case 'regular obstacle': 
+case 'hard obstacle': 
+displayCrashResults(obstacleCrash,score)
 }
+
 
 
 
@@ -315,6 +322,14 @@ let goLeft = 'go-left'
 let goRight = 'go-right'
 let goUp = 'go-up'
 let goDown = 'go-down'
+
+
+
+
+
+
+
+
 
 
 
@@ -421,7 +436,7 @@ createApple()
             break; 
             case 'regular-btn': points = 180; pointsAndSpeed(points)
             break;
-            case 'hard-btn':points = 110; pointsAndSpeed(points)
+            case 'hard-btn':points = 250; pointsAndSpeed(points)
             break;
                 }        
     }else{
@@ -450,12 +465,36 @@ createApple()
 
 
 
+
+
 // if 'a' happens to be the number of the grid position of the apple then we need to create a new apple and increase points. 
 
 
  const moveHead = (direction) =>{
     a += direction;
     arr[0] = a;
+
+        // OBSTACLE CRITERIA -REGULAR DIFFICULTY
+if(gameDifficultyArr[0] == 'regular-btn'){
+    if(regularObstacleArr.includes(breadCrumbArr[0])){
+        console.log('obstacle obstacle')
+        let endStatus = 'regular obstacle'
+        renderPoints(pointsCountArr[0]/2, endStatus)
+          startCommandArr = []
+    }
+    
+    }
+    
+    // OBSTACLE CRITERIA -HARD DIFFICULTY
+    if(gameDifficultyArr[0] == 'hard-btn'){
+        if(regularObstacleArr.includes(a) || hardObstacleArr.includes(a)){
+            console.log('obstacle obstacle')
+            let endStatus = 'hard obstacle'
+            renderPoints(pointsCountArr[0]/2, endStatus)
+              startCommandArr = []
+        }
+        
+        }
     // if the snake body has a segment that's already in the new 'a' value then a collision happens
     if(!breadCrumbArr.includes(a)){ // then the snakebody and 'a' won't share the same square, hence no collision
         breadCrumbArr.unshift(a)
@@ -501,12 +540,7 @@ else {moveHead(left)}
     let endStatus = 'boundary crash'
      renderPoints(pointsCountArr[0]/2, endStatus)
     startCommandArr = []
-  //  clearInterval(shapeClock)
-    
-   //   let obstacleType = 'floor'
-  //    obstacle(a, b, c, obstacleType)
-  // floorObstacle(a, b, c, d, blockA, blockB, blockC, blockD, obstacleType)
-  }
+   }
     },time);
 }
 
@@ -514,12 +548,14 @@ else {moveHead(left)}
 
 const createApple = () =>{
 
-    let newApple = document.createElement('div')
-    newApple.classList.add('apple-style')
-    console.log(newApple)
-// randomly generate a number between 0 and 399 inclusive (but excluding values contained in breadCrumbArr which are part of the snakes body or head), that represents all of the possible positions where an apple can be dropped, which is used to append. Then we'll append the created apple to that position on the grid everytime the snake finds the previous apple 
+    let newApple = document.createElement('img')
+
+    newApple.src = "apple.png"
+    newApple.style.cssText = 'position: relative; width: 90%'
+
+// randomly generate a number between 0 and 399 inclusive (but excluding values contained in breadCrumbArr which are part of the snakes body or head, or regularObstacleArr, which contains the positions of regular obstacle blocks, or hardObstacleArr which contains the positions for hard obstacle blocks), that represents all of the possible positions where an apple can be dropped, which is used to append apple to the grid. Then we'll append the created apple to that position on the grid every time the snake finds the previous apple 
 let applePosition = Math.ceil(Math.random()*399)
-if(breadCrumbArr.includes(applePosition)){
+if(breadCrumbArr.includes(applePosition)|| regularObstacleArr.includes(applePosition) || hardObstacleArr.includes(applePosition)){
     createApple()
 }else{
   appleArray.unshift(applePosition)

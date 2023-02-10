@@ -133,7 +133,7 @@ background-color: rgba(255, 0, 0, 0);
 display: flex;
 flex-direction: row;
 justify-content: space-around;
-   width: 70%; height: 80%; border: 6px solid rgb(9, 9, 9); border-radius: 10px; background-color: rgba(56, 56, 56, 0.454); margin: auto; margin-top: 2%;}
+   width: 70%; height: 80%; border: 6px solid rgb(9, 9, 9); border-radius: 10px; background-color: rgba(56, 56, 56, 0.454); margin: auto; margin-top: 2%; padding-bottom: 1%;}
 
 
 /* line para container*/
@@ -144,11 +144,12 @@ justify-content: space-around;
   justify-content: space-around;
   align-items: center;
   margin-top: 2%;
-     width:30%;
+     width:40%;
   height: 94%;
   background-color: rgba(44, 44, 216, 0.32);
     border-radius: 6px;
   border: 1px solid black;
+  padding-bottom: 1%;
      }
 
      /* score para container*/
@@ -338,7 +339,7 @@ padding: 0.5vw;
   position: relative;
   width: 95%;
   aspect-ratio: 1/1;
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 0, 157);
   }
 
 
