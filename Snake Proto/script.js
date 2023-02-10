@@ -235,7 +235,7 @@ const displayResults = (message, score) =>{
 
 
 
-
+// CURRENTLY DISPLAYING AS NAN - FIND OUT WHY
 const displayCrashResults = (message, score) =>{
     if(!window.localStorage.high_score_snake){ // if no highscore is stored
         window.localStorage.setItem('high_score_snake', `${score}`); //set endgame score as highscore
@@ -296,9 +296,10 @@ displayCrashResults(obstacleCrash,score)
 }
 
 // render points 
-const renderPoints = (score, endStatus) =>{
+const renderPoints = (score, endStatus, bonus) =>{
     clearInterval(shapeClock)
-scoreEl.textContent = `SCORE: ${score}`
+    let finalScore = score + bonus
+scoreEl.textContent = `SCORE: ${finalScore}`
 // play flash animation across all grid divs
 for(j=0; j < shapeBody.children.length; j++){
 shapeBody.children[j].style.animation = "flash 0.1s 4";}
@@ -306,7 +307,7 @@ shapeBody.children[j].style.animation = "flash 0.1s 4";}
     // play game end audio
 gameEndAudio.play();
 startCommandArr = []
-setHighScores(score, endStatus)
+setHighScores(finalScore, endStatus)
 }
 
 //-------------------------------------- BLOCK MOVER -------------------------------------------
@@ -440,9 +441,19 @@ createApple()
             break;
                 }        
     }else{
-        pointsCountArr[0] += 1000; // will add a 1000pt bonus for reaching the end of the game without crashing. 
+         
         let endStatus = 'win'
-        let bonus = 1000
+        let bonus; // FINISHING BONUS - easy:1000, regular:4000, hard: 8000
+                switch(gameDifficultyArr[0]){
+            case 'easy-btn': bonus = 1000;
+            break; 
+            case 'regular-btn': bonus = 4000;
+            break;
+            case 'hard-btn': bonus = 8000;
+            break;
+
+        }
+        
           renderPoints(pointsCountArr[0], endStatus, bonus)
           startCommandArr = []
         }
@@ -608,36 +619,13 @@ createShape(a, b, c)
 const gameState = (identifyer) =>{
 console.log(identifyer)
 switch(identifyer){
-    case 'close-pause':
-pauseModalEl.style.cssText = 'display:none; z-index: -2;'
-    break;
-    case 'resume':
-        pauseModalEl.style.cssText = 'display:none; z-index: -2;'
-        pauseIntervalArr.pop()
-          pauseBtn.style.animation = ''
-          tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
-                  
-    break;
-    case ' ':
-    case 'pause':
-    case 'pause-img':   
-    if(startCommandArr.length > 0){// game started no kill yet
-    if(pauseIntervalArr.length < 1){pauseIntervalArr.push('pause')
-    pauseModalEl.style.cssText = 'display:block; z-index: 2;'
-    pauseBtn.style.cssText = 'animation: pause 0.4s 10000;' // flash animate button
-    clearInterval(shapeClock) // stop tetrimino drop
-   }else{ pauseIntervalArr.pop()
-       pauseBtn.style.animation = ''
-      tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
-              }}else{console.log('start or refresh game to use pause button')}
-    break;
-
-    case 'Enter': 
+   
+   case 'Enter': 
     case 'start':
     case 'start-img':
-        
-       
+               
        if(startCommandArr.length < 1){
+        startBtn.style.backgroundColor = 'red'
         buildShape();
         startAudio.play()
         startCommandArr.unshift('start')
@@ -654,13 +642,6 @@ break;
 }}
 
 
-// event listener for modal elements
-pauseModalEl.addEventListener('click', function(e){
-let identifyer = e.target.id;
-console.log(identifyer)
-gameState(identifyer)
-
-})
 
 
 document.addEventListener('keypress', (e) =>{
