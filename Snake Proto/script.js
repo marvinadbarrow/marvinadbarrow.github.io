@@ -3,8 +3,9 @@ if(window.localStorage){
     console.log(window.localStorage)
 }else{console.log('no scores stored yet')}
 
-
-
+// array carrying snake head id
+let headIdArr = ['snake-head']
+let turnsArray = [] // records number of turns snake makes before getting next apple; the number of turns is then multiplied by a number, 20 for easy level, 15 for regular level, and 10 for hard level, and that total number is deducted from the points gained by eating the apple. 
 
 
 // audio clips for game events
@@ -25,8 +26,11 @@ let gameDifficultyArr = [] // difficulty can be:
 
 let hardObstacleEl = document.querySelectorAll('.block-dimensions-hard-obstacle')
 let regularObstacleEl = document.querySelectorAll('.block-dimensions-regular-obstacle')
+// positions for the REGULAR DIFFICULTY obstacles
 let regularObstacleArr = [90, 110, 130, 150, 184, 185, 186, 187, 212, 213, 214, 215, 229, 249, 269, 289 ]
-let hardObstacleArr = [63, 64, 65, 74, 75, 76, 85, 96, 103, 105, 114, 116, 283, 285, 294, 296, 303, 316, 323, 324, 325, 334, 335, 336 ]
+// positions for the HARD DIFFICULTY obstacles
+let hardObstacleArr = [90, 110, 130, 150, 184, 185, 186, 187, 212, 213, 214, 215, 229, 249, 269, 289, 63, 64, 65, 74, 75, 76, 85, 96, 103, 105, 114, 116, 283, 285, 294, 296, 303, 316, 323, 324, 325, 334, 335, 336 ]
+// NOTE* for the HARD difficulty I've combined the two arrays for easier reading of code and due to the fact that the execution will only need to read one array when the hard level is being assessed for obstacles
 
 
 
@@ -39,21 +43,18 @@ let blockArray = [] // ARRAY HOLDING ALL SEGMENTS OF THE SNAKE ---
 let appleArray = [] // HOLDS position of newly created apple, just zero entry has the data as each time an apple is eaten by the snake the new apple position overwrites the old. 
 
 
-// JOYPAD ELEMENT FOR ADDING LISTENER
-let navButtons = document.getElementById('joypad')
+
 // difficulty selector dive
 let levelSelectEl = document.getElementById('level-div-container')
 
 // ------------------------------------GAME STATE BUTTONS AND IMAGES ----- for pausing, playing, resetting the game
 // buttons
 let startBtn = document.getElementById('start')
-let pauseBtn  = document.getElementById('pause')
-let refreshBtn  = document.getElementById('refresh')
+
 
 // images nested inside buttons
-let pauseImg = document.getElementById('pause-img')
 let startImg = document.getElementById('start-img')
-let refreshImg = document.getElementById('refresh-img')
+
 
 
 
@@ -73,7 +74,7 @@ let downImg = document.getElementById('down-arrow-img')
 
 
 // array for gamestate buttons
-let gamestateArr = [startBtn, startImg, pauseImg, pauseBtn, refreshBtn, refreshImg]
+let gamestateArr = [startBtn, startImg]
 // ALREADY EXISTING ELEMENTS
 let shapeBody = document.getElementById('game-grid')
 
@@ -102,7 +103,6 @@ let rowCompleteArray = [0,0] // use positions index 0 and 1 to record incomplete
 
 // MODAL ELEMENTS
 let modalEl = document.getElementById('simple-modal')
-let modalCloseBtn = document.getElementById('close-btn')
 let endScoreEl = document.getElementById('end-score') // end game score display
 let newGameEl = document.getElementById('new-game')
 let highscoreMsg = document.getElementById('high-scores')
@@ -127,7 +127,7 @@ hardObstacleArr.forEach(element =>{
 
 
 
-
+// IF HARDER LEVELS ARE EVER MADE THIS ARRAY CAN BE USED TO DICTATE HIGHER SPEEDS FOR LATER LEVELS
 let snakeSpeedArr = [250, 240, 230, 220, 210, 200, 190, 180, 170, 160, 150, 140, 130, 120, 110, 100, 90, 80, 70, 60, 50 ]
 //array for next tetrimino display
 let speedIndexArr = [0]; // used to choose index of snakeSpeedArr which dictates the speed at which the snake travels at
@@ -138,11 +138,6 @@ let time = snakeSpeedArr[speedIndexArr[0]]; // use this variable in the setInerv
 newGameEl.addEventListener('click', function(){
 location.reload()
 
-})
-// close modal
-modalCloseBtn.addEventListener('click', function(){
-    modalEl.style.zIndex = '-1'
-    modalEl.style.display = 'none'
 })
 
 // select level and close modal
@@ -156,7 +151,7 @@ time = snakeSpeedArr[10];
 
 break;
 case 'regular-btn': gameDifficultyArr.unshift(difficulty)
-time = snakeSpeedArr[12]
+time = snakeSpeedArr[10]
 regularObstacleEl.forEach(element =>{
     element.style.display = 'block'
 })
@@ -298,8 +293,18 @@ displayCrashResults(obstacleCrash,score)
 // render points 
 const renderPoints = (score, endStatus, bonus) =>{
     clearInterval(shapeClock)
+
     let finalScore = score + bonus
-scoreEl.textContent = `SCORE: ${finalScore}`
+
+    // FOR KEEPING THE DISPLAY AS FIVE-DIGIT, EVALUATE SCORES FOR -  SCORE < 10000, SCORE < 1000 and SCORE < 100
+    let finalScoreAdjust;
+    if(finalScore < 100){finalScoreAdjust = `000${finalScore}`}
+   else if(finalScore < 1000){finalScoreAdjust = `00${finalScore}`}
+    else if(finalScore < 10000){finalScoreAdjust = `0${finalScore}`}
+    else{finalScoreAdjust = finalScore}
+scoreEl.textContent = finalScoreAdjust // render score formatted for 5 digits
+
+
 // play flash animation across all grid divs
 for(j=0; j < shapeBody.children.length; j++){
 shapeBody.children[j].style.animation = "flash 0.1s 4";}
@@ -327,7 +332,14 @@ let goDown = 'go-down'
 
 
 
+/*
 
+    let subtractor = turnsArray[0];  
+    if(gameDifficultyArr[0] == 'easy-btn'){subtractor *= 20}
+    else if(gameDifficultyArr[0] == 'easy-btn'){subtractor *= 15}
+    else{subtractor *= 10}
+
+*/
 
 
 
@@ -343,7 +355,9 @@ console.log(a, b, c)
    shapeBody.children[b].appendChild(blockB)
  shapeBody.children[c].appendChild(blockC)
    
-// simplified variables for removing direction classes from blocks
+// get snake info
+let snakeHeadEl = document.getElementById('snake-head')
+console.log(snakeHeadEl)
 
 
  const navigationListener = (identifyer, a) =>{
@@ -354,14 +368,14 @@ const directionClass = (class1, class2, class3, class4) =>{
     // every time a turn is made, take approximately 10 percent of points off the player
 
     
-    if(pointsCountArr[0] > 25){
+    if(pointsCountArr[0] > 150){
 // PENALTIES for each turn, amount dependent on how hard the game is
-        switch(levelSelectEl[0]){
-            case 'easy-btn':gameDifficultyArr[0] -= 20;
+        switch(gameDifficultyArr[0]){
+            case 'easy-btn':pointsCountArr[0] -= 20;
                 break;
-                case 'regular-btn':gameDifficultyArr[0] -= 15;
+                case 'regular-btn':pointsCountArr[0] -= 15;
                     break;
-                    case 'hard-btn':gameDifficultyArr[0] -= 10;
+                    case 'hard-btn':pointsCountArr[0] -= 10;
                         break;
                      
         }
@@ -396,12 +410,6 @@ document.addEventListener('keydown', (e) =>{
 navigationListener(identifyer, arr[0])
 })
 
-// event listener for button tetrimino navigation
-navButtons.addEventListener('click', function(e){
-    console.log(e.target)
-    let identifyer = e.target.id
-navigationListener(identifyer, arr[0])// remember arr[0] contains the current value of 'a'
-})
 
 
 
@@ -414,10 +422,16 @@ let difficulty;
 let points;
 
 const pointsAndSpeed = (points) =>{
-console.log(points)
     chompAudio.play()
 pointsCountArr[0] += points;
-scoreEl.textContent = pointsCountArr[0];
+
+// ADJUSTMENT FOR CURRENT SCORES TO DISPLAY AS 5-DIGIT
+let currentScoreAdjust;
+if(pointsCountArr[0] < 100){currentScoreAdjust = `000${pointsCountArr[0]}`}
+else if(pointsCountArr[0] < 1000){currentScoreAdjust = `00${pointsCountArr[0]}`}
+else if(pointsCountArr[0] < 10000){currentScoreAdjust = `0${pointsCountArr[0]}`}
+else{currentScoreAdjust = pointsCountArr[0]}
+scoreEl.textContent = currentScoreAdjust;
 
 
 createApple()
@@ -485,23 +499,34 @@ createApple()
     a += direction;
     arr[0] = a;
 
+    if(pointsCountArr > 150){
+turnsArray[0] +=1;
+    }
+    // PENALTIES FOR EACH TURN - only if initial points have been accumulated
+
+
+
+
+
         // OBSTACLE CRITERIA -REGULAR DIFFICULTY
 if(gameDifficultyArr[0] == 'regular-btn'){
     if(regularObstacleArr.includes(breadCrumbArr[0])){
         console.log('obstacle obstacle')
         let endStatus = 'regular obstacle'
-        renderPoints(pointsCountArr[0]/2, endStatus)
+        let bonus = 0;
+        renderPoints(Math.floor(pointsCountArr[0]*0.75) , endStatus, bonus)
           startCommandArr = []
     }
     
     }
     
-    // OBSTACLE CRITERIA -HARD DIFFICULTY
-    if(gameDifficultyArr[0] == 'hard-btn'){
-        if(regularObstacleArr.includes(a) || hardObstacleArr.includes(a)){
+    // OBSTACLE CRASH CRITERIA -HARD DIFFICULTY
+    if(gameDifficultyArr[0] == 'hard-btn'){ // DIFFICULTY - HARD
+        if(hardObstacleArr.includes(a)){
             console.log('obstacle obstacle')
             let endStatus = 'hard obstacle'
-            renderPoints(pointsCountArr[0]/2, endStatus)
+            let bonus = 0;
+            renderPoints(Math.floor(pointsCountArr[0]*0.75) , endStatus, bonus)
               startCommandArr = []
         }
         
@@ -518,7 +543,8 @@ if(gameDifficultyArr[0] == 'regular-btn'){
 
     }else{
        let  endStatus = 'snake crash' 
-    renderPoints(pointsCountArr[0]/2, endStatus) // half points for collisions
+       let bonus = 0;
+    renderPoints(Math.floor(pointsCountArr[0]*0.75) , endStatus, bonus) // half points for collisions
     // collision has happened and game is over
     }
 
@@ -526,12 +552,12 @@ if(gameDifficultyArr[0] == 'regular-btn'){
 
 
 if(currentContents.includes('go-down')){
-  moveHead(down)}
+  moveHead(down);  snakeHeadEl.style.transform = 'rotate(0deg)'}
 else if(currentContents.includes('go-up')){
-    moveHead(up)}
+    moveHead(up); snakeHeadEl.style.transform = 'rotate(180deg)' }
 else if(currentContents.includes('go-right')){
-        moveHead(right)}
-else {moveHead(left)}
+        moveHead(right); snakeHeadEl.style.transform = 'rotate(270deg)'}
+else {moveHead(left); snakeHeadEl.style.transform = 'rotate(90deg)'}
   
    // TETRIMINO OBSTACLE below currently descending tetrimino - so if a div with the numbers a+10 (or b, c, d (+10)) already contains a block, descending a block to that div will cause a bottom conflict
     // d still less than 190 so tetrimino gets appended on a + 10, b +10... etc
@@ -546,10 +572,11 @@ else {moveHead(left)}
      
              
       
-  }else{ // boundary crash
+  }else{ // BOUNDARY CRASH------------------------
     shapeBody.children[a].appendChild(blockA)
     let endStatus = 'boundary crash'
-     renderPoints(pointsCountArr[0]/2, endStatus)
+    let bonus = 0;
+     renderPoints(Math.floor(pointsCountArr[0]*0.75) , endStatus, bonus)
     startCommandArr = []
    }
     },time);
@@ -580,14 +607,15 @@ if(breadCrumbArr.includes(applePosition)|| regularObstacleArr.includes(applePosi
 // CREATES BABY SNAKES FROM BLOCKS - Snake head 'blockA' and two body segments 'blockB and blockC'
 const createShape = (a, b, c) =>{
     console.log(breadCrumbArr)
-    let color = 'yellow'
-    let blockA = document.createElement('div') 
+    let blockA = document.createElement('img') 
     let blockB = document.createElement('div') 
     let blockC = document.createElement('div') 
  
-
+    blockA.setAttribute('id', 'snake-head')
     blockA.classList.add('go-down')
     blockA.classList.add('head-dimensions')
+    blockA.src = 'snake head.png';
+    console.log(blockA)
     blockB.classList.add('block-dimensions')
     blockC.classList.add('block-dimensions')
     blockArray.push(blockA, blockB, blockC)

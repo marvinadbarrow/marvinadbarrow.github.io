@@ -18,22 +18,6 @@ margin-top: 50px;
 
 
 
-  /*MODAL for paused game*/
-#modal-pause{position: absolute; width: 94%; height: 70%; z-index: 2;
-  background-color: rgba(128, 128, 128, 0.79); margin-top: 100px;border-radius: 10px; box-shadow: 3px 4px 8px white; margin-left: 3%; display: none;}
-#pause-para{width: 700px; margin:10px;font-size:60px; font-weight:bold;color:white;margin: auto; text-align: center;text-shadow: 2px 2px 5px rgb(67, 243, 234)}
-/* close modal icon */
-#close-pause{font-weight:bold; font-size:80px; margin:10px;
-  color:yellow; float:right;
-  text-shadow: 2px 2px 5px rgb(255, 248, 248);
-   }
-   /* button and container*/
-   #button-container-resume{z-index: 2; margin: auto; height: 50px; width: 300px; margin-top: 40px;}
-   #resume{z-index:1;border-style:solid; border-radius:4px; border-width:2px; border-color:white; background-color:rgb(57, 162, 227); color:white; text-transform: uppercase;font-weight:bold; font-size:50px; box-shadow: 2px 2px 7px black;}
-/* container for image*/
-   #pause-image-container{width: 440px; margin: auto; margin-top: 100px;}
-   #pause-image{width: 400px;}
-
 
 
 /* MODAL for end of game stats instructions etc */
@@ -42,7 +26,7 @@ margin-top: 50px;
   color:rgba(245, 41, 22, 0.7); float:right;
    }
   
-  #close-btn:hover, #close-btn:focus{color:black; text-decoration:none; cursor:pointer; }
+
   #simple-modal{
     position: relative;
    display:none;
@@ -93,7 +77,7 @@ background-color: rgba(255, 0, 0, 0);
 
 
 
-/* level MODAL*/
+/* DIFFICULTY LEVEL MODAL*/
 
 #level-modal{display: block; position: absolute; z-index: 3; width: 100%; height: 100%;}
 #level-content{position: relative; width: 96%; height: 90%; background-color: rgba(205, 169, 239, 0.827); border: 3px solid white; border-radius: 10px; display: flex; flex-direction: column;}
@@ -130,43 +114,26 @@ background-color: rgba(255, 0, 0, 0);
 
 /* application body takes two containers, screen and joypad */
 #application-body{
-display: flex;
-flex-direction: row;
-justify-content: space-around;
-   width: 80%; height: 80%; border: 6px solid rgb(9, 9, 9); border-radius: 10px; background-color: rgba(56, 56, 56, 0.454); margin: auto; margin-top: 2%; padding-bottom: 1%;}
+   width: 41%; height: 90%; border: 6px solid rgb(9, 9, 9); border-radius: 10px; background-color: rgba(56, 56, 56, 0.454); margin: auto; margin-top: 2%; padding:1%;}
 
 
-/* line para container*/
-#functions-container{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 2%;
-     width:45%;
-  height: 94%;
-  background-color: rgba(44, 44, 216, 0.32);
-    border-radius: 6px;
-  border: 1px solid black;
-  padding-bottom: 1%;
-     }
 
      /* score para container*/
 #score-para-container{
 position: relative;
 width: 50%;
+
  
 }
 /* line para*/
 #score-para{
   position: relative;
   margin: auto;
-  width:50%;
-  height: 45%;
+  width:fit-content;
+  
   background-color: rgb(0, 0, 0);
   color: white;
-  padding: 1%;
+  padding: 2%;
   border-radius: 1px;
   border: 1px solid black;
   font-weight: bold;
@@ -185,10 +152,14 @@ width: 50%;
    /* --------------------- GAME GRID AND ELEMENTS (ALL INSIDE A CONTAINER)------------------------------*/ 
 #grid-container{
   position: relative;
-     width: 40vw;
-  height: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+       width: 98%;
+ aspect-ratio: 1/1;
 padding: 0.5vw;
-  background-color: rgba(140, 244, 244, 0);
+  background-color: rgba(47, 224, 224, 0);
   border-radius: 10px;
   }
   
@@ -212,85 +183,30 @@ padding: 0.5vw;
 .blocks{background-color: blue;width: 29px; height: 29px;}
 
 
-
-
-
-
-
-
-
-/* --------------------- TETRIMINO MANIPULATION------------------------------*/
-/* JOYPAD*/
-#joypad{
-  padding: 2%;
-  border-radius: 10%;
-  border: 2px solid rgb(255, 255, 255);
+ /* container for play button and score paragraph*/
+#play-and-score{
   position: relative;
-  display: grid;
-  grid-template-rows: repeat(3, 3fr);
-  grid-template-columns: repeat(3, 3fr);
-  grid-template-areas: 
-    "none up none"
-  "left none right"
-  "none down none"
-  ;
-  
-  background-color: rgba(232, 34, 34, 0.223);
-  width: 70%;
-  aspect-ratio: 1/1;
+  display: flex;
+width: 80%;
+height: 12%;
 }
 
-.tetrimino-btn{border-radius: 50%;}
-#move-up{background-color: rgba(31, 31, 34, 0.535);grid-area: 1/2;}
-#move-left{background-color: rgba(31, 31, 34, 0.535);grid-area: 2/1;}
-#move-right{background-color: rgba(31, 31, 34, 0.535);grid-area: 2/3;}
-#move-down{background-color: rgba(31, 31, 34, 0.535); grid-area: 3/2;}
-
-  /* TETRIMINO ICONS */
-  #right-arrow-img{
-    position: relative;
-    width: 80%;
-  }
-
- #left-arrow-img{
-  position: relative;
-  width: 80%;
-    }
-
-#up-arrow-img{
-  position: relative;
-  width: 80%;
-}
-
-  #down-arrow-img{
-    position: relative;
-    width: 80%;
-}
-  
 
 
-        /*GAME STATE BUTTONS --------------------------------------------------- */
-  #game-state-btns{
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-  background-color: rgba(109, 87, 87, 0.42);
-  width: 90%; height: 20%;}
-
-  .game-operators{position: relative; width: 22%; aspect-ratio: 1/1; border: 2px solid black; background-color: rgba(90, 246, 38, 0.864);}
+  .game-operators{position: relative; width: 50%; aspect-ratio: 6/1; border: 2px solid black; background-color: rgba(90, 246, 38, 0.864); border-radius: 3px;}
 
   
 
-  #start-img{width: 80%;}
-  #pause-img{width: 80%;}
-  #refresh-img{width: 80%;}
+  #start-img{width: 12%;}
 
  
   /* ----------------------------- end of APPLICATION STYLINGS */
 
-
+#functions-container{
+  position: relative;
+  width: 30%;
+  height: 100%;
+}
 
 
 
@@ -353,9 +269,9 @@ padding: 0.5vw;
 
 .head-dimensions{
   position: relative;
-  width: 95%;
-  aspect-ratio: 1/1;
-  background-color: rgb(23, 206, 16);
+  width: 80%;
+ 
+  background-color: rgba(22, 206, 16, 0);
   }
 
 /* styling for apples */
@@ -373,3 +289,30 @@ padding: 0.5vw;
       width: 90%;
       aspect-ratio: 1/1;
       background-color: rgb(41, 222, 44);}
+
+
+
+
+
+
+      /* reponsive coding for portrait view*/
+
+        /* changes for different screen sizes and orientations*/
+  @media (orientation: portrait) {
+    #application-body{
+      width: 96vw; height: 96vw;
+    }
+  /* DIFFICULTY SELECTOR MODAL*/
+    #level-modal{ width: 100vw; height: 100vw;}
+
+    .game-operators{ width: 50%; height: 90%}
+
+    .level-div{width: 30%; height: 90%; }
+
+    .level-btn{font-size: 40px; }
+
+    .level-para{font-size: 25px;}
+.level-list{font-size: 23px; }
+    }
+   
+  

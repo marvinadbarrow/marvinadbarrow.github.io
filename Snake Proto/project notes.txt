@@ -371,6 +371,46 @@ shis is working fine so tomorrow just re-code the apple drop criteria first and 
 
 
 
+--------------------THREE MAIN GOALS FOR SATURDAY ------------------------
+
+1. sort out 'crash' scenario final scores as they are displaying as NAN... - SOLVED
+2. format scoring for five-digit display. -- SOLVED
+3. @media query for portrait displays -- SOLVED (could be better though) 
+4. stop double-tap zoom (for phone applications) with JavaScript for height less than 500px in portrait and width less than (whatever the normal width would be forl smart phone heights); you can use or conditions to look for either condition. 
+5. (done already) create an snake head image, then get it to change direction when the snake body changes direction so that it is always facing the direction of travel
+6. completely reformat navigation, using grid divs to decide which way to turn the snake. 
+
+
+
+---------------FORMAT FOR SCORING
+since the smallest achievable score is in the hundreds (we'll have to take out the final score halved penalty to avoid scores below 100 being achieved (i.e. if the player crashes at less than 200 points)   ) we can do the base code so that any number less than of 3 digits, i.e. any number < 1000 should be displayed as textContent 00SCORE, where ### is the final score in hundreds.  for scores < 10000 then the textContent will be 0SCORE, otherwise the textContent will be SCORE.  I suppose it's not much extra code to add in the score of < 100, which would be 000SCORE --- SOLVED
+
+NOTE* - Maybe if no score is achieved then just do 'zero' or 'no score' as the textContent and don't register it in localStorage--- DONE!
+
+---------------STOP DOUBLE TAP ZOOM
+Just in developer mode in phone at the moment to see if that'll work. OPTION IS NOT AVAILABLE IN DEVELOPER MODE
+
+
+SNAKE HEAD MOVEMENT - SOLVED.
+inside the function that creates the head and the first two body segments, gave the snake head (created image) an id of 'snake-head' and used the image 'snake head.png' as the source for the image. 
+Then, inside the function holding the timer, I created a new variable snakeHeadEl and, using getElementById, assigned the earlier created snake head image to that variable. Then whenever a direction change occurs, the method -snakeHeadEl.style.transform = 'rotate:Xdeg' - where 'X' is a multiple of 90 which is needed to get the snake head to point in the snake direction appropriately i.e. N/S/E/W -- THIS IS SOLVED. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
