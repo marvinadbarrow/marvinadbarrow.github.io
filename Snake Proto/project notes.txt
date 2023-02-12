@@ -395,6 +395,52 @@ SNAKE HEAD MOVEMENT - SOLVED.
 inside the function that creates the head and the first two body segments, gave the snake head (created image) an id of 'snake-head' and used the image 'snake head.png' as the source for the image. 
 Then, inside the function holding the timer, I created a new variable snakeHeadEl and, using getElementById, assigned the earlier created snake head image to that variable. Then whenever a direction change occurs, the method -snakeHeadEl.style.transform = 'rotate:Xdeg' - where 'X' is a multiple of 90 which is needed to get the snake head to point in the snake direction appropriately i.e. N/S/E/W -- THIS IS SOLVED. 
 
+----------------- ATTEMPTING METHOD FOR TOUCHSCREEN NAVIGATION OF SNAKE -------------------------
+
+Trying this method:
+1. get the element 'game-grid'
+2. add event listener inside setInterval function. 
+3. check that child number is (of game grid) is recognized. 
+4. maybe find a way to log child element number.
+
+It might be necessary to have the below switch inside of event listener. Or we could have the event listener with an e.target
+
+
+touchNumber(number){
+then switch(search for direction){
+case 'left':
+case 'right': 
+if(number < a -a%20)(goUp)
+of(number > a + (20 - a%20)(goDown)
+break;
+case 'up':
+case 'down': 
+if(number%20 > a%20)(goRight)
+of(number%20 < a%20)(goLeft)
+break;
+}
+
+
+
+gameGridEl = document.getElementById('game-grid')
+
+gameGridEl.addEventListener('click', function(e){
+console.log(e.target.id)
+let touchNumber = e.target.id - 1;
+touchNavigation(touchNumber)
+}
+
+
+
+
+
+
+
+
+}
+
+
+
 
 
 

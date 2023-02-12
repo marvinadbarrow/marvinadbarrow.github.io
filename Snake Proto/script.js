@@ -36,13 +36,16 @@ let hardObstacleArr = [90, 110, 130, 150, 184, 185, 186, 187, 212, 213, 214, 215
 
 
 
+
+
+
 let breadCrumbArr = []  // ARRAY REGISTERING ALL POSITIONS SNAKE HEAD HAS PASSED THROUGH
 
 let blockArray = [] // ARRAY HOLDING ALL SEGMENTS OF THE SNAKE --- 
 
 let appleArray = [] // HOLDS position of newly created apple, just zero entry has the data as each time an apple is eaten by the snake the new apple position overwrites the old. 
 
-
+let directionArray = ['go-down'] // will unshift current direction to this array so that the direction can be assessed when grid is clicked and click position relative to position of snake head and direction of snake can be used to dictate new snake direction. Starting with 'go-down' because, initially, that's the default direction (which we will need to have in order to make a decision after screentouch)
 
 // difficulty selector dive
 let levelSelectEl = document.getElementById('level-div-container')
@@ -77,6 +80,19 @@ let downImg = document.getElementById('down-arrow-img')
 let gamestateArr = [startBtn, startImg]
 // ALREADY EXISTING ELEMENTS
 let shapeBody = document.getElementById('game-grid')
+
+
+// EXPERIMENT FOR TOUCHSCREENS
+let childrenArray = []
+shapeBody.childNodes.forEach(element =>{
+    if(!element.id == ''){
+        console.log(element.id)
+        childrenArray.push(element.id)
+    }
+  })
+
+  console.log(childrenArray)
+// good, this actually logs out all element id's. 
 
 let scoreEl = document.getElementById('score-para')
 let pointsCountArr = [0]
@@ -366,8 +382,8 @@ console.log(snakeHeadEl)
     // removal of previous direction words and updated with currently requested direction
 const directionClass = (class1, class2, class3, class4) =>{
     // every time a turn is made, take approximately 10 percent of points off the player
-
-    
+directionArray[0] = class4
+    console.log(directionArray)
     if(pointsCountArr[0] > 150){
 // PENALTIES for each turn, amount dependent on how hard the game is
         switch(gameDifficultyArr[0]){
@@ -412,6 +428,39 @@ navigationListener(identifyer, arr[0])
 
 
 
+const touchNavigation = (position) =>{
+    // switch current direction
+let direction = directionArray[0];
+    switch(direction){
+        // if direction is left or right, then direction change will be up or down depending on touch position
+        case 'go-left':
+        case 'go-right': 
+        if(position < a -a%20){navigationListener('up')}
+        else if(position > a + (20 - a%20)){navigationListener('down')};
+        break;
+// if direction is up or down, then direction change will be left or right depending on touch position
+        case 'go-up':
+        case 'go-down': 
+        if(position%20 > a%20){navigationListener('right')}
+        else if(position%20 < a%20){navigationListener('left')}
+        break;
+        }
+
+}
+
+
+// SCREEN TOUCH (OR CLICK) POSITION ASSESSOR
+shapeBody.addEventListener('click', function(e){
+    let touchNumber;
+   for(i=0; i<childrenArray.length;i++){
+    if(e.target.id == childrenArray[i]){// search array containing 400 id's to see which one matches the clicked square
+        touchNumber = childrenArray.indexOf(childrenArray[i])// get index of touched box
+        console.log(touchNumber) // log index
+touchNavigation(touchNumber)
+    }
+   }
+     })
+// this accurately recognizes the clicked box. 
 
 
 
@@ -474,6 +523,9 @@ createApple()
       }
 
 
+
+
+      
 
     shapeClock =  setInterval(() => {
     // actually, the game should only run if a doesn't belong to any of the boundaries, or rather, if the snake head is traveling in the direction of the boundary and is at the boundary... 
