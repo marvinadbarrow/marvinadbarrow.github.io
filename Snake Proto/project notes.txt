@@ -420,6 +420,10 @@ of(number%20 < a%20)(goLeft)
 break;
 }
 
+NOTE* it's probably useful to put the direction identifyer in an array so it can be picked up for use with touchNumber, 
+
+hopefully this code will do it...
+Now it's as matter of finding the original code and seeing how to pull out the direction class. 
 
 
 gameGridEl = document.getElementById('game-grid')
