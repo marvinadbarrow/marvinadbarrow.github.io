@@ -327,7 +327,6 @@ shapeBody.children[j].style.animation = "flash 0.1s 4";}
 
     // play game end audio
 gameEndAudio.play();
-startCommandArr = []
 setHighScores(finalScore, endStatus)
 }
 
@@ -518,7 +517,6 @@ createApple()
         }
         
           renderPoints(pointsCountArr[0], endStatus, bonus)
-          startCommandArr = []
         }
       }
 
@@ -567,7 +565,6 @@ if(gameDifficultyArr[0] == 'regular-btn'){
         let endStatus = 'regular obstacle'
         let bonus = 0;
         renderPoints(Math.floor(pointsCountArr[0]*0.75) , endStatus, bonus)
-          startCommandArr = []
     }
     
     }
@@ -579,8 +576,7 @@ if(gameDifficultyArr[0] == 'regular-btn'){
             let endStatus = 'hard obstacle'
             let bonus = 0;
             renderPoints(Math.floor(pointsCountArr[0]*0.75) , endStatus, bonus)
-              startCommandArr = []
-        }
+            }
         
         }
     // if the snake body has a segment that's already in the new 'a' value then a collision happens
@@ -715,9 +711,10 @@ switch(identifyer){
     case 'refresh':
     case 'r':
     case 'refresh-img':
-        if(startCommandArr.length < 1){
+        if(startCommandArr.length > 0){
+            startCommandArr = []
             location.reload()
-        }else{console.log(' game must end in order to refresh')}
+        }else{console.log(' test')}
 break;
 }}
 

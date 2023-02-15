@@ -207,6 +207,10 @@ else{instructionEl.textContent = instruction2;}
 
 // PLAYER THIRD CARD DROP
 function nextCardYou3(){
+// YOU COULD SWITCH PLAYER ARRAY LENGTH HERE FOR '2' since, playerArray.length > 1 and <3 means '2' anything else will not execute the code
+
+
+
 
 if (dealerArray.length > 1 && playerArray.length > 1 && playerArray.length < 3 && sumbAll < 21) {
 let cardPlus = Math.ceil(Math.random() * cardSuits.length);

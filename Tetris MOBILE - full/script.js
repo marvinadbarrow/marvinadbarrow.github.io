@@ -17,6 +17,7 @@ let rotationBlip = new Audio('rotate blip.mp3')
 let startEl = document.getElementById('start')
 let pauseEl = document.getElementById('pause')
 let refreshEl = document.getElementById('refresh')
+let killEl = document.getElementById('kill')
 let navButtons = document.getElementById('nav-button-container')
 // TETRIMINO MANIPULATION BUTTONS
 let moveLeftEl = document.getElementById('move-right')
@@ -25,6 +26,20 @@ let rotateEl = document.getElementById('rotate')
 
 // element containing game state buttons
 let gameStateBtns = document.getElementById('game-state-buttons-container')
+
+// images nested inside game state buttons
+let skullImg = document.getElementById('skull-crossbones-img')
+let pauseImg = document.getElementById('pause-img')
+let startImg = document.getElementById('start-img')
+let recycleImg = document.getElementById('recycle-img')
+
+// images nested inside tetrimino buttons
+let rotateImg = document.getElementById('rotate-tetrimino-img')
+let leftImg = document.getElementById('left-arrow-img')
+let rightImg = document.getElementById('right-arrow-img')
+
+// array for gamestate buttons
+let gamestateArr = [startEl, pauseEl, refreshEl, killEl]
 
 
 // ALREADY EXISTING ELEMENTS
@@ -676,7 +691,7 @@ const navigationListener = (identifyer) =>{
              // if detected element is right button
              case 'ArrowRight':
             case 'move-right':
-            case 'fa-arrow-right':
+            case 'right-arrow-img':
                  console.log('right arrow pressed');
     // if a, b, c or d is increased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, increase the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values. 
     if(leftBoundaryArr.includes(a+1)  || leftBoundaryArr.includes(b+1)  || leftBoundaryArr.includes(c+1)  || leftBoundaryArr.includes(d+1)  || pauseIntervalArr.length > 0){
@@ -696,7 +711,7 @@ const navigationListener = (identifyer) =>{
      // if detected element is left button
      case 'ArrowLeft':
      case 'move-left':
-     case 'fa-arrow-left':   
+     case 'left-arrow-img':   
      console.log('Left arrow pressed')
     // if a, b, c or d is decreased by 1 and the value results in a number that corresponds to a boundary square; do nothing - else, decrease the value of the variables a, b, c and d,  by '1' and append blocks to grid square positions that correspond to the letter values.
     
@@ -719,7 +734,7 @@ const navigationListener = (identifyer) =>{
             // if pause button is pressed we will not allow rotation as it seems to cause a conflict if allowed - and is redundant anyway because it would be a means of cheating or is generally not required, especially if the pause it to allow row clearance and floating tetrimino drop
             case 'ArrowUp':
             case 'rotator':
-            case 'fa-arrow-rotate':    
+            case 'rotate-tetrimino-img':    
             console.log('Up arrow pressed')
             if(letter == 'S'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, sRotateArr, letter)}
              }else if(letter == 'Z'){ if(pauseIntervalArr.length < 1){rotateTetrimino(a, zRotateArr, letter)} 
@@ -1044,15 +1059,14 @@ pauseModalEl.style.cssText = 'display:none; z-index: -2;'
                   
     break;
     case ' ':
-    case 'pause':   
+    case 'pause':
+    case 'pause-img':  
     if(startCommandArr.length > 0 && killArray.length < 1){// game started no kill yet
     if(pauseIntervalArr.length < 1){pauseIntervalArr.push('pause')
     pauseModalEl.style.cssText = 'display:block; z-index: 2;'
-    pauseEl.textContent = 'Resume' // change pause button to 'resume'
     pauseEl.style.cssText = 'animation: pause 0.4s 10000;' // flash animate button
     clearInterval(shapeClock) // stop tetrimino drop
    }else{ pauseIntervalArr.pop()
-    pauseEl.textContent = 'Pause'
     pauseEl.style.animation = ''
       tetriminoDrop(arr[0], arr[1], arr[2], arr[3],tetrisBlockArr[5], tetrisBlockArr[4],tetrisBlockArr[0], tetrisBlockArr[1], tetrisBlockArr[2], tetrisBlockArr[3])
               }}else{console.log('start or refresh game to use pause button')}
@@ -1060,6 +1074,7 @@ pauseModalEl.style.cssText = 'display:none; z-index: -2;'
 
     case 'Enter': 
     case 'start':
+    case 'start-img':
        if(startCommandArr.length < 1){
         buildShape();
         startAudio.play()
@@ -1068,12 +1083,14 @@ pauseModalEl.style.cssText = 'display:none; z-index: -2;'
     break; 
     case 'refresh':
     case 'r':
+    case 'recycle-img':
         if(gameOverArray.length > 0 || killArray.length > 0){
             location.reload()
         }else{console.log(' game must end in order to refresh')}
 break;
 case 'kill':
-case'k':    
+case'k':   
+case'skull-crossbones-img': 
 
 if(startCommandArr.length > 0 && gameOverArray.length < 1 && pauseIntervalArr.length < 1){
     pauseIntervalArr = []; // clear pause
@@ -1122,7 +1139,10 @@ gameState(identifyer);
 
 
 
-gameStateBtns.addEventListener('click', (e) =>{
-let identifyer = e.target.id;
+gamestateArr.forEach((element)=>{
+    element.addEventListener('click', function(e){
+        console.log(e.target.id)
+        let identifyer = e.target.id;
 gameState(identifyer);
+    })
 })
