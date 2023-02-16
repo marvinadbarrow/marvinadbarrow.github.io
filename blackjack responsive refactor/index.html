@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+             <link rel="stylesheet" type="text/css" href="style.css">
+            <title> BLACKJACK App</title>
+        </head>
+     
+           
+                    <body>
+<!-- code for MODAL BOX -->
+<div id="button-container">
+      <button id="mute-btn" onclick="audioOff()"></button>
+      </div>
+<div id="button-container">
+      <button id="mute-btn2" onclick="audioOn()"></button>
+      </div>
+
+<div id="rules-button-container">
+      <button id="rules-btn" onclick="openModal()">rules</button>
+      </div>
+
+<div id="modal-container">
+	<div id="simple-modal" >
+     		<div id="content">
+<div id="modal-header">How To Play
+		<span id="close-btn" onclick="closeModal()">&times</span>
+</div>
+<p id="note"> <span id="note-color">NOTE*</span> in this game, ACES score 11 points. Get 20 wins to beat the house</p><br>
+		<p id="modal-para"> <span id="scenarios">1.</span> Hit 'Dealer Drop' button above cards. <br><br> <span id="scenarios">2.</span>The dealer will draw TWO cards, so now it's your turn; hit the 'Player Drop' button.<br><br> <span id="scenarios">3.</span> Evaluate your cards to decide whether revealing another card will cause you to bust (anything over 21 and you BUST).<br><br><span id="scenarios">4.</span> If you're feeling lucky, pick another card by clicking on the first available card to the right of the already revealed player cards. You can keep on pulling cards until you feel it's too risky to pull anymore without busting.</p>
+<button id="next"  onclick="openModalTwo()">NEXT</button>
+		<img src="small cards.png" id="small-cards">
+		</div>
+	</div>
+
+
+
+<!-- code for MODAL BOX NUMBER 2 -->
+
+
+<div id="modal-containerTwo">
+	<div id="simple-modalTwo" >
+     		<div id="contentTwo">
+<div id="modal-headerTwo">How To Play
+		<span id="close-btnTwo" onclick="closeModalTwo()">&times</span>
+</div>
+		<p id="modal-paraTwo"><span id="scenarios">5.</span> Once you decide you want no more cards, hit the 'STAND' button. The dealer will then drop their last card, and the winner is whoever has the largest score not greater than 21. But there are other scenarios explained below.<br><br><span id="scenarios">SCENARIOS TO WATCH OUT FOR</span><br><br> <span id="scenarios">a)</span><span id="dealer-hold">THE DEALER HOLDS:</span> - this happens when the dealer draws two cards whose combined value is greater than 19. Since the smallest card value is 2, if the dealer has more than 19 (i.e. 20 or 21) any card picked will cause them to bust - so, dealer won't drop more cards.<br><br>So you are forced to pick cards until you get outcome <span id="scenarios">'c'</span> or <span id="scenarios">'d'</span> on the following page.</p>
+<button id="previous"  onclick="openModal()">PREVIOUS</button>
+<button id="nextTwo" onclick="openModalThree()">NEXT</button>
+
+		<img src="small cards.png" id="small-cardsTwo">
+		</div>
+	</div>
+
+
+
+<!-- code for MODAL BOX NUMBER 3 -->
+
+
+<div id="modal-containerThree">
+	<div id="simple-modalThree" >
+     		<div id="contentThree">
+<div id="modal-headerThree">How To Play
+		<span id="close-btnThree" onclick="closeModalThree()">&times</span>
+</div>
+		<p id="modal-paraThree"><span id="scenarios">b)</span> If you decide to 'stand', and the dealer's last card matches their score with yours, you've tied and a 'you've DRAWN' message will appear.<br><br><span id="scenarios">c)</span> If the dealer holds on 21 points, and you then score 21, you've got a SUPER draw. Same thing happens if you score 21, hit 'STAND' and the dealer drops a card and scores 21<br><br><span id="scenarios">d)</span> If the dealer holds on 20, and you get 20, it's a draw. If the dealer holds on 20 and you pull a card and score 21, YOU WIN. But if the dealer holds on 21 and you score 20, YOU LOSE.<br> Any feedback welcome at my LinkedIn page - <span id="linkedin">https://www.linkedin.com/in/marvin-a-barrow/</span> - : Thanks for playing  </p>
+<button id="previousTwo"  onclick="openModalTwo()">PREVIOUS</button>
+<button id="close-modal"  onclick="closeModalThree()">CLOSE</button>
+		<img src="small cards.png" id="small-cardsThree">
+		</div>
+
+
+	</div>
+
+
+<!--  -->
+
+ <div id="blackjack-container">
+<div id="all-buttons-container">
+
+
+	<div id="button-container">
+		<button onclick="dealerCardsFirst2()" id="dealer-btn">dealer drop</button>
+		<button onclick="playerCardsFirst2()" id="player-btn"> player drop</button>
+		<button onclick="playerStand()" id="stand-btn">player stand</button>
+		<button onclick="clearTable()" id="reset-btn"> clear table </button>
+		</div>
+		 
+
+
+  
+</div>
+
+
+
+     <!-- PLAYER CONTAINER -->
+<div id="player-container">
+<div id="played-cards">
+<img src="backgnd.jpg" id="card1" class="playing-cards">
+<img src="backgnd.jpg" id="card2" class="playing-cards">
+<img src="backgnd.jpg" onclick="playerCard3()" id="card3" class="playing-cards">
+<img src="backgnd.jpg" onclick="playerCard4()" id="card4" class="playing-cards">
+<img src="backgnd.jpg" onclick="playerCard5()" id="card5" class="playing-cards">
+
+</div>
+
+<div class="scores">   
+	<div id="player-score">0</div> <!--  PLAYER SCORE PARAGRAPH -->            
+	</div>
+
+</div>
+
+
+  <!-- DEALER CONTAINER -->
+<div id="dealer-container">
+
+<div id="played-cards">
+<img src="backgnd.jpg"  id="card6" class="playing-cards">
+<img src="backgnd.jpg"  id="card7" class="playing-cards">
+<img src="backgnd.jpg"  id="card8" class="playing-cards">
+
+</div>
+
+  <!--  <label for="dealer-sum-el" id="dealer-sum-input"> Dealer Score</label>
+  <input id="dealer-sum-el" type="text"></input><br>  -->
+  <div class="scores">   
+	<div id="dealer-score">0</div> <!--  PLAYER SCORE PARAGRAPH -->            
+	</div>
+
+</div>
+
+<div id="info-container">
+<p id="instructions-el">Hit: <span id="dealer-hold">'DEALER DROP'</span></p>
+
+
+<div id="wins">
+<p id="wins-el"><span class="wins-talley">wins|</span></p>
+<p id="your-wins-el">You:<span class="wins-span1" id="num-of-wins-player">0</span></p>
+<p id="dealer-wins-el">Dealer:<span class="wins-span1" id="num-of-wins-dealer">0</span></p>
+</div>
+
+</div>
+
+ </div>
+
+  <!-- 
+let yourWinsEl = document.getElementById('num-of-wins-player')
+let dealerWinsEl = document.getElementById('num-of-wins-dealer')  
+yourWinsEl.textContent += 1;
+dealerWinsEl.textContent += 1;
+--> 
+
+ <script src="index.js"></script>
+        </body>                       
+                        
+
+    </html>
+

@@ -1,0 +1,5 @@
+You can do different options for five card tricks.  For normal five card tricks, give 'two' winner points and for 21 point five card tricks give 'three' winner points.
+If two winner points makes player wins > 20, or three winner points makes player wins > 20; then player wins = 20. 
+In other words, if 'Player Wins' < 20 && 'Player Wins' + 'Player points' > 20, then player wins = 20
+
+PREVENT PLAYER DROPPING CARDS AFTER DEALER HOLDS AND PLAYER ALREADY HAS 20 POINTS. - any other card drop will cause a bust; either player has 20 and draws (if dealer has 20) or loses if dealer has 21, or player gets 21 and draws if dealer has 21 or wins if dealer has 20... CHECK ALL OF THIS. 
