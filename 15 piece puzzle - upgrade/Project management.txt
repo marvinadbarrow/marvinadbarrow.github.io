@@ -1,7 +1,0 @@
-TO DO's
-CHANGE PROGRESS BAR TO A GRID WTIH NUMBERS CHANGING COLOUR AS THEY GET CORRECTLY PLACED. 
-UNDERSTAND POINTS SYSTEM
-INTEGRATE TIMER
-
-TRY A DIFFICULTY SYSTEM - perhaps, taking each piece and calculating its distance from it's intended solved position; then taking the pieces that, themselves solved, should be adjacent to the original piece and calculating their distance from their inteneded solved positions and their distance from those the first piece (in its unsolved state). That will be quite a few numbers.  Add them all together and that can be used as a difficulty marker; but first see how the number compares to the number of moves you do... If the number is large and the solved moves are large (consistently) you could use that calculation as a measure of difficulty....  you could also post this on a math forum or something; or work out how many moves it would take to get to the solved position state; i.e. the fewest amount of moves.. check rubix cube formulas. 
-
