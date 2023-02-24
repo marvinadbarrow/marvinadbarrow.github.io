@@ -1,0 +1,183 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+           <link rel="stylesheet" type="text/css"
+                 href="style.css">
+
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                 <script src="https://kit.fontawesome.com/e4a7b9699c.js" crossorigin="anonymous"></script>
+            <title> Analogue Chronograph</title>
+        </head>
+
+    <!--    <h1> 
+        <strong><p class="headpara">Stopwatch (2hr) </p></strong></h1>    
+-->
+
+
+        <body>
+
+<div id="application">
+
+
+    <div id="btn-container">
+        <button id="start" class="function" onclick="start()"><i class="fa fa-play" id="play-btn" style="font-size:48px;color:rgb(255, 254, 254)"></i></button>
+
+      <button id="pause" class="function" onclick="pause()"><i class="fa fa-pause-circle-o" id="pause-btn" style="font-size:48px;color:rgb(255, 253, 253)"></i></button>
+
+      <button id="lap" class="function" onclick="lap()"><i class="fa fa-clock-o" style="font-size: 48px; color:rgb(255, 253, 253)"></i></button>
+   
+
+
+      <button id="reset" class="function" onclick="reset()"><i class="fa fa-refresh" style="font-size:48px"></i></button>
+
+      <button id="clock-hide" class="function" onclick="hideClock()"><img src="./images/DIY faces/remove-time-icon-red.png" alt="hide clock icon" height="44px"></button>
+    </div>
+     
+
+    
+<div id="clock-body">  
+    
+
+
+
+        <div id="main-dial">
+            <img id="face-image-large" src=".//images/DIY faces/large dial 2.png" alt="clock face image">
+            <img id="hour-hand-large" alt="hour hand" src="./hour hand new.png" >
+            <img id="min-hand-large" alt="minute hand" src="./minute hand precise.png">
+        
+            <img id="chrono-sec-hand-large" src="./second hand precise.png"  alt="chrono-second-hand">
+        
+
+
+            <div id="subdial-container">
+
+       
+
+                <!-- subdial 12 hours-->
+                <div class="spaces" id="space-1"></div>
+                <img class="subs" id="sub-split" src="./images/DIY faces/tenth second dial.png" alt="clock face image">
+               
+            
+                
+                
+                
+                <!-- subdial minute-->
+                <div class="spaces" id="space-2"></div>
+                <img class="subs" id="sub-sec" src="./images/DIY faces/DIY seconds dial final.png" alt="clock face image">
+                
+                
+                    <!-- subdial normal time seconds-->
+                    <div class="spaces" id="space-3"></div>
+                    <img class="subs" id="sub-min" src="./images/DIY faces/DIY minute final with letters.png" alt="clock face image">
+
+                   
+                
+                    <!-- subdial  split seconds-->
+                    <div class="spaces" id="space-4"></div>
+                    <img class="subs" id="sub-hour" src="./images/DIY faces/DIY hours dial final.png" alt="clock face image">
+                        <div class="spaces" id="space-5"></div>
+                
+
+                        <div id="sub-hands-container">
+                            <div class="spaces-hands" id="space-small-1"></div>
+                            <div class="mini-hands-div">
+                                <img class="mini-hand" id="split-hand" src="./second hand precise.png"  alt="sec-hand">
+                          
+                        </div>
+                            <div class="spaces-hands" id="space-small-2"></div>
+                            <img class="mini-hand" id="sec-hand-normal" src="./invisible second hand.png"  alt="sec-hand-sub">
+                
+                            <div class="spaces-hands" id="space-small-3"></div>
+                            <img class="mini-hand" id="min-hand" alt="minute hand" src="./invisible minute hand.png">
+
+                
+                            <div class="spaces-hands" id="space-small-4"></div>
+                            <img class="mini-hand" id="hour-hand" alt="hour hand" src="./invisible hour hand.png" >
+                            <div class="spaces-hands" id="space-small-5"></div>
+                </div>
+                       
+                
+                
+                    </div>
+
+
+        </div>
+
+
+
+   
+
+
+
+          
+
+
+
+            </div>
+
+
+                    </div>
+                
+
+
+
+                <script src="script.js"></script>
+        </body>
+             <footer id="main-footer">
+                <div id="content-container">
+                    <div class="footer-column">
+<h3 class="footer-heading">My Pages</h3>
+<a href="https://www.linkedin.com/in/marvin-a-barrow/" class="footer-link" target="_blank"> <span id="my-page-link"> Linked</span> <i id="my-page" class="fa-brands fa-linkedin fa-2x"></i></a>
+
+<a href="https://www.linkedin.com/in/marvin-a-barrow/details/featured/" class="footer-link" target="_blank">LinkedIn Dev Portfolio <i class="fa-solid fa-code" id="dev-icon"></i></a>
+
+<a href="#" class="footer-link">About Me</a>
+</div>
+
+<div class="footer-column">
+    <h3 class="footer-heading">Chronograph Help!</h3>
+
+
+    <a href="../chronograph analogue no trig/images/help page and images/button functions/index.html" target="_blank" class="footer-link">Button Functions</a>
+
+
+    <a href="../chronograph analogue no trig/images/help page and images/subdial reading/index.html" target="_blank" class="footer-link">Reading the subdials</a>
+
+    <a href="../chronograph analogue no trig/images/help page and images/the second hand/index.html" target="_blank" class="footer-link">The Second Hand</a>
+    </div>
+
+
+
+
+    <div class="footer-column">
+        <h3 class="footer-heading">Related Projects</h3>
+        <a href="file:///C:/Users/Marvin/Desktop/Js%20Doc%20Web/projects%20in%20the%20making/Whole%20App%20Website/main%20page/chronographs/final%20stopwatch/Total%20redesign%20from%20scratch/index.html" target="_blank" class="footer-link">Digital Stopwatch</a>
+
+
+        <a href="../chronograph analogue no trig/images/other pages/analogue clock better look/index.html" target="_blank" class="footer-link">Analogue clock</a>
+        <a href="#" class="footer-link">Other Time Apps</a>
+        </div>
+    </div>
+
+
+        <div class="footer-bottom">
+            <span class="copyright">Marvin-a-Barrow &copy;2022 JavaScript Chronograph!</span>
+
+            <a href="https://www.linkedin.com/in/marvin-a-barrow/" target="_blank" class="footer-social"><i class="fa-brands fa-linkedin fa-2x"></i></a>
+        
+           
+            <a href="#" class="footer-social"><i class="fa-brands fa-youtube fa-2x"></i></a>
+
+        </div>
+                
+                
+                
+
+             </footer>
+                   
+    </html>

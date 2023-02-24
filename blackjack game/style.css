@@ -1,4 +1,11 @@
-#blackjack-container{ padding-top:7px; margin: auto; color: white; margin-top: 20px; background-image: url(cardgame-background.jpg); width: 290px; 
+
+
+body{background-image: url(./cropped-table\ -\ Copy.jpg);
+
+}
+
+
+#blackjack-container{ padding-top:7px; margin: auto; color: white; margin-top: 20px; background-color: rgb(32, 157, 215); width: 290px; 
  height: 280px; background-size: 160%; text-align: center;  font-family: sans-serif; font-weight: bold; margin-bottom: 500px;
  
  border-style: solid; border-color: black; border-width: 2px; box-shadow: 2px 2px 3px black;}
