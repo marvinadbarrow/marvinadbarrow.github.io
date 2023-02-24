@@ -27,9 +27,9 @@ color: white;
     justify-content: space-around; margin: auto; margin-top: 4%;
 }
 #puzzle-body{display:grid; 
-grid-template-columns: repeat(4, 1fr);
+grid-template-columns: repeat(4, 4fr);
 grid-gap:3px;
-grid-template-rows: repeat(4, 1fr);
+grid-template-rows: repeat(4, 4fr);
 width:40%;
 padding: 5px;
 background-color: rgb(127, 218, 218);
@@ -84,9 +84,9 @@ background-color: red;
 
 
 #progress-element{display:grid; 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 4fr);
     grid-gap:3px;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 4fr);
     width:40%;
     height: fit-content;
     padding: 5px;
