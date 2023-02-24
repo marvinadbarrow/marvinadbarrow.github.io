@@ -1,0 +1,264 @@
+body{width: 100vw;
+    height: 100vh;
+   background-image: url(./15\ piece\ puzzle\ background.png);
+}
+
+
+
+
+/* MODAL STYLINGS  ---------------------------------------------------------------------------- */
+
+/* MODAL for end of game stats instructions etc */
+#modal-container{position: absolute; width:100%; height: 90%; margin:auto; display: none;}
+
+  
+
+  #simple-modal{
+    position: relative;
+    box-shadow: 2px 2px 7px black;
+  width:100%; height:95%;
+  background-color:rgba(75, 75, 75, 0.57);
+  margin-top:30px;
+  border-radius:7px;
+   z-index:1;
+   margin: auto;
+  
+  }
+
+  #content{background-color:rgba(199, 205, 206, 0.391);
+    position: relative;
+    margin: auto;
+    box-shadow: 1px 1px 5px black;
+    border-radius:7px;
+     height:90%;
+    width: 90%;
+    }
+
+
+    
+        #modal-header{height: 8%; background-color:rgba(6, 6, 5, 0.628); font-size:50px; font-weight:bold;text-align:center;text-transform:capitalize;border-radius:7px 7px 0px 0px; color: rgb(224, 36, 36);text-shadow: 2px 2px white ;}
+
+        #all-btns-container{position: relative; width: fit-content; height: 40%; display: flex; flex-direction: column; margin: auto; justify-content: space-between;}
+
+        #close-btn{ background-color: white; color: black; border-radius: 10px; outline: 2px solid white; outline-offset: 4px; font-size:40px}
+
+/* END OF MODAL STYLINGS -------------------------------------------------------------- */
+
+
+
+/* container for moves counter*/
+#counter-container{
+    background-color: rgb(192, 183, 183);
+    border-radius: 10px;
+margin: auto;
+height: fit-content;
+max-width: 30%;
+outline:4px solid rgb(255, 255, 255);
+outline-offset: 4px;
+}
+
+#counter{
+
+    font-size: 40px;
+    font-weight: bold;
+color: white;
+    text-align: center;
+}
+
+#puzzle-and-indicator{
+    width: 90%; height: fit-content; display: flex; flex-direction: row; background-color: rgba(239, 192, 21, 0);
+    justify-content: space-around; margin: auto; margin-top: 4%;
+}
+#puzzle-body{display:grid; 
+    position:relative;
+grid-template-columns: repeat(4, 1fr);
+grid-gap:3px;
+grid-template-rows: repeat(4, 1fr);
+width:92%;
+aspect-ratio: 1/1;
+padding: 4%;
+background-color: rgb(127, 218, 218);
+border-radius: 10px;
+border: 1px solid black;
+
+grid-template-areas:
+
+
+"one two three four"
+"five six seven eight"
+"nine ten eleven twelve"
+"thirteen fourteen fifteen sixteen";
+}
+
+
+
+
+/*  default position for numbers, maybe we can change this at the beginning of the game and perhaps even randomize it later*/
+#one{ grid-area:one;}
+#two{ grid-area:two;}
+#three{ grid-area:three;}
+#four{ grid-area:four;}
+#five{ grid-area:five;}
+#six{ grid-area:six;}
+#seven{ grid-area:seven;}
+#eight{ grid-area:eight;}
+#nine{ grid-area:nine;}
+#ten{grid-area:ten;}
+#eleven{grid-area:eleven;}
+#twelve{grid-area:twelve;}
+#thirteen{grid-area:thirteen;}
+#fourteen{grid-area:fourteen;}
+#fifteen{ grid-area:fifteen;}
+#sixteen{ grid-area:sixteen;}
+
+#puzzle-container, #progress-element-container{ position: relative; width: 35%; aspect-ratio: 1/1; background-color: rgba(18, 18, 128, 0.767);margin: auto;margin-top: 1vw; border-radius: 10px; box-shadow: 2px 2px 4px black; display: block; align-items: center; padding: 2%;}
+/* button styling */
+button{position: relative; background-color:black; color:white; border-radius:10px; border-style:hidden; box-shadow: 1px 1px 2px rgb(8, 8, 8); font-size: 30px; height: 100%; width: 100%; }
+button:hover{cursor: pointer;}
+
+
+
+.square-containers{background-color:white;padding: 1px;}
+#progress-bar-one{background-color: white;}
+.draggable{
+
+background-color: red;
+}
+
+
+
+#progress-element{display:grid; 
+    position:relative;
+grid-template-columns: repeat(4, 1fr);
+grid-gap:3px;
+grid-template-rows: repeat(4, 1fr);
+width:92%;
+aspect-ratio: 1/1;
+    padding: 4%;
+    background-color: rgb(66, 242, 81);
+     border-radius: 10px;
+    border: 1px solid black;
+  
+    }
+
+
+.indicator-containers{background-color: white;}
+
+
+
+
+.hide{
+opacity: 0;
+
+}
+
+.move-right{
+
+    transform: translateX(53px);
+}
+
+#message-container{
+        height: 7%;
+        width: 90%;
+        margin: auto;
+        margin-top: -2vw;
+
+    }
+    
+    #message-el{font-size: 45px; 
+        font-weight: bold; 
+        color: white;
+        text-align: center;
+        text-shadow: 2px 2px 4px black;
+    }
+
+    #highscore-container{
+        height: fit-content;
+        width: 70%;
+        margin: auto;
+        margin-top: -2vw;
+        display: none;
+    }
+
+    #high-score{
+        font-size: 35px; 
+        font-weight: bold; 
+        color: rgb(251, 255, 0);
+        text-align: center;
+    }
+
+    #scoreclear-container{
+        height: fit-content;
+        width: 14vw;
+        margin: auto;
+        margin-top: 2vw;
+        display: none;
+        background-color: blue;
+        padding: 5px;
+        border-radius: 5px;
+            }
+
+        #score-clear-btn{
+            background-color: rgb(200, 198, 198);
+            height: 6vw;
+            width: 14vw;
+            margin: auto;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+            background-color: red;
+            box-shadow: 1px 1px 3px black;
+
+        }
+
+    #button-container{
+        margin-top: 2vw;
+        height: 6vw;
+        width: 15vw;
+        margin: auto;
+  
+       
+    }
+    #mix-btn{
+        background-color: rgb(200, 198, 198);
+        height: 6vw;
+        width: 14vw;
+        margin: auto;
+        font-size: 20px;
+        display: block;
+        color: black;
+        font-weight: bold;
+        font-size: 22px;
+        
+    }
+
+    #chip-container{width: fit-content;
+        position: absolute;
+    height: 5vw;
+    margin: auto;
+    background-color: rgba(0, 0, 255, 0);
+    }
+
+ 
+
+
+    #progress-bar{width: 34vw;
+        height: 4vw;
+        margin: auto;
+           display: flex;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 255, 0);
+    }
+
+    @media (orientation:portrait){
+        #puzzle-and-indicator{
+            width: 80%; height: fit-content;  margin-top: 4%; flex-direction: column;
+        }
+#puzzle-body, #progress-element{width: 92%; aspect-ratio: 1/1;}
+    #puzzle-container, #progress-element-container{ width: 70%; aspect-ratio: 1/1; padding: 1%;}
+
+
+    #all-btns-container{height: 20%;}
+    
+     }
