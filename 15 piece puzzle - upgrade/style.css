@@ -207,4 +207,9 @@ opacity: 0;
     background-color: rgba(0, 0, 255, 0);
     }
 
- 
+ @media (orientation:portrait){
+    #puzzle-and-indicator{
+        width: 80%; height: fit-content;  margin-top: 4%;
+    }
+
+ }
