@@ -1,0 +1,96 @@
+
+ <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+           <link rel="stylesheet" type="text/css"
+                 href="style.css">
+
+                 <link rel="stylesheet" href="../digital clock numbers/My Digital Font 2/webfontkit-20221016-210002/stylesheet.css">
+
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <title> Stopwatch</title>
+        </head>
+
+    <!--    <h1> 
+        <strong><p class="headpara">Stopwatch (2hr) </p></strong></h1>    
+-->
+
+
+        <body>
+       <div id="chronograph-container">
+
+            
+              <div id="clock-container">
+<div id="split-container" class="small-container">
+                <div id="split-label"><p id="split-para">split</p></div>
+                  <div id="small-clock-el" class="split">
+                    <p class="small-time-el"><span id="small-hour">00</span><span id="small-sep-1">:</span><span id="small-min">00</span><span id="small-sep-2">:</span><span id="small-sec">00</span><span id="small-split-end">00</span></p>
+                  </div>
+                  
+                </div>
+
+
+<div id="lap-container" class="small-container">
+                  <div id="lap-register"><p id="lap-para">lap <span id="lap-count">00</span></p></div>
+                   <div id="small-clock-el" class="lap">
+                     <p class="small-time-el" id="underline-para"> <span id="small-hour-b">00</span><span id="small-sep-1">:</span><span id="small-min-b">00</span><span id="small-sep-2">:</span><span id="small-sec-b">00</span><span id="split-small" >00</span></p>
+                    </div>
+                   
+                  </div>                
+
+
+                <div id="clock-el">
+                  <div id="main-clock-div">
+                      <p class="time-el"> <span  id="hour">00</span><span id="sep-1">:</span><span id="min">00</span><span id="sep-2">:</span><span id="sec">00</span><span id="split-large">00</span></p>
+                      
+                    </div>
+                 </div>
+                </div>
+      
+
+
+
+  
+ 
+  </div>
+
+
+
+  <div id="btn-container">
+
+    <button id="start" class="function" onclick="start()"><i class="fa fa-play" id="play-btn" style="font-size:48px;color:rgb(255, 254, 254)"></i></button>
+
+  
+  <button id="pause" class="function" onclick="pause()"><i class="fa fa-pause-circle-o" id="pause-btn" style="font-size:48px;color:rgb(255, 253, 253)"></i></button>
+
+  <button id="reset" class="function" onclick="reset()"><i class="fa fa-refresh" style="font-size:32px"></i></button>
+
+  <button id="lap" class="function" onclick="lapTime()"><i class="fa fa-clock-o" style="font-size: 48px; color:rgb(255, 253, 253)"></i></button>
+
+  <button id="recall" onclick="lapRecall()">recall</button>
+
+  <button id="lap-clear" class="function" onclick="lapClear()">Lap Reset</button>
+
+
+
+</div>
+
+        </body>
+        
+             <footer id="main-footer">
+                Marvin-a-Barrow &copy 2022 JavaScript Stopwatch!
+                <script src="script.js"></script>
+             </footer>
+                  
+    </html>

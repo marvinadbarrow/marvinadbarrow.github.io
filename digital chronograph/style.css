@@ -1,0 +1,212 @@
+
+p{display: inline; font-size: 50px;text-transform: uppercase;}
+/* NON FUNCTIONAL AND NON CLOCK ELEMENTS */
+h1{color: white; font-size: 40px;}
+p{display: inline; margin-right: 0px;}
+
+body{ width: 100vw; height: 100vh; background-size: cover;}
+
+
+/* simple styling for entire chronograph*/
+#chronograph-container{width: 90%; height: 80%; background-color: black; border-style: solid; border-radius: 3vw;
+ border-color: black;
+ box-shadow: 1px 2px 4px rgb(3, 3, 3);
+ margin: auto;
+background-image: url(./brushed\ steel.jpg);
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+padding-bottom: 3%;
+}
+
+/*  ELEMENTS CONTAINING TIME CHANGES */
+#timesave-el-outer{ position: relative; background-color: none; width: 80%; height: 80%; margin: auto;  top: 5vh;}
+
+#clock-container{position: relative; width: 84%; height: 80%; margin: auto; background-color: #4BFF7F;  border-radius: 5px;  border: 2px solid white; border-radius: 2rem; box-shadow: 1px 1px px black;display: flex; flex-direction: column; justify-content: space-around;}
+
+
+
+.small-container{margin-top: 1%;}
+
+/* large digits, separators and split digits - for smaller clock*/
+
+.small-time-el{color: rgb(7, 7, 7); background-color: rgba(19, 43, 89,0);border-radius: 3px;font-size: 100px; font-family: 'myfontregular', sans-serif; letter-spacing:2px; margin-top: 2px; text-shadow: 1px 2px 3px rgb(7, 7, 7); } 
+
+#split-container{ display: flex; width: 90%; height: 20%; background-color: rgba(144, 170, 219, 0); margin-left: 0.6rem; background-color: rgba(68, 63, 228, 0); justify-content: space-around;}
+
+/* container for smaller clocks and their respective labels, split and lap (with lap counter) */
+#lap-container{display: flex;width: 90%; height: 22%; justify-content: space-around; margin-left: 0.5rem; background-color: rgba(255, 0, 0, 0);}
+
+#clock-el{ position: relative; width: 90%; height: 40%; margin: auto;  padding-top: 0px; background-color: rgba(0, 204, 255, 0);}
+
+
+
+
+
+
+#underline-para{background-color: rgba(255, 255, 0, 0); border-bottom: 2px solid black;}
+
+
+/* split and lap paragraphs*/
+#split-para, #lap-para{position:absolute; font-family: 'Rubik', sans-serif; right:0.5rem; display: block;}
+
+
+
+/*small clock element*/
+#small-clock-el{background-color: none; width: fit-content;height: 4vh; padding-bottom: 0.5rem; }
+
+
+
+
+
+
+
+#lap-register{padding-bottom: 1.5rem;}
+
+
+
+/*lap para font-size*/
+#lap-para{font-size: 40px;top: -1rem}
+
+
+
+
+
+
+
+
+/* large digits, separators and split digits - for bigger clock*/
+.time-el{position: relative;   background-color: rgba(19, 43, 89,0); color: black; font-size: 170px; font-family: 'myfontregular', sans-serif; letter-spacing:0.1rem; margin-top: 0px; text-shadow: 1px 2px 4px rgb(3, 3, 3);}
+
+
+
+
+
+@keyframes pause {
+    0% {opacity: 0;}
+    100% {opacity:1;}
+    
+}
+
+@keyframes flash {
+    0% {opacity: 0;}
+    25% {opacity:0.7;}
+    100% {opacity:1;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.small-time-el-split{width: 80px; height: 50px; background-color: rgba(19, 43, 89,0); color: rgb(230, 147, 23); border-radius: 3px;font-size: 100px; font-family: 'Anton', sans-serif; letter-spacing:2px; text-align: center; margin-top: 2px; text-shadow: 1px 2px 3px rgb(3, 3, 3); background-color: #0C87EF;}
+
+
+
+
+
+/*  START AND RESET BUTTONS */
+#btn-container{position: relative; display:flex;  justify-content: space-around; width: 70%; height: 10vh; margin: auto; margin-top: -10px; background-color: rgba(69, 220, 237, 0); z-index: 1; top: -80px; left: 0vw;  padding: 5px; border-radius: 10px; border: 2px solid white;}
+
+#pause,#start,#reset,#lap,#recall,#lap-clear{background-color: rgb(170, 176, 179);width:14%; aspect-ratio: 1/1; border-style:solid; border-radius:7px; border-width:3px; border-color:black;  color:white; text-transform: uppercase;font-weight:bold; font-size:20px; text-shadow: 2px 2px 2px black;}
+
+/* split second displays for split clock and lap clock*/
+#split-small,#small-split-end{font-size: 50px; color: rgb(0, 0, 0); background-color: none;border-radius: 3px;font-family: 'myfontregular', sans-serif; letter-spacing:2px; text-align: center; margin-top: 2px; text-shadow: 1px 2px 3px rgb(7, 7, 7);}
+
+/* split second display for large clock*/
+#split-large{font-size: 80px; background-color: rgba(19, 43, 89,0); color: black;  font-family: 'myfontregular', sans-serif; letter-spacing:5px; text-align: center; margin-top: 0px; text-shadow: 1px 2px 4px rgb(3, 3, 3);}
+
+
+
+
+
+
+#main-clock-div{position: relative; width: 90%; height:6vh; right: 0; left: -5%; background-color: none;}
+
+
+/* divs containing split and lap paragraphs*/
+#lap-register{ position: relative;  width: 25%;   border-radius: 10px; border-style: solid; border-width: 2px; border-color: black; margin-top: 0px;}
+
+#split-label{ position: relative;  width: 25%;    margin-top: 0px;}
+
+/* making the split para a bit bigger in font*/
+#split-para{font: size 100px;; top: -1rem; font-weight: bold;}
+/* digits giving last recorded lap number */
+#lap-count{font-family: 'myfontregular', sans-serif; text-shadow: 1px 1px 2px rgb(3, 3, 3); font-weight: lighter; font-size: 60px;}
+
+/* remove lap*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* foooter styling  */
+footer{color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem; display: none;}
+
+
+/* footer content container*/
+#content-container{
+    display: flex; margin-bottom: 4rem;
+      width: 90%;   font-weight:bold; font-size:20px; 
+}
+
+/* footer link contaners */
+.footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+
+
+/* link styles */
+footer a{color: white; text-decoration: none; line-height: 2rem;}
+footer a:hover{color: orange; }
+
+/* styles for social media icons*/
+.fa-youtube{color: red; ;}
+.fa-linkedin{color: #0073B1;}
+.fa-facebook{color:#0C87EF ;}
+
+.footer-social{font-size: 20px; margin-left: 2rem;}
+
+/* footer bottom */
+.footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+.footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+
+h3{text-decoration: underline;}
+
+#my-page{ color: white;}
+#my-page-link{ font-size: 27px;}
+
+/* styling for dev icon*/
+#dev-icon{color: rgb(84, 243, 243);}
+
+@media (orientation:portrait){
+    #clock-container{width: 94%; height: 80%;}
+#chronograph-container{height: 50%;}
+#btn-container{width: 80%; margin-top: 10%; border: solid black;}
+#main-clock-div{left: 0;}
+.time-el{font-size: 150px;}
+
+}
