@@ -354,14 +354,14 @@ const shift = () =>{
 if(shiftArray.length > 0){
 
   shiftBtn.style.cssText = 'background-color:white; color:orange;'
-shiftCos.style.cssText = 'background-color:orange; color:white; font-size:15px;'
-shiftTan.style.cssText = 'background-color:orange; color:white; font-size:16px;'
-shiftSin.style.cssText = 'background-color:orange; color:white; font-size:16px;'
-shiftFracDec.style.cssText = 'background-color:orange; color:white;font-size:16px'
+shiftCos.style.cssText = 'background-color:orange; color:white; font-size:35px;'
+shiftTan.style.cssText = 'background-color:orange; color:white; font-size:35px;'
+shiftSin.style.cssText = 'background-color:orange; color:white; font-size:35px;'
+shiftFracDec.style.cssText = 'background-color:orange; color:white;font-size:35px'
 shiftLog.style.cssText = 'background-color:orange; color:white;'
 shiftNcr.style.cssText = 'background-color:orange; color:white;'
 shiftNfact.style.cssText = 'background-color:orange; color:white;'
-shiftPrime.style.cssText = 'background-color:orange; color:white; font-size:20px;'
+shiftPrime.style.cssText = 'background-color:orange; color:white; font-size:35px;'
 shiftNatLog.style.cssText = 'background-color:orange; color:white;'
 shiftFunctions()
 }
