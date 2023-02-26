@@ -1,0 +1,12 @@
+open and close brackets
+on button 
+delete button
+nCr function
+finish fraction to decimal conversion (needs to be toggled)
+logarithm; connect the button and solve the inputs problem. Or maybe that can be done by the shift functions. 
+
+
+
+
+complete. 
+ON button removed ( not needed since, normally, it turns calculator on because calculator was off to save battery energy - doesn't apply here)
