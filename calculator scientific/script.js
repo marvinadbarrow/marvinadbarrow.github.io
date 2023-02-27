@@ -330,6 +330,7 @@ break;
   }
 
 
+
 // toggle between shift and normal functions
 const shiftFunctions = () =>{
 
@@ -343,41 +344,37 @@ const shiftFunctions = () =>{
   shiftPrime.textContent = "%" 
   shiftNatLog.innerHTML = "<sup id='inverse-natural-log'>x</sup>&#8730;" 
   shiftFracDec.innerHTML = "log<sub id='inverse-frac-dec-sup'>a</sub><sup id='inverse-frac-dec'>b</sup>"
+
 }
+
+
+var shiftBtnArr = [shiftCos, shiftTan, shiftSin, shiftFracDec, shiftPrime]
+var shiftBtnNoSizeArr = [shiftLog, shiftNcr, shiftNfact, shiftNatLog, shiftCos, shiftTan, shiftSin, shiftFracDec, shiftPrime]
 
 
 
 
 // change button colours
 const shift = () =>{
-
-if(shiftArray.length > 0){
-
-  shiftBtn.style.cssText = 'background-color:white; color:orange;'
-shiftCos.style.cssText = 'background-color:orange; color:white; font-size:35px;'
-shiftTan.style.cssText = 'background-color:orange; color:white; font-size:35px;'
-shiftSin.style.cssText = 'background-color:orange; color:white; font-size:35px;'
-shiftFracDec.style.cssText = 'background-color:orange; color:white;font-size:35px'
-shiftLog.style.cssText = 'background-color:orange; color:white;'
-shiftNcr.style.cssText = 'background-color:orange; color:white;'
-shiftNfact.style.cssText = 'background-color:orange; color:white;'
-shiftPrime.style.cssText = 'background-color:orange; color:white; font-size:35px;'
-shiftNatLog.style.cssText = 'background-color:orange; color:white;'
-shiftFunctions()
+let length  = shiftArray.length;
+// if a valiue is in the shift array then change colours and sizes, otherwise return to default stylings
+switch(length){
+case 0:
+  shiftBtnNoSizeArr.forEach(element =>{ // change back to normal colors
+    element.style.cssText = 'background-color:white; color:black;'})
+    normalFunctions()
+  break;
+  default:
+    shiftBtnArr.forEach(element =>{ // change colors and font size
+      element.style.cssText = 'background-color:orange; color:white; font-size:35px;'
+    })
+    
+    shiftBtnNoSizeArr.forEach(element =>{ // change just colors
+      element.style.cssText = 'background-color:orange; color:white;'
+    })
+    shiftFunctions()
 }
-else{
-shiftCos.style.cssText = 'background-color:white; color:black;'
-shiftTan.style.cssText = 'background-color:white; color:black;'
-shiftSin.style.cssText = 'background-color:white; color:black;'
-shiftFracDec.style.cssText = 'background-color:white; color:black;'
-shiftLog.style.cssText = 'background-color:white; color:black;'
-shiftNcr.style.cssText = 'background-color:white; color:black;'
-shiftNfact.style.cssText = 'background-color:white; color:black;'
-shiftPrime.style.cssText = 'background-color:white; color:black;'
-shiftNatLog.style.cssText = 'background-color:white; color:black;'
-shiftBtn.style.cssText = 'background-color:yellow; color:black;'
-normalFunctions()
-}
+
 }
 
 

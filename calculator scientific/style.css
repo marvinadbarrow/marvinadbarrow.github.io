@@ -1,6 +1,7 @@
 body{background-image: url('./images/blackboard.png');
     width: 100%;
     height: 100%;
+    padding-top: 3%;
 }
 
 #application-container{
@@ -23,11 +24,11 @@ padding-top: 2% 0% 2% 0%;
     margin: auto;
     margin-top: 2%;
     display:grid; 
-grid-template-columns:124px 124px 124px 124px 124px;
+grid-template-columns:repeat(5, 5fr);
 grid-gap:10px;
-grid-template-rows:124px 124px 124px 124px 124px 124px 124px 124px;
-width:fit-content;
-height: 90%;
+grid-template-rows:repeat(8, 8fr);
+width:90%;
+height: 98%;
 padding: 5px;
 grid-template-areas:
 
@@ -40,7 +41,7 @@ grid-template-areas:
 "nCr nfact PI LN prime"
 "SHIFT SHIFT arrow-left arrow-right equals"
 ;
-background-color: rgba(124, 124, 227, 0);
+background-color: rgb(124, 124, 227);
 }
 
 #calculator-container{ position: relative; background-color: white; padding:20px;margin:auto;margin-top:20px;
@@ -112,9 +113,18 @@ background-color: rgb(225, 226, 230);}
 #arrow-right{grid-area:arrow-right;}
 
 
+/* shift operations stylings - activated by JAVASCRIPT */
+.shift-styles{
+font-size: 35px;
+color: white;
+background-color: orange;
+}
 
-
-
+/* operations stylings when shift button is pressed to return regular functions - activated by JAVASCRIPT */
+.unshift-styles{
+    background-color:white; color:black;
+    font-size: 25px;
+}
 
 
 
@@ -243,10 +253,10 @@ sup{font-size: 15px;}
             margin: auto;
             margin-top: 0%;
             display:grid; 
-        grid-template-columns:70px 70px 70px 70px 70px 70px 70px 70px 70px 70px;
+        grid-template-columns:repeat(10, 10fr);
         grid-gap:10px;
-        grid-template-rows:70px 70px 70px 70px;
-        width:f90();
+        grid-template-rows:repeat(4, 4fr);
+        width:88%;
         height: 90%;
         padding: 5px;
         grid-template-areas:
