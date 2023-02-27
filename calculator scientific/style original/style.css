@@ -1,0 +1,222 @@
+body{background-image: url('./images/blackboard.png');
+    width: 100%;
+    height: 100%;
+}
+
+#application-container{
+    position: relative;
+width: 100%;
+height: 1400px;
+background-color: rgba(172, 255, 47, 0) ;
+padding-top: 2% 0% 2% 0%;
+
+}
+
+#calculator-body{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#calculator{
+    position: relative;
+    margin: auto;
+    margin-top: 2%;
+    display:grid; 
+grid-template-columns:124px 124px 124px 124px 124px;
+grid-gap:10px;
+grid-template-rows:124px 124px 124px 124px 124px 124px 124px 124px;
+width:fit-content;
+height: 90%;
+padding: 5px;
+grid-template-areas:
+
+"seven eight nine DEL AC"
+"four five six times divide"
+"one two three plus minus"
+"zero dot xpow2 xpowhalf xpowneg1"
+"xpow3 xpowa xpownega epowx epownegx"
+"sin cos tang log frac-sec"
+"nCr nfact PI LN prime"
+"SHIFT SHIFT arrow-left arrow-right equals"
+;
+background-color: rgba(124, 124, 227, 0);
+}
+
+#calculator-container{ position: relative; background-color: white; padding:20px;margin:auto;margin-top:20px;
+display:flex; flex-direction:column;justify-content: space-between; border-style:solid; border-width:3px; border-color:black; width:72%; height: 100%; border-radius:20px; margin-bottom:100px; box-shadow: 2px 2px 7px rgb(248, 245, 245);
+background-color: rgb(225, 226, 230);}
+
+
+
+/* row one */
+#seven{ grid-area:seven;}
+#eight{ grid-area:eight;}
+#nine{ grid-area:nine;}
+#ac{grid-area:AC;}
+#on{grid-area:ON;}
+
+/* row two */
+#four{ grid-area:four;}
+#five{ grid-area:five;}
+#six{ grid-area:six;}
+#multiplication{grid-area:times;}
+#division{grid-area:divide;}
+
+
+/* row three */
+#one{ grid-area:one;}
+#two{ grid-area:two;}
+#three{ grid-area:three;}
+#addition{grid-area:plus;}
+#subtraction{grid-area:minus;}
+
+/* row four */
+#zero{ grid-area:zero;}
+#dot{grid-area:dot;}
+#xpow2{grid-area:xpow2;}
+#equals{grid-area:equals;}
+#xpowneg1{grid-area:xpowneg1;}
+
+
+/* row five */
+#xpow3{ grid-area:xpow3;}
+#xpowa{ grid-area:xpowa;}
+#xpownega{ grid-area:xpownega;}
+#epowx{ grid-area:epowx;}
+#epownegx{ grid-area:epownegx;}
+
+
+/* row six */
+#sin{grid-area:sin;}
+#cos{grid-area:cos;}
+#tan{grid-area:tang;}
+#log{grid-area:log;}
+#frac-sec{grid-area:frac-sec;}
+
+/* row seven */
+#ncr{grid-area:nCr;}
+#nfact{grid-area:nfact;}
+#pi{grid-area:PI;}
+#shift{grid-area:SHIFT;}
+
+
+/* row eight */
+
+
+
+#del{grid-area:DEL;}
+#natural-log{grid-area:LN;}
+#prime{grid-area:prime;}
+#arrow-help{grid-area:arrow-left;}
+#arrow-right{grid-area:arrow-right;}
+
+
+
+
+
+
+
+
+/* button styling */
+button{border-style:  hidden; box-shadow: 2px 2px 6px rgb(8, 8, 8); font-size: 40px; border-radius: 10px;}
+
+/* below will make the buttons look as though they are pushed down when clicked on by the mouse pointer */
+button:active{width:122px; height: 122px; box-shadow: 1px 1px 2px black;}
+#addition:active{width: 122px; height:122px;}
+
+
+.number{background-color:grey; color:white; }
+.operation{background-color:grey; color:white; }
+.exponents{background-color:rgb(94, 165, 231); color:white; }
+.clear-btn{background-color:yellow; }
+.function{background-color:yellow; }
+.function:active{height: 122px; width: 250px;}
+
+
+.on-btn{background-color:rgb(215, 142, 218); }
+.purple{background-color:rgb(245, 160, 219); color:white;  font-weight:bold; font-size: 50px;}
+.sci-op{background-color:white; color:black; }
+#prime{background-color: rgb(255, 255, 255); font-size: 35px;}
+#off{background-color:rgb(245, 160, 219); color:white;  font-weight:bold; font-size: 40px;}
+
+
+#display-screen{
+text-align:right;
+font-size:65px;
+width:295px; height:75px; 
+}
+
+#display-el{ height:50px; font-size: 35px; background-color: hsl(217deg, 37%, 89%); margin-bottom:10px; text-align:right;}
+
+sup{font-size: 15px;}
+
+
+
+.display-small{background-color:white;grid-column: 1/3; grid-row:1/2; border-color:grey; border-width:2px; border-style:solid; border-radius:4px; font-size: 30px; font-weight:bold; margin:4px;text-align: right; margin-bottom: 2%;}
+
+.display-large{background-color:white; grid-column: 1/3; grid-row:2/4; border-radius:5px; border-style:solid; font-size: 150px; font-weight:bold;border-color:black; text-align: right; align-self:end; border-width: 2px; margin-bottom: 2%}
+
+.display-grid{
+    position: relative;
+    width:84%; height:30%; 
+    background-color:rgba(143, 228, 217, 0.76);
+     margin:auto;
+    border-style:solid;
+    border-color:black;
+    border-width: 2px;
+    border-radius:7px;
+    display:grid;
+    grid-template-columns: 160px;
+    grid-template-rows:33% 33% 33%;
+    grid-gap: 5px 5px;
+    padding: 5px;
+    box-shadow:    inset 0 0 3px #4f3670;
+    }
+
+
+
+
+
+
+
+
+
+
+     /* foooter styling  */
+     footer{color: white; background-color: rgb(43, 41, 41); padding: 2rem 2rem; position: absolute; bottom: 0; width: 92vw; height: 20vh; display: none;}
+
+
+     /* footer content container*/
+     #content-container{
+         display: flex; margin-bottom: 4rem;
+           width: 90%;   font-weight:bold; font-size:20px; 
+     }
+     
+     /* footer link contaners */
+     .footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+     
+     
+     /* link styles */
+     footer a{color: white; text-decoration: none; line-height: 2rem;}
+     footer a:hover{color: orange; }
+     
+     /* styles for social media icons*/
+     .fa-youtube{color: red; ;}
+     .fa-linkedin{color: #0073B1;}
+     .fa-facebook{color:#0C87EF ;}
+     
+     .footer-social{font-size: 20px; margin-left: 2rem;}
+     
+     /* footer bottom */
+     .footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+     .footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+     
+     h3{text-decoration: underline;}
+     
+     #my-page{ color: white;}
+     #my-page-link{ font-size: 27px;}
+     
+     /* styling for dev icon*/
+     #dev-icon{color: rgb(84, 243, 243);}
+     
