@@ -221,16 +221,32 @@ sup{font-size: 15px;}
      #dev-icon{color: rgb(84, 243, 243);}
      
 
+
+
+
+
+
+
+
+
+
+
      @media (orientation:landscape){
+        #calculator-container{ width:65%; height: 33%; }
+        .display-grid{width:90%; height:30%; }
+        .display-small{ font-size: 30px;margin-bottom: 2%; height: 30px;}
+        .display-large{font-size: 60px; margin-bottom: 2%; height: 58px;}
+
+        
         #calculator{
             position: relative;
             margin: auto;
-            margin-top: 2%;
+            margin-top: 0%;
             display:grid; 
-        grid-template-columns:80px 80px 80px 80px 80px 80px 80px 80px 80px;
+        grid-template-columns:70px 70px 70px 70px 70px 70px 70px 70px 70px 70px;
         grid-gap:10px;
-        grid-template-rows:80px 80px 80px 80px;
-        width:fit-content;
+        grid-template-rows:70px 70px 70px 70px;
+        width:f90();
         height: 90%;
         padding: 5px;
         grid-template-areas:
@@ -238,31 +254,11 @@ sup{font-size: 15px;}
         "seven eight nine zero dot xpow3 xpowa xpownega epowx epownegx"
         "four five six times divide sin cos tang log frac-sec"
         "one two three plus minus nCr nfact PI LN prime"
-        "DEL AC xpow2 xpowhalf xpowneg1 SHIFT SHIFT arrow-left arrow-right equals"
-
-        ;
+        "DEL AC xpow2 xpowhalf xpowneg1 SHIFT SHIFT arrow-left arrow-right equals";
         background-color: rgba(124, 124, 227, 0);
         }
 
-        #calculator-container{ width:80%; height: 40%; }
-
-        .display-small{ font-size: 30px; font-weight:bold; margin:4px;text-align: right; margin-bottom: 2%;}
-
-        .display-large{font-size: 70px; font-weight:bold;border-color:black; text-align: right; align-self:end; border-width: 2px; margin-bottom: 2%}
-
-        .display-grid{
-            position: relative;
-            width:90%; height:50%; 
-            background-color:rgba(143, 228, 217, 0.76);
-      
-            }
-        
-            button{font-size: 30px; }
-
-            #calculator{
-        
-            width:90%;
-            }
-
-
+button{font-size: 25px;}
+.purple{ font-size: 30px;}
+#prime{ font-size: 20px;}
      }
