@@ -41,7 +41,8 @@ grid-template-areas:
 "nCr nfact PI LN prime"
 "SHIFT SHIFT arrow-left arrow-right equals"
 ;
-background-color: rgb(124, 124, 227);
+background-color: rgba(143, 143, 242, 0.371);
+border-radius: 10px;
 }
 
 #calculator-container{ position: relative; background-color: white; padding:20px;margin:auto;margin-top:20px;
@@ -140,8 +141,8 @@ button:active{width:122px; height: 122px; box-shadow: 1px 1px 2px black;}
 .operation{background-color:grey; color:white; }
 .exponents{background-color:rgb(94, 165, 231); color:white; }
 .clear-btn{background-color:yellow; }
-.function{background-color:yellow; }
-.function:active{height: 122px; width: 250px;}
+.function, .function-2{background-color:yellow; }
+.function:active{height: 123px; width: 250px;}
 
 
 .on-btn{background-color:rgb(215, 142, 218); }
@@ -265,10 +266,11 @@ sup{font-size: 15px;}
         "four five six times divide sin cos tang log frac-sec"
         "one two three plus minus nCr nfact PI LN prime"
         "DEL AC xpow2 xpowhalf xpowneg1 SHIFT SHIFT arrow-left arrow-right equals";
-        background-color: rgba(124, 124, 227, 0);
+        background-color: rgba(143, 143, 242, 0.371);
+        border-radius: 10px;
         }
 
-button{font-size: 25px;}
+button{font-size: 20px;}
 .purple{ font-size: 30px;}
 #prime{ font-size: 20px;}
      }
