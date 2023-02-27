@@ -133,8 +133,8 @@ background-color: orange;
 button{border-style:  hidden; box-shadow: 2px 2px 6px rgb(8, 8, 8); font-size: 40px; border-radius: 10px;}
 
 /* below will make the buttons look as though they are pushed down when clicked on by the mouse pointer */
-button:active{width:122px; height: 122px; box-shadow: 1px 1px 2px black;}
-#addition:active{width: 122px; height:122px;}
+button:active{outline: white 4px solid; outline-offset: 2px;}
+
 
 
 .number{background-color:grey; color:white; }
@@ -142,7 +142,7 @@ button:active{width:122px; height: 122px; box-shadow: 1px 1px 2px black;}
 .exponents{background-color:rgb(94, 165, 231); color:white; }
 .clear-btn{background-color:yellow; }
 .function, .function-2{background-color:yellow; }
-.function:active{height: 123px; width: 250px;}
+.function:active{outline: white 4px solid; outline-offset: 2px;}
 
 
 .on-btn{background-color:rgb(215, 142, 218); }
