@@ -1,0 +1,183 @@
+
+
+
+
+body{width: 100%; height: 100%; background-image: url(./image\ app\ body\ background.png); }
+
+#heading-container{width: fit-content;
+  padding: 10px; margin: auto; 
+  display: block; 
+  background-color: rgba(205, 75, 75, 0.397);
+   border-radius: 20px;
+  margin-top: 2%;
+  outline: 2px rgb(200, 199, 199) solid;
+outline-offset: 3px;
+color: yellow;
+text-transform: capitalize;
+font-weight: bold;
+  }
+
+
+
+h2{font-weight: bold; }
+
+#clock-container{
+width: 80%;
+padding-top: 0px;
+padding-bottom: 40px;
+background-color: rgba(245, 246, 248, 0);
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+border-radius: 20px;
+margin: auto;
+margin-top: 10%;
+
+
+}
+
+
+#main-container-seconds,#main-container-minutes,#main-container-hours{
+position: relative; width:28%; margin: auto; margin: 0;
+display: flex; flex-direction: row; justify-content: space-around; background-color: rgba(21, 21, 21, 0.627); 
+padding: 10px;
+border-radius: 15px;
+margin-top: 5%;
+outline: 2px rgb(174, 174, 174) solid;
+outline-offset: 3px;
+}
+
+#seconds-container,#tens-container{ margin: 0;
+ width:  fit-content; border: 2px solid rgba(0, 0, 0, 0); border-radius: 5px; background-color: rgba(0,74,127,0);  
+}
+
+.time-container{height: 150px; width: 150px; background: rgba(255, 166, 0, 0);perspective: 600px; }
+#back-container-secs-outer,#back-container-secs-inner,#back-container-tens-outer,#back-container-tens-inner{ position: absolute;}
+
+#back-container-mins-outer,#back-container-mins-inner,#back-container-mins-tens-outer,#back-container-mins-tens-inner{ position: absolute;}
+
+#back-container-hrs-outer,#back-container-hrs-inner,#back-container-hrs-tens-outer,#back-container-hrs-tens-inner{ position: absolute;}
+
+
+
+.seconds-unit-faces, .seconds-tens-faces, .minutes-unit-faces, .minutes-tens-faces, .hours-unit-faces, .hours-tens-faces{position: absolute; width: 150px; height: 150px; background-color: red; margin-bottom: 5px; border-radius: 10px;}
+
+
+
+/* front outer div rotations for seconds, hours and minutes (both single and double digit display - side by side)  */
+#front-outer-secs, #front-outer-tens{background-color: rgba(172, 255, 47, 0); 
+  transform: rotateX( 0deg );}
+
+  #front-outer-mins, #front-outer-mins-tens{background-color: rgba(172, 255, 47, 0); 
+    transform: rotateX( 0deg );}
+
+
+    #front-outer-hrs, #front-outer-hrs-tens{background-color: rgba(172, 255, 47, 0); 
+      transform: rotateX( 0deg );}
+  
+
+
+
+
+/* front inner div rotations for seconds, hours and minutes  */
+#front-inner-secs, #front-inner-tens{background-color: rgba(47, 175, 255, 0);
+   transform: rotateX( 90deg );}
+
+   #front-inner-mins, #front-inner-mins-tens{background-color: rgba(47, 175, 255, 0);
+    transform: rotateX( 90deg );}
+
+
+    #front-inner-hrs, #front-inner-hrs-tens{background-color: rgba(47, 175, 255, 0);
+      transform: rotateX( 90deg );}
+
+
+
+
+/* front inner and outer div rotations for seconds, hours and minutes  */
+#back-outer-secs, #back-inner-secs, #back-outer-tens, #back-inner-tens{background-color: rgba(251, 177, 17, 0); 
+transform: rotateX( 0deg ); 
+}
+
+#back-outer-mins, #back-inner-mins, #back-outer-mins-tens, #back-inner-mins-tens{background-color: rgba(251, 177, 17, 0); 
+  transform: rotateX( 0deg ); 
+  }
+
+  #back-outer-hrs, #back-inner-hrs, #back-outer-hrs-tens, #back-inner-hrs-tens{background-color: rgba(251, 177, 17, 0); 
+    transform: rotateX( 0deg ); 
+    }
+
+
+@keyframes rotateTop{
+  from{transform: rotateX(0deg);}
+  to{transform: rotateX(-90deg);}
+
+  }
+
+@keyframes rotateBottom{
+  from{transform: rotateX(90deg);}
+  to{transform: rotateX(0deg);}
+
+  }
+
+
+@keyframes reverseTop{
+  from{transform: rotateX(-90deg);}
+  to{transform: rotateX(0deg);}
+
+}
+
+@keyframes reverseBottom{
+  from{transform: rotateX(0deg);}
+  to{transform: rotateX(90deg);}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* foooter styling  */
+footer{display: none; color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem; display: none;}
+
+
+/* footer content container*/
+#content-container{
+    display: flex; margin-bottom: 4rem;
+      width: 90%;   font-weight:bold; font-size:20px; 
+}
+
+/* footer link contaners */
+.footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+
+
+/* link styles */
+footer a{color: white; text-decoration: none; line-height: 2rem;}
+footer a:hover{color: orange; }
+
+/* styles for social media icons*/
+.fa-youtube{color: red; ;}
+.fa-linkedin{color: #0073B1;}
+.fa-facebook{color:#0C87EF ;}
+
+.footer-social{font-size: 20px; margin-left: 2rem;}
+
+/* footer bottom */
+.footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+.footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+
+h3{text-decoration: underline;}
+
+#my-page{ color: white;}
+#my-page-link{ font-size: 27px;}
+
+/* styling for dev icon*/
+#dev-icon{color: rgb(84, 243, 243);}
+
