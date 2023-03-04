@@ -1,0 +1,13 @@
+Rectangular numbers styling
+
+have each set of four containers front inner and outer, back inner and outer, contained in just one separate element, seconds, seconds tens, etc. 
+
+each of these container the elements that will have the background image of the top or bottom numbers. 
+
+style the main container with an aspect ratio of 3/2, and everything else within it will have a width of just under a half of the main container and a height of 100% of the main container - EACH MAIN CONTAINER HOLDS BOTH MEASURE AND TENS OF MEASURE - When they are resized, the cards within them will automatically be resized themselves. 
+
+dependent cards - position relative -  container is shaped as same size of flaps 45.8% of main container width, and 100% height of main container
+45.8/100 is the same ratio as the designed card (27.5/60)
+
+Then nested elements (position-absolute); rotation container, which holds the div that will display the background image, and dependent faces which is the div displaying the background, will have width and lengths of 100% to completely fill the dependent cards container which they are within. 
+

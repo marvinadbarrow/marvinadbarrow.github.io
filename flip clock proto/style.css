@@ -2,7 +2,7 @@
 
 
 
-body{width: 100%; height: 100%; background-image: url(./image\ app\ body\ background.png); }
+body{width: 100vw; height: 100vh; background-image: url(./image\ app\ body\ background.png); }
 
 #heading-container{width: fit-content;
   padding: 10px; margin: auto; 
@@ -23,7 +23,7 @@ h2{font-weight: bold; }
 
 
 #main-container{
-position: relative; width: 25%; height: fit-content; margin: auto;
+position: relative; width: 30%; aspect-ratio: 3/2; margin: auto; 
 display: flex; flex-direction: column; background-color: rgba(24, 118, 185, 0.627);; flex-direction: row; justify-content: space-around;
 padding: 20px;
 border-radius: 15px;
@@ -32,22 +32,13 @@ outline: 2px white solid;
 outline-offset: 3px;
 }
 
-#dependent-cards-container{
- width: 24%; height: fit-content; border: 2px solid rgba(0, 0, 0, 0); border-radius: 5px; background-color: rgba(0,74,127,0);  
+#dependent-cards-container{ position: relative; margin: 0px;
+ width: 45.8%; height:100%; border: 2px solid rgba(0, 0, 0, 0); border-radius: 5px; background-color: rgba(72, 127, 0, 0.841);  
 }
 
-#front-container-front{height: 200px; width: 200px; background: rgba(255, 166, 0, 0);     perspective: 600px;}
+.rotation-container{height: 100%; width: 100%; background: rgba(255, 166, 0, 0); position: absolute;  perspective: 1000px;}
 
-#front-container-back{height: 200px; width: 200px; background: rgba(255, 166, 0, 0);      perspective: 600px;}
-
-#back-container-back{height: 200px; width: 200px; background: rgba(0, 255, 89, 0); position: absolute;  perspective: 600px;}
-
-#back-container-back{height: 200px; width: 200px; background: rgba(0, 255, 89, 0); position: absolute;  perspective: 600px;}
-
-button{font-size: 40px; background-color: rgba(127, 127, 228, 0.769); color: white; border-radius: 10px; border: 2px solid white; display: none;}
-
-
-.dependent-faces{position: absolute; width: 200px; height: 200px; background-color: red; margin-bottom: 5px; border-radius: 10px;}
+.dependent-faces{position: absolute; width: 100%; height: 100%; background-color: red; margin-bottom: 5px; border-radius: 10px;}
 
 
 
@@ -55,24 +46,28 @@ button{font-size: 40px; background-color: rgba(127, 127, 228, 0.769); color: whi
 #front-front-el{background-color: rgba(172, 255, 47, 0); 
   transform: rotateX( 0deg );
 background-image: url(./0-top.png);
+background-size: 100% 100%;
 
 }
 
 #front-back-el{background-color: rgba(47, 175, 255, 0);
    transform: rotateX( 90deg );
    background-image: url(./2-bottom.png);
+   background-size: 100% 100%;
   
   }
 
 #back-back-el{background-color: rgba(251, 177, 17, 0); 
 transform: rotateX( 0deg ); 
 background-image: url(./0-bottom.png);
+background-size: 100% 100%;
 
 }
 
 #back-front-el{background-color: rgba(248, 47, 255, 0); 
 transform: rotateX( 0deg ); 
 background-image: url(./2-top.png);
+background-size: 100% 100%;
 
 }
 
