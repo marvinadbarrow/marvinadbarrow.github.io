@@ -1,0 +1,178 @@
+
+
+
+
+body{width: 100vw; height: 100vh; background-image: url(./image\ app\ body\ background.png); }
+
+
+
+#clock-container{width: 60%; height: fit-content; margin: auto; margin-top: 7%; display: flex; flex-direction: row; background-color: rgb(112, 111, 111); padding: 2%; border-radius: 15px;
+box-shadow: 2px 2px 4px black;
+}
+
+
+.main-containers{
+  position: relative; width: 30%; aspect-ratio: 3/2; margin: auto; 
+display: flex; background-color: rgba(24, 118, 185, 0);; flex-direction: row; justify-content: space-around;
+padding: 5px;
+border-radius: 15px;
+margin-top: 0;
+outline: 2px rgba(255, 255, 255, 0) solid;
+outline-offset: 3px;
+}
+
+.measures{ position: relative; margin: 0px;
+  width: 45.8%; height:100%; border: 2px solid rgba(215, 127, 127, 0); border-radius: 5px; background-color: rgba(72, 127, 0, 0);}
+
+/* these are containers that hold the 4 flaps; the two stationary back flaps, and the two rotating front  */
+.time-container{height: 100%; width: 100%; background: rgba(255, 166, 0, 0); position: absolute;  perspective: 1000px; }
+
+
+.faces{position: absolute; width: 100%; height: 100%; background-color: rgba(255, 0, 0, 0); margin-bottom: 5px; border-radius: 10px; box-shadow: 0.3px 0.3px 8px rgb(78, 78, 78);}
+
+
+
+
+
+
+/* front outer div rotations for seconds, hours and minutes (both single and double digit display - side by side)  */
+#front-outer-secs, #front-outer-tens{background-color: rgba(255, 116, 47, 0); 
+  transform: rotateX( 0deg );
+  background-image: url(./0-top.png);
+  background-size: 100% 100%;
+}
+
+  #front-outer-mins, #front-outer-mins-tens{background-color: rgba(255, 116, 47, 0); 
+    transform: rotateX( 0deg );
+    background-image: url(./0-top.png);
+    background-size: 100% 100%;
+  }
+
+
+    #front-outer-hrs, #front-outer-hrs-tens{background-color: rgba(255, 116, 47, 0); 
+      transform: rotateX( 0deg );
+      background-image: url(./0-top.png);
+      background-size: 100% 100%;
+    }
+  
+
+
+
+
+/* front inner div rotations for seconds, hours and minutes  */
+#front-inner-secs, #front-inner-tens{background-color: rgba(47, 175, 255, 0);
+   transform: rotateX( 90deg );
+   background-image: url();
+   background-size: 100% 100%;
+  }
+
+   #front-inner-mins, #front-inner-mins-tens{background-color: rgba(47, 175, 255, 0);
+    transform: rotateX( 90deg );
+    background-image: url();
+    background-size: 100% 100%;
+  }
+
+
+    #front-inner-hrs, #front-inner-hrs-tens{background-color: rgba(47, 175, 255, 0);
+      transform: rotateX( 90deg );
+      background-image: url();
+      background-size: 100% 100%;
+    }
+
+
+
+
+/* front inner and outer div rotations for seconds, hours and minutes  */
+#back-outer-secs, #back-inner-secs, #back-outer-tens, #back-inner-tens{background-color: rgba(251, 177, 17, 0); 
+transform: rotateX( 0deg );
+background-image: url(./0-bottom.png); 
+background-size: 100% 100%;
+}
+
+#back-outer-mins, #back-inner-mins, #back-outer-mins-tens, #back-inner-mins-tens{background-color: rgba(251, 177, 17, 0); 
+  transform: rotateX( 0deg );
+  background-image: url(./0-bottom.png); 
+  background-size: 100% 100%;
+  }
+
+  #back-outer-hrs, #back-inner-hrs, #back-outer-hrs-tens, #back-inner-hrs-tens{background-color: rgba(251, 177, 17, 0); 
+    transform: rotateX( 0deg );
+    background-image: url(./0-bottom.png); 
+    background-size: 100% 100%;
+    }
+
+
+@keyframes rotateTop{
+  from{transform: rotateX(0deg);}
+  to{transform: rotateX(-90deg);}
+
+  }
+
+@keyframes rotateBottom{
+  from{transform: rotateX(90deg);}
+  to{transform: rotateX(0deg);}
+
+  }
+
+
+@keyframes reverseTop{
+  from{transform: rotateX(-90deg);}
+  to{transform: rotateX(0deg);}
+
+}
+
+@keyframes reverseBottom{
+  from{transform: rotateX(0deg);}
+  to{transform: rotateX(90deg);}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* foooter styling  */
+footer{display: none; color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem; display: none;}
+
+
+/* footer content container*/
+#content-container{
+    display: flex; margin-bottom: 4rem;
+      width: 90%;   font-weight:bold; font-size:20px; 
+}
+
+/* footer link contaners */
+.footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+
+
+/* link styles */
+footer a{color: white; text-decoration: none; line-height: 2rem;}
+footer a:hover{color: orange; }
+
+/* styles for social media icons*/
+.fa-youtube{color: red; ;}
+.fa-linkedin{color: #0073B1;}
+.fa-facebook{color:#0C87EF ;}
+
+.footer-social{font-size: 20px; margin-left: 2rem;}
+
+/* footer bottom */
+.footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+.footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+
+h3{text-decoration: underline;}
+
+#my-page{ color: white;}
+#my-page-link{ font-size: 27px;}
+
+/* styling for dev icon*/
+#dev-icon{color: rgb(84, 243, 243);}
+

@@ -1,6 +1,6 @@
 Rectangular numbers styling
 
-have each set of four containers front inner and outer, back inner and outer, contained in just one separate element, seconds, seconds tens, etc. 
+have each set of four containers front inner and outer, back inner and outer, contained in just one separate element, seconds, seconds tens, etc. Each of the separate element will be a pair contained in the 'main' container, i.e. seconds-main, minutes-main, hours-main. 
 
 each of these container the elements that will have the background image of the top or bottom numbers. 
 
@@ -11,3 +11,6 @@ dependent cards - position relative -  container is shaped as same size of flaps
 
 Then nested elements (position-absolute); rotation container, which holds the div that will display the background image, and dependent faces which is the div displaying the background, will have width and lengths of 100% to completely fill the dependent cards container which they are within. 
 
+-----------------------------------------------------------------------------------------------------------------
+
+This main container is equivalent to the tens and units container for each time measure
