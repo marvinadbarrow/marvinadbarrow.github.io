@@ -1,0 +1,175 @@
+
+
+// objects for all six measures; seconds, tens of seconds, minutes, tens of minutes, hours, tens of hours
+
+const secsObj = {
+
+  front:{ top:1, bottom:2 },
+  back:{ top:2, bottom:1 }
+}
+
+const secsTensObj = {
+
+  front:{ top:1, bottom:2 },
+  back:{ top:2, bottom:1 }
+}
+
+const minsObj = {
+
+  front:{ top:1, bottom:2 },
+  back:{ top:2, bottom:1 }
+}
+
+const minsTensObj = {
+
+  front:{ top:1, bottom:2 },
+  back:{ top:2, bottom:1 }
+}
+
+const hrsObj = {
+
+  front:{ top:1, bottom:2 },
+  back:{ top:2, bottom:1 }
+}
+
+const hrsTensObj = {
+
+  front:{ top:1, bottom:2 },
+  back:{ top:2, bottom:1 }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let currentSec;
+let currentSecTens;
+let currentMin;
+let currentMinTens;
+let currentHour;
+let currentHourTens;
+
+let nextSec;
+let nextSecTens;
+let nextMin;
+let nextMinTens;
+let nextHour;
+let nextHourTens;
+
+
+// update minutes object
+const updateHourObj = (currentHour, currentHourTens, nextHour, nextHourTens) =>{
+  hrsObj.front.top = currentHour
+  hrsObj.front.bottom = nextHour
+  hrsObj.back.top = nextHour
+  hrsObj.back.bottom = currentHour
+
+
+  hrsTensObj.front.top = currentHourTens
+  hrsTensObj.front.bottom = nextHourTens
+  hrsTensObj.back.top = nextHourTens
+  hrsTensObj.back.bottom = currentHourTens
+  console.log(hrsTensObj.front.top, hrsTensObj.back.bottom, hrsTensObj.front.bottom, hrsTensObj.back.top)
+}
+
+
+// update seconds object
+const updateMinObj = (currentMin, currentMinTens, nextMin, nextMinTens) =>{
+  minsObj.front.top = currentMin
+  minsObj.front.bottom = nextMin
+  minsObj.back.top = nextMin
+  minsObj.back.bottom = currentMin
+
+
+  minsTensObj.front.top = currentMinTens
+  minsTensObj.front.bottom = nextMinTens
+  minsTensObj.back.top = nextMinTens
+  minsTensObj.back.bottom = currentMinTens
+
+}
+
+
+
+
+// update seconds object
+const updateSecObj = (currentSec, currentSecTens, nextSec, nextSecTens) =>{
+  secsObj.front.top = currentSec
+  secsObj.front.bottom = nextSec
+  secsObj.back.top = nextSec
+  secsObj.back.bottom = currentSec
+
+
+
+  secsTensObj.front.top = currentSecTens
+  secsTensObj.front.bottom = nextSecTens
+  secsTensObj.back.top = nextSecTens
+  secsTensObj.back.bottom = currentSecTens
+
+}
+
+
+
+// collecting data for seconds object
+hourDisplayData = (hour) =>{
+  hour -= 1
+  currentHour = hour%10
+  currentHourTens = Math.floor(hour/10)
+  nextHour = (currentHour + 1)%10
+  nextHourTens =  (currentHourTens + 1)%3
+  updateHourObj(currentHour, currentHourTens, nextHour, nextHourTens)
+}
+
+
+
+// collecting data for seconds object
+minDisplayData = (min) =>{
+  currentMin = min%10
+  currentMinTens = Math.floor(min/10)
+  nextMin = (currentMin + 1)%10
+  nextMinTens =  (currentMinTens + 1)%6
+updateMinObj(currentMin, currentMinTens, nextMin, nextMinTens)
+}
+
+
+
+
+// collecting data for seconds object
+secDisplayData = (sec) =>{
+  currentSec = sec%10
+  currentSecTens = Math.floor(sec/10)
+  nextSec = (currentSec + 1)%10
+  nextSecTens =  (currentSecTens + 1)%6
+  updateSecObj(currentSec, currentSecTens, nextSec, nextSecTens)
+
+}
+
+
+
+
+this appears inside the clock
+
+    secDisplayData(acDateArr[2]) // calculates seconds and tens of seconds
+    minDisplayData(acDateArr[1]) // calculates minutes and tens of minutes
+    hourDisplayData(acDateArr[0]) // calculates hours and tens of hours
+
+
+
