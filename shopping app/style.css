@@ -1,0 +1,117 @@
+*{
+margin:0;
+list-style-type: none;
+text-decoration: none;
+}
+
+
+body{font-family: 'Roboto', sans-serif; }
+
+
+
+body{width: 100%; height: 100%; background-color: rgb(255, 255, 255);}
+header{background-color: grey; color: white; padding: 15px; text-align: center; margin-bottom: 20px;}
+#container-1, #container-2{width: 90%; height: fit-content; margin: auto; padding: 10px; border: 1px solid black; border-radius: 7px; margin-bottom: 20px;}
+
+
+.add-red{
+  color: red;
+}
+#get-item{margin-bottom: 40px;}
+
+
+
+
+
+
+
+/* CODEPEN STYLING*/
+
+
+
+body{font-family: 'Roboto', sans-serif; }
+
+#screen-body{
+  height:420px;
+  width:200px;
+  background-color:rgba(106, 198, 235,0.2);
+  position:relative;
+  padding:8px;
+  border-radius:20px;
+  border: 0.5px solid black;
+
+}
+
+.modal{
+  position:absolute;
+  height:420px;
+  width:200px;
+  background-color:rgba(168, 50, 86,0.2);
+  border: 0.5px solid black;
+  border-radius:20px;
+  text-align:center;
+  
+}
+#verify-items,#submit-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock{display:none;}
+
+#button-holder{height:420px; 
+ width:200px;
+  display:flex; flex-direction:column; justify-content:space-around;
+    align-items:center;
+    border: 0.5px solid black;
+  border-radius:20px;
+   padding:8px;
+}
+
+.buttons{height:30px;
+width:fit-content;
+}
+
+#test-app{
+    height:440px;
+  width:600px;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-around;
+    border: 0.5px solid black;
+  border-radius:20px;
+    padding:8px;
+    margin-top:50px;
+  margin:auto;
+
+}
+
+h2{ width:fit-content;
+  height:fit-content; display:inline;}
+
+.categories{height:50px; width:100%; background-color:white;
+  border-bottom:1px solid rgba(194, 193, 192,0.3);
+  display:flex; flex-direction: row;justify-content:space-between;
+  align-items: center;
+  }
+.categories:hover{background-color:rgb(235, 236, 237);
+cursor:pointer;}
+
+#category-container{
+ width:100%;
+  height:350px;
+      overflow-x: hidden;
+  overflow-y: auto;
+  
+}
+
+img{display:inline-block;
+width:40px;
+height:40px;
+  border: none;
+  margin-top:4px;
+}
+p{
+  display:inline;background-color:rgba(255, 255, 0, 0); height: fit-content;
+  margin-left: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
