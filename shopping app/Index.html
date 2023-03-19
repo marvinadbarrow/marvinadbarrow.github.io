@@ -21,61 +21,10 @@ awesome/4.7.0/css/font-awesome.min.css">
         </head>
         
         <header>
-                  <h1>JQuery Crash Course</h1>
+                  <h1>Shopping Assistant</h1>
         </header>
         <body>
 
-
-
-
-
-
-
-
-<div id="container-2">
-  <h1 class="heading2">Shopping Assistant</h1>
-  <p id="para-2">
- add items
-  </p>
-</div>
-
-<div id="input-container">
-<input id="get-item" type="text" placeholder="add item">
-<button type="reset">clear</button>
-</div>
-
-
-
-
-
- <ul id="list-1">
- </ul>
-
-
- <div id="checkout-send-container">
-  <button type="submit" id="sumbit-items">submit items</button>
-  </div>
-
- <div id="confirm-list-container">
-  <button id="confirm-list">verify shopping list</button>
-  </div>
-
-
-
- <div id="checkout-send-container">
-  <button id="checkout-send">send item(s) to checkout</button>
-  </div>
-
-
-
-  <div id="checkout-go-container">
-    <button id="checkout-go">proceed to checkout</button>
-    </div>
-  
-
-
-
-<!-- CODEPEN SHOPPING ASSISTENT-->
 
 
 
@@ -92,6 +41,7 @@ awesome/4.7.0/css/font-awesome.min.css">
     <button id="btn7" class="buttons">Pay & Deliver</button>
     <button id="btn8" class="buttons">Get delivery</button>
     <button id="btn9" class="buttons">Re-stock</button>
+    <button id="btn10" class="buttons">current submodal</button>
     </div>
     
     
@@ -101,36 +51,39 @@ awesome/4.7.0/css/font-awesome.min.css">
   <div id="screen-body">
   <div class="modal" id="add-items">
     <h2>Add items</h2>
-    <div id="category-container">
-    <div class="categories">
+
+     <!--  MAIN MODAL CONTAINING SUB CATEGORY TITLES-->
+    <div id="category-container" class="main">
+    <div id="fish" class="categories">
       <p class="">Fish</p> <img class="category-img" src="./images/fish 2.png" alt=""></div>
-    <div class="categories">
+    <div id="meat" class="categories">
       <p class="">Meat</p> <img class="category-img" src="./images/meat.png" alt=""></div>
-        <div class="categories">
+        <div id="vegetarian" class="categories">
       <p class="">Vegetarian</p> <img class="category-img" src="./images/vegetarian.png" alt=""></div>
-      <div class="categories">
+      <div id="dairy" class="categories">
       <p class="">Dairy</p> <img class="category-img" src="./images/dairy.png" alt=""></div>
-      <div class="categories">
+      <div id="fruit-veg" class="categories">
       <p class="">Fruit & Veg</p> <img class="category-img" src="./images/fruit and veg.png" alt=""></div>
-      <div class="categories">
+      <div id="bakery" class="categories">
       <p class="">Bakery</p> <img class="category-img" src="./images/bakery.png" alt=""></div>
-      <div class="categories">
+      <div id="pastry" class="categories">
       <p class="">Pastry</p> <img class="category-img" src="./images/pastry.png" alt=""></div>
-        <div class="categories">
+        <div id="hot-drinks" class="categories">
       <p class="">Hot Drinks</p> <img class="category-img" src="./images/hot drinks.png" alt=""></div>
-        <div class="categories">
+        <div id="cold-drinks" class="categories">
       <p class="">Cold Drinks</p> <img class="category-img" src="./images/cold drinks.png" alt=""></div>
-        <div class="categories">
+        <div id="alcohol" class="categories">
       <p class="">Alcohol</p> <img class="category-img" src="./images/alcohol 1.png" alt=""></div>
-        <div class="categories">
+        <div id="toiletries" class="categories">
       <p class="">Toiletries</p> <img class="category-img" src="./images/toiletries.png" alt=""></div>
-        <div class="categories">
+        <div id="cleaning" class="categories">
       <p class="">Cleaning Products</p> <img class="category-img" src="./images/cleaning.png" alt=""></div>
-        <div class="categories">
+        <div id="misc" class="categories">
       <p class="">Misc</p> <img class="category-img" src="./images/misc.png" alt=""></div>
-       </div>
+            </div>
   </div>
 
+       <!--  SECONDARY MODALS -->
   <div class="modal" id="verify-items">
      <h2>Verify items</h2>
     </div>
@@ -156,13 +109,98 @@ awesome/4.7.0/css/font-awesome.min.css">
   <div class="modal" id="re-stock">
       <h2>Re-stock items</h2>
   </div>
+
+
+  <!-- sub items for selection modal-->
+  <div class="modal" id="sub-item-select">
+    <h2>Select</h2>
+    <div id="items-for-selection">
+
+    </div>
+    
+  <div id="item-btns">
+   <button id="back-btn">
+    <img id="back-arrow-img" src="./back arrow.png" alt="">
+   </button>
+    <button id="select-items">send to list</button>
+  </div>
+
+
+</div>
+
     </div>
     
  
 
 
 
+<!--  temporarily hiding category items so I can try to dynamically load images and check boxes from JS
 
+
+
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/pastry.png" alt="">
+      </div>
+     
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/meat.png" alt="">
+      </div>
+
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/cleaning.png" alt="">
+      </div>
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/cold drinks.png" alt="">
+      </div>
+
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/pastry.png" alt="">
+      </div>
+     
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/meat.png" alt="">
+      </div>
+
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/cleaning.png" alt="">
+      </div>
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/cold drinks.png" alt="">
+      </div>
+
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/pastry.png" alt="">
+      </div>
+     
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/meat.png" alt="">
+      </div>
+
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/cleaning.png" alt="">
+      </div>
+      <div class="image-checkbox-holder">
+        <input class="checkbox" type="checkbox">
+        <img class="item-image" src="./images/cold drinks.png" alt="">
+      </div>
+
+
+
+
+
+
+-->
 
 
 

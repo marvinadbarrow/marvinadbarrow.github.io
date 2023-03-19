@@ -30,74 +30,76 @@ Message - ITEMS PURCHASED and they can be stored for retrieval later
 
 ---------------------------------------- SHOPPING CATEGORIES ----------------------------------
 
+Yes specifies images collected
+
 FISH
-fish cakes
-crab sticks
+fish cakes - YES
+crab sticks - YES
 
 
 MEAT
-quiche - meat
-past - meat
-bacon
+quiche - meat - YES
+pasta - meat - YES
+bacon - YES
 
 
 VEGETARIAN
-quiche - vegetarian
-past - vegetarian
+quiche - vegetarian - YES
+pasta - vegetarian - YES
 
 DAIRY
-milk
-cheese
+milk - YES
+cheese - YES
 
 FRUIT & VEG 
-carrots
-corn on tbe cob
-tomatoes
+carrots - YES
+corn on tbe cob - YES
+tomatoes - YES
 
 
 BAKERY
-bread - loaf
-bread - roll
+bread - loaf - YES
+bread - roll - YES
 
 PASTRIES
-cinnamon swirl
-maple pecan
+cinnamon swirl - YES
+maple pecan - YES
 
 
 HOT DRINKS
-coffee
-hot chocolate
-ovaltine
-tea
+coffee - YES
+hot chocolate - YES
+ovaltine - YES 
+tea - YES
 
 
 COLD DRINKS
 coke classic
-dr pepper
-cold latte/cappucino
+dr pepper - YES
+cold latte/cappucino - YES
 
 ALCOHOL
-crabbies - strawberry
+crabbies - strawberry - YES
 
 
 TOILETRIES
-deoderant
-air freshener
-hand wash
-toilet paper
-toothpaste
-toothbrush
-shower gel
+deoderant - YES
+air freshener - YES
+hand wash - YES
+toilet paper - YES
+toothpaste - YES
+toothbrush - YES
+shower gel - YES
 
 
 CLEANING PRODUCTS
-bleach
-surface cleaner spray
-washing powder
-washing up liquid
+bleach - YES
+surface cleaner spray - YES
+washing powder - YES
+washing up liquid - YES
 
 
 MISC
-monkey nuts
-biscuits
-popcorn
+monkey nuts - YES
+biscuits - YES
+popcorn - YES

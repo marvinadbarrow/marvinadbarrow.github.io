@@ -55,14 +55,51 @@ if(e.key == 'Enter'){ // if enter key is struck
 
 
 // modal id's
-var modalArr  = ['add-items','submit-items', 'verify-items', 'get-list', 'add-to-basket', 'checkout', 'complete-purchase','get-delivery', 're-stock']
+var modalArr  = ['add-items','submit-items', 'verify-items', 'get-list', 'add-to-basket', 'checkout', 'complete-purchase','get-delivery', 're-stock', 'sub-item-select']
 
 // button id's
-var buttonsArr = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8','btn9']
+var buttonsArr = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8','btn9', 'btn10']
+
+
+// below, each array, corresponding to one of each of the shopping main categories, contains the image names for items within the name category of the array. When a category is clicked, the images belonging to that category will load into the 'select' popup. 
+var fishArr = ['./images fish/crab sticks.png', './images fish/fish cakes.png']
+var meatArr = ['./images meat/bacon.png', './images meat/quiche meat.png', './images meat/tortelloni meat.png']
+var vegetarianArr = ['./images vegetarian/quiche veg.png', './images vegetarian/tortelloni veg.png']
+var dairyArr = ['./images dairy/milk.png', './images dairy/cheese.png', './images dairy/cold latte.png']
+var fruitVegArr = ['./images fruit & veg/carrots.png', './images fruit & veg/corn cob.png', './images fruit & veg/tomatoes.png']
+var bakeryArr = ['./images bakery/biscuits.png', './images bakery/cookies.png', './images bakery/breadloaf.png', './images bakery/breadroll.png']
+var pastryArr = ['./images pastry/cinnamon swirl.png', './images pastry/maple pecan.png', './images pastry/flapjacks.png']
+var hotDrinksArr = ['./images hot drinks/coffee.png', './images hot drinks/hot chocolate.png', './images hot drinks/ovaltine.png', './images hot drinks/tea.png']
+var coldDrinksArr = ['./images cold drinks/coca cola.png', './images cold drinks/dr pepper.png']
+var AlcoholArr = ['./images alcohol/crabbies.png']
+var toiletriesArr = ['./images toiletries/air freshener.png', './images toiletries/hand wash.png', './images toiletries/lynx.png', './images toiletries/shower gel.png', './images toiletries/toilet tissue.png', './images toiletries/toothbrush.png', './images toiletries/toothpaste.png']
+var cleaningArr = ['./images cleaning/bleach.png', './images cleaning/surface cleaner.png', './images cleaning/washing powder.png', './images cleaning/washing up liquid.png']
+var miscArr = ['./images misc/monkey nuts.png', './images misc/popcorn.png']
+/*
+var categoryArr = ['fish', 'meat', 'vegetarian', 'dairy', 'fruit-veg', 'bakery', 'pastry', 'hot-drinks', 'cold-drinks', 'alcohol', 'toiletries', 'cleaning', 'misc' ]
+
+var categoryImgArr = [fishArr, meatArr, vegetarianArr, dairyArr, fruitVegArr, bakeryArr, pastryArr, hotDrinksArr, coldDrinksArr, AlcoholArr, toiletriesArr, cleaningArr, miscArr]
+*/
+var fishObj = {catName: 'fish', items: fishArr}
+var meatObj = {catName: 'meat', items: meatArr}
+var vegetarianObj = {catName: 'vegetarian', items: vegetarianArr}
+var dairyObj = {catName: 'dairy', items: dairyArr}
+var fruitVegObj = {catName: 'fruit-veg', items: fruitVegArr}
+var bakeryObj = {catName: 'bakery', items: bakeryArr}
+var pastryObj = {catName: 'pastry', items: pastryArr}
+var hotDrinksObj = {catName: 'hot-drinks', items: hotDrinksArr}
+var coldDrinksObj = {catName: 'cold-drinks', items: coldDrinksArr}
+var AlcoholObj = {catName: 'alcohol', items: AlcoholArr}
+var toiletriesObj = {catName: 'toiletries', items: toiletriesArr}
+var cleaningObj = {catName: 'cleaning', items: cleaningArr}
+var miscObj = {catName: 'misc', items: miscArr}
+
+var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, bakeryObj, pastryObj, hotDrinksObj, coldDrinksObj, AlcoholObj, toiletriesObj, cleaningObj, miscObj]
+
+
 
 // display modal corresponding with button press
 document.addEventListener('click', function(e){
-console.log(e.target.id)
  if(buttonsArr.includes(e.target.id)){
     let index = buttonsArr.indexOf(e.target.id)
     console.log(index)
@@ -77,3 +114,76 @@ console.log(e.target.id)
    })
  }
 })
+
+$('#back-btn').click(function(){
+  $('#sub-item-select').hide();
+  $('#add-items').css('display','block')
+// remove all item divs which are children of the 'select' modal
+let selectHolder = document.getElementById('items-for-selection')
+  while (selectHolder.firstChild) {
+    selectHolder.removeChild(selectHolder.firstChild);
+}
+
+})
+
+
+// prepare and load images to display items in selected category
+const loadItems = (array) =>{
+console.log(array)
+
+array.forEach(element =>{
+// holder setup
+let itemDiv = document.createElement('DIV')
+itemDiv.classList.add('image-checkbox-holder')
+
+// img setup
+let itemImg = document.createElement('IMG')
+itemImg.classList.add('item-image')
+itemImg.setAttribute('src', element)
+
+// checkbox setup
+let itemCheck = document.createElement('INPUT')
+itemCheck.setAttribute('type', 'checkbox')
+itemCheck.classList.add('checkbox')
+
+console.log(itemDiv)
+
+
+document.getElementById('items-for-selection').appendChild(itemDiv)
+itemDiv.appendChild(itemCheck)
+itemDiv.appendChild(itemImg)
+$('#sub-item-select').css('display','block');
+$('#add-items').hide()
+
+})
+
+
+}
+
+
+// selecting a category displays category's image names
+$('#screen-body').click(function(e){
+  categoryObjArr.forEach(element =>{ // for each category in the object
+if(document.getElementById(element.catName).contains(e.target)){ // object category name is clicked
+  loadItems(element.items)} 
+ // send item images to be dynamically loaded to 'select' modal
+})
+})
+
+// now to dynamically display images on 'select' modal. 
+
+
+
+
+/*
+
+modalArr.forEach(element =>{
+$(`#${element}`).on('click', function(){
+  $('#sub-item-select').css('display','block');
+  $('#add-items').hide();
+})
+
+})
+
+
+*/

@@ -11,13 +11,6 @@ body{font-family: 'Roboto', sans-serif; }
 
 body{width: 100%; height: 100%; background-color: rgb(255, 255, 255);}
 header{background-color: grey; color: white; padding: 15px; text-align: center; margin-bottom: 20px;}
-#container-1, #container-2{width: 90%; height: fit-content; margin: auto; padding: 10px; border: 1px solid black; border-radius: 7px; margin-bottom: 20px;}
-
-
-.add-red{
-  color: red;
-}
-#get-item{margin-bottom: 40px;}
 
 
 
@@ -52,9 +45,9 @@ body{font-family: 'Roboto', sans-serif; }
   text-align:center;
   
 }
-#verify-items,#submit-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock{display:none;}
+#verify-items,#submit-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#sub-item-select{display:none;}
 
-#button-holder{height:420px; 
+#button-holder{height:480px; 
  width:200px;
   display:flex; flex-direction:column; justify-content:space-around;
     align-items:center;
@@ -68,7 +61,7 @@ width:fit-content;
 }
 
 #test-app{
-    height:440px;
+    height:500px;
   width:600px;
   display:flex;
   flex-direction:row;
@@ -89,6 +82,9 @@ h2{ width:fit-content;
   display:flex; flex-direction: row;justify-content:space-between;
   align-items: center;
   }
+
+
+
 .categories:hover{background-color:rgb(235, 236, 237);
 cursor:pointer;}
 
@@ -96,15 +92,17 @@ cursor:pointer;}
  width:100%;
   height:350px;
       overflow-x: hidden;
-  overflow-y: auto;
-  
-}
+  overflow-y: auto;}
+
+
+
 
 img{display:inline-block;
 width:40px;
 height:40px;
   border: none;
   margin-top:4px;
+  margin-right: 10px;
 }
 p{
   display:inline;background-color:rgba(255, 255, 0, 0); height: fit-content;
@@ -114,4 +112,55 @@ p{
 ::-webkit-scrollbar {
   width: 0px;
 }
+
+
+#items-for-selection{
+width:196px;
+height: 340px;
+
+margin: auto;
+margin-bottom: 10px;
+background-color: white;
+border-radius: 5px;
+display: flex; 
+justify-content: space-around;
+flex-wrap:wrap;
+align-content: flex-start;
+padding-top: 5px;
+overflow-x: hidden;
+overflow-y: auto;
+}
+
+#item-btns{
+  width: 156px; height: fit-content;
+  display: flex; flex-direction: row;
+  justify-content: space-around;
+  
+}
+
+#back-btn{position: relative;
+  height: 25px; width: 25px;
+border-radius: 50%;
+background-color: rgba(160, 160, 247, 0.473);
+border-style: none;
+}
+#back-btn:hover{outline: 2px solid white; outline-offset: 2px;}
+#back-arrow-img{width: 25px; height: 25px; position: absolute; top: -4px; left: 1.5px;}
+
+
+
+
+/* below are the classes that need to be added to elements created in Javascript and dynamically loaded onto the 'select' modal, when an item category is selected on the main page*/
+
+/* sub category items appear here */
+#select-items{height: 30px;}
+
+/* div for holding image and checkbox */
+.image-checkbox-holder{position: relative; width: 80px; height: 80px; border: 0.2px solid rgba(190, 188, 188, 0.459); margin-top: 5px;}
+
+/* check box and itemized image */
+.checkbox{position: absolute;}
+.item-image{width: 80px; height: 80px; display: inline-block;}
+
+
 
