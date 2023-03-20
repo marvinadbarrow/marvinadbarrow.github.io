@@ -103,3 +103,9 @@ MISC
 monkey nuts - YES
 biscuits - YES
 popcorn - YES
+
+
+INDETERMINATE CHECKBOX.   tHIS COULD BE USED TO SHOW THE STATE OF A SET OF CHECK BOXES SO THAT IF ALL ITEMS ON THE SHOPPING LIST, YOU CAN SEE THAT SOME ITEMS (OR NO ITEMS) HAVE BEEN CHECKED. So, when you're ready to purchase maybe at that point you can receive an alert if the 'shopping list' checkboxes are not all checked.  And you can decided whether or not to go back and purchase items or to ignore and proceed with purchase. NOTE... submitting a form with indeterminate checkbox means none of your data is submitted so maybe this isn't a good use case. 
+
+
+FORM- the checkboxes need to be within a form, so I've done that.  The form doesn't need formatting or and id or anything.  But I'm going to give an id because there will likely be more than one form used in the application. 

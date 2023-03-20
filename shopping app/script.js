@@ -1,44 +1,5 @@
- // $('p#para-2').hide()
-//$('p#para-1').addClass('add-red')
-//$('#para-2 span').addClass('add-red')
-//$('#para-2 span').css('color', 'purple')
-//$('#list-1 li:nth-child(2n)').css('background-color', 'orange')
-//$('#list-1 li:even').css('background-color', 'aqua')
-
-
-  $('a[href="http://yahoo.com"]').css('background-color', 'aqua')
-  //$('*').hide()  
-
-  $('p#para-1').click(function(){
-$(this).toggleClass('add-red')
-
-  })
-// highlight background of input when clicked into
-  $('#get-item').focus(function(){
-$(this).css({'background-color':'pink'})
-
-  })
-
-// log value entered into input
-$('#get-item').keyup(function(e){
-if(e.key == 'Enter'){ // if enter key is struck
-
-  // append text to unordered list as list item; the item is a checkbox with label of the item entered into the input
-  $('ul').append(`<li> <input type="checkbox" name="buy-more" id="${e.target.value}" value="${e.target.value}"> <label for="${e.target.value}">${e.target.value}</label></li>`)
-  $(this).val('') // this clears the value inside the input
-  // see explanation below
-}
-  
-    })
-
-
-
-// notes on above function.... every time 'Enter' is pressed the input text gets appended as a list item, with an accompanying checkbox which has an id, a value (the name of the shopping item) and a name (which sort of gives the purpose of the value) and a label (which is the actual item to be purchased) --
-
-// hopefully I can use the ticked checkbox to indicate that I have collected the item for purchase.  I can then send all ticked items to the basket for processing (or you can send them individually as you go); maybe in the 'checkout' page, that's where you can specify how much of each product is purchased, or you can put 'zero' if you retract an item. Also, when you get to the checkout page you might do an alert if there are any un-purchased items to double-check that you don't wish to purchase them.  Maybe have an ignore button, or go back to shopping basket for parchases; and then return to the checkout once those purchases are made.  On the same page you could have a purchase completed button for when you've bought everything.   You need to save the data so you have to find out how to do that, maybe you could email it, and save it json-ified to local storage, perhaps creating a new object out of thet shopping date.  - once home the saved data can be un-json-ified, displayed in a list of items of items to store, and perhaps  you can have a drop down field of all storage locations next to each item - pick the item and click store, then page refreshes and item disappears; ready for you to store the next item.  
-
-// I think the label is actually a label for the checkbox - so it appears next to the checkbox that it is associated with; so you don't really need to specify the wording for the list item because it will appear in the label in a better position than list wording.  Also, put list-style-type:none; in CSS so the bullet points don't show when the list item is appended, so things look more presentable. 
-
+var restockRequiredArr = []
+var checkboxObj = {}
 
     $('#checkout-send').click(function(e){
       console.log('sending items to checkout... ')
@@ -61,25 +22,90 @@ var modalArr  = ['add-items','submit-items', 'verify-items', 'get-list', 'add-to
 var buttonsArr = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8','btn9', 'btn10']
 
 
-// below, each array, corresponding to one of each of the shopping main categories, contains the image names for items within the name category of the array. When a category is clicked, the images belonging to that category will load into the 'select' popup. 
-var fishArr = ['./images fish/crab sticks.png', './images fish/fish cakes.png']
-var meatArr = ['./images meat/bacon.png', './images meat/quiche meat.png', './images meat/tortelloni meat.png']
-var vegetarianArr = ['./images vegetarian/quiche veg.png', './images vegetarian/tortelloni veg.png']
-var dairyArr = ['./images dairy/milk.png', './images dairy/cheese.png', './images dairy/cold latte.png']
-var fruitVegArr = ['./images fruit & veg/carrots.png', './images fruit & veg/corn cob.png', './images fruit & veg/tomatoes.png']
-var bakeryArr = ['./images bakery/biscuits.png', './images bakery/cookies.png', './images bakery/breadloaf.png', './images bakery/breadroll.png']
-var pastryArr = ['./images pastry/cinnamon swirl.png', './images pastry/maple pecan.png', './images pastry/flapjacks.png']
-var hotDrinksArr = ['./images hot drinks/coffee.png', './images hot drinks/hot chocolate.png', './images hot drinks/ovaltine.png', './images hot drinks/tea.png']
-var coldDrinksArr = ['./images cold drinks/coca cola.png', './images cold drinks/dr pepper.png']
-var AlcoholArr = ['./images alcohol/crabbies.png']
-var toiletriesArr = ['./images toiletries/air freshener.png', './images toiletries/hand wash.png', './images toiletries/lynx.png', './images toiletries/shower gel.png', './images toiletries/toilet tissue.png', './images toiletries/toothbrush.png', './images toiletries/toothpaste.png']
-var cleaningArr = ['./images cleaning/bleach.png', './images cleaning/surface cleaner.png', './images cleaning/washing powder.png', './images cleaning/washing up liquid.png']
-var miscArr = ['./images misc/monkey nuts.png', './images misc/popcorn.png']
-/*
-var categoryArr = ['fish', 'meat', 'vegetarian', 'dairy', 'fruit-veg', 'bakery', 'pastry', 'hot-drinks', 'cold-drinks', 'alcohol', 'toiletries', 'cleaning', 'misc' ]
 
-var categoryImgArr = [fishArr, meatArr, vegetarianArr, dairyArr, fruitVegArr, bakeryArr, pastryArr, hotDrinksArr, coldDrinksArr, AlcoholArr, toiletriesArr, cleaningArr, miscArr]
-*/
+// fish category
+const crabObj = {itemName: 'crab sticks', imgAddress: './images fish/crab sticks.png', id:'crab-sticks'}
+const fishcakeObj = {itemName: 'fish cakes', imgAddress: './images fish/fish cakes.png', id:'fish-cakes'}
+
+// meat category
+const baconObj = {itemName: 'bacon', imgAddress: './images meat/bacon.png', id:'crab-sticks'}
+const tortelloniMeatObj = {itemName: 'tortelloni: meat', imgAddress: './images meat/tortelloni meat.png', id:'tortelloni-meat'}
+const quicheMeatObj = {itemName: 'quiche: meat', imgAddress: './images meat/quiche meat.png', id:'quiche-meat'}
+
+// vegetarian category
+const quicheVegObj = {itemName: 'quiche: veg', imgAddress:'./images vegetarian/quiche veg.png', id:'quiche-veg'}
+const tortelloniVegObj = {itemName: 'tortelloni: veg', imgAddress: './images vegetarian/tortelloni veg.png', id:'tortelloni-veg'}
+
+// dairy category
+const milkObj = {itemName: 'milk', imgAddress: './images dairy/milk.png', id:'milk'}
+const cheeseObj = {itemName: 'cheese', imgAddress: './images dairy/cheese.png', id:'cheese'}
+const coldLatteObj = {itemName: 'cold latte', imgAddress:  './images dairy/cold latte.png', id: 'cold-latte'}
+
+// fruit and veg category
+const carrotsObj = {itemName: 'carrots', imgAddress: './images fruit & veg/carrots.png', id:'carrots'}
+const cornCobObj = {itemName: 'cookies', imgAddress: './images fruit & veg/corn cob.png', id:'corn-cob'}
+const tomatoesObj = {itemName: 'tomatoes', imgAddress: './images fruit & veg/tomatoes.png', id: 'tomatoes'}
+
+// bakery category
+const biscuitsObj = {itemName: 'biscuits', imgAddress: './images bakery/biscuits.png',id:'biscuits'}
+const cookiesObj = {itemName: 'cookies', imgAddress: './images bakery/cookies.png', id:'cookies'}
+const breadloafObj = {itemName: 'breadloaf', imgAddress: './images bakery/breadloaf.png', id: 'breadloaf'}
+const breadrollObj = {itemName: 'breadroll', imgAddress: './images bakery/breadroll.png', id: 'breadroll'}
+
+// pastry category
+const cinnamonSwirlObj = {itemName: 'cinnamon swirl', imgAddress: './images pastry/cinnamon swirl.png',id:'cinnamon-swirl'}
+const maplePecanObj = {itemName: 'maple pecan', imgAddress: './images pastry/maple pecan.png', id:'maple-pecan'}
+const flapjacksObj = {itemName: 'flapjacks', imgAddress: './images pastry/flapjacks.png', id: 'flapjacks'}
+
+// hot drinks category
+const coffeeObj = {itemName: 'coffee', imgAddress: './images hot drinks/coffee.png', id:'coffee'}
+const hotChocolateObj = {itemName: 'hot chocolate', imgAddress: './images hot drinks/hot chocolate.png', id:'hot-chocolate'}
+const ovaltineObj = {itemName: 'ovaltine', imgAddress: './images hot drinks/ovaltine.png', id: 'ovaltine'}
+const teaObj = {itemName: 'tea', imgAddress: './images hot drinks/tea.png', id: 'tea'}
+
+// hot drinks category
+const cocaColaObj = {itemName: 'coca cola', imgAddress: './images cold drinks/coca cola.png', id:'coca-cola'}
+const drPepperObj = {itemName: 'dr pepper', imgAddress:  './images cold drinks/dr pepper.png', id:'dr-pepper'}
+
+ // alcohol category
+const crabbiesObj = {itemName: 'crabbies', imgAddress: './images alcohol/crabbies.png', id: 'crabbies'}
+
+// toiletries category
+const airFreshenerObj = {itemName: 'air freshener', imgAddress: './images toiletries/air freshener.png', id:'air-freshener'}
+const handwashObj = {itemName: 'hand wash', imgAddress: './images toiletries/hand wash.png', id:'hand-wash'}
+const lynxObj = {itemName: 'lynx', imgAddress: './images toiletries/lynx.png', id: 'lynx'}
+const showerGelObj = {itemName: 'shower gel', imgAddress: './images toiletries/shower gel.png', id: 'shower-gel'}
+const toiletTissueObj = {itemName: 'toilet tissue', imgAddress: './images toiletries/toilet tissue.png', id: 'toilet-tissue'}
+const toothbrushObj = {itemName: 'toothbrush', imgAddress: './images toiletries/toothbrush.png', id: 'toothbrush'}
+const toothPasteObj = {itemName: 'toothpaste', imgAddress:  './images toiletries/toothpaste.png', id: 'toothpaste'}
+
+// cleaning category
+const bleachObj = {itemName: 'bleach', imgAddress: './images cleaning/bleach.png', id: 'bleach'}
+const surfaceCleanerObj = {itemName: 'surface cleaner', imgAddress: './images cleaning/surface cleaner.png', id: 'surface-cleaner'}
+const washingPowderObj = {itemName: 'washing powder', imgAddress: './images cleaning/washing powder.png', id: 'washing-powder'}
+const washingUpLiquidObj = {itemName: 'washing up liquid', imgAddress:  './images cleaning/washing up liquid.png', id: 'washing-up-liquid'}
+
+// miscellaneous category
+const monkeyNutsObj = {itemName: 'monkey nuts', imgAddress: './images misc/monkey nuts.png', id:'monkey-nuts'}
+const popcornObj = {itemName: 'popcorn', imgAddress:  './images misc/popcorn.png', id: 'popcorn'}
+
+// below, each array, corresponding to one of each of the shopping main categories, contains the image names for items within the name category of the array. When a category is clicked, the images belonging to that category will load into the 'select' popup. 
+var fishArr = [crabObj, fishcakeObj]
+var meatArr = [baconObj, tortelloniMeatObj, quicheMeatObj]
+var vegetarianArr = [quicheVegObj, tortelloniVegObj]
+var dairyArr = [milkObj, cheeseObj, coldLatteObj]
+var fruitVegArr = [carrotsObj, cornCobObj, tomatoesObj]
+var bakeryArr = [biscuitsObj, cookiesObj, breadloafObj, breadrollObj]
+var pastryArr = [cinnamonSwirlObj, maplePecanObj, flapjacksObj]
+var hotDrinksArr = [coffeeObj, hotChocolateObj, teaObj]
+var coldDrinksArr = [cocaColaObj, drPepperObj]
+var AlcoholArr = [crabbiesObj]
+var toiletriesArr = [airFreshenerObj, handwashObj, lynxObj, showerGelObj, toiletTissueObj, toothbrushObj, toothPasteObj]
+var cleaningArr = [bleachObj, surfaceCleanerObj, washingPowderObj, washingUpLiquidObj]
+var miscArr = [monkeyNutsObj, popcornObj]
+
+
+
 var fishObj = {catName: 'fish', items: fishArr}
 var meatObj = {catName: 'meat', items: meatArr}
 var vegetarianObj = {catName: 'vegetarian', items: vegetarianArr}
@@ -96,7 +122,7 @@ var miscObj = {catName: 'misc', items: miscArr}
 
 var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, bakeryObj, pastryObj, hotDrinksObj, coldDrinksObj, AlcoholObj, toiletriesObj, cleaningObj, miscObj]
 
-
+console.log(fishObj)
 
 // display modal corresponding with button press
 document.addEventListener('click', function(e){
@@ -115,21 +141,29 @@ document.addEventListener('click', function(e){
  }
 })
 
-$('#back-btn').click(function(){
-  $('#sub-item-select').hide();
-  $('#add-items').css('display','block')
-// remove all item divs which are children of the 'select' modal
-let selectHolder = document.getElementById('items-for-selection')
+
+
+const clearSubItems = () =>{
+  let selectHolder = document.getElementById('items-for-selection')
   while (selectHolder.firstChild) {
     selectHolder.removeChild(selectHolder.firstChild);
 }
 
+}
+
+$('#back-btn').click(function(){
+  $('#sub-item-select').hide();
+  $('#add-items').css('display','block')
+// remove all item divs which are children of the 'select' modal
+clearSubItems()
 })
 
-
+// close alert modal
+$('#alert-modal-close').click((e) =>{
+$(e.target.parentNode).hide()
+})
 // prepare and load images to display items in selected category
 const loadItems = (array) =>{
-console.log(array)
 
 array.forEach(element =>{
 // holder setup
@@ -139,25 +173,42 @@ itemDiv.classList.add('image-checkbox-holder')
 // img setup
 let itemImg = document.createElement('IMG')
 itemImg.classList.add('item-image')
-itemImg.setAttribute('src', element)
+itemImg.setAttribute('src', element.imgAddress)
+
 
 // checkbox setup
 let itemCheck = document.createElement('INPUT')
 itemCheck.setAttribute('type', 'checkbox')
 itemCheck.classList.add('checkbox')
+itemCheck.setAttribute('name', 'select')
+itemCheck.setAttribute('value', element.itemName)
+itemCheck.setAttribute('id',element.id)
 
-console.log(itemDiv)
+let itemDescription = document.createElement('LABEL')
+itemDescription.classList.add('select-label')
+itemDescription.setAttribute('for',element.id)
 
+
+let textNode = document.createTextNode(element.itemName)
+itemDescription.appendChild(textNode)
 
 document.getElementById('items-for-selection').appendChild(itemDiv)
 itemDiv.appendChild(itemCheck)
 itemDiv.appendChild(itemImg)
+itemDiv.appendChild(itemDescription)
+//console.log(itemDiv)
+})
 $('#sub-item-select').css('display','block');
 $('#add-items').hide()
 
+// toggle checkbox
+$('.image-checkbox-holder').click((e) =>{
+console.log('image clicked...')
+let checkbox = e.target.parentNode.firstChild
+if(!checkbox.checked){checkbox.setAttribute('checked', 'checked')}
+else{checkbox.removeAttribute('checked')}
+
 })
-
-
 }
 
 
@@ -170,20 +221,74 @@ if(document.getElementById(element.catName).contains(e.target)){ // object categ
 })
 })
 
-// now to dynamically display images on 'select' modal. 
 
 
 
 
-/*
+// dynamically display images on 'select' modal. 
+const displayCheckedItems = () =>{
 
-modalArr.forEach(element =>{
-$(`#${element}`).on('click', function(){
-  $('#sub-item-select').css('display','block');
-  $('#add-items').hide();
+  }
+
+
+
+
+
+
+
+
+// send selected items to shopping list
+const checkClickedStatus = () =>{
+   let element = document.querySelectorAll('[type=checkbox]')
+  element.forEach(item =>{
+    console.log(item.parentNode.parentNode)
+if(item.checked){
+  if(restockRequiredArr.includes(item.value)){ // if item has already been picked, 'alert'
+    item.removeAttribute('checked') // uncheck checkbox
+    
+    $('#alert-para').html(`<em>${item.value}</em><br> is already on your shopping list`);// para to alert user of duplicate
+    $('#msg-modal').css('display', 'flex')
+ // open modal to display alert
+
+  }else{restockRequiredArr.push(item.value)
+    // return to main category pages
+    $('#sub-item-select').hide();
+$('#added-items').css('display','block')
+  }
+}
+
+    })
+  console.log(restockRequiredArr)
+displayCheckedItems()
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// checked values sent to array; but maybe it's good to send all values and distinguish
+$('#create-list').on('submit', function(e){
+  e.preventDefault();
+  checkClickedStatus()
 })
 
-})
+// return to category screen to add more items
+$('#add-more').click(() =>{
+  console.log('back to items page...')
+  $('#added-items').hide()
+  $('#add-items').css('display','block')
+  clearSubItems()
+
+});
 
 
-*/
