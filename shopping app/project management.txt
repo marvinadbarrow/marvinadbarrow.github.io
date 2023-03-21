@@ -109,3 +109,9 @@ INDETERMINATE CHECKBOX.   tHIS COULD BE USED TO SHOW THE STATE OF A SET OF CHECK
 
 
 FORM- the checkboxes need to be within a form, so I've done that.  The form doesn't need formatting or and id or anything.  But I'm going to give an id because there will likely be more than one form used in the application. 
+
+
+
+// ISSUES WITH MULTIPLE ITEMS IN THE SHOPPING LIST - now all is left to do on the FRONT END is sourt out the unintended displays of items not to be deleted. Clone divs might have to get an id from item.value IN BELOW FUNCION
+
+-- CHECKCLICKEDSTATUS()

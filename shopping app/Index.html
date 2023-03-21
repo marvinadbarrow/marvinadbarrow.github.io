@@ -81,10 +81,17 @@ awesome/4.7.0/css/font-awesome.min.css">
               <div id="misc" class="categories">
             <p class="">Misc</p> <img class="category-img" src="./images/misc.png" alt=""></div>
     </div>
+
+    <div class="">
+      <button class="navigate-btn"  id="view-shoplist">view shopping list</button>
+    </div>
   </div>
 
        <!--  SECONDARY MODALS -->
- <!-- sub displays all items in main categories-->
+
+
+
+ <!-- SUB CATEGORY ITEM DISPLAYER-->
  <div class="modal" id="sub-item-select">
   <h2>Select</h2>
 
@@ -96,8 +103,7 @@ awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- back button and 'send selection' button-->
 <div id="item-btns">
-
-  <button id="select-items" type="submit">submit list</button>
+  <button id="select-items" type="submit">submit item</button>
 </div>
 
 </form>
@@ -109,19 +115,29 @@ awesome/4.7.0/css/font-awesome.min.css">
 </div>
 
 
+
        <!--  displays SELECTED ITEMS just added to shopping list-->
   <div class="modal" id="added-items">
-     <h2>added</h2>
+     <h2>Just added</h2>
+     <div id="just-added-content" class="main">
+<div id="just-added-items">
 
+</div>
          <!-- back button and 'send selection' button-->
-<div id="choice-btns">
+</div>
 
+<div class="choice-btns">
   <button id="add-more" class="navigate-btn" >add more items</button>
-   <button class="navigate-btn"  type="submit">view shopping list</button>
+   <button class="navigate-btn"  id="view-shopping-list">view shopping list</button>
  </div>
     </div>
 
-<!-- ALERT MODAL -->
+
+
+
+<!-- ALERT MODAL
+     <button id="add-more" class="navigate-btn" >close app <span>&times;</span></button>
+-->
       <div class="modal" id="msg-modal">
      <h2 id="alert-heading">Alert!</h2>
      <div class="alert-para-container">
@@ -133,14 +149,39 @@ awesome/4.7.0/css/font-awesome.min.css">
 
 
 
+<!-- shopping list  MODAL -->
+<div class="modal" id="shopping-list">
+  <h2>Shopping list</h2>
+  <div id="shopping-list-items">
+    
+  </div>
+  <div id="choice-btns-shoplist">
+ 
+          <img id="upload-img" src="./upload icon.png" alt="">
+                 <button id="return-to-main" class="navigate-btn" > Return to Main page</button>
+
+   </div>
+
+</div>
+
+<!-- DELETE ITEMS modal-->
+ <div class="modal" id="delete-items">
+      <h2>Delete Items!</h2>
+      <div id="delete-added-items">
+      <h4>Are you sure you want to delete this item?</h4>
+      <div id="delete-this-item"></div>
+      <div class="choice-btns" id="delete-choice-btns">
+        <button id="confirm-delete" class="navigate-btn delete-choice">Yes: Delete!</button>
+        <button id="cancel-delete" class="navigate-btn delete-choice">Cancel</button>
+      </div>
+    </div>
+ </div>
 
 
-  <div class="modal" id="get-list">
-      <h2>Get list</h2>
-  </div>
-  <div class="modal" id="add-to-basket">
-      <h2>Pick items</h2>
-  </div>
+
+<!-- SPARE MODALS -->
+
+ 
   <div class="modal" id="checkout">
       <h2>Go to checkout</h2>
   </div>

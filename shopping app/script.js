@@ -1,4 +1,5 @@
-var restockRequiredArr = []
+var restockRequiredArr = [] // contains item names that are selected for the shopping list
+var verificationPageArr = [] // shopping list to be updated and verified before sending to server.
 var checkboxObj = {}
 
     $('#checkout-send').click(function(e){
@@ -151,6 +152,7 @@ const clearSubItems = () =>{
 
 }
 
+// back button on select items page
 $('#back-btn').click(function(){
   $('#sub-item-select').hide();
   $('#add-items').css('display','block')
@@ -162,6 +164,25 @@ clearSubItems()
 $('#alert-modal-close').click((e) =>{
 $(e.target.parentNode).hide()
 })
+
+// button to go from selected items page to shopoping list page
+$('#view-shopping-list').click(function(){
+  $('#added-items').hide();
+  $('#shopping-list').css('display','block')
+// remove all item divs which are children of the 'select' modal
+clearSubItems()
+})
+
+
+// return to main from shopping list
+$('#return-to-main').click(function(){
+  $('#shopping-list').hide();
+  $('#add-items').css('display','block')
+// remove all item divs which are children of the 'select' modal
+clearSubItems()
+})
+
+
 // prepare and load images to display items in selected category
 const loadItems = (array) =>{
 
@@ -221,14 +242,59 @@ if(document.getElementById(element.catName).contains(e.target)){ // object categ
 })
 })
 
+// to view shopping list from main category page
+$('#view-shoplist').click(()=>{
+  $('#shopping-list').css('display','block');
+  $('#add-items').hide()
+
+})
+
+// cancel delete operation
+$('#cancel-delete').click(() =>{
+  $('#delete-items').css('display', 'none')
+  $('#shopping-list').css('opacity', 1)
+})
+
+// confirm delete operation
+$('#confirm-delete').click((e) =>{
+let deleteContainer = document.getElementById('delete-this-item')
+let deleteItem = deleteContainer.firstChild
+let deleteName = deleteItem.lastChild.innerText
+console.log(deleteName)
 
 
 
+if(restockRequiredArr.includes(deleteName)){
+let deleteThis = restockRequiredArr.indexOf(deleteName)
+restockRequiredArr.splice(deleteThis,1)
+console.log(restockRequiredArr)
 
-// dynamically display images on 'select' modal. 
-const displayCheckedItems = () =>{
 
-  }
+// now we need to find the div with corresponding name in the shopping list in order to delete it.
+let shoppingList =  document.getElementById('shopping-list-items')
+console.log(shoppingList)
+const clonedItems = document.querySelectorAll('.div-clone')
+console.log(clonedItems)
+clonedItems.forEach(clone =>{
+  console.log(clone.lastChild.innerText)
+  if(deleteName == clone.lastChild.innerText){
+    console.log(clone)
+    shoppingList.removeChild(clone)}
+
+})
+
+}
+// delete image, checkbox and words from delete modal
+while (deleteContainer.firstChild) {
+  deleteContainer.removeChild(deleteContainer.firstChild);
+}
+
+ $('#delete-items').css('display', 'none')
+ $('#shopping-list').css('opacity', 1)
+})
+
+
+// now all is left to do on the FRONT END is sourt out the unintended displays of items not to be deleted. Clone divs might have to get an id from item.value IN BELOW FUNCION
 
 
 
@@ -239,9 +305,13 @@ const displayCheckedItems = () =>{
 
 // send selected items to shopping list
 const checkClickedStatus = () =>{
+      // clear previous selected items display
+      let addedHolder = document.getElementById('just-added-items')
+  while (addedHolder.firstChild) {
+    addedHolder.removeChild(addedHolder.firstChild);
+}
    let element = document.querySelectorAll('[type=checkbox]')
   element.forEach(item =>{
-    console.log(item.parentNode.parentNode)
 if(item.checked){
   if(restockRequiredArr.includes(item.value)){ // if item has already been picked, 'alert'
     item.removeAttribute('checked') // uncheck checkbox
@@ -251,15 +321,62 @@ if(item.checked){
  // open modal to display alert
 
   }else{restockRequiredArr.push(item.value)
+
+
     // return to main category pages
     $('#sub-item-select').hide();
+    let addedDiv = document.createElement('DIV')
+    $(addedDiv).addClass('item-checkbox-holder')
+    $(addedDiv).addClass('item-image')
+    $(addedDiv).css('display:, flex; flex-direction:column;')
+
+   addedDiv.append(item.parentNode.children[1])
+   addedDiv.append(item.parentNode.children[1])
+   let node = addedDiv
+   let addedDivClone = node.cloneNode(true)
+   addedDivClone.classList.add('div-clone')
+
+let deleteNode = addedDiv
+let deleteClone = deleteNode.cloneNode(true) 
+deleteClone.classList.add('delete-this')
+console.log(deleteClone)
+   // adding delete image to shopping list item for deletion
+   let deleteImg = document.createElement('IMG')
+   deleteImg.classList.add('delete-image')
+   deleteImg.setAttribute('src', 'delete image.png')
+   addedDivClone.prepend(deleteImg)
+  deleteImg.style.cssText = 'margin-left:5px; margin-top:5px;'
+  
+   // remove if doesn't work
+
+   console.log(addedDivClone)
+   document.getElementById('just-added-items').append(addedDiv)
+   document.getElementById('shopping-list-items').append(addedDivClone)
+
+// create a node out of all of the cloned div
+const clonedItems = document.querySelectorAll('.div-clone')
+console.log(clonedItems)
+
+// attach an event listener to each created clone so it can be deleted if required; when image or any other area inside the clone is clicked, the function recognizes that the even target is within the clone so will carry out the method in the function; for now it's just to log the 'dare you sure you want to delete this item???' question.  will need a model with two buttons, delete and cancel; cancel will just close the modal, delete will have to delete the clone AND remove the item from the array containing shopping list items. 
+clonedItems.forEach(clone =>{
+clone.addEventListener('click', (e) =>{
+  if(clone.contains(e.target)){
+    document.getElementById('delete-this-item').append(deleteClone)  
+    $('#delete-items').css('display', 'block')
+    $('#shopping-list').css('opacity', 0)
+  }
+})
+})
+
+// I wanted to append a copy of the selected items to the shopping list modal , but didn't realize that appending the image and wording to the shopping modal, removes it from the 'just added' modal.  Looking for answers found that you can make a clone of an element so that's done below.  
+
 $('#added-items').css('display','block')
   }
 }
 
     })
   console.log(restockRequiredArr)
-displayCheckedItems()
+justAddedItems()
 
 }
 
