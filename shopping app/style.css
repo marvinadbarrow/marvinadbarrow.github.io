@@ -24,6 +24,7 @@ header{background-color: grey; color: white; padding: 15px; text-align: center; 
 
 body{font-family: 'Roboto', sans-serif; }
 
+
 #screen-body{
   height:420px;
   width:200px;
@@ -32,6 +33,7 @@ body{font-family: 'Roboto', sans-serif; }
   padding:8px;
   border-radius:20px;
   border: 0.5px solid black;
+  margin: auto;
 
 }
 
@@ -45,15 +47,18 @@ body{font-family: 'Roboto', sans-serif; }
   text-align:center;
   
 }
-#verify-items,#submit-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#sub-item-select,#added-items,#msg-modal,#shopping-list,#delete-items{display:none;}
+#verify-items,#submit-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#sub-item-select,#view-added-items,#msg-modal,#shopping-list,#delete-items{display:none;}
 
-#button-holder{height:480px; 
+#button-holder{
+
+  height:480px; 
  width:200px;
   display:flex; flex-direction:column; justify-content:space-around;
     align-items:center;
     border: 0.5px solid black;
   border-radius:20px;
    padding:8px;
+   display: none;
 }
 
 .buttons{height:30px;
@@ -61,16 +66,16 @@ width:fit-content;
 }
 
 #test-app{
-    height:500px;
-  width:600px;
-  display:flex;
-  flex-direction:row;
-  justify-content:space-around;
+  display: none;
+  position: relative;
     border: 0.5px solid black;
   border-radius:20px;
     padding:8px;
     margin-top:50px;
+    width: 200px;
+    height: 420px;
   margin:auto;
+
 
 }
 

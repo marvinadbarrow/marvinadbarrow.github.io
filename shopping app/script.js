@@ -143,7 +143,7 @@ document.addEventListener('click', function(e){
 })
 
 
-
+// clear items in checkbox page (select items modal)
 const clearSubItems = () =>{
   let selectHolder = document.getElementById('items-for-selection')
   while (selectHolder.firstChild) {
@@ -152,34 +152,32 @@ const clearSubItems = () =>{
 
 }
 
-// back button on select items page
+// back button on select subcategory items page (takes you back to main categories)
 $('#back-btn').click(function(){
   $('#sub-item-select').hide();
   $('#add-items').css('display','block')
-// remove all item divs which are children of the 'select' modal
+// remove all checkbox items from select items (checkbox page) modal
 clearSubItems()
 })
 
-// close alert modal
+// close alert modal - the hidden alert modal reveals the checkbox modal which is were the user was before the alert occurred. 
 $('#alert-modal-close').click((e) =>{
 $(e.target.parentNode).hide()
 })
 
-// button to go from selected items page to shopoping list page
+// button to go from 'view added items' page to shopping list page
 $('#view-shopping-list').click(function(){
-  $('#added-items').hide();
+  $('#view-added-items').hide();
   $('#shopping-list').css('display','block')
-// remove all item divs which are children of the 'select' modal
+// remove all items on the 'checkbox' modal (because, here, you are on the 'view added items' page which means you bypassed the back-button on the checkbox page, so the checkboxes were have not been cleared )
 clearSubItems()
 })
 
 
-// return to main from shopping list
+// return to main from shopping list page (to pick more items if you wish)
 $('#return-to-main').click(function(){
   $('#shopping-list').hide();
   $('#add-items').css('display','block')
-// remove all item divs which are children of the 'select' modal
-clearSubItems()
 })
 
 
@@ -255,6 +253,9 @@ $('#cancel-delete').click(() =>{
   $('#shopping-list').css('opacity', 1)
 })
 
+
+
+
 // confirm delete operation
 $('#confirm-delete').click((e) =>{
 let deleteContainer = document.getElementById('delete-this-item')
@@ -263,7 +264,7 @@ let deleteName = deleteItem.lastChild.innerText
 console.log(deleteName)
 
 
-
+// this can be kept, because the entry needs to be removed from the array, so that if you change your mind and select the item again, an alert won't be triggered. 
 if(restockRequiredArr.includes(deleteName)){
 let deleteThis = restockRequiredArr.indexOf(deleteName)
 restockRequiredArr.splice(deleteThis,1)
@@ -305,37 +306,44 @@ while (deleteContainer.firstChild) {
 
 // send selected items to shopping list
 const checkClickedStatus = () =>{
-      // clear previous selected items display
+      // clear previous added items modal - this happens when submit button is clicked if one or more items have been checked. 
       let addedHolder = document.getElementById('just-added-items')
   while (addedHolder.firstChild) {
-    addedHolder.removeChild(addedHolder.firstChild);
-}
+    addedHolder.removeChild(addedHolder.firstChild);}
+
+// locate all checkbox items in the document - these will only be in the item divs of the current category because, on exciting a sub category, the checkbox items are deleted from the page. NOTE* checkbox items are still on the invisible
    let element = document.querySelectorAll('[type=checkbox]')
   element.forEach(item =>{
-if(item.checked){
-  if(restockRequiredArr.includes(item.value)){ // if item has already been picked, 'alert'
+if(item.checked){ // if any items checkboxes are ticked --
+  if(restockRequiredArr.includes(item.value)){ // if any item is already picked, 'alert'
     item.removeAttribute('checked') // uncheck checkbox
     
+    // item value is the name of the product
     $('#alert-para').html(`<em>${item.value}</em><br> is already on your shopping list`);// para to alert user of duplicate
     $('#msg-modal').css('display', 'flex')
- // open modal to display alert
+ // open message modal to display alert
 
-  }else{restockRequiredArr.push(item.value)
+  }else{restockRequiredArr.push(item.value) // if no item is already picked send value to array
 
 
-    // return to main category pages
+    // hide sub item modal
     $('#sub-item-select').hide();
+
+    // creating a div to hold a duplicate item image and item name
     let addedDiv = document.createElement('DIV')
     $(addedDiv).addClass('item-checkbox-holder')
     $(addedDiv).addClass('item-image')
     $(addedDiv).css('display:, flex; flex-direction:column;')
 
-   addedDiv.append(item.parentNode.children[1])
-   addedDiv.append(item.parentNode.children[1])
+    // remove image and description para from original item by appending them to the newly created div
+   addedDiv.append(item.parentNode.children[1]) // image
+   addedDiv.append(item.parentNode.children[1]) // paragraph, which is now children[1]
+
+   // now div is complete, create a duplicate of it
    let node = addedDiv
    let addedDivClone = node.cloneNode(true)
    addedDivClone.classList.add('div-clone')
-
+// duplicating the image
 let deleteNode = addedDiv
 let deleteClone = deleteNode.cloneNode(true) 
 deleteClone.classList.add('delete-this')
@@ -368,9 +376,9 @@ clone.addEventListener('click', (e) =>{
 })
 })
 
-// I wanted to append a copy of the selected items to the shopping list modal , but didn't realize that appending the image and wording to the shopping modal, removes it from the 'just added' modal.  Looking for answers found that you can make a clone of an element so that's done below.  
+// I wanted to append a copy of the selected items to the shopping list modal , but didn't realize that appending the image and wording to the shopping modal, removes it from the 'just added' modal.  Looking for answers found that you can make a clone of an element so that's done below.  Interstingly, this 'flaw' in the method can be exploited to remove an item from shopping list and display it on the delete modal when we want to remove it.  And that means that we once it is deleted from the modal, it won't be in shopping list, and will not be available to appear on the delete modal again.  Then duplicates on the delete array have to be dealt with. 
 
-$('#added-items').css('display','block')
+$('#view-added-items').css('display','block')
   }
 }
 
@@ -393,16 +401,16 @@ justAddedItems()
 
 
 
-// checked values sent to array; but maybe it's good to send all values and distinguish
+// submit executes the function for finding which item checkboxes have been ticked. This is a form in the subcategory item page where you select or deselect items. 
 $('#create-list').on('submit', function(e){
   e.preventDefault();
   checkClickedStatus()
 })
 
-// return to category screen to add more items
+// return to main category screen (from 'view added items' modal, to add more items from main categories
 $('#add-more').click(() =>{
   console.log('back to items page...')
-  $('#added-items').hide()
+  $('#view-added-items').hide()
   $('#add-items').css('display','block')
   clearSubItems()
 
