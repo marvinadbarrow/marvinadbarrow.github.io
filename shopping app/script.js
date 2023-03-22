@@ -25,70 +25,70 @@ var buttonsArr = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8'
 
 
 // fish category
-const crabObj = {itemName: 'crab sticks', imgAddress: './images fish/crab sticks.png', id:'crab-sticks'}
-const fishcakeObj = {itemName: 'fish cakes', imgAddress: './images fish/fish cakes.png', id:'fish-cakes'}
+const crabObj = {itemName: 'crab sticks', imgAddress: './images fish/crab sticks.jpg', id:'crab-sticks'}
+const fishcakeObj = {itemName: 'fish cakes', imgAddress: './images fish/fish cakes.jpg', id:'fish-cakes'}
 
 // meat category
-const baconObj = {itemName: 'bacon', imgAddress: './images meat/bacon.png', id:'crab-sticks'}
-const tortelloniMeatObj = {itemName: 'tortelloni: meat', imgAddress: './images meat/tortelloni meat.png', id:'tortelloni-meat'}
-const quicheMeatObj = {itemName: 'quiche: meat', imgAddress: './images meat/quiche meat.png', id:'quiche-meat'}
+const baconObj = {itemName: 'bacon', imgAddress: './images meat/bacon.jpg', id:'crab-sticks'}
+const tortelloniMeatObj = {itemName: 'tortelloni: meat', imgAddress: './images meat/tortelloni meat.jpg', id:'tortelloni-meat'}
+const quicheMeatObj = {itemName: 'quiche: meat', imgAddress: './images meat/quiche meat.jpg', id:'quiche-meat'}
 
 // vegetarian category
-const quicheVegObj = {itemName: 'quiche: veg', imgAddress:'./images vegetarian/quiche veg.png', id:'quiche-veg'}
-const tortelloniVegObj = {itemName: 'tortelloni: veg', imgAddress: './images vegetarian/tortelloni veg.png', id:'tortelloni-veg'}
+const quicheVegObj = {itemName: 'quiche: veg', imgAddress:'./images vegetarian/quiche veg.jpg', id:'quiche-veg'}
+const tortelloniVegObj = {itemName: 'tortelloni: veg', imgAddress: './images vegetarian/tortelloni veg.jpg', id:'tortelloni-veg'}
 
 // dairy category
-const milkObj = {itemName: 'milk', imgAddress: './images dairy/milk.png', id:'milk'}
-const cheeseObj = {itemName: 'cheese', imgAddress: './images dairy/cheese.png', id:'cheese'}
-const coldLatteObj = {itemName: 'cold latte', imgAddress:  './images dairy/cold latte.png', id: 'cold-latte'}
+const milkObj = {itemName: 'milk', imgAddress: './images dairy/milk.jpg', id:'milk'}
+const cheeseObj = {itemName: 'cheese', imgAddress: './images dairy/cheese.jpg', id:'cheese'}
+const coldLatteObj = {itemName: 'cold latte', imgAddress:  './images dairy/cold latte.jpg', id: 'cold-latte'}
 
 // fruit and veg category
-const carrotsObj = {itemName: 'carrots', imgAddress: './images fruit & veg/carrots.png', id:'carrots'}
-const cornCobObj = {itemName: 'cookies', imgAddress: './images fruit & veg/corn cob.png', id:'corn-cob'}
-const tomatoesObj = {itemName: 'tomatoes', imgAddress: './images fruit & veg/tomatoes.png', id: 'tomatoes'}
+const carrotsObj = {itemName: 'carrots', imgAddress: './images fruit & veg/carrots.jpg', id:'carrots'}
+const cornCobObj = {itemName: 'cookies', imgAddress: './images fruit & veg/corn cob.jpg', id:'corn-cob'}
+const tomatoesObj = {itemName: 'tomatoes', imgAddress: './images fruit & veg/tomatoes.jpg', id: 'tomatoes'}
 
 // bakery category
-const biscuitsObj = {itemName: 'biscuits', imgAddress: './images bakery/biscuits.png',id:'biscuits'}
-const cookiesObj = {itemName: 'cookies', imgAddress: './images bakery/cookies.png', id:'cookies'}
-const breadloafObj = {itemName: 'breadloaf', imgAddress: './images bakery/breadloaf.png', id: 'breadloaf'}
-const breadrollObj = {itemName: 'breadroll', imgAddress: './images bakery/breadroll.png', id: 'breadroll'}
+const biscuitsObj = {itemName: 'biscuits', imgAddress: './images bakery/biscuits.jpg',id:'biscuits'}
+const cookiesObj = {itemName: 'cookies', imgAddress: './images bakery/cookies.jpg', id:'cookies'}
+const breadloafObj = {itemName: 'breadloaf', imgAddress: './images bakery/breadloaf.jpg', id: 'breadloaf'}
+const breadrollObj = {itemName: 'breadroll', imgAddress: './images bakery/breadroll.jpg', id: 'breadroll'}
 
 // pastry category
-const cinnamonSwirlObj = {itemName: 'cinnamon swirl', imgAddress: './images pastry/cinnamon swirl.png',id:'cinnamon-swirl'}
-const maplePecanObj = {itemName: 'maple pecan', imgAddress: './images pastry/maple pecan.png', id:'maple-pecan'}
-const flapjacksObj = {itemName: 'flapjacks', imgAddress: './images pastry/flapjacks.png', id: 'flapjacks'}
+const cinnamonSwirlObj = {itemName: 'cinnamon swirl', imgAddress: './images pastry/cinnamon swirl.jpg',id:'cinnamon-swirl'}
+const maplePecanObj = {itemName: 'maple pecan', imgAddress: './images pastry/maple pecan.jpg', id:'maple-pecan'}
+const flapjacksObj = {itemName: 'flapjacks', imgAddress: './images pastry/flapjacks.jpg', id: 'flapjacks'}
 
 // hot drinks category
-const coffeeObj = {itemName: 'coffee', imgAddress: './images hot drinks/coffee.png', id:'coffee'}
-const hotChocolateObj = {itemName: 'hot chocolate', imgAddress: './images hot drinks/hot chocolate.png', id:'hot-chocolate'}
-const ovaltineObj = {itemName: 'ovaltine', imgAddress: './images hot drinks/ovaltine.png', id: 'ovaltine'}
-const teaObj = {itemName: 'tea', imgAddress: './images hot drinks/tea.png', id: 'tea'}
+const coffeeObj = {itemName: 'coffee', imgAddress: './images hot drinks/coffee.jpg', id:'coffee'}
+const hotChocolateObj = {itemName: 'hot chocolate', imgAddress: './images hot drinks/hot chocolate.jpg', id:'hot-chocolate'}
+const ovaltineObj = {itemName: 'ovaltine', imgAddress: './images hot drinks/ovaltine.jpg', id: 'ovaltine'}
+const teaObj = {itemName: 'tea', imgAddress: './images hot drinks/tea.jpg', id: 'tea'}
 
-// hot drinks category
-const cocaColaObj = {itemName: 'coca cola', imgAddress: './images cold drinks/coca cola.png', id:'coca-cola'}
-const drPepperObj = {itemName: 'dr pepper', imgAddress:  './images cold drinks/dr pepper.png', id:'dr-pepper'}
+// cold drinks category
+const cocaColaObj = {itemName: 'coca cola', imgAddress: './images cold drinks/coca cola.jpg', id:'coca-cola'}
+const drPepperObj = {itemName: 'dr pepper', imgAddress:  './images cold drinks/dr pepper.jpg', id:'dr-pepper'}
 
  // alcohol category
-const crabbiesObj = {itemName: 'crabbies', imgAddress: './images alcohol/crabbies.png', id: 'crabbies'}
+const crabbiesObj = {itemName: 'crabbies', imgAddress: './images alcohol/crabbies.jpg', id: 'crabbies'}
 
 // toiletries category
-const airFreshenerObj = {itemName: 'air freshener', imgAddress: './images toiletries/air freshener.png', id:'air-freshener'}
-const handwashObj = {itemName: 'hand wash', imgAddress: './images toiletries/hand wash.png', id:'hand-wash'}
-const lynxObj = {itemName: 'lynx', imgAddress: './images toiletries/lynx.png', id: 'lynx'}
-const showerGelObj = {itemName: 'shower gel', imgAddress: './images toiletries/shower gel.png', id: 'shower-gel'}
-const toiletTissueObj = {itemName: 'toilet tissue', imgAddress: './images toiletries/toilet tissue.png', id: 'toilet-tissue'}
-const toothbrushObj = {itemName: 'toothbrush', imgAddress: './images toiletries/toothbrush.png', id: 'toothbrush'}
-const toothPasteObj = {itemName: 'toothpaste', imgAddress:  './images toiletries/toothpaste.png', id: 'toothpaste'}
+const airFreshenerObj = {itemName: 'air freshener', imgAddress: './images toiletries/air freshener.jpg', id:'air-freshener'}
+const handwashObj = {itemName: 'hand wash', imgAddress: './images toiletries/hand wash.jpg', id:'hand-wash'}
+const lynxObj = {itemName: 'lynx', imgAddress: './images toiletries/lynx.jpg', id: 'lynx'}
+const showerGelObj = {itemName: 'shower gel', imgAddress: './images toiletries/shower gel.jpg', id: 'shower-gel'}
+const toiletTissueObj = {itemName: 'toilet tissue', imgAddress: './images toiletries/toilet tissue.jpg', id: 'toilet-tissue'}
+const toothbrushObj = {itemName: 'toothbrush', imgAddress: './images toiletries/toothbrush.jpg', id: 'toothbrush'}
+const toothPasteObj = {itemName: 'toothpaste', imgAddress:  './images toiletries/toothpaste.jpg', id: 'toothpaste'}
 
 // cleaning category
-const bleachObj = {itemName: 'bleach', imgAddress: './images cleaning/bleach.png', id: 'bleach'}
-const surfaceCleanerObj = {itemName: 'surface cleaner', imgAddress: './images cleaning/surface cleaner.png', id: 'surface-cleaner'}
-const washingPowderObj = {itemName: 'washing powder', imgAddress: './images cleaning/washing powder.png', id: 'washing-powder'}
-const washingUpLiquidObj = {itemName: 'washing up liquid', imgAddress:  './images cleaning/washing up liquid.png', id: 'washing-up-liquid'}
+const bleachObj = {itemName: 'bleach', imgAddress: './images cleaning/bleach.jpg', id: 'bleach'}
+const surfaceCleanerObj = {itemName: 'surface cleaner', imgAddress: './images cleaning/surface cleaner.jpg', id: 'surface-cleaner'}
+const washingPowderObj = {itemName: 'washing powder', imgAddress: './images cleaning/washing powder.jpg', id: 'washing-powder'}
+const washingUpLiquidObj = {itemName: 'washing up liquid', imgAddress:  './images cleaning/washing up liquid.jpg', id: 'washing-up-liquid'}
 
 // miscellaneous category
-const monkeyNutsObj = {itemName: 'monkey nuts', imgAddress: './images misc/monkey nuts.png', id:'monkey-nuts'}
-const popcornObj = {itemName: 'popcorn', imgAddress:  './images misc/popcorn.png', id: 'popcorn'}
+const monkeyNutsObj = {itemName: 'monkey nuts', imgAddress: './images misc/monkey nuts.jpg', id:'monkey-nuts'}
+const popcornObj = {itemName: 'popcorn', imgAddress:  './images misc/popcorn.jpg', id: 'popcorn'}
 
 // below, each array, corresponding to one of each of the shopping main categories, contains the image names for items within the name category of the array. When a category is clicked, the images belonging to that category will load into the 'select' popup. 
 var fishArr = [crabObj, fishcakeObj]
