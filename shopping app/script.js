@@ -125,7 +125,7 @@ var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, ba
 
 console.log(fishObj)
 
-// display modal corresponding with button press
+// for buttons to open associated modals (BUTTON ELEMENTS CURRENTLY HIDDEN)
 document.addEventListener('click', function(e){
  if(buttonsArr.includes(e.target.id)){
     let index = buttonsArr.indexOf(e.target.id)
@@ -174,53 +174,58 @@ clearSubItems()
 })
 
 
-// return to main from shopping list page (to pick more items if you wish)
+// return to main category page from shopping list page (to pick more items if you wish)
 $('#return-to-main').click(function(){
   $('#shopping-list').hide();
   $('#add-items').css('display','block')
 })
 
 
-// prepare and load images to display items in selected category
+// LOAD CHECKBOX ITEMS
 const loadItems = (array) =>{
-
+// the above array is a subcategory item, for example, fishcakes and crabsticks (from FISH category). It contains objects representing products in each category.  The elements below are the individual procucts, and their properties (for loading onto the checkbox div), are contained in an object representing each product.  
 array.forEach(element =>{
-// holder setup
+
+// creat product holder for checkbox, image, and product(item) name paragraph 
 let itemDiv = document.createElement('DIV')
 itemDiv.classList.add('image-checkbox-holder')
 
-// img setup
+// create prduct image holder, add CSS class and allocate source, from image address
 let itemImg = document.createElement('IMG')
 itemImg.classList.add('item-image')
-itemImg.setAttribute('src', element.imgAddress)
+itemImg.setAttribute('src', element.imgAddress) // address of product from product object
 
 
 // checkbox setup
 let itemCheck = document.createElement('INPUT')
-itemCheck.setAttribute('type', 'checkbox')
-itemCheck.classList.add('checkbox')
-itemCheck.setAttribute('name', 'select')
-itemCheck.setAttribute('value', element.itemName)
-itemCheck.setAttribute('id',element.id)
+itemCheck.setAttribute('type', 'checkbox') // set type
+itemCheck.classList.add('checkbox') // CSS class for styling
+itemCheck.setAttribute('name', 'select') 
+itemCheck.setAttribute('value', element.itemName) // product name
+itemCheck.setAttribute('id',element.id) // product id (same as name but with hyphens if needed)
 
+// label element for checkbox
 let itemDescription = document.createElement('LABEL')
 itemDescription.classList.add('select-label')
 itemDescription.setAttribute('for',element.id)
 
-
+// create text for label and append, 'itemName' key is used from the object
 let textNode = document.createTextNode(element.itemName)
 itemDescription.appendChild(textNode)
 
+// append product holder to 'items for selection' modal, and append checkbox, image and label to product holder
 document.getElementById('items-for-selection').appendChild(itemDiv)
 itemDiv.appendChild(itemCheck)
 itemDiv.appendChild(itemImg)
 itemDiv.appendChild(itemDescription)
 //console.log(itemDiv)
 })
+
+// hide category modal, and show checkbox modal containing products of main category. 
 $('#sub-item-select').css('display','block');
 $('#add-items').hide()
 
-// toggle checkbox
+// toggle checkbox for selection/deselection (on click)
 $('.image-checkbox-holder').click((e) =>{
 console.log('image clicked...')
 let checkbox = e.target.parentNode.firstChild
@@ -233,45 +238,44 @@ else{checkbox.removeAttribute('checked')}
 
 // selecting a category displays category's image names
 $('#screen-body').click(function(e){
-  categoryObjArr.forEach(element =>{ // for each category in the object
-if(document.getElementById(element.catName).contains(e.target)){ // object category name is clicked
+  categoryObjArr.forEach(element =>{ // categoryObjArr containers an object for each category; each object has two keys, 'category name', and 'items'. Category name is just a string (which is also the 'id' of the category element), but 'items' is an array which contains objects representing each product under the category name. Within each of these objects in the 'items' array, there are 3 keys: - 'itemName' which is the name of the product, 'itemAddress' which is the location of its image source, and 'id' which is the id given to each product (used later).
+
+if(document.getElementById(element.catName).contains(e.target)){ // when the screen body is clicked, take each  element in categoryObjArr and use element.catName as the 'id' of an element, get the element, and if the event target is in that element (that is, a category element) then load that element's children, which are the products in the category, onto the checkbox page:              sending element.items ( the product parts, i.e. product name, address and id) as a parameter, to the loadItems() function, which will create a div to house all of the product parts and add a checkbox to the div so the product can be selected. 
   loadItems(element.items)} 
  // send item images to be dynamically loaded to 'select' modal
 })
 })
 
-// to view shopping list from main category page
+// VIEW SHOPPING LIST from main category page
 $('#view-shoplist').click(()=>{
   $('#shopping-list').css('display','block');
   $('#add-items').hide()
 
 })
 
-// cancel delete operation
+//  DELETE SHOPPING LIST ITEM (cancel)
 $('#cancel-delete').click(() =>{
   $('#delete-items').css('display', 'none')
   $('#shopping-list').css('opacity', 1)
 })
 
 
-
-
-// confirm delete operation
+//  DELETE SHOPPING LIST ITEM (confirm)
 $('#confirm-delete').click((e) =>{
+  // here, we should just be able to delete the direct child from delete-from-this element, because there should only be one child in there, i.e. one product
 let deleteContainer = document.getElementById('delete-this-item')
-let deleteItem = deleteContainer.firstChild
-let deleteName = deleteItem.lastChild.innerText
-console.log(deleteName)
+let deleteItem = deleteContainer.firstChild // this is the image
+let deleteName = deleteItem.lastChild.innerText // this is the innerText of the label (product name)
 
 
-// this can be kept, because the entry needs to be removed from the array, so that if you change your mind and select the item again, an alert won't be triggered. 
+// if below array contains product name, splice that from the array; 
 if(restockRequiredArr.includes(deleteName)){
 let deleteThis = restockRequiredArr.indexOf(deleteName)
 restockRequiredArr.splice(deleteThis,1)
 console.log(restockRequiredArr)
 
 
-// now we need to find the div with corresponding name in the shopping list in order to delete it.
+// now we need to find the corresponding product holder in the shopping list in order to delete it. (we can rearrange this so that the shopping list item is appended out of the shopping list modal into the delete modal, and, once it's deleted from there, since it was appended away from the shopping list, it won't exist in the shopping list to be deleted anyway)
 let shoppingList =  document.getElementById('shopping-list-items')
 console.log(shoppingList)
 const clonedItems = document.querySelectorAll('.div-clone')
@@ -285,7 +289,7 @@ clonedItems.forEach(clone =>{
 })
 
 }
-// delete image, checkbox and words from delete modal
+// delete image, checkbox and words from delete modal (once the code is refactored to append the shopping list item into the delete container, without using a clone, this will remove the product without having to remove from the shopping list).
 while (deleteContainer.firstChild) {
   deleteContainer.removeChild(deleteContainer.firstChild);
 }
@@ -304,7 +308,7 @@ while (deleteContainer.firstChild) {
 
 
 
-// send selected items to shopping list
+// send selected items to shopping list (you might not even need a clone)
 const checkClickedStatus = () =>{
       // clear previous added items modal - this happens when submit button is clicked if one or more items have been checked. 
       let addedHolder = document.getElementById('just-added-items')
