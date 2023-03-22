@@ -118,7 +118,7 @@ FORM- the checkboxes need to be within a form, so I've done that.  The form does
 
 
 CURRENT CODE FOR DELETING SHOPPING LIST ITEMS BELOW, but, I'm chaning the code. 
-instead of creating a clone from the shopping list to put onto: now solved: didn't need to use any clones, so code is cleaner. 
+instead of creating a clone from the shopping list to put onto 
 
 
 // confirm delete operation
@@ -158,8 +158,5 @@ while (deleteContainer.firstChild) {
  $('#delete-items').css('display', 'none')
  $('#shopping-list').css('opacity', 1)
 })
-
-
-
 
 IDEAS... You should have a main page modal where you can do several actions, e.g. 'get shopping list', 'deliver shopping', 'unpack shopping' and 'restock' and also, 'start/continue list'

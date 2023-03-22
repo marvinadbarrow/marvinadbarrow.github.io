@@ -47,7 +47,7 @@ body{font-family: 'Roboto', sans-serif; }
   text-align:center;
   
 }
-#verify-items,#submit-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#sub-item-select,#view-added-items,#msg-modal,#shopping-list,#delete-items{display:none;}
+#verify-items,#submit-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items{display:none;}
 
 #button-holder{
 
