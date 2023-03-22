@@ -154,29 +154,36 @@ const clearSubItems = () =>{
 
 // APPEND PRODUCTS FROM 'VIEW SELECTED ITEMS' TO SHOPPING LIST
 const pushToShoppingList = (id) =>{
-  let addedHolder = document.getElementById('just-added-items') // get viewed items element
+  //create document fragment to hold new images
+  let df = new DocumentFragment()
+  // get viewed items element
+  let addedHolder = document.getElementById('just-added-items') 
+  console.log(addedHolder)
   while (addedHolder.firstChild) { // while it contains child elements 
     // create a delete icon
     let deleteImg = document.createElement('IMG')
-
+// add source to delete icon
     deleteImg.setAttribute('src', 'delete image.png')
-    addedHolder.firstChild.prepend(deleteImg) // prepend delete image to first child
-   deleteImg.style.cssText = 'margin-left:5px; margin-top:5px;' // style image
+    // prepend delete image before the child
+    addedHolder.firstChild.prepend(deleteImg) 
+     // style image
+   deleteImg.style.cssText = 'margin-left:5px; margin-top:5px;'
    deleteImg.classList.add('delete-image')
    // add event listener to containing div
    addedHolder.firstChild.addEventListener('click', (e) =>{
-    console.log(e.target.parentNode)
-    $('#shopping-list').hide() // when clicked, hide shopping list and append div to delete modal
+     $('#shopping-list').hide() // when clicked, hide shopping list and append div to delete modal
     document.getElementById('delete-this-item').append(e.target.parentNode)
     $('#delete-items').css('display', 'block') // display delete modal
    
    })
+// append child to document fragment
+df.appendChild(addedHolder.firstChild)
 
-
-       document.getElementById('shopping-list-items').append(addedHolder.firstChild) // append child to shopping list
-       // now add an event listener to the div. 
         }
+// append document fragment to shopping list
+document.getElementById('shopping-list-items').append(df) 
 
+// switch navigation id to find out where to go next (shopping list or category page)
 switch(id){
   case 'add-more':
     $('#add-items').css('display','block')
@@ -193,40 +200,37 @@ case 'view-shopping-list':
 
 
 //  DELETE SHOPPING LIST ITEM (cancel)
-$('#cancel-delete').click(() =>{
-  $('#delete-items').css('display', 'none')
+$('#cancel-delete').click(() =>{ // when image in shopping list is clicked display delete modal
+  $('#delete-items').css('display', 'none')// hide delete modal
+  // assign variable to item awaiting restoration
   let cancelItemDelete = document.getElementById('delete-items').children[1].children[1].children[0];
-  console.log(cancelItemDelete)
+  // restore item to shopping list, by appending it. 
  document.getElementById('shopping-list-items').appendChild(cancelItemDelete)
- console.log(document.getElementById('shopping-list'))
+// show shopping list
  $('#shopping-list').css('display', 'block')
 })
 
 
 //  DELETE SHOPPING LIST ITEM (confirm)
 $('#confirm-delete').click((e) =>{
-  // here, we should just be able to delete the direct child from delete-from-this element, because there should only be one child in there, i.e. one product removed from the shopping list. 
-
-  // get product from delete product modal
+ // assign variable to item awaiting deletion
   let deleteThisProduct = document.getElementById('delete-items').children[1].children[1].children[0];
-  // get product name, which is the inner text of the last element in product name. 
+ // assign variable to item product name. 
   let productName = deleteThisProduct.lastChild.innerText
-  // find the product position in the records array
+  // find item product name index position in restock array and assign it a variable
  let productNamePosition = restockRequiredArr.indexOf(productName)
-// splice the product from the restock array
+// splice the product from the restock array (using index position variable)
 restockRequiredArr.splice(productNamePosition, 1)
-// hide delete modal and display shopping list - the item for deletion will no longer show in the shopping list;
+// hide delete modal and display shopping list;
  $('#delete-items').css('display', 'none')
 $('#shopping-list').css('display', 'block')
 
-// the deleted product image is still on the deleted modal though so it needs to be removed: so, get the container element
+// remove image of deleted item from delete array - assign a variable to item's container
  let deleteProductHolder = document.getElementById('delete-this-item')
-// delete what's in the container - the first child
+// delete container contents
 while(deleteProductHolder.firstChild){
   deleteProductHolder.removeChild(deleteProductHolder.firstChild)
 }
-// check that the holder is empty
-console.log(deleteProductHolder)
 })
 
 
@@ -248,7 +252,6 @@ $(e.target.parentNode).hide()
 
 // return to main category screen (from 'view added items' modal, to add more items from main categories
 $('#add-more').click(() =>{
-  console.log('back to items page...')
   $('#view-added-items').hide()
   let id = 'add-more'
 pushToShoppingList(id)
@@ -320,7 +323,7 @@ productArr.push(itemDiv)
 
 //console.log(itemDiv)
 })
-
+// now that all of the elements 
 document.getElementById('items-for-selection').appendChild(df)
 
 
@@ -363,32 +366,34 @@ $('#view-shoplist').click(()=>{
 // now all is left to do on the FRONT END is sourt out the unintended displays of items not to be deleted. Clone divs might have to get an id from item.value IN BELOW FUNCION
 
 
-// send selected items to shopping list (you might not even need a clone)
+// FIND CHECKED CHECKBOXES AND APPEND ASSOCIATED IMAGES TO 'VIEW ADDED' MODAL
 const checkClickedStatus = () =>{
+
+  let df = new DocumentFragment(); // new divs appended to this fragment
       // clear previous added items modal - this happens when submit button is clicked if one or more items have been checked. 
       let addedHolder = document.getElementById('just-added-items')
   while (addedHolder.firstChild) {
     addedHolder.removeChild(addedHolder.firstChild);}
 
-// locate all checkbox items in the document - these will only be in the item divs of the current category because, on exciting a sub category, the checkbox items are deleted from the page. NOTE* checkbox items are still on the invisible
+// locate all checkbox items in the document - these will only be in the item divs (the products) of the current category because, on exciting a product veiw, the categorycategory, the checkbox items are deleted from the page. NOTE* checkbox items are still on the invisible modal
    let element = document.querySelectorAll('[type=checkbox]')
   element.forEach(item =>{
 if(item.checked){ // if any items checkboxes are ticked --
-  if(restockRequiredArr.includes(item.value)){ // if any item is already picked, 'alert'
-    item.removeAttribute('checked') // uncheck checkbox
+  if(restockRequiredArr.includes(item.value)){ // if item name is in restock array, item is already picked. 
+    item.removeAttribute('checked') // uncheck checkbox because you already listed the item. 
     
     // item value is the name of the product
-    $('#alert-para').html(`<em>${item.value}</em><br> is already on your shopping list`);// para to alert user of duplicate
+    $('#alert-para').html(`<em>${item.value}</em><br> is already on your shopping list`);// paragraph to alert user of duplicate
     $('#msg-modal').css('display', 'flex')
- // open message modal to display alert
+ // open message modal to display alert to user
 
-  }else{restockRequiredArr.push(item.value) // if no item is already picked send value to array
+  }else{restockRequiredArr.push(item.value) // if item is not already picked send value (product) to array
 
 
-    // hide sub item modal
+    // hide product checkbox modal
     $('#product-select').hide();
 
-    // creating a div to hold a duplicate item image and item name
+    // creating a div to hold a duplicate item image and item name (excluding the checkbox)
     let addedDiv = document.createElement('DIV')
     $(addedDiv).addClass('item-checkbox-holder')
     $(addedDiv).addClass('item-image')
@@ -399,19 +404,17 @@ if(item.checked){ // if any items checkboxes are ticked --
    addedDiv.append(item.parentNode.children[1]) // paragraph, which is now children[1]
 console.log(addedDiv)
 
-   // append div to 'just added items' modal
-   document.getElementById('just-added-items').append(addedDiv)
- console.log(document.getElementById('just-added-items'))
-
-
-// I wanted to append a copy of the selected items to the shopping list modal , but didn't realize that appending the image and wording to the shopping modal, removes it from the 'just added' modal.  Looking for answers found that you can make a clone of an element so that's done below.  Interstingly, this 'flaw' in the method can be exploited to remove an item from shopping list and display it on the delete modal when we want to remove it.  And that means that we once it is deleted from the modal, it won't be in shopping list, and will not be available to appear on the delete modal again.  Now, duplicates on the delete array have to be dealt with. 
-
-$('#view-added-items').css('display','block')
+   // append div to document fragment
+  df.appendChild(addedDiv)
   }
 }
 
     })
+    // append document fragment to 'just added items' modal
+    document.getElementById('just-added-items').append(df)
+    $('#view-added-items').css('display','block')
   console.log(restockRequiredArr)
+
 }
 
 
