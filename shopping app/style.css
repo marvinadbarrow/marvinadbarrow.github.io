@@ -47,7 +47,7 @@ body{font-family: 'Roboto', sans-serif; }
   text-align:center;
   
 }
-#verify-items,#submit-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items{display:none;}
+#verify-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items{display:none;}
 
 #button-holder{
 
@@ -175,6 +175,7 @@ border-style: none;
 
 /* check box and itemized image */
 .checkbox{position: absolute;}
+.checkbox-delete{position: fixed;}
 .item-image{width: 80px; height: 80px; display: inline-block;}
 .select-label{font-size:13px; font-weight:bold;}
 
@@ -217,6 +218,8 @@ align-items: center;
 .navigate-btn:hover{cursor: pointer;outline: 2px solid rgb(70, 70, 247); outline-offset: 3px;}
 #select-items{ margin: 5px;font-size: 15px; border-style: none; background-color: rgb(54, 245, 96); border-radius: 4px; color: white; font-weight: bold; outline: 2px solid rgba(255, 255, 255, 0); outline-offset: 3px;}
 #select-items:hover{cursor: pointer; outline-color: white;}
+.delete-this-item{position: relative;}
+.item-checkbox-holder{position: relative;}
 .delete-image{width: 15px; height: 15px; position: absolute;}
 .div-clone{position:relative; border: 0.5px solid rgba(190, 188, 188, 0.559); height:fit-content; border-radius:5px; margin-top: 3px; margin-right:3px;}
 .div-clone:hover{cursor: pointer;}

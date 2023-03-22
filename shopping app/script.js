@@ -158,11 +158,11 @@ const pushToShoppingList = (id) =>{
   while (addedHolder.firstChild) { // while it contains child elements 
     // create a delete icon
     let deleteImg = document.createElement('IMG')
-    deleteImg.classList.add('delete-image')
+
     deleteImg.setAttribute('src', 'delete image.png')
     addedHolder.firstChild.prepend(deleteImg) // prepend delete image to first child
    deleteImg.style.cssText = 'margin-left:5px; margin-top:5px;' // style image
-
+   deleteImg.classList.add('delete-image')
    // add event listener to containing div
    addedHolder.firstChild.addEventListener('click', (e) =>{
     console.log(e.target.parentNode)
