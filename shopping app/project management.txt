@@ -160,3 +160,4 @@ while (deleteContainer.firstChild) {
 })
 
 IDEAS... You should have a main page modal where you can do several actions, e.g. 'get shopping list', 'deliver shopping', 'unpack shopping' and 'restock' and also, 'start/continue list'
+You could split the start/continue button into to two using START and RESUME, greying out the start button if a list has already been started or greying out the resume button if no list if present.  Start with a greeting, which can be personalized.  You might even have a web app on it later to check the weather before you leave home : maybe a CHECK WEATHER button with an image of the sun, or sun behind clouds on it. 

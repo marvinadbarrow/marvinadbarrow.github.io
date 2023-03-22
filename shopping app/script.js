@@ -278,6 +278,10 @@ $('#return-to-main').click(function(){
 // LOAD CHECKBOX ITEMS
 const loadItems = (array) =>{
 // the above array is a subcategory item, for example, fishcakes and crabsticks (from FISH category). It contains objects representing products in each category.  The elements below are the individual procucts, and their properties (for loading onto the checkbox div), are contained in an object representing each product.  
+
+// creating a DOCUMENT FRAGMENT so that the checkbox page is only appended to once ALL checkbox product elements have been created. 
+let df = new DocumentFragment()
+
 array.forEach(element =>{
 
 // creat product holder for checkbox, image, and product(item) name paragraph 
@@ -311,11 +315,14 @@ itemDescription.appendChild(textNode)
 itemDiv.appendChild(itemCheckBox)
 itemDiv.appendChild(itemImg)
 itemDiv.appendChild(itemDescription)
-document.getElementById('items-for-selection').appendChild(itemDiv)
+df.appendChild(itemDiv)
 productArr.push(itemDiv)
 
 //console.log(itemDiv)
 })
+
+document.getElementById('items-for-selection').appendChild(df)
+
 
 console.log(productArr)
 // hide category modal, and show checkbox modal containing products of main category. 
