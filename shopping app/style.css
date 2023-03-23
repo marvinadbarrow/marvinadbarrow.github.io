@@ -48,7 +48,7 @@ body{font-family: 'Roboto', sans-serif; }
   text-align:center;
   
 }
-#verify-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items{display:none;}
+#verify-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal{display:none;}
 
 #button-holder{
 
@@ -190,7 +190,7 @@ border-style: none;
 .added-div{width: fit-content; height: fit-content;}
 
 
-#shopping-list-items,#just-added-content,#delete-added-items{
+#shopping-list-items,#just-added-content,#delete-added-items,#upload-modal-content{
   width: 100%;
   height:300px ;
   background-color: white;
@@ -198,7 +198,8 @@ border-style: none;
   overflow-y: auto;
 }
 
-#main-page-content{
+.save-div{display: flex; justify-content: space-around; align-items: center;}
+#main-page-content,#upload-modal-content{
   background-color: white;
   width: 100%;
   display: flex;

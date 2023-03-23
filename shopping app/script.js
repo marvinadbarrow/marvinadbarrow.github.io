@@ -3,6 +3,7 @@ var verificationPageArr = [] // shopping list to be updated and verified before 
 var checkboxObj = {}
 var productArr = []
 var verifiedListArr = []
+var getListArr = [] // only if this array has entries can we delete local storage on delivery of shopping (this can be used to create a shopping history)
     $('#checkout-send').click(function(e){
       console.log('sending items to checkout... ')
     })
@@ -125,37 +126,94 @@ var miscObj = {catName: 'misc', items: miscArr}
 var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, bakeryObj, pastryObj, hotDrinksObj, coldDrinksObj, AlcoholObj, toiletriesObj, cleaningObj, miscObj]
 
 
+
+
+
+
+
+
+
+const getShoppingList = () =>{
+
+if(localStorage.getItem('new_shopping_list')){
+  let getList = localStorage.getItem('new_shopping_list')
+  let unpackList = JSON.parse(getList)
+getListArr.push(unpackList)
+console.log(getListArr)
+}else{alert('no shopping list exists')}
+}
+
+const deliverAndClear = () =>{
+  // move list from get
+  if(getListArr.length >0){
+    localStorage.removeItem('new_shopping_list')
+    localStorage.setItem('new_delivery', '')
+    console.log(localStorage)
+    
+  }else{alert('no shopping exists to deliver')}
+}
+
+
+const startList = () =>{
+  let storageList = localStorage.getItem('new_shopping_list')
+
+  if(!storageList){ // if nothing is in local storage then shopping needs to start or resume
+    if(restockRequiredArr.length < 1){ // if restock array is empty then there is no list so start a new list
+      $('#main-page').hide();
+      $('#add-items').css('display','block')
+  }else{alert('list already in created - click "RESUME LIST" button')}
+
+  }else{ // storage is not empty so shopping needs to be downloaded
+  alert('undelivered shopping still exists - you must get shopping before beginning a new list')}
+
+
+}
+
+const resumeList = () =>{
+if(restockRequiredArr.length > 0){
+  $('#main-page').hide();
+  $('#shopping-list').css('display','block')
+}else{alert('shopping list is empty, click start new list')}
+
+}
+
+
+
 $('#main-page-content').click((e) =>{
 
 switch(e.target.id){
 case 'start-list':
-  $('#main-page').hide();
-  $('#add-items').css('display','block')
+startList()
   break;
   case 'resume-list':
-  $('#main-page').hide();
-  $('#shopping-list').css('display','block')
+resumeList()
   break;
-  case 'get-list':
+  case 'get-shopping-list':
+    getShoppingList()
   break;
   case 'deliver-shopping':
+deliverAndClear()
   break;
   case 'restock-items':
   break;
-
-
-
-
 }
 })
+
+
+
 
 
 
 $('#upload-img').hover(() =>{
 $('#upload-blob').toggle()  
 })
-// upload shopping list
-$('#upload-img').click((e) =>{
+
+
+
+
+
+
+const confirmUpload = () =>{
 
   verifiedListArr = []
   // for each product in restock array do the following
@@ -186,9 +244,21 @@ verifiedListArr.push(productObj);
 
 })
 
-console.log(verifiedListArr)
+
 let shoppingList = JSON.stringify(verifiedListArr)
-alert(shoppingList)
+localStorage.setItem('new_shopping_list',`${shoppingList}`)
+restockRequiredArr = []
+
+}
+
+
+
+
+// upload shopping list
+$('#upload-img').click((e) =>{
+  // show decider modal to save temporary list, or to confirm completed list and upload
+$('#upload-modal').css('display','block')
+$('#shopping-list').hide()
 
 })
 // clear items in checkbox page (select items modal)
