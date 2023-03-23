@@ -161,3 +161,10 @@ while (deleteContainer.firstChild) {
 
 IDEAS... You should have a main page modal where you can do several actions, e.g. 'get shopping list', 'deliver shopping', 'unpack shopping' and 'restock' and also, 'start/continue list'
 You could split the start/continue button into to two using START and RESUME, greying out the start button if a list has already been started or greying out the resume button if no list if present.  Start with a greeting, which can be personalized.  You might even have a web app on it later to check the weather before you leave home : maybe a CHECK WEATHER button with an image of the sun, or sun behind clouds on it. 
+
+
+NEXT STAGE - when uploading the shopping list, you can create an object with all of the products that on the list.  Jsonify it, and keep it in local storage.  Then unJsonify it, convert to HTML 
+
+AJAX can be used for live search where the wording narrows searches as you type the word; in fact it's probably used by VS CODE because it uses predictive texting. You might be able to use it for the search bar in YT if you can get all of the search subjects using the API.  You might even also be able to use it for searching through your own list of subscriptions if you can get subscription data using the API, so you might not only search for videos, but also for subscriptions... or even niche categories..-
+
+You might even be able to use AJAX to update the shopping list when adding items.  That can be for a different iteration. Traversy Media has a multi-part tutorial for PHP, part 18 has a project for a saerch app which makes suggestions as you type. 

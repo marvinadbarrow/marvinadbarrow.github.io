@@ -2,6 +2,7 @@ var restockRequiredArr = [] // contains item names that are selected for the sho
 var verificationPageArr = [] // shopping list to be updated and verified before sending to server.
 var checkboxObj = {}
 var productArr = []
+var verifiedListArr = []
     $('#checkout-send').click(function(e){
       console.log('sending items to checkout... ')
     })
@@ -123,26 +124,73 @@ var miscObj = {catName: 'misc', items: miscArr}
 
 var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, bakeryObj, pastryObj, hotDrinksObj, coldDrinksObj, AlcoholObj, toiletriesObj, cleaningObj, miscObj]
 
-console.log(fishObj)
 
-// for buttons to open associated modals (BUTTON ELEMENTS CURRENTLY HIDDEN)
-document.addEventListener('click', function(e){
- if(buttonsArr.includes(e.target.id)){
-    let index = buttonsArr.indexOf(e.target.id)
-    console.log(index)
-   modalArr.forEach(element => {
-     let modalIndex = modalArr.indexOf(element)
-     if(modalIndex === index){console.log(`open ${modalArr[modalIndex]} modal`);
- let modalSelect = modalArr[modalIndex]
- $(`#${modalSelect}`).css('display','block'); }else{
-  let modalSelect = modalArr[modalIndex]
- $(`#${modalSelect}`).hide();
-       }
-   })
- }
+$('#main-page-content').click((e) =>{
+
+switch(e.target.id){
+case 'start-list':
+  $('#main-page').hide();
+  $('#add-items').css('display','block')
+  break;
+  case 'resume-list':
+  $('#main-page').hide();
+  $('#shopping-list').css('display','block')
+  break;
+  case 'get-list':
+  break;
+  case 'deliver-shopping':
+  break;
+  case 'restock-items':
+  break;
+
+
+
+
+}
 })
 
 
+
+$('#upload-img').hover(() =>{
+$('#upload-blob').toggle()  
+})
+// upload shopping list
+$('#upload-img').click((e) =>{
+
+  verifiedListArr = []
+  // for each product in restock array do the following
+restockRequiredArr.forEach(product =>{
+  categoryObjArr.forEach(object =>{
+// each object in the array is a JS object containing category name and an array of items, (objects for each product with in the category)
+    object.items.forEach(arrayObject =>{
+      // each 'arrayObject' is an object inside an array, corresponding to a category product
+     if(product == arrayObject.itemName){
+      // arrayObject.itemName gives the products name and if that name matches the item in the restock array, item.name, and the other values, item.id and item.image-address are placed inside a new object so all the details can be retrieved later to display the items when shopping. 
+
+      // create an empty object (to be filled with each product's details)
+      let productObj = {
+        product_name:'',
+        product_id:'',
+        product_image_location:'',
+      }
+      
+      productObj.product_name = arrayObject.itemName
+      productObj.product_id = arrayObject.id
+      productObj.product_image_location = arrayObject.imgAddress
+verifiedListArr.push(productObj);
+
+      
+     }
+    })
+   })
+
+})
+
+console.log(verifiedListArr)
+let shoppingList = JSON.stringify(verifiedListArr)
+alert(shoppingList)
+
+})
 // clear items in checkbox page (select items modal)
 const clearSubItems = () =>{
   let selectHolder = document.getElementById('items-for-selection')
@@ -327,14 +375,13 @@ productArr.push(itemDiv)
 document.getElementById('items-for-selection').appendChild(df)
 
 
-console.log(productArr)
+
 // hide category modal, and show checkbox modal containing products of main category. 
 $('#product-select').css('display','block');
 $('#add-items').hide()
 
 // toggle checkbox for selection/deselection (on click)
 $('.image-checkbox-holder').click((e) =>{
-console.log('image clicked...')
 let checkbox = e.target.parentNode.firstChild
 if(!checkbox.checked){checkbox.setAttribute('checked', 'checked')}
 else{checkbox.removeAttribute('checked')}
@@ -359,11 +406,6 @@ $('#view-shoplist').click(()=>{
   $('#add-items').hide()
 
 })
-
-
-
-
-// now all is left to do on the FRONT END is sourt out the unintended displays of items not to be deleted. Clone divs might have to get an id from item.value IN BELOW FUNCION
 
 
 // FIND CHECKED CHECKBOXES AND APPEND ASSOCIATED IMAGES TO 'VIEW ADDED' MODAL
@@ -413,7 +455,6 @@ console.log(addedDiv)
     // append document fragment to 'just added items' modal
     document.getElementById('just-added-items').append(df)
     $('#view-added-items').css('display','block')
-  console.log(restockRequiredArr)
 
 }
 

@@ -82,8 +82,9 @@ awesome/4.7.0/css/font-awesome.min.css">
             <p class="">Misc</p> <img class="category-img" src="./images/misc.jpg" alt=""></div>
     </div>
 
-    <div class="">
-      <button class="navigate-btn"  id="view-shoplist">view shopping list</button>
+    <div id="btn-container-category">
+      <button id="home-btn"><img id="home-icon" src="./home icon.png" alt=""></button>
+      <button class="navigate-btn"  id="view-shoplist">view list</button>
     </div>
   </div>
 
@@ -156,9 +157,9 @@ awesome/4.7.0/css/font-awesome.min.css">
     
   </div>
   <div id="choice-btns-shoplist">
- 
-          <img id="upload-img" src="./upload icon.png" alt="">
-                 <button id="return-to-main" class="navigate-btn" > Return to Main page</button>
+ <div id="upload-blob">save and upload</div>
+          <img id="upload-img" src="./save icon.jpg" alt="">
+                 <button id="return-to-main" class="navigate-btn" > Return to categories</button>
 
    </div>
 
@@ -178,10 +179,23 @@ awesome/4.7.0/css/font-awesome.min.css">
  </div>
 
 
+ <!-- HOME MODAL -->
+ <div class="modal" id="main-page">
+  <h2>Welcome back: <span id="user-firstname"></span></h2>
+
+<div id="main-page-content">
+  <h4 id="task-select">Choose a task!</h4>
+
+  <button id="start-list" class="main-page-btn">Start list</button>
+  <button id="resume-list" class="main-page-btn">Resume list</button>
+  <button class="main-page-btn">Get list</button>
+  <button id="deliver-shopping" class="main-page-btn">Deliver shopping</button>
+  <button id="restock-items" class="main-page-btn">Re-stock shopping</button>
+
+</div>
+</div>
 
 <!-- SPARE MODALS -->
-
- 
   <div class="modal" id="checkout">
       <h2>Go to checkout</h2>
   </div>
