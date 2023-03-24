@@ -159,11 +159,65 @@ while (deleteContainer.firstChild) {
  $('#shopping-list').css('opacity', 1)
 })
 
+
+NEXT STAGE - when uploading the shopping list, you can create an object with all of the products on the list.  Jsonify it, and keep it in local storage.  Then unJsonify it, convert to HTML 
+parsed and Downloaded in JSON with 'parse'--
+
+REMOVE IMAGES FROM SHOPPING LIST ONCE UPLOAD IS EXECUTED
+you need to check if this is done.  You may as well re-use the shopping list page as the 'get items' page, and mabe you can re-use the 'view added items' page
+
+DISPLAYING THE SHOPPING.  This can easily be done by just having a similar format as the shopping page, but instead of having a delete icon on the image, just have a 'plus' icon on the image (like on the sainsbury's app).  This will take you to another page, with a larger image, where you can select the number of items you are picking. But maybe that's not needed. Because that's only really required by an app because you aren't the one doing the shopping. So for the moment I'll leave it out.  This means you can use the same process you used for 'checkbox' to 'shopping list'; instead, after get items, the process will be 'picked item' to 'basket'. Now just need to figure out how to load images. 
+
+ADDING TO BASKET... Maybe you can have the page come up with the larger image and have two options, 'add to basket' or 'ignore'. 'Add' will take you back to the items to pick page but with the picked item's image now missing from the link because you have already put it in the basket, but 'ignore' will just take you back to the 'items to pick' page as if no action has been taken and the item will still be available to pick. 
+
+TRACKING SHOPPING BEHAVIOUR... there needs to be some way to track current behaviour just in case the shopping is interrupted or internet connection goes down, or you accidentally come out of the app, or refresh the page. So perhaps intermittent storing is needed, and also storage for basket items, which can be activated when you send an item to the basket.
+
+SAVING THE SHOPPING LIST (prior to upload)
+I was thinking that it might be better to just save the shopping list to local storage as you add items to the list.  Otherwise you'll lose data; and that forces you to create the entire list in one session which is not what I want to do.   I want to be able to gradually save a list; actually, that is in place already on the 'shopping list' page.  When you check the list, you can save on the page (or upload) so gradual saving is can already be implemented.  Just need to know how to update LOCAL STORAGE; and that's really the crux of the above tracking behaviour too; you need to know how to update local storage (but in the background). It might even be a good idea to start a timer while shopping and auto save at a specific interval, resetting the clock; the clock can also be reset when you add an item to the basket. 
+
+
+EVENT LISTENERS ON BUTTONS. 
+It'll save a lot of space, and maybe resources if you link all buttons to the one event listener and use a switch statement to distinguish buttons by their id's.  Then you can  open and close modals or execute functions from within that 'one' event listener. 
+
+
+PROBLEMS WITH DUPLICATE CHECKBOX SELECTION. 
+I think what happens is that the function stops while the alert is running, and once you click the close button, then the function runs again, and, if there are other checked boxes, creates the product element for display and then opens the added items modal.  - but maybe you want to cycle through 'all' of the checkboxes 'first'. create all elements, and then check to see if any of them are in the restock required array - if that's the case, bring up the alert box informing user of the duplication.  perhaps, beforehand, when a duplicate is found, add a class of 'duplicate' to the item, and then once you click the close button of the modal, you can delete that item from the added items page, and only THEN, show the added items page, otherwise, just show the items page as normal. so the steps would be.
+
+check item
+
+not duplicate: 
+-creat element 
+-append to docment fragment
+
+duplicate: 
+-create element
+-add class .duplicate
+-append to document fragment. 
+
+after all elements created. 
+
+check for status of elements
+
+duplicates; 
+-display duplicates on alert modal. 
+-Close button removes duplicates from document fragment
+
+if document fragment children - append document fragment to added items
+-hide checkbox modal
+- close alert modal
+- display added items. 
+
+if no children - 
+-uncheck checkbox
+-close alert modal
+
+
+
+
+
+
 IDEAS... You should have a main page modal where you can do several actions, e.g. 'get shopping list', 'deliver shopping', 'unpack shopping' and 'restock' and also, 'start/continue list'
 You could split the start/continue button into to two using START and RESUME, greying out the start button if a list has already been started or greying out the resume button if no list if present.  Start with a greeting, which can be personalized.  You might even have a web app on it later to check the weather before you leave home : maybe a CHECK WEATHER button with an image of the sun, or sun behind clouds on it. 
-
-
-NEXT STAGE - when uploading the shopping list, you can create an object with all of the products that on the list.  Jsonify it, and keep it in local storage.  Then unJsonify it, convert to HTML 
 
 AJAX can be used for live search where the wording narrows searches as you type the word; in fact it's probably used by VS CODE because it uses predictive texting. You might be able to use it for the search bar in YT if you can get all of the search subjects using the API.  You might even also be able to use it for searching through your own list of subscriptions if you can get subscription data using the API, so you might not only search for videos, but also for subscriptions... or even niche categories..-
 

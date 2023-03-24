@@ -48,7 +48,7 @@ body{font-family: 'Roboto', sans-serif; }
   text-align:center;
   
 }
-#verify-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal{display:none;}
+#verify-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal,#downloaded-list{display:none;}
 
 #button-holder{
 
@@ -173,6 +173,7 @@ border-style: none;
 /* div for holding image and checkbox */
 .image-checkbox-holder{position: relative; width: 80px; height: fit-content; border: 0.2px solid rgba(190, 188, 188, 0.459); margin-top: 5px;}
 .image-checkbox-holder:hover{cursor: pointer;}
+.image-div-shop{margin-right: 4px;}
 
 /* check box and itemized image */
 .checkbox{position: absolute;}
@@ -260,3 +261,13 @@ align-items: center;
 #home-btn{width: 35px; height: 35px; border-radius: 50%; background-color: rgb(120, 120, 240); border-style: none; }
 #home-icon{width: 25px; height: 25px; display: inline-block; margin: 0px;}
 #btn-container-category{display: flex; justify-content: space-around; align-items: center;}
+
+#downloaded-modal-content{
+  background-color: white; 
+  width: 100%;
+  height: 340px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+
+}

@@ -1,3 +1,4 @@
+var totalCheckedArray = []
 var restockRequiredArr = [] // contains item names that are selected for the shopping list
 var verificationPageArr = [] // shopping list to be updated and verified before sending to server.
 var checkboxObj = {}
@@ -12,10 +13,6 @@ var getListArr = [] // only if this array has entries can we delete local storag
       console.log('proceeding to checkout... ')
     })
 // when the proceed to checkout button is pressed maybe that's where we can check if any list items are remaining and give the shopper the options to go and get the missing items. 
-
-
-
-// CODEPEN SCRIPT
 
 
 // modal id's
@@ -129,18 +126,67 @@ var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, ba
 
 
 
+const startShop = () =>{
+$('#main-page').hide()
+$('#downloaded-list').css('display', 'block')
+let productSelect = document.querySelectorAll('.image-div-shop')
+productSelect.forEach(element => {
+  element.addEventListener('click',(e) =>{
+    console.log(e.target.children)
+  })
+});
 
+}
 
 
 
 const getShoppingList = () =>{
-
+  getListArr = []
 if(localStorage.getItem('new_shopping_list')){
   let getList = localStorage.getItem('new_shopping_list')
   let unpackList = JSON.parse(getList)
-getListArr.push(unpackList)
-console.log(getListArr)
+getListArr.push(...unpackList)
+
+// create a document fraction for appending to the downloaded list modal
+let df = new DocumentFragment()
+getListArr.forEach(element =>{
+   // CREATE DIV
+  let productDiv = document.createElement('DIV')
+  $(productDiv).addClass('image-checkbox-holder')
+  $(productDiv).addClass('item-image')
+  $(productDiv).addClass('image-div-shop')
+  $(productDiv).css('display:, flex; flex-direction:column;')
+
+  // CREATE ICON
+  let iconImg = document.createElement('IMG')
+  iconImg.style.cssText = 'margin-left:5px; margin-top:5px;'
+  iconImg.classList.add('delete-image')
+  iconImg.setAttribute('src', './images download list/add to basket.png') 
+
+  // CREATE PRODUCT IMG
+  let productImg = document.createElement('IMG')
+  productImg.classList.add('item-image')
+  productImg.setAttribute('src', element.product_image_location)
+
+
+// CREATE PRODUCT DESCRIPTION
+let productDescription = document.createElement('P')
+let textNode = document.createTextNode(element.product_name)
+productDescription.appendChild(textNode)
+productDescription.classList.add('select-label')
+
+//  append checkbox, product image and label to product holder and append product holder to 'items for selection' modal,
+productDiv.appendChild(iconImg)
+productDiv.appendChild(productImg)
+productDiv.appendChild(productDescription)
+df.appendChild(productDiv)
+})
+
+document.getElementById('downloaded-modal-content').appendChild(df)
+
+ startShop()
 }else{alert('no shopping list exists')}
+
 }
 
 const deliverAndClear = () =>{
@@ -149,7 +195,7 @@ const deliverAndClear = () =>{
     localStorage.removeItem('new_shopping_list')
     localStorage.setItem('new_delivery', '')
     console.log(localStorage)
-    
+
   }else{alert('no shopping exists to deliver')}
 }
 
@@ -176,31 +222,6 @@ if(restockRequiredArr.length > 0){
 }else{alert('shopping list is empty, click start new list')}
 
 }
-
-
-
-$('#main-page-content').click((e) =>{
-
-switch(e.target.id){
-case 'start-list':
-startList()
-  break;
-  case 'resume-list':
-resumeList()
-  break;
-  case 'get-shopping-list':
-    getShoppingList()
-  break;
-  case 'deliver-shopping':
-deliverAndClear()
-  break;
-  case 'restock-items':
-  break;
-}
-})
-
-
-
 
 
 
@@ -236,31 +257,29 @@ restockRequiredArr.forEach(product =>{
       productObj.product_id = arrayObject.id
       productObj.product_image_location = arrayObject.imgAddress
 verifiedListArr.push(productObj);
-
+$('#upload-modal').hide()
+$('#main-page').css('display','block')
+// images on shopping list need deleting too
       
      }
     })
    })
 
 })
-
-
 let shoppingList = JSON.stringify(verifiedListArr)
 localStorage.setItem('new_shopping_list',`${shoppingList}`)
-restockRequiredArr = []
+restockRequiredArr = []}
+
+
+const saveTempList = () =>{
+  $('#upload-modal').hide()
+  $('#shopping-list').css('display','block')
 
 }
 
 
 
 
-// upload shopping list
-$('#upload-img').click((e) =>{
-  // show decider modal to save temporary list, or to confirm completed list and upload
-$('#upload-modal').css('display','block')
-$('#shopping-list').hide()
-
-})
 // clear items in checkbox page (select items modal)
 const clearSubItems = () =>{
   let selectHolder = document.getElementById('items-for-selection')
@@ -272,6 +291,7 @@ const clearSubItems = () =>{
 
 // APPEND PRODUCTS FROM 'VIEW SELECTED ITEMS' TO SHOPPING LIST
 const pushToShoppingList = (id) =>{
+
   //create document fragment to hold new images
   let df = new DocumentFragment()
   // get viewed items element
@@ -292,7 +312,7 @@ const pushToShoppingList = (id) =>{
      $('#shopping-list').hide() // when clicked, hide shopping list and append div to delete modal
     document.getElementById('delete-this-item').append(e.target.parentNode)
     $('#delete-items').css('display', 'block') // display delete modal
-   
+
    })
 // append child to document fragment
 df.appendChild(addedHolder.firstChild)
@@ -300,7 +320,7 @@ df.appendChild(addedHolder.firstChild)
         }
 // append document fragment to shopping list
 document.getElementById('shopping-list-items').append(df) 
-
+console.log(document.getElementById('shopping-list-items'))
 // switch navigation id to find out where to go next (shopping list or category page)
 switch(id){
   case 'add-more':
@@ -318,21 +338,21 @@ case 'view-shopping-list':
 
 
 //  DELETE SHOPPING LIST ITEM (cancel)
-$('#cancel-delete').click(() =>{ // when image in shopping list is clicked display delete modal
-  $('#delete-items').css('display', 'none')// hide delete modal
-  // assign variable to item awaiting restoration
-  let cancelItemDelete = document.getElementById('delete-items').children[1].children[1].children[0];
-  // restore item to shopping list, by appending it. 
- document.getElementById('shopping-list-items').appendChild(cancelItemDelete)
+const cancelDelete = () =>{
+// when image in shopping list is clicked display delete modal
+$('#delete-items').css('display', 'none')// hide delete modal
+// assign variable to item awaiting restoration
+let cancelItemDelete = document.getElementById('delete-items').children[1].children[1].children[0];
+// restore item to shopping list, by appending it. 
+document.getElementById('shopping-list-items').appendChild(cancelItemDelete)
 // show shopping list
- $('#shopping-list').css('display', 'block')
-})
-
+$('#shopping-list').css('display', 'block')
+}
 
 //  DELETE SHOPPING LIST ITEM (confirm)
-$('#confirm-delete').click((e) =>{
+const confirmDelete = () =>{
  // assign variable to item awaiting deletion
-  let deleteThisProduct = document.getElementById('delete-items').children[1].children[1].children[0];
+ let deleteThisProduct = document.getElementById('delete-items').children[1].children[1].children[0];
  // assign variable to item product name. 
   let productName = deleteThisProduct.lastChild.innerText
   // find item product name index position in restock array and assign it a variable
@@ -349,9 +369,14 @@ $('#shopping-list').css('display', 'block')
 while(deleteProductHolder.firstChild){
   deleteProductHolder.removeChild(deleteProductHolder.firstChild)
 }
-})
+
+}
 
 
+const duplicateCheckedItem = () =>{
+  $('#msg-modal').hide()
+  $('#view-added-items').hide()
+}
 
 // back button on select subcategory items page (takes you back to main categories)
 $('#back-btn').click(function(){
@@ -361,38 +386,76 @@ $('#back-btn').click(function(){
 clearSubItems()
 })
 
-// close alert modal - the hidden alert modal reveals the checkbox modal which is were the user was before the alert occurred. 
-$('#alert-modal-close').click((e) =>{
-$(e.target.parentNode).hide()
-})
 
-
-
-// return to main category screen (from 'view added items' modal, to add more items from main categories
-$('#add-more').click(() =>{
-  $('#view-added-items').hide()
-  let id = 'add-more'
-pushToShoppingList(id)
-});
-
-
-// button to go from 'view added items' page to shopping list page
-$('#view-shopping-list').click(function(){
-  $('#view-added-items').hide();
-  let id = 'view-shopping-list'
-pushToShoppingList(id)
+//TO UPLOAD MODAL
+$('#upload-img').click((e) =>{
+  // show decider modal to save temporary list, or to confirm completed list and upload
+$('#upload-modal').css('display','block')
+$('#shopping-list').hide()
 
 })
 
 
-// return to main category page from shopping list page (to pick more items if you wish)
-$('#return-to-main').click(function(){
-  $('#shopping-list').hide();
-  $('#add-items').css('display','block')
+
+// EVENT LISTNER FOR ALL BUTTONS
+$('button').click((e) =>{
+switch(e.target.id){
+  case 'return-to-main':
+    $('#shopping-list').hide();
+    $('#add-items').css('display','block')
+  break;
+  case 'view-shopping-list':
+    $('#view-added-items').hide();
+    let idlist = 'view-shopping-list'
+  pushToShoppingList(idlist)
+  break;
+  case 'add-more':
+    $('#view-added-items').hide()
+    let idAdd = 'add-more'
+  pushToShoppingList(idAdd)
+      break;
+  case 'alert-modal-close':
+duplicateCheckedItem()
+  break;
+  case 'back-btn':
+  break;
+  case 'confirm-delete':
+    confirmDelete()
+  break;
+  case 'cancel-delete':
+    cancelDelete()
+  break;
+  case 'save-list':
+  break;
+  case 'view-shoplist':
+    $('#shopping-list').css('display','block');
+    $('#add-items').hide()
+  break;
+  case 'start-list':
+startList()
+  break;
+  case 'resume-list':
+resumeList()
+  break;
+  case 'get-shopping-list':
+    getShoppingList()
+  break;
+  case 'deliver-shopping':
+deliverAndClear()
+  break;
+  case 'restock-items':
+  break;
+  case 'authorize-upload':
+    confirmUpload()
+  break;
+  case 'save-list':
+    saveTempList()
+  break;
+
+
+}
+
 })
-
-
-
 
 
 
@@ -470,16 +533,51 @@ if(document.getElementById(element.catName).contains(e.target)){ // when the scr
 })
 })
 
-// VIEW SHOPPING LIST from main category page
-$('#view-shoplist').click(()=>{
-  $('#shopping-list').css('display','block');
-  $('#add-items').hide()
+// DUPLICATE ALERT
+const duplicateAlert = (duplicates, total) =>{
+  // clear alert paragraph
+  document.getElementById('alert-para').textContent = ''
+  let df = new DocumentFragment()
+let duplicateList =  document.createElement('ul')
+let alertPara = document.createElement('p')
+if(total > 1){
+  alertPara.textContent = 'items already selected:'
+}else{alertPara.textContent = 'item already selected:'}
 
+df.appendChild(alertPara)
+df.appendChild(duplicateList)
+
+duplicates.forEach(product =>{
+let li = document.createElement('li');
+li.textContent = `${product}`
+df.append(li)
 })
+
+document.getElementById('alert-para').appendChild(df)
+
+$('#msg-modal').css('display', 'flex')
+}
+
+// SHOW JUST ADDED ITEMS (UNLESS NO ITEMS SELECTED, THEN SHOW ALERT)
+viewAddedItems = (selected) =>{
+  
+  if(selected < 1){
+    $('#alert-para').html(`no products selected close and select products`);
+    $('#msg-modal').css('display', 'flex')
+
+}else{
+  $('#product-select').hide()
+  $('#view-added-items').css('display','block')
+}
+}
+
 
 
 // FIND CHECKED CHECKBOXES AND APPEND ASSOCIATED IMAGES TO 'VIEW ADDED' MODAL
 const checkClickedStatus = () =>{
+let duplicateArray = []
+  let duplicateTotal = 0; // determines which function executes at the end of this function
+let checkedtotal = 0; // determines which function executes at the end of this function
 
   let df = new DocumentFragment(); // new divs appended to this fragment
       // clear previous added items modal - this happens when submit button is clicked if one or more items have been checked. 
@@ -487,48 +585,49 @@ const checkClickedStatus = () =>{
   while (addedHolder.firstChild) {
     addedHolder.removeChild(addedHolder.firstChild);}
 
-// locate all checkbox items in the document - these will only be in the item divs (the products) of the current category because, on exciting a product veiw, the categorycategory, the checkbox items are deleted from the page. NOTE* checkbox items are still on the invisible modal
+// locate all checkbox 
    let element = document.querySelectorAll('[type=checkbox]')
+
   element.forEach(item =>{
 if(item.checked){ // if any items checkboxes are ticked --
-  if(restockRequiredArr.includes(item.value)){ // if item name is in restock array, item is already picked. 
-    item.removeAttribute('checked') // uncheck checkbox because you already listed the item. 
-    
-    // item value is the name of the product
-    $('#alert-para').html(`<em>${item.value}</em><br> is already on your shopping list`);// paragraph to alert user of duplicate
-    $('#msg-modal').css('display', 'flex')
- // open message modal to display alert to user
-
-  }else{restockRequiredArr.push(item.value) // if item is not already picked send value (product) to array
-
+  checkedtotal += 1;
+  // give a special class to duplicate selections
 
     // hide product checkbox modal
-    $('#product-select').hide();
+    if(restockRequiredArr.includes(item.value)){
+     // addedDiv.classList.add('duplicate');
+     duplicateArray.push(item.value)
+      duplicateTotal += 1;  // THEN FILL IN MODAL WITH DUPLICATE DETAIL
 
-    // creating a div to hold a duplicate item image and item name (excluding the checkbox)
-    let addedDiv = document.createElement('DIV')
-    $(addedDiv).addClass('item-checkbox-holder')
-    $(addedDiv).addClass('item-image')
-    $(addedDiv).css('display:, flex; flex-direction:column;')
+      item.removeAttribute('checked') // uncheck checkbox
+              }else{ // CREATE PRODUCT for shopping list
+                                restockRequiredArr.push(item.value);
+        // CREATE NEW DIV and STYLE
+        let addedDiv = document.createElement('DIV')
+        $(addedDiv).addClass('item-checkbox-holder')
+        $(addedDiv).addClass('item-image')
+        $(addedDiv).css('display:, flex; flex-direction:column;')
 
-    // remove image and description para from original item by appending them to the newly created div
+ // DROP IMAGE AND DESCRIPTION INTO DIV
    addedDiv.append(item.parentNode.children[1]) // image
    addedDiv.append(item.parentNode.children[1]) // paragraph, which is now children[1]
-console.log(addedDiv)
 
-   // append div to document fragment
+      // APPEND DIV TO DOCUMENT FRAGMENT
   df.appendChild(addedDiv)
+
   }
 }
 
     })
-    // append document fragment to 'just added items' modal
+       // APPEND DOCUMENT FRACTION TO ADDED ITEMS DIV
     document.getElementById('just-added-items').append(df)
-    $('#view-added-items').css('display','block')
-
+    if(duplicateTotal < 1){ // no duplicate exists
+      viewAddedItems(checkedtotal)
+      }else{ // duplicates exist
+duplicateAlert(duplicateArray, duplicateTotal)
+     // VIEW ADDED ITEMS
+   }
 }
-
-
 
 // submit executes the function for finding which item checkboxes have been ticked. This is a form in the subcategory item page where you select or deselect items. 
 $('#create-list').on('submit', function(e){
