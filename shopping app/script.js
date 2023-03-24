@@ -126,15 +126,36 @@ var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, ba
 
 
 
+
+
+
+const itemHold = (product) =>{
+  product.style.cssText = 'width:200px; height:200px; margin-top:30px; margin-bottom:20px; padding-bottom:20px;'
+product.firstChild.style.cssText = 'width:30px; height:30px'
+product.lastChild.style.cssText = 'font-size:25px;'
+product.children[1].style.cssText = 'width:180px; height:180px; display:inline-block; margin:0px'
+console.log(product.children[1])
+let holdContent = document.getElementById('hold-modal-content')
+holdContent.prepend(product)
+$('#hold-item').css('display', 'block')
+$('#downloaded-list').hide()
+
+}
+
+
+
 const startShop = () =>{
 $('#main-page').hide()
 $('#downloaded-list').css('display', 'block')
 let productSelect = document.querySelectorAll('.image-div-shop')
 productSelect.forEach(element => {
   element.addEventListener('click',(e) =>{
-    console.log(e.target.children)
-  })
-});
+    // get div and send for decision on hold-item modal
+    let product = e.target.parentNode
+    itemHold(product)
+   
+      })
+      });
 
 }
 
@@ -194,7 +215,7 @@ const deliverAndClear = () =>{
   if(getListArr.length >0){
     localStorage.removeItem('new_shopping_list')
     localStorage.setItem('new_delivery', '')
-    console.log(localStorage)
+   
 
   }else{alert('no shopping exists to deliver')}
 }
@@ -266,8 +287,18 @@ $('#main-page').css('display','block')
    })
 
 })
+
+// DELETE ELEMENTS FROM SHOPPING MODAL
+let clearShoppingList = document.getElementById('shopping-list-items')
+while(clearShoppingList.firstChild){
+  clearShoppingList.removeChild(clearShoppingList.firstChild);
+}
+
+// stringify the array containing all shopping list JS objects. 
 let shoppingList = JSON.stringify(verifiedListArr)
+// save in local storage
 localStorage.setItem('new_shopping_list',`${shoppingList}`)
+// now list is saved array can be deleted
 restockRequiredArr = []}
 
 
