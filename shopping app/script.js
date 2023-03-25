@@ -9,6 +9,12 @@ console.log(localStorage.removeItem('new_shopping_list'))
 console.log(localStorage.removeItem('temp_list'))
 */
 
+if(localStorage.getItem('temp_list')){
+      // then shopping has already begun so change the start shopping name to resume shopping
+      document.getElementById('open-shopping-list').innerText = 'Resume Shopping'
+      console.log(document.getElementById('open-shopping-list').innerText)
+}
+
 if(localStorage.getItem('basket_list')){
   console.log(localStorage.getItem('basket_list'))
   document.getElementById('get-shopping-list').style.display = 'none'
@@ -191,7 +197,7 @@ console.log(basketList)
 
 // UPDATE START SHOPPING BUTTON TO RESUME SHOPPING BUTTON
 
-document.getElementById('open-shopping-list').textContent = 'Resume Shopping'
+
   console.log(localStorage)
   listArray.forEach(object =>{
 
@@ -347,6 +353,8 @@ const foo = () =>{
 
   // if temp list is saved in local storage then the list needs to be updated from there and the shopping list needs to be created from chopping list local storage. 
   if(localStorage.getItem('temp_list')){
+
+    
 let ListLocalStorage = localStorage.getItem('temp_list')
 let listUpdate = JSON.parse(ListLocalStorage)
 getListArr.push(...listUpdate)
