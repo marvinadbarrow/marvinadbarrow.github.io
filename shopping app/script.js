@@ -1,3 +1,18 @@
+// BEGIN BY CHECKING IF THERE ARE ITEMS IN A SHOPPING BASKET BECAUSE THEN WE WON'T HAVE TO DOWNLOAD THE ORIGINAL LIST AND CAN JUST POPULATE THE BASKET AND PICK LIST FROM THE ASSOCIATED LOCAL STORAGE KEYS
+
+
+// below bit of code resets the shopping list and pick list saved items so you can download the shopping list and start from scratch
+
+/*
+console.log(localStorage.removeItem('basket_list', ''))
+console.log(localStorage.removeItem('new_shopping_list'))
+console.log(localStorage.removeItem('temp_list'))
+*/
+
+if(localStorage.getItem('basket_list')){
+  console.log(localStorage.getItem('basket_list'))
+  document.getElementById('get-shopping-list').style.display = 'none'
+}
 var totalCheckedArray = []
 var restockRequiredArr = [] // contains item names that are selected for the shopping list
 var verificationPageArr = [] // shopping list to be updated and verified before sending to server.
@@ -5,6 +20,10 @@ var checkboxObj = {}
 var productArr = []
 var verifiedListArr = []
 var getListArr = [] // only if this array has entries can we delete local storage on delivery of shopping (this can be used to create a shopping history)
+var inShopListArr = []// contains downloaded list items and items are removed as they are added to the shopping basket. 
+var basketArr = [] // items added to shopping basket are pushed here. 
+var initialListArray = []// holds record of last saved temp list if it exists
+
     $('#checkout-send').click(function(e){
       console.log('sending items to checkout... ')
     })
@@ -124,17 +143,157 @@ var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, ba
 
 
 
+const productTotal = (identifyer) =>{
+  // get paragraph which displays number of items to push to basket
+  let itemNumberElement = document.getElementById('pick-value')
+   // get text content of item total on add to basket screen
+  let itemTotalText = itemNumberElement.textContent
+  // convert text to number
+  let itemTotalNumber = Number(itemTotalText)
+  
+  console.log()
+switch(identifyer){
+  case 'add-1': itemTotalNumber += 1;
+  itemNumberElement.textContent = itemTotalNumber;
+    break;
+  case 'subtract-1':
+    if(itemTotalNumber > 0){
+  itemTotalNumber -= 1;
+  itemNumberElement.textContent = itemTotalNumber;      
+    }
+    break;
+}
+
+}
+
+const openBasket = () =>{
+$('#downloaded-list').hide()
+$('#basket-list').css('display', 'block')
+}
+
+const openList = () =>{
+  $('#basket-list').hide()
+$('#downloaded-list').css('display', 'block')
+}
+
+// updates the array containing shopping list items not yet sent to basket. 
+const updateLists = (listArray, basketArray) =>{
+ // save altered list array in local storage
+ let tempList =  JSON.stringify(listArray)
+ console.log(tempList)
+localStorage.setItem('temp_list',`${tempList}` )
+
+ // save basket array in local storage
+let basketList = JSON.stringify(basketArray)
+localStorage.setItem('basket_list',`${basketList}`)
+console.log(basketList)
+
+
+// UPDATE START SHOPPING BUTTON TO RESUME SHOPPING BUTTON
+
+document.getElementById('open-shopping-list').textContent = 'Resume Shopping'
+  console.log(localStorage)
+  listArray.forEach(object =>{
+
+  })
+
+}
+
+
+// SENDS PRODUCT TO BASKET, basically the same  operation as holdItemToList, but you send the other way, to the basket instead of back to the list. 
+const populateBasket = () =>{
+
+  let product = document.getElementById('hold-modal-content').firstChild
+  // resize product image ready for re-appending to downloaded list
+   product.classList.remove('image-div-shop-large')
+   product.firstChild.classList.remove('plus-icon-large')
+   product.children[1].classList.remove('pick-item-image-large')
+   product.lastChild.classList.remove('product-label-large')
+
+ // get basket modal drop item into modal. 
+let basketItems = document.getElementById('basket-modal-content') 
+basketItems.prepend(product)
+// remove 'plus' icon which will be replaced with item amount element
+product.removeChild(product.firstChild)
+// item amount indicator  NEED TO FIND OUT HOW TO GET THIS INTO BASKET ARRAY
+let itemAmountEl = document.createElement('DIV')
+itemAmountEl.classList.add('item-amount-icon')
+itemAmountEl.textContent = document.getElementById('pick-value').textContent
+product.prepend(itemAmountEl)
+
+
+
+getListArr.forEach(object =>{ // loop through objects in getListArr
+  if(object == undefined){console.log('ignore')}else{
+if(product.lastChild.innerText == object.product_name){ // if product name matches the one in the array
+let index = getListArr.indexOf(object) // get index of object
+console.log(index)
+basketArr.push(getListArr[index]) // push object to basket array
+delete getListArr[index]// remove object from get list array
+}
+}
+
+})
+
+// set number of items selected in add to basket modal to zero
+document.getElementById('pick-value').textContent = '0';
+
+  $('#hold-item').hide() // close hold item
+  $('#downloaded-list').css('display', 'block') // return to shopping list (button on shopping list navigates to basket)
+updateLists(getListArr, basketArr)
+}
+
+
+// PRE-POPULATE BASKET; prior to populating basket make sure that user has selected at leat ONE ITEM to push to basket. 
+
+const prePopulateBasket = () =>{
+  let pickValueText = document.getElementById('pick-value').textContent
+  let pickValueNumber = Number(pickValueText)
+if(pickValueNumber > 0){
+  populateBasket()
+}else{
+  document.getElementById('alert-para').textContent = 'choose how many of this item you want;'
+$('#msg-modal').css('display', 'block')
+}
+
+
+}
+
+
+
+// FROM 'ADD TO BASKET?' BACK TO  PICK ITEM LIST
+const  holdItemToList = () =>{
+  let product = document.getElementById('hold-modal-content').firstChild
+  // resize product image ready for re-appending to downloaded list
+   product.classList.remove('image-div-shop-large')
+   product.firstChild.classList.remove('plus-icon-large')
+   product.children[1].classList.remove('pick-item-image-large')
+   product.lastChild.classList.remove('product-label-large')
+
+// // return the item to pick item modal. 
+let listCurrent = document.getElementById('downloaded-modal-content') 
+listCurrent.prepend(product)
+// set the amount of items selected to zero
+document.getElementById('pick-value').textContent = '0';
+$('#hold-item').hide()
+$('#downloaded-list').css('display', 'block')
+}
 
 
 
 
+// button returns to pick list from HOLD ITEM modal
+$('#hold-to-list').click(() =>{
+  holdItemToList()
+})
 
+// PICKED ITEM TAKES YOU HERE TO DECIDE WHETHER TO DROP TO BASKET OR RETURN TO PICK LIST. 
 const itemHold = (product) =>{
-  product.style.cssText = 'width:200px; height:200px; margin-top:30px; margin-bottom:20px; padding-bottom:20px;'
-product.firstChild.style.cssText = 'width:30px; height:30px'
-product.lastChild.style.cssText = 'font-size:25px;'
-product.children[1].style.cssText = 'width:180px; height:180px; display:inline-block; margin:0px'
-console.log(product.children[1])
+  product.classList.add('image-div-shop-large')
+product.firstChild.classList.add('plus-icon-large')
+product.lastChild.classList.add('product-label-large')
+product.children[1].classList.add('pick-item-image-large')
+console.log(document.getElementById('downloaded-modal-content'))
 let holdContent = document.getElementById('hold-modal-content')
 holdContent.prepend(product)
 $('#hold-item').css('display', 'block')
@@ -144,10 +303,27 @@ $('#downloaded-list').hide()
 
 
 
-const startShop = () =>{
+
+
+
+
+
+const startShop = (array) =>{
+  // creat new storage point for list so it can be updated as you send items to basket
+  array.forEach(item =>{
+    inShopListArr.push(item)
+  })
+
+  console.log(inShopListArr)
+
 $('#main-page').hide()
 $('#downloaded-list').css('display', 'block')
+
+// add event listener to all shopping list items
 let productSelect = document.querySelectorAll('.image-div-shop')
+
+
+// ADD EVENTLISTENER TO ALL ITEMS SO THEY CAN BE SENT TO HOLD FOR BASKET MODAL
 productSelect.forEach(element => {
   element.addEventListener('click',(e) =>{
     // get div and send for decision on hold-item modal
@@ -161,32 +337,117 @@ productSelect.forEach(element => {
 
 
 
-const getShoppingList = () =>{
-  getListArr = []
-if(localStorage.getItem('new_shopping_list')){
-  let getList = localStorage.getItem('new_shopping_list')
-  let unpackList = JSON.parse(getList)
-getListArr.push(...unpackList)
+
+
+
+
+
+  // CREATE ELEMENTS TO LOAD IN SHOPPING LIST - MOVING THIS TO BE ACTIVATED BY 'START LIST' BUTTON - START BUTTON WILL NOT ACTIVATE THIS FUNCTION UNLESS LIST HAS BEEN DOWNLOADED AND DOWNLOAD BUTTON IS NOT VISIBLE
+const foo = () =>{
+
+  // if temp list is saved in local storage then the list needs to be updated from there and the shopping list needs to be created from chopping list local storage. 
+  if(localStorage.getItem('temp_list')){
+let ListLocalStorage = localStorage.getItem('temp_list')
+let listUpdate = JSON.parse(ListLocalStorage)
+getListArr.push(...listUpdate)
+console.log(getListArr)
+let df = new DocumentFragment()
+getListArr.forEach(element =>{
+
+  // IF ELEMENT IS MISSING (NULL) IGNORE ELEMENT AND CONTINUE
+  if(element == undefined){console.log(element)}else{
+
+  // CREATE DIV
+ let productDiv = document.createElement('DIV')
+ $(productDiv).addClass('image-div-shop')
+
+
+ // CREATE ICON
+ let iconImg = document.createElement('IMG')
+ iconImg.classList.add('plus-icon')
+ iconImg.setAttribute('src', './images download list/add to basket.png') 
+
+ // CREATE PRODUCT IMG
+ let productImg = document.createElement('IMG')
+ productImg.classList.add('pick-item-image')
+ productImg.setAttribute('src', element.product_image_location)
+
+
+// CREATE PRODUCT DESCRIPTION
+let productDescription = document.createElement('P')
+let textNode = document.createTextNode(element.product_name)
+productDescription.appendChild(textNode)
+productDescription.classList.add('product-label')
+
+//  append checkbox, product image and label to product holder and append product holder to 'items for selection' modal,
+productDiv.appendChild(iconImg)
+productDiv.appendChild(productImg)
+productDiv.appendChild(productDescription)
+df.appendChild(productDiv)}
+})
+
+document.getElementById('downloaded-modal-content').appendChild(df)
+
+// now restore basket
+let basketLocalStorage = localStorage.getItem('basket_list')
+let basketUpdate = JSON.parse(basketLocalStorage)
+basketArr.push(...basketUpdate)
+console.log(basketArr)
+let df2 = new DocumentFragment()
+
+basketArr.forEach(element =>{
+
+  // IF ELEMENT IS MISSING (NULL) IGNORE ELEMENT AND CONTINUE
+  if(element == undefined){console.log(element)}else{
+
+  // CREATE DIV
+ let productDiv = document.createElement('DIV')
+ $(productDiv).addClass('image-div-shop')
+
+ // CREATE PRODUCT IMG
+ let productImg = document.createElement('IMG')
+ productImg.classList.add('pick-item-image')
+ productImg.setAttribute('src', element.product_image_location)
+
+
+// CREATE PRODUCT DESCRIPTION
+let productDescription = document.createElement('P')
+let textNode = document.createTextNode(element.product_name)
+productDescription.appendChild(textNode)
+productDescription.classList.add('product-label')
+
+//  append checkbox, product image and label to product holder and append product holder to 'items for selection' modal,
+productDiv.appendChild(productImg)
+productDiv.appendChild(productDescription)
+df2.appendChild(productDiv)}
+})
+
+document.getElementById('basket-modal-content').appendChild(df2)
+startShop(getListArr)
+
+
+
+
+  }else{
+
+if(getListArr.length < 1){console.log('cannot start shopping until list is downloaded')}else{
 
 // create a document fraction for appending to the downloaded list modal
 let df = new DocumentFragment()
 getListArr.forEach(element =>{
    // CREATE DIV
   let productDiv = document.createElement('DIV')
-  $(productDiv).addClass('image-checkbox-holder')
-  $(productDiv).addClass('item-image')
   $(productDiv).addClass('image-div-shop')
-  $(productDiv).css('display:, flex; flex-direction:column;')
+
 
   // CREATE ICON
   let iconImg = document.createElement('IMG')
-  iconImg.style.cssText = 'margin-left:5px; margin-top:5px;'
-  iconImg.classList.add('delete-image')
+  iconImg.classList.add('plus-icon')
   iconImg.setAttribute('src', './images download list/add to basket.png') 
 
   // CREATE PRODUCT IMG
   let productImg = document.createElement('IMG')
-  productImg.classList.add('item-image')
+  productImg.classList.add('pick-item-image')
   productImg.setAttribute('src', element.product_image_location)
 
 
@@ -194,7 +455,7 @@ getListArr.forEach(element =>{
 let productDescription = document.createElement('P')
 let textNode = document.createTextNode(element.product_name)
 productDescription.appendChild(textNode)
-productDescription.classList.add('select-label')
+productDescription.classList.add('product-label')
 
 //  append checkbox, product image and label to product holder and append product holder to 'items for selection' modal,
 productDiv.appendChild(iconImg)
@@ -202,17 +463,42 @@ productDiv.appendChild(productImg)
 productDiv.appendChild(productDescription)
 df.appendChild(productDiv)
 })
-
 document.getElementById('downloaded-modal-content').appendChild(df)
+startShop(getListArr)
+}
 
- startShop()
+
+}}
+
+
+
+
+// DOWNLOAD AND UNPACK SHOPPING list if one exists
+const getShoppingList = () =>{
+
+if(localStorage.getItem('new_shopping_list')){
+  if(getListArr.length < 1){
+  // convert shopping list in local storage
+  let getList = localStorage.getItem('new_shopping_list')
+  let unpackList = JSON.parse(getList)
+getListArr.push(...unpackList)
+// hide download list button
+$('#get-shopping-list').hide()
+}else{
+  console.log('list already available')
+}
+
 }else{alert('no shopping list exists')}
 
 }
 
+
+
+
+// DELIVER AFTER SHOPPING COMPLETE
 const deliverAndClear = () =>{
   // move list from get
-  if(getListArr.length >0){
+  if(localStorage.getItem('checkout')){ // if checkout storage has been created then we can deliver and clear and move checkout items to new deliver items. 
     localStorage.removeItem('new_shopping_list')
     localStorage.setItem('new_delivery', '')
    
@@ -224,7 +510,7 @@ const deliverAndClear = () =>{
 const startList = () =>{
   let storageList = localStorage.getItem('new_shopping_list')
 
-  if(!storageList){ // if nothing is in local storage then shopping needs to start or resume
+  if(!localStorage.getItem('new_shopping_list')){ // if nothing is in local storage then shopping needs to start or resume
     if(restockRequiredArr.length < 1){ // if restock array is empty then there is no list so start a new list
       $('#main-page').hide();
       $('#add-items').css('display','block')
@@ -236,6 +522,8 @@ const startList = () =>{
 
 }
 
+
+
 const resumeList = () =>{
 if(restockRequiredArr.length > 0){
   $('#main-page').hide();
@@ -245,13 +533,10 @@ if(restockRequiredArr.length > 0){
 }
 
 
-
+// blob that opens over save (or upload button)
 $('#upload-img').hover(() =>{
 $('#upload-blob').toggle()  
 })
-
-
-
 
 
 
@@ -272,11 +557,13 @@ restockRequiredArr.forEach(product =>{
         product_name:'',
         product_id:'',
         product_image_location:'',
+        product_total_number:''
       }
       
       productObj.product_name = arrayObject.itemName
       productObj.product_id = arrayObject.id
       productObj.product_image_location = arrayObject.imgAddress
+
 verifiedListArr.push(productObj);
 $('#upload-modal').hide()
 $('#main-page').css('display','block')
@@ -336,7 +623,6 @@ const pushToShoppingList = (id) =>{
     // prepend delete image before the child
     addedHolder.firstChild.prepend(deleteImg) 
      // style image
-   deleteImg.style.cssText = 'margin-left:5px; margin-top:5px;'
    deleteImg.classList.add('delete-image')
    // add event listener to containing div
    addedHolder.firstChild.addEventListener('click', (e) =>{
@@ -428,9 +714,11 @@ $('#shopping-list').hide()
 
 
 
-// EVENT LISTNER FOR ALL BUTTONS
+// BUTTON EVENT HANDLER (ALL BUTTONS)
 $('button').click((e) =>{
+ // console.log(e.target)
 switch(e.target.id){
+
   case 'return-to-main':
     $('#shopping-list').hide();
     $('#add-items').css('display','block')
@@ -448,8 +736,7 @@ switch(e.target.id){
   case 'alert-modal-close':
 duplicateCheckedItem()
   break;
-  case 'back-btn':
-  break;
+
   case 'confirm-delete':
     confirmDelete()
   break;
@@ -482,8 +769,28 @@ deliverAndClear()
   case 'save-list':
     saveTempList()
   break;
+case 'navigate-to-basket':
+  prePopulateBasket()
+  break;
+  case 'view-basket-btn':
+    openBasket()
+  break;
+case 'basket-to-list':
+  openList()
+  break;
+case 'basket-to-checkout':
+  checkout()
+  break;
+case 'add-1':
+productTotal(e.target.id)
+break;
+case 'subtract-1':
+productTotal(e.target.id)
+break;
 
-
+case 'open-shopping-list':
+foo()
+break;
 }
 
 })

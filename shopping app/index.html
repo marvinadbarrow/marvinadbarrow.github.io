@@ -117,7 +117,7 @@ awesome/4.7.0/css/font-awesome.min.css">
 
 
 
-       <!--  displays SELECTED ITEMS just added to shopping list-->
+       <!--  VIEW ADDED ITEMS just added to shopping list-->
   <div class="modal" id="view-added-items">
      <h2>Just added</h2>
      <div id="just-added-content" class="main">
@@ -187,11 +187,12 @@ awesome/4.7.0/css/font-awesome.min.css">
 <div id="main-page-content">
   <h4 id="task-select">Choose a task!</h4>
 
-  <button id="start-list" class="main-page-btn">Start list</button>
-  <button id="resume-list" class="main-page-btn">Resume list</button>
-  <button id="get-shopping-list" class="main-page-btn">Get list</button>
+  <button id="start-list" class="main-page-btn">Create list</button>
+  <button id="resume-list" class="main-page-btn">Update list</button>
+  <button id="get-shopping-list" class="main-page-btn">Download list</button>
+  <button id="open-shopping-list" class="main-page-btn">Start Shopping</button>
   <button id="deliver-shopping" class="main-page-btn">Deliver shopping</button>
-  <button id="restock-items" class="main-page-btn">Re-stock shopping</button>
+  <button id="restock-items" class="main-page-btn">Re-stock</button>
 
 </div>
 </div>
@@ -217,6 +218,7 @@ awesome/4.7.0/css/font-awesome.min.css">
 <div class="modal" id="downloaded-list">
   <h2>Pick List</h2>
   <div id="downloaded-modal-content"></div>
+  <button id="view-basket-btn" class="navigate-btn">View basket</button>
 </div>
 
 <!-- HOLD MODAL -->
@@ -224,19 +226,28 @@ awesome/4.7.0/css/font-awesome.min.css">
   <h2>Add to basket?</h2>
   <div id="hold-modal-content">
     <div id="hold-item-btn-container">
-    <button class="hold-btn">-</button>
+    <button id="subtract-1" class="hold-btn">-</button>
     <p id="pick-value">0</p>
-    <button class="hold-btn">+</button>
+    <button id="add-1" class="hold-btn">+</button>
   </div>
   </div>
+  <div id="hold-btn-holder">
+<button id="hold-to-list" class="back-btn-hold"><img id="hold-to-list" class="back-arrow2-img" src="./back arrow 2.png" alt=""></button>
+<button class="navigate-btn-hold" id="navigate-to-basket">Add to basket</button>
+</div>
+</div>
+
+
+<!-- BASKET MODAL -->
+<div class="modal" id="basket-list">
+  <h2>Basket</h2>
+  <div id="basket-modal-content"></div>
   <div id="basket-btn-holder">
-<button class="back-btn-basket"><img class="back-arrow2-img" src="./back arrow 2.png" alt=""></button>
-<button class="navigate-btn-basket">Add to basket</button>
+    <button id="basket-to-list" class="navigate-btn-basket">List</button>
+    <button class="navigate-btn-basket"  id="basket-to-checkout">Checkout</button>
+    </div>
+
 </div>
-</div>
-
-
-
 
 
 

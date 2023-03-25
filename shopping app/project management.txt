@@ -176,17 +176,59 @@ PROBLEMS WITH DUPLICATE CHECKBOX SELECTION.
 I think what happens is that the function stops while the alert is running, and once you click the close button, then the function runs again, and, if there are other checked boxes, creates the product element for display and then opens the added items modal.  - but maybe you want to cycle through 'all' of the checkboxes 'first'. create all elements, and then check to see if any of them are in the restock required array - if that's the case, bring up the alert box informing user of the duplication.  perhaps, beforehand, when a duplicate is found, add a class of 'duplicate' to the item, and then once you click the close button of the modal, you can delete that item from the added items page, and only THEN, show the added items page, otherwise, just show the items page as normal. so the steps would be. - DONE!
 
 
-ADDING TO BASKET... Maybe you can have the page come up with the larger image and have two options, 'add to basket' or 'ignore'. 'Add' will take you back to the items to pick page but with the picked item's image now missing from the link because you have already put it in the basket, but 'ignore' will just take you back to the 'items to pick' page as if no action has been taken and the item will still be available to pick. (formatting DONE - needs implementation)
+
+24 MARCH TASKS --------------------------------------------------------
+
+ALSO: found the reason why all the divs are squished together... The formatting of the container for product divs is formatted flex row, and flex wrap. Whereas other containers are not so that needs adjusting - AND, height was fixed rather than fit-content, which varies. FIXED
+- follow the 'items for selection' class template. -DONE!
+
+also amalgamate the .delete-image class with the margin values added by cssText
+- you can find those in pushtoshoppinglist() and getshoppinglist()
+and change the value to just margin:5px; since although you need to shift it to and left by 5px bottom and right being 5px does not affect any other element so just do the whole thing as 5px. -- DONE!
 
 
+NOTES.... CREATE NEW CLASS FOR PRODUCT HOLDERS - combine:
+item checkbox holder
+item image
+-might as well give the div its own category also: image-div-shopping
+CREATE CLASS FOR 'ADD TO BASKET' LARGER IMAGES
+Take values in JS and organize in CSS which you will access from JS.  ---DONE!
 
 
+ADDING TO BASKET... Maybe you can have the page come up with the larger image and have two options, 'add to basket' or 'ignore'. 'Add' will take you back to the items to pick page but with the picked item's image now missing from the link because you have already put it in the basket, but 'ignore' will just take you back to the 'items to pick' page as if no action has been taken and the item will still be available to pick. (formatting DONE - needs implementation)  --- DONE!
 
 
-TRACKING SHOPPING BEHAVIOUR... there needs to be some way to track current behaviour just in case the shopping is interrupted or internet connection goes down, or you accidentally come out of the app, or refresh the page. So perhaps intermittent storing is needed, and also storage for basket items, which can be activated when you send an item to the basket.
+NUMBER OF ITEMS PER PRODUCT IN BASKET
+have to deal with number of items, AND, then, replace the plus-icon with a div that displays the number of items per product (at the top of the item image) 
+ALSO: item needs to be sent from pick list and saved into local storage for basket items.  DONE!
+
 
 SAVING THE SHOPPING LIST (prior to upload)
-I was thinking that it might be better to just save the shopping list to local storage as you add items to the list.  Otherwise you'll lose data; and that forces you to create the entire list in one session which is not what I want to do.   I want to be able to gradually save a list; actually, that is in place already on the 'shopping list' page.  When you check the list, you can save on the page (or upload) so gradual saving is can already be implemented.  Just need to know how to update LOCAL STORAGE; and that's really the crux of the above tracking behaviour too; you need to know how to update local storage (but in the background). It might even be a good idea to start a timer while shopping and auto save at a specific interval, resetting the clock; the clock can also be reset when you add an item to the basket. 
+I was thinking that it might be better to just save the shopping list to local storage as you add items to the list.  Otherwise you'll lose data; and that forces you to create the entire list in one session which is not what I want to do.   I want to be able to gradually save a list; actually, that is in place already on the 'shopping list' page.  When you check the list, you can save on the page (or upload) so gradual saving is can already be implemented.  Just need to know how to update LOCAL STORAGE; and that's really the crux of the above tracking behaviour too; you need to know how to update local storage (but in the background). It might even be a good idea to start a timer while shopping and auto save at a specific interval, resetting the clock; the clock can also be reset when you add an item to the basket. DONE! BUT YOU NEED TO NOW USE THE SAVED DATA TO RELOAD TEH LIST PAGE AND THE BASKET PAGE (also in localstorage) -- DONE! refreshing the page keeps the last saved state.  Basket keeps items and pick list is reduced appropriately.  Only thing is that numbers of items disappear from basket items so that will have to also be saved on local storage so it can be retrieved... almost there. 
+
+TRACKING SHOPPING BEHAVIOUR... there needs to be some way to track current behaviour just in case the shopping is interrupted or internet connection goes down, or you accidentally come out of the app, or refresh the page. So perhaps intermittent storing is needed, and also storage for basket items, which can be activated when you send an item to the basket. DONE!  I don't even think a timer is really needed because you on pushing to basket your most recet state gets saved anyway.  You can always refresh the page and check to see if your item was entered, when you go back in.  Eventually want this app to be accessible offline; to prevent these issues. ----- DONE!
+
+
+
+
+MORE PARTS TO BUILD:-
+
+FINAL CHECKOUT PAGE: - on the checkout page we can show the entire list, perhaps in the format of the original item categories, i.e. one list item per page; and have a way of distinguishing which ones you are about to purchase and which ones you have left out; asking whether user is sure that they want to proceed to checkout and purchase and then make purchase, or go back to pick list if user changes their mind.  
+
+PUPULATING BASKET AND UPDATED LIST ON USER RE-ENTRY INTO APPLICATION: 
+At the moment, each time the app is refreshed, the download button has to be clicked in order to open the 'new' list, and the items previously moved from the list to the basket have been restored to the list and removed from the basket, as it would be when the list is first downloaded from local storage. What needs to happen is that if the user exits the app; when user returns, they should be prompted to click the RESUME SHOPPING button, and then the LIST MODAL and BASKET MODAL should be populated from the saved areas of local storage that were updating on the last shop and that hold the relevant data. if nothing is stored in the 'basket' local storage, the button below DOWNLOAD LIST will read 'START SHOPPING'; once the list is downloaded and user sends the first item to the basket, the label will change to 'RESUME SHOPPING'. We might not even need to write new functions; but use one single function which will be pushed to from the start shopping/resumeshopping button.  Maybe, instead of using the DOWNLOAD button to pupulate the list, might as well use the START SHOPPING button for that - and hide the DOWNLOAD button so it cannot be activated once the list has been downloaded.  Then START or RESUME can both activate the same funciton but exactly what happens  in the function depends on what is in localstorage; no saved basket or saved basket. 
+
+
+
+
+
+NOTE* TOTAL NUMBER OF ITEMS ON THE SHOPPING LIST  = DOWNLOADED LIST + BASKET. 
+So all you need to do when going to checkout is check if there are items in the downloaded list and that will tell you whether or not you have completed the list. ----- CHECK LATER. 
+
+MORE IDEAS - 
+Once list is downloaded, you might change the get button for a paragraph that says, list available;
+then instead of jumping straght to the list, use the 'open list' button.  That way, the list can be saved; and you can shop in more than one place; i.e. purchase items in one store, save the basket, and purchase items in another store. then deliver when finished (that way, you can open and close the app and have have an updated list) So you'll need to remove items from the list as you add them to the basket and update LOCALSTORAGE with reduced list items, or maybe you can just remove the key from local storage. 
+
 
 
 

@@ -48,7 +48,7 @@ body{font-family: 'Roboto', sans-serif; }
   text-align:center;
   
 }
-#verify-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal,#downloaded-list,#hold-item{display:none;}
+#verify-items,#get-list,#add-to-basket,#checkout,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal,#downloaded-list,#hold-item,#basket-list{display:none;}
 
 #button-holder{
 
@@ -173,7 +173,7 @@ border-style: none;
 /* div for holding image and checkbox */
 .image-checkbox-holder{position: relative; width: 80px; height: fit-content; border: 0.2px solid rgba(190, 188, 188, 0.459); margin-top: 5px;}
 .image-checkbox-holder:hover{cursor: pointer;}
-.image-div-shop{margin-right: 4px;}
+
 
 /* check box and itemized image */
 .checkbox{position: absolute;}
@@ -232,15 +232,7 @@ align-items: center;
 
 }
 
-#hold-modal{position: relative;}
 
-#hold-modal-content{
-  width: 100%;
-  height:340px ;
-display: inline-block;
-
-
-}
 
 .choice-btns{padding: 4px; background-color: rgba(255, 255, 255, 0); margin-top: 10px; border-radius: 7px;}
 #choice-btns-shoplist{display: flex; flex-direction: row; width: 100%; height: fit-content; justify-content: space-around; padding: 4px; background-color: rgba(255, 255, 255, 0); margin-top: 10px; border-radius: 7px; position: relative;}
@@ -265,7 +257,7 @@ display: inline-block;
 .item-checkbox-holder{position: relative;}
 
 
-.delete-image{width: 15px; height: 15px; position: absolute;}
+.delete-image{width: 15px; height: 15px; position: absolute; margin: 5px;}
 .div-clone{position:relative; border: 0.5px solid rgba(190, 188, 188, 0.559); height:fit-content; border-radius:5px; margin-top: 3px; margin-right:3px;}
 .div-clone:hover{cursor: pointer;}
 
@@ -283,29 +275,84 @@ display: inline-block;
 #home-icon{width: 25px; height: 25px; display: inline-block; margin: 0px;}
 #btn-container-category{display: flex; justify-content: space-around; align-items: center;}
 
-#downloaded-modal-content{
-  background-color: white; 
+
+
+#hold-modal-content{
   width: 100%;
-  height: 340px;
-  overflow-x: hidden;
-  overflow-y: auto;
-
-
+  height:340px ;
+display: inline-block;
+background-color: white;
 }
-#hold-modal-content{background-color: white;}
+
+#basket-modal-content{
+  width: 100%;
+  height:340px ;
+display: inline-block;
+background-color: white;
+overflow-x: hidden;
+overflow-y: auto;
+}
+
+
+
 .hold-btn{width: 40px; height: 40px; border-radius: 50%; border-style: none; font-size: 22px;}
 .hold-btn:hover{cursor: pointer;background-color:white;}
 #hold-item-btn-container{margin: auto; width: 140px; height: 50px; display: flex; flex-direction: row; justify-content: space-around; align-items: center; background-color: rgb(98, 135, 238); border-radius: 40px;}
 #pick-value{display: inline; width: fit-content; margin: 0px; font-size: 25px;}
-#basket-btn-holder{margin:auto;  padding:5px; width: 180px; height: fit-content; display: flex; flex-direction: row; justify-content: space-around; background-color: rgba(255, 255, 0, 0);margin-top: 7px; }
-.back-btn-basket{
+#hold-btn-holder{margin:auto;  padding:5px; width: 180px; height: fit-content; display: flex; flex-direction: row; justify-content: space-around; background-color: rgba(255, 255, 0, 0);margin-top: 7px; }
+.back-btn-hold,.back-btn-basket{
   display: inline-block;
   height: 30px; width: 30px;
 border-radius: 50%;
 background-color: rgba(72, 72, 243, 0.637);
 border-style: none;
 }
-.back-btn-basket:hover{outline: 2px solid white; outline-offset: 2px; position: relative;}
+.back-btn-hold:hover{outline: 2px solid white; outline-offset: 2px; position: relative; cursor: pointer;}
 .back-arrow2-img{width: 18px; height: 18px; margin: 0px; display: inline-block; margin-top: 2px;}
-.navigate-btn-basket{ font-size: 17px; border-style: none; background-color: rgb(120, 120, 240); border-radius: 8px; color: white; font-weight: bold;}
-.navigate-btn-basket:hover{cursor: pointer;outline: 2px solid rgb(241, 241, 247); outline-offset: 2px;}
+.navigate-btn-hold,#navigate-btn-basket{ font-size: 17px; border-style: none; background-color: rgb(120, 120, 240); border-radius: 8px; color: white; font-weight: bold;}
+.navigate-btn-hold:hover,#navigate-btn-basket:hover{cursor: pointer;outline: 2px solid rgb(241, 241, 247); outline-offset: 2px;}
+
+.navigate-btn-basket,#navigate-btn-basket{ font-size: 17px; border-style: none; background-color: rgb(120, 120, 240); border-radius: 8px; color: white; font-weight: bold; padding: 8px; margin-right: 3px;}
+.navigate-btn-basket:hover,#navigate-btn-basket:hover{cursor: pointer;outline: 1px solid rgb(241, 241, 247); outline-offset: 2px;}
+
+/* STYLING FOR OTHER END OF PROCESS - THE SHOPPING MODALS*/
+
+
+#downloaded-modal-content{
+  background-color: white; 
+  width: 196px;
+  height: 340px;
+  margin: auto;
+  display: flex; 
+  justify-content: space-around;
+  flex-wrap:wrap;
+  align-content: flex-start;
+  padding-top: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* PRODUCT HOLDER IN 'PICK ITEM' (FOR BASKET) MODAL*/
+.image-div-shop{position: relative; margin-right: 4px; width: 80px; height: fit-content; display: inline-block; margin-top: 10px;
+border: 0.2px solid rgba(190, 188, 188, 0.5);}
+.image-div-shop:hover{cursor: pointer;}
+
+
+/* PRODUCT HOLDER IN 'ADD TO BASKET' MODAL (LARGER ELEMENTS) */
+.image-div-shop-large{position: relative; margin: auto; margin-top: 30px; margin-bottom: 20px; width: 190px; height: fit-content; display: inline-block; 
+  border: 0.2px solid rgba(190, 188, 188, 0.5);}
+  .image-div-shop-large:hover{cursor: pointer;}
+
+
+  /* ADD TO BASKET formatting - regular classes are for the 'pick an item' container, large classes are for the 'add to basket' container */
+  
+  .plus-icon{width: 15px; height: 15px; position: absolute; margin: 5px;}
+  .plus-icon-large{width: 30px; height: 30px; position: absolute; margin: 5px;}
+  .pick-item-image{width: 80px; height: 80px; display: inline-block;}
+  .pick-item-image-large{width:180px; height:180px; display:inline-block; margin:0px}
+  .product-label{font-size:13px; font-weight:bold;}
+  .product-label-large{font-size:25px; font-weight:bold;}
+
+  #view-basket-btn{padding:7px; margin-top: 8px;}
+  #view-basket-btn:hover{outline-color: white;}
+  .item-amount-icon{width: 20px; height: 20px; position: absolute; margin: 1px; background-color: red; color: white; border-radius: 50%;border: 2px solid black; display: flex; justify-content: space-around; align-items: center; font-size: 15px; font-weight: bold; padding: 2px;}
