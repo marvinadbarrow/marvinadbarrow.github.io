@@ -3,11 +3,13 @@
 
 // below bit of code resets the shopping list and pick list saved items so you can download the shopping list and start from scratch
 
-/*
-console.log(localStorage.removeItem('basket_list', ''))
-console.log(localStorage.removeItem('new_shopping_list'))
-console.log(localStorage.removeItem('temp_list'))
-*/
+$('#clear-items').click(() =>{
+  console.log(localStorage.removeItem('basket_list'))
+  console.log(localStorage.removeItem('new_shopping_list'))
+  console.log(localStorage.removeItem('temp_list'))
+})
+
+
 
 if(localStorage.getItem('temp_list')){
       // then shopping has already begun so change the start shopping name to resume shopping
