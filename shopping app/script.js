@@ -3,19 +3,8 @@
 
 // below bit of code resets the shopping list and pick list saved items so you can download the shopping list and start from scratch
 
-$('#clear-items').click(() =>{
-  console.log(localStorage.removeItem('basket_list'))
-  console.log(localStorage.removeItem('new_shopping_list'))
-  console.log(localStorage.removeItem('temp_list'))
-})
 
 
-
-if(localStorage.getItem('temp_list')){
-      // then shopping has already begun so change the start shopping name to resume shopping
-      document.getElementById('open-shopping-list').innerText = 'Resume Shopping'
-      console.log(document.getElementById('open-shopping-list').innerText)
-}
 
 if(localStorage.getItem('basket_list')){
   console.log(localStorage.getItem('basket_list'))
@@ -31,6 +20,7 @@ var getListArr = [] // only if this array has entries can we delete local storag
 var inShopListArr = []// contains downloaded list items and items are removed as they are added to the shopping basket. 
 var basketArr = [] // items added to shopping basket are pushed here. 
 var initialListArray = []// holds record of last saved temp list if it exists
+var purchasedArr = []// once checkout is accepted this array will be populated with all checkout object details, and the array with rejected items - with the label of rejected at the beginning of that array (unshifted to the arrayh)
 
     $('#checkout-send').click(function(e){
       console.log('sending items to checkout... ')
@@ -149,7 +139,160 @@ var miscObj = {catName: 'misc', items: miscArr}
 
 var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, bakeryObj, pastryObj, hotDrinksObj, coldDrinksObj, AlcoholObj, toiletriesObj, cleaningObj, miscObj]
 
+// clear pick list, basket and new shopping list from local storage
+const clearLocalStorage = () =>{
+  console.log(localStorage.removeItem('basket_list'))
+  console.log(localStorage.removeItem('new_shopping_list'))
+  console.log(localStorage.removeItem('temp_list'))
+  document.getElementById('open-shopping-list').innerText = 'Start Shopping'
+  
+}
+// clear button on main page in case you wish to restart list. 
+$('#clear-items').click(() =>{
+  clearLocalStorage()
+})
 
+
+// when first item is sent to basket this temporary list, representing items remaining in the pick list, is saved to local storage, and the 'START SHOPPING' button, has its text substituted by 'RESUME SHOPPING'
+if(localStorage.getItem('temp_list')){
+      // then shopping has already begun so change the start shopping name to resume shopping
+      document.getElementById('open-shopping-list').innerText = 'Resume Shopping'
+      console.log(document.getElementById('open-shopping-list').innerText)
+}
+
+
+
+const closePurchase = () =>{
+  $('#complete-purchase').hide()
+  $('#main-page').css('display','block')
+$('.purchase-hide').hide()
+
+$('#deliver-shopping').css('display','block')
+}
+
+
+const makePurchase = () =>{
+  // store purchase and rejected items inside the purchased array (rejected objects are stored as a separate copy of getListArr; with the word 'rejected' unshifted to the first position in that array)
+  getListArr.unshift('rejected')
+purchasedArr.push(...basketArr, getListArr )
+
+// save shopping result to checkout key in local storage: this will enable the 'DELIVERY' function to execute, since it can only do so is this checkout 'key' is in local storage. It can be cleared once a new list is created. 
+let savedPurchase = JSON.stringify(purchasedArr)
+localStorage.setItem('checkout',`${savedPurchase}`)
+
+$('#checkout-list').hide()
+$('#complete-purchase').css('display','block')
+
+// clear all content pages, pick list, basket and checkout so that on page refresh no images are stuck left in these content holders
+let pickItemContent = document.getElementById('checkout-container')
+let basketContent = document.getElementById('checkout-container') 
+let checkoutContent = document.getElementById('checkout-container')
+let containersArray = [pickItemContent, basketContent, checkoutContent]
+
+containersArray.forEach(contentHolder =>{
+  while(contentHolder.firstChild){
+    contentHolder.removeChild(contentHolder.firstChild)
+    console.log(contentHolder)
+  }})
+// clear everything in local storage apart from the checkout data
+  clearLocalStorage()
+}
+
+// rejected items
+const loadRejects = (array) =>{
+
+  console.log(array)
+
+  // load items not purchased
+array.forEach(element =>{
+
+  // create document fragment
+  let df2 = new DocumentFragment()
+   if(element == undefined){ }else{
+    // container
+    let rejectProduct = document.createElement('DIV')
+    rejectProduct.classList.add('product')
+    
+    // tick or cross for accepted or rejected
+    let productStatusIcon = document.createElement('IMG')
+    productStatusIcon.classList.add('checkout-status-img')
+    productStatusIcon.setAttribute('src','./cross icon.png')
+    // item name
+    let productParagraph = document.createElement('p')
+    productParagraph.classList.add('checkout-para')
+    productParagraph.textContent = element.product_name
+    
+    // item item number
+    let productItemCount = document.createElement('DIV')
+    productItemCount.classList.add('product-item-count')
+    productItemCount.textContent = '0'
+    
+    // append all elements to product container
+    rejectProduct.append(productStatusIcon)
+    rejectProduct.append(productParagraph)
+    rejectProduct.append(productItemCount)
+    
+    df2.appendChild(rejectProduct)
+    document.getElementById('checkout-container').append(df2)
+  }
+
+  })
+}
+
+
+
+// CHECKOUT TEMPLATE. 
+const checkout = () =>{
+
+  $('#basket-list').hide() // close basket
+  $('#checkout-list').css('display','block') //  open checkout
+
+  let separatorDiv = document.createElement('DIV')
+  separatorDiv.classList.add('product')
+  separatorDiv.setAttribute('id','separator')
+  separatorDiv.textContent = 'Rejected Items'
+  document.getElementById('checkout-container').append(separatorDiv)
+
+// load items for purchase  
+basketArr.forEach(element =>{
+
+// create document fragment
+let df = new DocumentFragment()
+
+  // container
+  let productContainer = document.createElement('DIV')
+  productContainer.classList.add('product')
+  
+  // tick or cross for accepted or rejected
+  let productStatusIcon = document.createElement('IMG')
+  productStatusIcon.classList.add('checkout-status-img')
+  productStatusIcon.setAttribute('src','./tick icon.png')
+  // item name
+  let productParagraph = document.createElement('p')
+  productParagraph.classList.add('checkout-para')
+  productParagraph.textContent = element.product_name
+  
+  // item item number
+  let productItemCount = document.createElement('DIV')
+  productItemCount.classList.add('product-item-count')
+  productItemCount.textContent = element.product_total_number
+  
+  // append all elements to product container
+  productContainer.append(productStatusIcon)
+  productContainer.append(productParagraph)
+  productContainer.append(productItemCount)
+  
+  df.appendChild(productContainer)
+  document.getElementById('checkout-container').prepend(df)
+})
+
+
+
+setTimeout(() => {
+  loadRejects(getListArr)
+}, 200);
+
+}
 
 const productTotal = (identifyer) =>{
   // get paragraph which displays number of items to push to basket
@@ -179,13 +322,36 @@ $('#downloaded-list').hide()
 $('#basket-list').css('display', 'block')
 }
 
-const openList = () =>{
-  $('#basket-list').hide()
+// back to shopping list from different locations
+const openList = (id) =>{
+
+  // if ID is return to list on checkout modal, then checkout is completely cleared because, returning to the list, it's plausible that the user will purchase an item so that the nature of the checkout will change, at least one item will move from rejected to accepted. so the checkout is essentially refreshed every time you go to it. 
+  switch(id){
+    case 'checkout-to-list':
+      let modal = document.getElementById(id)
+      let checkoutContent = document.getElementById('checkout-container')
+      modal.parentNode.parentNode.style.display = 'none'
+      // $('#basket-list').hide()
+    $('#downloaded-list').css('display', 'block')
+
+while(checkoutContent.firstChild){
+  checkoutContent.removeChild(checkoutContent.firstChild)
+}
+
+  break;
+  default:
+  document.getElementById(id).parentNode.parentNode.style.display = 'none'
+  // $('#basket-list').hide()
 $('#downloaded-list').css('display', 'block')
+
+
+  }
+
 }
 
 // updates the array containing shopping list items not yet sent to basket. 
 const updateLists = (listArray, basketArray) =>{
+  console.log(basketArr)
  // save altered list array in local storage
  let tempList =  JSON.stringify(listArray)
  console.log(tempList)
@@ -209,7 +375,7 @@ console.log(basketList)
 
 
 // SENDS PRODUCT TO BASKET, basically the same  operation as holdItemToList, but you send the other way, to the basket instead of back to the list. 
-const populateBasket = () =>{
+const populateBasket = (itemTotal) =>{
 
   let product = document.getElementById('hold-modal-content').firstChild
   // resize product image ready for re-appending to downloaded list
@@ -234,10 +400,12 @@ product.prepend(itemAmountEl)
 getListArr.forEach(object =>{ // loop through objects in getListArr
   if(object == undefined){console.log('ignore')}else{
 if(product.lastChild.innerText == object.product_name){ // if product name matches the one in the array
-let index = getListArr.indexOf(object) // get index of object
-console.log(index)
-basketArr.push(getListArr[index]) // push object to basket array
+  let index = getListArr.indexOf(object) // get index of object
+basketArr.push(getListArr[index]) // push object to last position of basket array
+getListArr[index].product_total_number = itemTotal //  set total number of item picks
 delete getListArr[index]// remove object from get list array
+// place the number of items selected in the 'product_total_number' section of the product object. 
+
 }
 }
 
@@ -255,11 +423,13 @@ updateLists(getListArr, basketArr)
 // PRE-POPULATE BASKET; prior to populating basket make sure that user has selected at leat ONE ITEM to push to basket. 
 
 const prePopulateBasket = () =>{
+  // get text content of para showing number of items selected
   let pickValueText = document.getElementById('pick-value').textContent
+  // convert from string real number
   let pickValueNumber = Number(pickValueText)
-if(pickValueNumber > 0){
-  populateBasket()
-}else{
+if(pickValueNumber > 0){ // if number > 0 move to basket and load image
+  populateBasket(pickValueNumber)
+}else{ // alert user that number must be chosen first before sending to basket
   document.getElementById('alert-para').textContent = 'choose how many of this item you want;'
 $('#msg-modal').css('display', 'block')
 }
@@ -310,12 +480,6 @@ $('#downloaded-list').hide()
 }
 
 
-
-
-
-
-
-
 const startShop = (array) =>{
   // creat new storage point for list so it can be updated as you send items to basket
   array.forEach(item =>{
@@ -342,12 +506,6 @@ productSelect.forEach(element => {
       });
 
 }
-
-
-
-
-
-
 
 
   // CREATE ELEMENTS TO LOAD IN SHOPPING LIST - MOVING THIS TO BE ACTIVATED BY 'START LIST' BUTTON - START BUTTON WILL NOT ACTIVATE THIS FUNCTION UNLESS LIST HAS BEEN DOWNLOADED AND DOWNLOAD BUTTON IS NOT VISIBLE
@@ -494,6 +652,7 @@ if(localStorage.getItem('new_shopping_list')){
 getListArr.push(...unpackList)
 // hide download list button
 $('#get-shopping-list').hide()
+
 }else{
   console.log('list already available')
 }
@@ -510,7 +669,8 @@ const deliverAndClear = () =>{
   // move list from get
   if(localStorage.getItem('checkout')){ // if checkout storage has been created then we can deliver and clear and move checkout items to new deliver items. 
     localStorage.removeItem('new_shopping_list')
-    localStorage.setItem('new_delivery', '')
+    // restore other buttons ready for new list creation etc
+    $('.purchase-hide').css('display','block')
    
 
   }else{alert('no shopping exists to deliver')}
@@ -578,6 +738,12 @@ verifiedListArr.push(productObj);
 $('#upload-modal').hide()
 $('#main-page').css('display','block')
 // images on shopping list need deleting too
+
+// these main page buttons are not needed
+$('#start-list').hide()
+$('#resume-list').hide()
+$('#restock-items').hide()
+$('#deliver-shopping').hide()
       
      }
     })
@@ -786,7 +952,7 @@ case 'navigate-to-basket':
     openBasket()
   break;
 case 'basket-to-list':
-  openList()
+  openList(e.target.id)
   break;
 case 'basket-to-checkout':
   checkout()
@@ -797,10 +963,19 @@ break;
 case 'subtract-1':
 productTotal(e.target.id)
 break;
-
 case 'open-shopping-list':
 foo()
 break;
+case 'checkout-to-list':
+  openList(e.target.id)
+break;
+case 'buy-items':
+  makePurchase()
+  break;
+case 'purchase-confirmed-btn':
+  closePurchase()
+break;
+
 }
 
 })

@@ -187,13 +187,13 @@ awesome/4.7.0/css/font-awesome.min.css">
 <div id="main-page-content">
   <h4 id="task-select">Choose a task!</h4>
 
-  <button id="start-list" class="main-page-btn">Create list</button>
-  <button id="resume-list" class="main-page-btn">Update list</button>
-  <button id="get-shopping-list" class="main-page-btn">Download list</button>
-  <button id="open-shopping-list" class="main-page-btn">Start Shopping</button>
+  <button id="start-list" class="main-page-btn purchase-hide">Create list</button>
+  <button id="resume-list" class="main-page-btn purchase-hide ">Update list</button>
+  <button id="get-shopping-list" class="main-page-btn purchase-hide">Download list</button>
+  <button id="open-shopping-list" class="main-page-btn purchase-hide">Start Shopping</button>
   <button id="deliver-shopping" class="main-page-btn">Deliver shopping</button>
-  <button id="restock-items" class="main-page-btn">Re-stock</button>
-  <button id="clear-items" class="main-page-btn">clear list</button>
+  <button id="restock-items" class="main-page-btn purchase-hide purchase-hide">Re-stock</button>
+  <button id="clear-items" class="main-page-btn purchase-hide purchase-hide">clear list</button>
 
 </div>
 </div>
@@ -251,15 +251,34 @@ awesome/4.7.0/css/font-awesome.min.css">
 </div>
 
 
+     <!--  CHECKOUT MODAL-->
+<div class="modal" id="checkout-list">
+<h2>Checkout</h2>
+   <div id="checkout-container" class="main">
+
+   </div>
+   <div id="checkout-btn-holder">
+    <button id="checkout-to-list" class="navigate-btn-basket">List</button>
+    <button class="navigate-btn-basket"  id="buy-items">Buy Items</button>
+    </div>
+</div>
+
+<!-- PURCHASED MESSAGE MODAL -->
+<div class="modal" id="complete-purchase">
+  <h2>Purchase Complete</h2>
+<div id="purchase-content">
+  <p id="purchase-para">
+    Purchase complete!<br><br> Click 'Main Page' to return to home screen to 'DELIVER' shopping<br><br>
+    A new list can be started after delivery. 
+  </p>
+  <button id="purchase-confirmed-btn"  class="navigate-btn-basket">Main Page</button>
+</div>
+</div>
 
 
 
+<!-- SPARE MODALS 
 
-
-<!-- SPARE MODALS -->
-  <div class="modal" id="checkout">
-      <h2>Go to checkout</h2>
-  </div>
   <div class="modal" id="complete-purchase">
       <h2>Purchase items</h2>
   </div>
@@ -275,71 +294,13 @@ awesome/4.7.0/css/font-awesome.min.css">
 
     </div>
     
-
+-->
 
 
 
 <!--  temporarily hiding category items so I can try to dynamically load images and check boxes from JS
 
 
-
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/pastry.png" alt="">
-        
-      </div>
-     
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/meat.png" alt="">
-      </div>
-
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/cleaning.png" alt="">
-      </div>
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/cold drinks.png" alt="">
-      </div>
-
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/pastry.png" alt="">
-      </div>
-     
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/meat.png" alt="">
-      </div>
-
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/cleaning.png" alt="">
-      </div>
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/cold drinks.png" alt="">
-      </div>
-
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/pastry.png" alt="">
-      </div>
-     
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/meat.png" alt="">
-      </div>
-
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/cleaning.png" alt="">
-      </div>
-      <div class="image-checkbox-holder">
-        <input class="checkbox" type="checkbox">
-        <img class="item-image" src="./images/cold drinks.png" alt="">
-      </div>
 
 EXAMPLE WITH LABEL
       <div class="image-checkbox-holder">
