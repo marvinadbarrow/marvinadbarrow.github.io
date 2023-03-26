@@ -236,10 +236,20 @@ then instead of jumping straght to the list, use the 'open list' button.  That w
 
 MORE IDEAS - 
 
+MARCH 26  
+
 NOTE* TOTAL NUMBER OF ITEMS ON THE SHOPPING LIST  = DOWNLOADED LIST + BASKET. 
 So all you need to do when going to checkout is check if there are items in the downloaded list and that will tell you whether or not you have completed the list. ----- CHECK LATER. IMPLEMENTED IN ANOTHER WAY.  ONCE the purchase is made, you won't be able to access the list any more because it no longer exists; that is, the local storage data will have been erased; so there is no data with with to load a list.  
 
-NUMBER OF TOTAL NUMBER OF EACH ITEM IN THE BASKET NEEDS TO BE SHOWN 'WHEN USER RETURNS TO REOPEN APPLICATION'.  
+
+
+TOTAL NUMBER OF EACH ITEM IS NOT APPEARING IN BASKET WHEN APP IS REFRESHED OR REOPENED AFTER CLOSURE
+
+implement save button for where you wish to keep a copy of pre-uploaded list, so it's available after application is refreshed or closed. --- DONE!
+
+work out which buttons need to be hidden when various movies are opened. IN PROGRESS!
+
+
 
 
 

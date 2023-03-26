@@ -6,10 +6,7 @@
 
 
 
-if(localStorage.getItem('basket_list')){
-  console.log(localStorage.getItem('basket_list'))
-  document.getElementById('get-shopping-list').style.display = 'none'
-}
+
 var totalCheckedArray = []
 var restockRequiredArr = [] // contains item names that are selected for the shopping list
 var verificationPageArr = [] // shopping list to be updated and verified before sending to server.
@@ -139,14 +136,83 @@ var miscObj = {catName: 'misc', items: miscArr}
 
 var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, bakeryObj, pastryObj, hotDrinksObj, coldDrinksObj, AlcoholObj, toiletriesObj, cleaningObj, miscObj]
 
-// clear pick list, basket and new shopping list from local storage
-const clearLocalStorage = () =>{
-  console.log(localStorage.removeItem('basket_list'))
-  console.log(localStorage.removeItem('new_shopping_list'))
-  console.log(localStorage.removeItem('temp_list'))
-  document.getElementById('open-shopping-list').innerText = 'Start Shopping'
-  
+// BUTTON CONTROLS DICTATED BY LOCAL STORAGE CONTENT
+
+
+console.log(localStorage)
+
+var shoppingBegun = localStorage.getItem('shopping_started')
+if(shoppingBegun === null){
+  $('#open_shopping_list').hide()
 }
+
+
+/* a few notes on buttons
+restock should only be available when checkout and delivery note is available
+delivery should only be available when checkout is saved
+open shopping list should only be available when new_shopping_list is available
+resume shopping should only be available when temp_list is available
+get shopping list should only be available when new_shopping_list is available 
+start list should only be available when new_shopping_list is unavailable 
+
+*/
+
+
+
+let newListCreated = localStorage.getItem('create_shopping_list');
+let listSaved = localStorage.getItem('save_shopping_list');
+let newListShop = localStorage.getItem('new_shopping_list')
+let chechoutList = localStorage.getItem('checkout')
+let deliveryNote = localStorage.getItem('new_delivery')
+let alreadyShopping = localStorage.getItem('temp_list')
+let shoppingBasket = localStorage.getItem('basket_list')
+
+
+
+// if no create list in local storage - show 'start list' button
+if( newListCreated === null  && newListShop === null){console.log('no list started')
+$('#get-shopping-list').hide()
+$('#open-shopping-list').hide()
+$('#deliver-shopping').hide()
+$('#restock-shopping').hide()
+
+// if a list is NOT saved hide resume list button
+if(listSaved === null){
+  $('#resume-list').hide()
+}else{ // if a list is saved - hide create list button
+  $('#start-list').hide()
+}
+}
+
+
+
+// if list IS created but saved list ALSO exists
+  if(newListShop !== null){
+    $('#start-list').hide()
+    $('#resume-list').hide()
+    $('#deliver-shopping').hide()
+$('#restock-shopping').hide()
+
+  }
+
+
+
+
+
+
+// CLEAR ALL LOCAL STORAGE RELATED TO SHOPPING ASSISTANT
+const clearLocalStorage = () =>{
+  localStorage.removeItem('save_shopping_list')
+  localStorage.removeItem('basket_list')
+  localStorage.removeItem('new_shopping_list')
+  localStorage.removeItem('temp_list')
+  localStorage.removeItem('checkout')
+  localStorage.removeItem('new_delivery')
+  localStorage.removeItem('create_shopping_list')
+  document.getElementById('open-shopping-list').innerText = 'Start Shopping'
+  }
+
+
 // clear button on main page in case you wish to restart list. 
 $('#clear-items').click(() =>{
   clearLocalStorage()
@@ -184,8 +250,8 @@ $('#checkout-list').hide()
 $('#complete-purchase').css('display','block')
 
 // clear all content pages, pick list, basket and checkout so that on page refresh no images are stuck left in these content holders
-let pickItemContent = document.getElementById('checkout-container')
-let basketContent = document.getElementById('checkout-container') 
+let pickItemContent = document.getElementById('downloaded-modal-content')
+let basketContent = document.getElementById('basket-modal-content') 
 let checkoutContent = document.getElementById('checkout-container')
 let containersArray = [pickItemContent, basketContent, checkoutContent]
 
@@ -194,8 +260,11 @@ containersArray.forEach(contentHolder =>{
     contentHolder.removeChild(contentHolder.firstChild)
     console.log(contentHolder)
   }})
-// clear everything in local storage apart from the checkout data
-  clearLocalStorage()
+localStorage.removeItem('shopping_started')
+  localStorage.removeItem('basket_list')
+  localStorage.removeItem('create_shopping_list')
+  localStorage.removeItem('new_shopping_list')
+  localStorage.removeItem('temp_list')
 }
 
 // rejected items
@@ -652,6 +721,8 @@ if(localStorage.getItem('new_shopping_list')){
 getListArr.push(...unpackList)
 // hide download list button
 $('#get-shopping-list').hide()
+$('#open-shopping-list').css('display','block')
+localStorage.setItem('shopping_started', 'started')
 
 }else{
   console.log('list already available')
@@ -664,30 +735,46 @@ $('#get-shopping-list').hide()
 
 
 
-// DELIVER AFTER SHOPPING COMPLETE
-const deliverAndClear = () =>{
-  // move list from get
-  if(localStorage.getItem('checkout')){ // if checkout storage has been created then we can deliver and clear and move checkout items to new deliver items. 
-    localStorage.removeItem('new_shopping_list')
-    // restore other buttons ready for new list creation etc
-    $('.purchase-hide').css('display','block')
-   
 
-  }else{alert('no shopping exists to deliver')}
+const restockShopping = () =>{
+  let checkout = localStorage.getItem('checkout')
+  let date = new Date()
+  let shoppingDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}/${date.getHours}/${date.getMinutes}}`
+localStorage.setItem(shoppingDate,checkout)
+console.log(localStorage.getItem(shoppingDate))
+console.log(localStorage)
+clearLocalStorage()
+location.reload()
+
 }
 
 
-const startList = () =>{
-  let storageList = localStorage.getItem('new_shopping_list')
 
-  if(!localStorage.getItem('new_shopping_list')){ // if nothing is in local storage then shopping needs to start or resume
-    if(restockRequiredArr.length < 1){ // if restock array is empty then there is no list so start a new list
+// DELIVER AFTER SHOPPING COMPLETE
+const deliverAndClear = () =>{
+
+  // move list from get
+    // restore other buttons ready for new list creation etc
+$('#restock-shopping').css('display','block')
+$('#deliver-shopping').hide()
+localStorage.removeItem('new_shopping_list')
+
+ 
+}
+
+// CREATE NEW LIST
+const startList = () =>{
+  
+    if(restockRequiredArr.length < 1){ // if restock array is empty, shopping has been put away so new list can be created. 
+
+      // local storage to save list (updated on save/upload page)
+localStorage.setItem('create_shopping_list','')
+console.log(localStorage)
       $('#main-page').hide();
       $('#add-items').css('display','block')
-  }else{alert('list already in created - click "RESUME LIST" button')}
+  }else{alert('RE-STOCK shopping before creating new list')}
 
-  }else{ // storage is not empty so shopping needs to be downloaded
-  alert('undelivered shopping still exists - you must get shopping before beginning a new list')}
+  
 
 
 }
@@ -695,11 +782,21 @@ const startList = () =>{
 
 
 const resumeList = () =>{
-if(restockRequiredArr.length > 0){
-  $('#main-page').hide();
-  $('#shopping-list').css('display','block')
-}else{alert('shopping list is empty, click start new list')}
+// initiate a variable for the HTML
+  let html;
+  // get the local storage key with saved shopping list
+let savedList = localStorage.getItem('save_shopping_list')
+// parse the list using JSON
+let parsedList = JSON.parse(savedList)
 
+parsedList.forEach(element =>{
+html += element
+$('#shopping-list-items').html(html);
+
+})
+
+$('#main-page').hide()
+$('#shopping-list').css('display','block')
 }
 
 
@@ -735,16 +832,7 @@ restockRequiredArr.forEach(product =>{
       productObj.product_image_location = arrayObject.imgAddress
 
 verifiedListArr.push(productObj);
-$('#upload-modal').hide()
-$('#main-page').css('display','block')
-// images on shopping list need deleting too
 
-// these main page buttons are not needed
-$('#start-list').hide()
-$('#resume-list').hide()
-$('#restock-items').hide()
-$('#deliver-shopping').hide()
-      
      }
     })
    })
@@ -762,12 +850,51 @@ let shoppingList = JSON.stringify(verifiedListArr)
 // save in local storage
 localStorage.setItem('new_shopping_list',`${shoppingList}`)
 // now list is saved array can be deleted
-restockRequiredArr = []}
+restockRequiredArr = []
+$('#start-list').hide()
+$('#upload-modal').hide()
+$('#main-page').css('display','block')
+$('#get-shopping-list').css('display','block')
 
 
-const saveTempList = () =>{
+// shopping list no longer needed so remove relevant local storage which will cause 'start/resume' buttons to be hidden
+localStorage.removeItem('create_shopping_list')
+
+}
+
+
+
+
+
+
+const saveShoppingList = (id) =>{
+  console.log(document.getElementById(id))
   $('#upload-modal').hide()
   $('#shopping-list').css('display','block')
+  // CREATE A LOCAL STORAGE ITEM TO SAVE CURRENT SHOPPING LIST
+
+console.log(restockRequiredArr)
+let shoppingListItems = []
+// get container for shopping list items
+let shoppingListItemsContainer = document.getElementById('shopping-list-items')
+
+// get access to container children via childNodes 
+shoppingListItemsContainer.childNodes.forEach(child =>{
+
+// get outerHTML from childNode, which gives the HTML element of each product, if it exists as an HTML element
+  let childProduct = child.outerHTML
+  if(childProduct){
+    // push element to shopping list array for saving as JSON object
+    shoppingListItems.push(childProduct)
+
+  }
+})
+
+// saving as JSON object 
+let savedShoppingList =  JSON.stringify(shoppingListItems)
+localStorage.setItem('save_shopping_list', savedShoppingList)
+console.log(localStorage)
+//localStorage.removeItem('create_shopping_list')
 
 }
 
@@ -844,6 +971,7 @@ $('#shopping-list').css('display', 'block')
 
 //  DELETE SHOPPING LIST ITEM (confirm)
 const confirmDelete = () =>{
+  console.log(restockRequiredArr)
  // assign variable to item awaiting deletion
  let deleteThisProduct = document.getElementById('delete-items').children[1].children[1].children[0];
  // assign variable to item product name. 
@@ -919,8 +1047,6 @@ duplicateCheckedItem()
   case 'cancel-delete':
     cancelDelete()
   break;
-  case 'save-list':
-  break;
   case 'view-shoplist':
     $('#shopping-list').css('display','block');
     $('#add-items').hide()
@@ -937,13 +1063,14 @@ resumeList()
   case 'deliver-shopping':
 deliverAndClear()
   break;
-  case 'restock-items':
+  case 'restock-shopping':
+    restockShopping()
   break;
   case 'authorize-upload':
     confirmUpload()
   break;
   case 'save-list':
-    saveTempList()
+    saveShoppingList(e.target.id)
   break;
 case 'navigate-to-basket':
   prePopulateBasket()
@@ -1024,7 +1151,7 @@ itemDiv.appendChild(itemImg)
 itemDiv.appendChild(itemDescription)
 df.appendChild(itemDiv)
 productArr.push(itemDiv)
-
+console.log(productArr)
 //console.log(itemDiv)
 })
 // now that all of the elements 
