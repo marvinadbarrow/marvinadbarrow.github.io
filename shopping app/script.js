@@ -57,7 +57,7 @@ const coldLatteObj = {itemName: 'cold latte', imgAddress:  './images dairy/cold 
 
 // fruit and veg category
 const carrotsObj = {itemName: 'carrots', imgAddress: './images fruit & veg/carrots.jpg', id:'carrots'}
-const cornCobObj = {itemName: 'cookies', imgAddress: './images fruit & veg/corn cob.jpg', id:'corn-cob'}
+const cornCobObj = {itemName: 'corn cob', imgAddress: './images fruit & veg/corn cob.jpg', id:'corn-cob'}
 const tomatoesObj = {itemName: 'tomatoes', imgAddress: './images fruit & veg/tomatoes.jpg', id: 'tomatoes'}
 
 // bakery category
@@ -739,7 +739,7 @@ localStorage.setItem('shopping_started', 'started')
 const restockShopping = () =>{
   let checkout = localStorage.getItem('checkout')
   let date = new Date()
-  let shoppingDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}/${date.getHours}/${date.getMinutes}}`
+  let shoppingDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}}`
 localStorage.setItem(shoppingDate,checkout)
 console.log(localStorage.getItem(shoppingDate))
 console.log(localStorage)
