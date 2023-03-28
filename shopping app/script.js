@@ -162,15 +162,16 @@ start list should only be available when new_shopping_list is unavailable
 let newListCreated = localStorage.getItem('create_shopping_list'); // beginning of new list
 let listSaved = localStorage.getItem('save_shopping_list'); // saved list before upload
 let newListShop = localStorage.getItem('new_shopping_list') // stored uploaded list
-let chechoutList = localStorage.getItem('checkout') // record of buy items (created at purchase time)
+let checkoutList = localStorage.getItem('checkout') // record of buy items (created at purchase time)
 let deliveryNote = localStorage.getItem('new_delivery') // delivers and opens the way for re-stock
 let alreadyShopping = localStorage.getItem('temp_list') // keeps record of items not yet picked
 let shoppingBasket = localStorage.getItem('basket_list') // record of basket
 let shoppingStarted = localStorage.getItem('shopping_started')
+let restockComplete = localStorage.getItem('restock')
 
 
 // while list is in the process of creation, i.e. newlistShip is not yet avialable, download, open shopping list, deliver and restock are not necessary so hide them. 
-if( newListShop === null){console.log('no list started')
+if( newListShop === null || checkoutList !== null){console.log('no list started')
 $('#get-shopping-list').hide()
 $('#open-shopping-list').hide()
 
@@ -198,7 +199,7 @@ if(shoppingStarted === null){
     $('#resume-list').hide()
   }
 
-  if(chechoutList === null){
+  if(deliveryNote !== null || checkoutList === null){
     $('#deliver-shopping').hide()
   }
 
@@ -218,6 +219,7 @@ const clearLocalStorage = () =>{
   localStorage.removeItem('new_delivery')
   localStorage.removeItem('create_shopping_list')
   localStorage.removeItem('shopping_started')
+  localStorage.removeItem('restock')
   document.getElementById('open-shopping-list').innerText = 'Start Shopping'
   }
 
@@ -229,7 +231,7 @@ $('#clear-items').click(() =>{
 
 
 // when first item is sent to basket this temporary list, representing items remaining in the pick list, is saved to local storage, and the 'START SHOPPING' button, has its text substituted by 'RESUME SHOPPING'
-if(localStorage.getItem('temp_list')){
+if(localStorage.getItem('temp_list') && restockComplete === null){
       // then shopping has already begun so change the start shopping name to resume shopping
       document.getElementById('open-shopping-list').innerText = 'Resume Shopping'
       console.log(document.getElementById('open-shopping-list').innerText)
@@ -269,10 +271,9 @@ containersArray.forEach(contentHolder =>{
     contentHolder.removeChild(contentHolder.firstChild)
     console.log(contentHolder)
   }})
-localStorage.removeItem('shopping_started')
   localStorage.removeItem('basket_list')
   localStorage.removeItem('create_shopping_list')
-  localStorage.removeItem('temp_list')
+
 }
 
 // rejected items
@@ -757,8 +758,7 @@ const restockShopping = () =>{
   let date = new Date()
   let shoppingDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}}`
 localStorage.setItem(shoppingDate,checkout)
-console.log(localStorage.getItem(shoppingDate))
-console.log(localStorage)
+localStorage.setItem('restock', 'complete')
 clearLocalStorage()
 location.reload()
 
