@@ -6,6 +6,8 @@
     "display": "standalone",
     "background_color": "#8eced1",
     "description": "User employment status survey",
+    "theme_color": "blue",
+    "orientation":"portrait-primary",
     "icons": [
         {
           "src": "form icon 48.png",
