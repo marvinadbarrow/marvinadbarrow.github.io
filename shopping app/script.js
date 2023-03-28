@@ -159,44 +159,52 @@ start list should only be available when new_shopping_list is unavailable
 
 
 
-let newListCreated = localStorage.getItem('create_shopping_list');
-let listSaved = localStorage.getItem('save_shopping_list');
-let newListShop = localStorage.getItem('new_shopping_list')
-let chechoutList = localStorage.getItem('checkout')
-let deliveryNote = localStorage.getItem('new_delivery')
-let alreadyShopping = localStorage.getItem('temp_list')
-let shoppingBasket = localStorage.getItem('basket_list')
+let newListCreated = localStorage.getItem('create_shopping_list'); // beginning of new list
+let listSaved = localStorage.getItem('save_shopping_list'); // saved list before upload
+let newListShop = localStorage.getItem('new_shopping_list') // stored uploaded list
+let chechoutList = localStorage.getItem('checkout') // record of buy items (created at purchase time)
+let deliveryNote = localStorage.getItem('new_delivery') // delivers and opens the way for re-stock
+let alreadyShopping = localStorage.getItem('temp_list') // keeps record of items not yet picked
+let shoppingBasket = localStorage.getItem('basket_list') // record of basket
+let shoppingStarted = localStorage.getItem('shopping_started')
 
 
-
-// if no create list in local storage - show 'start list' button
-if( newListCreated === null  && newListShop === null){console.log('no list started')
+// while list is in the process of creation, i.e. newlistShip is not yet avialable, download, open shopping list, deliver and restock are not necessary so hide them. 
+if( newListShop === null){console.log('no list started')
 $('#get-shopping-list').hide()
 $('#open-shopping-list').hide()
-$('#deliver-shopping').hide()
-$('#restock-shopping').hide()
 
-// if a list is NOT saved hide resume list button
+// update list is only necessary if a list has been created and is saved
 if(listSaved === null){
   $('#resume-list').hide()
-}else{ // if a list is saved - hide create list button
+}else{ // if a list is saved - hide create list button which is no longer needed
   $('#start-list').hide()
 }
+}else{ // if list if uploaded
+if(shoppingStarted !== null){$('#get-shopping-list').hide()}
+
+}
+
+if(shoppingStarted === null){
+  $('#open-shopping-list').hide()
 }
 
 
+// AFTER LIST IS UPLOADED  --------
 
-// if list IS created but saved list ALSO exists
-  if(newListShop !== null){
+// if list storage or deliversy storage is still available, keep create list buttons hidden 
+  if(newListShop !== null || deliveryNote !== null){
     $('#start-list').hide()
     $('#resume-list').hide()
-    $('#deliver-shopping').hide()
-$('#restock-shopping').hide()
-
   }
 
+  if(chechoutList === null){
+    $('#deliver-shopping').hide()
+  }
 
-
+  if(deliveryNote === null){
+    $('#restock-shopping').hide()
+  }
 
 
 
@@ -209,6 +217,7 @@ const clearLocalStorage = () =>{
   localStorage.removeItem('checkout')
   localStorage.removeItem('new_delivery')
   localStorage.removeItem('create_shopping_list')
+  localStorage.removeItem('shopping_started')
   document.getElementById('open-shopping-list').innerText = 'Start Shopping'
   }
 
@@ -263,7 +272,6 @@ containersArray.forEach(contentHolder =>{
 localStorage.removeItem('shopping_started')
   localStorage.removeItem('basket_list')
   localStorage.removeItem('create_shopping_list')
-  localStorage.removeItem('new_shopping_list')
   localStorage.removeItem('temp_list')
 }
 
@@ -667,7 +675,26 @@ startShop(getListArr)
 
   }else{
 
-if(getListArr.length < 1){console.log('cannot start shopping until list is downloaded')}else{
+    // if shopping already started - get the data that was saved from before - otherwise create completelyi new data
+    // we will need to save the data
+
+
+    if(getListArr.length < 1){
+      // convert shopping list in local storage
+      let getList = localStorage.getItem('new_shopping_list')
+      let unpackList = JSON.parse(getList)
+    getListArr.push(...unpackList)
+    
+    // NOTE... IF YOU REFRESH THE PAGE HERE, ALL GETLISTARR DATA IS LOST AND SO, THE 'ELSE' PART OF THE FOO FUNCTION CANNOT RUN BECAUSE IT DOESN'T MEET THE CONDITION FOR RUNNING WHICH REQUIRES GELISTARR TO HAVE DATA IN IT..  THAT DATA IS LOOPED THROUGH AND PROVIDES THE OBJECTS USED TO CREATE IMAGES OF THE SHOPPING LIST CONTENTS. - THE FIRST PART OF THE 'FOO' FUNCTION GETS ITS DATA FROM THE 'SAVED' SHOPPING LIST ON LOCAL STORAGE WITH THE KEY 'TEMP_LIST'. SO GETLISTARR NEEDS TO BE SAVED  ---- ALSO, IF YOU START SHOPPING BUT DON'T SAVE THE DATA, WHEN YOU REFRESH, BECAUSE THE 'START SHOPPING' FUNCTION RELIES ON THE GETLISTARR DATA, THERE IS NO DATA SO THE FUNCTION WILL THROW AN ERROR.  IT LOOKS LIKE THE PARSING OF THE SHOPPING LIST DATA NEEDS TO HAPPEN INSIDE THE 'ELSE' SECTION OF THE FOO FUNCTION. 
+    
+    
+    // hide download list button
+    $('#get-shopping-list').hide()
+    $('#open-shopping-list').css('display','block')
+    
+
+    
+
 
 // create a document fraction for appending to the downloaded list modal
 let df = new DocumentFragment()
@@ -714,19 +741,8 @@ startShop(getListArr)
 const getShoppingList = () =>{
 
 if(localStorage.getItem('new_shopping_list')){
-  if(getListArr.length < 1){
-  // convert shopping list in local storage
-  let getList = localStorage.getItem('new_shopping_list')
-  let unpackList = JSON.parse(getList)
-getListArr.push(...unpackList)
-// hide download list button
-$('#get-shopping-list').hide()
-$('#open-shopping-list').css('display','block')
-localStorage.setItem('shopping_started', 'started')
-
-}else{
-  console.log('list already available')
-}
+  localStorage.setItem('shopping_started', 'started')
+foo()
 
 }else{alert('no shopping list exists')}
 
@@ -757,7 +773,7 @@ const deliverAndClear = () =>{
     // restore other buttons ready for new list creation etc
 $('#restock-shopping').css('display','block')
 $('#deliver-shopping').hide()
-localStorage.removeItem('new_shopping_list')
+localStorage.setItem('new_delivery', 'delivered')
 
  
 }
@@ -782,19 +798,32 @@ console.log(localStorage)
 
 
 const resumeList = () =>{
+  // for looping through children of shopping list items. 
+
 // initiate a variable for the HTML
   let html;
   // get the local storage key with saved shopping list
 let savedList = localStorage.getItem('save_shopping_list')
 // parse the list using JSON
 let parsedList = JSON.parse(savedList)
-
+// you need to drop the saved items into restockRequiredArr which will have been deleted when user exits the browser - otherwise nothing will avialable to upload as a new shopping list. 
+console.log(parsedList)
 parsedList.forEach(element =>{
+  
 html += element
 $('#shopping-list-items').html(html);
-
 })
 
+// remove the unwanted 'undefined' text element which shows up in the shopping list. 
+document.getElementById('shopping-list-items').removeChild(document.getElementById('shopping-list-items').firstChild)
+// this gets the name of the the product that we need to push into restockArray - because the children are part of a node list you have to convert the childnodes to an array before we can loop through them. And then the array elements can be looped through to get the innerText of the exact child element. Each child node is a DIV containing all of the product's elements, i.e. delete image, main image and lable that has product name as innerText. 
+kidArray = Array.from(document.getElementById('shopping-list-items').childNodes)
+for(i=0; i<kidArray.length; i++){
+  let productName = kidArray[i].children[2].innerText
+  console.log(kidArray[i].children[2].innerText)
+  restockRequiredArr.push(productName)
+}
+console.log(restockRequiredArr)
 $('#main-page').hide()
 $('#shopping-list').css('display','block')
 }
@@ -808,9 +837,10 @@ $('#upload-blob').toggle()
 
 
 const confirmUpload = () =>{
-
+$('#resume-list').hide()
   verifiedListArr = []
   // for each product in restock array do the following
+  console.log(restockRequiredArr)
 restockRequiredArr.forEach(product =>{
   categoryObjArr.forEach(object =>{
 // each object in the array is a JS object containing category name and an array of items, (objects for each product with in the category)

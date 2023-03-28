@@ -252,7 +252,9 @@ work out which buttons need to be hidden when various movies are opened. IN PROG
 
 
 
+ FIXED ISSUES - FIXED THE ISSUE WHERE IF THE SHOPPING LIST WAS SAVED AND, PRIOR TO UPLOAD, THE USER EXITS, WHEN THE USER RETURNS TO THE APP AND CONTINUES THE LIST, THE SAVED ITEMS WERE NOT GETTING UPLOADED; ONLY THE ITEMS WHICH WERE ADDED AFTER LAST LOGIN. THIS WAS HAPPENING BECAUSE ON EXITING THE APPLICATION, AND REOPENING IT, THE ARRAY HOLDING THE NAMES OF THE SAVED LIST ITEMS WAS, AS IT SHOULD BE, EMPTY, SO THERE WAS NO DATA, SO THE OLD DATA WAS NOT THERE TO STRINGIFY WITH JSON, so it wouldn't appear in the new list.  Solved by getting the item names from the newly rendered elements, parsed by JSON and appended as HTML into the shopping list view area.  The item names were then pushed again into the array which is used to create JSON data for storing in localStorage - SOLVED. 
 
+ On a side note, there was a text element that was appearing as the first element in the saved shopping list when saved elements were rendered after reopening the app.  I managed to get rid of it by using removeChild.firstChild... I'm not sure how the text element gets there in the first place. 
 
 check item
 
