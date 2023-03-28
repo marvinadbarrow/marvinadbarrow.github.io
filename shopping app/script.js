@@ -245,6 +245,7 @@ const closePurchase = () =>{
 $('.purchase-hide').hide()
 
 $('#deliver-shopping').css('display','block')
+$('#clear-items').css('display','block')
 }
 
 
