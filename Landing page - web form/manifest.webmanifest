@@ -2,7 +2,7 @@
 
     "name": "Survey Form",
     "Short_name": "Survey",
-    "Start_url": ".",
+    "Start_url": "/index.html",
     "display": "standalone",
     "background_color": "#8eced1",
     "description": "User employment status survey",
