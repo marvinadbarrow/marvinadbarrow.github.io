@@ -3,9 +3,10 @@
 
 // below bit of code resets the shopping list and pick list saved items so you can download the shopping list and start from scratch
 
+const log = console.log;
 
 
-
+log(localStorage)
 
 var totalCheckedArray = []
 var restockRequiredArr = [] // contains item names that are selected for the shopping list
@@ -760,6 +761,7 @@ const restockShopping = () =>{
   let shoppingDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}}`
 localStorage.setItem(shoppingDate,checkout)
 localStorage.setItem('restock', 'complete')
+fs.writeFile('purchase.json', checkout)
 clearLocalStorage()
 location.reload()
 

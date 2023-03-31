@@ -1,0 +1,12 @@
+
+
+body{height: 100vh; width: 100vw;} 
+h1{display: block; margin: auto; width: fit-content; height:fit-content; margin-top: 80px; margin-bottom: 20px;}
+#output-para{display: block; margin: auto; width: fit-content; height:fit-content; font-size: 23px; margin-top: 50px;}
+.response-div{background-color: rgb(240, 226, 209); padding: 5px; border-radius: 7px; border: 1px solid black;}
+button{font-size: 30px; width: fit-content; height: 50px; display: block; margin: auto;}
+#country-container{width: 96%; display: flex; flex-wrap: wrap; height: fit-content; margin: auto;}
+.country-para{font-size: 20px; display: block; margin: 0px;}
+.country-style{height: 30px; width: fit-content; display: flex; border: 1px grey solid; padding-right: 10px; margin: auto; margin-bottom: 5px;}
+.country-flag{height: 30px; width: fit-content; margin-right: 0.5px; border-radius: 0.5px solid black;}
+.flag-holder{height: 30px; width: fit-content; padding-right: 0px; border-right: 1px solid grey; display: inline-block; margin-right: 4px;}
