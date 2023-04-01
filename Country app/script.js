@@ -1,6 +1,6 @@
 let log = console.log;
-
-
+var nameArray = [] // for country names to display alphabetically. 
+var nameArraySorted;
 
     // COUNTRIES API
     const getCountries = (api) =>{
@@ -29,13 +29,14 @@ let log = console.log;
 // render chosen entries from the parsed data
 
 const renderCountryData = (data) =>{
+    console.log(data.sort())
 let name;
 let capital
 let flag; 
 data.forEach(element =>{
   
 name = element.name.common
-
+nameArray.push(name)
 // check for existence of capital city
 if(element.capital === undefined){
     console.log(data.indexOf(element), element.name)
@@ -76,11 +77,26 @@ flagContainer.appendChild(countryFlag)
 // append flag image and paragraph to container 
 container.appendChild(flagContainer)
 container.appendChild(countryPara)
+// append to hard coded HTML container
 document.getElementById('country-container').appendChild(container)
 
+
+
 })  
+nameArraySorted = nameArray.sort()
 
+nameArraySorted.forEach(named =>{
+// create an option element for the dropdown list of country names
+let countryOption = document.createElement('OPTION')
+countryOption.classList.add('option')
+countryOption.setAttribute('value', `${named}`)
+countryOption.textContent = `${named}`
+// append to HTML hidden container and unhide
+document.getElementById('select-container').appendChild(countryOption)
 
+})
+
+$('#options-container').toggle()
 
 }
 

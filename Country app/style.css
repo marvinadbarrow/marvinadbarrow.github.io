@@ -10,3 +10,6 @@ button{font-size: 30px; width: fit-content; height: 50px; display: block; margin
 .country-style{height: 30px; width: fit-content; display: flex; border: 1px grey solid; padding-right: 10px; margin: auto; margin-bottom: 5px;}
 .country-flag{height: 30px; width: fit-content; margin-right: 0.5px; border-radius: 0.5px solid black;}
 .flag-holder{height: 30px; width: fit-content; padding-right: 0px; border-right: 1px solid grey; display: inline-block; margin-right: 4px;}
+#options-container{height: 25px; font-size: 20px; font-weight: bold; width: fit-content;  margin-left: 20px; display: none;}
+#select-container{height: 25px;}
+.option{font-size: 20px;}
