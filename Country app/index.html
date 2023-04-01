@@ -29,9 +29,22 @@ awesome/4.7.0/css/font-awesome.min.css">
             <select id="select-container"></select>
         </div>
 
+
+        <!-- container for large flag, country details and link to country map-->
+        <a id="map-link" href="" target="_blank">
+          <div id="large-display">
+          <P class="country-info-large"> Click flag to see map!</P>
+          <img id="country-image-large" src="./world map.png" class="flag-large">
+          <p id="country-para-large" class="country-info-large"> Country: </P>
+          <p id="capital-para-large" class="country-info-large"> Capital city: </P>
+          </div>
+          </a>
         
 <button id="get-data">Load Countries!</button>
-<p id="output-para"></p>
+<p id="error-para"></p>
+<div id="error-img-holder">
+<img id="error-img" src="./404 error.png" alt="">
+</div>
 <div id="country-container"></div>
 
 

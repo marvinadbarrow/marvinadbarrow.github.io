@@ -2,7 +2,17 @@
 
 body{height: 100vh; width: 100vw;} 
 h1{display: block; margin: auto; width: fit-content; height:fit-content; margin-top: 80px; margin-bottom: 20px;}
-#output-para{display: block; margin: auto; width: fit-content; height:fit-content; font-size: 23px; margin-top: 50px;}
+#error-para{display: none; margin: auto; width: fit-content; height:fit-content; font-size: 70px; margin-top: 50px;}
+#error-img{width: 250px;}
+#error-img-holder{
+    padding: 5px;
+    margin: 0px;
+   margin-left: 40%;
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    display: none;
+}
 .response-div{background-color: rgb(240, 226, 209); padding: 5px; border-radius: 7px; border: 1px solid black;}
 button{font-size: 30px; width: fit-content; height: 50px; display: block; margin: auto;}
 #country-container{width: 96%; display: flex; flex-wrap: wrap; height: fit-content; margin: auto;}
@@ -13,3 +23,6 @@ button{font-size: 30px; width: fit-content; height: 50px; display: block; margin
 #options-container{height: 25px; font-size: 20px; font-weight: bold; width: fit-content;  margin-left: 20px; display: none;}
 #select-container{height: 25px;}
 .option{font-size: 20px;}
+#large-display{float: right; margin: -100px 50px 20px 0px; width: fit-content; height: fit-content; border: 1px solid black; padding: 10px; display: none;}
+.flag-large{ height: 100px; width: fit-content; border: 1px solid black;}
+.country-info-large{display: block; width: fit-content; margin: 0px; font-size: 18px; color: black; font-weight: bold;}

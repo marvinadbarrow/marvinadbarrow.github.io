@@ -1,7 +1,7 @@
 let log = console.log;
 var nameArray = [] // for country names to display alphabetically. 
 var nameArraySorted;
-
+var mapArray = []
     // COUNTRIES API
     const getCountries = (api) =>{
 
@@ -29,24 +29,46 @@ var nameArraySorted;
 // render chosen entries from the parsed data
 
 const renderCountryData = (data) =>{
-    console.log(data.sort())
+data.sort((a,b) => (a.name.common > b.name.common) ? 1: -1)    
 let name;
 let capital
 let flag; 
+
+
 data.forEach(element =>{
   
 name = element.name.common
+ // save list of names for country select dropdown
 nameArray.push(name)
+//  object for name, flag image and map data link
+let countryObj = {
+    country_name: '',
+    country_map: '',
+    country_flag: '',
+    country_capital: ''
+    }
+
+    // populate object for name, flag and map
+// save country name and country map to object for later retrieval
+countryObj.country_name = `${element.name.common}`;
+if(element.maps.googleMaps === undefined){
+if(element.maps.openStreetMaps !== undefined){
+    countryObj.country_map = element.maps.openStreetMaps   
+}else{countryObj.country_map = 'no map'}
+}else{countryObj.country_map = element.maps.googleMaps}
+
+
+
 // check for existence of capital city
 if(element.capital === undefined){
-    console.log(data.indexOf(element), element.name)
     capital = 'N/A'
-}else{ capital = element.capital[0];}
-
+}else{ capital = element.capital[0]; countryObj.country_capital = element.capital[0];}
 // check for existence of flag - assign variable if exists
 if(element.flags.png === undefined){
-console.log(data.indexOf(element), element.name)
-}else{ flag = element.flags.png;}
+}else{ flag = element.flags.png; countryObj.country_flag = element.flags.png;}
+
+// push object with country data for later retrieval when country is selected in 'select' element
+mapArray.push(countryObj)
 
 // CREATING HTML ELEMENTS TO DISPLAY FLAG COUNTRY AND CAPITAL
 
@@ -80,12 +102,18 @@ container.appendChild(countryPara)
 // append to hard coded HTML container
 document.getElementById('country-container').appendChild(container)
 
-
+// set default country large image to first country in the select list (afghanistan)
+$('#map-link').attr('href', mapArray[0].country_map)
+$('#country-image-large').attr('src', mapArray[0].country_flag)
+$('#country-para-large').html(mapArray[0].country_name)
+$('#capital-para-large').html(`Capital: ${mapArray[0].country_capital}`)
+// display the container holding large image and country info
+$('#large-display').css('display','block')
 
 })  
-nameArraySorted = nameArray.sort()
 
-nameArraySorted.forEach(named =>{
+
+nameArray.forEach(named =>{
 // create an option element for the dropdown list of country names
 let countryOption = document.createElement('OPTION')
 countryOption.classList.add('option')
@@ -101,6 +129,20 @@ $('#options-container').toggle()
 }
 
 
+// select a country to display larger country map and country details. 
+$('#select-container').change((e) =>{
+    let selected = e.target.value
+    mapArray.forEach(country =>{
+       if(country.country_name === selected){
+        $('#map-link').attr('href', country.country_map)
+        $('#country-image-large').attr('src', country.country_flag)
+        $('#country-para-large').html(country.country_name)
+        $('#capital-para-large').html(`Capital: ${country.country_capital}`)
+
+       }
+    })
+
+})
 
 
 
@@ -113,6 +155,9 @@ $('#get-data').hide()
 
                 })
                 .catch((data) =>{
+                    $('#error-para').html('Oops! something went wrong!')
+                    $('#error-para').css('display','block')
+                    $('#error-img-holder').css('display','block')
                     console.log(data)
                 })
         
