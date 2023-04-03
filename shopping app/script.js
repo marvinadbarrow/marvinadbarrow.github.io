@@ -140,6 +140,37 @@ var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, ba
 // BUTTON CONTROLS DICTATED BY LOCAL STORAGE CONTENT
 
 
+
+
+// FUNCTION FOR CLOSING AND OPENING MODALS TAKING USER TO NEXT STEP IN SHOPPING OR LIST CREATION
+const closeModals = (testID, destinationID) =>{
+  console.log(testID)
+  let directAncestorID;
+  // get the parent of the element whose id is testID
+  let directAncestor = document.getElementById(testID).parentNode
+  log(directAncestor)
+  // check the parent's class
+  let ancestorClass = directAncestor.getAttribute('class')
+  log(ancestorClass)
+
+  // check parent has an id, and if not alert, and create an id in HTML for parent
+  if(directAncestor.id){
+  directAncestorID = directAncestor.id;
+    log(directAncestorID)
+  }else{alert('no ancestor id exits')}
+
+
+  // if parent has class of modal, hide parent using ancestorID 
+  if(ancestorClass == 'modal'){
+$(`#${directAncestorID}`).hide()
+$(`#${destinationID}`).css('display', 'block')
+return;
+  }else{ // otherwise run function again with parent ID 
+closeModals(directAncestorID, destinationID)
+  }}
+
+
+
 console.log(localStorage)
 
 var shoppingBegun = localStorage.getItem('shopping_started')
@@ -228,17 +259,17 @@ if(localStorage.getItem('temp_list') && restockComplete === null){
 
 
 
-const closePurchase = () =>{
-  $('#complete-purchase').hide()
-  $('#main-page').css('display','block')
-$('.purchase-hide').hide()
+const closePurchase = (id, destinationID) =>{
+
+  closeModals(id, destinationID)
+$('.purchase-hide').hide() // hides all unnecessary buttons
 
 $('#deliver-shopping').css('display','block')
 $('#clear-items').css('display','block')
 }
 
 
-const makePurchase = () =>{
+const makePurchase = (id, destinationID) =>{
   // store purchase and rejected items inside the purchased array (rejected objects are stored as a separate copy of getListArr; with the word 'rejected' unshifted to the first position in that array)
   getListArr.unshift('rejected')
 purchasedArr.push(...basketArr, getListArr )
@@ -247,8 +278,7 @@ purchasedArr.push(...basketArr, getListArr )
 let savedPurchase = JSON.stringify(purchasedArr)
 localStorage.setItem('checkout',`${savedPurchase}`)
 
-$('#checkout-list').hide()
-$('#complete-purchase').css('display','block')
+closeModals(id, destinationID)
 
 // clear all content pages, pick list, basket and checkout so that on page refresh no images are stuck left in these content holders
 let pickItemContent = document.getElementById('downloaded-modal-content')
@@ -308,11 +338,9 @@ array.forEach(element =>{
 
 
 // CHECKOUT TEMPLATE. 
-const checkout = () =>{
+const checkout = (id, destinationID) =>{
 
-  $('#basket-list').hide() // close basket
-  $('#checkout-list').css('display','block') //  open checkout
-
+  closeModals(id, destinationID)
   let separatorDiv = document.createElement('DIV')
   separatorDiv.classList.add('product')
   separatorDiv.setAttribute('id','separator')
@@ -383,13 +411,8 @@ switch(identifyer){
 
 }
 
-const openBasket = () =>{
-$('#downloaded-list').hide()
-$('#basket-list').css('display', 'block')
-}
-
 // back to shopping list from different locations
-const openList = (id) =>{
+const openList = (id, destinationID) =>{
 
   // if ID is return to list on checkout modal, then checkout is completely cleared because, returning to the list, it's plausible that the user will purchase an item so checkout list gets altered, at least one item will move from rejected to accepted. so the checkout is essentially refreshed every time you go to it. 
   switch(id){
@@ -398,7 +421,7 @@ const openList = (id) =>{
       let checkoutContent = document.getElementById('checkout-container')
       modal.parentNode.parentNode.style.display = 'none'
       // $('#basket-list').hide()
-    $('#downloaded-list').css('display', 'block')
+    closeModals(id, destinationID)
 
 while(checkoutContent.firstChild){
   checkoutContent.removeChild(checkoutContent.firstChild)
@@ -408,7 +431,7 @@ while(checkoutContent.firstChild){
   default:
   document.getElementById(id).parentNode.parentNode.style.display = 'none'
   // $('#basket-list').hide()
-$('#downloaded-list').css('display', 'block')
+closeModals(id, destinationID)
   }}
 
 // updates the array containing shopping list items not yet sent to basket. 
@@ -476,20 +499,20 @@ updateLists(getListArr, basketArr)
 
 // PRE-POPULATE BASKET; prior to populating basket make sure that user has selected at leat ONE ITEM to push to basket. 
 
-const prePopulateBasket = () =>{
+const prePopulateBasket = (id, destinationID) =>{
   // get text content of para showing number of items selected
   let pickValueText = document.getElementById('pick-value').textContent
   // convert from string real number
   let pickValueNumber = Number(pickValueText)
 if(pickValueNumber > 0){ // if number > 0 move to basket and load image
-  populateBasket(pickValueNumber)
+  populateBasket(pickValueNumber, id, destinationID)
 }else{ // alert user that number must be chosen first before sending to basket
   document.getElementById('alert-para').textContent = 'choose how many of this item you want;'
 $('#msg-modal').css('display', 'block')
 }}
 
 // FROM 'ADD TO BASKET?' BACK TO  PICK ITEM LIST
-const  holdItemToList = () =>{
+const  holdItemToList = (id, destinationID) =>{
   let product = document.getElementById('hold-modal-content').firstChild
   // resize product image ready for re-appending to downloaded list
    product.classList.remove('image-div-shop-large')
@@ -502,13 +525,12 @@ let listCurrent = document.getElementById('downloaded-modal-content')
 listCurrent.prepend(product)
 // set the amount of items selected to zero
 document.getElementById('pick-value').textContent = '0';
-$('#hold-item').hide()
-$('#downloaded-list').css('display', 'block')
+closeModals(id, destinationID)
 }
 
-// button returns to pick list from HOLD ITEM modal
-$('#hold-to-list').click(() =>{
-  holdItemToList()
+// button returns to pick list from HOLD ITEM modal if you decide not to pick
+$('#hold-to-list').click((e) =>{
+  holdItemToList(e.target.id, 'downloaded-list')
 })
 
 // PICKED ITEM TAKES YOU HERE TO DECIDE WHETHER TO DROP TO BASKET OR RETURN TO PICK LIST. 
@@ -534,8 +556,11 @@ const startShop = (array) =>{
 
   console.log(inShopListArr)
 
-$('#main-page').hide()
-$('#downloaded-list').css('display', 'block')
+closeModals('open-shopping-list', 'downloaded-list')
+
+
+//$('#main-page').hide()
+//$('#downloaded-list').css('display', 'block')
 
 // add event listener to all shopping list items
 let productSelect = document.querySelectorAll('.image-div-shop')
@@ -553,9 +578,12 @@ productSelect.forEach(element => {
 
 }
 
+// DOING SHOPPING FUNCTIONS ARE ALL ABOVE THIS LINE ----------------------------------------------
+
+
 
   // CREATE ELEMENTS TO LOAD IN SHOPPING LIST - MOVING THIS TO BE ACTIVATED BY 'START LIST' BUTTON - START BUTTON WILL NOT ACTIVATE THIS FUNCTION UNLESS LIST HAS BEEN DOWNLOADED AND DOWNLOAD BUTTON IS NOT VISIBLE
-const foo = () =>{
+const foo = (id) =>{
 
   // if temp list is saved in local storage then the list needs to be updated from there and the shopping list needs to be created from chopping list local storage. 
   if(localStorage.getItem('temp_list')){
@@ -637,7 +665,7 @@ df2.appendChild(productDiv)}
 })
 
 document.getElementById('basket-modal-content').appendChild(df2)
-startShop(getListArr)
+startShop(getListArr) // no modal is opened or closed, just button change
 
 
 
@@ -697,7 +725,7 @@ productDiv.appendChild(productDescription)
 df.appendChild(productDiv)
 })
 document.getElementById('downloaded-modal-content').appendChild(df)
-startShop(getListArr)
+startShop(getListArr) // no modal is opened or closed, just button change
 }
 
 
@@ -748,15 +776,14 @@ localStorage.setItem('new_delivery', 'delivered')
 }
 
 // CREATE NEW LIST
-const startList = () =>{
+const startList = (id, destinationID) =>{
   
     if(restockRequiredArr.length < 1){ // if restock array is empty, shopping has been put away so new list can be created. 
 
       // local storage to save list (updated on save/upload page)
 localStorage.setItem('create_shopping_list','')
 console.log(localStorage)
-      $('#main-page').hide();
-      $('#add-items').css('display','block')
+closeModals(id, destinationID)
   }else{alert('RE-STOCK shopping before creating new list')}
 
   
@@ -766,7 +793,7 @@ console.log(localStorage)
 
 
 
-const resumeList = () =>{
+const resumeList = (id, destinationID) =>{
   // for looping through children of shopping list items. 
 
 // initiate a variable for the HTML
@@ -792,9 +819,8 @@ for(i=0; i<kidArray.length; i++){
   console.log(kidArray[i].children[2].innerText)
   restockRequiredArr.push(productName)
 }
-console.log(restockRequiredArr)
-$('#main-page').hide()
-$('#shopping-list').css('display','block')
+
+closeModals(id, destinationID)
 }
 
 
@@ -805,7 +831,7 @@ $('#upload-blob').toggle()
 
 
 
-const confirmUpload = () =>{
+const confirmUpload = (id, destinationID) =>{
 $('#resume-list').hide()
   verifiedListArr = []
   // for each product in restock array do the following
@@ -851,25 +877,16 @@ localStorage.setItem('new_shopping_list',`${shoppingList}`)
 // now list is saved array can be deleted
 restockRequiredArr = []
 $('#start-list').hide()
-$('#upload-modal').hide()
-$('#main-page').css('display','block')
 $('#get-shopping-list').css('display','block')
-
+closeModals(id, destinationID)
 
 // shopping list no longer needed so remove relevant local storage which will cause 'start/resume' buttons to be hidden
 localStorage.removeItem('create_shopping_list')
 
 }
 
-
-
-
-
-
-const saveShoppingList = (id) =>{
+const saveShoppingList = (id, destinationID) =>{
   console.log(document.getElementById(id))
-  $('#upload-modal').hide()
-  $('#shopping-list').css('display','block')
   // CREATE A LOCAL STORAGE ITEM TO SAVE CURRENT SHOPPING LIST
 
 console.log(restockRequiredArr)
@@ -892,29 +909,40 @@ shoppingListItemsContainer.childNodes.forEach(child =>{
 // saving as JSON object 
 let savedShoppingList =  JSON.stringify(shoppingListItems)
 localStorage.setItem('save_shopping_list', savedShoppingList)
-console.log(localStorage)
+console.log(localStorage.getItem('save_shopping_list'))
 //localStorage.removeItem('create_shopping_list')
+
+closeModals(id, destinationID)
 
 }
 
 
 // returning to home page
-const returnHome = (clicked) =>{
+const returnHome = (id, destinationID) =>{
 $('#add-items').hide()
-$('#main-page').css('display', 'block')
+$(`#${destinationID}`).css('display', 'block')
 }
 
+
+
+
 // clear items in checkbox page (select items modal)
-const clearSubItems = () =>{
+const clearSubItems = (id, destinationID) =>{
   let selectHolder = document.getElementById('items-for-selection')
   while (selectHolder.firstChild) {
     selectHolder.removeChild(selectHolder.firstChild);
-}}
+}
+
+// if clicking element id and its destination modal's id are arguments to this function then execute close modals function
+if(id && destinationID){
+  closeModals(id, destinationID)
+}
+}
 
 
 
 // APPEND PRODUCTS FROM 'VIEW SELECTED ITEMS' TO SHOPPING LIST
-const pushToShoppingList = (id) =>{
+const pushToShoppingList = (id, destinationID) =>{
   log(id)
   //create document fragment to hold new images
   let df = new DocumentFragment()
@@ -947,38 +975,33 @@ console.log(document.getElementById('shopping-list-items'))
 // switch navigation id to find out where to go next (shopping list or category page)
 switch(id){
   case 'add-icon':
-    $('#add-items').css('display','block')
-    clearSubItems()
+       clearSubItems(id, destinationID)
     break;
 case 'view-shopping-list':
-    $('#shopping-list').css('display','block')
-    // remove all items on the 'checkbox' modal (because, here, you are on the 'view added items' page which means you bypassed the back-button on the checkbox page, so the checkboxes were have not been cleared )
-    clearSubItems()
+  clearSubItems(id, destinationID)
 }
 }
 
 
 // PLUS ICON WHICH TAKES USER FROM JUST ADDED ITEMS MODAL BACK TO CATEGORIES
-$('#add-icon').click(()=>{
-    $('#view-added-items').hide()
-    let idAdd = 'add-icon'
-  pushToShoppingList(idAdd)
+$('#add-icon').click((e)=>{
+  pushToShoppingList(e.target.id, 'shopping-list')
  })
 
 //  DELETE SHOPPING LIST ITEM (cancel)
-const cancelDelete = () =>{
+const cancelDelete = (id, destinationID) =>{
 // when image in shopping list is clicked display delete modal
-$('#delete-items').css('display', 'none')// hide delete modal
+
 // assign variable to item awaiting restoration
 let cancelItemDelete = document.getElementById('delete-items').children[1].children[1].children[0];
 // restore item to shopping list, by appending it. 
 document.getElementById('shopping-list-items').appendChild(cancelItemDelete)
 // show shopping list
-$('#shopping-list').css('display', 'block')
+closeModals(id, destinationID)
 }
 
 //  DELETE SHOPPING LIST ITEM (confirm)
-const confirmDelete = () =>{
+const confirmDelete = (id, destinationID) =>{
   console.log(restockRequiredArr)
  // assign variable to item awaiting deletion
  let deleteThisProduct = document.getElementById('delete-items').children[1].children[1].children[0];
@@ -989,8 +1012,7 @@ const confirmDelete = () =>{
 // splice the product from the restock array (using index position variable)
 restockRequiredArr.splice(productNamePosition, 1)
 // hide delete modal and display shopping list;
- $('#delete-items').css('display', 'none')
-$('#shopping-list').css('display', 'block')
+closeModals(id, destinationID)
 
 // remove image of deleted item from delete array - assign a variable to item's container
  let deleteProductHolder = document.getElementById('delete-this-item')
@@ -1002,30 +1024,26 @@ while(deleteProductHolder.firstChild){
 }
 
 
-const duplicateCheckedItem = () =>{
-  $('#msg-modal').hide()
+const duplicateCheckedItem = (id) =>{
+  console.log(id)
   $('#view-added-items').hide()
+  closeModals(id,'product-select')
 }
-
-// 
 
 // back button on select subcategory items page (takes you back to main categories)
 $('#back-arrow-img').click(function(e){
-log('back btn clicked')
-  $('#product-select').hide();
-  $('#add-items').css('display','block')
 // remove all checkbox items from select items (checkbox page) modal
-clearSubItems()
+clearSubItems(e.target.id, 'add-items')
 })
-
-
 //TO UPLOAD MODAL
 $('#upload-img').click((e) =>{
-  // show decider modal to save temporary list, or to confirm completed list and upload
-$('#upload-modal').css('display','block')
-$('#shopping-list').hide()
-
+closeModals(e.target.id, 'upload-modal')
 })
+
+
+
+
+
 
 
 
@@ -1035,82 +1053,79 @@ $('button').click((e) =>{
 switch(e.target.id){
 
   case 'return-to-main':
-    $('#shopping-list').hide();
-    $('#add-items').css('display','block')
+closeModals(e.target.id, 'add-items')
   break;
   case 'view-shopping-list':
-    $('#view-added-items').hide();
-    let idlist = 'view-shopping-list'
-  pushToShoppingList(idlist)
+  pushToShoppingList(e.target.id, 'shopping-list')
   break;
 
   case 'alert-modal-close':
-duplicateCheckedItem()
+duplicateCheckedItem(e.target.id)
   break;
 
   case 'confirm-delete':
-    confirmDelete()
+    confirmDelete(e.target.id, 'shopping-list')
   break;
   case 'cancel-delete':
-    cancelDelete()
+    cancelDelete(e.target.id, 'shopping-list')
   break;
   case 'view-shoplist':
-    $('#shopping-list').css('display','block');
-    $('#add-items').hide()
+closeModals(e.target.id,'shopping-list')
+
   break;
   case 'start-list':
-startList()
+startList(e.target.id, 'add-items')
   break;
   case 'resume-list':
-resumeList()
+resumeList(e.target.id, 'shopping-list')
   break;
   case 'get-shopping-list':
-    getShoppingList()
+    getShoppingList() // this is just a download button and changes no modal
   break;
   case 'deliver-shopping':
-deliverAndClear()
+deliverAndClear() // only button change on delivery so no closing or opening of modals
   break;
   case 'restock-shopping':
-    restockShopping()
+    restockShopping() // page refreshes so no need to close or open modals
   break;
   case 'authorize-upload':
-    confirmUpload()
+    confirmUpload(e.target.id, 'main-page')
   break;
   case 'save-list':
-    saveShoppingList(e.target.id)
+    saveShoppingList(e.target.id, 'shopping-list')
   break;
 case 'navigate-to-basket':
-  prePopulateBasket()
+  prePopulateBasket(e.target.id, 'downloaded-list')
   break;
   case 'view-basket-btn':
-    openBasket()
+closeModals(e.target.id, 'basket-list')
   break;
 case 'basket-to-list':
-  openList(e.target.id)
+  openList(e.target.id, 'downloaded-list')
   break;
 case 'basket-to-checkout':
-  checkout()
+  checkout(e.target.id, 'checkout-list')
   break;
 case 'add-1':
-productTotal(e.target.id)
+productTotal(e.target.id) // increases number of items for basket - no modal change here
 break;
 case 'subtract-1':
-productTotal(e.target.id)
+productTotal(e.target.id) // decreases number of items for basket - no modal change 
 break;
 case 'open-shopping-list':
-foo()
+foo(e.target.id) //for loading shopping list, but no modal change occurs
 break;
 case 'checkout-to-list':
-  openList(e.target.id)
+  openList(e.target.id, 'downloaded-list')
 break;
 case 'buy-items':
-  makePurchase()
+  makePurchase(e.target.id, 'complete-purchase')
   break;
 case 'purchase-confirmed-btn':
-  closePurchase()
+  closePurchase(e.target.id, 'main-page')
 break;
 case 'home-icon':
-  returnHome(e.target)
+  closeModals(e.target.id, 'main-page')
 break;
 
 }
@@ -1226,8 +1241,14 @@ viewAddedItems = (selected) =>{
     $('#msg-modal').css('display', 'flex')
 
 }else{
-  $('#product-select').hide()
+
+
+  /*
+    $('#product-select').hide()
   $('#view-added-items').css('display','block')
+  */
+ // send to function to close and open appropriate modals
+closeModals('select-items', 'view-added-items')
 }
 }
 

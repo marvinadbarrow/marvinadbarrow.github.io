@@ -126,7 +126,7 @@ awesome/4.7.0/css/font-awesome.min.css">
 
 </form>
 
-<button class="back-btn">
+<button class="back-btn" id="back-btn-select">
   <img id="back-arrow-img" src="./back arrow 2.png" alt="">
  </button>
 
@@ -144,7 +144,7 @@ awesome/4.7.0/css/font-awesome.min.css">
          <!-- back button and 'send selection' button-->
 </div>
 
-<div class="choice-btns">
+<div class="choice-btns" id="choice-btn-container">
   <button id="add-more"><img id="add-icon" src="./add icon.png" alt=""></button>
   <button class="navigate-btn"  id="view-shopping-list">view list</button>
  </div>
@@ -219,13 +219,13 @@ awesome/4.7.0/css/font-awesome.min.css">
 <!-- UPLOAD MODAL -->
 <div class="modal" id="upload-modal">
   <h2>Save or Upload</h2>
-  <div id="upload-modal-content">
+  <div id="upload-modal-content" class="">
   <h4><em>"Do you want to save and complete later; or authorize as complete and upload?"</em></h4>
-        <div class="save-div">
+        <div class="save-div" id="save-list">
         <button id="save-list" class="main-page-btn">Save for later</button><img class="upload-modal-icons" src="./save icon.jpg" alt="">
       </div>
 
-        <div class="save-div">
+        <div class="authorize-div" id="authorize-btn-container">
         <button id="authorize-upload" class="main-page-btn">Authorize Upload</button><img class="upload-modal-icons" src="./upload icon.png" alt="">
       </div>
     </div>
