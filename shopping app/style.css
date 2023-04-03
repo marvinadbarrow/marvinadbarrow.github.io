@@ -160,7 +160,7 @@ background-color: rgba(72, 72, 243, 0.637);
 border-style: none;
 }
 .back-btn:hover{outline: 2px solid white; outline-offset: 2px;}
-.back-arrow-img{width: 25px; height: 25px; position: absolute; top: -4px; left: 1px;}
+#back-arrow-img{width: 25px; height: 25px; position: absolute; top: -4px; left: 1px;}
 
 
 
@@ -272,6 +272,7 @@ align-items: center;
 }
 
 #home-btn{width: 35px; height: 35px; border-radius: 50%; background-color: rgb(120, 120, 240); border-style: none; }
+#home-btn:hover{outline: 2px solid white; outline-offset: 2px; cursor: pointer;}
 #home-icon{width: 25px; height: 25px; display: inline-block; margin: 0px;}
 #btn-container-category{display: flex; justify-content: space-around; align-items: center;}
 

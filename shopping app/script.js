@@ -148,18 +148,6 @@ if(shoppingBegun === null){
 }
 
 
-/* a few notes on buttons
-restock should only be available when checkout and delivery note is available
-delivery should only be available when checkout is saved
-open shopping list should only be available when new_shopping_list is available
-resume shopping should only be available when temp_list is available
-get shopping list should only be available when new_shopping_list is available 
-start list should only be available when new_shopping_list is unavailable 
-
-*/
-
-
-
 let newListCreated = localStorage.getItem('create_shopping_list'); // beginning of new list
 let listSaved = localStorage.getItem('save_shopping_list'); // saved list before upload
 let newListShop = localStorage.getItem('new_shopping_list') // stored uploaded list
@@ -280,8 +268,6 @@ containersArray.forEach(contentHolder =>{
 
 // rejected items
 const loadRejects = (array) =>{
-
-  console.log(array)
 
   // load items not purchased
 array.forEach(element =>{
@@ -405,7 +391,7 @@ $('#basket-list').css('display', 'block')
 // back to shopping list from different locations
 const openList = (id) =>{
 
-  // if ID is return to list on checkout modal, then checkout is completely cleared because, returning to the list, it's plausible that the user will purchase an item so that the nature of the checkout will change, at least one item will move from rejected to accepted. so the checkout is essentially refreshed every time you go to it. 
+  // if ID is return to list on checkout modal, then checkout is completely cleared because, returning to the list, it's plausible that the user will purchase an item so checkout list gets altered, at least one item will move from rejected to accepted. so the checkout is essentially refreshed every time you go to it. 
   switch(id){
     case 'checkout-to-list':
       let modal = document.getElementById(id)
@@ -423,11 +409,7 @@ while(checkoutContent.firstChild){
   document.getElementById(id).parentNode.parentNode.style.display = 'none'
   // $('#basket-list').hide()
 $('#downloaded-list').css('display', 'block')
-
-
-  }
-
-}
+  }}
 
 // updates the array containing shopping list items not yet sent to basket. 
 const updateLists = (listArray, basketArray) =>{
@@ -440,15 +422,9 @@ localStorage.setItem('temp_list',`${tempList}` )
  // save basket array in local storage
 let basketList = JSON.stringify(basketArray)
 localStorage.setItem('basket_list',`${basketList}`)
-console.log(basketList)
-
 
 // UPDATE START SHOPPING BUTTON TO RESUME SHOPPING BUTTON
-
-
-  console.log(localStorage)
   listArray.forEach(object =>{
-
   })
 
 }
@@ -485,9 +461,7 @@ basketArr.push(getListArr[index]) // push object to last position of basket arra
 getListArr[index].product_total_number = itemTotal //  set total number of item picks
 delete getListArr[index]// remove object from get list array
 // place the number of items selected in the 'product_total_number' section of the product object. 
-
-}
-}
+}}
 
 })
 
@@ -512,12 +486,7 @@ if(pickValueNumber > 0){ // if number > 0 move to basket and load image
 }else{ // alert user that number must be chosen first before sending to basket
   document.getElementById('alert-para').textContent = 'choose how many of this item you want;'
 $('#msg-modal').css('display', 'block')
-}
-
-
-}
-
-
+}}
 
 // FROM 'ADD TO BASKET?' BACK TO  PICK ITEM LIST
 const  holdItemToList = () =>{
@@ -536,9 +505,6 @@ document.getElementById('pick-value').textContent = '0';
 $('#hold-item').hide()
 $('#downloaded-list').css('display', 'block')
 }
-
-
-
 
 // button returns to pick list from HOLD ITEM modal
 $('#hold-to-list').click(() =>{
@@ -761,7 +727,7 @@ const restockShopping = () =>{
   let shoppingDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}}`
 localStorage.setItem(shoppingDate,checkout)
 localStorage.setItem('restock', 'complete')
-fs.writeFile('purchase.json', checkout)
+
 clearLocalStorage()
 location.reload()
 
@@ -932,7 +898,11 @@ console.log(localStorage)
 }
 
 
-
+// returning to home page
+const returnHome = (clicked) =>{
+$('#add-items').hide()
+$('#main-page').css('display', 'block')
+}
 
 // clear items in checkbox page (select items modal)
 const clearSubItems = () =>{
@@ -1032,8 +1002,11 @@ const duplicateCheckedItem = () =>{
   $('#view-added-items').hide()
 }
 
+// 
+
 // back button on select subcategory items page (takes you back to main categories)
-$('#back-btn').click(function(){
+$('#back-arrow-img').click(function(e){
+log('back btn clicked')
   $('#product-select').hide();
   $('#add-items').css('display','block')
 // remove all checkbox items from select items (checkbox page) modal
@@ -1134,6 +1107,9 @@ case 'buy-items':
   break;
 case 'purchase-confirmed-btn':
   closePurchase()
+break;
+case 'home-icon':
+  returnHome(e.target)
 break;
 
 }

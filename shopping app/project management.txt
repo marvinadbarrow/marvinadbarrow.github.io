@@ -298,4 +298,16 @@ You might even be able to use AJAX to update the shopping list when adding items
 
 
 
+BUTTON ORDER NOTES
+restock should only be available when checkout and delivery note is available
+delivery should only be available when checkout is saved
+open shopping list should only be available when new_shopping_list is available
+resume shopping should only be available when temp_list is available
+get shopping list should only be available when new_shopping_list is available 
+start list should only be available when new_shopping_list is unavailable 
+
+*/
+
+
+
 
