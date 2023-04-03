@@ -100,7 +100,13 @@ cursor:pointer;}
   overflow-y: auto;
 }
 
-
+#shopping-list-items,#delete-added-items,#upload-modal-content{
+  width: 100%;
+  height:330px ;
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
 
 img{display:inline-block;
@@ -146,13 +152,13 @@ overflow-y: auto;
 
 
 
-#choice-btns{
-  width: 156px; height: fit-content;
-margin: auto;
+.choice-btns{
+  width: 196px; height: fit-content;
+display: flex; flex-direction: row; align-items: center; justify-content: space-around;
 }
 
 .back-btn{position: absolute;
-  bottom: 10px; left: 10px;
+  bottom: 12px; left: 12px;
   display: inline-block;
   height: 25px; width: 25px;
 border-radius: 50%;
@@ -167,8 +173,7 @@ border-style: none;
 
 /* below are the classes that need to be added to elements created in Javascript and dynamically loaded onto the 'select' modal, when an item category is selected on the main page*/
 
-/* sub category items appear here */
-#select-items{height: 30px;}
+
 
 /* div for holding image and checkbox */
 .image-checkbox-holder{position: relative; width: 80px; height: fit-content; border: 0.2px solid rgba(190, 188, 188, 0.459); margin-top: 5px;}
@@ -191,16 +196,10 @@ border-style: none;
 .added-div{width: fit-content; height: fit-content;}
 
 
-#shopping-list-items,#just-added-content,#delete-added-items,#upload-modal-content{
-  width: 100%;
-  height:300px ;
-  background-color: white;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
+
 
 .save-div{display: flex; justify-content: space-around; align-items: center;}
-#main-page-content,#upload-modal-content,#purchase-content{
+#main-page-content,#upload-modal-content,#purchase-content, #just-added-content{
   background-color: white;
   width: 100%;
   display: flex;
@@ -234,9 +233,8 @@ align-items: center;
 
 
 
-.choice-btns{padding: 4px; background-color: rgba(255, 255, 255, 0); margin-top: 10px; border-radius: 7px;}
-#choice-btns-shoplist{display: flex; flex-direction: row; width: 100%; height: fit-content; justify-content: space-around; padding: 4px; background-color: rgba(255, 255, 255, 0); margin-top: 10px; border-radius: 7px; position: relative;}
-#view-shoplist{width: 70px; height: fit-content; outline-color: white; outline-offset: 1px; outline-width: 1px; margin-top: 24x; padding: 0px;background-color: rgba(247, 23, 23, 0.89); padding: 8px 0px;}
+#choice-btns-shoplist{display: flex; flex-direction: row; width: 100%; height: fit-content; justify-content: space-around; padding: 2px; background-color: rgba(255, 255, 255, 0); margin-top: 2px; border-radius: 7px; position: relative;}
+#view-shoplist, #view-shopping-list{width: 70px; height: fit-content; outline-color: white; outline-offset: 1px; outline-width: 1px; margin-top: 24x; padding: 0px;background-color: rgba(247, 23, 23, 0.89); padding: 8px 0px;}
 #return-to-main{width: 100px;}
 #upload-img{width: 50px; height: 50px;  background-color: white; border-radius: 50%; display: inline-block;}
 #upload-img:hover{cursor: pointer;}
@@ -250,7 +248,7 @@ align-items: center;
 .navigate-btn:hover{cursor: pointer;outline: 2px solid rgb(70, 70, 247); outline-offset: 3px;}
 
 
-#select-items{ margin: 5px;font-size: 15px; border-style: none; background-color: rgb(54, 245, 96); border-radius: 4px; color: white; font-weight: bold; outline: 2px solid rgba(255, 255, 255, 0); outline-offset: 3px;}
+#select-items{ height:35px; margin: 0px 0px 0px 20px;font-size: 15px; border-style: none; background-color: rgb(54, 245, 96); border-radius: 4px; color: white; font-weight: bold; outline: 2px solid rgba(255, 255, 255, 0); outline-offset: 3px;}
 #select-items:hover{cursor: pointer; outline-color: white;}
 
 .delete-this-item{position: relative;}
@@ -271,11 +269,12 @@ align-items: center;
   padding: 12px; background-color: rgba(0, 0, 0, 0.808); color: white; border-radius: 20px; font-size: 13px; position: absolute; top: -40px; left: 5px; display: none;
 }
 
-#home-btn{width: 35px; height: 35px; border-radius: 50%; background-color: rgb(120, 120, 240); border-style: none; }
+#home-btn, #add-more{width: 35px; height: 35px; border-radius: 50%; background-color: rgb(120, 120, 240); border-style: none; }
 #home-btn:hover{outline: 2px solid white; outline-offset: 2px; cursor: pointer;}
-#home-icon{width: 25px; height: 25px; display: inline-block; margin: 0px;}
-#btn-container-category{display: flex; justify-content: space-around; align-items: center;}
-
+#home-icon, #add-icon{width: 25px; height: 25px; display: inline-block; margin: 0px;}
+#btn-container-category, .choice-btns{display: flex; justify-content: space-around; align-items: center;}
+#add-more{padding: 4.5px;}
+#add-more:hover{cursor: pointer;outline: 1px solid rgb(255, 255, 255); outline-offset: 1px;}
 
 
 #hold-modal-content{

@@ -915,7 +915,7 @@ const clearSubItems = () =>{
 
 // APPEND PRODUCTS FROM 'VIEW SELECTED ITEMS' TO SHOPPING LIST
 const pushToShoppingList = (id) =>{
-
+  log(id)
   //create document fragment to hold new images
   let df = new DocumentFragment()
   // get viewed items element
@@ -946,7 +946,7 @@ document.getElementById('shopping-list-items').append(df)
 console.log(document.getElementById('shopping-list-items'))
 // switch navigation id to find out where to go next (shopping list or category page)
 switch(id){
-  case 'add-more':
+  case 'add-icon':
     $('#add-items').css('display','block')
     clearSubItems()
     break;
@@ -955,10 +955,15 @@ case 'view-shopping-list':
     // remove all items on the 'checkbox' modal (because, here, you are on the 'view added items' page which means you bypassed the back-button on the checkbox page, so the checkboxes were have not been cleared )
     clearSubItems()
 }
-
 }
 
 
+// PLUS ICON WHICH TAKES USER FROM JUST ADDED ITEMS MODAL BACK TO CATEGORIES
+$('#add-icon').click(()=>{
+    $('#view-added-items').hide()
+    let idAdd = 'add-icon'
+  pushToShoppingList(idAdd)
+ })
 
 //  DELETE SHOPPING LIST ITEM (cancel)
 const cancelDelete = () =>{
@@ -1038,11 +1043,7 @@ switch(e.target.id){
     let idlist = 'view-shopping-list'
   pushToShoppingList(idlist)
   break;
-  case 'add-more':
-    $('#view-added-items').hide()
-    let idAdd = 'add-more'
-  pushToShoppingList(idAdd)
-      break;
+
   case 'alert-modal-close':
 duplicateCheckedItem()
   break;
