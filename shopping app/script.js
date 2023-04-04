@@ -66,6 +66,8 @@ const biscuitsObj = {itemName: 'biscuits', imgAddress: './images bakery/biscuits
 const cookiesObj = {itemName: 'cookies', imgAddress: './images bakery/cookies.jpg', id:'cookies'}
 const breadloafObj = {itemName: 'breadloaf', imgAddress: './images bakery/breadloaf.jpg', id: 'breadloaf'}
 const breadrollObj = {itemName: 'breadroll', imgAddress: './images bakery/breadroll.jpg', id: 'breadroll'}
+const granolaSlicesObj = {itemName: 'granola slices', imgAddress: './images bakery/granola slices.jpg', id: 'granola-slices'}
+
 
 // pastry category
 const cinnamonSwirlObj = {itemName: 'cinnamon swirl', imgAddress: './images pastry/cinnamon swirl.jpg',id:'cinnamon-swirl'}
@@ -103,6 +105,7 @@ const washingUpLiquidObj = {itemName: 'washing up liquid', imgAddress:  './image
 // miscellaneous category
 const monkeyNutsObj = {itemName: 'monkey nuts', imgAddress: './images misc/monkey nuts.jpg', id:'monkey-nuts'}
 const popcornObj = {itemName: 'popcorn', imgAddress:  './images misc/popcorn.jpg', id: 'popcorn'}
+const oliveOilObj = {itemName: 'olive oil', imgAddress:  './images misc/olive oil.jpg', id: 'olive-oil'}
 
 // below, each array, corresponding to one of each of the shopping main categories, contains the image names for items within the name category of the array. When a category is clicked, the images belonging to that category will load into the 'select' popup. 
 var fishArr = [crabObj, fishcakeObj]
@@ -110,14 +113,14 @@ var meatArr = [baconObj, tortelloniMeatObj, quicheMeatObj]
 var vegetarianArr = [quicheVegObj, tortelloniVegObj]
 var dairyArr = [milkObj, cheeseObj, coldLatteObj]
 var fruitVegArr = [carrotsObj, cornCobObj, tomatoesObj]
-var bakeryArr = [biscuitsObj, cookiesObj, breadloafObj, breadrollObj]
+var bakeryArr = [biscuitsObj, cookiesObj, breadloafObj, breadrollObj, granolaSlicesObj]
 var pastryArr = [cinnamonSwirlObj, maplePecanObj, flapjacksObj]
 var hotDrinksArr = [coffeeObj, hotChocolateObj, teaObj]
 var coldDrinksArr = [cocaColaObj, drPepperObj]
 var AlcoholArr = [crabbiesObj]
 var toiletriesArr = [airFreshenerObj, handwashObj, lynxObj, showerGelObj, toiletTissueObj, toothbrushObj, toothPasteObj]
 var cleaningArr = [bleachObj, surfaceCleanerObj, washingPowderObj, washingUpLiquidObj]
-var miscArr = [monkeyNutsObj, popcornObj]
+var miscArr = [monkeyNutsObj, popcornObj, oliveOilObj]
 
 
 
