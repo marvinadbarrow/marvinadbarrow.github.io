@@ -1,0 +1,59 @@
+
+
+body{height: 100vh; width: 100vw;} 
+h1{display: block; margin: auto; width: fit-content; height:fit-content; margin-top: 00px; margin-bottom: 20px;}
+
+#hour-direction-div, #day-direction-div{ margin: auto;
+  width: 94%;height: fit-content; border-radius: 7px; border: 1px solid rgba(148, 148, 148, 0.63);
+  margin-top: 30px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 0px 4px;
+}
+
+#day-container{width: 90%; height: 200px; margin: auto; display: flex; flex-direction: row; justify-content: space-around; align-items: center; }
+
+#hour-container{width: 90%; height: 230px; margin: auto; display: flex; overflow-x: auto; overflow-y: hidden;}
+
+#sun-moon-times{width: 94%; height: 100px; margin: auto; margin-top: 15px; border-radius: 7px; border: 1px solid rgba(148, 148, 148, 0.63); display: flex; flex-direction: row; justify-content: space-around;}
+
+.day-length-div{width: 180px; margin-left: 20px; margin-right: 20px; display: flex; flex-direction: row; justify-content: space-around; align-items: center;}
+
+.moon-phase-div{width: 70px; height: fit-content; }
+#moon-phase{display: inline-block; width: 70px; height: 70px; margin-top: 15px;}
+#hours{ width: 3600px; height: 190px;display: flex; flex-direction: row; justify-content: space-around;}
+
+.hour-div{width: 150px; height: 210px;border-radius: 0px; display: flex; flex-direction: column; justify-content: space-around; }
+
+.day-div{width: 12%; height: 180px;border-radius: 5px; display: flex; flex-direction: column; justify-content: space-around; }
+.day-div:hover{ outline: 4px solid rgba(97, 123, 240, 0.541); outline-offset: 1px; background-color: rgba(214, 212, 212, 0.356); cursor: pointer;}
+
+.day-click-style{ outline: 4px solid rgba(97, 123, 240, 0.541); outline-offset: 1px; background-color: rgba(214, 212, 212, 0.356);}
+
+
+.medium{margin: 0px; margin-left: 5px; width: fit-content; height: fit-content; font-size: 20px;}
+.medium-weathercode{margin: 0px; margin-left: 5px; width: fit-content; height: fit-content; font-size: 18px;}
+.weather-icon{width: 60px; height: auto;}
+.weather-icon-small{width: 40px; height: 40px;}
+.min-max{width: 50%; height: auto; display: flex; flex-direction: row; justify-content: space-around; margin: 0px; align-items: flex-end;}
+.precipitation-hour{width: 40%; height: auto; display: flex; flex-direction: row; justify-content: space-around; margin: 0px;}
+.precipitation{width: 100%; height: auto; margin: 0px;}
+.max{display: inline; margin: 0px;}
+.large-para{display: block; margin: 0px; margin-left: 5px; font-size: 30px;}
+span{margin-top: -15px; height: fit-content; width: fit-content;}
+
+.small-para{ display: block; margin: 0px; height: fit-content; margin-bottom: 4px;}
+.rain-para{ display: block; margin: 0px; margin-left: 5px; width: fit-content; text-transform: capitalize;}
+
+.raindrop{width: 15px; height: auto; display: inline-block;}
+
+.direction-arrow-left,.direction-arrow-right{width: 35px; height: 35px;
+border-radius: 50%;
+}
+.direction-arrow-left:hover{background-color: rgba(121, 184, 236, 0.37); cursor: pointer;}
+.direction-arrow-right:hover{background-color: rgba(121, 184, 236, 0.37); cursor: pointer;}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+
+  
