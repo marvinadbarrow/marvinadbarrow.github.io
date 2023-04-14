@@ -106,6 +106,7 @@ const washingUpLiquidObj = {itemName: 'washing up liquid', imgAddress:  './image
 const monkeyNutsObj = {itemName: 'monkey nuts', imgAddress: './images misc/monkey nuts.jpg', id:'monkey-nuts'}
 const popcornObj = {itemName: 'popcorn', imgAddress:  './images misc/popcorn.jpg', id: 'popcorn'}
 const oliveOilObj = {itemName: 'olive oil', imgAddress:  './images misc/olive oil.jpg', id: 'olive-oil'}
+const eggsObj = {itemName: 'eggs', imgAddress:  './images misc/eggs.jpg', id: 'eggs'}
 
 // below, each array, corresponding to one of each of the shopping main categories, contains the image names for items within the name category of the array. When a category is clicked, the images belonging to that category will load into the 'select' popup. 
 var fishArr = [crabObj, fishcakeObj]
