@@ -1,0 +1,27 @@
+
+// find location details
+var cityLookUpUrl = 'https://geoapi.qweather.com/v2/city/lookup?location=A57D&key=378770395e954a6c9c251ecb7f4a3727';
+
+MOON DATA URL  (up to 60 days)
+ 'https://devapi.qweather.com/v7/astronomy/moon?location=A57D&language=en&date=20230425&key=378770395e954a6c9c251ecb7f4a3727';
+
+DAILY WEATHER URL (Number of days can be specified)
+'https://devapi.qweather.com/v7/weather/3d?location=A57D&key=378770395e954a6c9c251ecb7f4a3727'
+
+
+ NASA API key: 'DpEFzDckZgib7IVffUhcbSYtmQUr2i7U7Anbw4NE'
+
+
+qWeather API key: '378770395e954a6c9c251ecb7f4a3727'
+
+Gunnersbury Park latitude, longitude: 51.49964885944326, -0.2953025016903168
+
+
+
+
+
+/*
+
+let geoapifyUrl = 'https://api.geoapify.com/v1/geocode/reverse?lat=51.21709661403662&lon=6.7782883744862374&apiKey=6978b4e9f2aa49869db225cada3b5168'
+
+*/

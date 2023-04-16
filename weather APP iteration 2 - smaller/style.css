@@ -1,0 +1,118 @@
+
+
+body{height: 100vh; width: 100vw; background-image: url('./weather\ background 2.png');} 
+h1{display: block; margin: auto; width: fit-content; height:fit-content; margin-top: 00px; margin-bottom: 20px;}
+
+#hour-direction-div, #day-direction-div{ margin: auto;
+  width: 94%;height: fit-content; border-radius: 7px; border: 1px solid rgba(148, 148, 148, 0.63);
+  margin-top: 30px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 0px 4px; background-color: white;
+}
+
+#day-container{width: 90%; height: 170px; margin: auto; display: flex; flex-direction: row; justify-content: space-around; align-items: center;}
+
+#hour-container{width: 90%; height: 170px; margin: auto; display: flex; overflow-x: auto; overflow-y: hidden;}
+
+#sun-moon-times{width: 94%; height: 100px; margin: auto; margin-top: 15px; border-radius: 7px; border: 1px solid rgba(148, 148, 148, 0.63); display: flex; flex-direction: row; justify-content: space-around; background-color: white;}
+
+.day-length-div{width: 180px; margin-left: 20px; margin-right: 20px; display: flex; flex-direction: row; justify-content: space-around; align-items: center;}
+
+.moon-phase-div{width: 70px; height: fit-content; }
+#moon-phase{display: inline-block; width: 70px; height: 70px; margin-top: 15px;}
+#hours{ width: 3600px; height: 190px;display: flex; flex-direction: row; justify-content: space-around;}
+
+.hour-div{width: 150px; height: 160px;border-radius: 0px; display: flex; flex-direction: column; justify-content: space-around; }
+
+.day-div{width: 12%; height: 150px;border-radius: 5px; display: flex; flex-direction: column; justify-content: space-around; }
+.day-div:hover{ outline: 4px solid rgba(97, 123, 240, 0.541); outline-offset: 1px; background-color: rgba(214, 212, 212, 0.356); cursor: pointer;}
+
+.day-click-style{ outline: 4px solid rgba(97, 123, 240, 0.541); outline-offset: 1px; background-color: rgba(214, 212, 212, 0.356);}
+
+
+.medium{margin: 0px; margin-left: 5px; width: fit-content; height: fit-content; font-size: 18px;}
+.medium-weathercode{margin: 0px; margin-left: 5px; width: fit-content; height: fit-content; font-size: 18px;}
+.weather-icon{width: 45px; height: auto;}
+.weather-icon-small{width: 40px; height: 40px;}
+.weather-icon-large{width: 80px; height: 80px;}
+.min-max{width: 50%; height: auto; display: flex; flex-direction: row; justify-content: space-around; margin: 0px; align-items: flex-end;}
+.precipitation-hour{width: 40%; height: auto; display: flex; flex-direction: row; justify-content: space-around; margin: 0px;}
+.precipitation{width: 100%; height: auto; margin: 0px;}
+.max{display: inline; margin: 0px;}
+.large-para{display: block; margin: 0px; margin-left: 5px; font-size: 25px;}
+span{margin-top: -15px; height: fit-content; width: fit-content;}
+
+.small-para{ display: block; margin: 0px; height: fit-content; margin-bottom: 4px;}
+.rain-para{ display: block; margin: 0px; margin-left: 5px; width: fit-content; text-transform: capitalize;}
+
+.raindrop{width: 15px; height: auto; display: inline-block;}
+
+.direction-arrow-left,.direction-arrow-right{width: 35px; height: 35px;
+border-radius: 50%;
+}
+.direction-arrow-left:hover{background-color: rgba(121, 184, 236, 0.37); cursor: pointer;}
+.direction-arrow-right:hover{background-color: rgba(121, 184, 236, 0.37); cursor: pointer;}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+
+  .night-colors{ color: white;
+  background-image: url(./night\ clouds\ 2.png);
+  }
+
+
+
+
+
+  /* navbar styling*/
+  #navbar{width: 100%; height: 60px; background: rgba(0, 0, 0, 0);  border-bottom: 1px solid rgba(54, 53, 53, 0); margin-bottom: 10px;}
+  #navbar-contents{position: relative; width: 96%; height: 100%; margin: auto; display: flex;flex-direction: row; justify-content: space-around; background-color: rgba(0, 0, 0, 0);}
+  .navbar-icons{width: 28px; height: 28px;}
+
+
+
+  /* search bar */
+#search-holder{display: flex;height: 42px; width: 520px; width: fit-content; background-color: rgba(57, 203, 67, 0); margin-bottom: 10px; margin-top: 5px;}
+#search-box{display: flex; height: 40px;}
+#outer-search{height: 40px; width: 320px; background-color: #1f1f1f; border-top-left-radius: 25px; border-bottom-left-radius: 25px; border: 1px solid rgba(170, 170, 170, 0.623);}
+#search-bar{display: inline-block;height:30px;width: 296px; margin-left: 18px; border-style: none; margin-top: 3px;
+  outline: 0;
+  background-color:rgba(86, 164, 190, 0);
+  color: white;
+  font-size: 20px;}
+  #search-bar::placeholder{color: #f1f1f1;}
+  #search-btn{height: 42px; width: 64px; border-top-right-radius: 25px; border-bottom-right-radius: 25px;  border: 1px solid rgba(170, 170, 170, 0.623);  background-color: rgba(170, 170, 170, 0.322)}
+
+
+
+  #hamburger-btn{width: 40px; height: 40px; border-radius: 0%; background-color: rgba(71, 71, 71, 0.131); padding-left: 4px;}
+
+  /* current day container styling*/
+  #current-day-main-container{
+    padding-top: 20px;
+    width: 450px;
+    min-height: 150px;
+    background-color: rgba(77, 76, 76, 0);
+    margin: auto;
+  }
+
+  .secondary-day-details{display: flex; flex-direction: row; justify-content: space-around;}
+  #image-temperature-container{display: flex; flex-direction: row; justify-content: space-around; width: 230px; margin: auto;}
+  #temperature-para{display: inline-block; width: fit-content; font-size: 70px; margin: 0px;}
+  #wmo-extreme-para{margin: auto; width: fit-content; font-size: 25px; text-transform: capitalize; margin-bottom: 15px;}
+  #last-update-para{margin: auto; width: fit-content; font-weight: bold;}
+
+  #conversion-container{display: inline-block; width: fit-content; display: flex; flex-direction: column;}
+  .convert-btn{background-color: rgba(0, 0, 0, 0); color: rgb(5, 5, 5); font-size: 27px; border: none; margin-top: 3px;}
+  #fahrenheit-btn{color: rgba(253, 251, 251, 0.534);}
+  #celcius-btn{border: 1px solid rgb(255, 244, 244); font-weight: bold; border-radius: 4px; color: white;}
+  #location-para{font-size: 25px; width: fit-content; margin: auto; margin-bottom: 10px;}
+  #country-modal{position: absolute; left: 40px; top: 20px; width: fit-content; background-color: rgba(41, 40, 40, 0); height: fit-content; border-radius: 3px; padding: 4px; opacity: 0;}
+  .town-para{ padding-bottom: 2px; margin: 0px; font-size: 20px;}
+ 
+  .town-div{height: fit-content;border-bottom: 1px solid rgba(128, 128, 128, 0);}
+  .town-div:hover{cursor: pointer; background-color: rgba(201, 190, 190, 0.445);}
+label{background-color: white; color: black;}
+
+  

@@ -1,0 +1,135 @@
+{
+    "wmo_translation": {
+
+    "name": "wmo night images",
+    "0": "clear skies",
+    "1": "mainly clear",
+    "2": "partly cloudy",
+    "3": "overcast",
+    "45": "foggy",
+    "48": "very foggy",
+    "51": "light drizzle",
+    "53": "moderate drizzle",
+    "55": "dense drizzle",
+    "56": "light, freezing drizzle",
+    "57": "dense, freezing drizzle",
+    "61": "light rain",
+    "63": "moderate rain",
+    "65": "heavy rain",
+    "66": "freezing rain: light",
+    "67": "freezing rain: heavy",
+    "71": "light snowfall",
+    "73": "moderate snowfall",
+    "75": "heavy snowfall",
+    "77": "snow grains",
+    "80": "light rain showers",
+    "81": "moderate rain showers",
+    "82": "violent rain showers",
+    "85": "light snow showers",
+    "86": "heavy snow showers",
+    "95": "thunderstorms",
+    "96": "thunderstorms with light hail",
+    "99": "thunderstorms with heavy hail"
+    },
+
+    "wmoImagesObj": {
+     
+        "0": "./weather images/clear skies.png",
+        "1": "./weather images/partly cloudy.png",
+        "2": "./weather images/partly cloudy.png",
+        "3": "./weather images/overcast.png",
+        "45": "./weather images/foggy.png",
+        "48": "./weather images/very foggy.png",
+        "51": "./weather images/light drizzle.png",
+        "53": "./weather images/light drizzle.png",
+        "55": "./weather images/moderate drizzle.png",
+        "56": "light sleet.png",
+        "57": "heavy sleet.png",
+        "61": "./weather images/light rain.png",
+        "63": "./weather images/moderate rain.png",
+        "65": "./weather images/heavy rain.png",
+        "66": "light hail.png",
+        "67": "heavy hail.png",
+        "71": "./weather images/light snowfall.png",
+        "73": "./weather images/moderate snowfall.png",
+        "75": "./weather images/heavy snowfall.png",
+        "77": "./weather images/hailstorm.png",
+        "80": "./weather images/light rain.png",
+        "81": "./weather images/moderate rain.png",
+        "82": "./weather images/violent rain.png",
+        "85": "./weather images/light snowfall.png",
+        "86": "./weather images/heavy snowfall.png",
+        "95": "./weather images/thunderstorms.png",
+        "96": "./weather images/thunderstorms with light hail.png",
+        "99": "./weather images/thunderstorms with heavy hail.png"
+    },
+
+
+    "wmoNightImagesObj": {
+        "0":"./weather images/clear skies night.png",
+        "1":"./weather images/partly cloudy night.png",
+        "2":"./weather images/partly cloudy night.png",
+        "3":"./weather images/overcast.png",
+        "45":"./weather images/foggy night.png",
+        "48":"./weather images/foggy night.png",
+        "51":"./weather images/light drizzle night.png",
+        "53":"./weather images/light drizzle night.png",
+        "55":"./weather images/moderate drizzle night.png",
+        "56":"light sleet night.png",
+        "57":"heavy sleet.png",
+        "61":"./weather images/light rain.png",
+        "63":"./weather images/moderate rain.png",
+        "65":"./weather images/heavy rain.png",
+        "66":"light hail.png",
+        "67":"heavy hail.png",
+        "71":"./weather images/light snowfall.png",
+        "73":"./weather images/moderate snowfall.png",
+        "75":"./weather images/heavy snowfall.png",
+        "77":"./weather images/hailstorm.png",
+        "80":"./weather images/light rain night.png",
+        "81":"./weather images/moderate rain.png",
+        "82":"./weather images/violent rain.png",
+        "85":"./weather images/light snowfall.png",
+        "86":"./weather images/heavy snowfall.png",
+        "95":"./weather images/thunderstorms.png",
+        "96":"./weather images/thunderstorms with light hail.png",
+        "99":"./weather images/thunderstorms with heavy hail.png"
+    },
+
+    "moonPhaseObj": {
+        "800": "./weather images/moon new.png",
+        "801": "./weather images/moon waxing crescent.png",
+        "802": "./weather images/moon first quarter.png",
+        "803": "./weather images/moon waxing gibbous.png",
+        "804": "./weather images/moon full.png",
+        "805": "./weather images/moon waning gibbous.png",
+        "806": "./weather images/moon third quarter.png",
+        "807": "./weather images/moon waning crescent.png"
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
