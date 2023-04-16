@@ -282,14 +282,15 @@ let currentHour = currentDayCheck.toString().slice(16,18) // get current hour
 }
 
 // HOURLY WEATHER FETCH. 
-const fetchHouryData = (town, state, latitude, longitude) =>{
+const fetchHouryData = (town, state, latitude, longitude, timezone) =>{
 console.log(town, state, latitude, longitude)
-    let hourlyUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,weathercode,precipitation_probability,windspeed_10m,is_day'
+    let hourlyUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&timezone=' + timezone + '&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,weathercode,precipitation_probability,windspeed_10m,is_day'
 
     fetch(hourlyUrl)
     .then(response => response.json()
     )
     .then(data =>{
+        console.log(data)
     let hourlyData = data.hourly;
      // will use weathercode to give familiar layman terms, such as cloudy, clear skies  etc... 
     hourlyData.time.forEach(element => {
@@ -314,6 +315,9 @@ console.log(town, state, latitude, longitude)
             "relative_humidity": data.hourly.relativehumidity_2m[hourIndex],
             "windspeed_10m": data.hourly.windspeed_10m[hourIndex],
             "is_day": data.hourly.is_day[hourIndex],
+            "timezone":data.timezone,
+            "timezone_abbreviation":data.timezone_abbreviation,
+
         };
     hourlyArray.push(hourlyObj)
 
@@ -327,9 +331,9 @@ console.log(town, state, latitude, longitude)
     
 }
 // DAILY FETCH
-const fetchDailyData = (town, state, latitude, longitude) =>{
-    console.log(town, state, latitude, longitude)
-    let timezone = 'auto';
+const fetchDailyData = (town, state, latitude, longitude, timezone) =>{
+    console.log(town, state, latitude, longitude, timezone)
+
 countryDetailsArr = [] // contains parameters for getting country weather
 countryDetailsArr.push(town, state, longitude, latitude)
     let dailyUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&timezone=' + timezone + '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset,weathercode'
@@ -337,6 +341,7 @@ countryDetailsArr.push(town, state, longitude, latitude)
     fetch(dailyUrl)
     .then(response =>response.json())
     .then(data =>{
+        console.log(data)
         let dailyData = data.daily;
     dailyData.time.forEach(element =>{
         let dayIndex = dailyData.time.indexOf(element)
@@ -354,6 +359,8 @@ countryDetailsArr.push(town, state, longitude, latitude)
         "daily_precipitation": dailyData.precipitation_probability_max[dayIndex],
         "weathercode_key": dailyData.weathercode[dayIndex],
         "weathercode": wmo_translation[`${dailyData.weathercode[dayIndex]}`],
+        "timezone":data.timezone,
+        "timezone_abbreviation":data.timezone_abbreviation,
             };
     dailyArrayFull.push(dailyObj)
     })
@@ -364,7 +371,7 @@ countryDetailsArr.push(town, state, longitude, latitude)
     sevenDays.forEach(day =>{
     dailyDates.push(day)
     })
-    fetchHouryData(town, state, latitude, longitude)
+    fetchHouryData(town, state, latitude, longitude, timezone)
     })
     .catch(err =>{
     console.log(`error - cannot load weather data: ${err}`)
@@ -372,14 +379,14 @@ countryDetailsArr.push(town, state, longitude, latitude)
 }
 
 // city has been selected so clear all arrays and element children so new city can be rendered
-const clearAllData = (city, state, latitude, longitude) =>{
+const clearAllData = (city, state, latitude, longitude, timezone) =>{
     elementArray.forEach(element =>{
     while(element.firstChild){element.removeChild(element.firstChild)}
 }) // clear all arrays
 dailyDates = []; dailyArrayFull = []; dailyDataArray = []; hourlyArray = []; hourlyDataArray = []
 hourIndexArray = []; nighttimeArray = []; currentHourArray = []; townArray = []; 
 countryDetailsArr = [];
-    fetchDailyData(city, state, latitude, longitude)
+    fetchDailyData(city, state, latitude, longitude, timezone)
 }
 // MOON  DATA FETCH
 const fetchMoonData = (longitude, latitude) =>{
@@ -394,7 +401,7 @@ data.daily.forEach(day =>{
    })
 localStorage.setItem(`${showDateISO}`, JSON.stringify(moonDataArray))
 console.log(localStorage.getItem(`${showDateISO}`))
-fetchDailyData('London', 'England', '51.5075', '0.1276')
+fetchDailyData('London', 'England', '51.5075', '0.1276', 'Europe/London')
   })
 .catch(err =>{
     console.log(err)
@@ -408,7 +415,7 @@ let moonDataParsed = (JSON.parse(localStorage.getItem(`${showDateISO}`)))
 moonDataParsed.forEach(day =>{
 moonDataArray.push(day);
 })
-fetchDailyData('London', 'England', '51.5075', '0.1276')
+fetchDailyData('London', 'England', '51.5075', '0.1276', 'Europe/London')
 }else{
     fetchMoonData('0.12','51.49') // longitude and latitude parameters
 }
@@ -442,7 +449,7 @@ $selectItem.append(`<option class="option" value="${town.lat},${town.lon}">${tow
 
 // clear placeholder for new search
 $('#search-bar').focus((e) =>{
-    document.getElementById('search-bar').value = '';
+    document.getElementById('search-bar').value = ''; // clear any previous search bar entry
     $('#search-bar').attr('placeholder', '')// ensure placeholder is empty
 })
 
@@ -459,6 +466,7 @@ else{ townArray = []
 
 // SELECTING A CITY OPTION 
 $('#select-container').change((e) =>{
+    document.getElementById('search-bar').value = ''; // clear any previous search bar entry
     let selectedCoords = e.target.value
 townArray.forEach(town =>{
     if(town.includes(selectedCoords)){
@@ -467,7 +475,15 @@ let state = town[1]
 let latitude = town[2]
 let longitude = town[3]
 $('#country-modal').hide()
-clearAllData(city, state, latitude, longitude)
+let geoapifyUrl = 'https://api.geoapify.com/v1/geocode/reverse?lat='+ latitude + '&lon=' + longitude +'&apiKey=6978b4e9f2aa49869db225cada3b5168'
+
+fetch(geoapifyUrl).then(response => response.json())
+.then(data =>{
+    let timezone = data.features[0].properties.timezone.name
+console.log(timezone)
+clearAllData(city, state, latitude, longitude, timezone)
+})
+
 
     }
 })
