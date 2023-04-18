@@ -108,11 +108,26 @@ border-radius: 50%;
   #fahrenheit-btn{color: rgba(253, 251, 251, 0.534);}
   #celcius-btn{border: 1px solid rgb(255, 244, 244); font-weight: bold; border-radius: 4px; color: white;}
   #location-para{font-size: 25px; width: fit-content; margin: auto; margin-bottom: 10px;}
-  #country-modal{position: absolute; left: 40px; top: 20px; width: fit-content; background-color: rgba(41, 40, 40, 0); height: fit-content; border-radius: 3px; padding: 4px; opacity: 0;}
+  #country-modal{position: absolute; left: 200px; top: 20px; width: fit-content; background-color: rgba(41, 40, 40, 0); height: fit-content; border-radius: 3px; padding: 4px; opacity: 0;
+    position: relative;
+    font-family: 'Roboto', sans-serif;}
+
   .town-para{ padding-bottom: 2px; margin: 0px; font-size: 20px;}
  
   .town-div{height: fit-content;border-bottom: 1px solid rgba(128, 128, 128, 0);}
   .town-div:hover{cursor: pointer; background-color: rgba(201, 190, 190, 0.445);}
 label{background-color: white; color: black;}
 
-  
+  .option{
+    color: #eeebeb;
+    padding: 8px 16px;
+    border-bottom: 1px solid black;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: rgba(128, 128, 128, 0.527);
+  }
+  #select-container-selected{
+      background-color: rgb(118, 123, 128);
+    }
+  .label{color: white; background-color: rgba(0, 0, 0, 0); font-weight: bold;}

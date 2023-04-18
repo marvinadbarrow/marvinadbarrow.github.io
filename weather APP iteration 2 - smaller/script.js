@@ -1,4 +1,5 @@
-
+$countrySelect = $('#country-modal')
+$countrySelect.prepend('<label for="select-container" class="label">Choose a city</label><br>')
 $selectItem = $('#select-container')
 let openWeatherAPIKey = 'aa9ca08e40e1a619bcc7007904a2754c'
 let dayEl = document.getElementById('day-direction-div')
@@ -16,7 +17,7 @@ let dayContainer = document.getElementById('day-container')
 let hoursContainer = document.getElementById('hours')
 let dailyDates = []// contains the dates of all seven days in the fetch data (ISO format)
 let dailyArrayFull = [] // contains overall data for each day (all seven days)
-let dailyDataArray = [] // contains the selected day's overall data
+let dailyDataArray = [] // contains the currently selected day's overall data
 let hourlyArray = []// contains 168 objects, one for each hour of one week (7 days x 24 hours)
 let hourlyDataArray = []// contains data for each hour of a specific day
 let hourIndexArray = []
@@ -44,6 +45,7 @@ switch(status){
     $('body').addClass('night-colors');
     break;
     default:mainContainersArray.forEach(element =>{ element.style.cssText = day});
+    $('body').removeClass('night-colors');
 }
     }
 // PREPARING AND RENDERING MOONRISE/MOONSET AND MOONPHASE INFORMATION
@@ -97,7 +99,8 @@ $('#hour-left').click(() =>{
 const showHours = (id) =>{
     dailyArrayFull.forEach(day =>{
         if(day.daily_name === id){
-            getDayData(day.daily_date)
+            console.log(day)
+            getDayData(day.daily_date, hourlyDataArray[0])
         }else{
             
        }
@@ -141,7 +144,8 @@ $('#main-day-content').html(todayContainer)
 
 // render gereral weather data for each day
 const renderDataDay = () =>{
-
+    
+// take 7 days of data and render each day from day one. 
 dailyArrayFull.forEach(day =>{
  // create containing HTML element to render weather data and images
 let dayDiv = `<div class="day-div" id="${day.daily_name}" ><p class="medium"> <span class="month-name">${day.daily_name}</span> <span class="day-digit">${day.day_number}</span></p><img class="weather-icon" src="${wmoImagesObj[day.weathercode_key]}" ><div class="min-max"> <p class="large-para">${day.daily_max}&deg;</p><p class="small-para">${day.daily_min}&deg;</p></div><div class="precipitation"><p class="rain-para">${day.weathercode}</p></div></div>`
@@ -149,7 +153,7 @@ let dayDiv = `<div class="day-div" id="${day.daily_name}" ><p class="medium"> <s
 $('#day-container').append(dayDiv)
 
 })
-// add event listeners to each div
+// EVENT LISTENER FOR EACH DAY ELEMENT
 setTimeout(() => {
     // highlight first day
     $(`#${dailyArrayFull[0].daily_name}`).addClass('day-click-style')
@@ -168,7 +172,6 @@ if(target.id){ showHours(target.id)
  }else{findID(target.parentNode)}
 }
 findID(e.target)
-
 })
 }, 100);
 }
@@ -234,51 +237,81 @@ hourlyArray.forEach(hour =>{
 }
 
 // PREPARE HOURLY WEATHER DATA FOR CURRENT DAY (default day)
-const getCurrentDayHours = (currentHour, currentDay) =>{
+const getCurrentDayHours = (currentHour,offset, day) =>{
 hourlyDataArray = [] // clear any previous hourly data
 // get hour objects of the current day
-    hourlyArray.forEach(hour =>{
-let object = hour.hour.slice(0,2) // convert array objects' hours to tens and units
-        if(hour.date === currentDay){ // if array object hour matches current hour parameter
-if(object == currentHour){ //if array object hour matches current hour
-     let index = hourlyArray.indexOf(hour) // get index of that hour
-for(i=index; i<index + 24; i++){ // select 24 hour-objects from the matching hour onwards
-    hourlyDataArray.push(hourlyArray[i]) // push those 24 objects to array for rendering data
-}
- }
-   }
-    })
+let timeNow = currentHour;
+let timeOffsetSum = timeNow + offset;
+let newTime;
+let timeFormat
 
-// check daylight status of the first hour object;  
-    if(hourlyDataArray[0].is_day === 0){ // 0 = night hours
-        daylightStatus('night')}else{daylightStatus('day')} //execute appropriate function for day or night mode
-         fullDayDetails(hourlyDataArray[0])  // renders day full details
-   renderDataHours(hourlyDataArray, 'TODAY', dailyDataArray)// render current hours on-screen
+// check daylight status of local time
+const checkDaylight = () =>{
+    if(hourlyDataArray[0].is_day === 0){ 
+        daylightStatus('night')}
+        else{daylightStatus('day')} 
+       fullDayDetails(hourlyDataArray[0])  // renders day full details
+  renderDataHours(hourlyDataArray, 'TODAY', dailyDataArray)// render current hours on-screen
+}
+
+
+// find hour object corresponding to new location's local time
+const findHourObject = (newHour, day) =>{
+hourlyArray.forEach(hour =>{
+    if(hour.date === day){ // if array object hour matches current hour parameter
+if(hour.hour == newHour){ //if array object hour matches current hour
+ let index = hourlyArray.indexOf(hour) // get index of that hour
+for(i=index; i<index + 24; i++){ // select 24 hour-objects from the matching hour onwards
+hourlyDataArray.push(hourlyArray[i]) // push those 24 objects to array for rendering data
+}}}
+})
+checkDaylight(hourlyDataArray)
+}
+
+
+// convert new location's local time to ISO format (HH:MM)
+const convertNewTime = (testTime) =>{
+if(testTime < 10){timeFormat = `0${testTime}:00`}
+else{timeFormat = testTime + ':00'}
+findHourObject(timeFormat, day)
+}
+
+// get local time of new location
+if(timeOffsetSum < 0){newTime = 24 + timeOffsetSum; convertNewTime(newTime)}
+else if(timeOffsetSum > 23){newTime = (timeOffsetSum -1) % 24; convertNewTime(newTime)}
+else{newTime = timeOffsetSum; convertNewTime(newTime)}
+
 }
 
 
 // PREPARES DATA FOR GENERAL DAY WEATHER, AND CALLS FUNCTION WHICH PREPARES HOURLY WEATHER DATA
-const getDayData = (day) =>{
-    console.log(day)
+const getDayData = (day, hours) =>{
+// day is ISO date of first day of all the hours
+console.log(hours)
+console.log(day)
+console.log(dailyDates)
+// hours is the first  hour of the day
     let currentDayCheck = new Date() // get current date
-// clear previous day divs if there are any
+    let currentHour = currentDayCheck.getHours() // get current hour
+
+    // clear previous day divs if there are any
 while(dayContainer.firstChild){dayContainer.removeChild(dayContainer.firstChild)}
-        dailyArrayFull.forEach(element =>{ // check array with 7 day objects
-            if(element.daily_date === day){ // if the day's date, matches a day object's date
-    dailyDataArray.push(element)}// push that day (containing one day's details) to daily data
+
+        dailyDates.forEach(element =>{ // check array with 7 day objects
+            if(element === day){ // if the day's date, matches a day object's date
+                console.log('clicked day IS current day')
+    let index = dailyDates.indexOf(element)
+    dailyDataArray.push(dailyArrayFull[index])}// save day data
+    else{console.log('clicked day is not current day')}
              })
         renderDataDay(dailyDataArray)
 
-let currentDayCheckString = new Date().toString().slice(0,16) // convert date to string for comparison
-let dayReformatString = new Date(day).toString().slice(0,16) //reformat 'day' to 'long date', and string
+        // check if the first of the returned days matches the day sent to this function. 
+        if(dailyArrayFull[0].daily_date === day){  
+getCurrentDayHours(currentHour, hours.timezone_offset_hours, day)// if so, render hours of first day
+    }else{getOtherDayHours(day)} // otherwise, render hours of clicked day
+            
 
-if(dayReformatString === currentDayCheckString){ // if selected day matches current day
-let currentHour = currentDayCheck.toString().slice(16,18) // get current hour
-//  console.log(currentHour)
-    getCurrentDayHours(currentHour, day) // send current hour and current date 
-
-}else{ // selected day is not current day so send just day (and hours of other day will be rendered, starting at 00:00 hrs)
- getOtherDayHours(day)}
 }
 
 // HOURLY WEATHER FETCH. 
@@ -297,10 +330,8 @@ console.log(town, state, latitude, longitude)
         let hourIndex = hourlyData.time.indexOf(element)
     // object to hold all hourly parameters
 
-    /*
-    
-    
-    */
+  
+    let timezone_offset_hours = (data.utc_offset_seconds)/3600
         let hourlyObj = {
 
             "date": element.slice(0,10),
@@ -317,13 +348,14 @@ console.log(town, state, latitude, longitude)
             "is_day": data.hourly.is_day[hourIndex],
             "timezone":data.timezone,
             "timezone_abbreviation":data.timezone_abbreviation,
-
+            "timezone_offset_seconds": data.utc_offset_seconds,
+            "timezone_offset_hours": timezone_offset_hours,
         };
     hourlyArray.push(hourlyObj)
 
       });   
       console.log(hourlyArray)
-      getDayData(hourlyArray[0].date)
+      getDayData(hourlyArray[0].date, hourlyArray[0] )
     })
     .catch(err =>{
     console.log(`error - cannot load weather data: ${err}`)    
@@ -415,7 +447,8 @@ let moonDataParsed = (JSON.parse(localStorage.getItem(`${showDateISO}`)))
 moonDataParsed.forEach(day =>{
 moonDataArray.push(day);
 })
-fetchDailyData('London', 'England', '51.5075', '0.1276', 'Europe/London')
+
+fetchDailyData('London', 'England', '51.5075', '0.1276', 'GMT')
 }else{
     fetchMoonData('0.12','51.49') // longitude and latitude parameters
 }
@@ -427,7 +460,7 @@ fetchDailyData('London', 'England', '51.5075', '0.1276', 'Europe/London')
 const getCity = (city) =>{
 // clear options from select element
 $selectItem.children().remove()
-$selectItem.append('<option class="option">Choose a city</option>')
+$selectItem.prepend('<option class="option">Choose City</option>')
 var geoCityUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=' + openWeatherAPIKey
 // fetch
     fetch(geoCityUrl)
@@ -502,4 +535,5 @@ fetch('./weather.json')  // fetch weather code and moon phase data
     initiateFetches()
 
 })
+
 
