@@ -42,6 +42,7 @@ awesome/4.7.0/css/font-awesome.min.css">
     <button id="btn8" class="buttons">Get delivery</button>
     <button id="btn9" class="buttons">Re-stock</button>
     <button id="btn10" class="buttons">current submodal</button>
+    <button id="btn11" class="buttons">current New</button>
     </div>
     
   </div>   
@@ -209,11 +210,48 @@ awesome/4.7.0/css/font-awesome.min.css">
   <button id="get-shopping-list" class="main-page-btn purchase-hide">Download list</button>
   <button id="open-shopping-list" class="main-page-btn purchase-hide">Start Shopping</button>
   <button id="deliver-shopping" class="main-page-btn">Deliver shopping</button>
-  <button id="restock-shopping" class="main-page-btn purchase-hide purchase-hide">Re-stock</button>
-  <button id="clear-items" class="main-page-btn purchase-hide purchase-hide">clear list</button>
+  <button id="restock-shopping" class="main-page-btn purchase-hide ">Re-stock</button>
+  <button id="clear-items" class="main-page-btn  purchase-hide">clear list</button>
+  <button id="create-new-category" class="main-page-btn">Create a product </button>
 
 </div>
 </div>
+
+ <!-- category/product adder -->
+<div class="modal" id="new-item-or-category">
+
+  <h2>Create menu</h2>
+<div id="create-modal-content">
+  <p id="create-menu-para">What would you like to create?</p>
+   <!--  input new category-->
+   <button id="new-category" class="main-page-btn create-btn">create category</button>
+   <button id="new-product" class="main-page-btn create-btn">create product</button>
+
+ <!--  input new product-->
+ <div id="add-product" class="product-adder">
+  <label  for="add-to">add to:</label>
+  <input id="add-to" type="text" placeholder="new product"></input>
+</div>
+   <!--  select category to add product to-->
+   <div id="select-add-category" class="product-adder">
+    <label for="category-selector">pick category to amend:</label><br><br>
+    <select name="categories" id="category-selector">
+      <option value="" class="option">select category</option>    
+    </select>
+  </div>
+
+   <div id="add-category">
+  <label for="name">Create new category:</label>
+  <input type="text" placeholder="new category"></input>
+</div>
+</div>
+<div id="btn-container-category">
+  <button id="home-btn"><img id="home-icon" src="./home icon.png" alt=""></button>
+</div>
+
+
+</div>
+
 
 
 <!-- UPLOAD MODAL -->
@@ -291,6 +329,9 @@ awesome/4.7.0/css/font-awesome.min.css">
   <button id="purchase-confirmed-btn"  class="navigate-btn-basket">Main Page</button>
 </div>
 </div>
+
+
+
 
 
 

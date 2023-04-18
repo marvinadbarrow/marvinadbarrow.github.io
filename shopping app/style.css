@@ -48,7 +48,7 @@ body{font-family: 'Roboto', sans-serif; }
   text-align:center;
   
 }
-#verify-items,#get-list,#add-to-basket,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal,#downloaded-list,#hold-item,#basket-list,#checkout-list{display:none;}
+#verify-items,#get-list,#add-to-basket,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal,#downloaded-list,#hold-item,#basket-list,#checkout-list,#add-product,#select-add-category,#add-category,#new-item-or-category{display:none;}
 
 #button-holder{
   height:480px; 
@@ -100,7 +100,7 @@ cursor:pointer;}
   overflow-y: auto;
 }
 
-#shopping-list-items,#delete-added-items,#upload-modal-content{
+#shopping-list-items,#delete-added-items,#upload-modal-content,#create-modal-content{
   width: 100%;
   height:330px ;
   background-color: white;
@@ -272,7 +272,9 @@ align-items: center;
 #home-btn, #add-more{width: 35px; height: 35px; border-radius: 50%; background-color: rgb(120, 120, 240); border-style: none; }
 #home-btn:hover{outline: 2px solid white; outline-offset: 2px; cursor: pointer;}
 #home-icon, #add-icon{width: 25px; height: 25px; display: inline-block; margin: 0px;}
-#btn-container-category, .choice-btns{display: flex; justify-content: space-around; align-items: center;}
+#btn-container-category, .choice-btns,#btn-container-category-adder{display: flex; justify-content: space-around; align-items: center;}
+
+
 #add-more{padding: 4.5px;}
 #add-more:hover{cursor: pointer;outline: 1px solid rgb(255, 255, 255); outline-offset: 1px;}
 
@@ -388,3 +390,6 @@ border: 0.2px solid rgba(190, 188, 188, 0.5);}
   .product-item-count{width: 17px; height: 17px; background-color: red; color: white; border-radius: 50%;border: 2px solid black; display: flex; justify-content: space-around; align-items: center; font-size: 15px; font-weight: bold; padding: 2px;     margin-right: 4px;}
 
   #separator{background-color: rgba(255, 255, 0, 0.911); font-weight: bold; display: flex; justify-content: space-around; align-items: center;}
+
+  .create-btn{margin: auto;}
+  #create-modal-content{display: flex; flex-direction: column; justify-content: space-around;}

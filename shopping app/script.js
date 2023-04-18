@@ -19,6 +19,7 @@ var inShopListArr = []// contains downloaded list items and items are removed as
 var basketArr = [] // items added to shopping basket are pushed here. 
 var initialListArray = []// holds record of last saved temp list if it exists
 var purchasedArr = []// once checkout is accepted this array will be populated with all checkout object details, and the array with rejected items - with the label of rejected at the beginning of that array (unshifted to the arrayh)
+categoryCreationArray = []
 
     $('#checkout-send').click(function(e){
       console.log('sending items to checkout... ')
@@ -34,7 +35,7 @@ var purchasedArr = []// once checkout is accepted this array will be populated w
 var modalArr  = ['add-items','submit-items', 'verify-items', 'get-list', 'add-to-basket', 'checkout', 'complete-purchase','get-delivery', 're-stock', 'product-select']
 
 // button id's
-var buttonsArr = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8','btn9', 'btn10']
+var buttonsArr = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8','btn9', 'btn10', 'btn11']
 
 
 
@@ -123,8 +124,6 @@ var toiletriesArr = [airFreshenerObj, handwashObj, lynxObj, showerGelObj, toilet
 var cleaningArr = [bleachObj, surfaceCleanerObj, washingPowderObj, washingUpLiquidObj]
 var miscArr = [monkeyNutsObj, popcornObj, oliveOilObj]
 
-
-
 var fishObj = {catName: 'fish', items: fishArr}
 var meatObj = {catName: 'meat', items: meatArr}
 var vegetarianObj = {catName: 'vegetarian', items: vegetarianArr}
@@ -142,8 +141,49 @@ var miscObj = {catName: 'misc', items: miscArr}
 var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, bakeryObj, pastryObj, hotDrinksObj, coldDrinksObj, AlcoholObj, toiletriesObj, cleaningObj, miscObj]
 
 // BUTTON CONTROLS DICTATED BY LOCAL STORAGE CONTENT
+$('input').focus(() =>{
+  $('input').attr('placeholder','') // clear placeholder
+})
 
+// select a category to add a product to
+$('#category-selector').change((e) =>{
+categoryCreationArray = [] // clear select category array
+let selection = e.target.value // get value of selection
+categoryCreationArray.push(selection)// push selection to array
+$('#select-add-category').hide()// hide select element (dropdown list)
+$('#add-product').show()// show input element
+$('#add-to').attr('placeholder', `add to: ${selection}`) // show selection as input placeholder
+$('label[for="add-to"]').html(`add ${selection} product`) // get 'for' attribute in label so the selection can show as text of label
+})
 
+// create 
+const populateCategorySelector = () =>{
+  categoryObjArr.forEach(category =>{
+let option = `<option value="${category.catName}" class="option">${category.catName}</option>`
+$('#category-selector').append(option)
+  })
+}
+
+const createNewItem = (id) =>{
+  $('#create-menu-para').hide()
+  $('#new-category').hide()
+  $('#new-product').hide()
+  switch(id){
+    case 'new-product': 
+    $('#select-add-category').show()
+    populateCategorySelector()
+    break;
+    case 'new-category':
+    $('#add-category').show()
+    break;
+  }
+}
+
+const createCategory = () =>{
+  console.log('open category creator')
+  $('#new-item-or-category').show()
+  $('#main-page').hide()
+}
 
 
 // FUNCTION FOR CLOSING AND OPENING MODALS TAKING USER TO NEXT STEP IN SHOPPING OR LIST CREATION
@@ -172,8 +212,6 @@ return;
   }else{ // otherwise run function again with parent ID 
 closeModals(directAncestorID, destinationID)
   }}
-
-
 
 console.log(localStorage)
 
@@ -1131,7 +1169,15 @@ break;
 case 'home-icon':
   closeModals(e.target.id, 'main-page')
 break;
-
+case 'create-new-category':
+createCategory()
+break;
+case 'new-category':
+  createNewItem(e.target.id)
+break;
+case 'new-product':
+  createNewItem(e.target.id)
+break;
 }
 
 })
