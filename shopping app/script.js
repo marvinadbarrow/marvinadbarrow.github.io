@@ -145,8 +145,56 @@ var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, ba
 
 
 
-const createProduct = (productName, category) =>{
-let idFormat = productName.replace(' ', '-')// replace any spaces between words with dash for 'id'
+
+
+
+const clearProductCreation = () =>{
+  $('#new-item-or-category').hide() // hide add product modal
+$('#main-page').show() // return to homepage
+$('input').val('')
+$('label[for="add-to"]').html(` `)
+$('#add-product').hide()
+$('#add-category').hide()
+$('#select-add-category').hide()
+$('#create-menu-para').show()
+$('#new-category').show()
+$('#new-product').show()
+}
+
+$('#home-icon-product-creation').click(() =>{
+  $('#new-item-or-category').hide()
+$('#main-page').show()
+clearProductCreation()
+});
+
+
+// build and load category into page
+const buildCategory = (category) =>{
+let categoryId = category.replace(' ', '-') // replace all spaces with dashes (for id format)
+let newCategory = `<div id="${categoryId}" class="categories"><p class="">${category}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
+$('#category-container').append(newCategory)
+// create a category object to populate when new products are added
+let obj = {catName: category, items: []}
+categoryObjArr.push(obj)
+console.log(categoryObjArr)
+
+clearProductCreation()
+}
+
+// DETECT ENTER KEYSTROKE - CATEGORY INPUT
+document.getElementById('category-add-to').addEventListener('keyup', (e) =>{
+  switch(e.code){
+    case 'Enter': console.log(' category enter pressed')
+ // get value of input
+  let category = $('#category-add-to').val()
+buildCategory(category)
+    break;
+  }
+})
+
+
+const buildProduct = (productName, category) =>{
+let idFormat = productName.replace(' ', '-')// replace any spaces with dashes (for id format)
 let obj ={
 itemName: productName,
 imgAddress: 'default_img.png',
@@ -157,38 +205,23 @@ categoryObjArr.forEach(array =>{
   if(array.catName === category){
 let index = categoryObjArr.indexOf(array)// get index of array
 categoryObjArr[index].items.push(obj) // push product object to correct subarray
-
-// reset buttons etc on product creation modal
-$('#new-item-or-category').hide() // hide add product modal
-$('#main-page').show() // return to homepage
-$('input').val('')
-$('label[for="add-to"]').html(` `)
-$('#add-product').hide()
-$('#create-menu-para').show()
-$('#new-category').show()
-$('#new-product').show()
   }
-
 })
-$('#new-item-or-category').hide() // hide add product modal
-$('#main-page').show() // return to homepage
+clearProductCreation()
 }
 
-window.addEventListener('keyup', (e) =>{
+// DETECT ENTER KEYSTROKE - input field for new product
+document.getElementById('add-to').addEventListener('keyup', (e) =>{
   switch(e.code){
     case 'Enter': console.log('enter pressed')
- // go directly to id of input to use the .val to get entered text
+ // get value of input
   let product = $('#add-to').val()
 
-createProduct(product, categoryCreationArray[0])
+buildProduct(product, categoryCreationArray[0])
     break;
   }
 })
 
-$('input').focus(() =>{
-  $('input').attr('placeholder','') // clear placeholder
-  $('input').val('')
-})
 
 // select a category to add a product to
 $('#category-selector').change((e) =>{
@@ -201,8 +234,9 @@ $('#add-to').attr('placeholder', `add to: ${selection}`) // show selection as in
 $('label[for="add-to"]').html(`add ${selection} product`) // get 'for' attribute in label so the selection can show as text of label
 })
 
-// create 
+// populate dropdown options with category names
 const populateCategorySelector = () =>{
+  $('#category-selector').children().remove() // clear previous options first
   categoryObjArr.forEach(category =>{
 let option = `<option value="${category.catName}" class="option">${category.catName}</option>`
 $('#category-selector').append(option)
@@ -216,19 +250,26 @@ const createNewItem = (id) =>{
   switch(id){
     case 'new-product': 
     $('#select-add-category').show()
+    $('#reject-new').show()
     populateCategorySelector()
     break;
     case 'new-category':
     $('#add-category').show()
-    break;
+    $('#reject-new').show()
+        break;
   }
 }
 
 const createCategory = () =>{
-  console.log('open category creator')
   $('#new-item-or-category').show()
   $('#main-page').hide()
 }
+
+// clear placeholder and any previous entry on focus
+$('input').focus(() =>{
+  $('input').attr('placeholder','') // clear placeholder
+  $('input').val('')
+})
 
 
 // FUNCTION FOR CLOSING AND OPENING MODALS TAKING USER TO NEXT STEP IN SHOPPING OR LIST CREATION
@@ -1225,6 +1266,11 @@ break;
 case 'new-product':
   createNewItem(e.target.id)
 break;
+case 'reject-new':
+  closeModals(e.target.id)
+  clearProductCreation()
+break;
+
 
 }
 
@@ -1234,6 +1280,7 @@ break;
 
 // LOAD CHECKBOX ITEMS
 const loadItems = (array) =>{
+  console.log(array)
 // the above array is a subcategory item, for example, fishcakes and crabsticks (from FISH category). It contains objects representing products in each category.  The elements below are the individual procucts, and their properties (for loading onto the checkbox div), are contained in an object representing each product.  
 
 // creating a DOCUMENT FRAGMENT so that the checkbox page is only appended to once ALL checkbox product elements have been created. 
@@ -1301,6 +1348,7 @@ $('#screen-body').click(function(e){
   categoryObjArr.forEach(element =>{ // categoryObjArr containers an object for each category; each object has two keys, 'category name', and 'items'. Category name is just a string (which is also the 'id' of the category element), but 'items' is an array which contains objects representing each product under the category name. Within each of these objects in the 'items' array, there are 3 keys: - 'itemName' which is the name of the product, 'itemAddress' which is the location of its image source, and 'id' which is the id given to each product (used later).
 
 if(document.getElementById(element.catName).contains(e.target)){ // when the screen body is clicked, take each  element in categoryObjArr and use element.catName as the 'id' of an element, get the element, and if the event target is in that element (that is, a category element) then load that element's children, which are the products in the category, onto the checkbox page:              sending element.items ( the product parts, i.e. product name, address and id) as a parameter, to the loadItems() function, which will create a div to house all of the product parts and add a checkbox to the div so the product can be selected. 
+
   loadItems(element.items)} 
  // send item images to be dynamically loaded to 'select' modal
 })
