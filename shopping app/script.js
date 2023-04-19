@@ -157,6 +157,16 @@ categoryObjArr.forEach(array =>{
   if(array.catName === category){
 let index = categoryObjArr.indexOf(array)// get index of array
 categoryObjArr[index].items.push(obj) // push product object to correct subarray
+
+// reset buttons etc on product creation modal
+$('#new-item-or-category').hide() // hide add product modal
+$('#main-page').show() // return to homepage
+$('input').val('')
+$('label[for="add-to"]').html(` `)
+$('#add-product').hide()
+$('#create-menu-para').show()
+$('#new-category').show()
+$('#new-product').show()
   }
 
 })
