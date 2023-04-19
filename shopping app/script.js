@@ -145,6 +145,82 @@ var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, ba
 
 
 
+const createProduct = (productName, category) =>{
+let idFormat = productName.replace(' ', '-')// replace any spaces between words with dash for 'id'
+let obj ={
+itemName: productName,
+imgAddress: 'default_img.png',
+id: idFormat
+}// object created to be added to category array for later retrieveal
+
+categoryObjArr.forEach(array =>{
+  if(array.catName === category){
+let index = categoryObjArr.indexOf(array)// get index of array
+categoryObjArr[index].items.push(obj) // push product object to correct subarray
+  }
+
+})
+$('#new-item-or-category').hide() // hide add product modal
+$('#main-page').show() // return to homepage
+}
+
+window.addEventListener('keyup', (e) =>{
+  switch(e.code){
+    case 'Enter': console.log('enter pressed')
+ // go directly to id of input to use the .val to get entered text
+  let product = $('#add-to').val()
+
+createProduct(product, categoryCreationArray[0])
+    break;
+  }
+})
+
+$('input').focus(() =>{
+  $('input').attr('placeholder','') // clear placeholder
+  $('input').val('')
+})
+
+// select a category to add a product to
+$('#category-selector').change((e) =>{
+categoryCreationArray = [] // clear select category array
+let selection = e.target.value // get value of selection
+categoryCreationArray.push(selection)// push selection to array
+$('#select-add-category').hide()// hide select element (dropdown list)
+$('#add-product').show()// show input element
+$('#add-to').attr('placeholder', `add to: ${selection}`) // show selection as input placeholder
+$('label[for="add-to"]').html(`add ${selection} product`) // get 'for' attribute in label so the selection can show as text of label
+})
+
+// create 
+const populateCategorySelector = () =>{
+  categoryObjArr.forEach(category =>{
+let option = `<option value="${category.catName}" class="option">${category.catName}</option>`
+$('#category-selector').append(option)
+  })
+}
+
+const createNewItem = (id) =>{
+  $('#create-menu-para').hide()
+  $('#new-category').hide()
+  $('#new-product').hide()
+  switch(id){
+    case 'new-product': 
+    $('#select-add-category').show()
+    populateCategorySelector()
+    break;
+    case 'new-category':
+    $('#add-category').show()
+    break;
+  }
+}
+
+const createCategory = () =>{
+  console.log('open category creator')
+  $('#new-item-or-category').show()
+  $('#main-page').hide()
+}
+
+
 // FUNCTION FOR CLOSING AND OPENING MODALS TAKING USER TO NEXT STEP IN SHOPPING OR LIST CREATION
 const closeModals = (testID, destinationID) =>{
   console.log(testID)
@@ -1129,6 +1205,15 @@ case 'purchase-confirmed-btn':
 break;
 case 'home-icon':
   closeModals(e.target.id, 'main-page')
+break;
+case 'create-new-category':
+createCategory()
+break;
+case 'new-category':
+  createNewItem(e.target.id)
+break;
+case 'new-product':
+  createNewItem(e.target.id)
 break;
 
 }
