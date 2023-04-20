@@ -1,94 +1,69 @@
 {
 
 
-"crabObj" : "{itemName: 'crab sticks', imgAddress: './images fish/crab sticks.jpg', id:'crab-sticks'}",
-"fishcakeObj" : "{itemName: 'fish cakes', imgAddress: './images fish/fish cakes.jpg', id:'fish-cakes'}",
-
-"baconObj" : "{itemName: 'bacon', imgAddress: './images meat/bacon.jpg', id:'crab-sticks'}",
-"tortelloniMeatObj" : "{itemName: 'tortelloni: meat', imgAddress: './images meat/tortelloni meat.jpg', id:'tortelloni-meat'}",
-"quicheMeatObj" : "{itemName: 'quiche: meat', imgAddress: './images meat/quiche meat.jpg', id:'quiche-meat'}",
+ "category_objects": {   
+    
+ "fishArr" : [{"categoryName": "fish", "itemName": "crab sticks", "imgAddress": "./images fish/crab sticks.jpg", "id":"crab-sticks"}, {"categoryName": "fish", "itemName": "fish cakes", "imgAddress": "./images fish/fish cakes.jpg", "id":"fish-cakes"}],
 
 
-"quicheVegObj" : "{itemName: 'quiche: veg', imgAddress:'./images vegetarian/quiche veg.jpg', id:'quiche-veg'}",
-"tortelloniVegObj" : "{itemName: 'tortelloni: veg', imgAddress: './images vegetarian/tortelloni veg.jpg', id:'tortelloni-veg'}",
+ "meatArr" : [{"categoryName": "meat", "itemName": "bacon", "imgAddress": "./images meat/bacon.jpg", "id":"crab-sticks"}, {"categoryName": "meat", "itemName": "tortelloni: meat", "imgAddress": "./images meat/tortelloni meat.jpg", "id":"tortelloni-meat"}, {"categoryName": "meat", "itemName": "quiche: meat", "imgAddress": "./images meat/quiche meat.jpg", "id":"quiche-meat"}],
 
 
-"milkObj" : "{itemName: 'milk', imgAddress: './images dairy/milk.jpg', id:'milk'}",
-"cheeseObj" : "{itemName: 'cheese', imgAddress: './images dairy/cheese.jpg', id:'cheese'}",
-"coldLatteObj" : "{itemName: 'cold latte', imgAddress:  './images dairy/cold latte.jpg', id: 'cold-latte'}",
+ "vegetarianArr" : [{"categoryName": "vegetarian", "itemName": "quiche: veg", "imgAddress":"./images vegetarian/quiche veg.jpg", "id":"quiche-veg"}, {"categoryName": "vegetarian", "itemName": "tortelloni: veg", "imgAddress": "./images vegetarian/tortelloni veg.jpg", "id":"tortelloni-veg"}],
 
 
-"carrotsObj" : "{itemName: 'carrots', imgAddress: './images fruit & veg/carrots.jpg', id:'carrots'}",
-"cornCobObj" : "{itemName: 'corn cob', imgAddress: './images fruit & veg/corn cob.jpg', id:'corn-cob'}",
-"tomatoesObj" : "{itemName: 'tomatoes', imgAddress: './images fruit & veg/tomatoes.jpg', id: 'tomatoes'}",
+ "dairyArr" : [{"categoryName": "dairy", "itemName": "milk", "imgAddress": "./images dairy/milk.jpg", "id":"milk"}, {"categoryName": "dairy", "itemName": "cheese", "imgAddress": "./images dairy/cheese.jpg", "id":"cheese"}, {"categoryName": "dairy", "itemName": "cold latte", "imgAddress":  "./images dairy/cold latte.jpg", "id": "cold-latte"}],
 
 
-"biscuitsObj" : "{itemName: 'biscuits', imgAddress: './images bakery/biscuits.jpg',id:'biscuits'}",
-"cookiesObj" : "{itemName: 'cookies', imgAddress: './images bakery/cookies.jpg', id:'cookies'}",
-"breadloafObj" : "{itemName: 'breadloaf', imgAddress: './images bakery/breadloaf.jpg', id: 'breadloaf'}",
-"breadrollObj" : "{itemName: 'breadroll', imgAddress: './images bakery/breadroll.jpg', id: 'breadroll'}",
-"granolaSlicesObj" : "{itemName: 'granola slices', imgAddress: './images bakery/granola slices.jpg', id: 'granola-slices'}",
+ "fruitVegArr" : [{"categoryName": "fruit-veg", "itemName": "carrots", "imgAddress": "./images fruit & veg/carrots.jpg", "id":"carrots"}, {"categoryName": "fruit-veg", "itemName": "corn cob", "imgAddress": "./images fruit & veg/corn cob.jpg", "id":"corn-cob"}, {"categoryName": "fruit-veg", "itemName": "tomatoes", "imgAddress": "./images fruit & veg/tomatoes.jpg", "id": "tomatoes"}],
 
 
-
-"cinnamonSwirlObj" : "{itemName: 'cinnamon swirl', imgAddress: './images pastry/cinnamon swirl.jpg',id:'cinnamon-swirl'}",
-"maplePecanObj" : "{itemName: 'maple pecan', imgAddress: './images pastry/maple pecan.jpg', id:'maple-pecan'}",
-"flapjacksObj" : "{itemName: 'flapjacks', imgAddress: './images pastry/flapjacks.jpg', id: 'flapjacks'}",
+ "bakeryArr" : [{"categoryName": "bakery", "itemName": "biscuits", "imgAddress": "./images bakery/biscuits.jpg","id":"biscuits"}, {"categoryName": "bakery", "itemName": "cookies", "imgAddress": "./images bakery/cookies.jpg", "id":"cookies"}, {"categoryName": "bakery", "itemName": "breadloaf", "imgAddress": "./images bakery/breadloaf.jpg", "id": "breadloaf"}, {"categoryName": "bakery", "itemName": "breadroll", "imgAddress": "./images bakery/breadroll.jpg", "id": "breadroll"}, {"categoryName": "bakery", "itemName": "granola slices", "imgAddress": "./images bakery/granola slices.jpg", "id": "granola-slices"}],
 
 
-"coffeeObj" : "{itemName: 'coffee', imgAddress: './images hot drinks/coffee.jpg', id:'coffee'}",
-"hotChocolateObj" : "{itemName: 'hot chocolate', imgAddress: './images hot drinks/hot chocolate.jpg', id:'hot-chocolate'}",
-"ovaltineObj" : "{itemName: 'ovaltine', imgAddress: './images hot drinks/ovaltine.jpg', id: 'ovaltine'}",
-"teaObj" : "{itemName: 'tea', imgAddress: './images hot drinks/tea.jpg', id: 'tea'}",
+ "pastryArr" : [{"categoryName": "pastry", "itemName": "cinnamon swirl", "imgAddress": "./images pastry/cinnamon swirl.jpg","id":"cinnamon-swirl"}, {"categoryName": "pastry", "itemName": "maple pecan", "imgAddress": "./images pastry/maple pecan.jpg", "id":"maple-pecan"}, {"categoryName": "pastry", "itemName": "flapjacks", "imgAddress": "./images pastry/flapjacks.jpg", "id": "flapjacks"}],
 
 
-"cocaColaObj" : "{itemName: 'coca cola', imgAddress: './images cold drinks/coca cola.jpg', id:'coca-cola'}",
-"drPepperObj" : "{itemName: 'dr pepper', imgAddress:  './images cold drinks/dr pepper.jpg', id:'dr-pepper'}",
+ "hotDrinksArr" : [{"categoryName": "hot-drinks", "itemName": "coffee", "imgAddress": "./images hot drinks/coffee.jpg", "id":"coffee"}, {"categoryName": "hot-drinks", "itemName": "hot chocolate", "imgAddress": "./images hot drinks/hot chocolate.jpg", "id":"hot-chocolate"}, {"categoryName": "hot-drinks", "itemName": "tea", "imgAddress": "./images hot drinks/tea.jpg", "id": "tea"}, {"categoryName": "hot-drinks", "itemName": "ovaltine", "imgAddress": "./images hot drinks/ovaltine.jpg", "id": "ovaltine"}],
 
 
-"crabbiesObj" : "{itemName: 'crabbies', imgAddress: './images alcohol/crabbies.jpg', id: 'crabbies'}",
+ "coldDrinksArr" : [{"categoryName": "cold-drinks", "itemName": "coca cola", "imgAddress": "./images cold drinks/coca cola.jpg", "id":"coca-cola"}, {"categoryName": "cold-drinks", "itemName": "dr pepper", "imgAddress":  "./images cold drinks/dr pepper.jpg", "id":"dr-pepper"}],
 
 
-"airFreshenerObj" : "{itemName: 'air freshener', imgAddress: './images toiletries/air freshener.jpg', id:'air-freshener'}",
-"handwashObj" : "{itemName: 'hand wash', imgAddress: './images toiletries/hand wash.jpg', id:'hand-wash'}",
-"lynxObj" : "{itemName: 'lynx', imgAddress: './images toiletries/lynx.jpg', id: 'lynx'}",
-"showerGelObj" : "{itemName: 'shower gel', imgAddress: './images toiletries/shower gel.jpg', id: 'shower-gel'}",
-"toiletTissueObj" : "{itemName: 'toilet tissue', imgAddress: './images toiletries/toilet tissue.jpg', id: 'toilet-tissue'}",
-"toothbrushObj" : "{itemName: 'toothbrush', imgAddress: './images toiletries/toothbrush.jpg', id: 'toothbrush'}",
-"toothPasteObj" : "{itemName: 'toothpaste', imgAddress:  './images toiletries/toothpaste.jpg', id: 'toothpaste'}",
+ "AlcoholArr" : [{"categoryName": "alcohol", "itemName": "crabbies", "imgAddress": "./images alcohol/crabbies.jpg", "id": "crabbies"}],
 
 
-"bleachObj" : "{itemName: 'bleach', imgAddress: './images cleaning/bleach.jpg', id: 'bleach'}",
-"surfaceCleanerObj" : "{itemName: 'surface cleaner', imgAddress: './images cleaning/surface cleaner.jpg', id: 'surface-cleaner'}",
-"washingPowderObj" : "{itemName: 'washing powder', imgAddress: './images cleaning/washing powder.jpg', id: 'washing-powder'}",
-"washingUpLiquidObj" : "{itemName: 'washing up liquid', imgAddress:  './images cleaning/washing up liquid.jpg', id: 'washing-up-liquid'}",
+ "toiletriesArr" : [{"categoryName": "toiletries", "itemName": "air freshener", "imgAddress": "./images toiletries/air freshener.jpg", "id":"air-freshener"}, {"categoryName": "toiletries", "itemName": "hand wash", "imgAddress": "./images toiletries/hand wash.jpg", "id":"hand-wash"}, {"categoryName": "toiletries", "itemName": "lynx", "imgAddress": "./images toiletries/lynx.jpg", "id": "lynx"}, {"categoryName": "toiletries", "itemName": "shower gel", "imgAddress": "./images toiletries/shower gel.jpg", "id": "shower-gel"}, {"categoryName": "toiletries", "itemName": "toilet tissue", "imgAddress": "./images toiletries/toilet tissue.jpg", "id": "toilet-tissue"}, {"categoryName": "toiletries", "itemName": "toothbrush", "imgAddress": "./images toiletries/toothbrush.jpg", "id": "toothbrush"}, {"categoryName": "toiletries", "itemName": "toothpaste", "imgAddress":  "./images toiletries/toothpaste.jpg", "id": "toothpaste"}],
 
 
-"monkeyNutsObj" : "{itemName: 'monkey nuts', imgAddress: './images misc/monkey nuts.jpg', id:'monkey-nuts'}",
-"popcornObj" : "{itemName: 'popcorn', imgAddress:  './images misc/popcorn.jpg', id: 'popcorn'}",
-"oliveOilObj" : "{itemName: 'olive oil', imgAddress:  './images misc/olive oil.jpg', id: 'olive-oil'}",
+ "cleaningArr" : [{"categoryName": "cleaning", "itemName": "bleach", "imgAddress": "./images cleaning/bleach.jpg", "id": "bleach"}, {"categoryName": "cleaning", "itemName": "surface cleaner", "imgAddress": "./images cleaning/surface cleaner.jpg", "id": "surface-cleaner"}, {"categoryName": "cleaning", "itemName": "washing powder", "imgAddress": "./images cleaning/washing powder.jpg", "id": "washing-powder"}, {"categoryName": "cleaning", "itemName": "washing up liquid", "imgAddress":  "./images cleaning/washing up liquid.jpg", "id": "washing-up-liquid"}],
+
+
+ "miscArr" : [{"categoryName": "misc", "itemName": "monkey nuts", "imgAddress": "./images misc/monkey nuts.jpg", "id":"monkey-nuts"}, {"categoryName": "misc", "itemName": "popcorn", "imgAddress":  "./images misc/popcorn.jpg", "id": "popcorn"}, {"categoryName": "misc", "itemName": "olive oil", "imgAddress":  "./images misc/olive oil.jpg", "id": "olive-oil"}]
+
+},
 
 
 
-    "fishArr" : "[crabObj, fishcakeObj]",
-    "meatArr" : "[baconObj, tortelloniMeatObj, quicheMeatObj]",
-    "vegetarianArr" : "[quicheVegObj, tortelloniVegObj]",
-    "dairyArr" : "[milkObj, cheeseObj, coldLatteObj]",
-    "fruitVegArr" : "[carrotsObj, cornCobObj, tomatoesObj]",
-    "bakeryArr" : "[biscuitsObj, cookiesObj, breadloafObj, breadrollObj, granolaSlicesObj]",
-    "pastryArr" : "[cinnamonSwirlObj, maplePecanObj, flapjacksObj]",
-    "hotDrinksArr" : "[coffeeObj, hotChocolateObj, teaObj, ovaltineObj]",
-    "coldDrinksArr" : "[cocaColaObj, drPepperObj]",
-    "AlcoholArr" : "[crabbiesObj]",
-    "toiletriesArr" : "[airFreshenerObj, handwashObj, lynxObj, showerGelObj, toiletTissueObj, toothbrushObj, toothPasteObj]",
-    "cleaningArr" : "[bleachObj, surfaceCleanerObj, washingPowderObj, washingUpLiquidObj]",
-    "miscArr" : "[monkeyNutsObj, popcornObj, oliveOilObj]",
-
-    "categoryObjArr": "[fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, bakeryObj, pastryObj, hotDrinksObj, coldDrinksObj, AlcoholObj, toiletriesObj, cleaningObj, miscObj]"
-
-
-
-
-
+"categoryHolderArr": {
+"fishObj": {"catName": "fish", "items": []},
+"meatObj": {"catName": "meat", "items": []},
+"vegObj": {"catName": "vegetarian", "items": []},
+"diaryObj": {"catName": "dairy", "items": []},
+"fruitVegObj": {"catName": "fruit-veg", "items": []},
+"bakeryObj": {"catName": "bakery", "items": []},
+"pastryObj": {"catName": "pastry", "items": []},
+"hotDrinksObj": {"catName": "hot-drinks", "items": []},
+"coldDrinksObj": {"catName": "cold-drinks", "items": []},
+"alcoholObj": {"catName": "alcohol", "items": []},
+"toiletriesObj": {"catName": "toiletries", "items": []},
+"cleaningObj": {"catName": "cleaning", "items": []},
+"miscObj": {"catName": "misc", "items": []}
+}
 
 }
+
+
+
+
+

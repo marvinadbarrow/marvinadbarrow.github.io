@@ -1,4 +1,11 @@
+// BEGIN BY CHECKING IF THERE ARE ITEMS IN A SHOPPING BASKET BECAUSE THEN WE WON'T HAVE TO DOWNLOAD THE ORIGINAL LIST AND CAN JUST POPULATE THE BASKET AND PICK LIST FROM THE ASSOCIATED LOCAL STORAGE KEYS
+
+
+// below bit of code resets the shopping list and pick list saved items so you can download the shopping list and start from scratch
+
 const log = console.log;
+
+
 log(localStorage)
 
 var totalCheckedArray = []
@@ -12,9 +19,6 @@ var inShopListArr = []// contains downloaded list items and items are removed as
 var basketArr = [] // items added to shopping basket are pushed here. 
 var initialListArray = []// holds record of last saved temp list if it exists
 var purchasedArr = []// once checkout is accepted this array will be populated with all checkout object details, and the array with rejected items - with the label of rejected at the beginning of that array (unshifted to the arrayh)
-
-let categoryContainerArray = []
-let categoryList = []
 
     $('#checkout-send').click(function(e){
       console.log('sending items to checkout... ')
@@ -32,36 +36,117 @@ var modalArr  = ['add-items','submit-items', 'verify-items', 'get-list', 'add-to
 // button id's
 var buttonsArr = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8','btn9', 'btn10']
 
-// --------------------------------------------------------------------
-// FETCH products data JSON FILE. 
-fetch('./shopping.json')  // fetch weather code and moon phase data
-.then(response => response.json())
-.then(data =>{
-  
-// push each array that contain product objects to the category container
-for (const key in data.categoryHolderArr) {
-  categoryContainerArray.push(data.categoryHolderArr[key])
-}
 
-// push each category object to the list array
-for (const key in data.category_objects) {
-  categoryList.push(data.category_objects[key])
-}
 
-categoryList.forEach(listItem =>{ // for each array containing products
-  listItem.forEach(product =>{ // for each product
-    categoryContainerArray.forEach(category =>{ // for each category in category array
-      if(category.catName === product.categoryName){ // if category name is product category 
-      let index = categoryContainerArray.indexOf(category) // get index of category
-      categoryContainerArray[index].items.push(product)//push listed product to category 'items' array 
-      }
-    })
-  })
-})
+// fish category
+const crabObj = {itemName: 'crab sticks', imgAddress: './images fish/crab sticks.jpg', id:'crab-sticks'}
+const fishcakeObj = {itemName: 'fish cakes', imgAddress: './images fish/fish cakes.jpg', id:'fish-cakes'}
 
-console.log(categoryContainerArray) // contains objects for each category with the following setup {catName: "category_name". items: [{categoryName "category name", itemName: "item name", imgAddress: "relative path", id: "id"}, {category2},......{category3},...... {category n}]}
-})
-// ---------------------------------------------------------------------
+// meat category
+const baconObj = {itemName: 'bacon', imgAddress: './images meat/bacon.jpg', id:'crab-sticks'}
+const tortelloniMeatObj = {itemName: 'tortelloni: meat', imgAddress: './images meat/tortelloni meat.jpg', id:'tortelloni-meat'}
+const quicheMeatObj = {itemName: 'quiche: meat', imgAddress: './images meat/quiche meat.jpg', id:'quiche-meat'}
+
+// vegetarian category
+const quicheVegObj = {itemName: 'quiche: veg', imgAddress:'./images vegetarian/quiche veg.jpg', id:'quiche-veg'}
+const tortelloniVegObj = {itemName: 'tortelloni: veg', imgAddress: './images vegetarian/tortelloni veg.jpg', id:'tortelloni-veg'}
+
+// dairy category
+const milkObj = {itemName: 'milk', imgAddress: './images dairy/milk.jpg', id:'milk'}
+const cheeseObj = {itemName: 'cheese', imgAddress: './images dairy/cheese.jpg', id:'cheese'}
+const coldLatteObj = {itemName: 'cold latte', imgAddress:  './images dairy/cold latte.jpg', id: 'cold-latte'}
+
+// fruit and veg category
+const carrotsObj = {itemName: 'carrots', imgAddress: './images fruit & veg/carrots.jpg', id:'carrots'}
+const cornCobObj = {itemName: 'corn cob', imgAddress: './images fruit & veg/corn cob.jpg', id:'corn-cob'}
+const tomatoesObj = {itemName: 'tomatoes', imgAddress: './images fruit & veg/tomatoes.jpg', id: 'tomatoes'}
+
+// bakery category
+const biscuitsObj = {itemName: 'biscuits', imgAddress: './images bakery/biscuits.jpg',id:'biscuits'}
+const cookiesObj = {itemName: 'cookies', imgAddress: './images bakery/cookies.jpg', id:'cookies'}
+const breadloafObj = {itemName: 'breadloaf', imgAddress: './images bakery/breadloaf.jpg', id: 'breadloaf'}
+const breadrollObj = {itemName: 'breadroll', imgAddress: './images bakery/breadroll.jpg', id: 'breadroll'}
+const granolaSlicesObj = {itemName: 'granola slices', imgAddress: './images bakery/granola slices.jpg', id: 'granola-slices'}
+
+
+// pastry category
+const cinnamonSwirlObj = {itemName: 'cinnamon swirl', imgAddress: './images pastry/cinnamon swirl.jpg',id:'cinnamon-swirl'}
+const maplePecanObj = {itemName: 'maple pecan', imgAddress: './images pastry/maple pecan.jpg', id:'maple-pecan'}
+const flapjacksObj = {itemName: 'flapjacks', imgAddress: './images pastry/flapjacks.jpg', id: 'flapjacks'}
+
+// hot drinks category
+const coffeeObj = {itemName: 'coffee', imgAddress: './images hot drinks/coffee.jpg', id:'coffee'}
+const hotChocolateObj = {itemName: 'hot chocolate', imgAddress: './images hot drinks/hot chocolate.jpg', id:'hot-chocolate'}
+const ovaltineObj = {itemName: 'ovaltine', imgAddress: './images hot drinks/ovaltine.jpg', id: 'ovaltine'}
+const teaObj = {itemName: 'tea', imgAddress: './images hot drinks/tea.jpg', id: 'tea'}
+
+// cold drinks category
+const cocaColaObj = {itemName: 'coca cola', imgAddress: './images cold drinks/coca cola.jpg', id:'coca-cola'}
+const drPepperObj = {itemName: 'dr pepper', imgAddress:  './images cold drinks/dr pepper.jpg', id:'dr-pepper'}
+
+ // alcohol category
+const crabbiesObj = {itemName: 'crabbies', imgAddress: './images alcohol/crabbies.jpg', id: 'crabbies'}
+
+// toiletries category
+const airFreshenerObj = {itemName: 'air freshener', imgAddress: './images toiletries/air freshener.jpg', id:'air-freshener'}
+const handwashObj = {itemName: 'hand wash', imgAddress: './images toiletries/hand wash.jpg', id:'hand-wash'}
+const lynxObj = {itemName: 'lynx', imgAddress: './images toiletries/lynx.jpg', id: 'lynx'}
+const showerGelObj = {itemName: 'shower gel', imgAddress: './images toiletries/shower gel.jpg', id: 'shower-gel'}
+const toiletTissueObj = {itemName: 'toilet tissue', imgAddress: './images toiletries/toilet tissue.jpg', id: 'toilet-tissue'}
+const toothbrushObj = {itemName: 'toothbrush', imgAddress: './images toiletries/toothbrush.jpg', id: 'toothbrush'}
+const toothPasteObj = {itemName: 'toothpaste', imgAddress:  './images toiletries/toothpaste.jpg', id: 'toothpaste'}
+
+// cleaning category
+const bleachObj = {itemName: 'bleach', imgAddress: './images cleaning/bleach.jpg', id: 'bleach'}
+const surfaceCleanerObj = {itemName: 'surface cleaner', imgAddress: './images cleaning/surface cleaner.jpg', id: 'surface-cleaner'}
+const washingPowderObj = {itemName: 'washing powder', imgAddress: './images cleaning/washing powder.jpg', id: 'washing-powder'}
+const washingUpLiquidObj = {itemName: 'washing up liquid', imgAddress:  './images cleaning/washing up liquid.jpg', id: 'washing-up-liquid'}
+
+// miscellaneous category
+const monkeyNutsObj = {itemName: 'monkey nuts', imgAddress: './images misc/monkey nuts.jpg', id:'monkey-nuts'}
+const popcornObj = {itemName: 'popcorn', imgAddress:  './images misc/popcorn.jpg', id: 'popcorn'}
+const oliveOilObj = {itemName: 'olive oil', imgAddress:  './images misc/olive oil.jpg', id: 'olive-oil'}
+
+// below, each array, corresponding to one of each of the shopping main categories, contains the image names for items within the name category of the array. When a category is clicked, the images belonging to that category will load into the 'select' popup. 
+var fishArr = [crabObj, fishcakeObj]
+var meatArr = [baconObj, tortelloniMeatObj, quicheMeatObj]
+var vegetarianArr = [quicheVegObj, tortelloniVegObj]
+var dairyArr = [milkObj, cheeseObj, coldLatteObj]
+var fruitVegArr = [carrotsObj, cornCobObj, tomatoesObj]
+var bakeryArr = [biscuitsObj, cookiesObj, breadloafObj, breadrollObj, granolaSlicesObj]
+var pastryArr = [cinnamonSwirlObj, maplePecanObj, flapjacksObj]
+var hotDrinksArr = [coffeeObj, hotChocolateObj, teaObj, ovaltineObj]
+var coldDrinksArr = [cocaColaObj, drPepperObj]
+var AlcoholArr = [crabbiesObj]
+var toiletriesArr = [airFreshenerObj, handwashObj, lynxObj, showerGelObj, toiletTissueObj, toothbrushObj, toothPasteObj]
+var cleaningArr = [bleachObj, surfaceCleanerObj, washingPowderObj, washingUpLiquidObj]
+var miscArr = [monkeyNutsObj, popcornObj, oliveOilObj]
+
+
+
+var fishObj = {catName: 'fish', items: fishArr}
+var meatObj = {catName: 'meat', items: meatArr}
+var vegetarianObj = {catName: 'vegetarian', items: vegetarianArr}
+var dairyObj = {catName: 'dairy', items: dairyArr}
+var fruitVegObj = {catName: 'fruit-veg', items: fruitVegArr}
+var bakeryObj = {catName: 'bakery', items: bakeryArr}
+var pastryObj = {catName: 'pastry', items: pastryArr}
+var hotDrinksObj = {catName: 'hot-drinks', items: hotDrinksArr}
+var coldDrinksObj = {catName: 'cold-drinks', items: coldDrinksArr}
+var AlcoholObj = {catName: 'alcohol', items: AlcoholArr}
+var toiletriesObj = {catName: 'toiletries', items: toiletriesArr}
+var cleaningObj = {catName: 'cleaning', items: cleaningArr}
+var miscObj = {catName: 'misc', items: miscArr}
+
+var categoryObjArr = [fishObj, meatObj, vegetarianObj, dairyObj, fruitVegObj, bakeryObj, pastryObj, hotDrinksObj, coldDrinksObj, AlcoholObj, toiletriesObj, cleaningObj, miscObj]
+
+// BUTTON CONTROLS DICTATED BY LOCAL STORAGE CONTENT
+
+
+
+
+
+
 
 const clearProductCreation = () =>{
   $('#new-item-or-category').hide() // hide add product modal
@@ -83,15 +168,15 @@ clearProductCreation()
 });
 
 
-// BUILD NEW CATEGORY
+// build and load category into page
 const buildCategory = (category) =>{
 let categoryId = category.replace(' ', '-') // replace all spaces with dashes (for id format)
 let newCategory = `<div id="${categoryId}" class="categories"><p class="">${category}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
 $('#category-container').append(newCategory)
 // create a category object to populate when new products are added
 let obj = {catName: category, items: []}
-categoryContainerArray.push(obj)
-console.log(categoryContainerArray)
+categoryObjArr.push(obj)
+console.log(categoryObjArr)
 
 clearProductCreation()
 }
@@ -107,7 +192,7 @@ buildCategory(category)
   }
 })
 
-// BUILD NEW PRODUCT
+
 const buildProduct = (productName, category) =>{
 let idFormat = productName.replace(' ', '-')// replace any spaces with dashes (for id format)
 let obj ={
@@ -116,10 +201,10 @@ imgAddress: 'default_img.png',
 id: idFormat
 }// object created to be added to category array for later retrieveal
 
-categoryContainerArray.forEach(array =>{
+categoryObjArr.forEach(array =>{
   if(array.catName === category){
-let index = categoryContainerArray.indexOf(array)// get index of array
-categoryContainerArray[index].items.push(obj) // push product object to correct subarray
+let index = categoryObjArr.indexOf(array)// get index of array
+categoryObjArr[index].items.push(obj) // push product object to correct subarray
   }
 })
 clearProductCreation()
@@ -152,7 +237,7 @@ $('label[for="add-to"]').html(`add ${selection} product`) // get 'for' attribute
 // populate dropdown options with category names
 const populateCategorySelector = () =>{
   $('#category-selector').children().remove() // clear previous options first
-  categoryContainerArray.forEach(category =>{
+  categoryObjArr.forEach(category =>{
 let option = `<option value="${category.catName}" class="option">${category.catName}</option>`
 $('#category-selector').append(option)
   })
@@ -882,7 +967,7 @@ $('#resume-list').hide()
   // for each product in restock array do the following
   console.log(restockRequiredArr)
 restockRequiredArr.forEach(product =>{
-  categoryContainerArray.forEach(object =>{
+  categoryObjArr.forEach(object =>{
 // each object in the array is a JS object containing category name and an array of items, (objects for each product with in the category)
     object.items.forEach(arrayObject =>{
       // each 'arrayObject' is an object inside an array, corresponding to a category product
@@ -1260,7 +1345,7 @@ else{checkbox.removeAttribute('checked')}
 
 // DISPLAY CATEGORY PRODUCTS - with checkboxes for selection
 $('#screen-body').click(function(e){
-  categoryContainerArray.forEach(element =>{ // categoryContainerArray containers an object for each category; each object has two keys, 'category name', and 'items'. Category name is just a string (which is also the 'id' of the category element), but 'items' is an array which contains objects representing each product under the category name. Within each of these objects in the 'items' array, there are 3 keys: - 'itemName' which is the name of the product, 'itemAddress' which is the location of its image source, and 'id' which is the id given to each product (used later).
+  categoryObjArr.forEach(element =>{ // categoryObjArr containers an object for each category; each object has two keys, 'category name', and 'items'. Category name is just a string (which is also the 'id' of the category element), but 'items' is an array which contains objects representing each product under the category name. Within each of these objects in the 'items' array, there are 3 keys: - 'itemName' which is the name of the product, 'itemAddress' which is the location of its image source, and 'id' which is the id given to each product (used later).
 
 if(document.getElementById(element.catName).contains(e.target)){ // when the screen body is clicked, take each  element in categoryObjArr and use element.catName as the 'id' of an element, get the element, and if the event target is in that element (that is, a category element) then load that element's children, which are the products in the category, onto the checkbox page:              sending element.items ( the product parts, i.e. product name, address and id) as a parameter, to the loadItems() function, which will create a div to house all of the product parts and add a checkbox to the div so the product can be selected. 
 
@@ -1379,5 +1464,14 @@ $('#create-list').on('submit', function(e){
 
 
 
+// FETCH WEATHERCODE AND MOONPHASE DATA, AND WEATHERCODE IMAGES FROM JSON FILE. 
+fetch('./shopping.json')  // fetch weather code and moon phase data
+.then(response => response.json())
+.then(data =>{
+
+    console.log(data)
+ //   initiateFetches()
+
+})
 
 
