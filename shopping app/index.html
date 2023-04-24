@@ -8,7 +8,6 @@
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-          <link rel="manifest" href="manifest.json">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-
 
 awesome/4.7.0/css/font-awesome.min.css">
@@ -93,19 +92,6 @@ awesome/4.7.0/css/font-awesome.min.css">
 
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
        <!--  SECONDARY MODALS -->
 
 
@@ -173,7 +159,7 @@ awesome/4.7.0/css/font-awesome.min.css">
 <div class="modal" id="shopping-list">
   <h2>Shopping list</h2>
   <div id="shopping-list-items" class="list-for-upload">
-    
+   <!-- shopping list  items go here --> 
   </div>
   <div id="choice-btns-shoplist">
  <div id="upload-blob">save and upload</div>
@@ -221,32 +207,33 @@ awesome/4.7.0/css/font-awesome.min.css">
 <div class="modal" id="new-item-or-category">
 
   <h2>Create menu</h2>
-<div id="create-modal-content">
-  <p id="create-menu-para">What would you like to create?</p>
-   <!--  input new category-->
-   <button id="new-category" class="main-page-btn create-btn">create category</button>
-   <button id="new-product" class="main-page-btn create-btn">create product</button>
+      <div id="create-modal-content">
+                <p id="create-menu-para">What would you like to create?</p>
+                <!--  input new category-->
+                <button id="new-category" class="main-page-btn create-btn">create category</button>
+                <button id="new-product" class="main-page-btn create-btn">create product</button>
 
- <!--  input new product-->
- <div id="add-product" class="product-adder">
-  <label  for="add-to">add to:</label>
-  <input id="add-to" type="text" placeholder="new product"></input>
-</div>
-   <!--  select category to add product to-->
-   <div id="select-add-category" class="product-adder">
-    <label for="category-selector">pick category to amend:</label><br><br>
-    <select name="categories" id="category-selector">
-      <option value="" class="option">select category</option>    
-    </select>
-  </div>
-
-   <div id="add-category">
-  <label for="name">Create new category:</label>
-  <input type="text" placeholder="new category"></input>
-</div>
-</div>
+              <!--  input new product-->
+              <div id="add-product" class="product-adder">
+                <label  for="add-to">add to:</label>
+                <input id="add-to" type="text" placeholder="new product"></input>
+              </div>
+                <!--  select category to add product to-->
+                <div id="select-add-category" class="product-adder">
+                  <label for="category-selector">pick category to amend:</label><br><br>
+                  <select name="categories" id="category-selector">
+                    <option value="" class="option">select category</option>    
+                  </select>
+                </div>
+              <!--  input new category-->
+                <div id="add-category">
+                <label for="name">Create new category:</label>
+                <input id="category-add-to" type="text" placeholder="new category"></input>
+              </div>
+      </div>
 <div id="btn-container-category-adder">
-  <button id="home-btn"><img id="home-icon" src="./home icon.png" alt=""></button>
+  <button id="home-btn"><img id="home-icon-product-creation" src="./home icon.png" alt=""></button>
+  <button class="navigate-btn"  id="reject-new">reject</button>
 </div>
 
 
@@ -282,9 +269,9 @@ awesome/4.7.0/css/font-awesome.min.css">
   <h2>Add to basket?</h2>
   <div id="hold-modal-content">
     <div id="hold-item-btn-container">
-    <button id="subtract-1" class="hold-btn">-</button>
+    <button id="subtract_1" class="hold-btn">-</button>
     <p id="pick-value">0</p>
-    <button id="add-1" class="hold-btn">+</button>
+    <button id="add_1" class="hold-btn">+</button>
   </div>
   </div>
   <div id="hold-btn-holder">
@@ -309,9 +296,7 @@ awesome/4.7.0/css/font-awesome.min.css">
      <!--  CHECKOUT MODAL-->
 <div class="modal" id="checkout-list">
 <h2>Checkout</h2>
-   <div id="checkout-container" class="main">
-
-   </div>
+   <div id="checkout-container" class="main"></div>
    <div id="checkout-btn-holder">
     <button id="checkout-to-list" class="navigate-btn-basket">List</button>
     <button class="navigate-btn-basket"  id="buy-items">Buy Items</button>
@@ -377,7 +362,7 @@ EXAMPLE WITH LABEL
 
 
 
-<script src="app.js"></script>
+
 <script src="script.js"></script>
         </body>
        
