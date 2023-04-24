@@ -84,11 +84,11 @@ clearProductCreation()
 
 // BUILD NEW CATEGORY
 const buildCategory = (category) =>{
-let categoryId = category.replace(' ', '-') // replace all spaces with dashes (for id format)
-let newCategory = `<div id="${categoryId}" class="categories"><p class="">${category}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
+// replace all spaces with dashes (for id format)
+let newCategory = `<div id="${category.replace(' ', '-')}" class="categories"><p class="">${category}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
 $('#category-container').append(newCategory)
 // create a category object to populate when new products are added
-let obj = {catName: category, items: []}
+let obj = {catName: category.replace(' ', '-'), items: []}
 categoryContainerArray.push(obj)
 console.log(categoryContainerArray)
 
@@ -108,13 +108,12 @@ buildCategory(category)
 
 // BUILD NEW PRODUCT
 const buildProduct = (productName, category) =>{
-let idFormat = productName.replace(' ', '-')// replace any spaces with dashes (for id format)
 let obj ={
+categoryName: category,
 itemName: productName,
-imgAddress: 'default_img.png',
-id: idFormat
+imgAddress: './default_img.png',
+id: productName.replace(' ', '-')
 }// object created to be added to category array for later retrieveal
-
 categoryContainerArray.forEach(array =>{
   if(array.catName === category){
 let index = categoryContainerArray.indexOf(array)// get index of array
@@ -740,7 +739,7 @@ const checkClickedStatus = () =>{
 let duplicateArray = [];
 $('#just-added-items').children().remove(); // remove previously viewed products
    let element = document.querySelectorAll('[type=checkbox]') // locate all checkbox 
-   if(element.length > 1){ // if <= 1, then no checkboxes have been selected. 
+   if(element.length >= 1){ // if <= 1, then no checkboxes have been selected. 
 element.forEach(item =>{
   if(item.checked && restockRequiredArr.includes(item.value)){ //  if checked items are duplicates
   duplicateArray.push(item.value)
