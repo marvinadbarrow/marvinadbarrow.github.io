@@ -1,3 +1,8 @@
+
+
+// testing module for module functionality
+import {squareNum as squared} from './utils.js';
+console.log(squared(5))
 const log = console.log;
 log(localStorage)
 let productImgArray = [] // keeps product elements append from one modal to another. 
