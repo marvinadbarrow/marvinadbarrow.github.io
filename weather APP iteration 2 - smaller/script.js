@@ -205,7 +205,7 @@ $('#sun-moon-times').append(dayLengthSunset)
  setTimeout(() => {
   getMoonData(hourData)
  }, 500);   
-    }
+    } 
 
     // PREPARE HOURLY WEATHER DATA FOR SPECIFICALLY SELECTED DAY 
 const getOtherDayHours = (day) =>{
@@ -223,7 +223,8 @@ const getOtherDayHours = (day) =>{
 const getCurrentDayHours = (currentHour,offset, day) =>{
     hourlyDataArray = [] // clear any previous hourly data
     // get hour objects of the current daylet timeNow = currentHour;
-let timeOffsetSum = timeNow + offset;
+let timeOffsetSum = currentHour + offset;
+console.log(timeOffsetSum)
 let newTime;
 let timeFormat
 
