@@ -17,6 +17,12 @@ let rotationBlip = new Audio('rotate blip.mp3')
 let chompAudio = new Audio('apple chomp.mp3')
 
 let gameDifficultyArr = [] // difficulty can be:
+//  EASY - snake body grows when apple is eaten
+// HARDER - like EASY stage, but snake speed increases as apples are eaten
+// VERY HARD - like HARDER stage, but it takes two apples to get 150 points and, both increase snake speed - twice in one stage
+// INSANE - like VERY HARD stage, but there are also obstacles to avoid. 
+// the game difficulty is decided based on what is in the gameDifficultyArr when an apple is eaten - a switch statement is used on gameDifficultyArr[0] which will have the difficulty unshifted to it at game start. 
+
 
 let hardObstacleEl = document.querySelectorAll('.block-dimensions-hard-obstacle')
 let regularObstacleEl = document.querySelectorAll('.block-dimensions-regular-obstacle')
@@ -25,6 +31,13 @@ let regularObstacleArr = [90, 110, 130, 150, 184, 185, 186, 187, 212, 213, 214, 
 // positions for the HARD DIFFICULTY obstacles
 let hardObstacleArr = [90, 110, 130, 150, 184, 185, 186, 187, 212, 213, 214, 215, 229, 249, 269, 289, 63, 64, 65, 74, 75, 76, 85, 96, 103, 105, 114, 116, 283, 285, 294, 296, 303, 316, 323, 324, 325, 334, 335, 336 ]
 // NOTE* for the HARD difficulty I've combined the two arrays for easier reading of code and due to the fact that the execution will only need to read one array when the hard level is being assessed for obstacles
+
+
+
+
+
+
+
 
 let breadCrumbArr = []  // ARRAY REGISTERING ALL POSITIONS SNAKE HEAD HAS PASSED THROUGH
 
@@ -44,6 +57,10 @@ let startBtn = document.getElementById('start')
 
 // images nested inside buttons
 let startImg = document.getElementById('start-img')
+
+
+
+
 
 // ----------------------------------DIRECTION BUTTONS AND NESTED IMAGES -------------------------
 // buttons
@@ -111,6 +128,8 @@ let pauseModalEl = document.getElementById('modal-pause')
 let levelModalEl = document.getElementById('level-modal')
 
 
+
+
 // check we have all of the obstacles
 
 regularObstacleArr.forEach(element =>{
@@ -120,6 +139,8 @@ regularObstacleArr.forEach(element =>{
 hardObstacleArr.forEach(element =>{
     console.log(shapeBody.children[element-1])
 })
+
+
 
 
 // IF HARDER LEVELS ARE EVER MADE THIS ARRAY CAN BE USED TO DICTATE HIGHER SPEEDS FOR LATER LEVELS
@@ -192,12 +213,21 @@ bottomBoundaryArr = range(380, 399, 1)
 // generate numbers from 0-399 to represent whole grid for when, at the end of the game, the snake is to be removed from the grid looping through the grid to check which divs have elements and deleting those elements (i.e. the snake body). 
 gridChildrenArr = range(0, 399, 1)
 
+console.log(`left boundary: ${leftBoundaryArr}, length = ${leftBoundaryArr.length}`)
+console.log(`right boundary: ${rightBoundaryArr}, length = ${rightBoundaryArr.length}`)
+console.log(`top boundaryL ${topBoundaryArr}, length = ${topBoundaryArr.length}`)
+console.log(`bottom boundary ${bottomBoundaryArr}, length = ${bottomBoundaryArr.length}`)
+console.log(`grid children total: ${gridChildrenArr}, length = ${gridChildrenArr.length}`)
+
+
 let startCommandArr = [] //if array contains a value; 'start' cannot be operated - so start can only operate ONCE - until game is reset
 let gameOverArray = []// will receive the string 'game over' once the game is over so the refresh page button can be executed if the modal is already closed and the 'new game' button is unavailable - we might even need a 'view stats again' button for the last game. 
 
 let pauseIntervalArr = []
 const obstacleObj = {floor:0, tetrimino:0} // object for obstacle strikes of floor or tetrimino
 let obstacleCountArr = [obstacleObj]; // array to hold obstacle strikes data
+
+
 
 // show modal with all stats including high scores and comparison
 const showModal = () =>{
@@ -213,6 +243,8 @@ const displayResults = (message, score) =>{
     highscoreMsg.textContent = message
     showModal()
 }
+
+
 
 // CURRENTLY DISPLAYING AS NAN - FIND OUT WHY
 const displayCrashResults = (message, score) =>{
@@ -268,6 +300,10 @@ case 'hard obstacle':
 displayCrashResults(obstacleCrash,score)
 }
 
+
+
+
+
 }
 
 // render points 
@@ -291,6 +327,7 @@ shapeBody.children[j].style.animation = "flash 0.1s 4";}
 
     // play game end audio
 gameEndAudio.play();
+startCommandArr = []
 setHighScores(finalScore, endStatus)
 }
 
@@ -307,6 +344,24 @@ let goLeft = 'go-left'
 let goRight = 'go-right'
 let goUp = 'go-up'
 let goDown = 'go-down'
+
+
+
+
+/*
+
+    let subtractor = turnsArray[0];  
+    if(gameDifficultyArr[0] == 'easy-btn'){subtractor *= 20}
+    else if(gameDifficultyArr[0] == 'easy-btn'){subtractor *= 15}
+    else{subtractor *= 10}
+
+*/
+
+
+
+
+
+
 
 
 //DROP SNAKE
@@ -360,6 +415,9 @@ else if(identifyer.includes('Up') || identifyer.includes('up')){
     directionClass(goLeft, goUp, goRight, goDown)}
 }
 
+
+
+
     // event listener for keyboard tetrimino navigation
 document.addEventListener('keydown', (e) =>{
     console.log(e.key)
@@ -367,6 +425,8 @@ document.addEventListener('keydown', (e) =>{
     console.log(identifyer, arr[0]) // remember arr[0] contains the current value of 'a'
 navigationListener(identifyer, arr[0])
 })
+
+
 
 const touchNavigation = (position) =>{
     // switch current direction
@@ -388,6 +448,7 @@ let direction = directionArray[0];
 
 }
 
+
 // SCREEN TOUCH (OR CLICK) POSITION ASSESSOR
 shapeBody.addEventListener('click', function(e){
     let touchNumber;
@@ -400,6 +461,9 @@ touchNavigation(touchNumber)
    }
      })
 // this accurately recognizes the clicked box. 
+
+
+
 // for adding segments to snake
 const growSnake = () =>{
     // limit the number of segments in the entire snake to 19, otherwise alert. 
@@ -417,6 +481,8 @@ else if(pointsCountArr[0] < 1000){currentScoreAdjust = `00${pointsCountArr[0]}`}
 else if(pointsCountArr[0] < 10000){currentScoreAdjust = `0${pointsCountArr[0]}`}
 else{currentScoreAdjust = pointsCountArr[0]}
 scoreEl.textContent = currentScoreAdjust;
+
+
 createApple()
 
 
@@ -452,8 +518,14 @@ createApple()
         }
         
           renderPoints(pointsCountArr[0], endStatus, bonus)
+          startCommandArr = []
         }
-      }     
+      }
+
+
+
+
+      
 
     shapeClock =  setInterval(() => {
     // actually, the game should only run if a doesn't belong to any of the boundaries, or rather, if the snake head is traveling in the direction of the boundary and is at the boundary... 
@@ -466,6 +538,12 @@ createApple()
   
   // boundary conditions - if moving 
   if((currentContents.includes(goDown) && !bottomBoundaryArr.includes(a)) || (currentContents.includes(goUp) && !topBoundaryArr.includes(a)) || (currentContents.includes(goLeft) && !leftBoundaryArr.includes(a)) || (currentContents.includes(goRight) && !rightBoundaryArr.includes(a))){ 
+
+
+
+
+
+
 // if 'a' happens to be the number of the grid position of the apple then we need to create a new apple and increase points. 
 
 
@@ -477,6 +555,11 @@ createApple()
 turnsArray[0] +=1;
     }
     // PENALTIES FOR EACH TURN - only if initial points have been accumulated
+
+
+
+
+
         // OBSTACLE CRITERIA -REGULAR DIFFICULTY
 if(gameDifficultyArr[0] == 'regular-btn'){
     if(regularObstacleArr.includes(breadCrumbArr[0])){
@@ -484,6 +567,7 @@ if(gameDifficultyArr[0] == 'regular-btn'){
         let endStatus = 'regular obstacle'
         let bonus = 0;
         renderPoints(Math.floor(pointsCountArr[0]*0.75) , endStatus, bonus)
+          startCommandArr = []
     }
     
     }
@@ -495,7 +579,8 @@ if(gameDifficultyArr[0] == 'regular-btn'){
             let endStatus = 'hard obstacle'
             let bonus = 0;
             renderPoints(Math.floor(pointsCountArr[0]*0.75) , endStatus, bonus)
-            }
+              startCommandArr = []
+        }
         
         }
     // if the snake body has a segment that's already in the new 'a' value then a collision happens
@@ -630,18 +715,23 @@ switch(identifyer){
     case 'refresh':
     case 'r':
     case 'refresh-img':
-        if(startCommandArr.length > 0){
-            startCommandArr = []
+        if(startCommandArr.length < 1){
             location.reload()
-        }else{console.log(' test')}
+        }else{console.log(' game must end in order to refresh')}
 break;
 }}
+
+
+
 
 document.addEventListener('keypress', (e) =>{
 let identifyer = e.key;
 console.log(identifyer)
 gameState(identifyer);
 })
+
+
+
 
 gamestateArr.forEach((element)=>{
     element.addEventListener('click', function(e){

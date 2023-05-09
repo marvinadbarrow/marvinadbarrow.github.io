@@ -21,7 +21,7 @@ margin-top: 50px;
 
 
 /* MODAL for end of game stats instructions etc */
-#modal-container{position: absolute; width:100%; height: 90%; margin:auto; display: none;}
+#modal-container{position: absolute; width:100%; height: 90%; margin:auto;}
 #close-btn{font-weight:bold; font-size:60px; margin:10px;
   color:rgba(245, 41, 22, 0.7); float:right;
    }
