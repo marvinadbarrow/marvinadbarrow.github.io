@@ -141,7 +141,7 @@ grid-template-areas:
 
 
 /* foooter styling  */
-footer{color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem; display: none;}
+footer{color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem; display: block;}
 
 
 /* footer content container*/
