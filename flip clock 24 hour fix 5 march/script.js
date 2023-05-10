@@ -657,7 +657,7 @@ const clockFunction = () =>{
    let ctyear = yearNow - 30 // year
    let ctDay = dayNow - yearNow*365 - leapYears // calc for current day 
     let cd = ctDay // abbrev for current day
-    let ctHour = hourNow - dayNow*24 + hourFall // calc for current hour
+    let ctHour = hourNow - dayNow*24 + hourSpring // calc for current hour
     let ctMinute = minuteNow - hourNow*60// calc for current minute
     let ctSecond = secondNow - minuteNow*60// calc for current second
   
