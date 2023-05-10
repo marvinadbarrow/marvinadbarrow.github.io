@@ -75,6 +75,18 @@ let highscoreMsg = document.getElementById('high-scores')
 // PAUSE MODAL elements
 let pauseModalEl = document.getElementById('modal-pause')
 
+// code for disabling zoom on double-tap in the game. Zoom on double-tap causes the screen to zoom in if you are tapping several times to rotate a tetrimino or to move a tetrimino quickly to a far away position, the screen zooms in and which usually means that most of the screen cannot be seen, usually resulting in a collision while player is busy trying to un-zoom to see the screen properly again. 
+
+var doubleTouchStartTimestamp = 0;
+document.addEventListener("touchstart", function(event){
+    var now = +(new Date());
+    if (doubleTouchStartTimestamp + 500 > now){
+        event.preventDefault();
+    };
+    doubleTouchStartTimestamp = now;
+});
+
+
 newGameEl.addEventListener('click', function(){
 location.reload()
 
