@@ -342,10 +342,6 @@ console.log(a, b, c, d, tetrisBlockArr[4])
     }
 }
 
-
-
-
-
 // might not need this function
 const dropFloaters = (rowMinumum) =>{
     let increaseIndexValue;
@@ -360,8 +356,6 @@ console.log(duplicateElements)
 console.log(filledSquareArr)
    
 }
-
-
 
 // render points 
 const renderPoints = (level, lines) =>{

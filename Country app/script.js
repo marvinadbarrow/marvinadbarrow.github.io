@@ -27,7 +27,6 @@ var mapArray = []
 
 
 // render chosen entries from the parsed data
-
 const renderCountryData = (data) =>{
 data.sort((a,b) => (a.name.common > b.name.common) ? 1: -1)    
 let name;
@@ -64,7 +63,7 @@ if(element.capital === undefined){
     capital = 'N/A'
 }else{ capital = element.capital[0]; countryObj.country_capital = element.capital[0];}
 // check for existence of flag - assign variable if exists
-if(element.flags.png === undefined){
+if(element.flags.png === undefined){ // do nothing
 }else{ flag = element.flags.png; countryObj.country_flag = element.flags.png;}
 
 // push object with country data for later retrieval when country is selected in 'select' element
@@ -129,19 +128,27 @@ $('#options-container').toggle()
 }
 
 
+
+
+const showCountryFlag = (countryText, source) =>{
+
+    mapArray.forEach(country =>{
+        if(country.country_name == countryText){
+         $('#map-link').attr('href', country.country_map)
+         $('#country-image-large').attr('src', country.country_flag)
+         $('#country-para-large').html(country.country_name)
+         $('#capital-para-large').html(`Capital: ${country.country_capital}`)
+ 
+        }
+     });
+
+}
+
+
 // select a country to display larger country map and country details. 
 $('#select-container').change((e) =>{
-    let selected = e.target.value
-    mapArray.forEach(country =>{
-       if(country.country_name === selected){
-        $('#map-link').attr('href', country.country_map)
-        $('#country-image-large').attr('src', country.country_flag)
-        $('#country-para-large').html(country.country_name)
-        $('#capital-para-large').html(`Capital: ${country.country_capital}`)
-
-       }
-    })
-
+  let selected = e.target.value; // get country name
+  showCountryFlag(selected, 'select options'); // and send to large flag renderer
 })
 
 
@@ -159,25 +166,14 @@ $('#get-data').hide()
                     $('#error-para').css('display','block')
                     $('#error-img-holder').css('display','block')
                     console.log(data)
-                })
-        
-                
+                })             
             })
 
+            // clicking on country text of country element renders large flag and map link. 
+document.addEventListener('click', (e) =>{
+let nameString = e.target.textContent; // get country element text
+let separatorIndex = nameString.indexOf('|') - 1; // get index of first space after country name
 
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let countryText = nameString.slice(0,separatorIndex);// slice country and send to large flag renderer
+showCountryFlag(countryText, 'country div');
+                })
