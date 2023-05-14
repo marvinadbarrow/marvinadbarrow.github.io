@@ -1,0 +1,455 @@
+guide section sizes
+
+sidebar-extended 450px  (sub-sections: 8 )
+inner properties: 
+category container 180
+display flex row
+inside category container
+icon 24, 24 margin right, link 132 (entire length 180)
+
+
+
+
+subscriptions-guide 376  (sub-sections: 9 )
+explore-guide 416  (sub-sections: 5 )
+more from YT-guide 256  (sub-sections:  )
+settings-guide 184  (sub-sections: 4 )
+
+links:
+
+press 70px  (sub-sections:3  )
+privacy 70px  (sub-sections: 3 )
+copyright 50px  (sub-sections: 1 )
+
+
+no need to do that... just used the width of the guide bar as default and dictate the individual heights. 
+Maybe for media query the heights can be based on the size of width on different screen sizes. 
+
+
+library inner properties
+outer box 424px
+navbar categories (40px each)
+box - containing library and inner box with other 7 links 280px
+library (to calulate)
+inner box 240px
+
+
+mainly completed. 
+today 7 March
+work on: 
+
+1)link wording at bottom of guide modal to anchor tags href's - DONE!
+
+
+2) icons and images for section subcategories of the guide modal. - DONE!
+
+3) CSS to highlight hover, and JS to keep background on clicked element (actually, these might navigate away to the true YT page so hold the JS for the moment) (css DONE      )
+
+4) nest all section items in anchor tags. 
+
+5) nav-bar icon reformatting - DONE!
+
+
+
+----- NEXT---
+YT account modal - (mostly DONE, just a little bit of formatting to do and links to add - )
+SUB MODALS to main account modal
+Help and feedback modals
+Subscriber drop down div
+
+
+
+
+width 12% - 300px
+sections
+
+
+
+header height - 104px
+main door and studio  height - 160px
+purchases and data height - 80px
+personalization height - 200px
+settings height - 57px
+help and feedback height - 96px
+
+widths 292px
+sub-category heights 40px
+
+
+main: 
+your channel
+youtube studio
+switch account
+signout 
+
+purchases/data:
+purchases and memberships
+your data in youtube
+
+personalization: 
+appearance
+languages
+restricted mode
+location
+keyboard shortcuts
+
+settings:
+settings
+
+help/feedback:
+help
+feedback
+
+
+
+
+10 March
+~ created links for accounts modal - 
+~ measurements taken for all 8 modals in the list below - now just need to make markups, and link where necessary. 
+~ added an extra 20 subscriptions (just copies of of the first 10) below the 'show more' div, but enclosed in a div which has been been hidden; it will be unhidden with JS, and the 'show more' div will be hidden at the same time - It's probably a good idea to toggle this using JQuery. 
+
+~ added 10 extra playlist links to the bottom of the extended modal first section at the bottom.  They are automatically hidden, but it's probably best to hide them anyway, just in case they cause problems later. 
+
+~ notification modal largely completed, just need to populate and add scrolling for when notifications go off screen. 
+
+OTHER WORK TO DO: 
+
+Notifications modal: nest both sections into one div so that they can measure the same distance as each other and line up in the modal. 
+
+
+create modals for the following categories:-
+
+switch account - DONE!
+appearance - DONE!
+language - DONE!
+restricted mode - DONE!
+location - DONE!
+help - DONE!
+feedback - DONE!
+
+notifications modal (mainly DONE!)
+
+
+14 MARCH WORKLOG
+~ made cropped images of:
+
+keyboard shortcuts (modal function DONE!)
+
+search help (modal function DONE!)
+
+upload video (modal function DONE!)
+
+voice recognition (modal function DONE!)
+
+
+------------------------------------------------------------------ TO TACKLE 15 MARCH
+
+CSS STYLING - 
+search bar formatting (in navbar) - DONE!
+Video title and data (change colours etc) - DONE!
+::placeholder specific change of CSS for the search place holder in navbar (See 'how to' notes for method) - DONE! 
+
+TEXTAREA INFO POPUP re: sensitive information in feedback modal - pops up like close blobs, but gives more info about sensitive feedback info do's and dont's.  - DONE!
+
+feedback SEND button format - DONE!
+SEND BUTTON INFO POPUP  - DONE!
+
+
+
+JAVASCRIPT MANIPULATION - 
+subscriptions dropdown, - DONE!
+playlists dropdown, - DONE! 
+
+
+
+
+MODALS - 
+image capture ( this is not actually a web function; it activates the alert system on windows asking if you wish to give capture permision to YouTube's server )
+
+Animation properties such as ease in, ease out for modals (for smoother appearance)
+
+TO WORK ON - -:
+
+CSS RESPONSIVENESS
+this is basically all there is left to work on. 
+
+
+
+
+FIGURING OUT HOW TO HIDE MODALS WHEN CLICKING OUT OF MODAL AREA
+this applies to ALL modals apart from the HELP modal and the FEEDBACK modal, both of which remain in position and when clicked away from; they need to be closed via the &times; element --------------- DONE! (with the function below)
+
+
+// the code below closes all modals that fit criteria for closing when you click outside of the modal; that is, all modals apart from those associated with 'help' or 'feedback': those should stay open because you could be creating an entry when the modals are open and would lose your the information if you clicked away by accident causing the modal to close. 
+
+document.addEventListener('mouseup', function(e) { // add event listener to document; on mouseup
+
+modalNameArr.forEach(element =>{ // for each element in array (each is a modal element 'id')
+if(!document.getElementById(element).contains(e.target)){//if associated modal doesn't contain e.target
+        document.getElementById(element).style.display = 'none'; // hide modal
+    }
+})
+}); END
+
+
+TRYING TO FIGURE OUT IF MULTIPLE MODALS CAN BE OPENED INDEPENDENTLY FROM ONE JQUERY FUNCTION  - DONE!
+this is how a typical function for opening a modal from its associated icon looks; if we are using elem
+
+maybe have an object with key value pairs with the key being the id and the value being the modal; maybe the object setup would be like this: 
+{'button_id': 'button-id',
+'modal_id': id of modal to be opened}
+
+this can be placed in an array (let's call it modalArray). to access the executing element id, do element.[button_id], and to access the associated modal id, do do element.[modal_id]
+
+It may be possible to use these values in the below function
+
+
+$(document.getElementById(element.[button_id]).click( function(){ // id used to get clicked element
+    $(element.[modal_id])).toggle()
+})
+
+note*:- document.getElementById(element.[button_id] is the actual element and we're adding a 'click' event to it. 
+you could also use$(`#${element.[modal_id]}`) string literals with the hash followed by the element variable and attached object key - this is essentially using the element id as opposed to the element itself. 
+
+
+I think it's possible to adapt the above function for closing modals to work for opening modals as well; a test is below:
+
+after putting all of the element_id's and associated modal_id's, as pairs in an object, then place all objects into the modalArray,ie:
+
+  modalArray = [{button_id: 'id', modal_id: 'id'}, {button_id: 'id', modal_id: 'id'},........{button_id: 'id', modal_id: 'id'}] 
+
+then the adapted array should basically be as below (will input the correct parameters later)
+
+
+document.addEventListener('mouseup', function(e) { // add event listener to document; on mouseup
+
+modalArray.forEach(element =>{ // for each element in array 
+if(document.getElementById(element[button_id]).contains(e.target)){//if the id is of an element that contains e.target
+        document.getElementById(element[modal_id]).style.display = 'block'; // get modal id, which is stored in the same object as button id (both are in the current element)
+    }
+})
+}); END
+
+
+ 
+
+------------ - ------------------------------------------------------ TO TACKLE 15 MARCH - ABOVE
+
+
+
+
+
+------------------------------------------------------------------ TO TACKLE 16 MARCH
+
+
+
+
+
+JAVASCRIPT MANIPULATION - 
+
+
+MODALS - 
+image capture ( this is not actually a web function; it activates the alert system on windows asking if you wish to give capture permision to YouTube's server )
+
+Animation properties such as ease in, ease out for modals (for smoother appearance)
+
+TO WORK ON - -:
+
+CSS RESPONSIVENESS
+this is basically all there is left to work on. 
+
+
+
+
+
+
+
+
+ 
+
+------------ - ------------------------------------------------------ TO TACKLE 16 MARCH - ABOVE
+
+
+
+
+JAVASCRIPT TO WORK ON
+hamburger menu - DONE!
+
+microphone search - DONE!
+notification bell - DONE!
+icon for account modal - DONE!
+back arrows on modal categories - DONE!
+forward arrows for modal category options - DONE!
+drop down and drop up suscriptions panel - DONE!
+drop down and drop up playlist panels - DONE!
+feedback send button - DONE
+feedback text area placeholder - DONE!
+
+OTHER MODALS
+upload video modal - DONE!
+voice modal DONE!
+search help modal - DONE!
+
+
+The modal reveals shouldn't be difficult because it's just a case of getting the modal id, you could even use Jquery if you like. 
+
+
+
+
+
+FUTURE IDEAS TO IMPLEMENT
+
+APPEARANCE MODES - figure out CSS for dark and light modes (and see if you can figure out how to use divice mode)
+
+YouTube API tutorials to see if you can learn how it works and use it for the following: 
+GET ALL SUBSCRIPTION DATA
+GET VIDEO SPECIFIC DATA RELATED TO SUBSCRIPTIONS - video titles, times, views and age. (specific to individual user login)
+SYSTEM FOR RANDOMLY CHOOSING AND DYNAMICALLY LOADING SUBSCRIPTIONS' VIDEO THUMBNAILS AND DETAILS - (when page is refreshed)
+AS ABOVE BUT MAYBE WITH SPECIFIC DATES IN MIND - for example only vids with age of less than 3 months
+MYTUBE ICON (in addition to normal icon for real site)SO, WHEN CLICKED, MY PREFERENCES WITH SUBSCRIPTIONS ETC WILL LOAD. 
+
+
+
+
+
+
+CODE STORAGE FOR TRYING TO USE BACK BUTTONS AS WELL AS OUTSIDE CLICKS
+
+// test to see if modals can be opened
+    document.addEventListener('click', function(e) { // add event listener to document; on mouseup
+console.log(e.target)
+        openModalArray.forEach(element =>{ 
+            if(document.getElementById(element['button_id']).contains(e.target)){
+                $(`#${element['modal_id']}`).toggle()
+if(element['parent_id']){ document.getElementById(element['parent_id']).style.cssText ='display:none;';}
+    }else{
+if(element['back_btn_id'] && e.target.id == element['back_btn_id'] ){
+    console.log(`id detected: ${element['back_btn_id'] }`);
+    $(`#${element['modal_id']}`).hide()
+ $('#youtube-account-modal').toggle()
+}else{
+
+   // $(`#${element['modal_id']}`).hide()
+}
+
+
+                }
+            })
+        
+        });
+        
+
+
+        SECOND TRY WHICH DOESN'T SEEM TO BE WORKING
+
+
+        
+// test to see if modals can be opened
+    document.addEventListener('click', function(e) { // add event listener to document; on mouseup
+console.log(e.target)
+        openModalArray.forEach(element =>{ 
+            if(document.getElementById(element['button_id']).contains(e.target)){
+                $(`#${element['modal_id']}`).toggle()
+if(element['parent_id']){ document.getElementById(element['parent_id']).style.cssText ='display:none;';}
+    }else if(document.getElementById(element['back_arrow_id']).contains(e.target)){
+    console.log(`back arrow detected: ${element['back_btn_id'] }`);
+    $(`#${element['modal_id']}`).hide()
+ $('#youtube-account-modal').toggle()
+}else{
+
+   // $(`#${element['modal_id']}`).hide()
+}
+
+
+                })
+            })
+        
+
+
+
+// I think this if finally it - clicking away from both the main modal, its submodal works. AND, the back arrow of the submodal brings you back to the main modal.... PHEW! that was difficult. 
+    document.addEventListener('click', function(e) { // add event listener to document; on mouseup
+console.log(e.target)
+        openModalArray.forEach(element =>{ 
+            if(document.getElementById(element['button_id']).contains(e.target)){
+                $(`#${element['modal_id']}`).toggle()
+if(element['parent_id']){ document.getElementById(element['parent_id']).style.cssText ='display:none;';}
+    }else if(backArrowArray2.includes(e.target.id)){
+        let index = backArrowArray2.indexOf(e.target.id)
+        console.log(index)
+        $('#youtube-account-modal').css('display','block')
+        document.getElementById(backArrowArray[index]['modal_id']).style.cssText ='display:none;';
+}else{
+    $(`#${element['modal_id']}`).hide()  
+}
+
+   // $(`#${element['modal_id']}`).hide()
+
+
+
+                })
+            })
+
+
+
+
+----------------------------- MORE IDEAS TO WORK ON ---------------------
+
+CODEPEN :- 
+
+SHOPPING ASSISTANT
+use codepen for your shopping assistant application ideas, THE ACTUAL UI.  Test different pages  etc. 
+PHONE SCREENSHOT  uber eats UI, for page ideas.  Check youtube to find out how to screen shot on your phone. 
+
+
+BLACKJACK CARD GAME - try to use promises instead of if/else statements for the game; for instance, if the player goes over 21, then there's no point in carrying on the game, so really the promise should go something like : Promise = card drop, then if player has > 21 or 20, that's rejected, but if player has 19 you can resolve and so permit the card drop...
+
+
+FLIPCLOCK - 
+Try using callbacks for one of the flip clock measures, probably seconds, and if that works see if you can get into callback hell, and change those to promises. 
+
+
+YOUTUBE: - 
+Clean up the Js for opening modals; see if you can group some of the other functions into a single function and use an array with forEach to access and examine elements that are clicked. 
+
+Get the YouTube API, and start trying to figure out how to get video length, video views and video age so that you can display them on your clone page, appropriate to each viceo. 
+
+
+API KEYS ETC
+( // my channel id
+let youtubeId = 'UCpCdAp4bI9IPGAFa_jIW0XA'
+let key = 'AIzaSyAC3lYXGeYIxev1b07LLBn5s0HCzEb2UWw'
+)
+
+
+OAuth details - 
+
+CLIENT ID: 222927874129-nbraflgfsb88pn0u4fritjevi90gk4tf.apps.googleusercontent.com
+
+CLIENT SECRET: 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
+
+Learn how to get data from your subscriptions, such as videos uploaded in the last months and only display those randomly, every time you refresh the page. 
+
+Maybe also get the list of 'help' subjects and learn how to access those pages through a search using the clone search modal - and maybe even have the search 'suggestion' (ie. predictive texting) display potential search subjects - as well as a random 'help' category generator to populate the help fields, like it works on the real thing. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
