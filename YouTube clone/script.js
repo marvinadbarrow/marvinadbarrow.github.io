@@ -48,10 +48,9 @@ var backArrowArray2 = [
 
 // I think this is finally it - clicking away from both the main modal, its submodal works. AND, the back arrow of the submodal brings you back to the main modal.... PHEW! that was difficult. Now just need to find out why help and feedback modals aren't being activated from the account menu
     document.addEventListener('click', function(e) { // add event listener to document; on mouseup
-console.log(e.target)
+
         openModalArray.forEach(element =>{ 
             if(document.getElementById(element['button_id']).contains(e.target)){// if icon/button clicked
-                console.log(e.target)
                 $(`#${element['modal_id']}`).toggle() // toggle associated modal
 if(element['parent_id']){
     $(`#${element['parent_id']}`).hide() // hide parent modal
@@ -71,8 +70,12 @@ if(element['parent_id']){
                 })
             })
         
+
+
+
 $('#hamburger-icon').click(function(){
-    $('#guide-modal').toggle()
+    console.log('hamburger clicked')
+    $('#guide-section-modal').toggle()
     $('#guide-content').css('left', '0')
 })
 
