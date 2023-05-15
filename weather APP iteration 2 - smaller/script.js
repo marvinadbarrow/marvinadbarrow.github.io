@@ -441,7 +441,7 @@ const getCity = (city) =>{
     // clear options from select element
     $selectItem.children().remove()
     $selectItem.prepend('<option class="option">Choose City</option>')
-var geoCityUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=' + openWeatherAPIKey
+var geoCityUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=' + openWeatherAPIKey
 // fetch
     fetch(geoCityUrl)
     .then(response=> response.json())
