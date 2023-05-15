@@ -1,0 +1,107 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+           <link rel="stylesheet" type="text/css"
+                 href="style.css">
+
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                 <script src="https://kit.fontawesome.com/e4a7b9699c.js" crossorigin="anonymous"></script>
+            <title> Understanding the display</title>
+        </head>    
+
+ <body>
+<div id="content-container-2">
+<h1 >Reading the display!</h1>
+
+<div class="dial-container">
+    <div class="dial-container">
+        <img src="../images/digital main readout.png" class="digital-readout" alt="Main redout"><p><span ><b>Main Chronograph readout:</b> </span>The main readout, which is the larger, bottom readout, displays the time elapsed since the start button was pressed or the time at which the pause button was pressed. When pause is pressed the main readout opacity changes so that the digits are somewhat faded and flash intermittently</p>
+        </div>
+
+
+    <div class="dial-container">
+        <img src="../images/digital split readout.png" class="digital-readout" alt="split readout"><p><span></span><b>Split readout:</b> </span>The split readout displays a stationary time, either zero time, which represents the state of the chronograph before the start button is clicked, or the last time at which the lap button was pressed.  It essentially gives you the end-time of the last lap, so that, each time the lap button is pressed, this (split) readout updates to show precisely when that happened, displaying the last lap's end-time </p>
+        </div>
+
+
+<img src="../images/digital lap readout.png"class="digital-readout" alt="lap readout"><p><span ><b>Lap readout:</b> </span>On pressing the lap button, the lap readout is refreshed and displays a new time, the duration of the last lap (which completed when you pressed the button), and also the lap number, in the small rectangular box to the left of the lap time. <br><br>So, for instance, if the lap readout shows <img src="../images/digital lap 3.png" class="digital-readout">, that means you are currently on lap 4, and the last completed lap, lap 3, is now being displayed along with the time (approximately 58 seconds) that it took to complete that lap. Of course, there's another scenario, where you may have paused or reset the chronograph which means you are no longer timing laps and so the lap readout is actually displaying the final lap number and its duration (since no other laps will be timed, and hence the displayed lap 'was' the final lap). <br><br> pressing the LAP RECALL repeatedly will cause the lap readout to cycle through all lap times; an example of this is below: <br><br> 
+
+Readout of last lap: <br>
+<img src="../images/digital lap 3.png" class="digital-readout"><br><br>
+
+Readout of second-last lap: <br>
+<img src="../images/digital lap 2.png" class="digital-readout" alt=""><br><br>
+
+Readout of third-last lap: <br>
+<img src="../images/digital lap 1.png" class="digital-readout" alt=""><br><br>
+
+Pressing the recall button continuously causes the readouts to cycle backward through the lap numbers, beginning with the most recent lap and ending at the first lap, and the readout will continue cycling in that manner if you keep on repeatedly pressing the recall button. 
+</p>
+</div>
+
+
+
+<div id="return-to-chrono">
+            <a href="file:///C:/Users/Marvin/Desktop/Js%20Doc%20Web/marvinadbarrow.github.io/digital%20chronograph/index.html" class="return-chronograph" >Return to Chronograph</a>
+        </div>
+</div>
+
+
+
+
+
+</body>
+
+
+
+             <footer id="main-footer">
+                <div id="content-container">
+                    <div class="footer-column">
+<h3 class="footer-heading">My Pages</h3>
+<a href="https://www.linkedin.com/in/marvin-a-barrow/" class="footer-link" target="_blank"> <span id="my-page-link"> Linked</span> <i id="my-page" class="fa-brands fa-linkedin fa-2x"></i></a>
+
+<a href="https://www.linkedin.com/in/marvin-a-barrow/details/featured/" class="footer-link" target="_blank">Web Dev Portfolio</a>
+
+<a href="#" class="footer-link">About Me</a>
+</div>
+
+<div class="footer-column">
+    <h3 class="footer-heading">Chronograph Help!</h3>
+
+    <a href="../button functions/index.html" class="footer-link">Button Functions</a>
+
+    <a href="#" class="footer-link">Reading the subdials</a>
+    </div>
+
+    <div class="footer-column">
+        <h3 class="footer-heading">Similar Projects</h3>
+        <a href="file:///C:/Users/Marvin/Desktop/Js%20Doc%20Web/projects%20in%20the%20making/Whole%20App%20Website/main%20page/chronographs/chronograph%20analogue%20no%20trig/images/other%20pages/final%20stopwatch/index.html"  target="_blank" class="footer-link">Digital Stopwatch</a>
+
+
+        <a href="file:///C:/Users/Marvin/Desktop/Js%20Doc%20Web/projects%20in%20the%20making/Whole%20App%20Website/main%20page/chronographs/chronograph%20analogue%20no%20trig/images/other%20pages/analogue%20clock%20better%20look/index.html" target="_blank" class="footer-link">Analogue clock</a>
+
+
+        <a href="#" class="footer-link">Other Time Apps</a>
+        </div>
+    </div>
+        <div class="footer-bottom">
+            <span class="copyright">Marvin-a-Barrow &copy;2022 JavaScript Chronograph!</span>
+
+            <a href="https://www.linkedin.com/in/marvin-a-barrow/" target="_blank" class="footer-social"><i class="fa-brands fa-linkedin fa-2x"></i></a>
+        
+           
+            <a href="#" class="footer-social"><i class="fa-brands fa-youtube fa-2x"></i></a>
+
+        </div>
+                
+                
+                
+                <script src="script.js"></script>
+             </footer>
+                   
+    </html>

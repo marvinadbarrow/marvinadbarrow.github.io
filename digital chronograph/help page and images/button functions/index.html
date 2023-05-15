@@ -1,0 +1,101 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+           <link rel="stylesheet" type="text/css"
+                 href="style.css">
+
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                 <script src="https://kit.fontawesome.com/e4a7b9699c.js" crossorigin="anonymous"></script>
+            <title> Button function</title>
+        </head>    
+
+ <body>
+<div id="content-container-2">
+<h1 >What the Buttons do!</h1>
+
+<div class="button-container">
+<img src="../images/digital play btn.png" alt="play button"><p><span class="button-heading">Start Button: </span>The start button activates the stopwatch; the button colour will change to red and remain so while the stopwatch is running - if paused, the play button will revert to the original grey colour, while pause will change to red - to deactivate pause and start the stopwatch running again, just press the start button once more</p>
+</div>
+
+<div class="button-container">
+    <img src="../images/digital pause btn.png" alt="pause button"><p><span class="button-heading">Pause Button: </span>The pause button halts the stopwatch.  When pressed the large digits readout will stop counting, then flash on and off, and its opacity will reduce slightly making it look somewhat faded.  To unpause the time, press the start button again - or if you wish you can reset the chronograph to zero-time while in pause mode. </p>
+    </div>
+
+        <div class="button-container">
+            <img src="../images/digital refresh btn.png" alt="reset button"><p><span class="button-heading">Reset Button: </span>The reset button resets the stopwatch to zero.  In order to activate the reset button, you must first press the 'pause' button.   This is done to prevent accidental activation of the reset function while the stopwatch is counting time.  </p>
+            </div>
+
+            
+<div class="button-container">
+    <img src="../images/digital lap btn.png" alt="lap button"><p><span class="button-heading">Lap Button: </span> The lap button comprises two operations in one that happen simultaneously. The first operation shows you the 'split time' <img src="../images/digital split readout.png" class="minor-display">, which is the exact moment you pressed the lap button, in other words, exact time the last lap was completed. <br><br> The second operation shows you the 'lap time' <img src="../images/digital lap readout.png" class="minor-display">,which is how long the lap actually took to complete, and also the lap number in the small rectangular box to the left of the lap time. Each time the lap button is pressed these two readouts are updated. Further to this update, the lap duration is saved behind the scenes (since the previous lap time disappears when a new lap time is displayed); previous laps can then be viewed later, by pressing the RECALL button.  For a more in-depth description on how to read the display, open the <a href="../reading the display/index.html">Reading The Display</a> page.</p>
+    </div>
+
+
+<div class="button-container">
+    <img src="../images/digital recall btn.png" alt="lap recall button"><p><span class="button-heading">Lap RECALL:</span> The RECALL button is initially greyed out and unavailable when the chronograph is first started.  It only becomes available once the LAP BUTTON has been clicked once.   The recall function cycles through all instances of lap updates. This can actually be done while the clock is still running, so the user can check previous lap times while still using the chronograph to record more laps; the previous laps can be viewed, and then when the lap button is pressed again, the record will be updated so that the new lap is included in the list of laps you can cycle through.  The RECALL function is also available if the chronograph is paused, and even after the chronograph has been reset to zero time, but prior to the pressing of the LAP RESET button.</p>
+    </div>
+
+                
+<div class="button-container">
+    <img src="../images/ditital lap reset btn.png" alt="clock hide icon"><p><span class="button-heading">Lap RESET:</span>The RESET button is initially greyed out and unavailable when the chronograph is first started. In order for the LAP RESET button to be useable, two conditions must exist.  Firstly, saved laps must exist, and secondly, the chronograph must be RESET to zero.  When these two conditions exist the lap reset button will flash with a light blue colour indicating to the user that the lap reset function is now available.  At this point (prior to pressing the button) you can still use the lap recall button to view all recorded laps. Clicking the lap reset button will then erase all lap data and cause both the lap button and lap recall buttons to become slightly greyed out and unclickable. In this state, the chronograph is ready to record a completely new event.</p>
+    </div>
+                <div id="return-to-chrono">
+                    <a href="C:\Users\Marvin\Desktop\Js Doc Web\marvinadbarrow.github.io\digital chronograph/index.html" class="return-chronograph" >Return to Chronograph</a>
+</div>
+
+
+
+
+
+</body>
+             <footer id="main-footer">
+                <div id="content-container">
+                    <div class="footer-column">
+<h3 class="footer-heading">My Pages</h3>
+<a href="https://www.linkedin.com/in/marvin-a-barrow/" class="footer-link" target="_blank"> <span id="my-page-link"> Linked</span> <i id="my-page" class="fa-brands fa-linkedin fa-2x"></i></a>
+
+<a href="https://www.linkedin.com/in/marvin-a-barrow/details/featured/" class="footer-link" target="_blank">Web Dev Portfolio</a>
+
+<a href="#" class="footer-link">About Me</a>
+</div>
+
+<div class="footer-column">
+    <h3 class="footer-heading">Digital Chronograph Help!</h3>
+
+    <a target="_blank" href="#" class="footer-link">Button Functions</a>
+
+    <a href="../reading the display/index.html" class="footer-link">Reading the DISPLAY</a>
+     </div>
+
+    <div class="footer-column">
+        <h3 class="footer-heading">Similar Projects</h3>
+        <a href="file:///C:/Users/Marvin/Desktop/Js%20Doc%20Web/projects%20in%20the%20making/Whole%20App%20Website/main%20page/chronographs/chronograph%20analogue%20no%20trig/images/other%20pages/final%20stopwatch/index.html" target="_blank" class="footer-link">Digital Stopwatch</a>
+
+
+        <a href="file:///C:/Users/Marvin/Desktop/Js%20Doc%20Web/projects%20in%20the%20making/Whole%20App%20Website/main%20page/chronographs/chronograph%20analogue%20no%20trig/images/other%20pages/analogue%20clock%20better%20look/index.html"  target="_blank" class="footer-link">Analogue clock</a>
+
+        
+        <a href="#" class="footer-link">Other Time Apps</a>
+        </div>
+    </div>
+        <div class="footer-bottom">
+            <span class="copyright">Marvin-a-Barrow &copy;2022 JavaScript Chronograph!</span>
+
+            <a href="https://www.linkedin.com/in/marvin-a-barrow/" target="_blank" class="footer-social"><i class="fa-brands fa-linkedin fa-2x"></i></a>
+        
+           
+            <a href="#" class="footer-social"><i class="fa-brands fa-youtube fa-2x"></i></a>
+
+        </div>
+                
+                
+                
+                <script src="script.js"></script>
+             </footer>
+                   
+    </html>

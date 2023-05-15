@@ -93,16 +93,13 @@ clock = setInterval(function() {
    
 
    // if actualLap contains a value, this will push time to lapTimes array and send array's length to lapTimeCalculate function, and then remove the value from actualLap array so the operation happens only once, each time the lap button is activated. 
-   if(actualLap.length > 0){lapTimes.push(time); console.log(lapTimes) ; let y = lapTimes.length;lapTimeCalculate(y); actualLap.pop()}
-    
-
-
-
-   time++; // decrement by one second each time
+   if(actualLap.length > 0){lapTimes.push(time); console.log(lapTimes) ; let y = lapTimes.length;lapTimeCalculate(y);
+     actualLap.pop()}
+    time++; // increment by one second each time
 
 
    hundredthSecs = time;
-   seconds = Math.floor(hundredthSecs/100)
+   seconds = Math.floor(hundredthSecs/100)// convert hundredths to seconds
       minutes = Math.floor(seconds/ 60) // converts seconds to minutes
     hours = Math.floor(minutes / 60)  // converts minutes to hours
  
@@ -162,12 +159,6 @@ sepElTwo.style.animation = "";
 }
 
 
-
-
-
-
-
-
 function lapTime(){
    if(startArray.length > 0){
 actualLap.push('lap request')
@@ -196,7 +187,7 @@ let lapObjAdjust = {
     split:Number(splitSmallEl.textContent) 
   }
 
-    lapRecords.push(lapObj) // pushes current time as string to display later
+    lapRecords.push(lapObj) // pushes current time as an object to display later
     console.log(lapObj)
     hourEnd.textContent = lapObj["hour"]
 minEnd.textContent = lapObj["minute"]
@@ -207,7 +198,6 @@ splitEnd.textContent = lapObj["splitsecond"]
 
 lapRecordsAdjust.push(lapObjAdjust) // pushes current time as integers for later use in calculating lap intervals
 }}
-
 
 
 function reset(){
@@ -242,7 +232,6 @@ if(lapSaveArray.length > 0){startArray.push('start');}
 
 } }
     
-
 
 
 const clearStylesReset = () =>{
@@ -306,7 +295,6 @@ const pause = () =>{
   // pauses counter
   if (startArray.length > 0){
      clearInterval(clock); // stops clock
-     clearInterval(clock2) // stops small clock
       pauseArray.push("pause")
       startArray.pop()
   
@@ -359,9 +347,9 @@ lapTimeConvert(lapDuration) //use this array to recall lap times
 }
 
 
-const lapTimeConvert = (y) =>{
+const lapTimeConvert = (lapDuration) =>{
 
-hundredthSecs = y; // the difference of most recent lap end time and lap end time prior to that - given in hudredths of a second
+hundredthSecs = lapDuration; // the difference of most recent lap end time and lap end time prior to that - given in hudredths of a second
 seconds = Math.floor(hundredthSecs/100)
    minutes = Math.floor(seconds/ 60) // converts seconds to minutes
  hours = Math.floor(minutes / 60)  // converts minutes to hours

@@ -1,0 +1,74 @@
+html{display: flex; flex-direction: column; height: 100%;}
+
+/* NON FUNCTIONAL AND NON CLOCK ELEMENTS */
+
+
+body{background-image: none;  min-height: 100vh;  }
+
+h1{text-align: center; font-size: 60px;color: black;text-shadow: 1px 2px 3px rgb(49, 217, 240); }
+
+
+
+.digital-readout{width: 300px; height: auto;}
+
+/* container sizing*/
+#content-container-2{
+min-height: 75%;
+border-style: solid;
+border-color: black;
+border-width: 2px;
+border-radius: 3%;
+margin: auto;
+
+}
+
+.dial-container{padding: 2rem;}
+img{height: 10vh;}
+p{font-size: 22px; display: inline; }
+
+/*headings for subdial explanations*/
+.dial-heading{font-size: 25px; font-weight: bold;}
+
+/* foooter styling  */
+footer{color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem;}
+
+
+/* footer content container*/
+#content-container{
+    display: flex; margin-bottom: 4rem;
+      width: 90%;   font-weight:bold; font-size:20px; 
+}
+
+/* style for link back to chronograph*/
+#return-to-chrono{width: fit-content; height: 25px; margin: auto; margin-bottom: 2rem;}
+
+.return-chronograph{font-size:25px ;}
+
+
+
+/* footer link contaners */
+.footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+
+
+/* link styles */
+footer a{color: white; text-decoration: none; line-height: 2rem;}
+footer a:hover{color: orange; }
+
+/* styles for social media icons*/
+.fa-youtube{color: red; ;}
+.fa-linkedin{color: #0073B1;}
+.fa-facebook{color:#0C87EF ;}
+
+.footer-social{font-size: 20px; margin-left: 2rem;}
+
+/* footer bottom */
+.footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+.footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+
+h3{text-decoration: underline;}
+
+#my-page{ color: white;}
+#my-page-link{ font-size: 27px;}
+
+
+
