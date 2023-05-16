@@ -12,8 +12,7 @@ let secEl = document.getElementById('sec')
 var dayNameIndex;
 const leapYears = 12 // leap years since 1970 (num of days to subtract)
 const hourSpring = 1// hour  for clocks forward
-const hourFall = -1// hour for clocks back
-let dstArr = [0]
+const hourFall = 0// hour for clocks back
 let acDateArr = [] // actual date array with year, month, day, min, sec
 let dayNameArr = ["sunday","monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
 let dayNameEl = document.getElementById("dayname") // for day name display
@@ -30,16 +29,11 @@ function log(){
     let cd = ctDay // abbrev for current day
 // for spring daylight saving hours
 let ctHour
-if((cd < 91 && (cd + 5) % 7 < 1
-) && cd > 83){
-     dstArr.unshift(hourSpring)}
-     if((cd < 305 && (cd + 5) % 7 < 1) && cd > 297){
-        dstArr.unshift(hourFall)
-     }
-    ctHour = hourNow - dayNow*24 + dstArr[0]
+
+    ctHour = hourNow - dayNow*24 + hourSpring
     let ctMinute = minuteNow - hourNow*60// calc for current minute
     let ctSecond = secondNow - minuteNow*60// calc for current second
-    
+
     var month;
     // determin current month from current day range
     if (  cd < 32 && cd > 0){ month ="jan"}
