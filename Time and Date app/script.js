@@ -14,7 +14,7 @@ const leapYears = 12 // leap years since 1970 (num of days to subtract)
 const hourSpring = 1// hour  for clocks forward
 const hourFall = 0// hour for clocks back
 let acDateArr = [] // actual date array with year, month, day, min, sec
-let dayNameArr = ["sunday","monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+let dayNameArr = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 let dayNameEl = document.getElementById("dayname") // for day name display
 function log(){
     acDateArr = []
@@ -103,57 +103,3 @@ else{secEl.textContent = acDateArr[5]}
 
 
 
-// use this go get seconds. Maybe have different time measures in each box and use the setTime functions to refresh once ever 1000 milliseconds to display seconds, 60k milliseconds to display minutes, 3600 milliseconds to display hours etc. 
-
-
-/*
-
-
-
-var clock;
-let time = 0;
-clock = setInterval(function() {
-time++; log();
-
-}, 1000)
-
-
-
-
-
-EXAMPLES OF CODES TO USE FOR TIMING
-
-
-
-yearEl.textContent = acDateArr[0]
-monthEl.textContent = acDateArr[1]
-hourEl.textContent = acDateArr[2]
-minEl.textContent = acDateArr[3]
-secEl.textContent = acDateArr[4]
-
-
-
-
-Date.prototype.setDate()
-Sets the day of the month for a specified date according to local time.
-
-Date.prototype.setFullYear()
-Sets the full year (e.g. 4 digits for 4-digit years) for a specified date according to local time.
-
-Date.prototype.setHours()
-Sets the hours for a specified date according to local time.
-
-Date.prototype.setMilliseconds()
-Sets the milliseconds for a specified date according to local time.
-
-Date.prototype.setMinutes()
-Sets the minutes for a specified date according to local time.
-
-Date.prototype.setMonth()
-Sets the month for a specified date according to local time.
-
-Date.prototype.setSeconds()
-Sets the seconds for a specified date according to local time.
-
-
-*/
