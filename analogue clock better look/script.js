@@ -23,11 +23,6 @@ volumeSlideEl.addEventListener("change", function(e) {
   tickAudio.volume = e.currentTarget.value / 100;
 }); // moving the slider will change the volume of the ticking up or down since 0 <= volume <= 100, which was set in the html element markup
 
-
-
-
-
-
 // below are the variables for adjusting the time to show current hours, minutes and seconds..
 var  secondNow; // seconds since 1,1,1970
 var  minuteNow;// minutes since 1,1,1970
@@ -92,8 +87,8 @@ applicationEl.addEventListener('mouseover', (e) =>{
 
 
 
-var fall = -1; // when clocks go back
-var spring = 1; // when clocks go forward
+var hourFall = 0; // when clocks go back
+var hourSpring = 1; // when clocks go forward
 
 var i = 6
 var j = 1/60 // this is a special calculation. We will change the hour hand but this amount value of degrees every second. After 10 seconds we will have traveled 1 degree, after 60, 6 degree, and therefore after 60 minutes (one hour), 6*60 degrees which is 360 degrees; and therefore, after one hour the hour hand will have travelled 60 degrees.  Since we're not interested in a 24 hour clock (we might add am and PM later) we need not worry about what happens at midnight.  If we add am/pm functionality, all we need to do is register read the hour from the ctHour variable and when it passes midnight indicate am, and then pm for when we pass midday.  
@@ -127,14 +122,9 @@ ctyear = yearNow - 30;
 ctWeek = Math.floor(ctDay/7)
 ctDay = dayNow - yearNow*365;
 let ctHour
-if((ctDay < 91 && (ctDay + 5) % 7 < 1
-) && ctDay > 83){
-     dstArr.unshift(hourSpring)}
-     if((ctDay < 305 && (ctDay + 5) % 7 < 1) && ctDay > 297){
-        dstArr.unshift(hourFall)
-     }
-    ctHour = hourNow - dayNow*24 + dstArr[0]
 
+    ctHour = hourNow - dayNow*24 + hourSpring
+console.log(ctHour)
 
 ctMinute = minuteNow - hourNow*60;
 ctSecond = secondNow - minuteNow*60;
