@@ -1,0 +1,130 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+           <link rel="stylesheet" type="text/css"
+                 href="style.css">
+
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                 <script src="https://kit.fontawesome.com/e4a7b9699c.js" crossorigin="anonymous"></script>
+            <title>Scientific Buttons</title>
+        </head>    
+
+ <body>
+
+    <h1 >Standard Buttons</h1>
+
+    <img src="../calculator buttons/button groups/standard group.png" class="minor-display" alt="">
+    
+    <div class="button-container">
+    <img src="../calculator buttons/trigonometric/sine.png" class="button-icon" alt=" button"><p><span class="button-heading">Sine function: </span>To use the sine function, first press 'Sin' then choose an angle (in degrees). In both the top and bottom displays, the word 'sin' accompanied by brackets will appear, with the angle you've chosen appearing inside the brackets. <br><br> Example: <img src="../example displays/sin example.png" class="example-img"> <br> Then press '=' to display the answer</p>
+    </div>
+    
+    <div class="button-container">
+    <img src="../calculator buttons/trigonometric/cosine.png" class="button-icon" alt=" button"><p><span class="button-heading">Cosine function: </span>To use the Cosine function, first press 'Cos' then choose an angle (in degrees). In both the top and bottom displays, word 'cos' accompanied by brackets will appear, with the angle you've chosen appearing inside the brackets. <br><br> Example: <img src="../example displays/cos example.png" class="example-img"> <br> Then press '=' to display the answer</p>
+    </div>
+    
+    <div class="button-container">
+    <img src="../calculator buttons/trigonometric/tangent.png" class="button-icon" alt=" button"><p><span class="button-heading">Tangent function: </span>To use the Tangent function, first press 'tan' then choose an angle (in degrees, and apart from 90 since tan(90) returns infinity or NaN). In both the top and bottom displays, word 'tan' accompanied by brackets will appear, with the angle you've chosen appearing inside the brackets. <br><br> Example: <img src="../example displays/tan example.png" class="example-img"> <br> Then press '=' to display the answer</p>>
+    </div>
+    
+    <div class="button-container">
+    <img src="../calculator buttons/log/logarithm.png" class="button-icon" alt=" button"><p><span class="button-heading">Logarithm function: </span>To use the logarithm function, first press 'log'.  On the large display, the word 'log' will appear with an open bracket. 
+        <br><br> Example: <img src="../example displays/log pre number.png" class="example-img"> <br>   
+        Then choose a positive number (note, you cannot take the log of a negative number), and a closing bracket will appear enclosing the number (in both displays); you can continue to type numbers since the increasing number size will stay within the brackets.<br><br> Example: <img src="../example displays/log post number.png" class="example-img"> <br>  When you've finished entering the number, press '=' to display the answer</p>
+    </div>
+    
+    <div class="button-container">
+    <img src="../calculator buttons/non-scientific/fraction convert.png" class="button-icon" alt=" button"><p><span class="button-heading">fraction to decimal / decimal to fraction: </span>This button is currently not in use</p>
+    </div>
+    
+    <div class="button-container">
+    <img src="../calculator buttons/combinatorics/n choose r.png" class="button-icon" alt=" button"><p><span class="button-heading">n Choose r function: </span>For the n choose r function, there is a three step process. First enter your 'n' number (let's say you choose '2'), then press the nCr key; In the small display, the number you typed and a large C will appear next to it; while in the large display, just the number appears <br><br> Example: <img src="../example displays/n choose r first number.png" class="example-img-large"> <br> ( order of operations '2 + nCr')<br><br>
+        
+    Next, enter the 'r' number (let's say you choose '1').  That number replace the original numberin the large display, and the small display will remain unaltered<br><br> Example:<img src="../example displays/n choose r last number.png" class="example-img-large"> <br><br>
+
+now press the '=' key and the answer will appear in the large display, and the spelled out calculation will appear in the upper dispaly (in  our case '2C1', i.e. 2 choose 1)<br><br> Example:<img src="../example displays/n choose r answer.png" class="example-img-large"> </p>
+    </div>
+    
+    <div class="button-container">
+    <img src="../calculator buttons/combinatorics/n factorial.png" class="button-icon" alt=" button"><p><span class="button-heading">N factorial: </span>To operate this function just simply enter a number, followed by the 'n!' key. the spelled out calculation will appear in the small display and your answer in the large display. <br><br> Example: <img src="../example displays/n factorial example.png" class="example-img-large"> <br></p>
+    </div>
+    
+    <div class="button-container">
+    <img src="../calculator buttons/non-scientific/PI.png" class="button-icon" alt=" button"><p><span class="button-heading">Pi constant: </span>Since PI is a constant, which is also a number, it is treated like any of the number keys, and can be used in non trigonometric calculations, i.e. calculations not involving angles.<br><br>
+    
+    <b>Issues with PI in trigonomic functions</b><br>
+    Since PI = 3.14 radians (to 2.d.p) and the trigonometric functions interpret the entered parameter as degrees rather than radians, using the PI button in a trigonometric function will give the wrong answer.  Since, for example, keying in 'sin + PI', which displays as 'sin(3.14....)' is using the value of PI as a constant rather than a radian value; PI is treated as 3.14degrees rather than 3.14 radians (i.e. approximately 180 deg). So that, instead of returning the sine of PI as sine of 180deg (which is 0) <br><br> Example: <img src="../example displays/sin 180 example.png" class="example-img-large"> <br><br>
+     you get the sine of PI as sine of 3.14deg (approximately 0.06) <br><br> Example: <img src="../example displays/sin pi example.png" class="example-img-large"> <br> which, I assume, the user isn't looking for.  So it is advisable for now to avoid using the PI button for trigonomic calculations if you wish to have 180degrees somewhere in your calculations.   I'll think about changing the parameter for the trigomomic functions to radians in a future iteration of the calculator. 
+    </p>
+    </div>
+    
+    <div class="button-container">
+    <img src="../calculator buttons/log/natural log.png" class="button-icon" alt=" button"><p><span class="button-heading">Natural Log function: </span>The natural log function is simply carried out by pressing the 'LN' button and followed by the number for which you want to take the natural log of, and then pressing the '=' button</p>
+    </div>
+    
+    <div class="button-container">
+    <img src="../calculator buttons/non-scientific/prime.png" class="button-icon" alt=" button"><p><span class="button-heading">Prime number checker: </span>To check whether a number is prime, first enter a number, and then press the 'Prime' button. If the number is prime, then in the smaller display the words 'Prime Number' will appear <br><br> Example: <img src="../example displays/prime number.png" class="example-img-large"> <br><br>
+    If the number is not prime there are two possible outcomes; either the number is an even number that is not two, or it is not even, but has has a factor pair that does not include the number '1' or the number you entered (i.e. has more than one factor pair). If the number is even then the upper display show the words 'muliple of 2' followed by 'NP' (meaning 'not prime') <br><br> Example: <img src="../example displays/prime not - multiple of 2.png" class="example-img-large"> <br><br>
+Otherwise, if the non-prime number is not even, then the upper display will show the letters 'NP' followed by the factor pair that rules out the number as prime, and the product of the factor pair <br><br> Example: <img src="../example displays/prime not - factor pair.png" class="example-img-large"> <br><br>
+</p>
+    </div>
+    
+    <div id="return-to-chrono">
+        <a href="../index.html" class="return-chronograph" >Return to calculator</a>
+    </div>
+
+
+</body>
+             <footer id="main-footer">
+                <div id="content-container">
+
+                    
+<div class="footer-column">
+<h3 class="footer-heading">My Pages</h3>
+<a href="https://www.linkedin.com/in/marvin-a-barrow/" class="footer-link" target="_blank"> <span id="my-page-link"> Linked</span> <i id="my-page" class="fa-brands fa-linkedin fa-2x"></i></a>
+
+<a href="https://www.linkedin.com/in/marvin-a-barrow/details/featured/" class="footer-link" target="_blank">Web Dev Portfolio</a>
+
+<a href="#" class="footer-link">About Me</a>
+</div>
+
+<div class="footer-column">
+<h3 class="footer-heading">Calculaltor buttons Help!</h3>
+
+<a href="./help_pages.html" target="_blank" class="footer-link">Button Functions<br><i class="fa-solid fa-calculator fa-2x"></i></a>
+</div>
+
+<div class="footer-column">
+<h3 class="footer-heading">Similar Projects</h3>
+<a href="https://marvinadbarrow.github.io/calc%20app%20regular/" target="_blank" class="footer-link">Simple Calculator</a>
+
+
+<a href="https://marvinadbarrow.github.io/New%20simple%20calc/"  target="_blank" class="footer-link">Random Calculator</a>
+
+
+<a href="https://marvinadbarrow.github.io/Quadratic%20Equation%20Generator%20(new)/" class="footer-link">Quadratic Generator</a>
+</div>
+
+    </div>
+
+        <div class="footer-bottom">
+            <span class="copyright">Marvin-a-Barrow &copy;2022 JavaScript Chronograph!</span>
+
+            <a href="https://www.linkedin.com/in/marvin-a-barrow/" target="_blank" class="footer-social"><i class="fa-brands fa-linkedin fa-2x"></i></a>
+        
+           
+            <a href="#" class="footer-social"><i class="fa-brands fa-youtube fa-2x"></i></a>
+
+        </div>
+                
+                
+                
+                <script src="script.js"></script>
+             </footer>
+                   
+    </html>

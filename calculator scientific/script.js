@@ -159,7 +159,7 @@ let length = opArr.length;
   if (length < 1){ // number is executed before an operation
 
     if(logarithmArr.length > 0){
-      ansEl.innerHTML = `log<sub style="font-size:30px;">${LHS}</sub>`
+      ansEl.innerHTML = `log<sub class="sub-class">${LHS}</sub>`
     }else{
       
    
@@ -187,27 +187,27 @@ break;
       break; 
 // X^(1/n) - nth root of x
 case "xpowreciprocal": 
-calcEl.innerHTML = `<sup>${RHS}</sup>&#8730;${LHS}`
+calcEl.innerHTML = `<sup class="sup-class">${RHS}</sup>&#8730;${LHS}`
 ansEl.textContent = RHS
 break;
     case "epowx":
-  calcEl.innerHTML = `e<sup>${RHS}</sup>`
+  calcEl.innerHTML = `e<sup  class="sup-class">${RHS}</sup>`
   ansEl.textContent = RHS
   break;
-  case "tenpowx":calcEl.innerHTML = `10<sup>${RHS}</sup>`
+  case "tenpowx":calcEl.innerHTML = `10<sup  class="sup-class">${RHS}</sup>`
   ansEl.textContent = RHS
     break;
 case"epownegx":
-calcEl.innerHTML = `e<sup>${-RHS}</sup>`
+calcEl.innerHTML = `e<sup  class="sup-class">${-RHS}</sup>`
 ansEl.textContent = -RHS
 break;
 
 case "xpowa":
-  calcEl.innerHTML = `${LHS}<sup>${RHS}</sup>`
+  calcEl.innerHTML = `${LHS}<sup class="sup-class">${RHS}</sup>`
   ansEl.textContent = RHS
   break;
 case"xpownega":
-calcEl.innerHTML = `${LHS}<sup>${-RHS}</sup>`
+calcEl.innerHTML = `${LHS}<sup class="sup-class">${-RHS}</sup>`
 ansEl.textContent = -RHS
 break;
 
@@ -226,15 +226,15 @@ break;
 case "natural-log":calcEl.innerHTML = `LN(${RHS})`
 ansEl.textContent = `LN(${RHS})`
 break;
-case "sin inverse":calcEl.innerHTML = `sin<sup>-1</sup>(${RHS})`
-ansEl.innerHTML = `sin<sup>-1</sup>(${RHS})`
+case "sin inverse":calcEl.innerHTML = `sin<sup class="sup-class">-1</sup>(${RHS})`
+ansEl.innerHTML = `sin<sup class="sup-class">-1</sup>(${RHS})`
 break;
-case "cos inverse":calcEl.innerHTML = `cos<sup>-1</sup>(${RHS})`
-ansEl.innerHTML = `cos<sup>-1</sup>(${RHS})`
+case "cos inverse":calcEl.innerHTML = `cos<sup class="sup-class">-1</sup>(${RHS})`
+ansEl.innerHTML = `cos<sup class="sup-class">-1</sup>(${RHS})`
 break;
-case "tan inverse":calcEl.innerHTML = `tan<sup>-1</sup>(${RHS})`
-ansEl.innerHTML = `tan<sup>-1</sup>(${RHS})`
-
+case "tan inverse":calcEl.innerHTML = `tan<sup class="sup-class">-1</sup>(${RHS})`
+ansEl.innerHTML = `tan<sup class="sup-class">-1</sup>(${RHS})`
+break;
 
 
 
@@ -397,7 +397,7 @@ console.log(opArr)
 
 
 const logaB = () =>{
-ansEl.innerHTML = 'log<sub>a</sub>'
+ansEl.innerHTML = 'log<sub >a</sub>'
 logarithmArr.unshift('logaB')
 
 }
@@ -481,7 +481,9 @@ case 'natural-log':
   ansEl.textContent = 'LN';
 break;
 default:
+  let LHS = parseFloat(inArr.join(''))
     opArr.unshift('xpowreciprocal')
+    calcEl.innerHTML =  `<sup class="sup-class">x</sup>&#8730;${LHS}`;
   }
 
  
@@ -616,7 +618,9 @@ const callPrimeCheck = (selected) =>{
     primeCheck()
 
   }else{
-    opArr.unshift("%")
+    opArr.unshift("%");
+    LHS = parseFloat(inArr.join(''));
+    calcEl.innerHTML = `${LHS}%`
   }
 
 }
@@ -684,11 +688,11 @@ inArr.push(parseFloat(calcArray[0]))
 const callTrigInverse = (selected) =>{
   console.log(selected)
   switch(selected){ // check ID, and push inverse to opArr and inverse symbol to display
-    case 'inverse-cos': ansEl.innerHTML = 'cos<sup>-1</sup>('; opArr.unshift('cos inverse')
+    case 'inverse-cos': ansEl.innerHTML = 'cos<sup class="sup-class">-1</sup>('; opArr.unshift('cos inverse')
     break;
-    case 'inverse-sin': ansEl.innerHTML = 'sin<sup>-1</sup>('; opArr.unshift('sin inverse')
+    case 'inverse-sin': ansEl.innerHTML = 'sin<sup class="sup-class">-1</sup>('; opArr.unshift('sin inverse')
     break;
-    case 'inverse-tan': ansEl.innerHTML = 'tan<sup>-1</sup>('; opArr.unshift('tan inverse')
+    case 'inverse-tan': ansEl.innerHTML = 'tan<sup class="sup-class">-1</sup>('; opArr.unshift('tan inverse')
     break;
   
     default: 
@@ -815,7 +819,7 @@ break;
     console.log(selected)
     switch(selected){
 case 'tenpowx':
-  ansEl.innerHTML = '10<sup style="font-size:30px;">x</sup>'; 
+  ansEl.innerHTML = '10<sup  class="sup-class">x</sup>'; 
   opArr.unshift('tenpowx')
   break;
   default:
@@ -848,19 +852,19 @@ const variableExponent = (selected) =>{
 case "xpowa":
 result = Math.pow(LHS,RHS)
 trueNumber = result.toFixed(5)
-calcEl.innerHTML = `${LHS}<sup>${RHS}</sup>`;
+calcEl.innerHTML = `${LHS}<sup class="sup-class">${RHS}</sup>`;
   break;
   // X^-a
 case "xpownega":
   result = Math.pow(LHS,-RHS);
   trueNumber = result.toFixed(5)
-  calcEl.innerHTML = `${LHS}<sup>${-RHS}</sup>`;
+  calcEl.innerHTML = `${LHS}<sup class="sup-class">${-RHS}</sup>`;
 break;
 // nth root of 'X' or X^(1/n)
 case "xpowreciprocal": 
 result = Math.pow(LHS, 1/RHS);
 trueNumber = result.toFixed(5)
-calcEl.innerHTML = `<sup>${RHS}</sup>&#8730;${LHS}`;
+calcEl.innerHTML = `<sup class="sup-class">${RHS}</sup>&#8730;${LHS}`;
       }
  calcArray.unshift(trueNumber)
  console.log(calcArray[0])
@@ -882,7 +886,7 @@ const callVariableExponent = (selected) =>{
 let result;
 let trueNumber;
 
-// fixed EXPONENT of X (or 'e') where only one varialbe, X or 'e', required
+// fixed EXPONENT of X (or 'e') where only one variable, X or 'e', required
 const  fixedExponent =(selected) =>{
   // try a switch statement again
 console.log(selected)
@@ -893,18 +897,18 @@ console.log(selected)
 // x^(1/3)
 case "xpowthird": console.log('cube root activated')
 calcArray.unshift(Math.pow(LHS, 1/3))
-calcEl.innerHTML = `<sup>3</sup>&#8730;${LHS}`
+calcEl.innerHTML = `<sup  class="sup-class">3</sup>&#8730;${LHS}`
 break;
       // x^3
 case "xpow3": 
 calcArray.unshift(Math.pow(LHS, 3))
-calcEl.innerHTML = LHS + "<sup>3</sup>" 
+calcEl.innerHTML = `${LHS}<sup  class="sup-class">3</sup>`
 break;
 
 // x^2
 case "xpow2": 
   calcArray.unshift(Math.pow(LHS, 2))
-  calcEl.innerHTML = LHS + "<sup>2</sup>" 
+  calcEl.innerHTML = `${LHS}<sup  class="sup-class">2</sup>` 
 break;
 
 // x^-1
@@ -916,7 +920,7 @@ break;
 // x^(1/2)
 case "xpowhalf":
   calcArray.unshift(Math.sqrt(LHS))
-  calcEl.innerHTML = `<sup>2</sup>&#8730;${LHS}`
+  calcEl.innerHTML = `&#8730;${LHS}`
 break;
 
 // including this here because it is essentially the same kind of operation - enter a number, hit the operation key and an answer immediately appears since only one variable is needed.       
@@ -1079,7 +1083,7 @@ else if(altSelected.includes('inverse-n-fact')){
 
 
 
-
+let LHS;
 // INPUT SWITCH STATEMENTS
 
 switch(selected){
@@ -1142,8 +1146,15 @@ case "log": callExponential(selected)
 break;
      // these require two numbers so maybe it's best to put them in their own categories
 case "xpowa":
+  console.log('scientific row 2:', selected)
+  LHS = inArr.join('');
+  calcEl.innerHTML = `${LHS}<sup class="sup-class">a</sup>`
+  callVariableExponent(selected)
+  break;
 case "xpownega":
     console.log('scientific row 2:', selected)
+    LHS = inArr.join('');
+    calcEl.innerHTML = `${LHS}<sup class="sup-class">-a</sup>`
     callVariableExponent(selected)
 break;
 
