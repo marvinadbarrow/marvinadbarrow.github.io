@@ -3,7 +3,7 @@ body{height: 100%; width: 100%; background-image: url('body image.png');}
 
 #application-container{ width:100%; height: 95%; background-color: rgba(242, 97, 215, 0); padding-top: 2%; padding-bottom: 4%;}
 
-#function-div{ position: relative; height: 40%; width: 60%; display: flex; flex-direction: row; justify-content: space-around; border-style: solid; border-width: 1px; border-radius: 7px; margin: auto; padding: 10px; padding-bottom: 2%; background-color: rgb(224, 224, 224);}
+#function-div{ position: relative; height: 40%; width: 90%; display: flex; flex-direction: row; justify-content: space-around; border-style: solid; border-width: 1px; border-radius: 7px; margin: auto; padding: 10px; padding-bottom: 2%; background-color: rgb(224, 224, 224);}
 
 /* (4) file chooser and original size getter, and displays original image size*/
 #pick-and-size{width: 210px; height: 180px;}
@@ -44,12 +44,11 @@ body{height: 100%; width: 100%; background-image: url('body image.png');}
 
 /* styling for selected size div and paragraph */
 #selected-image{font-size: 25px; font-weight: bold; border-radius: 3px; display: inline;font-size: 30px; margin-right: 20px;}
-#selected-size{ width: 260px; font-size: 40px; color: red; display: inline;  margin-right: 10px;}
+#selected-size{ width: 260px; font-size: 30px; color: red; display: inline;  margin-right: 10px;}
 
-#current-image-div{height: 7%; width: 70%; border-style: solid; border-width: 1px; border-radius: 6px;  margin: auto; background-color: rgb(239, 239, 239);}
-#current-image{ width: 260px; font-size: 30px;  margin: auto; color: black; display: inline;}
-#current-image-span{color: blue; font-weight: bold; font-size: 30px; display: inline;}
-#size-output{ height: 38px; display: inline; float: right;}
+
+#current-image{ width: fit-content; font-size: 30px;  margin: auto; color: black; display: inline;}
+
 #thumb-select{ width: 200px; height: 190px; border-style: none; border-width: 1px; border-radius: 7px; border-color: black; background-color: rgba(170, 170, 170, 0);}
 
 input[type="file"]::file-selector-button {
@@ -66,7 +65,14 @@ input[type="file"]::file-selector-button {
 
 
 
+#current-image-span{color: blue; font-weight: bold; font-size: 30px; display: inline; margin: 0px;}
 
+
+
+#current-image-div{height:fit-content; width: 90%; border-style: solid; border-width: 1px; border-radius: 6px;  margin: auto; background-color: rgb(18, 192, 245); position: relative; display: flex; flex-direction: row; justify-content: space-between;}
+
+
+#size-output{ height:fit-content; width: fit-content; background-color: yellow;}
 
 
 
