@@ -1,0 +1,174 @@
+
+ <!DOCTYPE html>
+ <html>
+     <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-
+
+        awesome/4.7.0/css/font-awesome.min.css">
+        
+                         <script src="https://kit.fontawesome.com/e4a7b9699c.js" crossorigin="anonymous"></script>
+
+
+       <link rel="stylesheet" type="text/css"
+             href="style.css">
+
+        <title> Image Size Calculator </title>
+     </head>
+
+    <body>
+        
+    
+<div id="application-container">
+
+<div id="function-div">
+
+<!-- (4) file chooser and image size get (of original file)--> 
+<div id="pick-and-size">
+               <input type="file" id="file-chooser">
+               <div id="thumb-select"></div>
+                
+     </div>
+    
+
+
+  <!--  new width box  -->
+<div id="check-size-container-1"  class="check-size-containers">
+
+
+<!-- (1) inputs for generating new sizes--> 
+<div id="input-container-1" class="input-container">
+<input type="text"  class="input-el"  id="new-width" placeholder="new width">
+</div>
+
+
+           <!--  (3) div for getting dimensions-->  
+           <div id="get-dimensions-1" class="dimension-btn-container">
+            <button id="landscape-size-btn" class="size-btn" onclick="newImgSizeLandscape()">Get height</button>
+            </div>
+    
+    
+    <!-- (2) this displays output from entered height or width-->
+    <div id="output-el-1" class="output-el-container">
+        <p id="output-width" class="output">W x H</p>
+     </div>
+    </div>
+
+
+
+
+  <!--  new width box  -->
+     <div id="check-size-container-2"  class="check-size-containers">
+ <!-- (1) inputs for generating new sizes--> 
+<div id="input-container-2" class="input-container">
+       <input type="text"  class="input-el"  id="new-height" placeholder="new height">
+    </div>
+    
+    
+               <!--  (3) div for getting dimensions-->  
+               <div id="get-dimensions-2" class="dimension-btn-container">
+                <button id="portrait-size-btn" class="size-btn" onclick="newImgSizePortrait()">Get width</button>
+                </div>
+        
+        
+        <!-- (2) this displays output from entered height or width-->
+        <div id="output-el-2" class="output-el-container">
+         <p id="output-height" class="output
+">W x H</p>
+        </div>   
+    </div>
+
+
+
+
+</div>
+   
+<div id="current-image-div">
+    <p id="current-image-span"> Selected Image:</p>
+    <p  id="current-image"></p>
+
+
+<div id="size-output">
+      <p id="selected-image"> size:</p>
+    <p id="selected-size" ></p>
+</div>
+
+
+</div>
+
+
+
+
+<!--  (6) div containing uploaded image and size output divs--> 
+<div id="chosen-file-container">
+<!--  (6) div containing uploaded image--> 
+    <div id="upload-container">
+                    <div id="uploaded-pic" class="uploaded-class"></div>
+    </div>
+
+</div>
+
+</div>
+<script src="scriptb.js"></script>
+</body>
+
+
+    <footer id="main-footer">
+        <div id="content-container">
+            <div class="footer-column">
+<h3 class="footer-heading">My Pages</h3>
+<a href="https://www.linkedin.com/in/marvin-a-barrow/" class="footer-link" target="_blank"> <span id="my-page-link"> Linked</span> <i id="my-page" class="fa-brands fa-linkedin fa-2x"></i></a>
+
+<a href="https://www.linkedin.com/in/marvin-a-barrow/details/featured/" class="footer-link" target="_blank">LinkedIn Dev Portfolio <i class="fa-solid fa-code" id="dev-icon"></i></a>
+
+<a href="#" class="footer-link">About Me</a>
+</div>
+
+<div class="footer-column">
+<h3 class="footer-heading">Image App Help!</h3>
+
+
+<a href="#" target="_blank" class="footer-link">USER guide</a>
+
+
+
+
+
+</div>
+
+
+
+
+<div class="footer-column">
+<h3 class="footer-heading">Related Projects</h3>
+
+
+<a href="file:///C:/Users/Marvin/Desktop/Js%20Doc%20Web/projects%20in%20the%20making/Whole%20App%20Website/main%20page/image%20apps/slideshow%20gallery/Index.html" target="_blank" class="footer-link">Slideshow Image Gallery</a>
+
+
+</div>
+</div>
+
+
+<div class="footer-bottom">
+    <span class="copyright">Marvin-a-Barrow &copy;2022 JavaScript Chronograph!</span>
+
+    <a href="https://www.linkedin.com/in/marvin-a-barrow/" target="_blank" class="footer-social"><i class="fa-brands fa-linkedin fa-2x"></i></a>
+
+   
+    <a href="#" class="footer-social"><i class="fa-brands fa-youtube fa-2x"></i></a>
+
+</div>
+        
+        
+        
+  
+     </footer>
+
+
+
+

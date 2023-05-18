@@ -1,0 +1,133 @@
+body{height: 100%; width: 100%; background-image: url('body image.png');}
+
+
+#application-container{ width:100%; height: 95%; background-color: rgba(242, 97, 215, 0); padding-top: 2%; padding-bottom: 4%;}
+
+#function-div{ position: relative; height: 40%; width: 60%; display: flex; flex-direction: row; justify-content: space-around; border-style: solid; border-width: 1px; border-radius: 7px; margin: auto; padding: 10px; padding-bottom: 2%; background-color: rgb(224, 224, 224);}
+
+/* (4) file chooser and original size getter, and displays original image size*/
+#pick-and-size{width: 210px; height: 180px;}
+#file-chooser{height: 50px; font-size: 20px; font-weight: bold;}
+
+
+
+/* (1) input elements for numbers you need for new dimensions  */
+.input-container{width: 90%; height: fit-content;}
+
+.input-el{position: relative; width:90%; height:fit-content; margin-bottom: 10px; border-radius: 3px; font-size: 20px; text-transform: capitalize; display: block;}
+
+
+
+.check-size-containers{position: relative; height: 100%; width: 20%; background-color: rgb(144, 146, 142);  padding: 1%; border-radius: 10px; }
+/* (3) buttons for getting new dimensions  */
+.dimension-btn-container{width: fit-content; height: fit-content; padding: 2px; margin-top: 50px; margin-bottom: 30px; background-color: rgb(255, 255, 255);  border-radius: 3px;}
+
+.size-btn{position: relative; width: fit-content; height: fit-content; background-color: rgb(222, 218, 234);border-radius: 3px; font-size: 25px; padding: 10px;}
+/* (2) container div for new image dimensions display  */
+
+.output-el-container{height: fit-content; width: fit-content; padding: 2px; background-color: rgb(255, 255, 255); padding-top: 0px; padding-bottom: 0px; border-radius: 5px;}
+
+.output{position: relative; width: 90%; padding: 5px; border-style: solid; border-color: black; border-radius: 3px; font-size:25px; border-width: 2px;}
+
+/* (6) container for uploaded image  */
+#uploaded-pic{width: 300px; height: fit-content; margin: auto; border-style: none; margin-top: 15px; display: flex; flex-direction: row; }
+#upload-container{max-width: 90%;  height: fit-content; }
+
+#chosen-file-container{margin: auto;  max-width: 90%; height: fit-content; display: flex; flex-direction: row; margin-top: 1%;  border-style: solid; border-color: black;border-radius: 10px; border-width: 1px; background-color: rgba(162, 149, 175, 0.473);}
+
+
+
+
+#output-size-container{ width: 210px; height: 300px;  border-style: solid; border-color: black;border-radius: 4px; border-width: 1px; margin-right: 10px;  }
+/* remember that a great way to prevent characters jumping into the wrong line, you can limit para width by number of characters */
+#output-size{margin: 15px 0px -20px 15px; font-size: 30px; width: 200px;}
+
+/* styling for selected size div and paragraph */
+#selected-image{font-size: 25px; font-weight: bold; border-radius: 3px; display: inline;font-size: 30px; margin-right: 20px;}
+#selected-size{ width: 260px; font-size: 40px; color: red; display: inline;  margin-right: 10px;}
+
+#current-image-div{height: 7%; width: 70%; border-style: solid; border-width: 1px; border-radius: 6px;  margin: auto; background-color: rgb(239, 239, 239);}
+#current-image{ width: 260px; font-size: 30px;  margin: auto; color: black; display: inline;}
+#current-image-span{color: blue; font-weight: bold; font-size: 30px; display: inline;}
+#size-output{ height: 38px; display: inline; float: right;}
+#thumb-select{ width: 200px; height: 190px; border-style: none; border-width: 1px; border-radius: 7px; border-color: black; background-color: rgba(170, 170, 170, 0);}
+
+input[type="file"]::file-selector-button {
+  border: 2px solid #ffffff;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  background-color: rgb(240, 23, 23);
+  border-radius: 5px;
+  transition: 1s;
+  font-display: hidden;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* foooter styling  */
+footer{display: block; color: white; background-color: rgb(43, 41, 41); padding: 4rem 2rem;}
+
+
+/* footer content container*/
+#content-container{
+    display: flex; margin-bottom: 4rem;
+      width: 90%;   font-weight:bold; font-size:20px; 
+}
+
+/* footer link contaners */
+.footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+
+
+/* link styles */
+footer a{color: white; text-decoration: none; line-height: 2rem;}
+footer a:hover{color: orange; }
+
+/* styles for social media icons*/
+.fa-youtube{color: red; ;}
+.fa-linkedin{color: #0073B1;}
+.fa-facebook{color:#0C87EF ;}
+
+.footer-social{font-size: 20px; margin-left: 2rem;}
+
+/* footer bottom */
+.footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 3rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+.footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+
+h3{text-decoration: underline;}
+
+#my-page{ color: white;}
+#my-page-link{ font-size: 27px;}
+
+/* styling for dev icon*/
+#dev-icon{color: rgb(84, 243, 243);}
+
