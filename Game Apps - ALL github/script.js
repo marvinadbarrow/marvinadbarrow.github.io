@@ -13,14 +13,14 @@ let snakeEl = document.getElementById('game-8-thumbnail')
 let gameElementsArr = [blackjackOriginalEl, blackjackNewEl, memoryEl, solitaireEl, fifteenPuzzleEl, tetrisDesktopEl, tetrisMobileEl, snakeEl]
 
 let gifAddressArr = [
-    './games thumbnails/vids for GIF conversion/blackjack original.gif',
-    './games thumbnails/vids for GIF conversion/blackjack revamp.gif',
-    './games thumbnails/vids for GIF conversion/memory.gif',
-    './games thumbnails/vids for GIF conversion/solitaire.gif',
-    './games thumbnails/vids for GIF conversion/puzzle.gif',
-    './games thumbnails/vids for GIF conversion/tetris desktop.gif',
-    './games thumbnails/vids for GIF conversion/tetris mobile.gif',
-    './games thumbnails/vids for GIF conversion/snake.gif'
+    './blackjack original.gif',
+    './blackjack revamp.gif',
+    './memory.gif',
+    './solitaire.gif',
+    './puzzle.gif',
+    './tetris desktop.gif',
+    './tetris mobile.gif',
+    './snake.gif'
 ]
 
 
