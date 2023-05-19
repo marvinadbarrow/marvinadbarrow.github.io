@@ -17,10 +17,10 @@ let gifAddressArr = [
 
 
 let imageAddressArr = [
-    './thumbnails math apps/calculator-random b.png',
-    './thumbnails math apps/calculator-simple b.png',
-    './thumbnails math apps/quadratic generator.png',
-    './thumbnails math apps/thumbnail scientific calculator cropped.png',
+    './calculator-random b.png',
+    './calculator-simple b.png',
+    './quadratic generator.png',
+    './thumbnail scientific calculator cropped.png',
    
 ]
 
