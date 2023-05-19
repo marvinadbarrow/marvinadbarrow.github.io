@@ -35,7 +35,6 @@ var dimentionsElArr = [widthEl, heightEl]
 dimentionsElArr.forEach(element =>{
 element.addEventListener('click',function(){
   element.value = ''
-  element.placeholder = ''
 })
 })
 
@@ -54,17 +53,11 @@ var count = document.getElementById("uploaded-pic") // we'll manipulate this div
 
 
 const clearInputs = (target) =>{
-
-  dimentionsElArr.forEach(element =>{
-    element.addEventListener('click',function(){
-      element.placeholder = ''
-      element.value = ''
-    })
-    })
-
-  widthEl.textContent = '';
-  heightEl.textContent = '';
-  console.log(widthEl.placeholder, heightEl.placeholder)
+console.log(target)
+  widthEl.value = '';
+  heightEl.value = '';
+  document.getElementById('output-width').textContent =  'W x H';
+  document.getElementById('output-height').textContent =  'W x H';
 }
 
 
@@ -72,8 +65,10 @@ const clearInputs = (target) =>{
   inputImage.addEventListener('change', function (e) {
 
     // clear input fields and put placeholder back
-    widthEl.placeholder = 'New Width';
-    heightEl.placeholder = 'New Height';
+    widthEl.value = '';
+    heightEl.value = '';
+    document.getElementById('output-width').textContent =  'W x H';
+    document.getElementById('output-height').textContent =  'W x H';
     // this prevents more than four images being loaded. (I've also added an alert! method to warn the user)
     if(fullArray.length < 4){ fullArray.push("img"); 
          
