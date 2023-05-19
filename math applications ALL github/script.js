@@ -17,8 +17,8 @@ let gifAddressArr = [
 
 
 let imageAddressArr = [
-    './calculator-random b.png',
-    './calculator-simple b.png',
+    './calculator-random.png',
+    './calculator-simple.png',
     './quadratic generator.png',
     './thumbnail scientific calculator cropped.png',
    
