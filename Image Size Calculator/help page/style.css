@@ -22,8 +22,9 @@ margin: auto;
 
 }
 
-.button-container{padding: 2rem;}
-img{height: 7vh;}
+.guide-steps-container{padding: 2rem; position: relative;}
+.guide-img-small{width: 20%;}
+.guide-img{width: 50%;}
 p{font-size: 22px; display: inline; }
 
 /*headings for subdial explanations*/
