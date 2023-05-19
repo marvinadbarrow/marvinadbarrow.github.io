@@ -1,4 +1,4 @@
-body{height: 100%; width: 100%; background-image: url('body image.png');}
+body{height: 100%; width: 100%; background-image: url('./images/body\ image.png');}
 
 
 #application-container{ width:100%; height: 95%; background-color: rgba(242, 97, 215, 0); padding-top: 2%; padding-bottom: 4%;}
@@ -29,13 +29,12 @@ body{height: 100%; width: 100%; background-image: url('body image.png');}
 
 .output{position: relative; width: 90%; padding: 5px; border-style: solid; border-color: black; border-radius: 3px; font-size:25px; border-width: 2px;}
 
+
+
+#chosen-file-container{position:relative; margin: auto;  width: 90%; height: fit-content; display: flex; flex-direction: row; flex-wrap: wrap; margin-top: 1%;  border-style: solid; border-color: black;border-radius: 10px; border-width: 1px; background-color: rgba(162, 149, 175, 0.473);}
+
 /* (6) container for uploaded image  */
-#uploaded-pic{width: 300px; height: fit-content; margin: auto; border-style: none; margin-top: 15px; display: flex; flex-direction: row; }
-#upload-container{max-width: 90%;  height: fit-content; }
-
-#chosen-file-container{margin: auto;  max-width: 90%; height: fit-content; display: flex; flex-direction: row; margin-top: 1%;  border-style: solid; border-color: black;border-radius: 10px; border-width: 1px; background-color: rgba(162, 149, 175, 0.473);}
-
-
+#uploaded-pic{width: 100%; height: fit-content; margin: auto; border-style: none; margin-top: 15px; display: flex; flex-direction: row; flex-wrap: wrap;}
 
 
 #output-size-container{ width: 210px; height: 300px;  border-style: solid; border-color: black;border-radius: 4px; border-width: 1px; margin-right: 10px;  }
@@ -69,7 +68,7 @@ input[type="file"]::file-selector-button {
 
 
 
-#current-image-div{height:fit-content; width: 90%; border-style: solid; border-width: 1px; border-radius: 6px;  margin: auto; background-color: rgb(18, 192, 245); position: relative; display: flex; flex-direction: row; justify-content: space-between;}
+#current-image-div{height:fit-content; width: 90%; border-style: solid; border-width: 1px; border-radius: 6px;  margin: auto; background-color: rgb(18, 192, 245); position: relative; display: flex; flex-direction: row; justify-content: space-between; margin-top: 20px;}
 
 
 #size-output{ height:fit-content; width: fit-content; background-color: yellow;}
