@@ -27,16 +27,17 @@ var nodeThree;
 var widthEl = document.getElementById('new-width')
 var heightEl = document.getElementById('new-height')
 
+
 // array containing input element
 var dimentionsElArr = [widthEl, heightEl]
 
 // for each array element in dimensions array (height and width input) add event listener to clear associated placeholder (or any previously inputted value) when input text area is clicked
 dimentionsElArr.forEach(element =>{
 element.addEventListener('click',function(){
-  element.placeholder = ''
   element.value = ''
-
-})})
+  element.placeholder = 'test'
+})
+})
 
 
 
@@ -52,12 +53,27 @@ var count = document.getElementById("uploaded-pic") // we'll manipulate this div
  // we'll see if we can get a nodelist from this and have access to the nodelist elements via the 'element[i] method. 
 
 
+const clearInputs = (target) =>{
 
+  dimentionsElArr.forEach(element =>{
+    element.addEventListener('click',function(){
+      element.placeholder = ''
+      element.value = ''
+    })
+    })
+
+  widthEl.textContent = '';
+  heightEl.textContent = '';
+  console.log(widthEl.placeholder, heightEl.placeholder)
+}
 
 
   // FUNCTIONS FOR LOADEDING CHOSEN FILES AND CLICKED IMAGES
   inputImage.addEventListener('change', function (e) {
 
+    // clear input fields and put placeholder back
+    widthEl.placeholder = 'New Width';
+    heightEl.placeholder = 'New Height';
     // this prevents more than four images being loaded. (I've also added an alert! method to warn the user)
     if(fullArray.length < 4){ fullArray.push("img"); 
          
@@ -69,31 +85,25 @@ img.classList.add("img-load") // given image a class
 uploadEl.appendChild(img) // image appended to div
 img.style.cssText = "height:200px; margin: 10px 0px 10px 10px; border-radius: 4px;"
 var count2  = document.getElementsByClassName("img-load")
-console.log(count2)
+
 
 
 let newId = inputImage.files[0]["name"]// we extract file name from the image  (which is an object)
 LastKid = count.lastChild;
 LastKid.setAttribute('id', newId)
-console.log(count) // derived from 'id' this logs a 'div' containing html elements with attributes
-console.log(count2[0])// derived from className, this logs a ;Nodelist' of the div; the elements inside the div are indexed and each indexed element contains everything there is to know about the element, from id and class to image size, dimensions, date modified etc.  You can then access the elements with the array method, i.e. for the above use count2[i] for some index 'i' -  we should now be able to push this to the get size function and maybe use it 'there' 
-
-console.log(count.childNodes) // we probably don't need this one ----- 
-// OK, this was a BIG surprise. By giving the new 'id' to the last child, each new child takes the name of the current image name.  I suppose that's because the 'last child' is the last child to be added so this process is working. 
-
-
 
 // now lets use a for loop to see if we can recall the childnodes from count.. If we can pull out the individual ones, maybe we can manipulate them. 
 // console.log(count.child[0]) doesn't work - you need first child, last child or nth child. They're indexed so I'm surprised you can't access them using an array method; OUCH I think we would have to re-write this  because I've used queryselector(id) whereas I think it's necessary to use a 'class' and access it using 
 
 // now we add an event listener to each image do define what happens when we click (WORKS)
 img.addEventListener('click', (e) =>{
-    const actualWidth = img["naturalWidth"];
-  const actualHeight = img["naturalHeight"];
-  console.log(img) // this console logs the currently clicked image (including the images 'id')
-console.log(img.id)
-currentImagePara.textContent = " " +  img.id;
 
+  clearInputs(e.target)
+
+    const actualWidth = img["naturalWidth"]; // assign image width a variable
+  const actualHeight = img["naturalHeight"]; // assing image height a variable
+currentImagePara.textContent = " " +  img.id; // display's name of currently clicked image
+    // clear input fields and put placeholder back
 
 // ok, GREAT; this line below removes the child from the div where we uploaded the thumb image which belongs to the image size calculate - I got confused with the parameter for remove child - you need to include the element so element.removeChild(element.childposition) even when the element is the same. 
 if(imageThumb.firstChild){ console.log('first child is'); imageThumb.removeChild(imageThumb.firstChild); console.log('first child removed')}
@@ -113,13 +123,10 @@ reader.readAsDataURL(inputImage.files[0]);
 
 
 
+
 // GET IMAGE SIZE function
 const getImageSize = (getWidth, getHeight, img, nodelist) =>{
   // these clear the array ready to push the next width/height values to positions 0 and 1 which will be read for the final display.
-
-
-  console.log(nodelist)// just to make sure the nodelist 'count2' is reading correctly when it gets to this function. 
- 
 
 // NOTE*: nodelist[0].id) give the 'id' of the image in at that index; AND, nodelist[0].style.opacity = "0" actually styles the image at that position; so we could either style directly, or use the id's and then style.  Maybe it's not good practice to style without using the id.  
 
@@ -204,11 +211,10 @@ clonedImage.setAttribute('id', "first-id") // give it an 'id'
 clonedImage.classList.remove('img-load') // delete its class - because img-load is for the 'choose-file' images - this image stands on its own
 clonedImage.classList.add('img-load-rename') // create new class
 clonedImage.style.cssText = "max-width:200px; max-height:190px;" // set display width/height
-console.log(clonedImage.id) // check for id
+
 imageThumb.appendChild(clonedImage) // append to 'selected image' display thumbnail div
-//console.log(imageThumb.firstChild)
 imageThumb.style.borderStyle = "none" // so border only appears when no thumbnail is present
-console.log(imageThumb)
+
 
 
 

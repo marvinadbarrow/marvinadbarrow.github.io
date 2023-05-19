@@ -13,11 +13,11 @@ let chronographAppSixEl = document.getElementById('app-6-thumbnail')
 let chronographElementsArr = [chronographAppOneEl, chronographAppTwoEl, chronographAppThreeEl, chronographAppFourEl, chronographAppFiveEl]
 
 let gifAddressArr = [
-    './chronographs thumbnails/vids for GIF conversion/stopwatch basic.gif',
-    './chronographs thumbnails/vids for GIF conversion/stopwatch laps.gif',
-    './chronographs thumbnails/vids for GIF conversion/stopwatch full.gif',
-    './chronographs thumbnails/vids for GIF conversion/chronograph analogue.gif',
-    './chronographs thumbnails/vids for GIF conversion/chronograph digital.gif'
+    './stopwatch basic.gif',
+    './stopwatch laps.gif',
+    './stopwatch full.gif',
+    './chronograph analogue.gif',
+    './chronograph digital.gif'
   ]
 
 
