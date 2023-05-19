@@ -13,20 +13,20 @@ let chronographAppSixEl = document.getElementById('app-6-thumbnail')
 let chronographElementsArr = [chronographAppOneEl, chronographAppTwoEl, chronographAppThreeEl, chronographAppFourEl, chronographAppFiveEl]
 
 let gifAddressArr = [
-    './\chronographs thumbnails/vids for GIF conversion/stopwatch basic.gif',
-    './\chronographs thumbnails/vids for GIF conversion/stopwatch laps.gif',
-    './\chronographs thumbnails/vids for GIF conversion/stopwatch full.gif',
-    './\chronographs thumbnails/vids for GIF conversion/chronograph analogue.gif',
-    './\chronographs thumbnails/vids for GIF conversion/chronograph digital.gif'
+    './chronographs thumbnails/vids for GIF conversion/stopwatch basic.gif',
+    './chronographs thumbnails/vids for GIF conversion/stopwatch laps.gif',
+    './chronographs thumbnails/vids for GIF conversion/stopwatch full.gif',
+    './chronographs thumbnails/vids for GIF conversion/chronograph analogue.gif',
+    './chronographs thumbnails/vids for GIF conversion/chronograph digital.gif'
   ]
 
 
 let imageAddressArr = [
-    './\chronographs thumbnails/basic stopwatch.png',
-    './\chronographs thumbnails/basic stopwatch - laps.png',
-    './\chronographs thumbnails/full stopwatch.png',
-    './\chronographs thumbnails/chronograph analogue.png',
-    './\chronographs thumbnails/chronograph digital responsive.png'
+    './chronographs thumbnails/basic stopwatch.png',
+    './chronographs thumbnails/basic stopwatch - laps.png',
+    './chronographs thumbnails/full stopwatch.png',
+    './chronographs thumbnails/chronograph analogue.png',
+    './chronographs thumbnails/chronograph digital responsive.png'
 ]
 
 chronographElementsArr.forEach(element =>{
