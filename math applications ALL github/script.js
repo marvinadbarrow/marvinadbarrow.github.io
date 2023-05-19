@@ -8,10 +8,10 @@ let mathAppFourEl = document.getElementById('app-4-thumbnail')
 let mathElementsArr = [mathAppOneEl, mathAppTwoEl, mathAppThreeEl, mathAppFourEl]
 
 let gifAddressArr = [
-    './thumbnails math apps/vids for GIF conversion/calculator random.gif',
-    './thumbnails math apps/vids for GIF conversion/calculator simple.gif',
-    './thumbnails math apps/vids for GIF conversion/quadratic generator.gif',
-    './thumbnails math apps/vids for GIF conversion/calculator scientific.gif',
+    './calculator random.gif',
+    './calculator simple.gif',
+    './quadratic generator.gif',
+    './calculator scientific.gif',
 
   ]
 
