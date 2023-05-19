@@ -35,7 +35,7 @@ var dimentionsElArr = [widthEl, heightEl]
 dimentionsElArr.forEach(element =>{
 element.addEventListener('click',function(){
   element.value = ''
-  element.placeholder = 'test'
+  element.placeholder = ''
 })
 })
 
