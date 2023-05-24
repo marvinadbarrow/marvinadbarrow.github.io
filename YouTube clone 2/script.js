@@ -1,6 +1,6 @@
 
 let micSearchAudio = new Audio('mic alert.mp3')
-
+import { myUploadsObj } from "./channel_uploads.js"; 
 // imports for notification modal elements
 import { appendNotifictions } from "./notifications_class.js" // function to populate  notifications
 import NotificationDetails from "./notifications_class.js"//notifications constructor
@@ -215,12 +215,78 @@ $('#send-btn').hover( function(){
     $('#send-btn-blob').toggle()
 })
 
+// since this refers to teh current date it only needs to be called once so can be outside of the forEach loop. 
+let date = new Date()
+let year = date.getFullYear();
+let month = date.getUTCMonth() + 1;
+let day = date.getUTCDate()
+let hour = (date.getUTCHours()+1)%24; 
+let mins = date.getUTCMinutes();
 
 
-//
-
-// my channel id
-let youtubeId = 'UCpCdAp4bI9IPGAFa_jIW0XA'
-let key = 'AIzaSyAC3lYXGeYIxev1b07LLBn5s0HCzEb2UWw'
 
 
+// this is the object containing all video items
+let items = myUploadsObj.myUploads.items
+items.forEach(video =>{
+let  snippet = video.snippet;
+let title = snippet.title;
+let channel = snippet.channelTitle;
+let videoId = snippet.resourceId.videoId;
+let videoUrl = `https://www.youtube.com/watch?v=${videoId}`
+let thumbnails = snippet.thumbnails; 
+let defaultThumbnail = thumbnails.standard.url;
+let channelPage = `https://www.youtube.com/channel/${snippet.videoOwnerChannelId}`
+
+
+// this goes into the foreach loop  since each video's upload date needs to be evaluated to compare it to current date
+let published = new Date(snippet.publishedAt.slice(0, -1)); // date format
+let uploadYear =  published.getFullYear();
+let uploadMonth =  published.getMonth();
+let uploadDayDate =  published.getDate();
+let uploadHour = published.getHours();
+let uploadMins = published.getMinutes();
+
+// this needs to be inside the forEach loop because it evaluates the upload date parameter for each video object
+let yearCalc = year - uploadYear;
+let monthCalc = month - uploadMonth;
+let dayCalc = day - uploadDayDate;
+let hourCalc = hour - uploadHour;
+let minsCalc = uploadMins;
+let age;
+
+// code for rending age, NEEDS TO BE INSIDE FOREACH to inspect each video
+if(yearCalc > 0){if(yearCalc > 1){age = `${yearCalc} years ago`}else{age = `${yearCalc} year ago`}}
+else if(monthCalc > 0){if(monthCalc > 1){age = `${monthCalc} months ago`}else{age = `${monthCalc} month ago`}}
+else if(dayCalc > 0){if(dayCalc > 1){age = `${dayCalc} days ago`}else{age = `${dayCalc} day ago`}}
+else if(hourCalc > 0){if(hourCalc > 1){age = `${hourCalc} hours ago`}else{age = `${hourCalc} hour ago`}}
+else if(minsCalc > 0){if(minsCalc > 1){age = `${minsCalc} mins ago`}else{age = `${minsCalc} mins ago`}}
+
+// object for each video
+let videoObject = {
+    "URL": videoUrl,
+    "thumbnail": defaultThumbnail,
+    "video_alt": title,
+    "duration": "00:20",
+    "channel_home_link": channelPage,
+    "anchor_id": channel,
+    "logo_address": "./my logo small.png",
+    "logo_id": channel,
+    "channel_logo_alt": title,
+    "channel_alt": title,
+    "channel_name": channel, 
+    "views": "100 views",
+    "vid_age": `&#183 ${age}`,    
+    }
+   
+console.log(videoObject)
+let newObject = new VideoDetails(videoObject.URL, videoObject.thumbnail, videoObject.video_alt, videoObject.duration, videoObject.channel_home_link, videoObject.anchor_id, videoObject.logo_address, videoObject.logo_id, videoObject.channel_logo_alt, videoObject.channel_alt, videoObject.channel_name, videoObject.views, videoObject.vid_age)
+  appendVideoDetails(newObject)
+
+
+})
+
+let videoThumbnailEl = document.querySelectorAll('thumbnail-video');
+videoThumbnailEl.forEach(video =>{
+    video.style.cssText = "width: 96%; border-radius: 12px; margin-left: 2%; margin-top: 2%;"
+})
