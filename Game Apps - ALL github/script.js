@@ -39,10 +39,7 @@ let mins = date.getUTCMinutes();
 // function for rendering game age to 'age' element in stats section of each thumbnail container
 const gameAge = (gameDates) =>{
  gameDates.forEach(game =>{
-    console.log(game, gamesCreatedObj[`${game}`])
- 
-
-// published date variable below takes the created date for each game and then extracts time measures from year down to minutes
+ // published date variable below takes the created date for each game and then extracts time measures from year down to minutes
 
 let published = new Date(gamesCreatedObj[`${game}`][0]); // date format
 let uploadYear =  published.getFullYear();
@@ -67,7 +64,7 @@ else if(dayCalc > 0){if(dayCalc > 1){age = `${dayCalc} days ago`}else{age = `${d
 else if(hourCalc > 0){if(hourCalc > 1){age = `${hourCalc} hours ago`}else{age = `${hourCalc} hour ago`}}
 else if(minsCalc > 0){if(minsCalc > 1){age = `${minsCalc} mins ago`}else{age = `${minsCalc} mins ago`}}
 
-console.log(age)
+
 gamesCreatedObj[`${game}`][1].textContent = age;
 
 
