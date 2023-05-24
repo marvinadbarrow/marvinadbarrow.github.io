@@ -56,9 +56,36 @@ let hourCalc = hour - uploadHour;
 let minsCalc = uploadMins;
 let age; // age value will be assigned this variable via a switch statement.
 
-
+console.log(monthCalc)
 // code for rending age, NEEDS TO BE INSIDE FOREACH to inspect each video
-if(yearCalc > 0){if(yearCalc > 1){age = `${yearCalc} years ago`}else{age = `${yearCalc} year ago`}}
+if(yearCalc > 0){if(yearCalc > 1){age = `${yearCalc} years ago`}else{
+
+    // if yearCalc > 0 but less than 1. 
+// NOTE* if, for yearCalc > 0, the difference between current and created month is less than 12, then month calc will be negative, meaning that, relative to the year in which they fall, current month is earlier than created month, so current month's value will be lower than created month's value; current month - created month < 12, and a year has not yet elapsed. So although the year calculation is greater than zero, the difference in actual months equates to less than a year. The expression let monthAge = 12 + monthCalc will give the distance between the two months and therefore the age of the app in months
+let monthAge;  
+if(monthCalc < 0){
+    monthAge = 12 + monthCalc;
+    console.log('monthAge',monthAge)
+    {if(monthAge > 1){age = `${monthAge} months ago`}else{age = `${monthAge} month ago`}}
+    } 
+else if(monthCalc > 0){
+    console.log('monthCalc',monthCalc)
+age = '1 year ago'
+   // this results because, although they are in different years, current month has a greater value than created month. Example; if current month is august and created month is july (of the previous year obviously) then 13 months have elapsed, which is greater than one year; but the actual value of monthCalc would be 8-7 = 1; Any value greater than one indicates more than one year has relapsed. 
+}else{ 
+// current and created months have the same value, so monthCalc = 0.  Then use dayCalc; a negative number indicates current day < created day so a full month has not elapsed, so a full year has not elapsed, or else, current day > created day which means that at least one year and one day have elapsed. Or current and created day are equal which is in effect exactly one day and have elapsed. 
+if (dayCalc < 0){
+    console.log('monthCalc', monthCalc)
+    age = '12 months ago'
+}else{age = '1 year ago'}
+
+}
+
+}}
+
+
+    
+    // otherwise if yearCalc is not greater than zero, use month/day/mins/or hours
 else if(monthCalc > 0){if(monthCalc > 1){age = `${monthCalc} months ago`}else{age = `${monthCalc} month ago`}}
 else if(dayCalc > 0){if(dayCalc > 1){age = `${dayCalc} days ago`}else{age = `${dayCalc} day ago`}}
 else if(hourCalc > 0){if(hourCalc > 1){age = `${hourCalc} hours ago`}else{age = `${hourCalc} hour ago`}}
