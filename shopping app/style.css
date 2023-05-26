@@ -26,8 +26,9 @@ body{font-family: 'Roboto', sans-serif; }
 
 
 #screen-body{
-  height:420px;
-  width:200px;
+ position: relative;
+  width:80vw;
+  aspect-ratio: 10/21;
   background-color:rgba(106, 198, 235,0.2);
   position:relative;
   padding:8px;
@@ -40,8 +41,8 @@ body{font-family: 'Roboto', sans-serif; }
 
 .modal{
   position:absolute;
-  height:420px;
-  width:200px;
+  height:98%;
+  width:98%;
   background-color:rgba(90, 205, 240, 0.719);
   border: 0.5px solid black;
   border-radius:20px;
@@ -80,9 +81,9 @@ width:fit-content;
 
 
 }
-
-h2{ width:fit-content;
-  height:fit-content; display:inline;}
+h4{font-size:55px ;}
+h1{ width:fit-content;
+  height:fit-content; display:inline; font-size: 90px;}
 
 .categories{height:50px; width:100%; background-color:white;
   border-bottom:1px solid rgba(194, 193, 192,0.3);
@@ -97,7 +98,7 @@ cursor:pointer;}
 
 #category-container{
  width:100%;
-  height:350px;
+ aspect-ratio: 20/33;
       overflow-x: hidden;
   overflow-y: auto;
 }
@@ -204,11 +205,12 @@ border-style: none;
 #main-page-content,#upload-modal-content,#purchase-content, #just-added-content{
   background-color: white;
   width: 100%;
+  aspect-ratio: 20/33;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height:340px ;
+
 }
 #just-added-items{
   width: 100%;
@@ -223,10 +225,10 @@ border-style: none;
 }
 .main-page-btn{
   width: fit-content;
-padding: 5px;
-font-size: 15px;
+padding: 15px;
+font-size: 65px;
 font-weight: bold;
-border-radius: 7px;
+border-radius: 20px;
 color: white;
 background-color:rgb(147, 147, 248) ;
 border-style: none;
