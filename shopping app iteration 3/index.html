@@ -79,7 +79,7 @@ awesome/4.7.0/css/font-awesome.min.css">
               <div id="toiletries" class="categories">
             <p class="category-para">Toiletries</p> <img class="category-img" src="./images/toiletries.jpg" alt=""></div>
               <div id="cleaning" class="categories">
-            <p class="category-para">Cleaning Products</p> <img class="category-img" src="./images/cleaning.jpg" alt=""></div>
+            <p class="category-para">Cleaning</p> <img class="category-img" src="./images/cleaning.jpg" alt=""></div>
               <div id="misc" class="categories">
             <p class="category-para">Misc</p> <img class="category-img" src="./images/misc.jpg" alt=""></div>
     </div>
@@ -217,19 +217,19 @@ awesome/4.7.0/css/font-awesome.min.css">
 
               <!--  input new product-->
               <div id="add-product" class="product-adder">
-                <label  for="add-to">add to:</label>
+                <label  for="add-to" id="add-to-label">add to:</label>
                 <input id="add-to" type="text" placeholder="new product"></input>
               </div>
                 <!--  select category to add product to-->
                 <div id="select-add-category" class="product-adder">
-                  <label for="category-selector">pick category to amend:</label><br><br>
+                  <label for="category-selector" id="product-add-label">pick category to amend:</label><br><br>
                   <select name="categories" id="category-selector">
                     <option value="" class="option">select category</option>    
                   </select>
                 </div>
               <!--  input new category-->
                 <div id="add-category">
-                <label for="name">Create new category:</label>
+                <label for="name" id="category-add-label">Create new category:</label><br>
                 <input id="category-add-to" type="text" placeholder="new category"></input>
               </div>
       </div>
@@ -249,7 +249,7 @@ awesome/4.7.0/css/font-awesome.min.css">
   <div id="upload-modal-content" class="">
   <h4><em>"Do you want to save and complete later; or authorize as complete and upload?"</em></h4>
         <div class="save-div" id="save-list">
-        <button id="save-list" class="main-page-btn">Save for later</button><img class="upload-modal-icons" src="./save icon.jpg" alt="">
+        <button id="save-list" class="main-page-btn">Save list</button><img class="upload-modal-icons" src="./save icon.jpg" alt="">
       </div>
 
         <div class="authorize-div" id="authorize-btn-container">
