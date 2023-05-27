@@ -57,33 +57,33 @@ awesome/4.7.0/css/font-awesome.min.css">
 
     <div id="category-container" class="main">
           <div id="fish" class="categories">
-            <p class="">Fish</p> <img class="category-img" src="./images/fish 2.jpg" alt=""></div>
+            <p class="category-para">Fish</p> <img class="category-img" src="./images/fish 2.jpg" alt=""></div>
           <div id="meat" class="categories">
-            <p class="">Meat</p> <img class="category-img" src="./images/meat.jpg" alt=""></div>
+            <p class="category-para">Meat</p> <img class="category-img" src="./images/meat.jpg" alt=""></div>
               <div id="vegetarian" class="categories">
-            <p class="">Vegetarian</p> <img class="category-img" src="./images/vegetarian.jpg" alt=""></div>
+            <p class="category-para">Vegetarian</p> <img class="category-img" src="./images/vegetarian.jpg" alt=""></div>
             <div id="dairy" class="categories">
-            <p class="">Dairy</p> <img class="category-img" src="./images/dairy.jpg" alt=""></div>
+            <p class="category-para">Dairy</p> <img class="category-img" src="./images/dairy.jpg" alt=""></div>
             <div id="fruit-veg" class="categories">
-            <p class="">Fruit & Veg</p> <img class="category-img" src="./images/fruit and veg.jpg" alt=""></div>
+            <p class="category-para">Fruit & Veg</p> <img class="category-img" src="./images/fruit and veg.jpg" alt=""></div>
             <div id="bakery" class="categories">
-            <p class="">Bakery</p> <img class="category-img" src="./images/bakery.jpg" alt=""></div>
+            <p class="category-para">Bakery</p> <img class="category-img" src="./images/bakery.jpg" alt=""></div>
             <div id="pastry" class="categories">
-            <p class="">Pastry</p> <img class="category-img" src="./images/pastry.jpg" alt=""></div>
+            <p class="category-para">Pastry</p> <img class="category-img" src="./images/pastry.jpg" alt=""></div>
               <div id="hot-drinks" class="categories">
-            <p class="">Hot Drinks</p> <img class="category-img" src="./images/hot drinks.jpg" alt=""></div>
+            <p class="category-para">Hot Drinks</p> <img class="category-img" src="./images/hot drinks.jpg" alt=""></div>
               <div id="cold-drinks" class="categories">
-            <p class="">Cold Drinks</p> <img class="category-img" src="./images/cold drinks.jpg" alt=""></div>
+            <p class="category-para">Cold Drinks</p> <img class="category-img" src="./images/cold drinks.jpg" alt=""></div>
               <div id="alcohol" class="categories">
-            <p class="">Alcohol</p> <img class="category-img" src="./images/alcohol 1.jpg" alt=""></div>
+            <p class="category-para">Alcohol</p> <img class="category-img" src="./images/alcohol 1.jpg" alt=""></div>
               <div id="toiletries" class="categories">
-            <p class="">Toiletries</p> <img class="category-img" src="./images/toiletries.jpg" alt=""></div>
+            <p class="category-para">Toiletries</p> <img class="category-img" src="./images/toiletries.jpg" alt=""></div>
               <div id="cleaning" class="categories">
-            <p class="">Cleaning Products</p> <img class="category-img" src="./images/cleaning.jpg" alt=""></div>
+            <p class="category-para">Cleaning Products</p> <img class="category-img" src="./images/cleaning.jpg" alt=""></div>
               <div id="misc" class="categories">
-            <p class="">Misc</p> <img class="category-img" src="./images/misc.jpg" alt=""></div>
+            <p class="category-para">Misc</p> <img class="category-img" src="./images/misc.jpg" alt=""></div>
     </div>
-<!-- CATEGORY MENU BUTTONS -->
+    <!-- CATEGORY MENU BUTTONS -->
     <div id="btn-container-category">
       <button id="home-btn"><img id="home-icon" src="./home icon.png" alt=""></button>
       <button class="navigate-btn"  id="view-shoplist">view list</button>
@@ -144,14 +144,14 @@ awesome/4.7.0/css/font-awesome.min.css">
      <button id="add-more" class="navigate-btn" >close app <span>&times;</span></button>
 -->
       <div class="modal" id="msg-modal">
+        <div id="alert-heading-container">
+        </div>
      <h2 id="alert-heading">Alert!</h2>
      <div class="alert-para-container">
       <p id="alert-para"></p>
      </div>
      <button id="alert-modal-close">&times;</button>
-   
-
-  </div>
+      </div>
 
 
 
@@ -164,7 +164,7 @@ awesome/4.7.0/css/font-awesome.min.css">
   <div id="choice-btns-shoplist">
  <div id="upload-blob">save and upload</div>
           <img id="upload-img" src="./save icon.jpg" alt="">
-                 <button id="return-to-main" class="navigate-btn" > Return to categories</button>
+                 <button id="return-to-main" class="navigate-btn" >Return to categories</button>
 
    </div>
 
@@ -203,12 +203,14 @@ awesome/4.7.0/css/font-awesome.min.css">
 </div>
 </div>
 
- <!-- category/product adder -->
+ <!-- category/product adder MODAL -->
 <div class="modal" id="new-item-or-category">
 
   <h2>Create menu</h2>
       <div id="create-modal-content">
+        <div id="create-para-container">
                 <p id="create-menu-para">What would you like to create?</p>
+              </div>
                 <!--  input new category-->
                 <button id="new-category" class="main-page-btn create-btn">create category</button>
                 <button id="new-product" class="main-page-btn create-btn">create product</button>
@@ -261,6 +263,7 @@ awesome/4.7.0/css/font-awesome.min.css">
 <div class="modal" id="downloaded-list">
   <h2>Pick List</h2>
   <div id="downloaded-modal-content"></div>
+  <div id="view-basket-btn-container"></div>
   <button id="view-basket-btn" class="navigate-btn">View basket</button>
 </div>
 

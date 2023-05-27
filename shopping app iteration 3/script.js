@@ -1115,7 +1115,7 @@ case 'view-shopping-list':
 
 // PLUS ICON WHICH TAKES USER FROM JUST ADDED ITEMS MODAL BACK TO CATEGORIES
 $('#add-icon').click((e)=>{
-  pushToShoppingList(e.target.id, 'shopping-list')
+  pushToShoppingList(e.target.id, 'add-items')
  })
 
 //  DELETE SHOPPING LIST ITEM (cancel)
@@ -1431,11 +1431,12 @@ if(item.checked){ // if any items checkboxes are ticked --
                                 restockRequiredArr.push(item.value);
         // CREATE NEW DIV and STYLE
         let addedDiv = document.createElement('DIV')
-        $(addedDiv).addClass('item-checkbox-holder')
-        $(addedDiv).addClass('item-image')
+        $(addedDiv).addClass('image-checkbox-holder')
+      //  $(addedDiv).addClass('item-image')
         $(addedDiv).css('display:, flex; flex-direction:column;')
 
  // DROP IMAGE AND DESCRIPTION INTO DIV
+
    addedDiv.append(item.parentNode.children[1]) // image
    addedDiv.append(item.parentNode.children[1]) // paragraph, which is now children[1]
 
