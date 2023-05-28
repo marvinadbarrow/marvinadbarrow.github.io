@@ -84,14 +84,14 @@ width:fit-content;
 }
 h4{font-size:55px ;}
 
-/*
+
 
 h2{ width:fit-content;
   height:fit-content; display:inline;
   font-size: 50px;
 }
 
-*/
+
 h1{ width:fit-content;
   height:fit-content; display:inline; font-size: 90px;}
 
@@ -112,6 +112,8 @@ cursor:pointer;}
       overflow-x: hidden;
   overflow-y: auto;
 }
+
+.category-para{font-size: 55px;}
 
 #shopping-list-items,#delete-added-items,#upload-modal-content,#create-modal-content{
   width:100%;
@@ -139,7 +141,7 @@ p{
 }
 
 
-#items-for-selection{
+#items-for-selection, .list-for-upload, #just-added-items{
 width:98%;
 aspect-ratio: 49/85;
 
@@ -158,8 +160,8 @@ overflow-y: auto;
 
 #item-btns{
   display: inline-block;
-  width: 120px; height: fit-content;
-  margin-top: -6px;
+  width: 100%; height: fit-content;
+  margin-top: 2%;
 
   }
 
@@ -179,7 +181,8 @@ background-color: rgba(72, 72, 243, 0.637);
 border-style: none;
 }
 .back-btn:hover{outline: 2px solid white; outline-offset: 2px;}
-#back-arrow-img{width: 25px; height: 25px; position: absolute; top: -4px; left: 1px;}
+#back-arrow-img{  width: 100%; aspect-ratio: 1/1; position: absolute; top: -4px; left: 1px;}
+
 
 
 
@@ -194,10 +197,10 @@ border-style: none;
 
 
 /* check box and itemized image */
-.checkbox{position: absolute;}
+.checkbox{position: absolute; width: 15%; height: 15%;}
 .checkbox-delete{position: fixed;}
 .item-image{width: 100%; aspect-ratio: 1/1; display: inline-block;}
-.select-label{font-size:13px; font-weight:bold;}
+.select-label{font-size:40px; font-weight:bold;}
 
 
 

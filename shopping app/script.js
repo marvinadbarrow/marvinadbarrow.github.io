@@ -575,9 +575,28 @@ if(id && destinationID){ closeModals(id, destinationID)};
 }
 // APPEND PRODUCTS FROM 'VIEW SELECTED ITEMS' TO SHOPPING LIST
 const pushToShoppingList = (id, destinationID) =>{
+
  productImgArray.forEach(product =>{
+
+
   $('#shopping-list-items').append(product.outerHTML)
  })
+
+ // create delete icon for each product on display in list
+ // create a delete icon
+ let deleteImg = document.createElement('IMG')
+ // add source to delete icon
+     deleteImg.setAttribute('src', 'delete image.png')
+ 
+      // style image
+    deleteImg.classList.add('delete-image')
+// append
+ $('#shopping-list-items').children().prepend(deleteImg)
+
+
+
+
+ 
  $('#shopping-list-items').children().click((e) =>{ // make product clickable
   $('#shopping-list').hide() // hide shopping list modal
 $('#delete-this-item').append(e.target.parentNode) // append clicked product to delete modal
