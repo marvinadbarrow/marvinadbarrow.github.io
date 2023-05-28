@@ -529,10 +529,20 @@ closeModals(id, destinationID)
 const resumeList = (id, destinationID) =>{
 let savedList = JSON.parse(localStorage.getItem('save_shopping_list')) // get saved list
 savedList.forEach(element =>{
+  console.log(element)
 $('#shopping-list-items').append(element); // render products to shopping list. 
 })
+
+// make each product clickable for deletion consideration
+$('#shopping-list-items').children().click((e) =>{
+  $('#shopping-list').hide() // hide shopping list
+  document.getElementById('delete-this-item').append(e.target.parentNode) // appened clicked product to delete modal
+  $('#delete-items').css('display', 'block') // display delete modal
+})
+
 $('#shopping-list-items').children().each((index, value) =>{ // repopulate restockArr
   restockRequiredArr.push(value.lastChild.textContent)// push product name to array
+
 })
 closeModals(id, destinationID)
 }
@@ -563,6 +573,7 @@ localStorage.removeItem('create_shopping_list')// shopping list no longer needed
 const saveShoppingList = (id, destinationID) =>{
 let shoppingListItems = [] // create shopping list array
 $('#shopping-list-items').children().each((index, value) =>{
+  console.log(value)
   shoppingListItems.push(value.outerHTML)}); // push each product element to array
 localStorage.setItem('save_shopping_list',  JSON.stringify(shoppingListItems)) // save to storage
 closeModals(id, destinationID) // close modal
