@@ -556,7 +556,9 @@ const confirmUpload = (id, destinationID) =>{
 $('#resume-list').hide()
   verifiedListArr = []
   $('#shopping-list-items').children().each((index, value) =>{
-    let plusImg = new Image() // create a 'plus' icon for product selection once list is downloaded
+
+  value.removeChild(value.firstChild)  // remove delete image from each product
+  let plusImg = new Image() // create a 'plus' icon for product selection once list is downloaded
   plusImg.src = "./add to basket.png"
   plusImg.classList.add('plus-icon')
 value.prepend(plusImg)
