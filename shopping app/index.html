@@ -144,7 +144,9 @@ awesome/4.7.0/css/font-awesome.min.css">
      <button id="add-more" class="navigate-btn" >close app <span>&times;</span></button>
 -->
       <div class="modal" id="msg-modal">
-     <h2 id="alert-heading">Alert!</h2>
+        <div id="alert-heading-container">
+          <h2 id="alert-heading">Alert!</h2>
+        </div>
      <div class="alert-para-container">
       <p id="alert-para"></p>
      </div>
@@ -208,26 +210,28 @@ awesome/4.7.0/css/font-awesome.min.css">
 
   <h2>Create menu</h2>
       <div id="create-modal-content">
-                <p id="create-menu-para">What would you like to create?</p>
+        <div id="create-para-container">
+          <p id="create-menu-para">What would you like to create?</p>
+        </div>
                 <!--  input new category-->
                 <button id="new-category" class="main-page-btn create-btn">create category</button>
                 <button id="new-product" class="main-page-btn create-btn">create product</button>
 
               <!--  input new product-->
               <div id="add-product" class="product-adder">
-                <label  for="add-to">add to:</label>
+                <label  for="add-to"  id="add-to-label">add to:</label>
                 <input id="add-to" type="text" placeholder="new product"></input>
               </div>
                 <!--  select category to add product to-->
                 <div id="select-add-category" class="product-adder">
-                  <label for="category-selector">pick category to amend:</label><br><br>
+                  <label for="category-selector" id="product-add-label">pick category to amend:</label><br><br>
                   <select name="categories" id="category-selector">
                     <option value="" class="option">select category</option>    
                   </select>
                 </div>
               <!--  input new category-->
                 <div id="add-category">
-                <label for="name">Create new category:</label>
+                <label for="name" id="category-add-label">Create new category:</label>
                 <input id="category-add-to" type="text" placeholder="new category"></input>
               </div>
       </div>
@@ -261,7 +265,9 @@ awesome/4.7.0/css/font-awesome.min.css">
 <div class="modal" id="downloaded-list">
   <h2>Pick List</h2>
   <div id="downloaded-modal-content"></div>
-  <button id="view-basket-btn" class="navigate-btn">View basket</button>
+  <div id="view-basket-btn-container">
+    <button id="view-basket-btn" class="navigate-btn">View basket</button>
+  </div>
 </div>
 
 <!-- HOLD MODAL -->

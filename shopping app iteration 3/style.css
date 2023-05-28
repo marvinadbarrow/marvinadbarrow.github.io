@@ -51,9 +51,8 @@ body{font-family: 'Roboto', sans-serif; }
 
 #verify-items,#get-list,#add-to-basket,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal,#downloaded-list,#hold-item,#basket-list,#checkout-list,#add-product,#select-add-category,#add-category,#new-item-or-category{display:none;}
 
-#test{display: block;}
 
-/*delete items, downloaded list, checkout list, all have modal contents that are much smaller than the size of the modal - they might need adjusting*/
+#msg-modal{z-index: 3; background-color:rgba(223, 64, 64, 0.822);flex-direction: column; justify-content: space-around; align-items: center;}
 
 #button-holder{
   width:100%;
@@ -83,7 +82,10 @@ width:fit-content;
 
 
 }
-h4{font-size: 45px;}
+h4{font-size: 55px;}
+h1{ width:fit-content;
+  height:fit-content; display:inline; font-size: 90px;}
+
 h2{ width:fit-content;
   height:fit-content; display:inline;
   font-size: 50px;
@@ -109,7 +111,7 @@ cursor:pointer;}
 
 .category-para{font-size: 55px;}
 
-#shopping-list-items,#delete-added-items,#upload-modal-content,#create-modal-content,#downloaded-modal-content{
+#shopping-list-items,#delete-added-items,#upload-modal-content,#create-modal-content{
   width:100%;
   aspect-ratio: 20/33;
   background-color: white;
@@ -119,7 +121,7 @@ cursor:pointer;}
 
 
 img{display:inline-block;
-  width:25%;
+  width:20%;
   aspect-ratio: 1/1;
   border: none;
   margin-top:4px;
@@ -197,7 +199,7 @@ border-style: none;
 .select-label{font-size:40px; font-weight:bold;}
 
 
-#msg-modal{z-index: 3; background-color:rgba(223, 64, 64, 0.822);flex-direction: column; justify-content: space-around; align-items: center;}
+
 .alert-para-container{ width: fit-content; height: fit-content;}
 #alert-heading{font-size: 80px; color: rgb(255, 0, 0); background-color: rgb(249, 250, 250); padding: 20px; border-radius: 17px; }
 #alert-para{ color: white;font-size: 45px;}
@@ -222,10 +224,10 @@ border-style: none;
 
 .main-page-btn{
   width: fit-content;
-padding: 5px;
+padding: 15px;
 font-size: 70px;
 font-weight: bold;
-border-radius: 7px;
+border-radius: 20px;
 color: white;
 background-color:rgb(147, 147, 248) ;
 border-style: none;
@@ -267,12 +269,12 @@ align-items: center;
 .item-checkbox-holder{position: relative; width: 40%; aspect-ratio: 1/1; border: 1px solid black;}
 
 
-.delete-image{width: 15%; height: 15%; position: absolute; margin: 5px;}
+.delete-image{width: 15%; aspect-ratio: 1/1; position: absolute; margin: 5px;}
 .div-clone{position:relative; border: 0.5px solid rgba(190, 188, 188, 0.559); height:fit-content; border-radius:5px; margin-top: 3px; margin-right:3px;}
 .div-clone:hover{cursor: pointer;}
 
 
-#delete-choice-btns{ width: 100%; display:flex; flex-direction: column; height: 130px; justify-content: space-around; background-color: rgba(255, 255, 0, 0); align-items: center;}
+#delete-choice-btns{ width: 100%; display:flex; flex-direction: column; height: 40%; justify-content: space-around; background-color: rgba(255, 255, 0, 0); align-items: center;}
 .delete-choice{width: fit-content; height: auto; padding: 1%; display: inline-block;}
 #confirm-delete{background-color: rgba(255, 0, 0, 0.863);}
 #cancel-delete{background-color: yellow; color: rgba(0, 0, 0, 0.658);}
@@ -372,10 +374,14 @@ border: 0.2px solid rgba(190, 188, 188, 0.5);}
   .product-label-large{font-size:40px; font-weight:bold;}
 
 
+
+
+
+
   #view-basket-btn-container{width: 100%; height: fit-content; margin-top: 3%;}
   #view-basket-btn{padding:7px; margin-top: 8px;}
   #view-basket-btn:hover{outline-color: white;}
-  .item-amount-icon{width: 20px; height: 20px; position: absolute; margin: 1px; background-color: red; color: white; border-radius: 50%;border: 2px solid black; display: flex; justify-content: space-around; align-items: center; font-size: 15px; font-weight: bold; padding: 2px;}
+  .item-amount-icon{width: 10%; aspect-ratio: 1/1; position: absolute; margin: 1px; background-color: red; color: white; border-radius: 50%;border: 2px solid black; display: flex; justify-content: space-around; align-items: center; font-size: 15px; font-weight: bold; padding: 2px;}
 
   /* CHECKOUT STYLING*/
 #checkout-btn-holder{width: 100%; height: fit-content; display: flex; flex-direction: row; justify-content: space-around; margin-top: 3%;}
@@ -402,6 +408,7 @@ aspect-ratio: 49/85;
     margin-left: 4px;
   }
 
+
   .checkout-para{margin: 0px; font-size: 50px;}
 
   .product-item-count{  width: 13%; aspect-ratio: 1/1; background-color: red; color: white; border-radius: 50%;border: 2px solid black; display: flex; justify-content: space-around; align-items: center; font-size: 50px; font-weight: bold; padding: 2px;     margin-right: 4px;}
@@ -410,6 +417,12 @@ aspect-ratio: 49/85;
 
   .create-btn{margin: auto; font-size: 50px;}
   #create-modal-content{display: flex; flex-direction: column; justify-content: space-around;}
+
+
+
+
+/* ADDITIONAL ELEMENTS TO BE ADDED TO PWA APP*/
+
   #create-menu-para{font-size: 45px;}
   #create-para-container{width: fit-content; height: auto; margin-top: 2%; background-color: rgba(255, 166, 0, 0); margin: auto;}
 
@@ -417,6 +430,8 @@ aspect-ratio: 49/85;
 
   /* styling for category adder input*/
 
-  /* styling for product adder input*/
+  /* styling for PRODUCT AND CATEGORY input labels */
  #add-to-label, #product-add-label, #category-add-label{font-size: 35px;}
+
+   /* styling for category adder input*/
   #add-to,  #category-add-to, #category-selector{font-size: 40px; margin-top: 50px;  margin-bottom: 50px;}
