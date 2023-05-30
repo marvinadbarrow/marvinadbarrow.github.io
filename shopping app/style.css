@@ -49,7 +49,7 @@ body{font-family: 'Roboto', sans-serif; }
   text-align:center; 
 }
 
-#verify-items,#get-list,#add-to-basket,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal,#downloaded-list,#hold-item,#basket-list,#checkout-list,#add-product,#select-add-category,#add-category,#new-item-or-category{display:none;}
+#verify-items,#get-list,#add-to-basket,#complete-purchase,#get-delivery,#re-stock,#product-select,#view-added-items,#msg-modal,#shopping-list,#delete-items,#add-items,#upload-modal,#downloaded-list,#hold-item,#basket-list,#checkout-list,#add-product,#select-add-category,#add-category,#new-item-or-category,#delete-basket-items,#amend-basket-items{display:none;}
 
 
 #msg-modal{z-index: 3; background-color:rgba(223, 64, 64, 0.822); flex-direction: column; justify-content: space-around; align-items: center;}
@@ -115,7 +115,7 @@ cursor:pointer;}
 
 .category-para{font-size: 55px;}
 
-#shopping-list-items,#delete-added-items,#upload-modal-content,#create-modal-content{
+#shopping-list-items,#delete-added-items,#upload-modal-content,#create-modal-content,#basket-items-for-delete{
   width:100%;
   aspect-ratio: 20/33;
   background-color: white;
@@ -239,7 +239,7 @@ border-style: none;
 }
 .main-page-btn:hover{cursor: pointer;}
 
-#delete-added-items{
+#delete-added-items,#basket-items-for-delete{
   width: 100%;
   aspect-ratio: 10/17;
 display: flex;
@@ -279,10 +279,10 @@ align-items: center;
 .div-clone:hover{cursor: pointer;}
 
 
-#delete-choice-btns{ width: 100%; display:flex; flex-direction: column; height: 40%; justify-content: space-around; background-color: rgba(255, 255, 0, 0); align-items: center;}
+#delete-choice-btns, #amend-choice-btns{ width: 100%; display:flex; flex-direction: column; height: 40%; justify-content: space-around; background-color: rgba(255, 255, 0, 0); align-items: center;}
 .delete-choice{width: fit-content; height: 50px; display: inline-block;}
-#confirm-delete{background-color: rgba(255, 0, 0, 0.863);}
-#cancel-delete{background-color: yellow; color: rgba(0, 0, 0, 0.658);}
+#confirm-delete, #basket-delete{background-color: rgba(255, 0, 0, 0.863);}
+#cancel-delete, #cancel-basket-amend{background-color: yellow; color: rgba(0, 0, 0, 0.658);}
 
 #upload-blob{
   padding: 12px; background-color: rgba(0, 0, 0, 0.808); color: white; border-radius: 20px; font-size: 13px; position: absolute; top: -40px; left: 5px; display: none;
@@ -309,7 +309,10 @@ background-color: white;
 #basket-modal-content{
   width: 100%;
   aspect-ratio: 10/17;
-display: inline-block;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+flex-wrap: wrap;
 background-color: white;
 overflow-x: hidden;
 overflow-y: auto;

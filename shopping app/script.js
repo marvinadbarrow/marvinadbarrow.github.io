@@ -160,7 +160,7 @@ let option = `<option value="${category.catName}" class="option">${category.catN
 $('#category-selector').append(option)
   })
 }
-
+// create new product
 const createNewItem = (id) =>{
   $('#create-menu-para').hide()
   $('#new-category').hide()
@@ -177,7 +177,7 @@ const createNewItem = (id) =>{
         break;
   }
 }
-
+// create new category
 const createCategory = () =>{
   $('#new-item-or-category').show()
   $('#main-page').hide()
@@ -196,6 +196,7 @@ const closeModalsNoButton = (hideID, showID) =>{
 
 // FUNCTION FOR CLOSING AND OPENING MODALS TAKING USER TO NEXT STEP IN SHOPPING OR LIST CREATION
 const closeModals = (testID, destinationID) =>{
+  console.log(testID, destinationID)
   let directAncestorID;
   // get the parent of the element whose id is testID
   let directAncestor = document.getElementById(testID).parentNode
@@ -206,7 +207,14 @@ const closeModals = (testID, destinationID) =>{
   directAncestorID = directAncestor.id;
   }else{alert('no ancestor id exits')}
   // if parent has class of modal, hide parent using ancestorID 
-  if(ancestorClass == 'modal'){
+  if(ancestorClass == 'modal'){ 
+
+    // hide modal and show modal
+    console.log($(`#${directAncestorID}`))
+    console.log($(`#${destinationID}`))    
+
+
+
 $(`#${directAncestorID}`).hide()
 $(`#${destinationID}`).show()
 return;
@@ -373,7 +381,7 @@ const updateLists = (listArray, basketArr, label, productCount) =>{
 let nameOfProduct = label.textContent; // get product name
 listArray.forEach(item =>{ 
   if(item.includes(nameOfProduct)){ // find product in list array
-    let index = listArray.indexOf(item); // get index of product
+    let index = listArray.indexOf(item); // get index of products in list array
 basketArr.push(listArray[index]); // move copy to basket
 listArray.splice(index,1);// delete original from list array
 basketProductNames.push([nameOfProduct, productCount])// push just name to array for checkout names
@@ -384,8 +392,43 @@ localStorage.setItem('temp_list',`${JSON.stringify(listArray)}` );
 localStorage.setItem('basket_list',`${JSON.stringify(basketArr)}`); 
 }
 
+const deleteBasketUpdateLists = (listArray, basketArr, label) =>{
+  console.log(listArray);
+  console.log(basketArr);
+  console.log(basketProductNames)
+  let nameOfProduct = label.textContent;
+  basketArr.forEach(item =>{ 
+    if(item.includes(nameOfProduct)){
+  let index = basketArr.indexOf(item); // get index of products in basket
+  listArray.push(basketArr[index]); // copy product back to list array
+basketArr.splice(index,1);// delete product from basket array
+    }else{ console.log('product not found')}
+  })
+
+  
+// then remove the name and values from basketProductNames
+basketProductNames.forEach(item =>{
+  if(item[0] == nameOfProduct){
+    let nameIndex = basketProductNames.indexOf(item); // get index of name
+    basketProductNames.splice(nameIndex,1) // delete name/value subarray
+  }  
+  })
+
+  // save updated arrays to local storage
+localStorage.setItem('product_names',`${JSON.stringify(basketProductNames)}` );
+localStorage.setItem('temp_list',`${JSON.stringify(listArray)}` ); 
+localStorage.setItem('basket_list',`${JSON.stringify(basketArr)}`); 
+
+console.log(listArray, basketArr, basketProductNames) // check updated array
+}
+
+
 
 const productResize = (product, icon, label, image, destination, size) =>{
+
+  // show parameter values
+  console.log(product, icon, label, image, destination, size)
+
   let productClass ='image-div-shop-large';
   let iconClass = 'plus-icon-large';
   let imageClass ='pick-item-image-large';
@@ -431,6 +474,7 @@ const prePopulateBasket = (id, destinationID) =>{
   let pickValueNumber = Number($('#pick-value').text())   // convert to real number
 if(pickValueNumber > 0){ // if number > 0 move to basket and load image
   let product = document.getElementById('hold-modal-content').firstChild
+  product.classList.add('in-basket') // identifies basket items for clicking 
   populateBasket(product)
 }else{ // alert user that at least one of item must be selected
 $('#alert-para').text('choose how many of this item you want;') 
@@ -454,21 +498,59 @@ $('#hold-to-list').click((e) =>{
 
 // execute selected item amount modal
 const itemView = (product) =>{
-productResize(product, product.firstChild, product.lastChild, product.children[1], 'hold-modal-content', 'small')
-$('#hold-item').show()
-$('#downloaded-list').hide()
+  console.log(product)
+productResize(product, product.firstChild, product.lastChild, product.children[1], 'hold-modal-content', 'small')// parameters for resizing product, including image size
+$('#hold-item').show() // show modal with enlarged image
+$('#downloaded-list').hide() // hide pick list
 }
+
+
+/*
+
+product.click((e) =>{
+    itemView(e.target.parentNode)
+})
+*/
+
+
+// click events in download content send product to hold modal for item count
+$('#downloaded-modal-content').click((e) =>{
+  let product = e.target.parentNode
+itemView(product)
+console.log(product)
+})
+
+// click events in basket send product to delete basket item modal
+$('#basket-modal-content').click((e) =>{
+  let product = e.target.parentNode
+  console.log(product)
+  $('#basket-list').hide() // hide basket
+    
+  productResize(product, product.firstChild, product.lastChild, product.children[1], 'hold-modal-content', 'small')
+
+   $('#amend-basket-product').append(product) // append clicked product to delete modal
+ $('#amend-basket-items').css('display', 'block') // show delete modal
+})
+
+
 
 const startShop = (array) =>{
 inShopListArr.push(...array)  // creat new storage point to save basket items to
 closeModals('open-shopping-list', 'downloaded-list')
-$('.image-div-shop').click((e) =>{ // add event listener to each product
-  itemView(e.target.parentNode) 
-})
+
+/* 
+
+$('.image-div-shop').click((e) =>{} // original click event if new one below doesn't work
+
+*/
+
+
+
 }
 
+// load shopping list items into download modal
 const loadShoppingList = (id) =>{ 
-  if(localStorage.getItem('temp_list')){ // load saved saved list if one exists
+  if(localStorage.getItem('temp_list')){ // load saved  list if one exists
     getListArr = JSON.parse(localStorage.getItem('temp_list'))
 getListArr.forEach(element =>{ // render each product to pick list
     $('#downloaded-modal-content').append(element)
@@ -476,10 +558,25 @@ getListArr.forEach(element =>{ // render each product to pick list
 basketProductNames = JSON.parse(localStorage.getItem('product_names')) // product names for checkout
 basketArr = JSON.parse(localStorage.getItem('basket_list')) //get basket list
 basketArr.forEach(element =>{
-$('#basket-modal-content').append(element)  // restore each product to basket
+$('#basket-modal-content').prepend(element)  // restore each product to basket
 });
-console.log(basketArr)
-startShop(getListArr)
+// add event listener to reloaded basket items
+$('#basket-modal-content').children().click((e) =>{
+  let product = e.target.parentNode
+  console.log(product)
+
+  $('#basket-list').hide() // hide shopping list modal
+  productResize(product, product.firstChild, product.lastChild, product.children[1], 'amend-basket-product', 'small') // enlarge image for amount selection
+  $('#amend-basket-items').css('display', 'block') // show amend modal
+  /*
+  $('#hold-basket-content').prepend(e.target.parentNode) // append clicked product to delete modal
+    $('#delete-basket-items').css('display', 'block') // show delete modal
+    */
+});
+
+
+console.log(basketArr);
+startShop(getListArr);
   }else{ // no temp list saved 
     if(getListArr.length < 1){//so get new shopping list
       getListArr = JSON.parse(localStorage.getItem('new_shopping_list')) 
@@ -499,7 +596,6 @@ if(localStorage.getItem('new_shopping_list')){
   localStorage.setItem('shopping_started', 'started')
 loadShoppingList()
 }else{alert('no shopping list exists')}
-
 }
 
 const restockShopping = () =>{
@@ -603,16 +699,13 @@ const pushToShoppingList = (id, destinationID) =>{
  
       // style image
     deleteImg.classList.add('delete-image')
-// append
+// add image to product
  $('#shopping-list-items').children().prepend(deleteImg)
 
 
-
-
- 
  $('#shopping-list-items').children().click((e) =>{ // make product clickable
   $('#shopping-list').hide() // hide shopping list modal
-$('#delete-this-item').append(e.target.parentNode) // append clicked product to delete modal
+$('#hold-modal-content').append(e.target.parentNode) // append clicked product to delete modal
   $('#delete-items').css('display', 'block') // show delete modal
  })
 switch(id){ 
@@ -629,19 +722,56 @@ $('#add-icon').click((e)=>{
 
 //  CANCEL DELETE ITEM
 const cancelDelete = (id, destinationID) =>{ // restore element to shopping list items
-$('#shopping-list-items').append(document.getElementById('delete-this-item').children[0])
-closeModals(id, destinationID)
+  console.log(id, destinationID)
+  switch(id){
+    case 'cancel-basket-amend':
+// resize image to small
+let product = document.getElementById('amend-basket-item').children[0]
+console.log(product)
+      productResize(product, product.firstChild, product.lastChild, product.children[1], 'basket-modal-content', 'large')
+console.log(product)
+      closeModals(id, destinationID)
+      break;
+    case 'cancel-delete':
+  $('#shopping-list-items').append(document.getElementById('delete-this-item').children[0])
+  closeModals(id, destinationID)
+  break;
 }
 
-//  DELETE SHOPPING LIST ITEM (confirm)
-const confirmDelete = (id, destinationID) =>{
-let productName = $('#delete-this-item .select-label ').text() // get product name
-if(restockRequiredArr.includes(productName)){
-  let productNamePosition = restockRequiredArr.indexOf(productName) //
-  restockRequiredArr.splice(productNamePosition, 1)
 }
+
+//  DELETE SHOPPING LIST (OR BASKET) ITEM (confirm)
+const confirmDelete = (id, destinationID) =>{
+  console.log(id, destinationID)
+  switch(id){
+case 'confirm-delete': // list item from the preparation stage
+  let productName = $('#delete-this-item .select-label ').text() // get product name
+  if(restockRequiredArr.includes(productName)){
+    let productNamePosition = restockRequiredArr.indexOf(productName) //
+    restockRequiredArr.splice(productNamePosition, 1)
+  }
+  closeModals(id, destinationID)
+  $('#delete-this-item').children().remove()
+break;
+case 'basket-delete':
+  let product = document.getElementById('amend-basket-product').children[0] // get product
+
+product.removeChild(product.children[0]) // remove item amount icon
+let plusImg = new Image() // create 'plus' icon item deleted and moved back to download list
+plusImg.src = "./add to basket.png" // assign source
+plusImg.classList.add('plus-icon') // pre-pend into product
+product.prepend(plusImg)
+
+   productResize(product, product.firstChild, product.lastChild, product.children[1], 'basket-modal-content', 'large')
+
+setTimeout(() => {
+  $('#downloaded-modal-content').prepend(product);
 closeModals(id, destinationID)
-$('#delete-this-item').children().remove()
+let productName = product.lastChild
+deleteBasketUpdateLists(getListArr, basketArr, productName)
+}, 50);
+break;
+  }
 }
 
 
@@ -674,12 +804,19 @@ closeModals(e.target.id, 'add-items')
   case 'alert-modal-close':
 duplicateCheckedItem(e.target.id)
   break;
-
+// delete from shopping list options
   case 'confirm-delete':
     confirmDelete(e.target.id, 'shopping-list')
   break;
   case 'cancel-delete':
     cancelDelete(e.target.id, 'shopping-list')
+  break;
+  // delete from basket items options
+  case 'basket-delete':
+    confirmDelete(e.target.id, 'basket-list')
+  break;
+  case 'cancel-basket-amend':
+    cancelDelete(e.target.id, 'basket-list')
   break;
   case 'view-shoplist':
 closeModals(e.target.id,'shopping-list')

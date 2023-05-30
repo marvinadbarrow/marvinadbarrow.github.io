@@ -1,0 +1,29 @@
+What I'm trying to do...
+
+amend the basket item. 
+options: 
+change item total
+delete item
+cancel amend item
+
+change:
+use the HOLD MODAL format to change number (call it AMEND BASKET MODAL)
+have current item total appear in number output
+maybe change item total indicator dynamically to reflect new number
+have a CONFIRM NEW TOTAL button -- this can take you back to the updated basket
+have cancel button.............
+
+
+delete item button will then take you to the delete-basket-item modal
+That will have the delete/cancel buttons.  
+Delete should take you back to updated basket
+cancel should take you back to AMEND BASKET MODAL
+
+
+cancel amend item should take you back to BASKET MODAL. 
+
+
+for the delete or amend functions you'll need to adjust the associated arrays. and save the new arrays. 
+
+
+added click event listener to reloaded basket items in loadShoppingList function, codeline 9, circa 497

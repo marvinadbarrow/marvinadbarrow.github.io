@@ -295,8 +295,46 @@ awesome/4.7.0/css/font-awesome.min.css">
     <button id="basket-to-list" class="navigate-btn-basket">List</button>
     <button class="navigate-btn-basket"  id="basket-to-checkout">Checkout</button>
     </div>
-
 </div>
+
+
+<!-- AMEND BASKET ITEM modal-->
+<div class="modal" id="amend-basket-items">
+  <h2>Amend basket</h2>
+  <div id="basket-items-for-delete">
+  <h4>item total</h4>
+
+  <div id="hold-basket-content">
+    <div id="amend-basket-product"></div>
+    <div id="hold-item-btn-container">
+    <button id="subtract_1" class="hold-btn">-</button>
+    <p id="pick-value">0</p>
+    <button id="add_1" class="hold-btn">+</button>
+  </div>
+  </div>
+
+  <div class="choice-btns" id="amend-choice-btns">
+    <button id="basket-delete" class="navigate-btn delete-choice">Delete!</button>
+    <button id="cancel-basket-amend" class="navigate-btn delete-choice">Cancel amend</button>
+  </div>
+</div>
+</div>
+
+
+
+<!-- DELETE BASKET ITEMS modal-->
+<div class="modal" id="delete-basket-items">
+  <h2>Delete basket item!</h2>
+  <div id="delete-added-items">
+  <h4>Are you sure you want to delete this BASKET item?</h4>
+  <div id="delete-this-basket-item"></div>
+  <div class="choice-btns" id="delete-choice-btns">
+    <button id="confirm-delete" class="navigate-btn delete-choice">Yes: Delete!</button>
+    <button id="cancel-delete" class="navigate-btn delete-choice">Cancel</button>
+  </div>
+</div>
+</div>
+
 
 
      <!--  CHECKOUT MODAL-->
