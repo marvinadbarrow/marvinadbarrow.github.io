@@ -395,7 +395,7 @@ case 'subtract_1':  if(itemTotalNumber > 1){ // prevent numbers less than 1
 const openList = (id, destinationID) =>{
   switch(id){
     case 'checkout-to-list':
-      $(`#${id}`).hide();
+      // $(`#${id}`).hide();
       $('#checkout-container').children().remove();
     closeModals(id, destinationID);
   break;
