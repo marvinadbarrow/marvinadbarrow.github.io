@@ -336,12 +336,18 @@ array.forEach(element =>{  // load items not purchased
   })
 }
 
+
+
 // CHECKOUT TEMPLATE. 
 const checkout = (id, destinationID) =>{
-  closeModals(id, destinationID)
+
+
+
+  let productNamesArr = JSON.parse(localStorage.getItem('product_names')) // get array containing product name and amount
+  
 let separator = `<div id="separator" class="product">Rejected Items</div>`
 $('#checkout-container').append(separator) // separates purchases from rejects
-basketProductNames.forEach(element =>{// load purchased items
+productNamesArr.forEach(element =>{// load purchased items
   console.log(element)
   let productContainer = `<div class="product">
   <img class="checkout-status-img" src="./tick icon.png">
@@ -351,6 +357,7 @@ basketProductNames.forEach(element =>{// load purchased items
  $('#checkout-container').prepend(productContainer)
 })
   loadRejects(getListArr)
+  closeModals(id, destinationID)
 }
 
 const productTotal = (identifyer) =>{
@@ -372,26 +379,14 @@ case 'subtract_1':  if(itemTotalNumber > 1){ // prevent numbers less than 1
   $('#pick-value').text(itemTotalNumber); // render number
 }
 
-
 // AMEND BASKET ITEM COUNT
   case 'add_1_amend': itemAmendNumber += 1; // increase amend number by 1
   $('#pick-value-amend').text(itemAmendNumber); // render amended number
-  product = productHolder.children[0] // get product container
-  amountIcon = product.children[0] // get icon element
-  iconId = amountIcon.id; // get icon id
-  $(`#${iconId}`).text(itemAmendNumber) // get icon and render item amount
     break;
-        
-case 'subtract_1_amend':  if(itemAmendNumber > 1){ // prevent numbers less than 1
+  case 'subtract_1_amend':  if(itemAmendNumber > 1){ // prevent numbers less than 1
   itemAmendNumber -= 1; // decrease amend number by 1
   $('#pick-value-amend').text(itemAmendNumber);  // render amended number
-  product = productHolder.children[0] // get product container
-  amountIcon = product.children[0] // get icon element
-  iconId = amountIcon.id; // get icon id
-  $(`#${iconId}`).text(itemAmendNumber) // get icon and render item amount
 }
-
-
 }}
 
 
@@ -586,8 +581,24 @@ console.log(productname)
 })
 
 });
+
+console.log(basketArr);
+startShop(getListArr);
+  }else{ // no shopping list is saved
+    if(getListArr.length < 1){//so get uploaded shopping list
+      getListArr = JSON.parse(localStorage.getItem('new_shopping_list')) 
+  getListArr.forEach(element =>{ // for each list item
+    $('#downloaded-modal-content').append(element); // render product to pick list
+    })
+   $('#downloaded-modal-content').children().addClass('image-div-shop')//add .shop class to items
+    $('#get-shopping-list').hide(); // hide download list button
+    $('#open-shopping-list').show(); // show 'start shopping' button
+    startShop(getListArr)};
+}}
+
+
 // add event listener to basket items
-// experimentation with another type of click event for basket items - insead of adding the event listener to the products within the basket, add the event listener to the basket so that when the products leave the basket, they have no event attached to them. 
+// experimentation with another type of click event for basket items - insead of adding an event listener to each product within the basket, add the event listener to the basket so that when the products leave the basket, they have no event attached to them. 
 $('#basket-modal-content').click((e) =>{
   let product = e.target.parentNode
   let productClass = product.getAttribute('class')
@@ -616,53 +627,6 @@ $('#amend-basket-items').css('display', 'block') // show amend modal
 });
 
 
-
-
-/*
-
-// click events in basket send product to delete basket item modal
-$('#basket-modal-content').click((e) =>{
-  let product = e.target.parentNode // assign product a variable
-
-
-  let productName = product.lastChild.textContent // get product name
-  basketProductNames.forEach(subArray =>{ // array product names/amounts
-    if(subArray[0].includes(productName)){ // find product name
-      let productAmount = subArray[1] // get product amount 
-      $('#pick-value-amend').text(productAmount) // render amount to amend page
-    }
-  })
-
-  console.log(productName)
-  console.log(basketProductNames)
-  $('#basket-list').hide() // hide basket
-    
-  productResize(product, product.firstChild, product.lastChild, product.children[1], 'hold-modal-content', 'small')
-
-   $('#amend-basket-product').append(product) // append clicked product to delete modal
- $('#amend-basket-items').css('display', 'block') // show delete modal
-})
-
-*/
-
-
-
-
-
-
-console.log(basketArr);
-startShop(getListArr);
-  }else{ // no shopping list is saved
-    if(getListArr.length < 1){//so get uploaded shopping list
-      getListArr = JSON.parse(localStorage.getItem('new_shopping_list')) 
-  getListArr.forEach(element =>{ // for each list item
-    $('#downloaded-modal-content').append(element); // render product to pick list
-    })
-   $('#downloaded-modal-content').children().addClass('image-div-shop')//add .shop class to items
-    $('#get-shopping-list').hide(); // hide download list button
-    $('#open-shopping-list').show(); // show 'start shopping' button
-    startShop(getListArr)};
-}}
 
 
 // DOWNLOAD AND UNPACK SHOPPING list if one exists
@@ -797,19 +761,27 @@ $('#add-icon').click((e)=>{
 // AMEND BASCKET CONFIRMATION
  const confirmAmendBasket = (id, destinationID) =>{
     let product = document.getElementById('amend-basket-product').children[0] // Get product
-let productAmount = product.firstChild.textContent // get product amount
+let productAmount = document.getElementById('pick-value-amend').textContent // get product amount
 let productName = product.lastChild.textContent // get product name
-
         productResize(product, product.firstChild, product.lastChild, product.children[1], 'basket-modal-content', 'large'); // resize product for basket
+
+        // render new number to amount icon
+  let amountIcon = product.children[0] // get icon element
+  let iconId = amountIcon.id; // get icon id
+  $(`#${iconId}`).text(productAmount) // get icon and render item amount
+
   closeModals(id, destinationID); // close amend basket modal, go to basket
   let productNamesArr = JSON.parse(localStorage.getItem('product_names')) // get array containing product name and amount
 productNamesArr.forEach(item =>{
 if(item[0].includes(productName)){ // search for amended product name
 item[1] = productAmount; // when product found, amend product amount
+console.log(productNamesArr)
   }
  });
+
  localStorage.setItem('product_names', JSON.stringify(productNamesArr)) // save new amount
 }
+
 
 //  CANCEL DELETE ITEM
 const cancelDelete = (id, destinationID) =>{ // restore element to shopping list items
@@ -817,7 +789,7 @@ const cancelDelete = (id, destinationID) =>{ // restore element to shopping list
   switch(id){
     case 'cancel-basket-amend':
 // resize image to small
-let product = document.getElementById('amend-basket-item').children[0]
+let product = document.getElementById('amend-basket-product').children[0]
 console.log(product)
       productResize(product, product.firstChild, product.lastChild, product.children[1], 'basket-modal-content', 'large')
 console.log(product)
