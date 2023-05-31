@@ -537,13 +537,6 @@ $('#downloaded-list').hide() // hide pick list
 }
 
 
-/*
-
-product.click((e) =>{
-    itemView(e.target.parentNode)
-})
-*/
-
 
 // click events in download content send product to hold modal for item count
 $('#downloaded-modal-content').click((e) =>{
@@ -552,25 +545,7 @@ itemView(product)
 console.log(product)
 })
 
-// click events in basket send product to delete basket item modal
-$('#basket-modal-content').click((e) =>{
-  let product = e.target.parentNode // assign product a variable
-  let productName = product.lastChild.textContent // get product name
-  basketProductNames.forEach(subArray =>{ // array product names/amounts
-    if(subArray[0].includes(productName)){ // find product name
-      let productAmount = subArray[1] // get product amount 
-      $('#pick-value-amend').text(productAmount) // render amount to amend page
-    }
-  })
-  console.log(productName)
-  console.log(basketProductNames)
-  $('#basket-list').hide() // hide basket
-    
-  productResize(product, product.firstChild, product.lastChild, product.children[1], 'hold-modal-content', 'small')
 
-   $('#amend-basket-product').append(product) // append clicked product to delete modal
- $('#amend-basket-items').css('display', 'block') // show delete modal
-})
 
 
 
@@ -583,72 +558,118 @@ closeModals('open-shopping-list', 'downloaded-list')
 
 // load shopping list items into download modal
 const loadShoppingList = (id) =>{ 
-  if(localStorage.getItem('temp_list')){ // load saved  list if one exists
-    getListArr = JSON.parse(localStorage.getItem('temp_list'))
-getListArr.forEach(element =>{ // render each product to pick list
+  if(localStorage.getItem('temp_list')){ // if list has been altered and saved
+    getListArr = JSON.parse(localStorage.getItem('temp_list')) // load as an array of products
+getListArr.forEach(element =>{ // render each product in array
     $('#downloaded-modal-content').append(element)
-})
-basketProductNames = JSON.parse(localStorage.getItem('product_names')) // product names for checkout
+}) // altered and saved list indicates products are in the basket
+basketProductNames = JSON.parse(localStorage.getItem('product_names'))//product names/counts for checkout
 basketArr = JSON.parse(localStorage.getItem('basket_list')) //get basket list
 basketArr.forEach(element =>{
-  console.log(element)
 $('#basket-modal-content').prepend(element)  // restore each product to basket
 let basketElement = document.getElementById('basket-modal-content')
 let childrenElements = basketElement.childNodes
-childrenElements.forEach(child =>{
-  let productname = child.lastChild.textContent
+childrenElements.forEach(child =>{ // for each pick list item
+  let productname = child.lastChild.textContent // get item name
   let iconImage = document.createElement('DIV') // create item count indicator 
-  iconImage.classList.add('item-amount-icon') // add class
-  iconImage.setAttribute('id', productname.replace(' ', '-'))
-basketProductNames.forEach(name =>{
-  if(name[0].includes(productname)){
-    iconImage.textContent = name[1]
-    child.removeChild(child.firstChild)
-    child.prepend(iconImage)
+  iconImage.classList.add('item-amount-icon') // add class to indicator
+  iconImage.setAttribute('id', productname.replace(' ', '-')) // use product name as ID of indicator
+basketProductNames.forEach(name =>{ // loop through array with product names
+  if(name[0].includes(productname)){ // find match for current product
+    iconImage.textContent = name[1] // use matche's count for indicator text 
+    child.removeChild(child.firstChild) // remove 'plus icon' from product
+    child.prepend(iconImage)// attach count icon to product
   }
 })
 
 console.log(productname)
 })
-/*
-let iconImage = document.createElement('DIV') // create item count indicator 
-iconImage.classList.add('item-amount-icon') // add class
-iconImage.setAttribute('id', amountElementId)
-let productCount = $('#pick-value').text() // get product count
-iconImage.textContent = productCount // display product count in indicator
-*/
-});
-// add event listener to reloaded basket items
-$('#basket-modal-content').children().click((e) =>{
-  let product = e.target.parentNode
-  console.log(product)
 
-  $('#basket-list').hide() // hide shopping list modal
-  productResize(product, product.firstChild, product.lastChild, product.children[1], 'amend-basket-product', 'small') // enlarge image for amount selection
-  $('#amend-basket-items').css('display', 'block') // show amend modal
 });
+// add event listener to basket items
+// experimentation with another type of click event for basket items - insead of adding the event listener to the products within the basket, add the event listener to the basket so that when the products leave the basket, they have no event attached to them. 
+$('#basket-modal-content').click((e) =>{
+  let product = e.target.parentNode
+  let productClass = product.getAttribute('class')
+  if(productClass.includes('image-checkbox-holder')){
+    console.log('this is a product')
+
+
+    let productName = product.lastChild.textContent // get product name
+    basketProductNames.forEach(subArray =>{ // array product names/amounts
+      if(subArray[0].includes(productName)){ // find product name
+        let productAmount = subArray[1] // get product amount 
+        $('#pick-value-amend').text(productAmount) // render amount to amend page
+      }
+    })
+  console.log(productName)
+  console.log(basketProductNames)
+
+ $('#basket-list').hide() // hide shopping list modal
+productResize(product, product.firstChild, product.lastChild, product.children[1], 'amend-basket-product', 'small') // enlarge image for amount selection
+$('#amend-basket-product').append(product) // append clicked product to delete modal
+$('#amend-basket-items').css('display', 'block') // show amend modal
+  }else{
+    console.log('not a product')
+  }
+
+});
+
+
+
+
+/*
+
+// click events in basket send product to delete basket item modal
+$('#basket-modal-content').click((e) =>{
+  let product = e.target.parentNode // assign product a variable
+
+
+  let productName = product.lastChild.textContent // get product name
+  basketProductNames.forEach(subArray =>{ // array product names/amounts
+    if(subArray[0].includes(productName)){ // find product name
+      let productAmount = subArray[1] // get product amount 
+      $('#pick-value-amend').text(productAmount) // render amount to amend page
+    }
+  })
+
+  console.log(productName)
+  console.log(basketProductNames)
+  $('#basket-list').hide() // hide basket
+    
+  productResize(product, product.firstChild, product.lastChild, product.children[1], 'hold-modal-content', 'small')
+
+   $('#amend-basket-product').append(product) // append clicked product to delete modal
+ $('#amend-basket-items').css('display', 'block') // show delete modal
+})
+
+*/
+
+
+
+
 
 
 console.log(basketArr);
 startShop(getListArr);
-  }else{ // no temp list saved 
-    if(getListArr.length < 1){//so get new shopping list
+  }else{ // no shopping list is saved
+    if(getListArr.length < 1){//so get uploaded shopping list
       getListArr = JSON.parse(localStorage.getItem('new_shopping_list')) 
-  getListArr.forEach(element =>{
-    $('#downloaded-modal-content').append(element); // render each product to pick list
+  getListArr.forEach(element =>{ // for each list item
+    $('#downloaded-modal-content').append(element); // render product to pick list
     })
    $('#downloaded-modal-content').children().addClass('image-div-shop')//add .shop class to items
     $('#get-shopping-list').hide(); // hide download list button
-    $('#open-shopping-list').show();
+    $('#open-shopping-list').show(); // show 'start shopping' button
     startShop(getListArr)};
 }}
 
 
 // DOWNLOAD AND UNPACK SHOPPING list if one exists
 const getShoppingList = () =>{
-if(localStorage.getItem('new_shopping_list')){
-  localStorage.setItem('shopping_started', 'started')
-loadShoppingList()
+if(localStorage.getItem('new_shopping_list')){ // if a shopping list exists in storage
+  localStorage.setItem('shopping_started', 'started') // indicated that shopping has started
+loadShoppingList() // load shopping
 }else{alert('no shopping list exists')}
 }
 
