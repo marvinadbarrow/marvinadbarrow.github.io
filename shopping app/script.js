@@ -125,6 +125,7 @@ let index = categoryContainerArray.indexOf(array)// get index of array
 categoryContainerArray[index].items.push(obj) // push product object to correct subarray
   }
 })
+console.log(categoryContainerArray)
 clearProductCreation()
 }
 
@@ -360,9 +361,10 @@ productNamesArr.forEach(element =>{// load purchased items
   closeModals(id, destinationID)
 }
 
+
+// this function 
 const productTotal = (identifyer) =>{
-  let productHolder = document.getElementById('amend-basket-product')
-  let product;
+  let productCurrentAmount;
   let amountIcon; 
   let iconId;
   let itemTotalNumber = Number($('#pick-value').text())
@@ -376,7 +378,7 @@ switch(identifyer){
 
 case 'subtract_1':  if(itemTotalNumber > 1){ // prevent numbers less than 1
   itemTotalNumber -= 1; // decrease number by 1
-  $('#pick-value').text(itemTotalNumber); // render number
+  $('#pick-value').text(itemTotalNumber); // render amended number to pick value
 }
 
 // AMEND BASKET ITEM COUNT
@@ -385,7 +387,7 @@ case 'subtract_1':  if(itemTotalNumber > 1){ // prevent numbers less than 1
     break;
   case 'subtract_1_amend':  if(itemAmendNumber > 1){ // prevent numbers less than 1
   itemAmendNumber -= 1; // decrease amend number by 1
-  $('#pick-value-amend').text(itemAmendNumber);  // render amended number
+  $('#pick-value-amend').text(itemAmendNumber);  // render amended number to pick value
 }
 }}
 
@@ -600,21 +602,29 @@ startShop(getListArr);
 // add event listener to basket items
 // experimentation with another type of click event for basket items - insead of adding an event listener to each product within the basket, add the event listener to the basket so that when the products leave the basket, they have no event attached to them. 
 $('#basket-modal-content').click((e) =>{
-  let product = e.target.parentNode
-  let productClass = product.getAttribute('class')
-  if(productClass.includes('image-checkbox-holder')){
-    console.log('this is a product')
+  let product = e.target.parentNode // get clicked element
+  let productClass = product.getAttribute('class') // get class of element
+  if(productClass.includes('image-checkbox-holder')){ // if element is a product div
+    console.log('this is a product') // log true to console
+
+  
+    let amountIndicatorValue = product.childNodes[0].textContent // get indicator value
+    console.log(amountIndicatorValue)
+    $('#pick-value-amend').text(amountIndicatorValue) // set default pick value to the value of the indicator of the product (the amount that has been picked)
 
 
+/*
     let productName = product.lastChild.textContent // get product name
-    basketProductNames.forEach(subArray =>{ // array product names/amounts
-      if(subArray[0].includes(productName)){ // find product name
-        let productAmount = subArray[1] // get product amount 
+    basketProductNames.forEach(subArray =>{ // in array of product names/amounts
+      if(subArray[0].includes(productName)){ // find matching product name
+        let productAmount = subArray[1] // get associated product amount 
         $('#pick-value-amend').text(productAmount) // render amount to amend page
       }
     })
   console.log(productName)
   console.log(basketProductNames)
+    */
+
 
  $('#basket-list').hide() // hide shopping list modal
 productResize(product, product.firstChild, product.lastChild, product.children[1], 'amend-basket-product', 'small') // enlarge image for amount selection
