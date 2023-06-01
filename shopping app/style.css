@@ -326,7 +326,7 @@ overflow-y: auto;
 .hold-btn:hover{cursor: pointer;background-color:white;}
 
 #hold-item-btn-container{margin: auto; width: 70%; height: fit-content; margin-top: 3%; padding: 1%; display: flex; flex-direction: row; justify-content: space-around; align-items: center; background-color: rgb(98, 135, 238); border-radius: 40px;}
-#pick-value, #pick-value-amend{display: inline; width: fit-content; margin: 0px; font-size: 50px;}
+#pick-value, #pick-value-amend{display: inline; width: fit-content; margin: 0px; font-size: 50px; font-weight: bold;}
 #hold-btn-holder{margin:auto;  padding:1%; width: 90%; height: fit-content; display: flex; flex-direction: row; justify-content: space-around; background-color: rgba(255, 255, 0, 0);margin-top: 3%; }
 
 .back-btn-hold,.back-btn-basket{
@@ -393,7 +393,8 @@ aspect-ratio: 10/17;
   #view-basket-btn-container{width: 100%; height: fit-content; margin-top: 3%;}
   #view-basket-btn{padding:7px; margin-top: 8px;}
   #view-basket-btn:hover{outline-color: white;}
-  .item-amount-icon{width: 10%; aspect-ratio: 1/1; position: absolute; margin: 1px; background-color: red; color: white; border-radius: 50%;border: 2px solid black; display: flex; justify-content: space-around; align-items: center; font-size: 15px; font-weight: bold; padding: 2px;}
+  .item-amount-icon{width: 20%; aspect-ratio: 1/1; position: absolute; margin: 1px; background-color: red; color: white; border-radius: 50%;border: 2px solid black; display: flex; justify-content: space-around; align-items: center; font-size: 40px; font-weight: bold; padding: 2px;}
+  .item-amount-icon-large{font-weight: bold; font-size: 80px; }
 
   /* CHECKOUT STYLING*/
   #checkout-btn-holder{width: 100%; height: fit-content; display: flex; flex-direction: row; justify-content: space-around; margin-top: 3%;}

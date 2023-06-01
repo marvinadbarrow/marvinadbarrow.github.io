@@ -454,24 +454,33 @@ const productResize = (product, icon, label, image, destination, size) =>{
 
   // show parameter values
   console.log(product, icon, label, image, destination, size)
+let iconClass; // icon can be either plus icon or product amount indicator. The text in the amount indicator will need to be increased to a much larger size
 
+  let iconPreClass = icon.getAttribute('class');
   let productClass ='image-div-shop-large';
-  let iconClass = 'plus-icon-large';
   let imageClass ='pick-item-image-large';
   let labelClass = 'product-label-large'; 
-  switch(size){
-    case 'large':
-      product.classList.remove(productClass);
-      icon.classList.remove(iconClass);
-      label.classList.remove(labelClass);
-      image.classList.remove(imageClass);
-    $(`#${destination}`).prepend(product)
+
+  switch(iconPreClass){
+    case 'plus-icon': iconClass = 'plus-icon-large';
       break;
-    case 'small':
-      product.classList.add(productClass);
-      icon.classList.add(iconClass);
-      label.classList.add(labelClass);
-      image.classList.add(imageClass);
+  }
+
+  switch(size){ // reduce to default size
+    case 'large':
+      product.classList.remove(productClass); // remove large class
+      if(iconPreClass == 'plus-icon'){icon.classList.remove(iconClass)}//remove large class (+ icon)
+      else{icon.style.cssText = 'font-size: 40px;'}//decrease indicator text (amount icon)
+      label.classList.remove(labelClass); // remove large class
+      image.classList.remove(imageClass); // remove large class
+    $(`#${destination}`).prepend(product) 
+      break;
+    case 'small': // enlarge
+      product.classList.add(productClass);// add large class
+      if(iconPreClass == 'plus-icon'){icon.classList.add(iconClass)}//add large class (+ icon)
+      else{icon.style.cssText = 'font-size: 80px;'}//increase indicator text (amount icon)
+      label.classList.add(labelClass);// add large class
+      image.classList.add(imageClass);// add large class
         $(`#${destination}`).prepend(product)
         break;
       } 
@@ -611,19 +620,6 @@ $('#basket-modal-content').click((e) =>{
     let amountIndicatorValue = product.childNodes[0].textContent // get indicator value
     console.log(amountIndicatorValue)
     $('#pick-value-amend').text(amountIndicatorValue) // set default pick value to the value of the indicator of the product (the amount that has been picked)
-
-
-/*
-    let productName = product.lastChild.textContent // get product name
-    basketProductNames.forEach(subArray =>{ // in array of product names/amounts
-      if(subArray[0].includes(productName)){ // find matching product name
-        let productAmount = subArray[1] // get associated product amount 
-        $('#pick-value-amend').text(productAmount) // render amount to amend page
-      }
-    })
-  console.log(productName)
-  console.log(basketProductNames)
-    */
 
 
  $('#basket-list').hide() // hide shopping list modal
@@ -796,16 +792,16 @@ console.log(productNamesArr)
 }
 
 
-//  CANCEL DELETE ITEM
+//  CANCEL DELETE OR AMMEND ITEM
 const cancelDelete = (id, destinationID) =>{ // restore element to shopping list items
   console.log(id, destinationID)
   switch(id){
     case 'cancel-basket-amend':
 // resize image to small
 let product = document.getElementById('amend-basket-product').children[0]
-console.log(product)
+console.log(product.firstChild)
       productResize(product, product.firstChild, product.lastChild, product.children[1], 'basket-modal-content', 'large')
-console.log(product)
+console.log(product.firstChild)
       closeModals(id, destinationID)
       break;
     case 'cancel-delete':
