@@ -725,11 +725,6 @@ const pushToShoppingList = (id, destinationID) =>{
 
  productImgArray.forEach(product =>{
 
-
-  $('#shopping-list-items').append(product.outerHTML)
- })
-
- // create delete icon for each product on display in list
  // create a delete icon
  let deleteImg = document.createElement('IMG')
  // add source to delete icon
@@ -737,8 +732,16 @@ const pushToShoppingList = (id, destinationID) =>{
  
       // style image
     deleteImg.classList.add('delete-image')
+    product.prepend(deleteImg)
+
+  $('#shopping-list-items').append(product)
+ })
+
+ console.log(document.getElementById('shopping-list-items'))
+ // create delete icon for each product on display in list
+
 // add image to product
- $('#shopping-list-items').children().prepend(deleteImg)
+ //$('#shopping-list-items').children().prepend(deleteImg)
 
 
  $('#shopping-list-items').children().click((e) =>{ // make product clickable
@@ -1034,3 +1037,4 @@ const loadItems = (array) =>{ productImgArray = [];
 
 
 
+  console.log(JSON.parse(localStorage.getItem('new_shopping_list')))
