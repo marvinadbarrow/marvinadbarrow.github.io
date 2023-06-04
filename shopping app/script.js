@@ -492,7 +492,8 @@ const populateBasket = (product) =>{
 productResize(product, product.firstChild, product.lastChild, product.children[1], 'basket-modal-content', 'large')
 let productName = product.lastChild; 
 let productText = productName.textContent
-let amountElementId = productText.replace(' ', '-')
+let tempId = productText.replace(':', '') 
+let amountElementId = tempId.replace(' ', '-')
 product.removeChild(product.firstChild)// remove 'plus' icon
 let itemAmountEl = document.createElement('DIV') // create item count indicator 
 itemAmountEl.classList.add('item-amount-icon') // add class
@@ -777,12 +778,16 @@ let productName = product.lastChild.textContent // get product name
         // render new number to amount icon
   let amountIcon = product.children[0] // get icon element
   let iconId = amountIcon.id; // get icon id
+  console.log(iconId)
   $(`#${iconId}`).text(productAmount) // get icon and render item amount
 
   closeModals(id, destinationID); // close amend basket modal, go to basket
   let productNamesArr = JSON.parse(localStorage.getItem('product_names')) // get array containing product name and amount
+  console.log(productNamesArr)
 productNamesArr.forEach(item =>{
 if(item[0].includes(productName)){ // search for amended product name
+  console.log(item[0])
+  console.log(productName)
 item[1] = productAmount; // when product found, amend product amount
 console.log(productNamesArr)
   }

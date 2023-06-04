@@ -364,6 +364,7 @@ aspect-ratio: 10/17;
   overflow-y: auto;
 }
 
+
 /* PRODUCT HOLDER IN 'PICK ITEM' (FOR BASKET) MODAL*/
 .image-div-shop{position: relative; margin-right: 4px; width: 40%; height: fit-content; display: inline-block; margin-top: 10px;
   border: 0.2px solid rgba(190, 188, 188, 0.5);}
