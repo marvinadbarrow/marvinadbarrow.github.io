@@ -1,0 +1,23 @@
+{
+  "name": "shopping-app-node",
+  "version": "1.0.0",
+  "description": "shopping app node",
+  "main": "script.js",
+  "bin": {
+    "shopping-app-node": "bin/script2.js"
+  },
+  "scripts": {
+    "start": "node script",
+    "dev": "nodemon script",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Marvin Barrow",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

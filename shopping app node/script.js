@@ -1,10 +1,62 @@
 
+console.log(indexedDB.databases('categoryStore'))
+
+let categoryContainerArray = []
+let categoryList = []
+let categoryCreationArray = []
+
+
+import { idCreator } from './id.js'; // creates a unique-ish id for newly created database items which are generated when new products are created and added to existing categories or when new categories are created
+import categories from'./shopping.json' assert {type: 'json'};
+
+
+// create categories and load into array for shopping list creation
+const getCategoriesFromJSON = () =>{
+console.log(categories.categoryHolderArr)
+// console.log(categories.category_objects)
+
+
+  // push each array that contain product objects to the category container
+  for (const key in categories.categoryHolderArr) {
+    categoryContainerArray.push(categories.categoryHolderArr[key])
+  }
+  
+  
+  // push each category object to the list array
+  for (const key in categories.category_objects) {
+    categoryList.push(categories.category_objects[key])
+  }
+  
+  
+  categoryList.forEach(listItem =>{ // for each array containing products
+    listItem.forEach(product =>{ // for each product
+      categoryContainerArray.forEach(category =>{ // for each category in category array
+        if(category.catName === product.categoryName){ // if category name is product category 
+        let index = categoryContainerArray.indexOf(category) // get index of category
+        categoryContainerArray[index].items.push(product)//push listed product to category 'items' array 
+        }
+      })
+    })
+  })
+  
+  
+   console.log(categoryContainerArray)
+
+
+}
+
+
+getCategoriesFromJSON() // create category and product list
+
+
+
+
+//const squareNum = require('./utils.js')
+console.log('hi mum')
 
 // testing module for module functionality
-import {squareNum as squared} from './utils.js';
-console.log(squared(5))
-const log = console.log;
-log(localStorage)
+//console.log(squareNum(5))
+
 let productImgArray = [] // keeps product elements append from one modal to another. 
 var totalCheckedArray = []
 var restockRequiredArr = [] // contains item names that are selected for the shopping list
@@ -19,10 +71,8 @@ var initialListArray = []// holds record of last saved temp list if it exists
 var purchasedArr = []// once checkout is accepted this array will be populated with all checkout object details, and the array with rejected items - with the label of rejected at the beginning of that array (unshifted to the arrayh)
 var basketProductNames = []
 
-let categoryContainerArray = []
-let categoryList = []
 
-    $('#checkout-send').click(function(e){
+    $('#checkout-send').click((e)=>{
       console.log('sending items to checkout... ')
     })
 
@@ -38,33 +88,16 @@ var buttonsArr = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8'
 
 // --------------------------------------------------------------------
 // FETCH products data JSON FILE. 
-fetch('./shopping.json')  // fetch weather code and moon phase data
-.then(response => response.json())
-.then(data =>{
-  
-// push each array that contain product objects to the category container
-for (const key in data.categoryHolderArr) {
-  categoryContainerArray.push(data.categoryHolderArr[key])
-}
 
-// push each category object to the list array
-for (const key in data.category_objects) {
-  categoryList.push(data.category_objects[key])
-}
 
-categoryList.forEach(listItem =>{ // for each array containing products
-  listItem.forEach(product =>{ // for each product
-    categoryContainerArray.forEach(category =>{ // for each category in category array
-      if(category.catName === product.categoryName){ // if category name is product category 
-      let index = categoryContainerArray.indexOf(category) // get index of category
-      categoryContainerArray[index].items.push(product)//push listed product to category 'items' array 
-      }
-    })
-  })
-})
 
-console.log(categoryContainerArray) // contains objects for each category with the following setup {catName: "category_name". items: [{categoryName "category name", itemName: "item name", imgAddress: "relative path", id: "id"}, {category2},......{category3},...... {category n}]}
-})
+
+
+
+
+
+
+
 // ---------------------------------------------------------------------
 
 const clearProductCreation = () =>{
@@ -87,29 +120,176 @@ clearProductCreation()
 });
 
 
+const updateCategories = (array) =>{
+  for(let i = 13; i <array.length; i++){
+    let name = array[i].catName;
+        console.log(name)
+    let newCategory = `<div id="${name.replace(' ', '-')}" class="categories"><p class="category-para add-cat">${name}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
+$('#category-container').append(newCategory)
+  }
+}
+
+
+const IDB = (function init() {
+  let db = null;
+  let objectStore = null;
+  let DBOpenReq = indexedDB.open('CategoryDB', 1) // if 'categoryDB' doesn't exist one will be created
+
+  DBOpenReq.addEventListener('error', (err) => {
+    //Error occurred while trying to open DB
+    console.warn(err);
+    
+    // if there is no database then use the default categories
+  getCategoriesFromJSON()
+
+  });
+
+  DBOpenReq.addEventListener('success', (ev) => {
+    //DB has been opened... after upgradeneeded
+    db = ev.target.result;
+
+    // reading the data for when the page first loads
+    let transaction = db.transaction('categoryStore', 'readonly'); // transaction to read store
+    let store = transaction.objectStore('categoryStore')// select specific store of transaction
+    let getReq = store.getAll(); // get all store entries
+    getReq.onsuccess = (ev) =>{ // if request is successful
+let request = ev.target.result; // assign the entries a variable
+if(request.length > 0){ // if entries exist
+let currentCatNumber = request.length - 1; // get number of entries
+let currentCategories = request[currentCatNumber]['categoryContainerArray']
+
+
+for(let i=13; i<currentCategories.length; i++){ // build non-default categories
+  categoryContainerArray.push(currentCategories[i])
+}
+console.log(categoryContainerArray)// updated array
+updateCategories(categoryContainerArray)
+}
+else{ // if no categories exist in the database store
+  getCategoriesFromJSON() // then run the default category maker
+}
+    }
+
+    getReq.onerror = (err) =>{ // if request is unsuccessful
+      console.warn(err)
+    }
+    transaction.onerror = (err) =>{ // if read only transaction throws an error
+      console.warn(err)
+    }
+    transaction.oncomplete = (ev) =>{ // once read only completes
+      console.log(ev)
+    }
+    console.log('success', db);
+  });
+  
+
+  DBOpenReq.addEventListener('upgradeneeded', (ev) => {
+    //first time opening this DB
+    //OR a new version was passed into open()
+    db = ev.target.result;
+    console.log(db)
+    let oldVersion = ev.oldVersion;
+    let newVersion = ev.newVersion || db.version;
+    console.log('DB updated from version', oldVersion, 'to', newVersion);
+  
+    console.log('upgrade', db);
+    if (!db.objectStoreNames.contains('categoryStore')) {
+      objectStore = db.createObjectStore('categoryStore', {
+        keyPath: 'id',
+      });
+    }
+
+    console.log(db.objectStoreNames, db.name, db.version)
+
+  });
+
+
+  // EVENT LISTENER ON BOTH INPUTS, PRODUCT CREATOR AND CATEGORY CREATOR
+  $("input").on('keyup', (e) =>{
+    let category
+    if(e.code == 'Enter'){ // input entry sent using 'ENTER' button
+
+// check if what is being created; category or product - then run appropriate builder
+      switch(e.target.id){
+        case 'category-add-to':
+          category = $('#category-add-to').val();
+          buildCategory(category);
+        break;
+        case 'add-to':
+          let product = $('#add-to').val();
+          buildProduct(product, categoryCreationArray[0]);
+          break;
+      }
+
+
+
+      setTimeout(() => {
+        let categoryNew = {
+          
+          id: idCreator(),
+          categoryContainerArray // array is product or category array
+        }
+      
+        console.log(categoryNew)
+      
+            
+        const  makeTX = (storeNames, mode) => { // storeName is product store or category store
+        let tx = db.transaction([storeNames], mode);
+          tx.onerror = (err) => {
+            console.warn(err);
+          };
+          return tx;
+        }
+      
+        
+        
+        let tx = makeTX('categoryStore', 'readwrite');
+        console.log(tx)
+        tx.oncomplete = (ev) =>{
+          console.log(ev);
+        };
+        // add new category to database store
+        let store = tx.objectStore('categoryStore');
+        let request = store.add(categoryNew); 
+        
+        request.onsuccess = (ev) =>{
+       
+        console.log('successfully added an object', ev);
+        };
+        
+        request.onerror = (err) =>{
+        
+          console.log('error in request to add', err);
+          };
+               
+      }, 200);
+     
+    } // end of if condition (if keyup is 'ENTER')
+
+  
+  });
+
+
+
+})();
+
+
+
 // BUILD NEW CATEGORY
 const buildCategory = (category) =>{
 // replace all spaces with dashes (for id format)
-let newCategory = `<div id="${category.replace(' ', '-')}" class="categories"><p class="">${category}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
+let newCategory = `<div id="${category.replace(' ', '-')}" class="categories"><p class="category-para">${category}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
 $('#category-container').append(newCategory)
 // create a category object to populate when new products are added
 let obj = {catName: category.replace(' ', '-'), items: []}
 categoryContainerArray.push(obj)
+
 console.log(categoryContainerArray)
 
 clearProductCreation()
 }
 
-// DETECT ENTER KEYSTROKE - CATEGORY INPUT
-document.getElementById('category-add-to').addEventListener('keyup', (e) =>{
-  switch(e.code){
-    case 'Enter': console.log(' category enter pressed')
- // get value of input
-  let category = $('#category-add-to').val()
-buildCategory(category)
-    break;
-  }
-})
+
 
 // BUILD NEW PRODUCT
 const buildProduct = (productName, category) =>{
@@ -128,18 +308,6 @@ categoryContainerArray[index].items.push(obj) // push product object to correct 
 console.log(categoryContainerArray)
 clearProductCreation()
 }
-
-// DETECT ENTER KEYSTROKE - input field for new product
-document.getElementById('add-to').addEventListener('keyup', (e) =>{
-  switch(e.code){
-    case 'Enter': console.log('enter pressed')
- // get value of input
-  let product = $('#add-to').val()
-
-buildProduct(product, categoryCreationArray[0])
-    break;
-  }
-})
 
 
 // select a category to add a product to
@@ -1039,10 +1207,15 @@ const loadItems = (array) =>{ productImgArray = [];
   }
   // open a category
   $('#screen-body').click(function(e){
-    categoryContainerArray.forEach(element =>{ // for each category element
-  if(document.getElementById(element.catName).contains(e.target)){ // if element contains target
-    loadItems(element.items)} // load category items
-  })
+   if(e.target.textContent == "Create list"){
+// do nothing
+   }
+   else{categoryContainerArray.forEach(element =>{ // for each category element
+    console.log(element)
+   if(document.getElementById(element.catName).contains(e.target)){ // if element contains target
+  loadItems(element.items)}else{} // load category items
+});}
+
   })
   
 

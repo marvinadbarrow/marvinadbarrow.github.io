@@ -1,0 +1,25 @@
+{
+  "name": "shopping-app-node-2",
+  "version": "1.0.0",
+  "description": "shopping app made with node",
+  "main": "script.js",
+  "type": "module",
+  "bin": {
+    "shopping-app-node-2": "bin/script2.js"
+  },
+  "scripts": {
+    "start": "node script",
+    "dev": "nodemon script",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marvin Barrow",
+  "license": "ISC",
+  "dependencies": {
+    "idb-keyval": "^6.2.1",
+    "safari-14-idb-fix": "^3.0.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

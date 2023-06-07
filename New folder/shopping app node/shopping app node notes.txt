@@ -1,0 +1,14 @@
+DEPLOYING THE APP - 
+
+Delete node_modules folder before deployment. 
+If you're working from another location then you can just run 'npm nodemon' as long as nodemon is in your 'devDependencies' list. 
+
+Otherwise you would have to use the command nmp install -D modemon
+
+
+You'll need to reinstall node into the main folder of the application when you want to start using node with the application... so I had to use the command: 'npm init'
+This runs and walks you through some set up questions at the end of which a package.json file will be created. It contains info about the app, author, dependencies etc. 
+
+then you can run other dependencies such as 'npm install uuid' (third party stuff) 
+
+You'll then be able to import all of the modules into script.js
