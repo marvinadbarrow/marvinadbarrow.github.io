@@ -118,7 +118,6 @@ clearProductCreation()
 const updateCategories = (array) =>{
   
   for(let i = 13; i <array.length; i++){
-    console.log(i)
     let name = array[i].catName;
         console.log(name)
     let newCategory = `<div id="${name.replace(' ', '-')}" class="categories"><p class="category-para add-cat">${name}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
@@ -1206,7 +1205,6 @@ const loadItems = (array) =>{ productImgArray = [];
 // do nothing
    }
    else{categoryContainerArray.forEach(element =>{ // for each category element
-    console.log(element)
    if(document.getElementById(element.catName).contains(e.target)){ // if element contains target
   loadItems(element.items)}else{} // load category items
 });}
