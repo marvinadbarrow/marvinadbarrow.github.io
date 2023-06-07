@@ -1,0 +1,313 @@
+here are some notes on the already made functions
+
+
+
+// notes on above function.... every time 'Enter' is pressed the input text gets appended as a list item, with an accompanying checkbox which has an id, a value (the name of the shopping item) and a name (which sort of gives the purpose of the value) and a label (which is the actual item to be purchased) --
+
+// hopefully I can use the ticked checkbox to indicate that I have collected the item for purchase.  I can then send all ticked items to the basket for processing (or you can send them individually as you go); maybe in the 'checkout' page, that's where you can specify how much of each product is purchased, or you can put 'zero' if you retract an item. Also, when you get to the checkout page you might do an alert if there are any un-purchased items to double-check that you don't wish to purchase them.  Maybe have an ignore button, or go back to shopping basket for parchases; and then return to the checkout once those purchases are made.  On the same page you could have a purchase completed button for when you've bought everything.   You need to save the data so you have to find out how to do that, maybe you could email it, and save it json-ified to local storage, perhaps creating a new object out of thet shopping date.  - once home the saved data can be un-json-ified, displayed in a list of items of items to store, and perhaps  you can have a drop down field of all storage locations next to each item - pick the item and click store, then page refreshes and item disappears; ready for you to store the next item.  
+
+// I think the label is actually a label for the checkbox - so it appears next to the checkbox that it is associated with; so you don't really need to specify the wording for the list item because it will appear in the label in a better position than list wording.  Also, put list-style-type:none; in CSS so the bullet points don't show when the list item is appended, so things look more presentable. 
+
+maybe a better idea would be to store items returned from the input in an array, or store the items in a database, and then have a 'get shopping list' button which can then populate the unordered list with items and check boxes ready to be selected when you're actually shopping. 
+
+You could also have a 'check shopping list button which will check the items before you leave home; you should also be able to add items to the list on the way or add them so they show up for the checkout later.
+
+Process:
+
+-add items
+-submit items
+-verify list (maybe send to email from here) or create a document with list to send for yourself.
+-get list (when shopping)
+-add items to basket (perhaps have the number of items on this page)
+-proceed to checkout (if unchecked items remain, check if intentionally missed; forgotten)
+-purchase items (maybe still have a check list if you wish to remove anything last minute)
+
+Message - ITEMS PURCHASED and they can be stored for retrieval later
+
+-get unstored purchases
+-store purchases. 
+
+
+---------------------------------------- SHOPPING CATEGORIES ----------------------------------
+
+Yes specifies images collected
+
+FISH
+fish cakes - YES
+crab sticks - YES
+
+
+MEAT
+quiche - meat - YES
+pasta - meat - YES
+bacon - YES
+
+
+VEGETARIAN
+quiche - vegetarian - YES
+pasta - vegetarian - YES
+
+DAIRY
+milk - YES
+cheese - YES
+
+FRUIT & VEG 
+carrots - YES
+corn on tbe cob - YES
+tomatoes - YES
+
+
+BAKERY
+bread - loaf - YES
+bread - roll - YES
+
+PASTRIES
+cinnamon swirl - YES
+maple pecan - YES
+
+
+HOT DRINKS
+coffee - YES
+hot chocolate - YES
+ovaltine - YES 
+tea - YES
+
+
+COLD DRINKS
+coke classic
+dr pepper - YES
+cold latte/cappucino - YES
+
+ALCOHOL
+crabbies - strawberry - YES
+
+
+TOILETRIES
+deoderant - YES
+air freshener - YES
+hand wash - YES
+toilet paper - YES
+toothpaste - YES
+toothbrush - YES
+shower gel - YES
+
+
+CLEANING PRODUCTS
+bleach - YES
+surface cleaner spray - YES
+washing powder - YES
+washing up liquid - YES
+
+
+MISC
+monkey nuts - YES
+biscuits - YES
+popcorn - YES
+
+
+INDETERMINATE CHECKBOX.   tHIS COULD BE USED TO SHOW THE STATE OF A SET OF CHECK BOXES SO THAT IF ALL ITEMS ON THE SHOPPING LIST, YOU CAN SEE THAT SOME ITEMS (OR NO ITEMS) HAVE BEEN CHECKED. So, when you're ready to purchase maybe at that point you can receive an alert if the 'shopping list' checkboxes are not all checked.  And you can decided whether or not to go back and purchase items or to ignore and proceed with purchase. NOTE... submitting a form with indeterminate checkbox means none of your data is submitted so maybe this isn't a good use case. 
+
+
+FORM- the checkboxes need to be within a form, so I've done that.  The form doesn't need formatting or an id (if it's the only one you're using) and is accessed with jQuery.  But I'm going to give an id because there will likely be more than one form used in the application. 
+
+
+
+// ISSUES WITH HAVING MULTIPLE ITEMS IN THE SHOPPING LIST - now all is left to do on the FRONT END is sourt out the unintended displays of items not to be deleted. Clone divs might have to get an id from item.value IN BELOW FUNCION
+
+-- CHECKCLICKEDSTATUS()
+
+
+CURRENT CODE FOR DELETING SHOPPING LIST ITEMS BELOW, but, I'm chaning the code. 
+instead of creating a clone from the shopping list to put onto 
+
+
+// confirm delete operation
+$('#confirm-delete').click((e) =>{
+let deleteContainer = document.getElementById('delete-this-item')
+let deleteItem = deleteContainer.firstChild
+let deleteName = deleteItem.lastChild.innerText
+console.log(deleteName)
+
+
+
+if(restockRequiredArr.includes(deleteName)){
+let deleteThis = restockRequiredArr.indexOf(deleteName)
+restockRequiredArr.splice(deleteThis,1)
+console.log(restockRequiredArr)
+
+
+// now we need to find the div with corresponding name in the shopping list in order to delete it.
+let shoppingList =  document.getElementById('shopping-list-items')
+console.log(shoppingList)
+const clonedItems = document.querySelectorAll('.div-clone')
+console.log(clonedItems)
+clonedItems.forEach(clone =>{
+  console.log(clone.lastChild.innerText)
+  if(deleteName == clone.lastChild.innerText){
+    console.log(clone)
+    shoppingList.removeChild(clone)}
+
+})
+
+}
+// delete image, checkbox and words from delete modal
+while (deleteContainer.firstChild) {
+  deleteContainer.removeChild(deleteContainer.firstChild);
+}
+
+ $('#delete-items').css('display', 'none')
+ $('#shopping-list').css('opacity', 1)
+})
+
+
+NEXT STAGE - when uploading the shopping list, you can create an object with all of the products on the list.  Jsonify it, and keep it in local storage.  Then unJsonify it, convert to HTML 
+parsed and Downloaded in JSON with 'parse'-- DONE!
+
+REMOVE IMAGES FROM SHOPPING LIST ONCE UPLOAD IS EXECUTED
+you need to check if this is done.  You may as well re-use the shopping list page as the 'get items' page, and mabe you can re-use the 'view added items' page - DONE!
+
+DISPLAYING THE SHOPPING.  This can easily be done by just having a similar format as the shopping page, but instead of having a delete icon on the image, just have a 'plus' icon on the image (like on the sainsbury's app).  This will take you to another page, with a larger image, where you can select the number of items you are picking. But maybe that's not needed. Because that's only really required by an app because you aren't the one doing the shopping. So for the moment I'll leave it out.  This means you can use the same process you used for 'checkbox' to 'shopping list'; instead, after get items, the process will be 'picked item' to 'basket'. Now just need to figure out how to load images. - DONE!
+
+EVENT LISTENERS ON BUTTONS. 
+It'll save a lot of space, and maybe resources if you link all buttons to the one event listener and use a switch statement to distinguish buttons by their id's.  Then you can  open and close modals or execute functions from within that 'one' event listener. DONE!
+
+
+PROBLEMS WITH DUPLICATE CHECKBOX SELECTION. 
+I think what happens is that the function stops while the alert is running, and once you click the close button, then the function runs again, and, if there are other checked boxes, creates the product element for display and then opens the added items modal.  - but maybe you want to cycle through 'all' of the checkboxes 'first'. create all elements, and then check to see if any of them are in the restock required array - if that's the case, bring up the alert box informing user of the duplication.  perhaps, beforehand, when a duplicate is found, add a class of 'duplicate' to the item, and then once you click the close button of the modal, you can delete that item from the added items page, and only THEN, show the added items page, otherwise, just show the items page as normal. so the steps would be. - DONE!
+
+
+
+24 MARCH TASKS --------------------------------------------------------
+
+ALSO: found the reason why all the divs are squished together... The formatting of the container for product divs is formatted flex row, and flex wrap. Whereas other containers are not so that needs adjusting - AND, height was fixed rather than fit-content, which varies. FIXED
+- follow the 'items for selection' class template. -DONE!
+
+also amalgamate the .delete-image class with the margin values added by cssText
+- you can find those in pushtoshoppinglist() and getshoppinglist()
+and change the value to just margin:5px; since although you need to shift it to and left by 5px bottom and right being 5px does not affect any other element so just do the whole thing as 5px. -- DONE!
+
+
+NOTES.... CREATE NEW CLASS FOR PRODUCT HOLDERS - combine:
+item checkbox holder
+item image
+-might as well give the div its own category also: image-div-shopping
+CREATE CLASS FOR 'ADD TO BASKET' LARGER IMAGES
+Take values in JS and organize in CSS which you will access from JS.  ---DONE!
+
+
+ADDING TO BASKET... Maybe you can have the page come up with the larger image and have two options, 'add to basket' or 'ignore'. 'Add' will take you back to the items to pick page but with the picked item's image now missing from the link because you have already put it in the basket, but 'ignore' will just take you back to the 'items to pick' page as if no action has been taken and the item will still be available to pick. (formatting DONE - needs implementation)  --- DONE!
+
+
+NUMBER OF ITEMS PER PRODUCT IN BASKET
+have to deal with number of items, AND, then, replace the plus-icon with a div that displays the number of items per product (at the top of the item image) 
+ALSO: item needs to be sent from pick list and saved into local storage for basket items.  DONE!
+
+
+SAVING THE SHOPPING LIST (prior to upload)
+I was thinking that it might be better to just save the shopping list to local storage as you add items to the list.  Otherwise you'll lose data; and that forces you to create the entire list in one session which is not what I want to do.   I want to be able to gradually save a list; actually, that is in place already on the 'shopping list' page.  When you check the list, you can save on the page (or upload) so gradual saving is can already be implemented.  Just need to know how to update LOCAL STORAGE; and that's really the crux of the above tracking behaviour too; you need to know how to update local storage (but in the background). It might even be a good idea to start a timer while shopping and auto save at a specific interval, resetting the clock; the clock can also be reset when you add an item to the basket. DONE! BUT YOU NEED TO NOW USE THE SAVED DATA TO RELOAD TEH LIST PAGE AND THE BASKET PAGE (also in localstorage) -- DONE! 
+
+
+
+TRACKING SHOPPING BEHAVIOUR... there needs to be some way to track current behaviour just in case the shopping is interrupted or internet connection goes down, or you accidentally come out of the app, or refresh the page. So perhaps intermittent storing is needed, and also storage for basket items, which can be activated when you send an item to the basket. DONE!  I don't even think a timer is really needed because you on pushing to basket your most recet state gets saved anyway.  You can always refresh the page and check to see if your item was entered, when you go back in.  Eventually want this app to be accessible offline; to prevent these issues. ----- DONE!
+
+CHECKOUT TO BE POPULATED WHEN HITTING THE CHECKOUT BUTTON FROM THE VIEW BASKET MODAL. 
+BUILDING A TEMPLATE IN JS for that. -- DONE!
+
+
+MORE PARTS TO BUILD:-
+
+ITEM TOTALS DIVS TO BE SHOWN WITH RE-LOADED BASKET ITEMS WHEN EXITING THE APP AND RETURNING. 
+this will require putting the number into localStorage('product_total_number','value') when the local storage is built in the function used to send items to basket
+
+
+
+FINAL CHECKOUT PAGE: - on the checkout page we can show the entire list, perhaps in the format of the original item categories, i.e. one list item per page; and have a way of distinguishing which ones you are about to purchase and which ones you have left out; asking whether user is sure that they want to proceed to checkout and purchase and then make purchase, or go back to pick list if user changes their mind.  - DONE!
+
+PUPULATING BASKET AND UPDATED LIST ON USER RE-ENTRY INTO APPLICATION: 
+At the moment, each time the app is refreshed, the download button has to be clicked in order to open the 'new' list, and the items previously moved from the list to the basket have been restored to the list and removed from the basket, as it would be when the list is first downloaded from local storage. What needs to happen is that if the user exits the app; when user returns, they should be prompted to click the RESUME SHOPPING button, and then the LIST MODAL and BASKET MODAL should be populated from the saved areas of local storage that were updating on the last shop and that hold the relevant data. if nothing is stored in the 'basket' local storage, the button below DOWNLOAD LIST will read 'START SHOPPING'; once the list is downloaded and user sends the first item to the basket, the label will change to 'RESUME SHOPPING'. We might not even need to write new functions; but use one single function which will be pushed to from the start shopping/resumeshopping button.  Maybe, instead of using the DOWNLOAD button to pupulate the list, might as well use the START SHOPPING button for that - and hide the DOWNLOAD button so it cannot be activated once the list has been downloaded.  Then START or RESUME can both activate the same funciton but exactly what happens  in the function depends on what is in localstorage; no saved basket or saved basket. - DONE!
+
+Once list is downloaded, you might change the get button for a paragraph that says, list available;
+then instead of jumping straght to the list, use the 'open list' button.  That way, the list can be saved; and you can shop in more than one place; i.e. purchase items in one store, save the basket, and purchase items in another store. then deliver when finished (that way, you can open and close the app and have have an updated list) So you'll need to remove items from the list as you add them to the basket and update LOCALSTORAGE with reduced list items, or maybe you can just remove the key from local storage. - DONE! NO CHANGE TO INITIAL PART OF THIS, a save facility is implemented for when user sends items to basket; so that, even if the app is closed or stops, the shopping basket items will reappear in the basket when the app is opened again and the pick list will show correctly, leaving out items that have already been sent to the basket - DONE!
+
+
+
+
+
+
+MORE IDEAS - 
+
+MARCH 26  
+
+NOTE* TOTAL NUMBER OF ITEMS ON THE SHOPPING LIST  = DOWNLOADED LIST + BASKET. 
+So all you need to do when going to checkout is check if there are items in the downloaded list and that will tell you whether or not you have completed the list. ----- CHECK LATER. IMPLEMENTED IN ANOTHER WAY.  ONCE the purchase is made, you won't be able to access the list any more because it no longer exists; that is, the local storage data will have been erased; so there is no data with with to load a list.  
+
+
+
+TOTAL NUMBER OF EACH ITEM IS NOT APPEARING IN BASKET WHEN APP IS REFRESHED OR REOPENED AFTER CLOSURE
+
+implement save button for where you wish to keep a copy of pre-uploaded list, so it's available after application is refreshed or closed. --- DONE!
+
+work out which buttons need to be hidden when various movies are opened. IN PROGRESS!
+
+
+
+
+ FIXED ISSUES - FIXED THE ISSUE WHERE IF THE SHOPPING LIST WAS SAVED AND, PRIOR TO UPLOAD, THE USER EXITS, WHEN THE USER RETURNS TO THE APP AND CONTINUES THE LIST, THE SAVED ITEMS WERE NOT GETTING UPLOADED; ONLY THE ITEMS WHICH WERE ADDED AFTER LAST LOGIN. THIS WAS HAPPENING BECAUSE ON EXITING THE APPLICATION, AND REOPENING IT, THE ARRAY HOLDING THE NAMES OF THE SAVED LIST ITEMS WAS, AS IT SHOULD BE, EMPTY, SO THERE WAS NO DATA, SO THE OLD DATA WAS NOT THERE TO STRINGIFY WITH JSON, so it wouldn't appear in the new list.  Solved by getting the item names from the newly rendered elements, parsed by JSON and appended as HTML into the shopping list view area.  The item names were then pushed again into the array which is used to create JSON data for storing in localStorage - SOLVED. 
+
+ On a side note, there was a text element that was appearing as the first element in the saved shopping list when saved elements were rendered after reopening the app.  I managed to get rid of it by using removeChild.firstChild... I'm not sure how the text element gets there in the first place. 
+
+check item
+
+not duplicate: 
+-creat element 
+-append to docment fragment
+
+duplicate: 
+-create element
+-add class .duplicate
+-append to document fragment. 
+
+after all elements created. 
+
+check for status of elements
+
+duplicates; 
+-display duplicates on alert modal. 
+-Close button removes duplicates from document fragment
+
+if document fragment children - append document fragment to added items
+-hide checkbox modal
+- close alert modal
+- display added items. 
+
+if no children - 
+-uncheck checkbox
+-close alert modal
+
+
+
+
+
+
+IDEAS... You should have a main page modal where you can do several actions, e.g. 'get shopping list', 'deliver shopping', 'unpack shopping' and 'restock' and also, 'start/continue list'
+You could split the start/continue button into to two using START and RESUME, greying out the start button if a list has already been started or greying out the resume button if no list if present.  Start with a greeting, which can be personalized.  You might even have a web app on it later to check the weather before you leave home : maybe a CHECK WEATHER button with an image of the sun, or sun behind clouds on it. - FIRST PART DONE!
+
+AJAX can be used for live search where the wording narrows searches as you type the word; in fact it's probably used by VS CODE because it uses predictive texting. You might be able to use it for the search bar in YT if you can get all of the search subjects using the API.  You might even also be able to use it for searching through your own list of subscriptions if you can get subscription data using the API, so you might not only search for videos, but also for subscriptions... or even niche categories..-
+
+You might even be able to use AJAX to update the shopping list when adding items.  That can be for a different iteration. Traversy Media has a multi-part tutorial for PHP, part 18 has a project for a saerch app which makes suggestions as you type. 
+
+
+
+BUTTON ORDER NOTES
+restock should only be available when checkout and delivery note is available
+delivery should only be available when checkout is saved
+open shopping list should only be available when new_shopping_list is available
+resume shopping should only be available when temp_list is available
+get shopping list should only be available when new_shopping_list is available 
+start list should only be available when new_shopping_list is unavailable 
+
+*/
+
+
+
+
