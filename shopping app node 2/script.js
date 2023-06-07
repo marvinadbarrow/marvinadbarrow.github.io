@@ -11,7 +11,7 @@ import categories from'./shopping.json' assert {type: 'json'};
 
 
 // create categories and load into array for shopping list creation
-const getCategoriesFromJSON = () =>{
+
 console.log(categories.categoryHolderArr)
 // console.log(categories.category_objects)
 
@@ -42,11 +42,6 @@ console.log(categories.categoryHolderArr)
   
    console.log(categoryContainerArray)
 
-
-}
-
-
-getCategoriesFromJSON() // create category and product list
 
 
 
@@ -121,7 +116,9 @@ clearProductCreation()
 
 
 const updateCategories = (array) =>{
+  
   for(let i = 13; i <array.length; i++){
+    console.log(i)
     let name = array[i].catName;
         console.log(name)
     let newCategory = `<div id="${name.replace(' ', '-')}" class="categories"><p class="category-para add-cat">${name}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
@@ -139,8 +136,6 @@ const IDB = (function init() {
     //Error occurred while trying to open DB
     console.warn(err);
     
-    // if there is no database then use the default categories
-  getCategoriesFromJSON()
 
   });
 
@@ -160,13 +155,13 @@ let currentCategories = request[currentCatNumber]['categoryContainerArray']
 
 
 for(let i=13; i<currentCategories.length; i++){ // build non-default categories
+  console.log(i)
   categoryContainerArray.push(currentCategories[i])
 }
 console.log(categoryContainerArray)// updated array
 updateCategories(categoryContainerArray)
 }
 else{ // if no categories exist in the database store
-  getCategoriesFromJSON() // then run the default category maker
 }
     }
 
