@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-    <html>
+    <html lang="en">
         <head>
 
+          <meta charset="UTF-8">
+          <meta name="description" content="Shopping App">
+          <meta name="keywords" content="HTML, CSS, JavaScript">
+          
           <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
 
@@ -85,7 +89,7 @@ awesome/4.7.0/css/font-awesome.min.css">
     </div>
 <!-- CATEGORY MENU BUTTONS -->
     <div id="btn-container-category">
-      <button id="home-btn"><img id="home-icon" src="./home icon.png" alt=""></button>
+      <div id="home-btn"><img id="home-icon" src="./home icon.png" alt=""></div>
       <button class="navigate-btn"  id="view-shoplist">view list</button>
     </div>
 
@@ -113,9 +117,9 @@ awesome/4.7.0/css/font-awesome.min.css">
 
 </form>
 
-<button class="back-btn" id="back-btn-select">
+<div class="back-btn" id="back-btn-select">
   <img id="back-arrow-img" src="./back arrow 2.png" alt="">
- </button>
+ </div>
 
 </div>
 
@@ -132,7 +136,7 @@ awesome/4.7.0/css/font-awesome.min.css">
 </div>
 
 <div class="choice-btns" id="choice-btn-container">
-  <button id="add-more"><img id="add-icon" src="./add icon.png" alt=""></button>
+  <div id="add-more"><img id="add-icon" src="./add icon.png" alt=""></div>
   <button class="navigate-btn"  id="view-shopping-list">view list</button>
  </div>
     </div>
@@ -201,11 +205,10 @@ awesome/4.7.0/css/font-awesome.min.css">
   <button id="restock-shopping" class="main-page-btn purchase-hide ">Re-stock</button>
   <button id="clear-items" class="main-page-btn  purchase-hide">clear list</button>
   <button id="create-new-category" class="main-page-btn">Create a product </button>
-  <button type="submit" id="create-cat-btn" class="main-page-btn">Add Category</button>
+ 
 
 </div>
 </div>
-
  <!-- category/product adder -->
 <div class="modal" id="new-item-or-category">
 
@@ -222,6 +225,7 @@ awesome/4.7.0/css/font-awesome.min.css">
               <div id="add-product" class="product-adder">
                 <label  for="add-to"  id="add-to-label">add to:</label>
                 <input id="add-to" type="text" placeholder="new product"></input>
+                <button type="submit" id="create-product-btn" class="main-page-btn">Add product</button>
               </div>
                 <!--  select category to add product to-->
                 <div id="select-add-category" class="product-adder">
@@ -233,17 +237,16 @@ awesome/4.7.0/css/font-awesome.min.css">
               <!--  input new category-->
             
                 <div id="add-category">
-                  <form id="new-cat-form" action="">
-                <label for="name" id="category-add-label">Create new category:</label>
-                <input id="category-add-to" type="text" placeholder="new category">
-                <button type="submit" id="create-cat-btn">Add Category</button>
-              </form>
+
+                <label for="category-add-to" id="category-add-label">Create new category:</label>
+                <input id="category-add-to" type="text" placeholder="new category"></input>
+                <button type="submit" id="create-cat-btn" class="main-page-btn">Add Category</button>
                              </div>
  
 
       </div>
 <div id="btn-container-category-adder">
-  <button id="home-btn"><img id="home-icon-product-creation" src="./home icon.png" alt=""></button>
+  <div id="home-btn"><img id="home-icon-product-creation" src="./home icon.png" alt=""></div>
   <button class="navigate-btn"  id="reject-new">reject</button>
 </div>
 
@@ -257,7 +260,7 @@ awesome/4.7.0/css/font-awesome.min.css">
   <h2>Save or Upload</h2>
   <div id="upload-modal-content" class="">
   <h4><em>"Do you want to save and complete later; or authorize as complete and upload?"</em></h4>
-        <div class="save-div" id="save-list">
+        <div class="save-div" id="save-list-div">
         <button id="save-list" class="main-page-btn">Save for later</button><img class="upload-modal-icons" src="./save icon.jpg" alt="">
       </div>
 
@@ -288,7 +291,7 @@ awesome/4.7.0/css/font-awesome.min.css">
   </div>
   </div>
   <div id="hold-btn-holder">
-<button id="hold-to-list" class="back-btn-hold"><img id="hold-to-list" class="back-arrow2-img" src="./back arrow 2.png" alt=""></button>
+<div id="hold-to-list" class="back-btn-hold"><img id="hold-to-list-img" class="back-arrow2-img" src="./back arrow 2.png" alt=""></div>
 <button class="navigate-btn-hold" id="navigate-to-basket">Add to basket</button>
 </div>
 </div>
@@ -330,18 +333,7 @@ awesome/4.7.0/css/font-awesome.min.css">
 
 
 
-<!-- DELETE BASKET ITEMS modal-->
-<div class="modal" id="delete-basket-items">
-  <h2>Delete basket item!</h2>
-  <div id="delete-added-items">
-  <h4>Are you sure you want to delete this BASKET item?</h4>
-  <div id="delete-this-basket-item"></div>
-  <div class="choice-btns" id="delete-choice-btns">
-    <button id="confirm-delete" class="navigate-btn delete-choice">Yes: Delete!</button>
-    <button id="cancel-delete" class="navigate-btn delete-choice">Cancel</button>
-  </div>
-</div>
-</div>
+
 
 
 

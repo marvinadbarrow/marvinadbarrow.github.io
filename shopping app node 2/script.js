@@ -1,6 +1,8 @@
 
 console.log(indexedDB.databases('categoryStore'))
 
+
+
 let categoryContainerArray = []
 let categoryList = []
 let categoryCreationArray = []
@@ -15,7 +17,7 @@ import categories from'./shopping.json' assert {type: 'json'};
 console.log(categories.categoryHolderArr)
 // console.log(categories.category_objects)
 
-
+//test
   // push each array that contain product objects to the category container
   for (const key in categories.categoryHolderArr) {
     categoryContainerArray.push(categories.categoryHolderArr[key])
@@ -198,10 +200,76 @@ else{ // if no categories exist in the database store
   });
 
 
-  // EVENT LISTENER ON BOTH INPUTS, PRODUCT CREATOR AND CATEGORY CREATOR
-  $("input").on('keyup', (e) =>{
+
+  $('[type=submit]').click((e) =>{
+    console.log(e.target.id)
     let category
-    if(e.code == 'Enter'){ // input entry sent using 'ENTER' button
+switch(e.target.id){
+  case 'create-cat-btn':
+    category = $('#category-add-to').val();
+    console.log(category)
+    buildCategory(category);
+    break;
+  case 'create-product-btn':
+    let product = $('#add-to').val();
+    console.log(product)
+    buildProduct(product, categoryCreationArray[0]);
+    break;
+   
+}
+
+
+
+setTimeout(() => {
+  let categoryNew = {
+        id: idCreator(),
+    categoryContainerArray // array is product or category array
+  }
+
+  console.log(categoryNew)
+
+      
+  const  makeTX = (storeNames, mode) => { // storeName is product store or category store
+  let tx = db.transaction([storeNames], mode);
+    tx.onerror = (err) => {
+      console.warn(err);
+    };
+    return tx;
+  }
+
+  // test
+  
+  let tx = makeTX('categoryStore', 'readwrite');
+  console.log(tx)
+  tx.oncomplete = (ev) =>{
+    console.log(ev);
+  };
+  // add new category to database store
+  let store = tx.objectStore('categoryStore');
+  let request = store.add(categoryNew); 
+  
+  request.onsuccess = (ev) =>{
+ 
+  console.log('successfully added an object', ev);
+  };
+  
+  request.onerror = (err) =>{
+  
+    console.log('error in request to add', err);
+    };
+         
+}, 200);
+
+
+
+  }); 
+
+/*
+
+  // EVENT LISTENER ON BOTH INPUTS, PRODUCT CREATOR AND CATEGORY CREATOR
+  $("create-cat-btn").on('Click', (e) =>{
+    let category
+    if(e.code == 'Enter' || e.code == 66){ // input entry sent using 'ENTER' button
 
 // check if what is being created; category or product - then run appropriate builder
       switch(e.target.id){
@@ -211,10 +279,12 @@ else{ // if no categories exist in the database store
         break;
         case 'add-to':
           let product = $('#add-to').val();
+          console.log(product)
           buildProduct(product, categoryCreationArray[0]);
           break;
       }
 
+// test 2
 
 
       setTimeout(() => {
@@ -235,7 +305,7 @@ else{ // if no categories exist in the database store
           return tx;
         }
       
-        
+        // test
         
         let tx = makeTX('categoryStore', 'readwrite');
         console.log(tx)
@@ -263,7 +333,7 @@ else{ // if no categories exist in the database store
   
   });
 
-
+*/
 
 })();
 
@@ -1013,6 +1083,10 @@ break;
   }
 }
 
+// to navigate from any modal containing the home button to home page now image rather than button
+$('#home-icon').click((e) =>{
+  closeModals(e.target.id, 'main-page')
+})
 
 const duplicateCheckedItem = (id) =>{
   $('#view-added-items').hide()
