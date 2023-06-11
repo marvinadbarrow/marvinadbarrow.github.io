@@ -1,0 +1,1 @@
+I think that the app was not being deployed because I had a git repository inside of it.  That is, there was a git repository in the main directory but then there was a git repository inside the folder for this app.  I've removed the folder and will see if that fixes the issue. 
