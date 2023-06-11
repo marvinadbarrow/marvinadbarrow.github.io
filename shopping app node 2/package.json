@@ -2,14 +2,13 @@
   "name": "shopping-app-node-2",
   "version": "1.0.0",
   "description": "shopping app made with node",
-  "main": "script.js",
-  "type": "module",
+  "main": "index.js",
   "bin": {
     "shopping-app-node-2": "bin/script2.js"
   },
   "scripts": {
-    "start": "node script",
-    "dev": "nodemon script",
+    "start": "node index",
+    "dev": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marvin Barrow",

@@ -34,9 +34,7 @@ body{font-family: 'Roboto', sans-serif; }
   padding:8px;
   border-radius:20px;
   border: 0.5px solid black;
-  margin: auto
-  ;
-
+  margin: auto;
 }
 
 .modal{
@@ -163,10 +161,7 @@ overflow-y: auto;
   display: inline-block;
   width: 100%; height: fit-content;
   margin-top: 2%;
-
   }
-
-
 
 .choice-btns{
   width: 98%; height: fit-content;
@@ -185,9 +180,6 @@ border-style: none;
 #back-arrow-img{  width: 100%; aspect-ratio: 1/1; position: absolute; top: -4px; left: 1px;}
 
 
-
-
-
 /* below are the classes that need to be added to elements created in Javascript and dynamically loaded onto the 'select' modal, when an item category is selected on the main page*/
 
 
@@ -202,7 +194,6 @@ border-style: none;
 .checkbox-delete{position: fixed;}
 .item-image{width: 100%; aspect-ratio: 1/1; display: inline-block;}
 .select-label{font-size:40px; font-weight:bold;}
-
 
 
 .alert-para-container{ width: fit-content; height: fit-content;}

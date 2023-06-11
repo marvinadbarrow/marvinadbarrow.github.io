@@ -264,76 +264,7 @@ setTimeout(() => {
 
   }); 
 
-/*
 
-  // EVENT LISTENER ON BOTH INPUTS, PRODUCT CREATOR AND CATEGORY CREATOR
-  $("create-cat-btn").on('Click', (e) =>{
-    let category
-    if(e.code == 'Enter' || e.code == 66){ // input entry sent using 'ENTER' button
-
-// check if what is being created; category or product - then run appropriate builder
-      switch(e.target.id){
-        case 'category-add-to':
-          category = $('#category-add-to').val();
-          buildCategory(category);
-        break;
-        case 'add-to':
-          let product = $('#add-to').val();
-          console.log(product)
-          buildProduct(product, categoryCreationArray[0]);
-          break;
-      }
-
-// test 2
-
-
-      setTimeout(() => {
-        let categoryNew = {
-          
-          id: idCreator(),
-          categoryContainerArray // array is product or category array
-        }
-      
-        console.log(categoryNew)
-      
-            
-        const  makeTX = (storeNames, mode) => { // storeName is product store or category store
-        let tx = db.transaction([storeNames], mode);
-          tx.onerror = (err) => {
-            console.warn(err);
-          };
-          return tx;
-        }
-      
-        // test
-        
-        let tx = makeTX('categoryStore', 'readwrite');
-        console.log(tx)
-        tx.oncomplete = (ev) =>{
-          console.log(ev);
-        };
-        // add new category to database store
-        let store = tx.objectStore('categoryStore');
-        let request = store.add(categoryNew); 
-        
-        request.onsuccess = (ev) =>{
-       
-        console.log('successfully added an object', ev);
-        };
-        
-        request.onerror = (err) =>{
-        
-          console.log('error in request to add', err);
-          };
-               
-      }, 200);
-     
-    } // end of if condition (if keyup is 'ENTER')
-
-  
-  });
-
-*/
 
 })();
 

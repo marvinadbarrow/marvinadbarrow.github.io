@@ -1,0 +1,23 @@
+
+ 20230506	22:40:39 	862cdaff-b652-4b98-b55d-d04b8f9d94e9 	/	GET 
+ 20230506	22:40:39 	a0424f25-6331-4723-88b1-ad48291c2892 	/public/style.css	GET 
+ 20230506	22:40:39 	b6433d9f-c72d-4cb4-ab90-69109b9a542f 	/public/rubber-duck.png	GET 
+ 20230506	22:40:39 	c569a02f-afa8-4bcb-a42f-90cedb5480db 	/favicon.ico	GET 
+ 20230506	22:42:25 	5f78e6bb-dd49-4cbb-b97d-453eb31268ed 	/	GET 
+ 20230506	22:43:36 	535638e4-b196-42b6-b329-734560e1366c 	/	GET 
+ 20230506	22:43:36 	dc155518-ae2d-4e54-b790-eedacf5d1fe1 	/public/style.css	GET 
+ 20230506	22:43:36 	12384d23-c48a-44a8-8d04-c6848ca6cf49 	/public/rubber-duck.png	GET 
+ 20230506	22:59:43 	a44f976c-ece3-4545-8bbd-b8518129794b 	/about	GET 
+ 20230506	22:59:43 	a8281aab-2e65-4582-bbc3-4143931d65fe 	/style.css	GET 
+ 20230506	23:02:01 	6752a5c3-2400-4306-8b9c-c8f99e8a419d 	/about	GET 
+ 20230506	23:02:01 	ea3de8ee-380d-448e-a1ed-d1e39eed376c 	/public/style.css	GET 
+ 20230506	23:02:17 	fa8760d9-31c1-454f-99a0-8e887ba66388 	/	GET 
+ 20230506	23:02:17 	a2df0d72-195a-4c98-a51c-5cc1069a526d 	/public/style.css	GET 
+ 20230506	23:02:17 	45e09e68-e339-43f2-b457-30f0ea60a679 	/public/rubber-duck.png	GET 
+ 20230506	23:03:00 	216af1eb-36b7-45db-b623-a449af56fdba 	/public/style.css	GET 
+ 20230506	23:03:08 	556d429a-7a11-4896-ba1f-689a65752f0d 	/about	GET 
+ 20230506	23:03:08 	09ee9fce-f2b1-4310-8cbf-34d19c1106de 	/public/style.css	GET 
+ 20230506	23:03:39 	7c704885-2cfe-48c9-b12f-eeed210fb4a1 	/public/style.css	GET 
+ 20230506	23:03:41 	a809af53-b42c-4ec4-a6ab-ad90a9db9643 	/	GET 
+ 20230506	23:03:41 	6d2375d6-92cc-46f2-85ab-00039e016594 	/public/style.css	GET 
+ 20230506	23:03:41 	d496436b-6b18-4b38-9585-3ecf4d555a31 	/public/rubber-duck.png	GET 
