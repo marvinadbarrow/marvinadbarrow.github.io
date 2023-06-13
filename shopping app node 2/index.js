@@ -30,7 +30,6 @@ console.log(err);
 myEmitter.emit('log', `${err.name}: ${err.msg}`, 'errLog.txt')
 response.statusCode = 500;
 response.end();
-
     }
 }
 
