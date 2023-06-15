@@ -131,6 +131,7 @@ $('#category-container').append(newCategory)
 const IDB = (function init() {
   let db = null;
   let objectStore = null;
+  // database open request (below)
   let DBOpenReq = indexedDB.open('CategoryDB', 1) // if 'categoryDB' doesn't exist one will be created
 
   DBOpenReq.addEventListener('error', (err) => {
@@ -144,12 +145,12 @@ const IDB = (function init() {
     //DB has been opened... after upgradeneeded
     db = ev.target.result;
 
-    // reading the data for when the page first loads
+    // READING THE DATABASE AFTER IT SUCCESSFULLY OPENS - 
     let transaction = db.transaction('categoryStore', 'readonly'); // transaction to read store
     let store = transaction.objectStore('categoryStore')// select specific store of transaction
-    let getReq = store.getAll(); // get all store entries
+    let getReq = store.getAll(); // get all store entries (which are unique objects)
     getReq.onsuccess = (ev) =>{ // if request is successful
-let request = ev.target.result; // assign the entries a variable
+let request = ev.target.result; // assign the indexed entries a variable
 if(request.length > 0){ // if entries exist
 let currentCatNumber = request.length - 1; // get number of entries
 let currentCategories = request[currentCatNumber]['categoryContainerArray']
@@ -190,8 +191,8 @@ else{ // if no categories exist in the database store
   
     console.log('upgrade', db);
     if (!db.objectStoreNames.contains('categoryStore')) {
-      objectStore = db.createObjectStore('categoryStore', {
-        keyPath: 'id',
+      objectStore = db.createObjectStore('categoryStore', { // this is an options object
+        keyPath: 'id', // this option specifies a unique id for each object when it is newly placed inside the store.  You can delete stores too using 'db.deleteObjectStore('storeName')
       });
     }
 
@@ -916,7 +917,7 @@ const pushToShoppingList = (id, destinationID) =>{
 
  $('#shopping-list-items').children().click((e) =>{ // make product clickable
   $('#shopping-list').hide() // hide shopping list modal
-$('#hold-modal-content').append(e.target.parentNode) // append clicked product to delete modal
+$('#delete-this-item').append(e.target.parentNode) // append clicked product to delete modal
   $('#delete-items').css('display', 'block') // show delete modal
  })
 switch(id){ 
