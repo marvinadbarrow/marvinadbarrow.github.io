@@ -9,10 +9,12 @@ let categoryCreationArray = []
 
 
 import { idCreator } from './id.js'; // creates a unique-ish id for newly created database items which are generated when new products are created and added to existing categories or when new categories are created
-import categories from'./shopping.json' assert {type: 'json'};
+import categories from'./shopping.json' assert {type: 'json'}; // categories and products
 
-
+import { buildCategory } from './category_build.js'; // category builder
 // create categories and load into array for shopping list creation
+
+import { buildProduct } from './product_build.js';  // product builder
 
 console.log(categories.categoryHolderArr)
 // console.log(categories.category_objects)
@@ -203,21 +205,21 @@ else{ // if no categories exist in the database store
 
 
   $('[type=submit]').click((e) =>{
-    console.log(e.target.id)
-    let category
-switch(e.target.id){
+      let category;
+switch(e.target.id){ // determines if button is category or product creating button
   case 'create-cat-btn':
     category = $('#category-add-to').val();
-    console.log(category)
-    buildCategory(category);
+    let obj = buildCategory(category)
+    categoryContainerArray.push(obj)
+    clearProductCreation()
     break;
   case 'create-product-btn':
-    let product = $('#add-to').val();
-    console.log(product)
-    buildProduct(product, categoryCreationArray[0]);
+    let product = $('#add-to').val(); // the text in the new product input
+let productObj = buildProduct(product, categoryCreationArray[0], categoryContainerArray); // link new product to category, in function with product name, category name and category array as arguments
+categoryContainerArray[productObj.category_index].items.push(productObj)// push product to category items within category array
+    clearProductCreation();
     break;
-   
-}
+   }
 
 
 
@@ -268,43 +270,6 @@ setTimeout(() => {
 
 
 })();
-
-
-
-// BUILD NEW CATEGORY
-const buildCategory = (category) =>{
-// replace all spaces with dashes (for id format)
-let newCategory = `<div id="${category.replace(' ', '-')}" class="categories"><p class="category-para">${category}</p> <img class="category-img" src="./default_img.png" alt="shopping basket"></div>`
-$('#category-container').append(newCategory)
-// create a category object to populate when new products are added
-let obj = {catName: category.replace(' ', '-'), items: []}
-categoryContainerArray.push(obj)
-
-console.log(categoryContainerArray)
-
-clearProductCreation()
-}
-
-
-
-// BUILD NEW PRODUCT
-const buildProduct = (productName, category) =>{
-let obj ={
-categoryName: category,
-itemName: productName,
-imgAddress: './default_img.png',
-id: productName.replace(' ', '-')
-}// object created to be added to category array for later retrieveal
-categoryContainerArray.forEach(array =>{
-  if(array.catName === category){
-let index = categoryContainerArray.indexOf(array)// get index of array
-categoryContainerArray[index].items.push(obj) // push product object to correct subarray
-  }
-})
-console.log(categoryContainerArray)
-clearProductCreation()
-}
-
 
 // select a category to add a product to
 $('#category-selector').change((e) =>{
