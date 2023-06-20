@@ -219,15 +219,8 @@ $('#send-btn').hover( function(){
 })
 
 
-// show blob of full title when title is hovered over. 
-$('.titles').hover( (e) =>{
-    console.log('title hover')
-    console.log(e.target)
-})
 
-document.querySelector('.titles').addEventListener('hover', (e) =>{
-    console.log('title')
-})
+
 
 // since this refers to the current date it only needs to be called once so can be outside of the forEach loop. 
 let date = new Date()
@@ -299,7 +292,19 @@ let newObject = new VideoDetails(videoObject.URL, videoObject.thumbnail, videoOb
 
 })
 
-let videoThumbnailEl = document.querySelectorAll('thumbnail-video');
-videoThumbnailEl.forEach(video =>{
-    video.style.cssText = "width: 96%; border-radius: 12px; margin-left: 2%; margin-top: 2%;"
+// show blob of full title on mouseover. 
+$('.titles').mouseover( (e) =>{
+let blob = e.target.nextSibling; // get blob with title
+     $(blob).fadeIn() // fade in the blob
 })
+
+// fade out title blob on mouseout. 
+$('.titles').mouseleave( (e) =>{ // on mouseout
+    let blob = e.target.nextSibling; // get blob with title
+    setTimeout(() => {
+        $(blob).hide() //  wait 0.5 seconds and hide blob
+    }, 2000);
+
+
+    })
+    
