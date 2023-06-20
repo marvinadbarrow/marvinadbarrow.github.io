@@ -15,8 +15,11 @@ notificationsListArr.forEach(element =>{
 import { appendVideoDetails } from "./video_class.js";  // function to populate  videos
 import VideoDetails from "./video_class.js"; // class with constructor video data
 import { videoListArr } from "./video_list.js"; // list of videos to render
+
+
+
 videoListArr.forEach(element =>{
-let newObject = new VideoDetails(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8],element[9], element[10], element[11], element[12])
+let newObject = new VideoDetails(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8],element[9], element[10])
 appendVideoDetails(newObject)
 })
 
@@ -215,7 +218,18 @@ $('#send-btn').hover( function(){
     $('#send-btn-blob').toggle()
 })
 
-// since this refers to teh current date it only needs to be called once so can be outside of the forEach loop. 
+
+// show blob of full title when title is hovered over. 
+$('.titles').hover( (e) =>{
+    console.log('title hover')
+    console.log(e.target)
+})
+
+document.querySelector('.titles').addEventListener('hover', (e) =>{
+    console.log('title')
+})
+
+// since this refers to the current date it only needs to be called once so can be outside of the forEach loop. 
 let date = new Date()
 let year = date.getFullYear();
 let month = date.getUTCMonth() + 1;
@@ -234,8 +248,7 @@ let title = snippet.title;
 let channel = snippet.channelTitle;
 let videoId = snippet.resourceId.videoId;
 let videoUrl = `https://www.youtube.com/watch?v=${videoId}`
-let thumbnails = snippet.thumbnails; 
-let defaultThumbnail = thumbnails.standard.url;
+let defaultThumbnail = snippet.thumbnails.medium.url;
 let channelPage = `https://www.youtube.com/channel/${snippet.videoOwnerChannelId}`
 
 
@@ -266,22 +279,22 @@ else if(minsCalc > 0){if(minsCalc > 1){age = `${minsCalc} mins ago`}else{age = `
 let videoObject = {
     "URL": videoUrl,
     "thumbnail": defaultThumbnail,
-    "video_alt": title,
+    "thumbnail_alt": title,
     "duration": "00:20",
     "channel_home_link": channelPage,
-    "anchor_id": channel,
     "logo_address": "./my logo small.png",
-    "logo_id": channel,
     "channel_logo_alt": title,
     "channel_alt": title,
-    "channel_name": channel, 
+    "channel_name": channel, // TinyMaths 
     "views": "100 views",
     "vid_age": `&#183 ${age}`,    
     }
    
-console.log(videoObject)
-let newObject = new VideoDetails(videoObject.URL, videoObject.thumbnail, videoObject.video_alt, videoObject.duration, videoObject.channel_home_link, videoObject.anchor_id, videoObject.logo_address, videoObject.logo_id, videoObject.channel_logo_alt, videoObject.channel_alt, videoObject.channel_name, videoObject.views, videoObject.vid_age)
+
+
+let newObject = new VideoDetails(videoObject.URL, videoObject.thumbnail, videoObject.thumbnail_alt, videoObject.duration, videoObject.channel_home_link, videoObject.logo_address,  videoObject.channel_logo_alt, videoObject.channel_alt, videoObject.channel_name, videoObject.views, videoObject.vid_age)
   appendVideoDetails(newObject)
+
 
 
 })

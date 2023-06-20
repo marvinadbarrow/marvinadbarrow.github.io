@@ -1,14 +1,12 @@
  export default class VideoDetails {
-    constructor(videoAddress, thumbnailAddress, thumbnailAlt, VideoDuration, channelAddress, anchorId, channelLogoAddress, logoId,  channelLogoAlt, vidTitle, channelName, views, age){
+    constructor(videoAddress, thumbnailAddress, thumbnailAlt, VideoDuration, channelAddress, channelLogoAddress, channelLogoAlt, vidTitle, channelName, views, age){
         // 
         this.address = videoAddress;
         this.thumbnail = thumbnailAddress;
         this.videoAlt = thumbnailAlt;
         this.duration = VideoDuration;
         this.channelAddress = channelAddress;
-        this.id = anchorId;
         this.logo = channelLogoAddress;
-        this.logoId = logoId;
         this.channelLogoAlt = channelLogoAlt;
         this.title = vidTitle;
         this.channelName = channelName;
@@ -31,10 +29,10 @@ export const appendVideoDetails = (vidInfo) =>{
             </div>
 
             <div class="video-links">
-            <a id="${vidInfo.id}"  class="logo-anchor" href="${vidInfo.channelAddress}"><img id="${vidInfo.logoId}" class="logo" src="${vidInfo.logo}" alt="${vidInfo.channelAlt}"></a>
+            <a class="logo-anchor" href="${vidInfo.channelAddress}"><img class="logo" src="${vidInfo.logo}" alt="${vidInfo.channelAlt}"></a>
 
                 <div class="details-holder">
-                        <a href="${vidInfo.address}"><p class="titles">${vidInfo.title}</p></a>
+                        <a href="${vidInfo.address}"><p class="titles multiline-ellipsis">${vidInfo.title}</p><div class="title-blob">${vidInfo.title}</div></a>
 
                         <div class="channel-name-holder">
                         <p class="channel-name"><a class="channel-name-anchor" href="${vidInfo.channelAddress}">${vidInfo.channelName}</a></p><span class="checkmark">&#10003;</span>

@@ -203,12 +203,12 @@ else{ // if no categories exist in the database store
   });
 
 
-
+// listener for buttons submitting new category or product
   $('[type=submit]').click((e) =>{
       let category;
 switch(e.target.id){ // determines if button is category or product creating button
   case 'create-cat-btn':
-    category = $('#category-add-to').val();
+    category = $('#category-add-to').val();// category is input value
     let obj = buildCategory(category)
     categoryContainerArray.push(obj)
     clearProductCreation()
