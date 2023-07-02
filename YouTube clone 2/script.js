@@ -308,3 +308,14 @@ $('.titles').mouseleave( (e) =>{ // on mouseout
 
     })
     
+// NOTES FOR SUBSCRIPTIONS API
+/*
+in the 'try this method' form you just need 'snippet, channel id, and max results'. 
+I have 464 subs and it returns all of them with a 50 results per page maximum. 
+
+Probably won't need authentication for my own channel but might be a good idea to have a function for is you're not logged into google. 
+
+ONLY 50 RESULTS RETURNED IN THE PREVIEW. 
+
+*/
+

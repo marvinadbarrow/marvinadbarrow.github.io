@@ -416,9 +416,11 @@ Get the YouTube API, and start trying to figure out how to get video length, vid
 
 
 API KEYS ETC
-( // my channel id
-let youtubeId = 'UCpCdAp4bI9IPGAFa_jIW0XA'
-let key = 'AIzaSyAC3lYXGeYIxev1b07LLBn5s0HCzEb2UWw'
+{
+channel_id: 'UCpCdAp4bI9IPGAFa_jIW0XA',
+API_key:'AIzaSyAC3lYXGeYIxev1b07LLBn5s0HCzEb2UWw'
+} 
+
 )
 
 
