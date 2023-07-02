@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+          <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
+
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-
+
+awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+               <script src="https://kit.fontawesome.com/e4a7b9699c.js" crossorigin="anonymous"></script>
+
+
+             <link rel="stylesheet" type="text/css" href="./style.css">
+            <title> YouTube Subscriptions </title>
+        </head>
+        
+        <header>
+        
+
+<h1>YouTube subscriptions fetch API</h1>
+
+
+         
+
+         
+        </header>
+
+        <body>
+<!-- DELETE ITEMS modal-->
+
+          <div id="sub-btn-holder">
+            <button id="token-btn">Load Subscriptions</button>
+          </div>
+
+            <div class="pages-container">
+              <ul id="page-list"></ul>
+            </div>
+
+                      <!-- VIDEO THUMNAILS AND TITLE/STATS CONTAINERS dynamically added-->
+          <div id="thumbnail-content">
+            <div class="rows"></div>
+                      </div>
+         
+<!-- 
+
+to replace correction in script tag if solution for 'gapi not defined' does not work. 
+<script src="https://accounts.google.com/gsi/client" onload="initTokenClient()" async defer></script>
+
+    
+-->
+<script src="https://accounts.google.com/gsi/client" onload="initTokenClient()" async defer></script>
+ <script src="script.js"></script>
+        </body>

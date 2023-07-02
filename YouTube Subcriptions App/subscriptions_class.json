@@ -1,0 +1,3 @@
+{
+    "class": "class videoDetails {constructor(thumbnailAddress, channelAddress, channelName, channelDescription){ this.thumbnail = thumbnailAddress;    this.channelAddress = channelAddress;    this.logo = channelName;    this.channelName = channelDescription;}"
+    }

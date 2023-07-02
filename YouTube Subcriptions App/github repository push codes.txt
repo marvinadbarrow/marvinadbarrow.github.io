@@ -1,0 +1,22 @@
+CREATE NEW REPOSITORY FROM THE COMMAND LINE
+
+echo "# nodeapps.github.io" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/marvinadbarrow/nodeapps.github.io.git
+git push -u origin main
+
+
+
+PUSH EXISTING REPOSITORY FROM THE COMMAND LINE
+
+git remote add origin https://github.com/marvinadbarrow/nodeapps.github.io.git
+git branch -M main
+git push -u origin main
+
+new respository for api applications: 
+git remote add origin https://github.com/marvinadbarrowapis.github.io.git
+
+git remote add origin https://github.com/marvinadbarrow/marvinadbarrowapis.github.io.git
