@@ -1,0 +1,87 @@
+*{
+margin:0;
+list-style-type: circle;
+text-decoration: none;
+}
+h1{color: white;}
+#heading-div{width: fit-content; height: auto; margin: auto; margin-top: 2%;}
+
+
+
+
+body{width: 100%; height: 100%; background-color: rgb(21, 22, 33);}
+
+.rows{display: flex; flex-direction: row; justify-content: space-around; flex-wrap: wrap; width: 96%; height: fit-content; margin: auto; margin-top: 10px; margin-bottom: 20px; position: relative;}
+
+/*  below code is for everything in the body, links, divs etc*/
+
+.links{font-size: 1.5vh; font-weight: bold; font-style: italic;}
+.thumbnails{width: 100%; height: auto; border-radius: 10px;}
+
+.main-app-container{width: 40%; height: fit-content; border-radius: 10px; box-shadow: 1px 1px 4px rgb(176, 171, 171); padding: 5px; margin-bottom: 2%; position: relative;}
+.links-container{display: flex; flex-direction: row; justify-content: space-between; margin-top: 7px;}
+.stats{color: white;}
+.titles{color: rgb(10, 10, 10); background-color: white; border-radius: 5px; width: fit-content; padding: 3px; margin-bottom: 7px;}
+.home-icon-container{width: fit-content; height: fit-content; margin-bottom: 7px; background-color: white; border-radius: 50%; padding: 3px;}
+#rows-container{width: 98%; margin-top: 60px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* foooter styling  */
+footer{color: white; background-color: rgb(14, 71, 137); padding: 4rem 2rem; height: 17vh;}
+
+
+/* footer content container*/
+#content-container{
+    display: flex; margin-bottom: 2rem;
+      width: 90%;   font-weight:bold; font-size:20px; 
+}
+
+/* footer link contaners */
+.footer-column{display: flex; flex-direction: column; flex-basis: 20%; flex-grow: 1; text-align: center; }
+
+
+/* link styles */
+footer a{color: white; text-decoration: none; line-height: 2rem;}
+footer a:hover{color: orange; }
+
+/* styles for social media icons*/
+.fa-youtube{color: red; ;}
+.fa-linkedin{color: #0073B1;}
+.fa-facebook{color:#0C87EF ;}
+
+.footer-social{font-size: 20px; margin-left: 2rem;}
+
+/* footer bottom */
+.footer-bottom{display: flex; background-color: white; border-radius: 1rem; height: 2rem; color: black; padding: 1rem; outline:0.2rem solid black ; outline-offset: -0.4rem;}
+.footer-bottom span{margin-right: auto; font-size: 20px;font-weight: bold;}
+
+h3{text-decoration: underline;}
+
+#my-page{ color: white;}
+#my-page-link{ font-size: 27px;}
+
+/* styling for dev icon*/
+#dev-icon{color: rgb(84, 243, 243);}
+
+@media(orientation: landscape){
+  #game-links{height: fit-content;}
+  li{font-size: 3vh;}
+  .links{font-size: 2.5vh;}
+#image-container{width: 50vw;}
+  }
