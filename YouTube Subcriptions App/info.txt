@@ -7,3 +7,24 @@ You have created a new client application that uses libraries for user authentic
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
 
+// PEOPLE WHO WANT TO USE THE APPLICATION - 
+
+They will need to go into the yt_account.json file and alter it. 
+
+API KEY
+They need a google developer acount and to get an API key.  Then replace the API key in the JSON file with their own key. 
+Link to tutorial: 
+
+
+CHANNEL ID
+They'll need to get the id from their Youtube Account and replace the my Id with their own channel ID. 
+Link to tutorial: 
+
+
+CLIENT INFO
+Then user will need to replace the client_secret.json file that I'm using (they won't have access since they cannot log into my account) with their own which they can download once creating OAuth 2.0 credentials
+Just place the downloaded file in main directory and rename it as client_secret.json
+
+
+OAUTH 2.0 credentials. 
+In order to get the credentials they'll need to create credentials in the google developer console and once that is done they  will have to download the OAUTH client with the download button.  It will have all the relevant information that will be imported by the main javascript file. 
