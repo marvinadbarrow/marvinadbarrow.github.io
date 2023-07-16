@@ -1,15 +1,13 @@
 let galleryAgeEl = document.getElementById('gallery_original_age');
 let galleryProAgeEl = document.getElementById('gallery_pro_age');
-let resizeAgeEl = document.getElementById('image_resize_age');
+let simpleCounterAgeEl = document.getElementById('simple-counter-age');
 
 // object contains game age and element for rendering age
-let imageAppsCreatedObj = {
-    galleryCreated :['2022/10/04', galleryAgeEl],
-    galleryProCreated :['2022/11/20', galleryProAgeEl],
-   resizeCalculator :['2022/09/20', resizeAgeEl]   
+let counterAppObj = {
+   resizeCalculator :['2023/08/17', simpleCounterAgeEl]   
 }
 
-let imageAppAgeArr = Object.keys(imageAppsCreatedObj)
+let imageAppAgeArr = Object.keys(counterAppObj)
 
 // current date variable, and date broken down into different time measures, days, months, hours etc. 
 let date = new Date()
@@ -21,10 +19,10 @@ let mins = date.getUTCMinutes();
 
 // function for rendering game age to 'age' element in stats section of each thumbnail container
 const imageAppAge = (imageAppDates) =>{
- imageAppDates.forEach(ImageApp =>{
+ imageAppDates.forEach(counterApp =>{
  // published date variable below takes the created date for each game and then extracts time measures from year down to minutes
 
-let published = new Date(imageAppsCreatedObj[`${ImageApp}`][0]); // date format
+let published = new Date(counterAppObj[`${counterApp}`][0]); // date format
 let uploadYear =  published.getFullYear();
 let uploadMonth =  published.getMonth();
 let uploadDayDate =  published.getDate();
@@ -75,7 +73,7 @@ else if(hourCalc > 0){if(hourCalc > 1){age = `${hourCalc} hours ago`}else{age = 
 else if(minsCalc > 0){if(minsCalc > 1){age = `${minsCalc} mins ago`}else{age = `${minsCalc} mins ago`}}
 
 
-imageAppsCreatedObj[`${ImageApp}`][1].textContent = age;
+counterAppObj[`${counterApp}`][1].textContent = age;
 
 
 });
