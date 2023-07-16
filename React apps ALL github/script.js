@@ -1,5 +1,4 @@
-let galleryAgeEl = document.getElementById('gallery_original_age');
-let galleryProAgeEl = document.getElementById('gallery_pro_age');
+
 let simpleCounterAgeEl = document.getElementById('simple-counter-age');
 
 // object contains game age and element for rendering age
@@ -18,7 +17,7 @@ let hour = (date.getUTCHours()+1)%24;
 let mins = date.getUTCMinutes();
 
 // function for rendering game age to 'age' element in stats section of each thumbnail container
-const imageAppAge = (imageAppDates) =>{
+const counterAppAge = (imageAppDates) =>{
  imageAppDates.forEach(counterApp =>{
  // published date variable below takes the created date for each game and then extracts time measures from year down to minutes
 
@@ -78,4 +77,4 @@ counterAppObj[`${counterApp}`][1].textContent = age;
 
 });
 }
-imageAppAge(imageAppAgeArr)
+counterAppAge(imageAppAgeArr)
