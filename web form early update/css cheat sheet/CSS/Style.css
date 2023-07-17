@@ -1,0 +1,31 @@
+*{
+text-decoration: none;
+}
+
+
+
+#title{text-align: center; color: white;}
+#description{text-align: center; color: white;font-size: 20px;margin-bottom: 10px;}
+#survey-form{display: flex;
+flex-direction: column;
+width: 600px;
+margin: auto;
+background-color: #282847;
+padding: 20px;
+color: white;
+opacity: 0.93;
+border-radius: 5px;
+font-size: 20px;
+}
+#email{height: 40px;; border-radius: 6px; margin-top: 7px; margin-bottom: 20px;  border-style: none;}
+
+#name{height: 40px; border-radius: 6px; margin-top: 7px; margin-bottom: 20px; border-style: none;}
+
+#number{height: 40px;; border-radius: 6px; margin-top: 7px; margin-bottom: 20px; border-style: none;}
+
+#dropdown{ height: 40px; border-radius: 6px; margin-top: 7px; margin-bottom: 20px;}
+p{margin-bottom: 2px;}
+textarea{height: 110px; margin-bottom: 20px;  border-style: none;}
+#submit{background-color: #37AF65; color: white; height:50px; border-radius: 4px;
+margin-top: 10px; margin-bottom: 25px; border-style: none; font-size: 19px;}
+body{ background-image:url(startup.png); background-size: cover; background-attachment: fixed; }
