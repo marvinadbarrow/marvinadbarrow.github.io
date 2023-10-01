@@ -120,7 +120,7 @@ imgAddress: './default_img.png',
 id: productName.replace(' ', '-')
 }// object created to be added to category array for later retrieveal
 categoryContainerArray.forEach(array =>{
-  if(array.catName === category){
+  if(array.catName == category){
 let index = categoryContainerArray.indexOf(array)// get index of array
 categoryContainerArray[index].items.push(obj) // push product object to correct subarray
   }
@@ -167,14 +167,14 @@ const createNewItem = (id) =>{
   $('#new-category').hide()
   $('#new-product').hide()
   switch(id){
-    case 'new-product': 
-    $('#select-add-category').show()
-    $('#reject-new').show()
-    populateCategorySelector()
+    case 'new-product': // if new product pressed
+    $('#select-add-category').show() // show select category button
+    $('#reject-new').show() // show reject button
+    populateCategorySelector() // populate select options with all categories
     break;
-    case 'new-category':
-    $('#add-category').show()
-    $('#reject-new').show()
+    case 'new-category': // if new category pressed
+    $('#add-category').show() // show add category button
+    $('#reject-new').show() // show reject button
         break;
   }
 }
@@ -866,6 +866,10 @@ $('#upload-img').click((e) =>{
 closeModals(e.target.id, 'upload-modal')
 })
 
+
+
+
+
 // BUTTON EVENT HANDLER (ALL BUTTONS)
 $('button').click((e) =>{
  // console.log(e.target)
@@ -978,6 +982,11 @@ break;
 }
 
 })
+
+
+
+
+
 // if selected item already on shopping list, alert user
 const duplicateAlert = (duplicates) =>{
 let duplicateList = `<p>item(s) already selected:</p>
