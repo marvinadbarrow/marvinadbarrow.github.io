@@ -1,10 +1,15 @@
 
 let simpleCounterAgeEl = document.getElementById('simple-counter-age');
+let inventoryEl = document.getElementById('inventory-age');
 
-// object contains game age and element for rendering age
+// object contains app age and element for rendering age
 let counterAppObj = {
-   resizeCalculator :['2023/08/17', simpleCounterAgeEl]   
+   counterApp :['2023/08/17', simpleCounterAgeEl],
+    inventoryApp: ['2023/10/20', inventoryEl]
 }
+
+
+
 
 let imageAppAgeArr = Object.keys(counterAppObj)
 
