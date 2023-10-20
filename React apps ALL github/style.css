@@ -37,15 +37,19 @@ margin-top: 50px;
 /* app containers for 'flex' */
 #image-container{ margin: auto; width:94%; height: fit-content;  margin: auto; border-radius: 10px; background-color: rgb(19, 8, 58); padding-top: 20px; padding-bottom: 15px;}
 .rows{display: flex; flex-direction: row; width: 90%; height: fit-content; justify-content: space-around; flex-wrap: wrap; margin: auto; margin-bottom: 20px;position: relative;}
-.thumbnails-landscape{width: 100%; height: auto; border-radius: 10px; margin-bottom: 5px;}
-.thumbnails-portrait{width: 100%; height: auto; border-radius: 10px; margin-bottom: 5px;}
+
+/*
+.thumbnails-portrait, .thumbnails-landscape{width: 100%; height: auto; border-radius: 10px; margin-bottom: 5px;}
+
+*/
+
 .home-icon-container{background-color: rgb(246, 242, 242);width: fit-content;  padding: 5px; margin-bottom: 5px; border-radius: 50%;}
 .titles{background-color: white; width: fit-content;border-radius: 5px; padding: 2px; margin-bottom: 7px;}
 .stats{color: white;}
 .links-container{ display: flex; flex-direction: row;justify-content: space-between; background-color: rgba(93, 93, 92, 0.206); height: fit-content; padding: 5px; border-radius: 10px;}
 #app-6-thumbnail{opacity: 0.9;}
 
-
+#inventory-img, #counter-img{width: 100%; height: auto; border-radius: 10px; margin-bottom: 5px;}
 /* app containers for 'flex' */
 #image-container{ width: 95%; ; height: 80%;  border: 2px solid black; margin: auto; }
 
