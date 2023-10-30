@@ -1,0 +1,90 @@
+OBJECT ID AND DESTINATION 
+841 +
+
+note... when the card is dropped you can use the id of the drop pile to push the card  to the associated 'tracking' subarray. 
+
+But you also need to 'pop' the card (or cards) out of the destination array. so maybe have an object representing the card as below: 
+
+{
+card:
+origin:
+destination:
+array_index:
+}
+
+
+some considerations: 
+
+when multiple cards are transferred, just the first card in the selected group of cards is registered.  which means that: 
+a) all of the cards accompanying the first card need to be pushed to the array, and all of them need to have their objects updated
+
+b) all of the card objects in the origin subarray need to be popped out of the  arry; I suppose splice could be used for that ; you'll need the index of the index of the first card to use array.splice(index, -1) which will remove everything, first card object included, up to the end of the array. 
+
+c) you need a record of all the cards that are dropped, and for a way to push 'all' of them to the array associated with the destination pile. 
+
+
+Waht you could do is map through the origin array for the id of the first selected card, and if the card is not in the last position of the array, then record the firwst card and other cards into the temporary array, then you can place them all into the destination array. 
+
+1285 gives the origin pile. 
+
+879 gives desintation pile
+
+1293 gives card id. 
+
+
+when doing a transfer of the moved multiple cards.  You'll need to get the value of all of the cards 'above' the first picked cards, and, using the number of cards transferred value in the object, the values of the other cards by mapping through the destination, finding the position of the first card, and looping through the childnodes of the destination pile, creating a new object for each childnode found from the list of children following the first card; 
+
+all you need is the id of the card because all other details on their object, origin destination are the same as that of the first card. Those objects can then be pushed (after the first card object) to the array representing the destination pile. for the initial object, only the 'primary_card' property (which is an objectd containing card value, origin and destination) needs to be pushed to the drop pile array;  The other objects created can just be a copy of that, but with their own unique card value being used instead of the first card value. 
+
+then it's just a matter of using the origin name to select the correct drop pile array, search through it for the object that has the first card's value, and using the index to splice through to the end of the array to remove the card and all of those that follow it in the array. 
+
+the 'number of cards' transferred can be used to dictate what kind of function operates; so for single card drops, the card just needs to be popped from the origin drop pile array and pushed to the destination drop pile array.  Multiple card drops will be handled as in the above paragraphs. 
+
+FROM WASTE PILE TO FOUNDATION PILE. 
+
+This also needs to be handled since, I don't think this is being registered at the moment and might be the principal cause for inaccurate information about where cards are. 
+
+once everything is handled then it would be a good idea to console log the arrays to make sure they are representing card positions correctly, and once that is confirmed, then, in the case of a solvable scenario, the solve function can use the arrays and carry out a solve since, hopefully, all cards should be showing the correct positions. 
+
+
+NO DESTINATION: 
+
+if the last element of the multiple cards array has no destination, it means that the card was selected but never dropped onto a different destination, which is not a problem because the object never gets to the place where the destination can be recorded (that's why it has no destination because that's where the destination is inserted into the object) 
+
+
+You can tell if the card just droppedx on the foundation pile is from the waste pile; basically if the card value matches the zero position value of the wasteArr array, then the card's origin is the the waste pile. 
+so, we can have the condition inside the 
+
+so, if the card comes from the waste pile there's no need to remove it from the waste array, that will be handled, but anyway, waste array and remain array are not used when in the 'solve' process so their positional accuracy isn't a factor. 
+
+If a card is selected but not moved then it won't be registered as dropped, so now it's just a question of writing the function to place dropped cards into destination array and to remove them from origin array. and it's a simple matter of checking how many cards were moved to decide which function needs to be executed. 
+
+Note, that, since wastepile cards can only be draged one by one, you only need to push the card object to the destination so there are three functions,
+
+a) functions handling cards moved from the waste pile to drop piles or foundation piles
+b) functions handling movement of one card to from
+
+
+a) push object to destination array 
+b) push object to destination array and pop origin array
+c) 
+1. get index of first selected card object in origin array
+2. push that, and following objects, up to the last object to the destination drop pile array, 
+3. splice the same elements from the origin drop pile array. 
+
+
+NOT FINISHED YET.  
+
+There's an issue with moving files from foundation piles to drop pile.. wrong card is being registered. 
+
+the reason why the wrong card is being registered is because the last element of the recrods array is being logged to the console. This happens because, accidentally, we are meeting the condition in the else part of the if/else statement.  The if condition is that the card value was in the zero position of the waste array, in other words, the card came from the waste pile, but this won't be the case for cards coming from the foundation piles, so, because there is no other condition set, those card drops fall into the else category of cards 'not' originating int he waste pile.  What needs to be done is for there to be another condition set, such that if the value of the dropped card does not correspond to the value of the last card in the records array and did not come from the waste pile, then it must have originated in the foundation pile...  NOt sure if this is bomb proof but will test it. 
+
+The above seems to be working; and you can move cards back and forth between the same two positions and the correct information will appear in the last object on the records array.  NOW WE CAN PROCEED WITH POPULATING THE ARRAYS to record the positions of all cards.  
+
+
+
+JUST A THOUGHT ABOUT A BACK BUTTON. 
+It seems plausible that the record kept in the tracking array can be used to calculate reversal of previous moves, because the order of the objects in the array is the order in which cards were moved from one place to another; and since we have both destination and origin, then the array can be used to move a card from destination back to origing, and the preceding card can move from its destination back to its origin and so forth - you should be able to go all the way back to the beginning of the game.   you could also integrate a replay this game functionality where the original state is saved and the cards are returned to that state... so much can be done.
+
+
+
