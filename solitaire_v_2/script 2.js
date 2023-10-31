@@ -750,14 +750,20 @@ if(command < 3 && pile.childNodes.length > 0){
   let wrapperElement = document.getElementById(wrapper.id)
   var parent = wrapperElement.parentNode
   // console.log(object)
+  console.log('selected card')
   console.log(wrapper.firstChild)
-  console.log(wrapper.lastChild)
+  if(wrapper.length > 1){
+    console.log('last card in group')
+    console.log(wrapper.lastChild)
+  }
+
 
   let children = wrapper.childNodes
   // ERROR HERE possibly - we should be checking wrapper childnodes length.. SORTED - we had the delete wrapper elements inside the loop. So the children were being removed from the wrapper before they could have the draggable attribute reset because they were no longer inside the wrapper.  So; moved the unwrap functioun outside of the loop and placed it AFTER the loop. So, once the loop is complete and all children attributes are reset, we then unwrap the wrapper and delete it.... PROBLEM SOLVED. 
 
            // loop through children to add draggable:true; attribute
   for(i = 0; i < object.length ; i++){
+    console.log('element nodes inside wrapper; the actual number will be zero when logged to the console because cards are removed from the wrapper - but the element nodes will still show as belonging to the array, clicking on the array will show zero elements')
     console.log(children)
     children[i].setAttribute('draggable', 'true')
     children[i].classList.remove('multi-style')
@@ -975,7 +981,7 @@ console.log(allCurrentPilesArray)
 // LAST GATE FOR CARD DROPS
 const cardType = (object) =>{
 
-
+console.log('card HTML element')
 console.log(object)
 
 let objectType = object.getAttribute('class')
@@ -1106,19 +1112,23 @@ console.log(destinationIndex)
  
 // single card originating in drop pile 
 const singleCardDrop = (card, destination, cardObject, ) =>{
-// destination can be another drop pile or a foundation pile. 
+  console.log('single card drop function... in operation')
+// destination can be another drop pile or a foundation pile.
+console.log('object (post drop) of selected card with DESTINATION added')
+
+let cardOrigin = cardObject.primary_card.origin
 console.log(cardObject)
-console.log('single card drop function')
+console.log('card tracking details')
 console.log(
   `
 card: ${card}
-origin: ${cardObject.primary_card.origin}
+origin: ${cardOrigin}
 destination: ${destination}
   `
 )
 
 
-let destinationIndex
+let destinationIndex;
  // get destination index and push OBJECT to associated array
  // if destination is a foundation pile
 if(destination.includes('foundation')){
@@ -1141,19 +1151,21 @@ if(destination.includes('foundation')){
      // get index of matching name
      destinationIndex = pileNavigation.indexOf(element)
      dropPileTracker[destinationIndex].push(cardObject)
- 
- console.log(allTrackers)
+
    }
  })
 }
 
 
 // get index for card origin and remove from associated drop pile subarray in drop pile tracker
+// CURRENTLY NOT CATCHING THE CARD FROM ORIGIN. 
 pileNavigation.forEach(element =>{
-  if(element == object.origin){
+  if(element == cardOrigin){
     index = pileNavigation.indexOf(element)
     dropPileTracker[index].pop()
 }})
+
+console.log('all code executed - log tracking array')
 console.log(allTrackers)
 
 }
@@ -1678,7 +1690,7 @@ const selectRange = (pile, start,object, cardDetails) =>{
 cardDetails.total_selected = object.length
 multipleCardsRecord.push(cardDetails)
 
-console.log('breadcrumbs')
+console.log('breadcrumbs - last element is last card moved')
 console.log(multipleCardsRecord)
 
 
@@ -1857,8 +1869,9 @@ cardPile.addEventListener('mousedown', (event) => {
 
 
 let cardValue = Number(target.id.replace('.png', ''))
-console.log('parent')
+console.log('origin pile element below:')
 console.log(parent)
+console.log('origin pile name below:')
 console.log(parent.id)
 
 let pileIndex;
@@ -1866,10 +1879,12 @@ let cardObj
 pileNavigation.forEach(pile =>{
   if(pile == parent.id){
 pileIndex = pileNavigation.indexOf(pile)
+console.log('card objects in tracking subarray of origin pile (minus the moved card - unopened console element will show original number of cards in pile; but opened, the correct total will show')
 console.log(dropPileTracker[pileIndex])
 dropPileTracker[pileIndex].forEach(card =>{
 if(card.primary_card.card === cardValue){
 cardObj = card
+console.log('object of selected card, with destination properties added')
 console.log(card)
 }
 })
