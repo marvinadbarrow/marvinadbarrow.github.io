@@ -66,36 +66,6 @@ var movingCardsEl; // for the variables once cards are loaded
 solveBtn.style.display = 'none'
 
 
-// ----------------- TRACKING ARRAYS ---------------------------
-
-// arrays to keep track of cards in each pile - these are populated with integer values representing card values of each corresponding drop pile
-let dropPileOne = []
-let dropPileTwo = []
-let dropPileThree = []
-let dropPileFour = []
-let dropPileFive = []
-let dropPileSix = []
-let dropPileSeven = []
-
-let dropPileTracker = [dropPileOne, dropPileTwo, dropPileThree, dropPileFour, dropPileFive, dropPileSix, dropPileSeven]
-
-
-// main array and subarrays for foundation pile
-let foundationOneArr = []
-let foundationTwoArr = []
-let foundationThreeArr = []
-let foundationFourArr = []
-
-// arrays for keeping track of card positions
-let foundationTracker = [foundationOneArr, foundationTwoArr, foundationThreeArr, foundationFourArr]
-
-let multipleCardsRecord = []
-
-
-
-let pileNavigation = ['pile-one', 'pile-two', 'pile-three', 'pile-four', 'pile-five', 'pile-six', 'pile-seven' ]
-let foundationNavigation = ['foundation-one', 'foundation-two', 'foundation-two', 'foundation-two']
-// ----------------------------------------------------  
 
 
 
@@ -262,10 +232,140 @@ showCardPiles(getPile1, getPile2, getPile3, getPile4, getPile5, getPile6, getPil
 }
 
 
+// ----------------- TRACKING ARRAYS ---------------------------
+
+// arrays to keep track of cards in each pile - these are populated with integer values representing card values of each corresponding drop pile
+let dropPileOne = []
+
+let dropPileTwo = []
+let dropPileThree = []
+let dropPileFour = []
+let dropPileFive = []
+let dropPileSix = []
+let dropPileSeven = []
+let dropPileTracker; // to hold the above arrays
+
+
+// main array and subarrays for foundation pile
+let foundationOneArr = []
+let foundationTwoArr = []
+let foundationThreeArr = []
+let foundationFourArr = []
+
+// arrays for keeping track of card positions
+let foundationTracker = [foundationOneArr, foundationTwoArr, foundationThreeArr, foundationFourArr]
+
+let multipleCardsRecord = []
+
+
+let allTrackers;
+
+let pileNavigation = ['pile-one', 'pile-two', 'pile-three', 'pile-four', 'pile-five', 'pile-six', 'pile-seven' ]
+let foundationNavigation = ['foundation-one', 'foundation-two', 'foundation-three', 'foundation-four']
+// ----------------------------------------------------  
 
 
 function showCardPiles(one, two, three, four, five, six, seven, reveal){
-// variables created earlier now receive the associated pile arrays
+
+
+one.forEach(element =>{
+  let newObj = {
+
+    primary_card: {
+      card:element,
+      origin:'pile-one',
+      destination:''
+    }, 
+    
+    total_selected: ''
+    }
+  dropPileOne.push(newObj)
+})
+two.forEach(element =>{
+  let newObj = {
+
+    primary_card: {
+      card:element,
+      origin:'pile-two',
+      destination:''
+    }, 
+    
+    total_selected: ''
+    }
+  dropPileTwo.push(newObj)
+})
+three.forEach(element =>{
+  let newObj = {
+
+    primary_card: {
+      card:element,
+      origin:'pile-three',
+      destination:''
+    }, 
+    
+    total_selected: ''
+    }
+  dropPileThree.push(newObj)
+})
+four.forEach(element =>{
+  let newObj = {
+
+    primary_card: {
+      card:element,
+      origin:'pile-four',
+      destination:''
+    }, 
+    
+    total_selected: ''
+    }
+  dropPileFour.push(newObj)
+})
+five.forEach(element =>{
+  let newObj = {
+
+    primary_card: {
+      card:element,
+      origin:'pile-five',
+      destination:''
+    }, 
+    
+    total_selected: ''
+    }
+  dropPileFive.push(newObj)
+})
+six.forEach(element =>{
+  let newObj = {
+
+    primary_card: {
+      card:element,
+      origin:'pile-six',
+      destination:''
+    }, 
+    
+    total_selected: ''
+    }
+  dropPileSix.push(newObj)
+})
+seven.forEach(element =>{
+  let newObj = {
+
+    primary_card: {
+      card:element,
+      origin:'pile-seven',
+      destination:''
+    }, 
+    
+    total_selected: ''
+    }
+  dropPileSeven.push(newObj)
+})
+
+
+dropPileTracker = [dropPileOne, dropPileTwo, dropPileThree, dropPileFour, dropPileFive, dropPileSix, dropPileSeven]
+allTrackers = [dropPileTracker, foundationTracker]
+
+
+console.log(dropPileTracker)
    pileOneArr = one;
  pileTwoArr = two;
  pileThreeArr = three;
@@ -715,6 +815,9 @@ let allPilesArray = [pileOneChildren, pileTwoChildren, pileThreeChildren, pileFo
 
 let pickCardsFinished = 0; // when cards are finished, increment this value to '1' so that you can stop the 'cards finished' alert from re-executing each time you move a card in the drop pile after the initial alert.  you might also be able to manipulate the allPilesArray from within that condition. So, rather than repopulating the array from scratch, you can pick push the moved card values to destination piles and pop moved cards from origin piles. 
 
+// console.log(pileOneArr, pileTwoArr, pileThreeArr, pileFourArr,    pileFiveArr, pileSixArr, pileSevenArr)
+
+
 
 
 
@@ -783,7 +886,7 @@ if(faceDownCards === 0){ // all cards are facing up, and since this condition is
 // clear rows so they can be repopulated with correct card values
 // it's better to actually just modify the subarrays of the two piles; the pile from which the card is removed and the pile onto which the card is dropped (if it's a drop pile, otherwise just remove the card from the all piles array)
 
-if(pickCardsFinished < 1){
+if(pickCardsFinished < 0){
   alert(`
   number of face down cards is ${faceDownCards}
   and pick/waste piles are empty: 
@@ -873,7 +976,7 @@ console.log(allCurrentPilesArray)
 const cardType = (object) =>{
 
 
-
+console.log(object)
 
 let objectType = object.getAttribute('class')
 // console.log(objectType)
@@ -911,85 +1014,214 @@ let destination = event.target.id
 
 // functions for moving cards to appropriate tracking array --- 
 
-const moveWasteCard = (card, destination, object) =>{
-console.log('processing waste card....')
-console.log(object)
-let index; 
+
+// card originating in waste pile
+const wasteCardDrop = (card, destination, cardObject) =>{
+  console.log('waste card drop function')
+  console.log(
+    `
+   card: ${card}
+  origin: ${cardObject.primary_card.origin}
+  destination: ${destination}
+    `
+  )
+
+  // get destination index and push OBJECT to associated array (note, waste pile cards positions are automatically updated elsewhere, so no need to find and remove them from waste array since that is alread done)
+let destinationIndex; 
+// if destination is a drop pile
 if(destination.includes('pile')){
 pileNavigation.forEach(element =>{
    // check navigation array for destination name
   if(element == destination){
     // get index of matching name
-    index = pileNavigation.indexOf(element)
-console.log(dropPileTracker[index])
+    destinationIndex = pileNavigation.indexOf(element)
+    dropPileTracker[destinationIndex].push(cardObject)
 
+console.log(allTrackers)
+console.log('destination pile')
+console.log(dropPileTracker[destinationIndex])
   }
-
-      //push object to the pile array with the same index
-// dropPileTracker[index].push(object)
-// console.log(dropPileTracker)
 })
 
 
-}else{
+}else{ // if destination is a foundation pile
   foundationNavigation.forEach(element =>{
 // check navigation array for destination name
     if(element == destination){
       // get index of matching destination name
-      index = foundationNavigation.indexOf(element)
+      destinationIndex = foundationNavigation.indexOf(element)
 //push object to the foundation array having the same index
-foundationTracker[index].push(object)
+foundationTracker[destinationIndex].push(cardObject)
+console.log(allTrackers)
+console.log(foundationTracker[destinationIndex])
     }
   })
-
-console.log(foundationTracker)
+}
 
 }
 
+// card originating in foundation pile
+const foundationCardDrop = (card, destination, cardObject) =>{
+
+  console.log('foundation card drop function')
+  console.log(
+    `
+  card: ${card}
+  origin: ${cardObject.primary_card.origin}
+  destination: ${destination}
+    `
+  )
 
 
-}
+  // NOTE: foundation cards can only go to drop piles so the object is going to pile tracker. cards of one foundation pile can be moved to another foundation pile if its empty, but the whole group has to move which is redundant so I could prevent movement from one foundation to another and that would solve the problem of having to code for multiple foundation cards moving from one foundation pile to  another which is redundant and in no way impacts the game outcome. Since the only card that can move into an empty spot is an 'ace' you could prevent a card drop to a foundation pile if the card's origin is a foundation pile.  Since in group drops, only the first card's details are used, preventing the ace drop prevents the whole group drop. 
 
 
-const moveFoundationCard = (card, destination, object) =>{
-  console.log('processing foundation card....')
-  console.log(object)
-  // NOTE: foundation cards can only go to drop piles so the object is going to pile tracker. but this time the card has to be removed from the foundation where it originated. 
-  let index; 
-  // push object to drop pile tracker
+    // ADD CARD TO DESTINATION - get destination index and push OBJECT to associated array
+  let destinationIndex; 
+  // if destination is a drop pile
    pileNavigation.forEach(element =>{
      // check navigation array for destination name
     if(element == destination){
       // get index of matching name
-      index = pileNavigation.indexOf(element)
-console.log(index)
+      destinationIndex = pileNavigation.indexOf(element)
+console.log(destinationIndex)
       //push object to the pile array with the same index
-      dropPileTracker[index].push(object)
+      dropPileTracker[destinationIndex].push(cardObject)
+      console.log(allTrackers)
     }
   })
 
-  console.log(dropPileTracker)
+   // REMOVE CARD FROM ORIGIN get origin index and pop OBJECT from associated array
+   let originIndex; 
+   foundationNavigation.forEach(element =>{
+    if(element == object.origin){
+      originIndex = foundationNavigation.indexOf(element)
+      // card must be the end card in the foundation subarray since it is the last card on the foundation pile (only one at a time can be dropped)
+      foundationTracker[originIndex].pop()
+      console.log(allTrackers)
+  }
+  })
+
+}
+ 
+// single card originating in drop pile 
+const singleCardDrop = (card, destination, cardObject, ) =>{
+// destination can be another drop pile or a foundation pile. 
+console.log(cardObject)
+console.log('single card drop function')
+console.log(
+  `
+card: ${card}
+origin: ${cardObject.primary_card.origin}
+destination: ${destination}
+  `
+)
 
 
+let destinationIndex
+ // get destination index and push OBJECT to associated array
+ // if destination is a foundation pile
+if(destination.includes('foundation')){
+  // push object to foundation tracker
+  foundationNavigation.forEach(element =>{
+    // check navigation array for destination name
+        if(element == destination){
+          // get index of matching destination name
+          destinationIndex = foundationNavigation.indexOf(element)
+    //push object to the foundation array having the same index
+    foundationTracker[destinationIndex].push(cardObject)
+    console.log(allTrackers)
+        }
+      })
+}else{// foundation pile is not a destination
+  // push object to drop pile tracker
+  pileNavigation.forEach(element =>{
+    // check navigation array for destination name
+   if(element == destination){
+     // get index of matching name
+     destinationIndex = pileNavigation.indexOf(element)
+     dropPileTracker[destinationIndex].push(cardObject)
+ 
+ console.log(allTrackers)
+   }
+ })
+}
 
 
-foundationNavigation.forEach(element =>{
+// get index for card origin and remove from associated drop pile subarray in drop pile tracker
+pileNavigation.forEach(element =>{
   if(element == object.origin){
-    index = foundationNavigation.indexOf(element)
-    // since only one card can be pulled from the foundation pile, and happens to be the last card in the pile, then the object must be sitting in the last position of the foundation array associated with the specific foundation pile; then, it's just a matter of finding the correct array corresponding to the pile, and using array.pop() to remove the last object
-    foundationTracker[index].pop()
+    index = pileNavigation.indexOf(element)
+    dropPileTracker[index].pop()
+}})
+console.log(allTrackers)
+
 }
+
+// multiple cards originating in drop pile 
+const multipleCardDrop = (card, destination, cardObject) =>{
+  console.log('card')
+  console.log(card)
+
+  console.log('multiple card drop function')
+  console.log(
+    `
+  card: ${card}
+  origin: ${cardObject.primary_card.origin}
+  destination: ${destination}
+  cards moved: ${cardObject.total_selected}
+    `
+  )
+
+
+
+    // the advantage is that multiple cards only move from drop pile to drop pile, so, unlike with single card or waste pile drops, destination type check is not needed. 
+
+
+  // the only difficulties here involve  splicings all moved cards from the origin subarray, and pushing all cards to destination subarray. The easier of the two is removing the card objects from the origin array because only the index of the first card, which we already have the code for finding in other functions, is needed. Then just splice from that index to the end of the array; so I'll start with that
+let originIndex;
+let cardIndex
+pileNavigation.forEach(element =>{
+   // check navigation array for destination name
+  if(element == cardObject.primary_card.origin){
+    // get index of matching name
+    originIndex = pileNavigation.indexOf(element)
+
+    // but this is just the index which finds the subarray with the destination name; what's still needed is the index of the exact card object
+    dropPileTracker[originIndex].forEach(elementValue =>{
+      console.log(elementValue)
+      console.log(allTrackers)
+      if(elementValue.card === card){
+        console.log(elementValue)
+        cardIndex = indexOf(elementValue)
+        // dropPileTracker[originIndex].splice(cardIndex, - 1)
+        console.log('cardIndex')
+        console.log(cardIndex)
+        console.log('subarray')
+        console.log(dropPileTracker[originIndex])
+        
+      }
+    })
+
+
+  }
 })
-console.log(foundationTracker)
 
-}
-  
+let destinationIndex; 
+pileNavigation.forEach(element =>{
+  // check navigation array for destination name
+ if(element == destination){
+   // get index of matching name
 
+   destinationIndex = pileNavigation.indexOf(element)
+   console.log(dropPileTracker[destinationIndex])
 
+console.log(allTrackers)
+ }
+})
 
-const moveDropPileCard = (card, destination, object) =>{
-  console.log('processing drop pile card....')
-console.log(object)
+// all cards apart from the first are showing, so the arrays need to be populated immediately after shuffle. Face down cards should also be included.
+
 }
 
 // -----------------------------------------------------------
@@ -998,29 +1230,31 @@ console.log(object)
 // tracking card movement; this will be used for the auto complete when it becomes clear that there is a solution to win the game. It can also be used to create a history of movements in the game so that a back button can be used. 
 const trackCard = (cardObject) =>{
 
+  
+
 let objectOnly = cardObject.primary_card
 let card = cardObject.primary_card.card
 let origin = cardObject.primary_card.origin;
 let dropDestination = cardObject.primary_card.destination;
 let cardsMoved = cardObject.total_selected;
-  console.log('object to be tracked')
-  console.log(
-    `
-  card_object: ${objectOnly}
-  card: ${card}
-  origin: ${origin}
-  destination: ${dropDestination}
-  cards moved: ${cardsMoved}
-    `
-  )
 
 // origin of card dicates how it is to be processed
 if(origin == 'waste-pile'){
-moveWasteCard(card, destination, objectOnly)
+wasteCardDrop(card, dropDestination, cardObject)
 }else if(origin.includes('foundation')){
-moveFoundationCard(card, destination, objectOnly)
+foundationCardDrop(card, dropDestination, cardObject)
+// only the inner object needs to be sent because 
 }else{
-  moveDropPileCard(card, destination, objectOnly)
+
+  switch(cardsMoved){
+    case 1: // do same code as moving foundation card (once that is figured out)
+    singleCardDrop(card, dropDestination, cardObject)
+    break;
+    default: // work out how to catch all moved cards in the origin  array and to push them all to the destination array
+    multipleCardDrop(card, dropDestination, cardObject)
+  }
+
+
 }
 }
 
@@ -1041,7 +1275,7 @@ if(wastArr[0] === Number(object.id.replace('.png',''))){
     
     total_selected: 1
   }
-  
+  // 
   multipleCardsRecord.push(wasteObj)
       // send card object to tracker
   trackCard(wasteObj)
@@ -1050,28 +1284,31 @@ if(wastArr[0] === Number(object.id.replace('.png',''))){
 
   }else{ // cards dropped originated either in drop pile or in foundation pile
 
-    // card originated in foundation pile
-    if(Number(object.id.replace('.png','')) !== multipleCardsRecord[multipleCardsRecord.length - 1].primary_card.card){
-      console.log('card originated in foundation pile')
+    // card originated in foundation pile - its object has already been created in waste function
+    if(object.parentNode.id.includes('foundation')){
 
+      console.log('card originated in foundation pile')
+      let foundationObj;
+let foundationIndex
+      foundationTracker.forEach(element =>{
+        if(element == object.parentNode.id){
+foundationIndex = foundationTracker.indexOf(element)
+foundationTracker[foundationIndex].forEach(card =>{
+  if(card.primary_card.card === Number(object.id.replace('.png',''))){
+    foundationObj = card
+    foundationObj.total_selected = 1
+    foundationObj.primary_card.destination = event.target.id
+    foundationObj.primary_card.origin = object.parentNode.id
+  }
+})
+        }
+      })
 // object representing card moved from foundation pile to drop pile
-  let foundationObj = {
-    primary_card: {
-      card:Number(object.id.replace('.png','')),
-// from the array that records clicks on foundation pile
-      origin: clickedFoundationArr[clickedFoundationArr.length - 1],
-      destination:event.target.id
-    }, 
-        
-        total_selected: 1
-        // the total selected value must be '1' because, since foundation cards are consecutive numbers and drop piles are the opposite you can't pass multiple cards from one pile to the other.. only 1-card drops are possible. 
-      }
       
       multipleCardsRecord.push(foundationObj)
 
       // send card object to tracker
-      trackCard(foundationObj
-        
+      trackCard(foundationObj      
         )
         }else{ // card originated in drop pile
 
@@ -1100,20 +1337,12 @@ cardPile.style.cssText = 'border-style: solid;background-color:none; border-colo
     }else{cardPile.style.cssText = 'border-style: none;'}
   })
 
-
-
   // give empty foundation piles visible border for locating  
     foundationPilesEl.forEach(function(cardPile){
       if(cardPile.childNodes.length < 1){
     cardPile.style.cssText = 'border-style: solid;'
             }else{cardPile.style.cssText = 'border-style: none; background-color:none;';}
 })
-
-
-
-
-
-
 
   }
 
@@ -1130,10 +1359,6 @@ break;
 default: 
 console.log('invalid card: difference between consecutive cards must be 1')}
 }
-
-
-
-
 
 
 const checkColors = (prevCard, dropCard) =>{
@@ -1452,6 +1677,8 @@ const selectRange = (pile, start,object, cardDetails) =>{
 
 cardDetails.total_selected = object.length
 multipleCardsRecord.push(cardDetails)
+
+console.log('breadcrumbs')
 console.log(multipleCardsRecord)
 
 
@@ -1632,16 +1859,32 @@ cardPile.addEventListener('mousedown', (event) => {
 let cardValue = Number(target.id.replace('.png', ''))
 console.log('parent')
 console.log(parent)
-let cardObj = {
+console.log(parent.id)
 
-primary_card: {
-  card:cardValue,
-  origin:parent.id,
-  destination:''
-}, 
-
-total_selected: ''
+let pileIndex;
+let cardObj
+pileNavigation.forEach(pile =>{
+  if(pile == parent.id){
+pileIndex = pileNavigation.indexOf(pile)
+console.log(dropPileTracker[pileIndex])
+dropPileTracker[pileIndex].forEach(card =>{
+if(card.primary_card.card === cardValue){
+cardObj = card
+console.log(card)
 }
+})
+  }
+})
+// let cardObj = {
+
+// primary_card: {
+//   card:cardValue,
+//   origin:parent.id,
+//   destination:''
+// }, 
+
+// total_selected: ''
+// }
 
 
 if(attr == "true"){ // if draggable: true;
