@@ -274,7 +274,8 @@ one.forEach(element =>{
     primary_card: {
       card:element,
       origin:'pile-one',
-      destination:''
+      destination:'',
+      group_elements:''
     }, 
     
     total_selected: ''
@@ -287,7 +288,8 @@ two.forEach(element =>{
     primary_card: {
       card:element,
       origin:'pile-two',
-      destination:''
+      destination:'',
+      group_elements:''
     }, 
     
     total_selected: ''
@@ -300,7 +302,8 @@ three.forEach(element =>{
     primary_card: {
       card:element,
       origin:'pile-three',
-      destination:''
+      destination:'',
+      group_elements:''
     }, 
     
     total_selected: ''
@@ -313,7 +316,8 @@ four.forEach(element =>{
     primary_card: {
       card:element,
       origin:'pile-four',
-      destination:''
+      destination:'',
+      group_elements:''
     }, 
     
     total_selected: ''
@@ -326,7 +330,8 @@ five.forEach(element =>{
     primary_card: {
       card:element,
       origin:'pile-five',
-      destination:''
+      destination:'',
+      group_elements:''
     }, 
     
     total_selected: ''
@@ -339,7 +344,8 @@ six.forEach(element =>{
     primary_card: {
       card:element,
       origin:'pile-six',
-      destination:''
+      destination:'',
+      group_elements:''
     }, 
     
     total_selected: ''
@@ -352,7 +358,8 @@ seven.forEach(element =>{
     primary_card: {
       card:element,
       origin:'pile-seven',
-      destination:''
+      destination:'',
+      group_elements:''
     }, 
     
     total_selected: ''
@@ -1061,12 +1068,12 @@ console.log(allTrackers)
 
 // card originating in foundation pile
 const foundationCardDrop = (card, destination, cardObject) =>{
-
+let cardOrigin = cardObject.primary_card.origin
   console.log('foundation card drop function')
   console.log(
     `
   card: ${card}
-  origin: ${cardObject.primary_card.origin}
+  origin: ${cardOrigin}
   destination: ${destination}
     `
   )
@@ -1093,7 +1100,7 @@ console.log(destinationIndex)
    // REMOVE CARD FROM ORIGIN get origin index and pop OBJECT from associated array
    let originIndex; 
    foundationNavigation.forEach(element =>{
-    if(element == object.origin){
+    if(element == cardOrigin){
       originIndex = foundationNavigation.indexOf(element)
       // card must be the end card in the foundation subarray since it is the last card on the foundation pile (only one at a time can be dropped)
       foundationTracker[originIndex].pop()
@@ -1182,10 +1189,104 @@ const multipleCardDrop = (card, destination, cardObject) =>{
 
     // the advantage is that multiple cards only move from drop pile to drop pile, so, unlike with single card or waste pile drops, destination type check is not needed. 
 
+const modifyGroupCards = (selected, total, array) =>{
+console.log(selected, total, array)
+
+let destinationArray;
+let destinationIndex; 
+let trueDestination = array[selected].primary_card.destination
+let trueOrigin = array[selected].primary_card.origin
+
+console.log(trueOrigin, trueDestination)
+
+// finding destination array
+pileNavigation.forEach(element =>{
+  // check navigation array for destination name
+ if(element == destination){
+   // get index of matching name
+   destinationIndex = pileNavigation.indexOf(element)
+   destinationArray = dropPileTracker[destinationIndex]
+
+   // the group elements total is missing from the first element so I'm adding it here, it's not really necessary because the total is already in 'selected' but just for uniformity. 
+array[selected].primary_card.group_elements = total
+
+
+// creating a completely new object since altering the object alters other instances of it. 
+// let firstObject = {
+//   primary_card: {
+//     card:array[selected].primary_card.card,
+//     origin: trueOrigin,
+//     destination:trueDestination,
+//     group_elements: total
+//   }, 
+  
+//   total_selected: total
+//   }
+
+   // because you don't need to alter the first card for group elements, true origin and destinations you could push it to the destination array from here - its details will still be available for the other objects in the incoming 'origin' array because that array isn't cleared of the first element until ALL modifications are complete. 
+
+   // this will only push the first selected card object to the destination array
+  //  breadcrumbArray.push(firstObject)
+   destinationArray.push(array[selected])
+  }
+})
+
+
+
+// adding '1' to selected means that only the cards beyond the first selected card in the original pile will receive the modifications of origin, group elements, and destination, which are already correct on the first selected card. 
+for(i = selected +1; i < array.length; i++){
+
+// create a new object and populate with data for transfer objects
+  let newDestinationObj = {
+    primary_card: {
+      card:array[i].primary_card.card,
+      origin: trueOrigin,
+      destination:trueDestination,
+      group_elements: total
+    }, 
+    
+    total_selected: total
+    }
+
+    breadcrumbArray.push(newDestinationObj)
+    destinationArray.push(newDestinationObj)
+
+    /*
+    
+    
+      // make sure all elements receive transfer total
+  array[i].group_elements = total;
+  // give true destination
+  array[i].primary_card.destination = trueDestination;
+  // give true origin
+  array[i].primary_card.origin = trueOrigin
+  // the group elements property  will be used to indicate to the back function how many cards in the breadcrumb array to move from destination back to origin. 
+
+  // send the array object to the breadcrumb array
+
+  breadcrumbArray.push(array[i])
+  console.log(array[i])
+    
+    */
+
+
+// push objects to destination tracker array
+
+}
+  // after all card objects have been modified and pasted pushed to destination tracker, then the original objects can be deleted from origin tracking array. 
+    dropPileTracker[originIndex].splice(selected, total)
+console.log(allTrackers)
+console.log(breadcrumbArray)
+
+}
+  
 
   // the only difficulties here involve  splicings all moved cards from the origin subarray, and pushing all cards to destination subarray. The easier of the two is removing the card objects from the origin array because only the index of the first card, which we already have the code for finding in other functions, is needed. Then just splice from that index to the end of the array; so I'll start with that
 let originIndex;
 let cardIndex
+let originTrackerArray;
+let originArrayLength
+let toDelete
 pileNavigation.forEach(element =>{
    // check navigation array for destination name
   if(element == cardObject.primary_card.origin){
@@ -1193,37 +1294,22 @@ pileNavigation.forEach(element =>{
     originIndex = pileNavigation.indexOf(element)
 
     // but this is just the index which finds the subarray with the destination name; what's still needed is the index of the exact card object
+    originTrackerArray = dropPileTracker[originIndex]
+originArrayLength = originTrackerArray.length
     dropPileTracker[originIndex].forEach(elementValue =>{
-      console.log(elementValue)
-      console.log(allTrackers)
-      if(elementValue.card === card){
-        console.log(elementValue)
-        cardIndex = indexOf(elementValue)
-        // dropPileTracker[originIndex].splice(cardIndex, - 1)
-        console.log('cardIndex')
-        console.log(cardIndex)
-        console.log('subarray')
-        console.log(dropPileTracker[originIndex])
-        
+      if(elementValue.primary_card.card === card){
+        cardIndex = dropPileTracker[originIndex].indexOf(elementValue)
+         toDelete = originArrayLength - cardIndex
+// splice all moved cards from original tracking array
+
+        modifyGroupCards(cardIndex, toDelete, originTrackerArray)
+// dropPileTracker[originIndex].splice(cardIndex, toDelete) 
       }
     })
-
-
   }
 })
 
-let destinationIndex; 
-pileNavigation.forEach(element =>{
-  // check navigation array for destination name
- if(element == destination){
-   // get index of matching name
 
-   destinationIndex = pileNavigation.indexOf(element)
-   console.log(dropPileTracker[destinationIndex])
-
-console.log(allTrackers)
- }
-})
 
 // all cards apart from the first are showing, so the arrays need to be populated immediately after shuffle. Face down cards should also be included.
 
@@ -1312,17 +1398,34 @@ if(wastArr[0] === Number(object.id.replace('.png',''))){
   breadcrumbArray.push(wasteObj)
       // send card object to tracker
   trackCard(wasteObj)
+  }else{
+    // card did not originate in waste pile, so it already exists in breadcrumb array;  
+
+    // get drop card object
+let breadcrumbObject = breadcrumbArray[breadcrumbArray.length - 1]
+// update object's destination property
+
+if(breadcrumbObject.primary_card.destination !==''){
+  // that means that the card was moved before, because at card destribution, card objects have empty destination properties because they have not yet been moved.  So a string value here indicates the card has already moved at least once. 
+let oldDestination =  breadcrumbObject.primary_card.destination
+// update the object's origin property with the previous destination
+breadcrumbObject.primary_card.origin = oldDestination
+}else{ //otherwise the destination property was an empty string so the this is the first time the card is moving, so keep the origin as is, since the origin is the original, first origin. 
+  breadcrumbObject.primary_card.origin = breadcrumbObject.primary_card.origin 
+}
+
+let newDestination = event.target.id
+breadcrumbObject.primary_card.destination = newDestination
+
+
+// send object for tracking
+      trackCard(breadcrumbObject)
   }
 
-// card did not originate in waste pile, so already exists in breadcrumb array; add destionation to destination property and send to trackCard(). 
-let breadcrumbObject = breadcrumbArray[breadcrumbArray.length - 1]
-// update destination property in card object
-breadcrumbObject.primary_card.destination = event.target.id
-console.log('breadcrum object')
-console.log(breadcrumbObject)
+  // show breadcrumb object
+  console.log('breadcrum array to ensure moved cards appear in array and are the array\'s last element')
+console.log(breadcrumbArray)
 
-
-      trackCard(breadcrumbObject)
 
   
 
