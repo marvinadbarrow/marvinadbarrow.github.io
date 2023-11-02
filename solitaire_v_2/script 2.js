@@ -133,6 +133,9 @@ let dragIdArray = []
 // contains data in multi drag cards 
 let dataArray = []
 
+// card tracking objects temporarily pushed to this array, pending drop status; if drop fails, this array is emptied of the temporary card; if drop succeeds, then the card in the array is pushed to the breadcrumb array, after which it is deleted from this temporary array
+let tempDragCardArr = []
+
 
 // each subarray represents one of each of the drop piles
 var pileImgArrays = [ pileOneImgArr, pileTwoImgArr, pileThreeImgArr, pileFourImgArr, pileFiveImgArr, pileSixImgArr, pileSevenImgArr]
@@ -773,8 +776,7 @@ if(command < 3 && pile.childNodes.length > 0){
 
            // loop through children to add draggable:true; attribute
   for(i = 0; i < object.length ; i++){
-    console.log('element nodes inside wrapper; the actual number will be zero when logged to the console because cards are removed from the wrapper - but the element nodes will still show as belonging to the array, clicking on the array will show zero elements')
-    console.log(children)
+  
     children[i].setAttribute('draggable', 'true')
     children[i].classList.remove('multi-style')
   }
@@ -839,6 +841,9 @@ let pickCardsFinished = 0; // when cards are finished, increment this value to '
 
 // DROP TO TARGET
 const drop = (event) =>{
+
+
+
 
 
  
@@ -1013,6 +1018,8 @@ if(objectType.includes('dragging')){
 event.preventDefault()
 // this is the destination 
 event.target.appendChild(newObj)
+
+
 
 
 let destination = event.target.id
@@ -1320,6 +1327,11 @@ originArrayLength = originTrackerArray.length
 
 // tracking card movement; this will be used for the auto complete when it becomes clear that there is a solution to win the game. It can also be used to create a history of movements in the game so that a back button can be used. 
 const trackCard = (cardObject) =>{
+console.log('tracking object')
+console.log(cardObject)
+  //prior to the calling of this function, the temporary object for the drop card has been pushed to breadcrumb array so the temporary array entry can be deleted because it is no longer needed - a copy of it was sent to this function so now the copy is used. 
+
+  tempDragCardArr = [] 
 console.log('card tracker function in operation...')
 console.log('card object, argument to this function')
 console.log(cardObject)
@@ -1351,9 +1363,11 @@ cards moved: ${cardsMoved}
   
 
 // origin of card dicates how it is to be processed
+// if the origin was the waste pile
 if(origin == 'waste-pile'){
   wasteCardDrop(card, dropDestination, cardObject)
   }else if(origin.includes('foundation')){
+    // if the origin was a foundation pile
   foundationCardDrop(card, dropDestination, cardObject)
   // only the inner object needs to be sent because 
   }else{
@@ -1379,7 +1393,7 @@ if(origin == 'waste-pile'){
 
 
 
-// card ORIGIN is waste pile - WASTE PILE cards have no object associated with them because they are not contained in a drop pile or foundation pile so the object needs to be creased so it can be traced in trackCard()
+// card ORIGIN is waste pile - WASTE PILE cards have no object associated with them because they are not contained in a drop pile or foundation pile. One reason why these are dealt differently than other cards is because, each times the cards are flipped through, most of them will not be used, so it's of no value to add them to the breadcrumb pile, unless they are actually dropped into position. That's the purpose of the breadcrumb array, to register a completed move from origin to destination because that's the information needed for the history; if the card is dropped to the waste pile and never used, then it is as if the card was never dropped, since it will go back into the remain pile; registering that movement would be redundant because, in the history, what's the point of placing the card from the waste pile back into the remain pile only to take it out again in order to place it somewhere - you may as well just leave it untracked.  And, given that the auto complete depends upon the remain pile being empty, all cards would have been moved by that point (with exception to the final waste pile card), perhaps 'then' you could push the card to the breadcrumb array and begin the auto-complete.
 if(wastArr[0] === Number(object.id.replace('.png',''))){
   console.log(' card originated in waste pile')
   let wasteCardValue = Number(object.id.replace('.png',''))
@@ -1394,16 +1408,22 @@ if(wastArr[0] === Number(object.id.replace('.png',''))){
     
     total_selected: 1
   }
-  // add to breadcrumbs
+  console.log('new waste object')
+console.log(wasteObj)
   breadcrumbArray.push(wasteObj)
+  console.log('breadcrumb array')
+  console.log(breadcrumbArray)
+
       // send card object to tracker
   trackCard(wasteObj)
   }else{
     // card did not originate in waste pile, so it already exists in breadcrumb array;  
 
     // get drop card object
-let breadcrumbObject = breadcrumbArray[breadcrumbArray.length - 1]
+let breadcrumbObject = tempDragCardArr[0]
 // update object's destination property
+  // this stops an empty value being placed in the breadcrumb array when a card is dropped from the waste pile
+
 
 if(breadcrumbObject.primary_card.destination !==''){
   // that means that the card was moved before, because at card destribution, card objects have empty destination properties because they have not yet been moved.  So a string value here indicates the card has already moved at least once. 
@@ -1455,31 +1475,50 @@ cardPile.style.cssText = 'border-style: solid;background-color:none; border-colo
 
   }
 
+
+
+
 // non king drop to DROP PILE
 const checkNumbers = (color1, color2, number1, number2) =>{
 
   // parameter for adjacent card difference calculation
   let consecutiveVal = number1 - number2
 switch(consecutiveVal){
-case 1: if(color1 !== color2){ // if the difference of two consecutive cards is '1' and colours are different, then drop the card
+case 1:
+  
+if(color1 !== color2){ // if the difference of two consecutive cards is '1' and colours are different, then drop the card
+
+// SUCCESS so push card to breadcrumb
+  // this stops an empty value being placed in the breadcrumb array when a card is dropped from the waste pile
+  if(tempDragCardArr.length > 0){
+    breadcrumbArray.push(tempDragCardArr[0])
+  }
+
+
   cardType(newObj)
 }else{console.log('invalid card: consecutive cards must be of different colors')};
+// remove card's tracking object from temporary drag card array
+tempDragCardArr.pop()
 break;
-default: 
-console.log('invalid card: difference between consecutive cards must be 1')}
+
+default: // consecutive value variable is not equal to one so illegal move, no need to check the card suits
+console.log('invalid card: difference between consecutive cards must be 1')
+// remove card's tracking object from temporary drag card array
+tempDragCardArr.pop()
+}
 }
 
-
+// for cards being dropped to drop piles
 const checkColors = (prevCard, dropCard) =>{
-  // determine previous card colour. zere means card is even, red, and 1 means card is odd, black
+  // determine previous card colour by finding the remainder of the card raw value divided by 4. 
   switch(prevCard % 4){
-    case 0:
-    case 1: lastChildSuitColor = 'black'
+    case 0: //spades
+    case 1: lastChildSuitColor = 'black' // clubs
     break;
-    default: lastChildSuitColor = 'red'
+    default: lastChildSuitColor = 'red' // any other number and the suits are dimonds or hearts
     }
 
-// determine drop card color
+// determine drop card color with the same method above
     switch(dropCard % 4){
       case 0:
       case 1: dropCardSuitColor = 'black'
@@ -1487,59 +1526,89 @@ const checkColors = (prevCard, dropCard) =>{
       default: dropCardSuitColor = 'red'
          }
 
-         // convert previous card base value to true value 
+         // convert end card raw value to true value 
          let lastChildTrueVal = Math.ceil(prevCard/4)
-         // variable takes drop object's true value
+         // variable takes drop card's true value
          let dropCardTrueVal = objTrueValue
+
+         // send end card and drop card suit colour and end card and drop card tru value
 checkNumbers(lastChildSuitColor, dropCardSuitColor, lastChildTrueVal, dropCardTrueVal)
 }
 
 
 
+// DROP CARD SCENARIOS BELOW --------------------------------- these functions are used to decide if the card will be appended to the drop target, the intended pile destination. If the card is rejected because of an illegal move, then the cards tracking object is deleted from the temporary drag card array. 
+
 // king drop to DROP PILE
-const placeKing = () =>{
+const emptyPilePlaceKing = () =>{
+
+  // push card object to breadcrumb as this card's drop is successful
+  // this stops an empty value being placed in the breadcrumb array when a card is dropped from the waste pile
+  if(tempDragCardArr.length > 0){
+    breadcrumbArray.push(tempDragCardArr[0])
+  }
   cardType(newObj)
  }
 
-
+// placement on DROP PILE
 const placeNonKing = () =>{
+  // get last child in drop target pile
   let endChild = event.target.lastChild;
+ 
+// extract id
   let lastChildBaseValue = parseInt(endChild.id)
+  // NOTE- I thought parseInt only returned an integer from a string representation of an integer, but it turns ANY string into a number, so I can use this else where; I had been using, Number(string.replace('.png', '')) on the id string, for example '12.png' returns the number 12. But looks like it can be done with just parseInt(id)
+
+  // send end card value and drop card value
   checkColors(lastChildBaseValue, objBaseValue)
 
 }
 
 // NON ACE DROP FOUNDATION PILE
 const FoundationNumbers = (prevCard, dropCard) =>{
-    // from foundationSuits()
+   
   let consecutiveVal = prevCard - dropCard;
-  // console.log(consecutiveVal)
+  // if drop card and end card true values are consecutive subtracting the drop card's value from the end card's value should result in -1; any other result indicates the cards' values are not consecutive
 
   switch(consecutiveVal){
-   case -1: 
+   case -1: // cards are consecutive so go ahead and complete card drop
+
+   // SUCCESS so push card to breadcrumb
+  // this stops an empty value being placed in the breadcrumb array when a card is dropped from the waste pile
+  if(tempDragCardArr.length > 0){
+    breadcrumbArray.push(tempDragCardArr[0])
+  }
+
       cardType(newObj)
-  //  console.log(newObj)// want to check class properties
+  
   break;
   default:
-    console.log('difference of consecutive cards should be 1')
-  
+    console.log('only ajdacent cards must have consecutive numbers')
+// remove card's tracking object from temporary drag card array
+tempDragCardArr.pop()
          }}
 
+// check suit of drop card against the last card in the pile
 const FoundationSuits = (prevCard, dropCard) =>{
 // from foundationPlaceNonAce()
   let prevSuit = prevCard % 4;
   let dropSuit = dropCard % 4;
-  // determine previous card colour
+  // if the division of drop card and end card's raw number by 4 results in the same remainder; the cards are of the same suit, so you can proceed and check the true values are consecutive. 
+
+  // determine previous card suit
   switch(prevSuit){
-    case dropSuit:
-      // console.log('suit matches')
-   // convert previous card base value to true value 
+    case dropSuit: // cards are the same suit
+   
+   // convert previous card raw value to true value
    let lastChildTrueVal = Math.ceil(prevCard/4);
  // variable takes drop object's true value
  let dropCardTrueVal = objTrueValue
+ // send both cards to check their true values are consecutive
 FoundationNumbers(lastChildTrueVal, dropCardTrueVal)
-break;
+break;// cards are not of the same suit so reject card drop
     default: console.log('suits must match in foundation pile')
+    // remove card's tracking object from temporary drag card array
+tempDragCardArr.pop()
     }
 
 
@@ -1549,63 +1618,85 @@ break;
 
 }
 
-// ACE DROP FOUNDATION PILE
-const foundationPlaceAce = () =>{
+// ACE DROP on EMPTY foundation pile
+const emptyFoundationPlaceAce = () =>{
+
+  // SUCCESS - but if the card comes from the waste pile, there is not a copy in the temporary array because the tracking object is created only when a card from the waste pile successfully drops to foundation or drop piles, so there's nothing here to push; so check the condition of temporaray array first and if it's empty, no matter because the drop card will be pushed to breadcrumb array by other means. 
+
+  // this stops an empty value being placed in the breadcrumb array when a card is dropped from the waste pile
+  if(tempDragCardArr.length > 0){
+    breadcrumbArray.push(tempDragCardArr[0])
+  }
+
     cardType(newObj)
 }
 
 // if foundation pile is not empty we drop a non-ace (only single card drops allowed here)
 const foundationPlaceNonAce = () =>{
-// check drop object
-// console.log(newObj)
-// check how many cards (children) in object
+// if the number of cards in the wrapper is less than two, then only one card is being dropped and the attempted move is legal
 if(newObj.childNodes.length < 2){
-  // if just one card, all is ok and we can continue processing the single card for color and numerical value
-  // console.log('single card drop allowed');
+ // now the current card's color and number needs to be checked against the colour and number of card we are attempting to drop onto
+ // get the pile's end card
   let endChild = event.target.lastChild;
+  // get the raw valuie of the end card
   let lastChildBaseValue = parseInt(endChild.id)
+  // send card to check its suit
 FoundationSuits(lastChildBaseValue, objBaseValue)
 
 }else{
-    // if multiple cards (which is not allowed on a foundation pile), process discontinues, so cards will jump back to their origin without further processing
-    console.log('multiple card drop disallowed');}
+    // number of cards in the wrapper is 2 or greater
+    console.log('multiple card drop disallowed');
+  // remove card's tracking object from temporary drag card array
+tempDragCardArr.pop()
+  
+  }
  }
 
 
 
-// switch to decide what to do dependent on the nature of the drop target, either piles 1-7 or foundation piles
+// SWITCH PILE TYPE and check whether card is ACE or NON-ACE, for foundation piles, and KING or NON-KING for drop piles
 switch(event.target){
+  // if the destination is a foundation pile
 case foundationPileOne:
 case foundationPileTwo:
 case foundationPileThree:
 case foundationPileFour:
-// drop target is foundtion pile
+// if the pile is empty and the true value of the dragged card is '1', i.e. it is an ace
 if(event.target.childNodes.length === 0 ){
-  // if foundation pile is empty
-if(objTrueValue === 1){ foundationPlaceAce() // drop the ace}  
-}else{ // otherwise pile isn't empty so don't drop ace
-console.log('only an ace can be placed on empty foundation')
+  // drop the card to the empty foundation pile
+if(objTrueValue === 1){ emptyFoundationPlaceAce() // drop the ace}  
+}else{ // PILE EMPTY, but card isn't an ace; illegal move
+console.log('only an ACE can be placed on empty foundation')
+// remove card's tracking object from temporary drag card array
+tempDragCardArr.pop()
  }
 }else{
-// where the pile is 'not' empty then from foundationPlaceNonAce we'll push to the color check and number check to determine if a non-ace drop should happen
+// foundation pile not empty, so check card values for placement. Note; if the card IS an ACE it will be rejected later because the foundation pile cards are consecutive and all other card values are greater than the value of the ace, so the ace will not be able to drop because doing so will break the rule for consecutive cards. 
 foundationPlaceNonAce()
 }
   break;
 
-  // the DEFAULT is what happens if we're not dropping to a foundation pile, i.e. piles 1-7  and whether the card is a king or not (already handled)
+// cards attempting a drop on DROP PILES. 
   default:   
-if(objTrueValue === 13){
-    // if card is king check number of cards in pile
-  switch(event.target.childNodes.length){
-    case 0: placeKing() // drop the king
+if(objTrueValue === 13){ // CARD = KING
+// check number of cards in pile
+  switch(event.target.childNodes.length){ 
+    case 0: emptyPilePlaceKing() // of pile is empty place king
     break;
+    // otherwise pile is not empty; illegal move
    default: console.log('cannot drop king on another card')
+   // remove card's tracking object from temporary drag card array
+tempDragCardArr.pop()
   }
-  }else{
+  }else{ //CARD = NON KING 
     switch(event.target.childNodes.length){
+      // if pile is empty - illegal move cannot drop a non-king
       case 0: console.log('cannot drop non-king card on empty space')
+      // remove card's tracking object from temporary drag card array
+tempDragCardArr.pop()
       break;
-      default: placeNonKing(); // drop any card but a king
+ // pile contains cards to attempt drop
+      default: placeNonKing();
   }}
   
 }
@@ -1616,6 +1707,9 @@ if(objTrueValue === 13){
 let lastFoundationCard;
 let totalCardsAdded = 0;
 
+
+
+// AUTO-COMPLETE CHECK TO SEE IF ALL CARDS ARE FACE UP
 function comparePileCard(fPile, index){
 // CHECK how many drop piles are empty, when this reaches 7 this function will not execute again. 
 
@@ -1780,17 +1874,10 @@ dropPilesEl.forEach(function(element){
 
 
 // after looping through clicked to top card of pile we send the pile, clicked card and top card for selection - 
-const selectRange = (pile, start,object, cardDetails) =>{
-
-  console.log('cardDetails')
-console.log(cardDetails)
+const selectRange = (pile, start,object) =>{
 
 
-cardDetails.total_selected = object.length
-breadcrumbArray.push(cardDetails)
 
-console.log('breadcrumbs - last element is last card moved')
-console.log(breadcrumbArray)
 
 
 let pileId = pile.id // we need pile id to grab element properly
@@ -1973,6 +2060,7 @@ console.log(parent)
 console.log('origin pile name below:')
 console.log(parent.id)
 
+// getting the object of the clicked card from the tracking array. 
 let pileIndex;
 let cardObj
 pileNavigation.forEach(pile =>{
@@ -2001,13 +2089,12 @@ console.log(cardObj)
 // }
 
 
-if(attr == "true"){ // if draggable: true;
+if(attr == "true"){ // if draggable: true; get the HTML element
 selectArray.push(parent)
 //$(cardPile).multidraggable()
 for(i=0; i < maxVal; i++){ // loop through pile's children (cards)
 if(children[i] == target){ // when child[i] is target card
-let JthChild = children[i] // assign child[i] a variable
-// console.log(JthChild) // logged child[i]
+
 let j;
 for(j=i; j<maxVal; j++){ 
 // loop through parent pile from child[j] to last child
@@ -2017,13 +2104,23 @@ dragIdArray.push(children[j])
 // console.log(dragIdArray)
 
 }}}
+
+
+cardObj.total_selected = dragIdArray.length
+tempDragCardArr.push(cardObj)
+
+console.log('breadcrumbs - last element is last card moved')
+
 // create an object from array entries with the indexes as keys
 
-selectRange(selectArray[0], selectArray[1], dragIdArray, cardObj)
+selectRange(selectArray[0], selectArray[1], dragIdArray)
 }else{
 console.log('cannot drag a face down card')
 
 }
+
+
+
 
 
 })
