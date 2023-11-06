@@ -14,7 +14,7 @@ let cardPack = [
   "49.png","50.png","51.png","52.png",]
 
 
-let dealBtn = document.getElementById('deal-btn')
+let undoBtn = document.getElementById('undo-btn')
 //variabel to add event listeners to all piles using forEach
 var dropPilesEl = document.querySelectorAll('.piles')
 // to add event listeners to all foundation piles using forEach
@@ -63,7 +63,7 @@ var remainPile = document.getElementById('reveal')
 var wastePile = document.getElementById('waste-pile')
 var solveBtn = document.getElementById('solve-btn')
 var movingCardsEl; // for the variables once cards are loaded
-solveBtn.style.display = 'none'
+solveBtn.style.display = 'block'
 
 
 
@@ -165,8 +165,6 @@ const shuffleCards = () =>{
 if(shuffleArr.length < 52){ pushRandom()}
 else{
   
-  // disappear the deal button 
-  dealBtn.style.display = "none"
 
   // move game container up a little bit
   gameContainerEl.style.cssText = ' margin-top:-8vh;'
@@ -177,7 +175,7 @@ else{
 
 
 
-//dealBtn.addEventListener('click', shuffleCards)
+//undoBtn.addEventListener('click', shuffleCards)
 // the below function rids us of the necessity for a button click and just starts the game automatically. 
 window.onload = function() {
   shuffleCards();
@@ -229,9 +227,12 @@ console.log(remainingCardsArr)
 
 // so all cards are now taken care of. But we don't have access to these arrays outside of the function so we need to push the array somewhere; we can assign each array to an uninitiated variable, like the array 'getPile7 can be assigned to pileOneArr. 
 
+
+// let trackingCompiler = [{getPile1: 'pile-one'}, {getPile2: 'pile-two'}, {getPile3: 'pile-three'}, {getPile4: 'pile-four'}, {getPile5: 'pile-five'}, {getPile6: 'pile-six'}, {getPile7: 'pile-seven'}]
+
 showCardPiles(getPile1, getPile2, getPile3, getPile4, getPile5, getPile6, getPile7, remainingCardsArr)
 
-
+// showCardPiles(trackingCompiler)
 }
 
 
@@ -258,6 +259,9 @@ let foundationFourArr = []
 // arrays for keeping track of card positions
 let foundationTracker = [foundationOneArr, foundationTwoArr, foundationThreeArr, foundationFourArr]
 
+let wasteCardTracker = []
+let pickCardTracker = []
+
 let breadcrumbArray = []
 
 
@@ -270,6 +274,25 @@ let foundationNavigation = ['foundation-one', 'foundation-two', 'foundation-thre
 
 function showCardPiles(one, two, three, four, five, six, seven, reveal){
 
+reveal.forEach(revealCard =>{
+// create an object for each card in the pick pile
+  let revealObj = {
+
+    primary_card: {
+      card:revealCard,
+      origin:'pick-pile',
+      destination:'',
+      group_elements:''
+    }, 
+    
+    total_selected: '', 
+  when_flipped: '', 
+  when_moved: '',
+  principal_origin: 'pick-pile'
+    }
+
+pickCardTracker.push(revealObj)
+})
 
 one.forEach(element =>{
   let newObj = {
@@ -281,7 +304,10 @@ one.forEach(element =>{
       group_elements:''
     }, 
     
-    total_selected: ''
+    total_selected: '', 
+  when_flipped: '', 
+  when_moved: '',
+    principal_origin: 'pile-one'
     }
   dropPileOne.push(newObj)
 })
@@ -295,7 +321,10 @@ two.forEach(element =>{
       group_elements:''
     }, 
     
-    total_selected: ''
+    total_selected: '', 
+  when_flipped: '', 
+  when_moved: '',
+    principal_origin: 'pile-two'
     }
   dropPileTwo.push(newObj)
 })
@@ -309,7 +338,10 @@ three.forEach(element =>{
       group_elements:''
     }, 
     
-    total_selected: ''
+    total_selected: '', 
+  when_flipped: '', 
+  when_moved: '',
+    principal_origin: 'pile-three'
     }
   dropPileThree.push(newObj)
 })
@@ -323,7 +355,10 @@ four.forEach(element =>{
       group_elements:''
     }, 
     
-    total_selected: ''
+    total_selected: '', 
+  when_flipped: '', 
+  when_moved: '',
+    principal_origin: 'pile-four'
     }
   dropPileFour.push(newObj)
 })
@@ -337,7 +372,10 @@ five.forEach(element =>{
       group_elements:''
     }, 
     
-    total_selected: ''
+    total_selected: '', 
+  when_flipped: '', 
+  when_moved: '',
+    principal_origin: 'pile-five'
     }
   dropPileFive.push(newObj)
 })
@@ -351,7 +389,10 @@ six.forEach(element =>{
       group_elements:''
     }, 
     
-    total_selected: ''
+    total_selected: '', 
+  when_flipped: '', 
+  when_moved: '',
+    principal_origin: 'pile-six'
     }
   dropPileSix.push(newObj)
 })
@@ -365,7 +406,10 @@ seven.forEach(element =>{
       group_elements:''
     }, 
     
-    total_selected: ''
+    total_selected: '', 
+  when_flipped: '', 
+  when_moved: '',
+    principal_origin: 'pile-seven'
     }
   dropPileSeven.push(newObj)
 })
@@ -374,9 +418,7 @@ seven.forEach(element =>{
 dropPileTracker = [dropPileOne, dropPileTwo, dropPileThree, dropPileFour, dropPileFive, dropPileSix, dropPileSeven]
 allTrackers = [dropPileTracker, foundationTracker]
 
-
-console.log(dropPileTracker)
-   pileOneArr = one;
+ pileOneArr = one;
  pileTwoArr = two;
  pileThreeArr = three;
  pileFourArr = four;
@@ -396,21 +438,21 @@ console.log(dropPileTracker)
 
 const pushPiles = () =>{
   
-  populatePiles(pileOneArr, pileOne, pileOneImgArr);
-  populatePiles(pileTwoArr, pileTwo, pileTwoImgArr)
-  populatePiles(pileThreeArr, pileThree, pileThreeImgArr)
-  populatePiles(pileFourArr, pileFour, pileFourImgArr)
-  populatePiles(pileFiveArr, pileFive, pileFiveImgArr)
-  populatePiles(pileSixArr, pileSix, pileSixImgArr)
-  populatePiles(pileSevenArr, pileSeven, pileSevenImgArr)
+  populatePiles(pileOneArr, pileOne, pileOneImgArr, dropPileOne);
+  populatePiles(pileTwoArr, pileTwo, pileTwoImgArr, dropPileTwo)
+  populatePiles(pileThreeArr, pileThree, pileThreeImgArr, dropPileThree)
+  populatePiles(pileFourArr, pileFour, pileFourImgArr, dropPileFour)
+  populatePiles(pileFiveArr, pileFive, pileFiveImgArr, dropPileFive)
+  populatePiles(pileSixArr, pileSix, pileSixImgArr, dropPileSix)
+  populatePiles(pileSevenArr, pileSeven, pileSevenImgArr, dropPileSeven)
   // below goes to its own function which just takes the array and the pile, since we only need one card at a time from the array to be revealed. 
   pickPile(remainPile)
    }
 
 
 // this creates images which the source cards can be pushed to
-  const populatePiles = (array, pile, imageArray) =>{
-
+  const populatePiles = (array, pile, imageArray, trackArray) =>{
+// tracking array is here because the last object in the array which represents the end card of the distributed pile needs to have show that the card was flipped at distribution, so set that object's 'when_flipped' property to zero - at the same time that the card's 'draggable' attribute is set to true, because that means the card gets flipped imediately, at zero, when no moves have been made. 
     if(pile.childNodes.length < 1){
      
       pile.style.opacity = '1'
@@ -438,7 +480,13 @@ const pushPiles = () =>{
       // give top cards class of .face-up and all other cards class of .face-down
     if (i<array.length -1){}else{
        testCard.setAttribute('draggable', true) // make img draggable
-   testCard.src = `images/${id}` // change the card image from card back to card value
+   testCard.src = `images/${id}` // change the card image from card back to card value, i.e. face down to face up
+
+
+  // here you need to set the when_flipped property on the tracking object to zero,  indcating that the card was flipped at distribution before any moves were made. 
+
+   trackArray[i].when_flipped = 0;
+ 
 
   }}
   
@@ -462,12 +510,21 @@ wastePile.classList.add('card-size'); // make waste pile same size as the size o
 
   
 // checks that the top card of any drop pile is face down, and if so, will flip it to face up. 
-const   flipCard = (flip) =>{
+const   flipCard = (flipThis, index) =>{
 // check that the received card is not draggable
-   flip.setAttribute('draggable',true);
-  let id = flip.id
-  flip.src = `images/${id}`
-  // ok, this works perfectly, so hopefully when we are able to drag several cards the card will flip once the remaining top card is not draggeable.
+   flipThis.setAttribute('draggable',true);
+  let id = flipThis.id
+  flipThis.src = `images/${id}`
+
+// code for locating the tracking object and assigning a value to its when_flipped property
+
+// get the index of pile tracking array
+let trackingArray = dropPileTracker[index]
+// edit the when_flipped property of the last card in the pile
+trackingArray[trackingArray.length - 1].when_flipped = breadcrumbArray.length
+
+
+
 }
 
 
@@ -585,14 +642,18 @@ if(wastePile.childNodes.length < 1){
   
 
 
-    // this function checks to see if the card at the end of any of the piles is face down. If the card is face down then we run flipCard() which will turn the top card face up. This occurs when the cards have just been distritubes because, just after distribution, all cards are face down, including the end cards of each pile, and the only card in the first pile; all of these need to be facing upward. 
+    // if on moving a card away from a pile, the top card left behind is facing down, flip it to face up
     const faceUp = () =>{
 
 // loop through each pile
 for(i=0; i < dropPilesEl.length; i++){
-// if there exists a lastChild and the last child is not draggable, send to flipCard
-if (dropPilesEl[i].lastChild && dropPilesEl[i].lastChild.getAttribute('draggable') === 'false'){
-flipCard(dropPilesEl[i].lastChild)
+// if there exists a lastChild and the last child is not draggable, this means that the card is at the end of the pile but is face down
+
+// check which of the piles has the face down end card; this can only apply to one pile, since moving cards can only occur one pile at a time. 
+if (dropPilesEl[i].lastChild && dropPilesEl[i].lastChild.getAttribute('draggable') === 'false'){//if pile end card isn't draggable
+  let indexOfPile = i
+flipCard(dropPilesEl[i].lastChild, indexOfPile)// send card to the flip function
+
 }}
              
       }
@@ -614,20 +675,28 @@ const refreshRemain = () =>{
 
 
 
-// this flips through the cards so they cycle on the waste pile
+// this flips through the pick cards so they cycle on the waste pile
 const remainFlip = () =>{
   //CARD BACK DISPLAY
   if(remainPile.childNodes.length > 0){
+    // remove the current card displayed on the pick pile
     remainPile.removeChild(remainPile.firstChild)
+    // create a new card and give class details
     let newRemainCard = document.createElement('img') 
     newRemainCard.classList.add('cardElWaste')
     newRemainCard.classList.add('card-border')
+    // set the image source to cardback and image to the pile
     newRemainCard.src = `images/backgnd.jpg`
     remainPile.appendChild(newRemainCard)}
 
+
               // CARD FOR DISPALY ON WASTE PILE
-let testCard = document.createElement('img') // create image
-let index = remainingCardsArr.length - 1 // we'll use last index for our id number
+ // create new image for wastepile card
+let testCard = document.createElement('img')
+// we'll use last index for our id 
+let index = remainingCardsArr.length - 1 
+
+// the last card in the array gets displayed in the remain-waste
 let value = remainingCardsArr[index] // last index, LIV, value pulled
 let id = cardPack[value - 1] // id is cardpack[LIV]
 testCard.setAttribute('id', id)// give image id attribute
@@ -640,16 +709,36 @@ testCard.src = `images/${id}` // define source
 
 // console.log(wastArr, remainingCardsArr)
 
-// copy last remain array itme to zero index of waste array - then we read out of wastArr to display the waste card, which makes sense.
+// copy last remain array item to zero index of waste array - then we read out of wastArr to display the waste card, which makes sense.
 wastArr.unshift(remainingCardsArr[index]);  
 
 // pop the item out of remain array since it is now in wastArr
 remainingCardsArr.pop() 
 
+// set card's move order to breadcrumb length
+pickCardTracker[pickCardTracker.length -1].when_moved = breadcrumbArray.length + 1
+
+// write the destination on the card object
+pickCardTracker[pickCardTracker.length -1].primary_card.destination = 'waste-pile'
+// write the destination on the card object
+pickCardTracker[pickCardTracker.length -1].primary_card.origin = 'pick-pile'
+// push card to breadcrumb
+breadcrumbArray.push(pickCardTracker[pickCardTracker.length -1])
+
+// unshift card object to waste pile array
+wasteCardTracker.unshift(pickCardTracker[pickCardTracker.length -1])
+
+// pop object from pickcard tracker
+pickCardTracker.pop()
+
+
+console.log(pickCardTracker)
+console.log(wasteCardTracker)
 // then we need to append it to the waste pile
 // remove card image if one exists
 if(wastePile.childNodes.length > 0){
-wastePile.removeChild(wastePile.firstChild)}
+wastePile.removeChild(wastePile.firstChild)
+}
 // append created card
 wastePile.appendChild(testCard)
 // add dragstart and dragend event listeners
@@ -657,6 +746,8 @@ testCard.addEventListener('dragstart', dragStart)
 testCard.addEventListener('dragend', dragEnd)
 }
   
+
+
  // when no more waste cards are available 
 const remainFlipNoCard = () =>{
 remainPile.removeChild(remainPile.firstChild)
@@ -671,10 +762,44 @@ newArr = wastArr.splice(0, wastArr.length);
 // push all of those values to remain array
 newArr.forEach(element => remainingCardsArr.push(element));
 
+// this also has to be done for the tracking objects - all the elements in the waste tracker need to be pushed to the pick card tracker; we can do it using spread. 
+
+// first we need to swap all of the destinations with origins on the waste card array to indicate that they went from the waste pile back to the origin.  They will all get the same breadcrumb number and that will indicate that they were all moved together, in fact, instead of sending all of the 24 cards to the breadcrumb array, we could send a special object to indicate the transfer of all the cards back to the pick pile. 
+
+wasteCardTracker.forEach(object =>{
+  object.primary_card.destination = 'pick-pile'
+  object.primary_card.origin = 'waste-pile'
+  object.when_moved = breadcrumbArray.length
+  object.primary_card.group_elements = wasteCardTracker.length
+})
+pickCardTracker.push(...wasteCardTracker)
+
+// create an object to represent all of the cards returned to the pick pile; this object will be sent to breadcrumb so that undo can be alerted of this 'special' undo case. 
+let pickCardResetObj = {
+  primary_card: {
+    card:'all pick pile',
+    origin:'waste-pile',
+    destination:'pick-pile',
+    group_elements:wasteCardTracker.length
+  }, 
+  
+  total_selected: wasteCardTracker.length, 
+when_flipped: '', 
+when_moved: breadcrumbArray.length, 
+principal_origin: 'pick-pile'
+  }
+  
+wasteCardTracker = [] // clean the waste card tracker
+
+
+
+
+
+
+  breadcrumbArray.push(pickCardResetObj)
 // clear newArr ready for next cycle
 newArr = []
 }
-
 
 
 // decides what to do when the waste pile is clicked, depending on whether waste cards are available or have run out
@@ -685,6 +810,7 @@ if(remainingCardsArr.length > 0){remainFlip()
 }else{remainFlipNoCard()}
    }
       
+   // attach event listener to remain pile; 
 remainPile.addEventListener('click', cardChoice)
 
 
@@ -763,11 +889,8 @@ if(command < 3 && pile.childNodes.length > 0){
   let wrapperElement = document.getElementById(wrapper.id)
   var parent = wrapperElement.parentNode
   // console.log(object)
-  console.log('selected card')
-  console.log(wrapper.firstChild)
-  if(wrapper.length > 1){
-    console.log('last card in group')
-    console.log(wrapper.lastChild)
+   if(wrapper.length > 1){
+
   }
 
 
@@ -836,12 +959,59 @@ let pickCardsFinished = 0; // when cards are finished, increment this value to '
 // console.log(pileOneArr, pileTwoArr, pileThreeArr, pileFourArr,    pileFiveArr, pileSixArr, pileSevenArr)
 
 
+undoBtn.addEventListener('click', ()=>{
+  console.log('back button clicked... checking breadcrumb history')
+  let lastBreadcrumb = breadcrumbArray[breadcrumbArray.length - 1]
 
+
+console.log(`
+card value: ${lastBreadcrumb.primary_card.card}
+current location: ${lastBreadcrumb.primary_card.destination}
+previous location: ${lastBreadcrumb.primary_card.origin}
+number of cards moved: ${lastBreadcrumb.primary_card.group_elements}
+number of cards selected: ${lastBreadcrumb.total_selected}
+when moved: ${lastBreadcrumb.when_moved}
+when flipped: ${lastBreadcrumb.when_flipped}
+`)
+
+
+// lookup origin pile tracker
+let originalPile = lastBreadcrumb.primary_card.origin
+if(originalPile.includes('pile')){ // drop pile origin
+  pileNavigation.forEach(pile =>{
+    if(pile == originalPile){
+      let indexOfPile = pileNavigation.indexOf(originalPile)
+      console.log('drop pile')
+      console.log(dropPileTracker[indexOfPile])
+    }
+  })
+}else if(originalPile.includes('foundation')){ //foundation origin
+foundationNavigation.forEach(foundation =>{
+  if(foundation == originalPile){
+    let indexOfPile = foundationNavigation.indexOf(originalPile)
+    console.log('foundation pile')
+    console.log(foundationTracker[indexOfPile])
+  }
+})
+}else{ // waste card origin
+  console.log('tracking waste')
+  console.log(wasteCardTracker)
+  console.log('tracking pick pile')
+  console.log(pickCardTracker)
+
+}
+// now we need to look at the card that this current card left exposed back at the previous pile. 
+
+// if the pile was the foundation then that's simple enough, because that would just be the equivalent of a normal drop of a drop pile card to a foundation pile. the card that it left exposed was unaffected because foundation cards don't flip. 
+
+// if it was not a drop pile then it must have been the waste pile, so it will go directly back there.  As we are going backward, the action is always taken on the card just moved; the breadcrumb chronology will prevent any errors. 
+
+// if the pile was a drop pile that is a bit more difficult.  We have to work out whether the card left behind was face up or face down so that, if it was face down, then it needs to be turned over again. 
+})
 
 
 // DROP TO TARGET
 const drop = (event) =>{
-
 
 
 
@@ -996,6 +1166,12 @@ console.log(allCurrentPilesArray)
 // LAST GATE FOR CARD DROPS
 const cardType = (object) =>{
 
+  if(breadcrumbArray.length > 0){
+    // show button if breadcrumbs exist
+    undoBtn.style.display = "block"
+  
+  }
+
 console.log('card HTML element')
 console.log(object)
 
@@ -1029,10 +1205,10 @@ console.log(destination)
 // functions for moving cards to appropriate tracking array --- 
 
 
-// card originating in waste pile
+// card originating in WASTE pile
 const wasteCardDrop = (card, destination, cardObject) =>{
   console.log('waste card drop function in operation ...')
-  console.log('card details')
+  console.log('card primary details')
   console.log(
     `
    card: ${card}
@@ -1041,17 +1217,23 @@ const wasteCardDrop = (card, destination, cardObject) =>{
     `
   )
 
+  console.log('card main details')
+  console.log(cardObject)
   // get destination index and push OBJECT to associated array (note, waste pile cards positions are automatically updated elsewhere, so no need to find and remove them from waste array since that is alread done)
 let destinationIndex; 
 // if destination is a drop pile
 if(destination.includes('pile')){
 pileNavigation.forEach(element =>{
    // check navigation array for destination name
-  if(element == destination){
-    // get index of matching name
+  if(element == destination){ 
+    // get index of the element wwhose value is the destination name
     destinationIndex = pileNavigation.indexOf(element)
+
+// use the index to get the array which corresponds to the pile name and push the object to the end of the array, which represents the card being at the end of the pile
     dropPileTracker[destinationIndex].push(cardObject)
-console.log('destination pile')
+
+    // check the destination pile to ensure it worked
+console.log('destination pile (from WASTE pile')
 console.log(dropPileTracker[destinationIndex])
   }
 })
@@ -1063,7 +1245,7 @@ console.log(dropPileTracker[destinationIndex])
     if(element == destination){
       // get index of matching destination name
       destinationIndex = foundationNavigation.indexOf(element)
-//push object to the foundation array having the same index
+// using the index value find the corresponding tracking array in the main foundation tracker, and push the object to that array so it will be the last element of the array, which represents its true position in the pile, the last card. 
 foundationTracker[destinationIndex].push(cardObject)
     }
   })
@@ -1119,6 +1301,7 @@ console.log(destinationIndex)
  
 // single card originating in drop pile 
 const singleCardDrop = (card, destination, cardObject, ) =>{
+  console.log(breadcrumbArray[breadcrumbArray.length - 1])
   console.log('single card drop function... in operation')
 // destination can be another drop pile or a foundation pile.
 console.log('object (post drop) of selected card with DESTINATION added')
@@ -1139,18 +1322,21 @@ let destinationIndex;
  // get destination index and push OBJECT to associated array
  // if destination is a foundation pile
 if(destination.includes('foundation')){
-  // push object to foundation tracker
+    // push object to foundation tracker
   foundationNavigation.forEach(element =>{
     // check navigation array for destination name
         if(element == destination){
-          // get index of matching destination name
+          // get index of matching foundation name
           destinationIndex = foundationNavigation.indexOf(element)
-    //push object to the foundation array having the same index
+    //push object to the foundation  tracking array having the same index
     foundationTracker[destinationIndex].push(cardObject)
     console.log(allTrackers)
         }
       })
-}else{// foundation pile is not a destination
+}else{
+  
+  
+  // foundation pile is not a destination
   // push object to drop pile tracker
   pileNavigation.forEach(element =>{
     // check navigation array for destination name
@@ -1177,6 +1363,10 @@ console.log(allTrackers)
 
 }
 
+
+
+
+
 // multiple cards originating in drop pile 
 const multipleCardDrop = (card, destination, cardObject) =>{
   console.log('card')
@@ -1198,10 +1388,13 @@ const multipleCardDrop = (card, destination, cardObject) =>{
 
 const modifyGroupCards = (selected, total, array) =>{
 console.log(selected, total, array)
-
+let moveMade = breadcrumbArray.length
+// array is origin array
+// total is number of cards selected, how many to delete in splice
+// selected is card index in original array
 let destinationArray;
 let destinationIndex; 
-let trueDestination = array[selected].primary_card.destination
+let trueDestination = destination
 let trueOrigin = array[selected].primary_card.origin
 
 console.log(trueOrigin, trueDestination)
@@ -1216,19 +1409,9 @@ pileNavigation.forEach(element =>{
 
    // the group elements total is missing from the first element so I'm adding it here, it's not really necessary because the total is already in 'selected' but just for uniformity. 
 array[selected].primary_card.group_elements = total
+array[selected].primary_card.destination = destination
+array[selected].when_moved = moveMade
 
-
-// creating a completely new object since altering the object alters other instances of it. 
-// let firstObject = {
-//   primary_card: {
-//     card:array[selected].primary_card.card,
-//     origin: trueOrigin,
-//     destination:trueDestination,
-//     group_elements: total
-//   }, 
-  
-//   total_selected: total
-//   }
 
    // because you don't need to alter the first card for group elements, true origin and destinations you could push it to the destination array from here - its details will still be available for the other objects in the incoming 'origin' array because that array isn't cleared of the first element until ALL modifications are complete. 
 
@@ -1248,33 +1431,18 @@ for(i = selected +1; i < array.length; i++){
     primary_card: {
       card:array[i].primary_card.card,
       origin: trueOrigin,
-      destination:trueDestination,
+      destination:destination,
       group_elements: total
     }, 
     
-    total_selected: total
+    total_selected: total, 
+    when_flipped:array[i].when_flipped, 
+    when_moved: moveMade,
+    principal_origin: array[i].principal_origin
     }
 
     breadcrumbArray.push(newDestinationObj)
     destinationArray.push(newDestinationObj)
-
-    /*
-    
-    
-      // make sure all elements receive transfer total
-  array[i].group_elements = total;
-  // give true destination
-  array[i].primary_card.destination = trueDestination;
-  // give true origin
-  array[i].primary_card.origin = trueOrigin
-  // the group elements property  will be used to indicate to the back function how many cards in the breadcrumb array to move from destination back to origin. 
-
-  // send the array object to the breadcrumb array
-
-  breadcrumbArray.push(array[i])
-  console.log(array[i])
-    
-    */
 
 
 // push objects to destination tracker array
@@ -1305,7 +1473,9 @@ pileNavigation.forEach(element =>{
 originArrayLength = originTrackerArray.length
     dropPileTracker[originIndex].forEach(elementValue =>{
       if(elementValue.primary_card.card === card){
+
         cardIndex = dropPileTracker[originIndex].indexOf(elementValue)
+        console.log(cardIndex)
          toDelete = originArrayLength - cardIndex
 // splice all moved cards from original tracking array
 
@@ -1327,6 +1497,7 @@ originArrayLength = originTrackerArray.length
 
 // tracking card movement; this will be used for the auto complete when it becomes clear that there is a solution to win the game. It can also be used to create a history of movements in the game so that a back button can be used. 
 const trackCard = (cardObject) =>{
+
 console.log('tracking object')
 console.log(cardObject)
   //prior to the calling of this function, the temporary object for the drop card has been pushed to breadcrumb array so the temporary array entry can be deleted because it is no longer needed - a copy of it was sent to this function so now the copy is used. 
@@ -1393,64 +1564,130 @@ if(origin == 'waste-pile'){
 
 
 
-// card ORIGIN is waste pile - WASTE PILE cards have no object associated with them because they are not contained in a drop pile or foundation pile. One reason why these are dealt differently than other cards is because, each times the cards are flipped through, most of them will not be used, so it's of no value to add them to the breadcrumb pile, unless they are actually dropped into position. That's the purpose of the breadcrumb array, to register a completed move from origin to destination because that's the information needed for the history; if the card is dropped to the waste pile and never used, then it is as if the card was never dropped, since it will go back into the remain pile; registering that movement would be redundant because, in the history, what's the point of placing the card from the waste pile back into the remain pile only to take it out again in order to place it somewhere - you may as well just leave it untracked.  And, given that the auto complete depends upon the remain pile being empty, all cards would have been moved by that point (with exception to the final waste pile card), perhaps 'then' you could push the card to the breadcrumb array and begin the auto-complete.
+// card ORIGIN is waste pile
 if(wastArr[0] === Number(object.id.replace('.png',''))){
   console.log(' card originated in waste pile')
-  let wasteCardValue = Number(object.id.replace('.png',''))
   
-  // create a tracking object for the card which can then be pushed to breadcrumb array
+  console.log('card moved from waste pile')
+ 
   let wasteObj = {
     primary_card: {
-      card:wasteCardValue,
-      origin:'waste-pile',
-      destination:event.target.id
-         }, 
-    
-    total_selected: 1
-  }
-  console.log('new waste object')
-console.log(wasteObj)
-  breadcrumbArray.push(wasteObj)
-  console.log('breadcrumb array')
-  console.log(breadcrumbArray)
+          card:  wasteCardTracker[0].primary_card.card,
+          origin:'waste-pile',
+          destination:event.target.id, 
+          group_elements: ''
+             }, 
+        when_flipped:'',
+        when_moved:breadcrumbArray.length + 1,
+        total_selected: 1,
+        principal_origin: wasteCardTracker[0].principal_origin
+      }
 
+breadcrumbArray.push(wasteObj)
+// NOW removed the card from the pack-waste workflow
+wasteCardTracker.shift()
+  // update origin and destination details of object because, in the breadcrumb array, the object will still have origin as pick pile and destination as waste pile. 
+let breadcrumbWasteCard = breadcrumbArray[breadcrumbArray.length - 1]
       // send card object to tracker
-  trackCard(wasteObj)
+  trackCard(breadcrumbWasteCard)
   }else{
-    // card did not originate in waste pile, so it already exists in breadcrumb array;  
 
-    // get drop card object
-let breadcrumbObject = tempDragCardArr[0]
-// update object's destination property
-  // this stops an empty value being placed in the breadcrumb array when a card is dropped from the waste pile
+    if(tempDragCardArr.length < 1){ // ORIGIN is foundation pile
 
+      // if an element doesn't exist in the  temporary object arry then this must have originated in the foundation because foundation clicks don't send objects to the temporary array
 
-if(breadcrumbObject.primary_card.destination !==''){
-  // that means that the card was moved before, because at card destribution, card objects have empty destination properties because they have not yet been moved.  So a string value here indicates the card has already moved at least once. 
-let oldDestination =  breadcrumbObject.primary_card.destination
-// update the object's origin property with the previous destination
-breadcrumbObject.primary_card.origin = oldDestination
-}else{ //otherwise the destination property was an empty string so the this is the first time the card is moving, so keep the origin as is, since the origin is the original, first origin. 
-  breadcrumbObject.primary_card.origin = breadcrumbObject.primary_card.origin 
-}
+      // to get the origin pile it's possible to loop through the tracking array of all foundation piles, check only the end element of each subarray, and whichever one has the card value of the parsed object id, is the object which belongs to the card.  then in the below new object we could copy accross the details that should remain and update the new object, push it to the array for the destination and also push it to the breadcrumb. 
+      let rawValue = parseInt(object.id)
+      let destinationPile = event.target.id
+      let foundationIndex;
+      let foundationName; 
+      let foundationObjectDropped;
 
-let newDestination = event.target.id
-breadcrumbObject.primary_card.destination = newDestination
+foundationTracker.forEach(subarray =>{
+  if(subarray.length > 0){
+    let finalCard = subarray[subarray.length - 1]
+    if(finalCard.primary_card.card === rawValue){
+      foundationIndex = foundationTracker.indexOf(subarray)
+     foundationName = foundationNavigation[foundationIndex]
+     console.log('finalCard')
+     console.log(finalCard)
+     console.log('name of foundation pile')
+     console.log(foundationName)
 
+// create a new object
+      foundationObjectDropped = {
+      primary_card: {
+        card:  rawValue,
+        origin:foundationName,
+        destination:destinationPile, 
+        group_elements: ''
+           }, 
+      when_flipped:finalCard.when_flipped,
+      when_moved:breadcrumbArray.length + 1,
+      total_selected: 1,
+      principal_origin: finalCard.principal_origin
 
-// send object for tracking
-      trackCard(breadcrumbObject)
+    }
+    breadcrumbArray.push(foundationObjectDropped)
+    console.log(breadcrumbArray)
+    console.log('foundation card just moved')
+    console.log(foundationObjectDropped)
+    trackCard(foundationObjectDropped)
+    }
   }
 
-  // show breadcrumb object
-  console.log('breadcrum array to ensure moved cards appear in array and are the array\'s last element')
-console.log(breadcrumbArray)
-
-
-  
+})
 
 
 
+    }else{
+// ORIGIN is drop pile
+console.log('check there is a temporary object for the dropped card')
+
+if(tempDragCardArr[0]){
+  console.log('checking temporary object array')
+  console.log(tempDragCardArr[0]) 
+  let droppedObject = tempDragCardArr[0]
+
+  // create a new drop object and add/update details
+
+  // NOTE: if the card has moved before, then the ORIGIN needs to be taken from the card' destination; two ways of doing this are to check that the 'when moved' property has a value, or to check whether the destination property is a non empty string. 
+
+  // an example, if I moved card '2' from pile seven to pile one, then it's properties will be ORIGIN:pile-7, DESTINATION:pile1.  If I go to move it back to pile 7, when I update the new object with the previous detials, I'll use target.id for the destination, which is correct, but the origin is pile-7, so the new object will have the properties;  ORIGIN:pile-7, DESTINATION:pile-7. This is going to affect the functions that search for and remove items, meaning the item origin, being wrong, might cause no object to be returned in the search for the object in the origin tracking array.  So nothing may be moved, leading to the object being in two places.  So that the tracking is no longer accurate.  
+
+  // create a variable for the origin and assign the correct value depending on whether the card was previously moved. 
+
+  let trueOrigin; 
+  if(droppedObject.when_moved > 0){
+console.log('this card has been moved before; use destination property for new origin property')
+trueOrigin = droppedObject.primary_card.destination
+  }else{
+    console.log('first time movement of this card, so use origin for new origin')
+    trueOrigin = droppedObject.primary_card.origin
+  }
+   let pileObjectDropped = {
+    primary_card: {
+      card:  droppedObject.primary_card.card,
+      origin:trueOrigin,
+      destination:event.target.id, 
+      group_elements: ''
+         }, 
+    when_flipped:droppedObject.when_flipped,
+    when_moved:breadcrumbArray.length,
+    total_selected: droppedObject.total_selected,
+    principal_origin:droppedObject.principal_origin
+   }
+   breadcrumbArray.pop() // get rid of old object
+   breadcrumbArray.push(pileObjectDropped) // push new object
+   trackCard(pileObjectDropped)
+}else{
+  console.log('no object exists in temporaray store')
+}
+    }
+
+
+
+  }
 
 faceUp()
 preSortWaste(newObj)
@@ -1484,31 +1721,37 @@ const checkNumbers = (color1, color2, number1, number2) =>{
   // parameter for adjacent card difference calculation
   let consecutiveVal = number1 - number2
 switch(consecutiveVal){
+//if the adjacent cards are consecutive their sum difference is 1
 case 1:
-  
-if(color1 !== color2){ // if the difference of two consecutive cards is '1' and colours are different, then drop the card
+  // then if the adjacent colours are different
+if(color1 !== color2){ 
 
-// SUCCESS so push card to breadcrumb
-  // this stops an empty value being placed in the breadcrumb array when a card is dropped from the waste pile
+// the card drop is legal
+// if temporary array contains the card's tracking object
   if(tempDragCardArr.length > 0){
+// push tracking object to breadcrumb
+console.log('check temporary array')
+console.log(tempDragCardArr[0])
     breadcrumbArray.push(tempDragCardArr[0])
   }
 
 
-  cardType(newObj)
-}else{console.log('invalid card: consecutive cards must be of different colors')};
+  cardType(newObj) // send card to be appended. 
+}else{
+  // if the cards are consecutive but are not different colours
+  console.log('invalid card: consecutive cards must be of different colors')};
 // remove card's tracking object from temporary drag card array
-tempDragCardArr.pop()
+tempDragCardArr.pop() // don't push to breadcrumb and don't append
 break;
-
-default: // consecutive value variable is not equal to one so illegal move, no need to check the card suits
+// if the card values are not consecutive
+default: // illegal move 
 console.log('invalid card: difference between consecutive cards must be 1')
 // remove card's tracking object from temporary drag card array
 tempDragCardArr.pop()
 }
 }
 
-// for cards being dropped to drop piles
+// drop pile cards check adjascent colours
 const checkColors = (prevCard, dropCard) =>{
   // determine previous card colour by finding the remainder of the card raw value divided by 4. 
   switch(prevCard % 4){
@@ -1537,7 +1780,7 @@ checkNumbers(lastChildSuitColor, dropCardSuitColor, lastChildTrueVal, dropCardTr
 
 
 
-// DROP CARD SCENARIOS BELOW --------------------------------- these functions are used to decide if the card will be appended to the drop target, the intended pile destination. If the card is rejected because of an illegal move, then the cards tracking object is deleted from the temporary drag card array. 
+// DROP CARD SCENARIOS BELOW --------------------------------- these functions are used to decide if the card will be appended to the drop target, the intended pile destination. This is done by comparing the details of the last card in event target, the destination pile, with the details of the card that is attempting to make the drop,  If the card attempting to drop is rejected because of an illegal move, then the cards tracking object is deleted from the temporary drag card array. But, note, for cards originating in the waste pile and foundation pile, there exist no temporary object yet because they were only created in the event listener for drop pile clicked cards. Those objects have to be created separately. 
 
 // king drop to DROP PILE
 const emptyPilePlaceKing = () =>{
@@ -1545,6 +1788,7 @@ const emptyPilePlaceKing = () =>{
   // push card object to breadcrumb as this card's drop is successful
   // this stops an empty value being placed in the breadcrumb array when a card is dropped from the waste pile
   if(tempDragCardArr.length > 0){
+    console.log('empty drop pile placing KING...')
     breadcrumbArray.push(tempDragCardArr[0])
   }
   cardType(newObj)
@@ -1557,7 +1801,6 @@ const placeNonKing = () =>{
  
 // extract id
   let lastChildBaseValue = parseInt(endChild.id)
-  // NOTE- I thought parseInt only returned an integer from a string representation of an integer, but it turns ANY string into a number, so I can use this else where; I had been using, Number(string.replace('.png', '')) on the id string, for example '12.png' returns the number 12. But looks like it can be done with just parseInt(id)
 
   // send end card value and drop card value
   checkColors(lastChildBaseValue, objBaseValue)
@@ -1671,31 +1914,31 @@ console.log('only an ACE can be placed on empty foundation')
 tempDragCardArr.pop()
  }
 }else{
-// foundation pile not empty, so check card values for placement. Note; if the card IS an ACE it will be rejected later because the foundation pile cards are consecutive and all other card values are greater than the value of the ace, so the ace will not be able to drop because doing so will break the rule for consecutive cards. 
+// foundation pile contains cards so 'attempt to place non ace'
 foundationPlaceNonAce()
 }
   break;
 
-// cards attempting a drop on DROP PILES. 
+// any other card must have a destination of drop pile (waste pile drops are handled elsewhere)
   default:   
-if(objTrueValue === 13){ // CARD = KING
+if(objTrueValue === 13){ // if card is KING
 // check number of cards in pile
-  switch(event.target.childNodes.length){ 
-    case 0: emptyPilePlaceKing() // of pile is empty place king
+  switch(event.target.childNodes.length){// check number of cards in pile
+    case 0: emptyPilePlaceKing()// if pile is empty, drop king
     break;
-    // otherwise pile is not empty; illegal move
+    // otherwise pile is not empty; KING drop is illegal
    default: console.log('cannot drop king on another card')
    // remove card's tracking object from temporary drag card array
 tempDragCardArr.pop()
   }
-  }else{ //CARD = NON KING 
+  }else{ // otherwise card is NON-KING
     switch(event.target.childNodes.length){
       // if pile is empty - illegal move cannot drop a non-king
       case 0: console.log('cannot drop non-king card on empty space')
       // remove card's tracking object from temporary drag card array
 tempDragCardArr.pop()
       break;
- // pile contains cards to attempt drop
+ // otherwise pile is not empty so drop non king
       default: placeNonKing();
   }}
   
@@ -1873,6 +2116,7 @@ dropPilesEl.forEach(function(element){
 
 
 
+
 // after looping through clicked to top card of pile we send the pile, clicked card and top card for selection - 
 const selectRange = (pile, start,object) =>{
 
@@ -2039,6 +2283,8 @@ dropPilesEl.forEach(function(cardPile){
 
 cardPile.addEventListener('mousedown', (event) => {
   // clear select array on double click 
+
+  console.log('NEW CARD SELECTED ----------------------------')
   selectArray = []
   dragIdArray = []
 
@@ -2054,11 +2300,18 @@ cardPile.addEventListener('mousedown', (event) => {
   let attr = target.getAttribute('draggable') // target drag status
 
 
-let cardValue = Number(target.id.replace('.png', ''))
+let cardValue =  parseInt(target.id)
 console.log('origin pile element below:')
 console.log(parent)
 console.log('origin pile name below:')
 console.log(parent.id)
+if(event.target.length > 0){
+  console.log('previous card')
+  console.log(event.target.previousSibling)
+}else{
+  console.log('no cards left in pile')
+}
+
 
 // getting the object of the clicked card from the tracking array. 
 let pileIndex;
@@ -2077,20 +2330,11 @@ console.log(cardObj)
 })
   }
 })
-// let cardObj = {
-
-// primary_card: {
-//   card:cardValue,
-//   origin:parent.id,
-//   destination:''
-// }, 
-
-// total_selected: ''
-// }
 
 
+// THIS IS FOR CREATING THE DRAGGABLE GROUP
 if(attr == "true"){ // if draggable: true; get the HTML element
-selectArray.push(parent)
+selectArray.push(parent) // THIS IS THE SELECTED PILE
 //$(cardPile).multidraggable()
 for(i=0; i < maxVal; i++){ // loop through pile's children (cards)
 if(children[i] == target){ // when child[i] is target card
@@ -2110,7 +2354,7 @@ cardObj.total_selected = dragIdArray.length
 tempDragCardArr.push(cardObj)
 
 console.log('breadcrumbs - last element is last card moved')
-
+console.log(tempDragCardArr[0])
 // create an object from array entries with the indexes as keys
 
 selectRange(selectArray[0], selectArray[1], dragIdArray)
@@ -2126,51 +2370,3 @@ console.log('cannot drag a face down card')
 })
 })
 
-// further NOTES*  Now we need to ensure that if you are dragging a card that it 'must' take the card or cards above it. 
-
-// checking portrait vs landscape orientation
-
-/*
-
-0
-: 
-(8) [4, 8, 12, 16, 20, 24, 28, 32]
-1
-: 
-(10) [2, 6, 10, 14, 18, 22, 26, 30, 34, 38]
-2
-: 
-(12) [3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47]
-3
-: 
-(11) [1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41]
-length
-: 
-4
-
-
-
-0
-: 
-[]
-1
-: 
-(3) [52, 46, 44]
-2
-: 
-[]
-3
-: 
-(4) [50, 45, 42, 40]
-4
-: 
-[49]
-5
-: 
-[]
-6
-: 
-(2) [51, 48]
-
-
-*/

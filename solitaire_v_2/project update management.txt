@@ -88,3 +88,61 @@ It seems plausible that the record kept in the tracking array can be used to cal
 
 
 
+UNWRAPPING ISSUES - 
+check what happens to ace drops to foundation pile, - it looks like they are not being unwrapped when transferred to the foundation pile.  I'll check with other cards by adding a second card to the first. 
+
+REMOVED THIS LINE: 
+multipleCardsRecords.push(foundationObj), because it seems to be adding an extra 'empty' object to the breadcrumb array... or the problem is coming from the objects created in the event listener for clicks on cards when they are dragged for transferring. 
+
+checking foundationObj which is the faulty object pushed to the breadcrumb array. 
+it seems as though the card is being recognized as originating in the foundation, but the card is coming from the drop pile, but it still sends the 'empty' object to the bread crum, so that's why when the rest of the function tries to read the last object in the breadcrumb array as the drop object, it causes an error, because there is nothing to read, which might be why, in turn, the card isn't removed from its origin tracking subarray because the details are for an empty element, which isn't the drop card.  So the drop cards object stays in the origin subarray.. 
+so something must be wrong with the conditional logic for cards (maybe just the ACE) moving from drop piles to foundation piles. 
+
+
+
+FOUND the first error
+The ORIGIN variable I created is 'NOT' the origin, it's the destination. 
+
+ISSUE IS NOW RESOLVED.  the fact that the condition was checking the origin property of the card object against the 'destination' meant that the object was not recognized, and somehow an empty object was sent for tracking. I mistakenly forgot that 'event.target' was the drop target and not the origin target, and I was using 'event.target.id' as the origin when in fact it was the destination name, which wouldn't match the origin name when the card is being moved from the drop pile to a foundation pile.  
+
+MOVED CARDS STILL HAVE ORIGINAL ORIGIN IN ORIGIN PROPERTY ON CARD OBJECT.  
+That needs to change.  When moved, the old 'origin' property must be given the old 'destination' property. 
+//  I think this can be solved by considering that, when a card is first moved, it's destination property will be empty, because it has not moved yet. But, if it has previously been moved, then the destination will be a string; when it is moved on from there, and lands in the new destination, the previous destination value can be used as the origin value because the destination name, prior to being changed, is where the card originated. just a matter of finding where the destination is updated on the object.  - SOLVED.. 
+
+IN THE card type function, when a card object comes in it is assigned the destination.  If there was a previous destination on the object, I created a variable for it and gave the object origin property that variable. If there was no previous destination, I just used the previous origin property value as the origin.  
+
+
+
+NEXT ISSUE: cards moved from foundation are not yet being transferred to drop pile tracker array
+solved. Was using the incorred variable, and old one, which was returning as null, when it should have been a variable giving origin name of card object; which would then be used to locate the card objects tracking array in order to pop the object out.  Because the variable was null, nothing was found so the object was not popped from the array; hence there were two instances of the object, one in the destination tracking array and another in the origin tracking array.  Once the correct variable was given, the issues solved itself. 
+
+(above was committed on 31 october)
+
+
+NEXT SOLVED ISSUE. 
+tranferred cards from origin tracking array to destination tracking array, BUT, given that only the selected card gets its destination and origin remapped, when the transfer was made successfully, the cards that went along with the first card have not changed destination or origin, so I pulled those details from the first card and updated those properties in the other cards; it's all working now.  
+
+COMMIT "multiple card movements need all of the subsequent card objects to have their origin and destination properties changed")
+
+
+
+checking for any other issues before moving on. 
+You also need to push the other cards to the breadcrumb array otherwise they'll be missing from the history. 
+handled this by pushing the first card early to the destination array, because it already has all correct details and is already in the breadcrumb array, and then updating the other cards which were transferred along with the the first card; updated the number of cards transferred, true origin and true destination.  So that, if the cards are moved on individually, they've all got the correct origin and destination details; which is also necessary for the back button function to work. 
+
+another issue.  I might have to completely remake the objects because, if a copy of the object is already in the breadcrumbs, the other instances of the object also receive the updates. 
+
+MAJOR CHANGE TO DROP FUNCTION - 
+Moved from lines from 855 into a condition that states, if the ID on the transfer card doesn't exist (sometimes it returns null) alert player that card doesn't exist (a react toast would be great here), process the card. This should prevent one of the errors where, if the 'null' id error is triggered, the card still appears in the breadcrumb array.  I'm actually thinking to move the breadcrumb push of foundation cards and drop piles into the drop function, AFTER a successful attempt to get the id, so that, only then will the card be pushed to breadcrumb.  I think that's a good idea, or you could even just use a small condition which says if the id is not present, do nothing, but if it is, push to bread crumb, but i suppose, since the id is used in more than one the processes involving the 'id'would be redundant anyway, becuase they can't execute either, so you may as well stop the rest of the drop function executing because everything that happens in the function after the id has been identified exists to handle the card that is dropped; but it no card has dropped so the code is of no use. It's best to stop it at the front gate where it's recognized that there is no id.  I'll see if I can reproduce the erros by playing about with the card drop. 
+
+So, I'm keeping both changes, the moving of the rest of the drop function into the if/else condition which decides what happens if the id is present or not, AND, moving the breadcrumb push to the stage after an id has been identified. That may involve having the object present though; good news is that the object already exists. 
+
+SOLVED, instead of pushing the object to breadcrumb when the card is clicked, I added the number of cards selected (to the object), including the clicked card (default is 1), and unshifted the object to a temporary array; when the card drop is accepted, then the object in the temporary array is pushed to the breadcrumb array. This acts a little bit like a transaction in that the whole process of drag and drop must complete before the card is moved to breadcrumb and this should solve the above issue. 
+
+NEXT CHECK
+You need to check if modifying the object of the first card in a group select affects other instances of the card further back in the breadcrumb, and if there is an effect, work out how to create a copy and place it correctly so that this can be avoided. You could actually pop the dropped card from breadcrumb and then add in the new one, because it is added 'before' the other cards dragged with it. 
+
+
+END OF GAME CHECK - 
+seems as though the correct records are showing for the game layout; all numbers in piles are displaying correctly. 
+The only issue is in the breadcrumbs where, some of the information isn't representing exactly what has happened, such as number of cards moved is showing incorretly in a card moved more than once. I might need to work on creating a new object entirely for each time a card is dropped, or potentially completely alter the object and only drop value, origin and destination as a skeleton, if creating new objects does not work. 
