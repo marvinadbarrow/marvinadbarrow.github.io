@@ -1,0 +1,325 @@
+*{
+margin:0;
+list-style-type: circle;
+}
+
+img{display: block;}
+
+body{
+width: 100vw;
+height: 100vh;
+position: relative;
+}
+
+#solve-btn{display: none;}
+.cardEl{
+width: 10vw;
+margin-top: -12vw;
+border-width: 0.1vw;
+display: inline-block;
+
+}
+
+.cardElWaste{
+    width: 10vw;
+    margin-top: -12vw;
+
+    }
+
+body{
+
+    height: 80%;
+    width: 100%;
+}
+
+
+
+#button-div{width: 20vw; height: 10vw;
+margin: auto;
+margin-top: 2vw;
+margin-bottom: 2vw;
+}
+
+
+#undo-btn{
+width: fit-content; 
+height: auto;
+background-color: rgb(30, 161, 212);
+color: white;
+font-size: 25px;
+padding: 10px 30px;
+border-radius: 10px;
+font-weight: bold;
+display: none;
+margin: auto;
+}
+
+#solve-btn, #shuffle-btn{background-color: rgb(41, 40, 40); font-weight: bold; width: 20%; height: auto; font-size: 25px; color:white; border-radius: 8px; margin: auto;}
+
+
+
+.highlight{
+ outline: 3px solid red;
+ outline-offset: 3px;
+ border-radius: 7px;
+    
+}
+
+
+
+
+#top-piles-container{
+width: 95vw;
+
+display: flex;
+height: fit-content;
+margin-top: 7vw;
+margin-bottom: 0.5vw;
+
+}
+
+#upper-piles{
+    height: 10vw;
+width: 30vw;
+margin-top: 15vw;
+margin: auto;
+padding-bottom: 1vw; /* to increase container size as foundation piles grow */
+margin-bottom: 0.5vw;}
+
+.remain-pile{
+    margin-top: -9vw;
+    padding: 10vw 1vw 0vw 1vw;
+     width: 9vw;
+    margin-left: 3vw;
+  border-width: 1px;
+  border-color: black;
+  border-style: none;
+    opacity: 1;   
+}
+
+
+
+#remain-waste{
+    display: flex;
+        margin-top: 5vw;
+   
+    width: 30vw;
+    }
+
+    /* div holding finishing suits*/
+#foundation-stacks{
+    display: flex;
+    height: fit-content;
+    
+    margin-top: 5vw;
+    width: 60vw;
+      padding-bottom: 1vw !important;
+      
+}
+
+.foundation-pile{
+    height: fit-content;
+    margin-top: -9vw;
+    padding: 10vw 2vw 2vw 1vw;
+   width: 9vw;
+    margin-left: 3vw;
+    border-width: 1px;
+    border-color: rgba(7, 7, 7, 0.2);
+ 
+    background-color:    rgba(240, 218, 23, 0.466);
+    ;
+    border-style: solid;
+ margin-bottom: 1vw;
+}
+
+
+
+
+#piles-div{
+    margin-top: 0.5vw;
+width: 96vw;
+height: fit-content;
+display: flex;
+justify-content: space-around;
+padding-bottom: 5vw;
+
+}
+
+/* styling for card piles*/
+.piles{
+    height: fit-content;
+    width: 9vw;
+        border-top: 1px;
+    opacity: 1;
+    margin-top: 3vh;
+    padding: 10vw 2vw 4vw 2vw;
+    border-style: none;
+    border-width: 1px;
+    border-color: black;
+    background-color: rgba(255, 255, 255, 0);
+    }
+
+    
+    .hide{
+        display: none;
+     }
+     
+    /* we'll add this class to highlight the card for when it is being dragged. */
+
+.dragging{
+    border: 2px solid red;
+    }
+    
+    .enter{
+    
+        outline: 4px solid red;
+        outline-offset: 2px;
+    }
+
+    
+
+
+.multiple{
+
+    opacity: 0.1;
+}
+.card-size{
+
+    opacity: 1;
+    height: 6vw;
+}
+
+.multi-style{
+
+outline: 0.1vw solid red;
+
+}
+/* since the wrapper dimensions won't change with media query, the dimensions will remain the same if you change page orientation from portrait to landscape and vice versa.  So I've created two differenbt classes (below), one for wrapper when the page is in portrait and another for when the page is in landscape - then, by checking the width and height dimension of the page (each time we create a wrapper), we can choose the appropriate wrapper class (for portrait or landscape) if the page orientation changes in game*/
+.wrapper-portrait{
+width: 11vw;
+margin-top: -12vw; 
+position: relative;
+padding-top: 12vw;
+padding-right: 2vw;
+}
+
+.wrapper-landscape{
+    width: 6vw;
+    margin-top: -7vw; 
+    position: relative;
+    padding-top: 7vw;
+  
+                }
+
+.card-border{
+
+border:2px solid black;
+
+}
+
+#game-container{
+margin-top: 1vh;
+height:100vh;
+width: 99vw;
+display: flex;
+flex-direction: column;
+align-content: space-around;
+padding-bottom: 5vw;
+background-image: url(./cardgame-background.jpg);
+}
+
+
+/*
+COLOURINGS just in case things go wrong with containers and divs
+(all containers set to height - fit content so they expand as card piles collect more careds
+game container -
+background-color: aqua;
+
+piles div, upper piles, foundation stacks - 
+background-color: blue;
+
+remain waste - 
+background-color: rgb(200, 255, 0);
+
+top piles container
+background-color: orange;
+*/
+
+
+
+@media(orientation:landscape){
+
+    .cardEl{
+        width: 5.5vw;
+        margin-top: -7vw;
+    }
+
+    .cardElWaste{
+        width: 5.5vw;
+        margin-top: -7vw;
+    }
+
+    .piles{
+        width: 7vw;
+        margin-top: 3vh;
+        padding: 10vw 1vw 3vw 1vw;}
+
+        .foundation-pile{
+            height: fit-content;
+            margin-top: -12vw;
+            padding: 10vw 1vw 2vw 1vw;
+           width: 7vw;
+            margin-left: 2vw;
+            margin-bottom: 2vw;
+              }
+
+              #top-piles-container{
+                justify-content: space-between;
+                      width: 75vw;
+                margin: auto;
+                margin-bottom: -15vh;
+                margin-top: 1vh;
+              }
+
+              #remain-waste{
+                width: 25vw;
+                         }
+#deal-btn{
+height: 2vw;
+ }
+
+ #button-div{width: 15vw; height: 6vw;
+    display: none;
+      }
+
+      #piles-div{
+        margin-top: -1vw;
+    width: 72vw;
+     margin: auto;
+    padding-bottom: 2vw;
+            }
+
+    .remain-pile{
+        margin-top: -9vw;
+        padding: 10vw 1vw 0vw 1vw;
+         width: 7vw;
+        opacity: 1;   
+    }
+
+    .piles{
+        width: 6vw;
+        
+               margin-top: 1vh;
+        padding: 5vw 0.5vw 3vw 0.5vw;
+               }
+
+        #game-container{
+            position: absolute;
+            background-image: url(./images/green\ background.png);
+                  top: 8vh;  
+                  padding-top: 15vh;    
+        }
+    
+
+}
+

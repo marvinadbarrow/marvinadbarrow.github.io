@@ -1,0 +1,18 @@
+So here are the ideas  i need to work on. 
+
+DRAGGABLE CARDS. 
+we could start by only making the top cards of each pile draggable... which will prevent you dragging any card 'other than' the top cards at first which is what we really want. - DONE!
+
+then, create two classes; .face-down and .face-up
+The top cards which are 'draggable = true' should have the .face-up class added as soon as they are created.  - DONE!
+
+When a top card is removed, the card that left it behind should be assigned 'draggable = true', AND should have the .face-up' class added to it. So I suppose we could combine the attribute 'draggable' and the .face-(up or down) class. 
+
+SOLUTION FOR THE ABOVE
+array = []
+everytime a card (or cards) moves from a pile, we'll drop the second from top card's details into this array (in the form of an object).  if prevent default is activated in the drop event handler, we'll add the .face-up class to the card whose details match the array element. If the card is not dropped, when we will just delete the array entry. *The only issue might be when you are moving multiple cards because then the card you are dealing with will not be the second from top card, so it will have to be a conditional statement - i.e. if you take 5 cards, then if there are any cards left, send the 6th card to the array and if those cards are dropped, give the .face-up class to the sixth card.
+
+
+here's the pseudo code: if( class = 'face-up'){card.setAttribute('draggable', true): OR you could just set attribute 'draggable = true' after giving the class .face-up
+
+

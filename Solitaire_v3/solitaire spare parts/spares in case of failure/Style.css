@@ -1,0 +1,175 @@
+*{
+margin:0;
+list-style-type: circle;
+
+}
+
+img{display: block;}
+
+
+
+.cardEl{
+width: 9vw;
+
+}
+
+.cardElWaste{
+    width: 9vw;
+    margin-top: -10vw;
+  
+    }
+
+
+
+
+.hide{
+
+   display: none;
+}
+
+
+
+#button-div{width: 20vw; height: 10vw;
+margin: auto;
+margin-top: 5vw;
+margin-bottom: 5vw;
+}
+
+
+#deal-btn{
+text-transform: uppercase; 
+font-weight: bold; 
+width: 10vw; 
+height: 5vw;
+}
+
+
+
+.highlight{
+ outline: 3px solid red;
+ outline-offset: 3px;
+ border-radius: 7px;
+    
+}
+
+/* styling for card piles*/
+.piles{
+height: fit-content;
+width: 9vw;
+
+border-top: 1px;
+opacity: 1;
+margin-top: 3vh;
+padding-bottom: 3vh;
+
+
+
+}
+
+.remain-pile{
+    margin-top: -9vw;
+    padding-top: 10vw;
+     width: 9vw;
+    margin-left: 3vw;
+  
+        border: 1px solid black;
+opacity: 1;   
+}
+
+
+.foundation-pile{
+    height: fit-content;
+    margin-top: -9vw;
+    padding-top: 10vw;
+   padding-bottom: 2vw;
+   width: 9vw;
+    margin-left: 3vw;
+        border: 1px solid black;
+opacity: 1;  
+}
+
+
+
+/* div holding pick cards and waste cards*/
+#remaine-waste{
+    display: flex;
+    margin-top: 15vw;
+
+}
+
+
+/* div holding finishing suits*/
+#foundation-stacks{
+    display: flex;
+    height: 9vw;
+}
+
+
+
+/* we'll add this class to highlight the card for when it is being dragged. */
+
+.dragging{
+border: 2px solid red;
+}
+
+.enter{
+
+    outline: 4px solid red;
+    outline-offset: 2px;
+}
+
+#upper-piles{
+width: 90vw;
+margin-top: 15vw;
+display: flex;
+justify-content: space-between;
+margin: auto;
+
+}
+
+#piles-div{
+width: 80vw;
+min-height: 64px;
+display: flex;
+margin-top: 5vh;
+justify-content: space-around;
+margin-left: 10vw;
+padding-bottom: 10vw;
+margin-top: 20vw;
+
+}
+
+.face-up{
+    /* nothing at the moment*/
+
+}
+
+.multiple{
+
+    opacity: 0.1;
+}
+.card-size{
+
+    opacity: 1;
+    height: 6vw;
+}
+
+.multi-style{
+
+outline: 0.1vw solid red;
+
+}
+
+.wrapper{
+width: 9vw;
+margin-top: -10vw; /* setting margin to and padding to to the height of the card has fixed the disappearing card when the wrapper becomes active*/
+position: relative;
+padding-top: 10vw;
+padding-right: 1vw;
+}
+
+.card-border{
+
+border:2px solid black;
+
+}

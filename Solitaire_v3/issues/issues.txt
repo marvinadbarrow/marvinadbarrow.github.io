@@ -1,0 +1,97 @@
+FOUNDATION TO DROP PILE ISSUE: 
+The card object is not being transferred from the foundation tracker to the drop pile tracker corresponding to the card's destination. 
+
+So the object still shows in the foundation tracker with the origin/destination details relevant to its arrival on the foundation pile. 
+
+BREADCRUMB: 
+the last object in the breadcrumb refers to the previous moved card. 
+This is why, when a card moved from foundation is making two moves back to back, the breadcrumb last object shows the card details, but with its first move rather than it's last move  It should show 'both' moves, but I'm assuming it is only showing the first move because the move to the foundation pile is not being recorded in the breadcrumb array.  
+
+I'll have to test this to be sure. 
+
+INTERESTING: 
+Type of move:
+back to back:-
+
+pick - waste
+waste - foundation
+foundation - drop 
+
+
+The pick pile to waste pile move was recorded. 
+the foundation pile move to drop pile move was recorded
+BUT, the move from waste pile to foundation pile was not recorded. 
+
+TESTING THIS SCENARIO: 
+--From game start, 
+flipped through to find ace:
+card - ace of spades
+card value 14
+breadcrumb array is correct
+
+-- move ace to foundation pile:
+result - 
+line 1622 - waste card move detected
+card object is shown with correct origin/destination values
+origin:waste pile
+destination:foundation pile
+when_moved: 15 (breadcrumb array logged on line 1625)
+ALL OF THE ABOVE ARE CORRECT
+lines 1210 logs the beginning of the waste pile origin function. games
+lines 1516/1522/1221 all log the object with correct details
+
+
+WASTE PILE / PICK PILE
+1629 logs the waste pile
+zero position object represents the exposed card on the waste pile. 
+1630 logs the cards still on the pick pile
+
+--conveniently there is a two of hearts diamonds on drop pile 4
+card value - 6
+the ace can legally be placed on the 2
+ace of spades moved and placed on top of the 2 of diamonds
+line 1176 shows HTML element of card as it is on destination pile (the ace, that is)
+RESULTS: 
+The breadcrumb is still reading move 15, but now the origin/destination details have changed to the correct ones corresponding to the latest move. 
+The previous WASTE PILE / FOUNDATION PILE move has been erased.  
+
+yep, it looks like the details are being erased from the original breadcrumb object and re-written to represent the current details, BUT, the when_moved property remains the same which makes me think that the original ending breadcrumb is being overwritten. 
+
+PRE-CARD APPEND CODE: 
+The function which decides whether a card should be sent to the APPEND function is where, if the card IS sent, it's tracking object should be pushed to breadcrumb.  
+
+there's a switch function that looks at the destination of the card.  Drop pile destination implies two possible origins, the waste pile or the foundation pile, and I don't know if I've made that distinction inside this function that decides whether to append the card or not based on the legality of its move. 
+
+There are several scenarios here: 
+foundation drop - 
+empty pile: 
+ace
+non-ace
+
+populated pile:
+ace
+non-ace
+
+Drop pile drop:
+empty pile:
+king
+non-king
+
+populated pile
+king
+non-king
+
+we're largely concerned the populated drop pile, since, the only card that can drop to the empty pile from the foundation is a KING, all other cards will drop onto another card. 
+
+if we want to be precise, then we are dealing with these two possibilities: 
+Populated pile: 
+non-king
+
+empty pile:
+kind
+
+empty pile king placement is on line 1766, it pushes the temporary object to breadcrumb. 
+
+
+
+
